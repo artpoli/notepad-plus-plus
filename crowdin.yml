@@ -1,0 +1,3 @@
+files:
+  - source: /PowerEditor/installer/nativeLang/english.xml
+    translation: /%original_path%/%language%.xml
