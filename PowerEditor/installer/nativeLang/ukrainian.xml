@@ -101,7 +101,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="41016" name="Move to Recycle &amp;Bin"/>
                     <Item id="41017" name="&amp;Rename..."/>
                     <Item id="41021" name="Відкрити останній закритий файл"/>
-                    <Item id="41022" name="Open Folder as &amp;Workspace..."/>
+                    <Item id="41022" name="Відкрити теки як робочу область..."/>
                     <Item id="41023" name="Open in &amp;Default Viewer"/>
                     <Item id="42001" name="Вирізати"/>
                     <Item id="42002" name="Копіювати"/>
@@ -114,86 +114,86 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42084" name="Date Time (short)"/>
                     <Item id="42085" name="Date Time (long)"/>
                     <Item id="42086" name="Date Time (customized)"/>
-                    <Item id="42008" name="Increase Line Indent"/>
-                    <Item id="42009" name="Decrease Line Indent"/>
-                    <Item id="42010" name="Duplicate Current Line"/>
-                    <Item id="42079" name="Remove Duplicate Lines"/>
-                    <Item id="42077" name="Remove Consecutive Duplicate Lines"/>
-                    <Item id="42012" name="Split Lines"/>
-                    <Item id="42013" name="Join Lines"/>
-                    <Item id="42014" name="Move Up Current Line"/>
-                    <Item id="42015" name="Move Down Current Line"/>
-                    <Item id="42059" name="Sort Lines Lexicographically Ascending"/>
-                    <Item id="42060" name="Sort Lines Lexicographically Descending"/>
-                    <Item id="42080" name="Sort Lines Lex. Ascending Ignoring Case"/>
-                    <Item id="42081" name="Sort Lines Lex. Descending Ignoring Case"/>
-                    <Item id="42061" name="Sort Lines As Integers Ascending"/>
-                    <Item id="42062" name="Sort Lines As Integers Descending"/>
-                    <Item id="42063" name="Sort Lines As Decimals (Comma) Ascending"/>
-                    <Item id="42064" name="Sort Lines As Decimals (Comma) Descending"/>
-                    <Item id="42065" name="Sort Lines As Decimals (Dot) Ascending"/>
-                    <Item id="42066" name="Sort Lines As Decimals (Dot) Descending"/>
+                    <Item id="42008" name="Збільшити відступ рядка"/>
+                    <Item id="42009" name="Зменшити відступ рядка"/>
+                    <Item id="42010" name="Дублювати рядок"/>
+                    <Item id="42079" name="Вилучити дублікати рядків"/>
+                    <Item id="42077" name="Вилучити послідовні дублікати рядків"/>
+                    <Item id="42012" name="Розділити рядки"/>
+                    <Item id="42013" name="Об'єднати рядки"/>
+                    <Item id="42014" name="Підняти поточний рядок"/>
+                    <Item id="42015" name="Опустити поточний рядок"/>
+                    <Item id="42059" name="Сортувати рядки за зростанням"/>
+                    <Item id="42060" name="Сортувати рядки за спаданням"/>
+                    <Item id="42080" name="Сортувати рядки Lex. за зростанням ігноруючи регістр"/>
+                    <Item id="42081" name="Сортувати рядки Lex. за спаданням ігноруючи регістр"/>
+                    <Item id="42061" name="Сортувати рядки як ціле за зростанням"/>
+                    <Item id="42062" name="Сортувати рядки як ціле за спаданням"/>
+                    <Item id="42063" name="Сортувати рядки як десяткове (кома) за зростанням"/>
+                    <Item id="42064" name="Сортувати рядки як десяткове (кома) за спаданням"/>
+                    <Item id="42065" name="Сортувати рядки як десяткове (крапка) за зростанням"/>
+                    <Item id="42066" name="Сортувати рядки як десяткове (крапка) за спаданням"/>
                     <Item id="42083" name="Reverse Line Order"/>
                     <Item id="42078" name="Randomize Line Order"/>
-                    <Item id="42016" name="&amp;UPPERCASE"/>
-                    <Item id="42017" name="&amp;lowercase"/>
-                    <Item id="42067" name="&amp;Proper Case"/>
-                    <Item id="42068" name="Proper Case (blend)"/>
-                    <Item id="42069" name="&amp;Sentence case"/>
-                    <Item id="42070" name="Sentence case (blend)"/>
-                    <Item id="42071" name="&amp;iNVERT cASE"/>
-                    <Item id="42072" name="&amp;ranDOm CasE"/>
-                    <Item id="42073" name="Open File"/>
+                    <Item id="42016" name="ВЕЛИКИМИ"/>
+                    <Item id="42017" name="маленькими"/>
+                    <Item id="42067" name="Перші Літери Великі"/>
+                    <Item id="42068" name="Перші Літери Великі (змішані)"/>
+                    <Item id="42069" name="Як у реченнях"/>
+                    <Item id="42070" name="Як у реченнях (змішані)"/>
+                    <Item id="42071" name="зВОРОТНІЙ пОРЯДОК"/>
+                    <Item id="42072" name="виПАдковиЙ ПорЯдок"/>
+                    <Item id="42073" name="Відкрити файл"/>
                     <Item id="42074" name="Відкрити теку в провіднику"/>
-                    <Item id="42075" name="Search on Internet"/>
-                    <Item id="42076" name="Change Search Engine..."/>
-                    <Item id="42018" name="Start Re&amp;cording"/>
-                    <Item id="42019" name="S&amp;top Recording"/>
-                    <Item id="42021" name="&amp;Playback"/>
-                    <Item id="42022" name="Toggle Single Line Comment"/>
-                    <Item id="42023" name="Block Comment"/>
-                    <Item id="42047" name="Block Uncomment"/>
-                    <Item id="42024" name="Trim Trailing Space"/>
-                    <Item id="42042" name="Trim Leading Space"/>
-                    <Item id="42043" name="Trim Leading and Trailing Space"/>
-                    <Item id="42044" name="EOL to Space"/>
-                    <Item id="42045" name="Remove Unnecessary Blank and EOL"/>
-                    <Item id="42046" name="TAB to Space"/>
-                    <Item id="42054" name="Space to TAB (All)"/>
-                    <Item id="42053" name="Space to TAB (Leading)"/>
-                    <Item id="42038" name="Paste HTML Content"/>
-                    <Item id="42039" name="Paste RTF Content"/>
-                    <Item id="42048" name="Copy Binary Content"/>
-                    <Item id="42049" name="Cut Binary Content"/>
-                    <Item id="42050" name="Paste Binary Content"/>
-                    <Item id="42082" name="Copy link"/>
-                    <Item id="42037" name="Column Mode..."/>
+                    <Item id="42075" name="Пошук в Інтернеті"/>
+                    <Item id="42076" name="Змінити пошуковий засіб..."/>
+                    <Item id="42018" name="Почати запис"/>
+                    <Item id="42019" name="Зупинити запис"/>
+                    <Item id="42021" name="Відтворити"/>
+                    <Item id="42022" name="Перемкнути в коментар одного рядка"/>
+                    <Item id="42023" name="Коментувати блок"/>
+                    <Item id="42047" name="Розкоментувати блок"/>
+                    <Item id="42024" name="Прибрати пробіли"/>
+                    <Item id="42042" name="Прибрати пробіл на початку"/>
+                    <Item id="42043" name="Прибрати пробіл на початку і в кінці"/>
+                    <Item id="42044" name="Символ кінця рядка в пробіл"/>
+                    <Item id="42045" name="Прибрати зайві пробіли, а закінчення рядків у пробіл"/>
+                    <Item id="42046" name="TAB у пробіл"/>
+                    <Item id="42054" name="Пробіл у TAB (все)"/>
+                    <Item id="42053" name="Пробіл у TAB (на початку)"/>
+                    <Item id="42038" name="Вставити вміст HTML"/>
+                    <Item id="42039" name="Вставити вміст RTF"/>
+                    <Item id="42048" name="Копіювати бінарний вміст"/>
+                    <Item id="42049" name="Вирізати бінарний вміст"/>
+                    <Item id="42050" name="Вставити бінарний вміст"/>
+                    <Item id="42082" name="Копіювати посилання"/>
+                    <Item id="42037" name="Режим стовпців..."/>
                     <Item id="42034" name="Colum&amp;n Editor..."/>
                     <Item id="42051" name="Character &amp;Panel"/>
                     <Item id="42052" name="Clipboard &amp;History"/>
-                    <Item id="42025" name="&amp;Save Currently Recorded Macro..."/>
-                    <Item id="42026" name="Text Direction RTL"/>
-                    <Item id="42027" name="Text Direction LTR"/>
+                    <Item id="42025" name="Зберегти записаний макрос..."/>
+                    <Item id="42026" name="Текст справа наліво"/>
+                    <Item id="42027" name="Текст зліва направо"/>
                     <Item id="42028" name="&amp;Set Read-Only"/>
-                    <Item id="42029" name="Current File Path to Clipboard"/>
-                    <Item id="42030" name="Current Filename to Clipboard"/>
+                    <Item id="42029" name="Шлях та назву файлу в буфер обміну"/>
+                    <Item id="42030" name="Назву файлу в буфер обміну"/>
                     <Item id="42031" name="Шлях теки до буфера"/>
-                    <Item id="42032" name="&amp;Run a Macro Multiple Times..."/>
+                    <Item id="42032" name="Багаторазовий запуск макросу..."/>
                     <Item id="42033" name="Прибрати атрибут «Лише читання»"/>
-                    <Item id="42035" name="Single Line Comment"/>
-                    <Item id="42036" name="Single Line Uncomment"/>
-                    <Item id="42055" name="Remove Empty Lines"/>
-                    <Item id="42056" name="Remove Empty Lines (Containing Blank characters)"/>
-                    <Item id="42057" name="Insert Blank Line Above Current"/>
-                    <Item id="42058" name="Insert Blank Line Below Current"/>
-                    <Item id="43001" name="&amp;Find..."/>
-                    <Item id="43002" name="Find &amp;Next"/>
-                    <Item id="43003" name="&amp;Replace..."/>
-                    <Item id="43004" name="&amp;Go to..."/>
-                    <Item id="43005" name="Toggle Bookmark"/>
-                    <Item id="43006" name="Next Bookmark"/>
-                    <Item id="43007" name="Previous Bookmark"/>
-                    <Item id="43008" name="Clear All Bookmarks"/>
+                    <Item id="42035" name="Коментувати рядок"/>
+                    <Item id="42036" name="Розкоментувати рядок"/>
+                    <Item id="42055" name="Вилучити порожні рядки"/>
+                    <Item id="42056" name="Вилучити порожні рядки (включно з порожніми символами)"/>
+                    <Item id="42057" name="Додати порожній рядок над поточним"/>
+                    <Item id="42058" name="Додати порожній рядок під поточним"/>
+                    <Item id="43001" name="Знайти..."/>
+                    <Item id="43002" name="Знайти далі"/>
+                    <Item id="43003" name="Замінити..."/>
+                    <Item id="43004" name="Перейти до..."/>
+                    <Item id="43005" name="Закладки"/>
+                    <Item id="43006" name="Наступна закладка"/>
+                    <Item id="43007" name="Попередня закладка"/>
+                    <Item id="43008" name="Стерти всі закладки"/>
                     <Item id="43018" name="Cut Bookmarked Lines"/>
                     <Item id="43019" name="Copy Bookmarked Lines"/>
                     <Item id="43020" name="Paste to (Replace) Bookmarked Lines"/>
