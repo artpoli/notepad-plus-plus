@@ -194,71 +194,71 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="43006" name="Наступна закладка"/>
                     <Item id="43007" name="Попередня закладка"/>
                     <Item id="43008" name="Стерти всі закладки"/>
-                    <Item id="43018" name="Cut Bookmarked Lines"/>
-                    <Item id="43019" name="Copy Bookmarked Lines"/>
-                    <Item id="43020" name="Paste to (Replace) Bookmarked Lines"/>
-                    <Item id="43021" name="Remove Bookmarked Lines"/>
-                    <Item id="43051" name="Remove Unmarked Lines"/>
-                    <Item id="43050" name="Inverse Bookmark"/>
+                    <Item id="43018" name="Вирізати закладені рядки"/>
+                    <Item id="43019" name="Копіювати закладені рядки"/>
+                    <Item id="43020" name="Вставити й замінити позначені рядки"/>
+                    <Item id="43021" name="Вилучити позначені рядки"/>
+                    <Item id="43051" name="Вилучити непозначені рядки"/>
+                    <Item id="43050" name="Інвертувати закладки"/>
                     <Item id="43052" name="Find characters in rang&amp;e..."/>
                     <Item id="43053" name="Select All Between &amp;Matching Braces"/>
                     <Item id="43009" name="Go to &amp;Matching Brace"/>
-                    <Item id="43010" name="Find &amp;Previous"/>
-                    <Item id="43011" name="&amp;Incremental Search"/>
+                    <Item id="43010" name="Знайти перед"/>
+                    <Item id="43011" name="Покроковий пошук"/>
                     <Item id="43013" name="Find in Fi&amp;les"/>
                     <Item id="43014" name="Find (&amp;Volatile) Next"/>
                     <Item id="43015" name="Find (&amp;Volatile) Previous"/>
-                    <Item id="43022" name="Using 1st Style"/>
-                    <Item id="43023" name="Clear 1st Style"/>
-                    <Item id="43024" name="Using 2nd Style"/>
-                    <Item id="43025" name="Clear 2nd Style"/>
-                    <Item id="43026" name="Using 3rd Style"/>
-                    <Item id="43027" name="Clear 3rd Style"/>
-                    <Item id="43028" name="Using 4th Style"/>
-                    <Item id="43029" name="Clear 4th Style"/>
-                    <Item id="43030" name="Using 5th Style"/>
-                    <Item id="43031" name="Clear 5th Style"/>
-                    <Item id="43032" name="Clear All Styles"/>
-                    <Item id="43033" name="1st style"/>
-                    <Item id="43034" name="2nd style"/>
-                    <Item id="43035" name="3rd style"/>
-                    <Item id="43036" name="4th style"/>
-                    <Item id="43037" name="5th style"/>
+                    <Item id="43022" name="Використання стилю 1"/>
+                    <Item id="43023" name="Стерти стиль 1"/>
+                    <Item id="43024" name="Використання стилю 2"/>
+                    <Item id="43025" name="Стерти стиль 2"/>
+                    <Item id="43026" name="Використання стилю 3"/>
+                    <Item id="43027" name="Стерти стиль 3"/>
+                    <Item id="43028" name="Використання стилю 4"/>
+                    <Item id="43029" name="Стерти стиль 4"/>
+                    <Item id="43030" name="Використання стилю 5"/>
+                    <Item id="43031" name="Стерти стиль 5"/>
+                    <Item id="43032" name="Стерти всі стилі"/>
+                    <Item id="43033" name="Стиль 1"/>
+                    <Item id="43034" name="Стиль 2"/>
+                    <Item id="43035" name="Стиль 3"/>
+                    <Item id="43036" name="Стиль 4"/>
+                    <Item id="43037" name="Стиль 5"/>
                     <Item id="43038" name="Find Mark Style"/>
-                    <Item id="43039" name="1st style"/>
-                    <Item id="43040" name="2nd style"/>
-                    <Item id="43041" name="3rd style"/>
-                    <Item id="43042" name="4th style"/>
-                    <Item id="43043" name="5th style"/>
+                    <Item id="43039" name="Стиль 1"/>
+                    <Item id="43040" name="Стиль 2"/>
+                    <Item id="43041" name="Стиль 3"/>
+                    <Item id="43042" name="Стиль 4"/>
+                    <Item id="43043" name="Стиль 5"/>
                     <Item id="43044" name="Find Mark Style"/>
-                    <Item id="43055" name="1st Style"/>
-                    <Item id="43056" name="2nd Style"/>
-                    <Item id="43057" name="3rd Style"/>
-                    <Item id="43058" name="4th Style"/>
-                    <Item id="43059" name="5th Style"/>
-                    <Item id="43060" name="All Styles"/>
+                    <Item id="43055" name="Стиль 1"/>
+                    <Item id="43056" name="Стиль 2"/>
+                    <Item id="43057" name="Стиль 3"/>
+                    <Item id="43058" name="Стиль 4"/>
+                    <Item id="43059" name="Стиль 5"/>
+                    <Item id="43060" name="Всі стилі"/>
                     <Item id="43061" name="Find Mark Style"/>
-                    <Item id="43062" name="Using 1st Style"/>
-                    <Item id="43063" name="Using 2nd Style"/>
-                    <Item id="43064" name="Using 3rd Style"/>
-                    <Item id="43065" name="Using 4th Style"/>
-                    <Item id="43066" name="Using 5th Style"/>
+                    <Item id="43062" name="Використання стилю 1"/>
+                    <Item id="43063" name="Використання стилю 2"/>
+                    <Item id="43064" name="Використання стилю 3"/>
+                    <Item id="43065" name="Використання стилю 4"/>
+                    <Item id="43066" name="Використання стилю 5"/>
                     <Item id="43045" name="Search Results &amp;Window"/>
                     <Item id="43046" name="Next Search Resul&amp;t"/>
                     <Item id="43047" name="Previous Search Resul&amp;t"/>
                     <Item id="43048" name="&amp;Select and Find Next"/>
                     <Item id="43049" name="&amp;Select and Find Previous"/>
-                    <Item id="43054" name="Mar&amp;k..."/>
-                    <Item id="44009" name="Post-It"/>
-                    <Item id="44010" name="Fold All"/>
+                    <Item id="43054" name="Позначка..."/>
+                    <Item id="44009" name="Текст на все вікно"/>
+                    <Item id="44010" name="Згорнути все"/>
                     <Item id="44011" name="Distraction Free Mode"/>
-                    <Item id="44019" name="Show All Characters"/>
-                    <Item id="44020" name="Show Indent Guide"/>
-                    <Item id="44022" name="Word wrap"/>
-                    <Item id="44023" name="Zoom &amp;In (Ctrl+Mouse Wheel Up)"/>
-                    <Item id="44024" name="Zoom &amp;Out (Ctrl+Mouse Wheel Down)"/>
-                    <Item id="44025" name="Show White Space and TAB"/>
-                    <Item id="44026" name="Show End of Line"/>
+                    <Item id="44019" name="Показати всі символи"/>
+                    <Item id="44020" name="Значення відступів"/>
+                    <Item id="44022" name="Перенесення слів"/>
+                    <Item id="44023" name="Збільшити (Ctrl + коліщатко миші вгору)"/>
+                    <Item id="44024" name="Зменшити (Ctrl + коліщатко миші вниз)"/>
+                    <Item id="44025" name="Показувати пробіли і Tab"/>
+                    <Item id="44026" name="Показувати символ закінчення рядка"/>
                     <Item id="44029" name="Unfold All"/>
                     <Item id="44030" name="Collapse Current Level"/>
                     <Item id="44031" name="Uncollapse Current Level"/>
@@ -335,27 +335,27 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="48006" name="Import style theme(s)..."/>
                     <Item id="48018" name="Edit Popup ContextMenu"/>
                     <Item id="48009" name="Shortcut Mapper..."/>
-                    <Item id="48011" name="Preferences..."/>
-                    <Item id="48014" name="Open Plugins Folder..."/>
-                    <Item id="48015" name="Plugins Admin..."/>
-                    <Item id="48501" name="Generate..."/>
-                    <Item id="48502" name="Generate from files..."/>
-                    <Item id="48503" name="Generate from selection into clipboard"/>
-                    <Item id="48504" name="Generate..."/>
-                    <Item id="48505" name="Generate from files..."/>
-                    <Item id="48506" name="Generate from selection into clipboard"/>
-                    <Item id="49000" name="&amp;Run..."/>
+                    <Item id="48011" name="Налаштування..."/>
+                    <Item id="48014" name="Відкрити теку плагінів..."/>
+                    <Item id="48015" name="Адміністрування плагінів..."/>
+                    <Item id="48501" name="Генерувати..."/>
+                    <Item id="48502" name="Генерувати з файлів..."/>
+                    <Item id="48503" name="Генерувати з вибраного в буфер обміну"/>
+                    <Item id="48504" name="Генерувати..."/>
+                    <Item id="48505" name="Генерувати з файлів..."/>
+                    <Item id="48506" name="Генерувати з вибраного в буфер обміну"/>
+                    <Item id="49000" name="Виконати..."/>
 
-                    <Item id="50000" name="Function Completion"/>
-                    <Item id="50001" name="Word Completion"/>
-                    <Item id="50002" name="Function Parameters Hint"/>
-                    <Item id="50005" name="Toggle macro record"/>
-                    <Item id="50006" name="Path Completion"/>
-                    <Item id="44042" name="Hide Lines"/>
-                    <Item id="42040" name="Open All Recent Files"/>
-                    <Item id="42041" name="Empty Recent Files List"/>
-                    <Item id="48016" name="Modify Shortcut/Delete Macro..."/>
-                    <Item id="48017" name="Modify Shortcut/Delete Command..."/>
+                    <Item id="50000" name="Завершення функцій"/>
+                    <Item id="50001" name="Завершення слів"/>
+                    <Item id="50002" name="Підказка параметрів функцій"/>
+                    <Item id="50005" name="Перемкнути запис макросу"/>
+                    <Item id="50006" name="Завершення шляху"/>
+                    <Item id="44042" name="Приховати рядки"/>
+                    <Item id="42040" name="Відкрити всі останні файли"/>
+                    <Item id="42041" name="Очистити список останніх файлів"/>
+                    <Item id="48016" name="Змінити комб. клавіш/Видалити макрос..."/>
+                    <Item id="48017" name="Змінити комб. клавіш/Видалити команду..."/>
                 </Commands>
             </Main>
             <Splitter>
@@ -435,7 +435,7 @@ The comments are here for explanation, it's not necessary to translate them.
 
             <IncrementalFind title="">
                 <Item id="1681" name="Знайти"/>
-                <Item id="1685" name="Match case"/>
+                <Item id="1685" name="Враховувати регістр"/>
                 <Item id="1690" name="Highlight all"/>
             </IncrementalFind>
 
@@ -621,14 +621,14 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44085" name="Тека як робоча область"/>
                     <Item id="44080" name="Карта документа"/>
                     <Item id="44070" name="Toggle Document List"/>
-                    <Item id="44084" name="Toggle Function List"/>
-                    <Item id="50005" name="Toggle macro recording"/>
-                    <Item id="44104" name="Switch to Project Panel 1"/>
-                    <Item id="44105" name="Switch to Project Panel 2"/>
-                    <Item id="44106" name="Switch to Project Panel 3"/>
-                    <Item id="44107" name="Switch to Folder as Workspace"/>
+                    <Item id="44084" name="Перелік функцій"/>
+                    <Item id="50005" name="Запис макросу"/>
+                    <Item id="44104" name="Перемкнути на панель 1 проєкту"/>
+                    <Item id="44105" name="Перемкнути на панель 2 проєкту"/>
+                    <Item id="44106" name="Перемкнути на панель 3 проєкту"/>
+                    <Item id="44107" name="Перемкнути теку як робочу область"/>
                     <Item id="44109" name="Switch to Document List"/>
-                    <Item id="44108" name="Switch to Function List"/>
+                    <Item id="44108" name="Перемкнути на перелік функцій"/>
                 </MainCommandNames>
             </ShortcutMapper>
             <ShortcutMapperSubDialg title="Гаряча клавіша">
@@ -824,10 +824,10 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6130" name="Filled Fluent UI: large"/>
                     <Item id="6105" name="Standard icons: small"/>
 
-                    <Item id="6106" name="Tab Bar"/>
-                    <Item id="6107" name="Reduce"/>
-                    <Item id="6108" name="Lock (no drag and drop)"/>
-                    <Item id="6109" name="Darken inactive tabs"/>
+                    <Item id="6106" name="Панель вкладок"/>
+                    <Item id="6107" name="Зменшити"/>
+                    <Item id="6108" name="Заборонити перетягування"/>
+                    <Item id="6109" name="Затемнені неактивні вкладки"/>
                     <Item id="6110" name="Draw a coloured bar on active tab"/>
 
                     <Item id="6111" name="Show status bar"/>
@@ -949,12 +949,12 @@ The comments are here for explanation, it's not necessary to translate them.
 
                 <Highlighting title="Підсвічування">
                     <Item id="6351" name="Style All Occurrences of Token"/>
-                    <Item id="6352" name="Match case"/>
+                    <Item id="6352" name="Враховувати регістр"/>
                     <Item id="6353" name="Match whole word only"/>
                     <Item id="6333" name="Smart Highlighting"/>
                     <Item id="6326" name="Увімкнути"/>
                     <Item id="6354" name="Matching"/>
-                    <Item id="6332" name="Match case"/>
+                    <Item id="6332" name="Враховувати регістр"/>
                     <Item id="6338" name="Match whole word only"/>
                     <Item id="6339" name="Use Find dialog settings"/>
                     <Item id="6340" name="Highlight another view"/>
