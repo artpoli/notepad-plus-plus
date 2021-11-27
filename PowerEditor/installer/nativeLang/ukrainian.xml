@@ -44,33 +44,33 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item subMenuId="search-jumpDown" name="Jump &amp;Down"/>
                     <Item subMenuId="search-copyStyledText" name="&amp;Copy Styled Text"/>
                     <Item subMenuId="search-bookmark" name="&amp;Bookmark"/>
-                    <Item subMenuId="view-currentFileIn" name="View Current File in"/>
-                    <Item subMenuId="view-showSymbol"  name="Show Symbol"/>
-                    <Item subMenuId="view-zoom"  name="Zoom"/>
-                    <Item subMenuId="view-moveCloneDocument"  name="Move/Clone Current Document"/>
-                    <Item subMenuId="view-tab"  name="Tab"/>
-                    <Item subMenuId="view-collapseLevel" name="Collapse Level"/>
-                    <Item subMenuId="view-uncollapseLevel" name="Uncollapse Level"/>
+                    <Item subMenuId="view-currentFileIn" name="Перегляд поточного файлу в"/>
+                    <Item subMenuId="view-showSymbol"  name="Показати символ"/>
+                    <Item subMenuId="view-zoom"  name="Масштаб"/>
+                    <Item subMenuId="view-moveCloneDocument"  name="Перемістити/Клонувати поточний документ"/>
+                    <Item subMenuId="view-tab"  name="Вкладка"/>
+                    <Item subMenuId="view-collapseLevel" name="Згорнути рівень"/>
+                    <Item subMenuId="view-uncollapseLevel" name="Розгорнути рівень"/>
                     <Item subMenuId="view-project" name="Проєкт"/>
-                    <Item subMenuId="encoding-characterSets"  name="Character Set"/>
-                    <Item subMenuId="encoding-arabic"  name="Arabic"/>
-                    <Item subMenuId="encoding-baltic"  name="Baltic"/>
-                    <Item subMenuId="encoding-celtic"  name="Celtic"/>
-                    <Item subMenuId="encoding-cyrillic"  name="Cyrillic"/>
-                    <Item subMenuId="encoding-centralEuropean"  name="Central European"/>
-                    <Item subMenuId="encoding-chinese"  name="Chinese"/>
-                    <Item subMenuId="encoding-easternEuropean"  name="Eastern European"/>
-                    <Item subMenuId="encoding-greek"  name="Greek"/>
-                    <Item subMenuId="encoding-hebrew"  name="Hebrew"/>
-                    <Item subMenuId="encoding-japanese"  name="Japanese"/>
-                    <Item subMenuId="encoding-korean" name="Korean"/>
-                    <Item subMenuId="encoding-northEuropean" name="North European"/>
-                    <Item subMenuId="encoding-thai" name="Thai"/>
-                    <Item subMenuId="encoding-turkish" name="Turkish"/>
-                    <Item subMenuId="encoding-westernEuropean" name="Western European"/>
-                    <Item subMenuId="encoding-vietnamese" name="Vietnamese"/>
-                    <Item subMenuId="language-userDefinedLanguage" name="User Defined Language"/>
-                    <Item subMenuId="settings-import" name="Import"/>
+                    <Item subMenuId="encoding-characterSets"  name="Кодування"/>
+                    <Item subMenuId="encoding-arabic"  name="Арабська"/>
+                    <Item subMenuId="encoding-baltic"  name="Балтійська"/>
+                    <Item subMenuId="encoding-celtic"  name="Кельтська"/>
+                    <Item subMenuId="encoding-cyrillic"  name="Кирилиця"/>
+                    <Item subMenuId="encoding-centralEuropean"  name="Центральноєвропейська"/>
+                    <Item subMenuId="encoding-chinese"  name="Китайська"/>
+                    <Item subMenuId="encoding-easternEuropean"  name="Східноєвропейська"/>
+                    <Item subMenuId="encoding-greek"  name="Грецька"/>
+                    <Item subMenuId="encoding-hebrew"  name="Іврит"/>
+                    <Item subMenuId="encoding-japanese"  name="Японська"/>
+                    <Item subMenuId="encoding-korean" name="Корейська"/>
+                    <Item subMenuId="encoding-northEuropean" name="Північноєвропейська"/>
+                    <Item subMenuId="encoding-thai" name="Тайська"/>
+                    <Item subMenuId="encoding-turkish" name="Турецька"/>
+                    <Item subMenuId="encoding-westernEuropean" name="Західноєвропейська"/>
+                    <Item subMenuId="encoding-vietnamese" name="В'єтнамська"/>
+                    <Item subMenuId="language-userDefinedLanguage" name="Користувацька мова"/>
+                    <Item subMenuId="settings-import" name="Імпортувати"/>
                     <Item subMenuId="tools-md5" name="MD5"/>
                     <Item subMenuId="tools-sha256" name="SHA-256"/>
                 </SubEntries>
