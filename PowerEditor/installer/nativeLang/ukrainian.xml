@@ -259,35 +259,35 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44024" name="Зменшити (Ctrl + коліщатко миші вниз)"/>
                     <Item id="44025" name="Показувати пробіли і Tab"/>
                     <Item id="44026" name="Показувати символ закінчення рядка"/>
-                    <Item id="44029" name="Unfold All"/>
-                    <Item id="44030" name="Collapse Current Level"/>
-                    <Item id="44031" name="Uncollapse Current Level"/>
-                    <Item id="44049" name="Summary..."/>
+                    <Item id="44029" name="Розгорнути все"/>
+                    <Item id="44030" name="Згорнути поточний фрагмент"/>
+                    <Item id="44031" name="Розгорнути поточний фрагмент"/>
+                    <Item id="44049" name="Підсумок..."/>
                     <Item id="44080" name="Карта документа"/>
                     <Item id="44070" name="Document List"/>
                     <Item id="44084" name="Список функцій"/>
                     <Item id="44085" name="Тека як робоча область"/>
-                    <Item id="44086" name="1st Tab"/>
-                    <Item id="44087" name="2nd Tab"/>
-                    <Item id="44088" name="3rd Tab"/>
-                    <Item id="44089" name="4th Tab"/>
-                    <Item id="44090" name="5th Tab"/>
-                    <Item id="44091" name="6th Tab"/>
-                    <Item id="44092" name="7th Tab"/>
-                    <Item id="44093" name="8th Tab"/>
-                    <Item id="44094" name="9th Tab"/>
-                    <Item id="44095" name="Next Tab"/>
-                    <Item id="44096" name="Previous Tab"/>
-                    <Item id="44097" name="Monitoring (tail -f)"/>
-                    <Item id="44098" name="Move Tab Forward"/>
-                    <Item id="44099" name="Move Tab Backward"/>
-                    <Item id="44032" name="Toggle Full Screen Mode"/>
-                    <Item id="44033" name="Restore Default Zoom"/>
-                    <Item id="44034" name="Always on Top"/>
-                    <Item id="44035" name="Synchronise Vertical Scrolling"/>
-                    <Item id="44036" name="Synchronise Horizontal Scrolling"/>
-                    <Item id="44041" name="Show Wrap Symbol"/>
-                    <Item id="44072" name="Focus on Another View"/>
+                    <Item id="44086" name="Вкладка 1"/>
+                    <Item id="44087" name="Вкладка 2"/>
+                    <Item id="44088" name="Вкладка 3"/>
+                    <Item id="44089" name="Вкладка 4"/>
+                    <Item id="44090" name="Вкладка 5"/>
+                    <Item id="44091" name="Вкладка 6"/>
+                    <Item id="44092" name="Вкладка 7"/>
+                    <Item id="44093" name="Вкладка 8"/>
+                    <Item id="44094" name="Вкладка 9"/>
+                    <Item id="44095" name="Наступна вкладка"/>
+                    <Item id="44096" name="Попередня вкладка"/>
+                    <Item id="44097" name="Моніторинг (tail -f)"/>
+                    <Item id="44098" name="Посунути вкладку вперед"/>
+                    <Item id="44099" name="Посунути вкладку назад"/>
+                    <Item id="44032" name="На весь екран"/>
+                    <Item id="44033" name="Відновити масштаб"/>
+                    <Item id="44034" name="Завжди вгорі"/>
+                    <Item id="44035" name="Синхронізувати вертикальну смугу прокрутки"/>
+                    <Item id="44036" name="Синхронізувати горизонтальну смугу прокрутки"/>
+                    <Item id="44041" name="Показувати символ переведення рядка"/>
+                    <Item id="44072" name="Сфокусуватися на інший вигляд"/>
                     <Item id="44081" name="Панель проєкту 1"/>
                     <Item id="44082" name="Панель проєкту 2"/>
                     <Item id="44083" name="Панель проєкту 3"/>
@@ -299,42 +299,42 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="45006" name="UTF-16 BE BOM"/>
                     <Item id="45007" name="UTF-16 LE BOM"/>
                     <Item id="45008" name="UTF-8"/>
-                    <Item id="45009" name="Convert to ANSI"/>
-                    <Item id="45010" name="Convert to UTF-8"/>
-                    <Item id="45011" name="Convert to UTF-8-BOM"/>
+                    <Item id="45009" name="Перетворити на ANSI"/>
+                    <Item id="45010" name="Перетворити на UTF-8"/>
+                    <Item id="45011" name="Перетворити на UTF-8-BOM"/>
                     <Item id="45012" name="Convert to UTF-16 BE BOM"/>
                     <Item id="45013" name="Convert to UTF-16 LE BOM"/>
-                    <Item id="45060" name="Big5 (Traditional)"/>
-                    <Item id="45061" name="GB2312 (Simplified)"/>
-                    <Item id="45054" name="OEM 861: Icelandic"/>
-                    <Item id="45057" name="OEM 865: Nordic"/>
-                    <Item id="45053" name="OEM 860: Portuguese"/>
-                    <Item id="45056" name="OEM 863: French"/>
+                    <Item id="45060" name="Big5 (Традиційна)"/>
+                    <Item id="45061" name="GB2312 (Спрощена)"/>
+                    <Item id="45054" name="OEM 861: Ісландська"/>
+                    <Item id="45057" name="OEM 865: Скандинавська"/>
+                    <Item id="45053" name="OEM 860: Португальська"/>
+                    <Item id="45056" name="OEM 863: Французька"/>
 
                     <Item id="10001" name="Відкрити в іншому вікні"/>
                     <Item id="10002" name="Копіювати в інше вікно"/>
                     <Item id="10003" name="Перейти до нового екземпляра"/>
                     <Item id="10004" name="Відкрити в новому екземплярі"/>
 
-                    <Item id="46001" name="Style Configurator..."/>
-                    <Item id="46250" name="Define your language..."/>
-                    <Item id="46300" name="Open User Defined Language folder..."/>
+                    <Item id="46001" name="Конфігуратор стилю..."/>
+                    <Item id="46250" name="Визначити мову..."/>
+                    <Item id="46300" name="Відкрити користувацьку теку мови..."/>
                     <Item id="46301" name="Notepad++ User Defined Languages Collection"/>
                     <Item id="46180" name="Визначено користувачем"/>
-                    <Item id="47000" name="About Notepad++"/>
-                    <Item id="47010" name="Command Line Arguments..."/>
-                    <Item id="47001" name="Notepad++ Home"/>
-                    <Item id="47002" name="Notepad++ Project Page"/>
+                    <Item id="47000" name="Про Notepad++"/>
+                    <Item id="47010" name="Аргументи командного рядка..."/>
+                    <Item id="47001" name="Домівка Notepad++"/>
+                    <Item id="47002" name="Сторінка проєкту Notepad++"/>
                     <Item id="47003" name="Notepad++ Online User Manual"/>
-                    <Item id="47004" name="Notepad++ Community (Forum)"/>
-                    <Item id="47012" name="Debug Info..."/>
-                    <Item id="47005" name="Get More Plugins"/>
-                    <Item id="47006" name="Update Notepad++"/>
-                    <Item id="47009" name="Set Updater Proxy..."/>
-                    <Item id="48005" name="Import plugin(s)..."/>
-                    <Item id="48006" name="Import style theme(s)..."/>
-                    <Item id="48018" name="Edit Popup ContextMenu"/>
-                    <Item id="48009" name="Shortcut Mapper..."/>
+                    <Item id="47004" name="Спільнота (Форум) Notepad++"/>
+                    <Item id="47012" name="Інформація зневадження..."/>
+                    <Item id="47005" name="Отримати більше плагінів"/>
+                    <Item id="47006" name="Оновити Notepad++"/>
+                    <Item id="47009" name="Встановити проксі оновлення..."/>
+                    <Item id="48005" name="Імпорт плагінів..."/>
+                    <Item id="48006" name="Імпорт тем стилів..."/>
+                    <Item id="48018" name="Змінити контекстне меню"/>
+                    <Item id="48009" name="Гарячі клавіші..."/>
                     <Item id="48011" name="Налаштування..."/>
                     <Item id="48014" name="Відкрити теку плагінів..."/>
                     <Item id="48015" name="Адміністрування плагінів..."/>
