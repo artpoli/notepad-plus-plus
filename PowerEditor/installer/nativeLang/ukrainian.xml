@@ -23,14 +23,14 @@ The comments are here for explanation, it's not necessary to translate them.
                 </Entries>
                 <!-- Sub Menu Entries -->
                 <SubEntries>
-                    <Item subMenuId="file-openFolder" name="Open Containing &amp;Folder"/>
-                    <Item subMenuId="file-closeMore" name="Close &amp;More"/>
+                    <Item subMenuId="file-openFolder" name="Відкрити теку розташування"/>
+                    <Item subMenuId="file-closeMore" name="Закрити інше"/>
                     <Item subMenuId="file-recentFiles" name="Недавні файли"/>
-                    <Item subMenuId="edit-insert" name="Insert"/>
-                    <Item subMenuId="edit-copyToClipboard" name="Cop&amp;y to Clipboard"/>
-                    <Item subMenuId="edit-indent" name="&amp;Indent"/>
-                    <Item subMenuId="edit-convertCaseTo" name="Con&amp;vert Case to"/>
-                    <Item subMenuId="edit-lineOperations" name="&amp;Line Operations"/>
+                    <Item subMenuId="edit-insert" name="Вставити"/>
+                    <Item subMenuId="edit-copyToClipboard" name="Копіювати в буфер обміну"/>
+                    <Item subMenuId="edit-indent" name="Відступ"/>
+                    <Item subMenuId="edit-convertCaseTo" name="Змінити регістр"/>
+                    <Item subMenuId="edit-lineOperations" name="Дії з рядком"/>
                     <Item subMenuId="edit-comment" name="Co&amp;mment/Uncomment"/>
                     <Item subMenuId="edit-autoCompletion" name="&amp;Auto-Completion"/>
                     <Item subMenuId="edit-eolConversion" name="&amp;EOL Conversion"/>
@@ -828,20 +828,20 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6107" name="Зменшити"/>
                     <Item id="6108" name="Заборонити перетягування"/>
                     <Item id="6109" name="Затемнені неактивні вкладки"/>
-                    <Item id="6110" name="Draw a coloured bar on active tab"/>
+                    <Item id="6110" name="Кольорова панель активної вкладки"/>
 
-                    <Item id="6111" name="Show status bar"/>
-                    <Item id="6112" name="Show close button on each tab"/>
-                    <Item id="6113" name="Double click to close document"/>
+                    <Item id="6111" name="Показувати рядок стану"/>
+                    <Item id="6112" name="Показувати кнопку закриття на кожній вкладці"/>
+                    <Item id="6113" name="Закривати подвійним клацанням"/>
                     <Item id="6118" name="Приховати"/>
-                    <Item id="6119" name="Multi-line"/>
-                    <Item id="6120" name="Vertical"/>
-                    <Item id="6121" name="Exit on close the last tab"/>
+                    <Item id="6119" name="Каскадом"/>
+                    <Item id="6120" name="Вертикальна"/>
+                    <Item id="6121" name="Вихід при закритті останньої вкладки"/>
 
-                    <Item id="6122" name="Hide menu bar (use Alt or F10 key to toggle)"/>
-                    <Item id="6123" name="Localization"/>
+                    <Item id="6122" name="Приховати панель меню (Alt чи F10)"/>
+                    <Item id="6123" name="Локалізація"/>
 
-                    <Item id="6128" name="Alternate icons"/>
+                    <Item id="6128" name="Змінювати піктограми"/>
                 </Global>
                 <Scintillas title="Редагування">
                     <Item id="6216" name="Налаштування вставки"/>
@@ -950,18 +950,18 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Highlighting title="Підсвічування">
                     <Item id="6351" name="Style All Occurrences of Token"/>
                     <Item id="6352" name="Враховувати регістр"/>
-                    <Item id="6353" name="Match whole word only"/>
-                    <Item id="6333" name="Smart Highlighting"/>
+                    <Item id="6353" name="Лише цілі слова"/>
+                    <Item id="6333" name="Розумне підсвічування"/>
                     <Item id="6326" name="Увімкнути"/>
                     <Item id="6354" name="Matching"/>
                     <Item id="6332" name="Враховувати регістр"/>
-                    <Item id="6338" name="Match whole word only"/>
-                    <Item id="6339" name="Use Find dialog settings"/>
-                    <Item id="6340" name="Highlight another view"/>
-                    <Item id="6329" name="Highlight Matching Tags"/>
+                    <Item id="6338" name="Лише цілі слова"/>
+                    <Item id="6339" name="Викор. налаштув. вікна Знайти"/>
+                    <Item id="6340" name="Підсвічувати інший вигляд"/>
+                    <Item id="6329" name="Підсвічувати схожі мітки"/>
                     <Item id="6327" name="Увімкнути"/>
-                    <Item id="6328" name="Highlight tag attributes"/>
-                    <Item id="6330" name="Highlight comment/php/asp zone"/>
+                    <Item id="6328" name="Підсвічувати атрибути міток"/>
+                    <Item id="6330" name="Підсвічувати зони коментар/php/asp"/>
                 </Highlighting>
 
                 <Print title="Друк">
@@ -1104,16 +1104,16 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6325" name="Після оновлення прокрутити до останнього рядка"/>
                     <Item id="6322" name="Розширення файлу сеансу:"/>
                     <Item id="6323" name="Автоматичне оновлення Notepad++"/>
-                    <Item id="6324" name="Document Switcher (Ctrl+TAB)"/>
-                    <Item id="6331" name="Show only filename in title bar"/>
-                    <Item id="6334" name="Autodetect character encoding"/>
-                    <Item id="6349" name="Use DirectWrite (May improve rendering special characters, need to restart Notepad++)"/>
-                    <Item id="6337" name="Workspace file ext.:"/>
+                    <Item id="6324" name="Перемикання документів (Ctrl+Tab)"/>
+                    <Item id="6331" name="Показувати лише назву файлу в рядку заголовка"/>
+                    <Item id="6334" name="Автовизначення кодування символів"/>
+                    <Item id="6349" name="Використовувати DirectWrite (Може вдосконалити візуалізацію спеціальних символів, необхідний перезапуск Notepad++)"/>
+                    <Item id="6337" name="Розш. файлу робочої області:"/>
                     <Item id="6114" name="Увімкнути"/>
-                    <Item id="6117" name="Enable MRU behaviour"/>
-                    <Item id="6344" name="Document Peeker"/>
-                    <Item id="6345" name="Peek on tab"/>
-                    <Item id="6346" name="Peek on document map"/>
+                    <Item id="6117" name="Побудувати список в міру використання"/>
+                    <Item id="6344" name="Вибір документа"/>
+                    <Item id="6345" name="Обрати у вкладці"/>
+                    <Item id="6346" name="Обрати в схемі документа"/>
                     <Item id="6360" name="Mute all sounds"/>
                     <Item id="6361" name="Enable Save All confirm dialog"/>
                 </MISC>
@@ -1276,7 +1276,7 @@ Notepad++ перезапуститься після завершення всі�
         <DocList>
             <PanelTitle name="Document List"/>
             <ColumnName name="Назва"/>
-            <ColumnExt name="Ext."/>
+            <ColumnExt name="Розш."/>
             <ColumnPath name="Шлях"/>
         </DocList>
         <WindowsDlg>
@@ -1478,7 +1478,7 @@ Notepad++ перезапуститься після завершення всі�
             <tab-untitled-string value="new " />
             <file-save-assign-type value="&amp;Append extension" />
             <close-panel-tip value="Закрити" />
-            <IncrementalFind-FSFound value="$INT_REPLACE$ matches" />
+            <IncrementalFind-FSFound value="$INT_REPLACE$ збігів" />
             <IncrementalFind-FSNotFound value="Phrase not found" />
             <IncrementalFind-FSTopReached value="Reached top of page, continued from bottom" />
             <IncrementalFind-FSEndReached value="Reached end of page, continued from top" />
