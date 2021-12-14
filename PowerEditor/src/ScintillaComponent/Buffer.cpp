@@ -17,6 +17,8 @@
 #include <deque>
 #include <algorithm>
 #include <time.h>
+#include <locale>
+#include <codecvt>
 #include <sys/stat.h>
 #include "Buffer.h"
 #include "Scintilla.h"
@@ -26,6 +28,7 @@
 #include "EncodingMapper.h"
 #include "uchardet.h"
 #include "FileInterface.h"
+
 
 static const int blockSize = 128 * 1024 + 4;
 static const int CR = 0x0D;
@@ -140,16 +143,35 @@ void Buffer::updateTimeStamp()
 	}
 
 	LONG res = CompareFileTime(&_timeStamp, &timeStampLive);
-	if (res == -1) // timeStampLive is later, it means the file has been modified outside of Notepad++
+	if (res == -1 || res == 1)
+	// (res == -1) => timeStampLive is later, it means the file has been modified outside of Notepad++ - usual case
+	// 
+	// (res == 1) => timeStampLive (get directly from the file on disk) is earlier than buffer's timestamp - unusual case
+	//               It can happen when user copies a backup of editing file somewhere-else firstly, then modifies the editing file in Notepad++ and saves it.
+	//               Now user copies the backup back to erase the modified editing file outside Notepad++ (via Explorer).
 	{
+		if (res == 1)
+		{
+			NppParameters& nppParam = NppParameters::getInstance();
+			if (nppParam.doNppLogNetworkDriveIssue())
+			{
+				generic_string issueFn = nppLogNetworkDriveIssue;
+				issueFn += TEXT(".log");
+				generic_string nppIssueLog = nppParam.getUserPath();
+				pathAppend(nppIssueLog, issueFn);
+
+				std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+				std::string msg = converter.to_bytes(_fullPathName);
+				char buf[1024];
+				sprintf(buf, "  in updateTimeStamp(): timeStampLive (%u/%u) < _timeStamp (%u/%u)", timeStampLive.dwLowDateTime, timeStampLive.dwHighDateTime, _timeStamp.dwLowDateTime, _timeStamp.dwHighDateTime);
+				msg += buf;
+				writeLog(nppIssueLog.c_str(), msg.c_str());
+			}
+		}
 		_timeStamp = timeStampLive;
 		doNotify(BufferChangeTimestamp);
 	}
-	else if (res == 1) // timeStampLive (get directly from the file on disk) is earlier than buffer's timestamp - abnormal case 
-	{
-		// This absurd case can be ignored
-	}
-	// else res == 0 => nothing to change
+	// else (res == 0) => nothing to change
 }
 
 
@@ -271,16 +293,36 @@ bool Buffer::checkFileState() // returns true if the status has been changed (it
 		}
 
 		LONG res = CompareFileTime(&_timeStamp, &attributes.ftLastWriteTime);
-		if (res == -1) // // attributes.ftLastWriteTime is later, it means the file has been modified outside of Notepad++
+
+		if (res == -1 || res == 1)
+		// (res == -1) => attributes.ftLastWriteTime is later, it means the file has been modified outside of Notepad++ - usual case
+		// 
+		// (res == 1)  => The timestamp get directly from the file on disk is earlier than buffer's timestamp - unusual case
+		//                It can happen when user copies a backup of editing file somewhere-else firstly, then modifies the editing file in Notepad++ and saves it.
+		//                Now user copies the backup back to erase the modified editing file outside Notepad++ (via Explorer).
 		{
+			if (res == 1)
+			{
+				NppParameters& nppParam = NppParameters::getInstance();
+				if (nppParam.doNppLogNetworkDriveIssue())
+				{
+					generic_string issueFn = nppLogNetworkDriveIssue;
+					issueFn += TEXT(".log");
+					generic_string nppIssueLog = nppParam.getUserPath();
+					pathAppend(nppIssueLog, issueFn);
+
+					std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+					std::string msg = converter.to_bytes(_fullPathName);
+					char buf[1024];
+					sprintf(buf, "  in checkFileState(): attributes.ftLastWriteTime (%u/%u) < _timeStamp (%u/%u)", attributes.ftLastWriteTime.dwLowDateTime, attributes.ftLastWriteTime.dwHighDateTime, _timeStamp.dwLowDateTime, _timeStamp.dwHighDateTime);
+					msg += buf;
+					writeLog(nppIssueLog.c_str(), msg.c_str());
+				}
+			}
 			_timeStamp = attributes.ftLastWriteTime;
 			mask |= BufferChangeTimestamp;
 			_currentStatus = DOC_MODIFIED;
 			mask |= BufferChangeStatus;	//status always 'changes', even if from modified to modified
-		}
-		else if (res == 1) // The timestamp get directly from the file on disk is earlier than buffer's timestamp - abnormal case
-		{
-			// This absurd case can be ignored
 		}
 		// else res == 0 => nothing to change
 
@@ -677,7 +719,7 @@ bool FileManager::reloadBuffer(BufferID id)
 	Buffer* buf = getBufferByID(id);
 	Document doc = buf->getDocument();
 	Utf8_16_Read UnicodeConvertor;
-	buf->_canNotify = false;	//disable notify during file load, we dont want dirty to be triggered
+
 	char data[blockSize + 8]; // +8 for incomplete multibyte char
 
 	LoadedFileFormat loadedFileFormat;
@@ -688,13 +730,21 @@ bool FileManager::reloadBuffer(BufferID id)
 	buf->setLoadedDirty(false);	// Since the buffer will be reloaded from the disk, and it will be clean (not dirty), we can set _isLoadedDirty false safetly.
 								// Set _isLoadedDirty false before calling "_pscratchTilla->execute(SCI_CLEARALL);" in loadFileData() to avoid setDirty in SCN_SAVEPOINTREACHED / SCN_SAVEPOINTLEFT
 
+	buf->_canNotify = false;	//disable notify during file load, we don't want dirty status to be triggered
+
 	bool res = loadFileData(doc, buf->getFullPathName(), data, &UnicodeConvertor, loadedFileFormat);
+
 	buf->_canNotify = true;
 
 	if (res)
 	{
+		// now we are synchronized with the file on disk, so reset relevant flags
+		buf->setUnsync(false);
+		buf->setDirty(false); // if the _isUnsync was true before the reloading, the _isDirty had been set to true somehow in the loadFileData()
+
 		setLoadedBufferEncodingAndEol(buf, UnicodeConvertor, loadedFileFormat._encoding, loadedFileFormat._eolFormat);
 	}
+
 	return res;
 }
 
@@ -1496,7 +1546,7 @@ BufferID FileManager::getBufferFromDocument(Document doc)
 
 bool FileManager::createEmptyFile(const TCHAR * path)
 {
-	Win32_IO_File file(path, Win32_IO_File::Mode::WRITE);
+	Win32_IO_File file(path);
 	return file.isOpened();
 }
 

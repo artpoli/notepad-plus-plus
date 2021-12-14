@@ -133,7 +133,10 @@ const TCHAR fontSizeStrs[][3] = {TEXT(""), TEXT("5"), TEXT("6"), TEXT("7"), TEXT
 
 const TCHAR localConfFile[] = TEXT("doLocalConf.xml");
 const TCHAR notepadStyleFile[] = TEXT("asNotepad.xml");
-const TCHAR pluginsForAllUsersFile[] = TEXT("pluginsForAllUsers.xml");
+
+// issue xml/log file name
+const TCHAR nppLogNetworkDriveIssue[] = TEXT("nppLogNetworkDriveIssue");
+const TCHAR nppLogNulContentCorruptionIssue[] = TEXT("nppLogNulContentCorruptionIssue");
 
 void cutString(const TCHAR *str2cut, std::vector<generic_string> & patternVect);
 
@@ -1798,6 +1801,11 @@ private:
 
 	bool _isSelectFgColorEnabled = false;
 
+	bool _doNppLogNetworkDriveIssue = false;
+
+	bool _doNppLogNulContentCorruptionIssue = false;
+	bool _isQueryEndSessionStarted = false;
+
 public:
 	generic_string getWingupFullPath() const { return _wingupFullPath; };
 	generic_string getWingupParams() const { return _wingupParams; };
@@ -1807,6 +1815,11 @@ public:
 	void setWingupParams(const generic_string& val2set) { _wingupParams = val2set; };
 	void setWingupDir(const generic_string& val2set) { _wingupDir = val2set; };
 	void setElevationRequired(bool val2set) { _isElevationRequired = val2set; };
+
+	bool doNppLogNetworkDriveIssue() { return _doNppLogNetworkDriveIssue; };
+	bool doNppLogNulContentCorruptionIssue() { return _doNppLogNulContentCorruptionIssue; };
+	void queryEndSessionStart() { _isQueryEndSessionStarted = true; };
+	bool isQueryEndSessionStarted() { return _isQueryEndSessionStarted; };
 
 private:
 	void getLangKeywordsFromXmlTree();

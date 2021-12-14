@@ -20,7 +20,6 @@
 #include <cassert>
 #include <codecvt>
 #include <locale>
-
 #include "StaticDialog.h"
 #include "CustomFileDialog.h"
 
@@ -115,7 +114,7 @@ generic_string relativeFilePathToFullFilePath(const TCHAR *relativeFilePath)
 
 void writeFileContent(const TCHAR *file2write, const char *content2write)
 {
-	Win32_IO_File file(file2write, Win32_IO_File::Mode::WRITE);
+	Win32_IO_File file(file2write);
 
 	if (file.isOpened())
 		file.writeStr(content2write);
@@ -124,10 +123,32 @@ void writeFileContent(const TCHAR *file2write, const char *content2write)
 
 void writeLog(const TCHAR *logFileName, const char *log2write)
 {
-	Win32_IO_File file(logFileName, Win32_IO_File::Mode::APPEND);
+	const DWORD accessParam{ GENERIC_READ | GENERIC_WRITE };
+	const DWORD shareParam{ FILE_SHARE_READ | FILE_SHARE_WRITE };
+	const DWORD dispParam{ OPEN_ALWAYS }; // Open existing file for writing without destroying it or create new
+	const DWORD attribParam{ FILE_ATTRIBUTE_NORMAL | FILE_FLAG_WRITE_THROUGH };
+	HANDLE hFile = ::CreateFileW(logFileName, accessParam, shareParam, NULL, dispParam, attribParam, NULL);
 
-	if (file.isOpened())
-		file.writeStr(log2write);
+	if (hFile != INVALID_HANDLE_VALUE)
+	{
+		LARGE_INTEGER offset;
+		offset.QuadPart = 0;
+		::SetFilePointerEx(hFile, offset, NULL, FILE_END);
+
+		SYSTEMTIME currentTime = { 0 };
+		::GetLocalTime(&currentTime);
+		generic_string dateTimeStrW = getDateTimeStrFrom(TEXT("yyyy-MM-dd HH:mm:ss"), currentTime);
+		std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+		std::string log2writeStr = converter.to_bytes(dateTimeStrW);
+		log2writeStr += "  ";
+		log2writeStr += log2write;
+		log2writeStr += "\n";
+
+		DWORD bytes_written = 0;
+		::WriteFile(hFile, log2writeStr.c_str(), static_cast<DWORD>(log2writeStr.length()), &bytes_written, NULL);
+
+		::FlushFileBuffers(hFile);
+	}
 }
 
 
@@ -518,7 +539,6 @@ generic_string intToString(int val)
 	return generic_string(vt.rbegin(), vt.rend());
 }
 
-
 generic_string uintToString(unsigned int val)
 {
 	std::vector<TCHAR> vt;
@@ -609,7 +629,7 @@ generic_string PathRemoveFileSpec(generic_string& path)
 }
 
 
-generic_string PathAppend(generic_string& strDest, const generic_string& str2append)
+generic_string pathAppend(generic_string& strDest, const generic_string& str2append)
 {
 	if (strDest.empty() && str2append.empty()) // "" + ""
 	{
@@ -1264,7 +1284,7 @@ bool deleteFileOrFolder(const generic_string& f2delete)
 void getFilesInFolder(std::vector<generic_string>& files, const generic_string& extTypeFilter, const generic_string& inFolder)
 {
 	generic_string filter = inFolder;
-	PathAppend(filter, extTypeFilter);
+	pathAppend(filter, extTypeFilter);
 
 	WIN32_FIND_DATA foundData;
 	HANDLE hFindFile = ::FindFirstFile(filter.c_str(), &foundData);
@@ -1272,13 +1292,13 @@ void getFilesInFolder(std::vector<generic_string>& files, const generic_string& 
 	if (hFindFile != INVALID_HANDLE_VALUE && !(foundData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 	{
 		generic_string foundFullPath = inFolder;
-		PathAppend(foundFullPath, foundData.cFileName);
+		pathAppend(foundFullPath, foundData.cFileName);
 		files.push_back(foundFullPath);
 
 		while (::FindNextFile(hFindFile, &foundData))
 		{
 			generic_string foundFullPath2 = inFolder;
-			PathAppend(foundFullPath2, foundData.cFileName);
+			pathAppend(foundFullPath2, foundData.cFileName);
 			files.push_back(foundFullPath2);
 		}
 	}

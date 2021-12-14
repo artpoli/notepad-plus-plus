@@ -1759,17 +1759,10 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			return TRUE;
 		}
 
-		case WM_ACTIVATE:
+		case WM_SYNCPAINT:
 		{
-			if (wParam != WA_INACTIVE && _pEditView && _pNonEditView)
-			{
-				_pEditView->getFocus();
-				auto x = _pEditView->execute(SCI_GETXOFFSET);
-				_pEditView->execute(SCI_SETXOFFSET, x);
-				x = _pNonEditView->execute(SCI_GETXOFFSET);
-				_pNonEditView->execute(SCI_SETXOFFSET, x);
-			}
-			return TRUE;
+			RedrawWindow(hwnd, NULL, NULL, RDW_INVALIDATE | RDW_ERASE | RDW_ALLCHILDREN);
+			break;
 		}
 
 		case WM_DROPFILES:
@@ -1882,6 +1875,21 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		case WM_QUERYENDSESSION:
 		case WM_CLOSE:
 		{
+			if (message == WM_QUERYENDSESSION)
+			{
+				nppParam.queryEndSessionStart();
+			}
+
+			if (nppParam.isQueryEndSessionStarted() && nppParam.doNppLogNulContentCorruptionIssue())
+			{
+				generic_string issueFn = nppLogNulContentCorruptionIssue;
+				issueFn += TEXT(".log");
+				generic_string nppIssueLog = nppParam.getUserPath();
+				pathAppend(nppIssueLog, issueFn);
+
+				writeLog(nppIssueLog.c_str(), "WM_QUERYENDSESSION =====================================");
+			}
+
 			if (_pPublicInterface->isPrelaunch())
 			{
 				SendMessage(hwnd, WM_SYSCOMMAND, SC_MINIMIZE, 0);
@@ -2013,6 +2021,16 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 		case WM_ENDSESSION:
 		{
+			if (nppParam.isQueryEndSessionStarted() && nppParam.doNppLogNulContentCorruptionIssue())
+			{
+				generic_string issueFn = nppLogNulContentCorruptionIssue;
+				issueFn += TEXT(".log");
+				generic_string nppIssueLog = nppParam.getUserPath();
+				pathAppend(nppIssueLog, issueFn);
+
+				writeLog(nppIssueLog.c_str(), "WM_ENDSESSION");
+			}
+
 			if (wParam == TRUE)
 			{
 				::DestroyWindow(hwnd);
@@ -2026,6 +2044,16 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 		case WM_DESTROY:
 		{
+			if (nppParam.isQueryEndSessionStarted() && nppParam.doNppLogNulContentCorruptionIssue())
+			{
+				generic_string issueFn = nppLogNulContentCorruptionIssue;
+				issueFn += TEXT(".log");
+				generic_string nppIssueLog = nppParam.getUserPath();
+				pathAppend(nppIssueLog, issueFn);
+
+				writeLog(nppIssueLog.c_str(), "WM_DESTROY");
+			}
+
 			killAllChildren();
 			::PostQuitMessage(0);
 			_pPublicInterface->gNppHWND = NULL;
