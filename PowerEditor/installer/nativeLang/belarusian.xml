@@ -264,7 +264,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44031" name="Uncollapse Current Level"/>
                     <Item id="44049" name="Summary..."/>
                     <Item id="44080" name="Карта дакумента"/>
-                    <Item id="44070" name="Document List"/>
+                    <Item id="44070" name="Спіс дакументаў"/>
                     <Item id="44084" name="Спіс функцый"/>
                     <Item id="44085" name="Папка як працоўная вобласць"/>
                     <Item id="44086" name="1st Tab"/>
@@ -1276,7 +1276,7 @@ Your workspace has not been saved."/> <!-- HowToReproduce: this message prevents
             <PanelTitle name="Гісторыя буфера"/>
         </ClipboardHistory>
         <DocList>
-            <PanelTitle name="Document List"/>
+            <PanelTitle name="Спіс дакументаў"/>
             <ColumnName name="Назва"/>
             <ColumnExt name="Ext."/>
             <ColumnPath name="Шлях"/>
