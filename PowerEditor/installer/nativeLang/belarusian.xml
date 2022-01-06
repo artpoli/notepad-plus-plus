@@ -3,22 +3,22 @@
 The comments are here for explanation, it's not necessary to translate them.
 -->
 <NotepadPlus>
-    <Native-Langue name="Беларуская" filename="belarusian.xml" version="8.1.9.3">
+    <Native-Langue name="English" filename="belarusian.xml" version="8.1.9.3">
         <Menu>
             <Main>
                 <!-- Main Menu Entries -->
                 <Entries>
                     <Item menuId="file" name="&amp;Файл"/>
-                    <Item menuId="edit" name="&amp;Праўка"/>
+                    <Item menuId="edit" name="&amp;Edit"/>
                     <Item menuId="search" name="&amp;Пошук"/>
                     <Item menuId="view" name="&amp;Выгляд"/>
                     <Item menuId="encoding" name="Кадав&amp;анне"/>
                     <Item menuId="language" name="&amp;Сінтаксіс"/>
                     <Item menuId="settings" name="Нал&amp;ады"/>
-                    <Item menuId="tools" name="Інструме&amp;нты"/>
-                    <Item menuId="macro" name="&amp;Макрас"/>
+                    <Item menuId="tools" name="To&amp;ols"/>
+                    <Item menuId="macro" name="&amp;Macro"/>
                     <Item menuId="run" name="&amp;Выканаць"/>
-                    <Item idName="Plugins" name="&amp;Убудовы"/>
+                    <Item idName="Plugins" name="&amp;Plugins"/>
                     <Item idName="Window" name="&amp;Акно"/>
                 </Entries>
                 <!-- Sub Menu Entries -->
@@ -44,33 +44,33 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item subMenuId="search-jumpDown" name="Jump &amp;Down"/>
                     <Item subMenuId="search-copyStyledText" name="&amp;Copy Styled Text"/>
                     <Item subMenuId="search-bookmark" name="&amp;Bookmark"/>
-                    <Item subMenuId="view-currentFileIn" name="View Current File in"/>
-                    <Item subMenuId="view-showSymbol"  name="Show Symbol"/>
-                    <Item subMenuId="view-zoom"  name="Zoom"/>
-                    <Item subMenuId="view-moveCloneDocument"  name="Move/Clone Current Document"/>
-                    <Item subMenuId="view-tab"  name="Tab"/>
-                    <Item subMenuId="view-collapseLevel" name="Collapse Level"/>
-                    <Item subMenuId="view-uncollapseLevel" name="Uncollapse Level"/>
+                    <Item subMenuId="view-currentFileIn" name="Паглядзець бягучы файл у"/>
+                    <Item subMenuId="view-showSymbol"  name="Паказаць сімвал"/>
+                    <Item subMenuId="view-zoom"  name="Маштаб"/>
+                    <Item subMenuId="view-moveCloneDocument"  name="Парамясціць/Кланаваць бягучы дакумент"/>
+                    <Item subMenuId="view-tab"  name="Укладка"/>
+                    <Item subMenuId="view-collapseLevel" name="Згарнуць узровень"/>
+                    <Item subMenuId="view-uncollapseLevel" name="Разгарнуць узровень"/>
                     <Item subMenuId="view-project" name="Праект"/>
-                    <Item subMenuId="encoding-characterSets"  name="Character Set"/>
-                    <Item subMenuId="encoding-arabic"  name="Arabic"/>
-                    <Item subMenuId="encoding-baltic"  name="Baltic"/>
-                    <Item subMenuId="encoding-celtic"  name="Celtic"/>
-                    <Item subMenuId="encoding-cyrillic"  name="Cyrillic"/>
-                    <Item subMenuId="encoding-centralEuropean"  name="Central European"/>
-                    <Item subMenuId="encoding-chinese"  name="Chinese"/>
-                    <Item subMenuId="encoding-easternEuropean"  name="Eastern European"/>
-                    <Item subMenuId="encoding-greek"  name="Greek"/>
-                    <Item subMenuId="encoding-hebrew"  name="Hebrew"/>
-                    <Item subMenuId="encoding-japanese"  name="Japanese"/>
-                    <Item subMenuId="encoding-korean" name="Korean"/>
-                    <Item subMenuId="encoding-northEuropean" name="North European"/>
-                    <Item subMenuId="encoding-thai" name="Thai"/>
-                    <Item subMenuId="encoding-turkish" name="Turkish"/>
-                    <Item subMenuId="encoding-westernEuropean" name="Western European"/>
-                    <Item subMenuId="encoding-vietnamese" name="Vietnamese"/>
-                    <Item subMenuId="language-userDefinedLanguage" name="User Defined Language"/>
-                    <Item subMenuId="settings-import" name="Import"/>
+                    <Item subMenuId="encoding-characterSets"  name="Набор сімвалаў"/>
+                    <Item subMenuId="encoding-arabic"  name="Арабская"/>
+                    <Item subMenuId="encoding-baltic"  name="Балтыйская"/>
+                    <Item subMenuId="encoding-celtic"  name="Кельцкая"/>
+                    <Item subMenuId="encoding-cyrillic"  name="Кірыліца"/>
+                    <Item subMenuId="encoding-centralEuropean"  name="Цэнтральная Еўропа"/>
+                    <Item subMenuId="encoding-chinese"  name="Кітайская"/>
+                    <Item subMenuId="encoding-easternEuropean"  name="Усходняя Еўропа"/>
+                    <Item subMenuId="encoding-greek"  name="Грэчаская"/>
+                    <Item subMenuId="encoding-hebrew"  name="Іўрыт"/>
+                    <Item subMenuId="encoding-japanese"  name="Японская"/>
+                    <Item subMenuId="encoding-korean" name="Карэйская"/>
+                    <Item subMenuId="encoding-northEuropean" name="Паўночная Еўропа"/>
+                    <Item subMenuId="encoding-thai" name="Тайская"/>
+                    <Item subMenuId="encoding-turkish" name="Турэцкая"/>
+                    <Item subMenuId="encoding-westernEuropean" name="Заходняя Еўропа"/>
+                    <Item subMenuId="encoding-vietnamese" name="В'етнамская"/>
+                    <Item subMenuId="language-userDefinedLanguage" name="Мова карыстальніка"/>
+                    <Item subMenuId="settings-import" name="Імпарт"/>
                     <Item subMenuId="tools-md5" name="MD5"/>
                     <Item subMenuId="tools-sha256" name="SHA-256"/>
                 </SubEntries>
@@ -78,17 +78,17 @@ The comments are here for explanation, it's not necessary to translate them.
                 <!-- all menu item -->
                 <Commands>
                     <Item id="41001" name="&amp;Стварыць"/>
-                    <Item id="41002" name="&amp;Open..."/>
+                    <Item id="41002" name="&amp;Адкрыць..."/>
                     <Item id="41019" name="Праваднік"/>
                     <Item id="41020" name="cmd"/>
-                    <Item id="41025" name="Папка як працоўная вобласць"/>
+                    <Item id="41025" name="Folder as Workspace"/>
                     <Item id="41003" name="&amp;Закрыць"/>
-                    <Item id="41004" name="Зак&amp;рыць усе"/>
-                    <Item id="41005" name="Закрыць усе, акрамя актыўнага"/>
-                    <Item id="41009" name="Закрыць усе злева"/>
-                    <Item id="41018" name="Закрыць усе справа"/>
-                    <Item id="41024" name="Закрыць усе не змененыя"/>
-                    <Item id="41006" name="&amp;Захаваць"/>
+                    <Item id="41004" name="Clos&amp;e All"/>
+                    <Item id="41005" name="Close All BUT Current Document"/>
+                    <Item id="41009" name="Close All to the Left"/>
+                    <Item id="41018" name="Close All to the Right"/>
+                    <Item id="41024" name="Close All Unchanged"/>
+                    <Item id="41006" name="&amp;Save"/>
                     <Item id="41007" name="Заха&amp;ваць усе"/>
                     <Item id="41008" name="Захаваць &amp;як..."/>
                     <Item id="41010" name="&amp;Print..."/>
@@ -266,7 +266,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44080" name="Карта дакумента"/>
                     <Item id="44070" name="Спіс дакументаў"/>
                     <Item id="44084" name="Спіс функцый"/>
-                    <Item id="44085" name="Папка як працоўная вобласць"/>
+                    <Item id="44085" name="Folder as Workspace"/>
                     <Item id="44086" name="1st Tab"/>
                     <Item id="44087" name="2nd Tab"/>
                     <Item id="44088" name="3rd Tab"/>
@@ -378,12 +378,12 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item CMID="14" name="Перамясціць у новы экзэмпляр"/>
                     <Item CMID="15" name="Адкрыць у новым экзэмпляры"/>
                     <Item CMID="16" name="Перазагрузіць"/>
-                    <Item CMID="17" name="Закрыць усе злева"/>
-                    <Item CMID="18" name="Закрыць усе справа"/>
+                    <Item CMID="17" name="Close All to the Left"/>
+                    <Item CMID="18" name="Close All to the Right"/>
                     <Item CMID="19" name="Адкрыць папку дакумента ў правадніку"/>
                     <Item CMID="20" name="Адкрыць папку дакумента ў cmd"/>
                     <Item CMID="21" name="Адкрыць у аглядальніку па змаўчанні"/>
-                    <Item CMID="22" name="Закрыць усе не змененыя"/>
+                    <Item CMID="22" name="Close All Unchanged"/>
                     <Item CMID="23" name="Адкрыць папку зместу як працоўную вобласць"/>
             </TabBar>
         </Menu>
@@ -1130,7 +1130,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <Window title="Вокны">
                 <Item id="1" name="&amp;Актываваць"/>
                 <Item id="2" name="&amp;Добра"/>
-                <Item id="7002" name="&amp;Захаваць"/>
+                <Item id="7002" name="&amp;Save"/>
                 <Item id="7003" name="Закрыць акно/вокны"/>
                 <Item id="7004" name="Сартаваць укл&amp;адкі"/>
             </Window>
@@ -1307,7 +1307,7 @@ Your workspace has not been saved."/> <!-- HowToReproduce: this message prevents
             <ReloadTip name="Перазагрузіць"/>
         </FunctionList>
         <FolderAsWorkspace>
-            <PanelTitle name="Папка як працоўная вобласць"/>
+            <PanelTitle name="Folder as Workspace"/>
             <SelectFolderFromBrowserString name="Выберыце папку, каб дадаць яе ў якасці панэлі працоўнай вобласці"/>
             <ExpandAllFoldersTip name="Разгарнуць усе папкі"/>
             <CollapseAllFoldersTip name="Згарнуць усе папкі"/>
