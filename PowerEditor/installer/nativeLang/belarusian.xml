@@ -105,8 +105,8 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="41023" name="Open in &amp;Default Viewer"/>
                     <Item id="42001" name="Выра&amp;заць"/>
                     <Item id="42002" name="&amp;Капіяваць"/>
-                    <Item id="42003" name="&amp;Адмяніць"/>
-                    <Item id="42004" name="&amp;Паўтарыць"/>
+                    <Item id="42003" name="&amp;Undo"/>
+                    <Item id="42004" name="&amp;Redo"/>
                     <Item id="42005" name="&amp;Уставіць"/>
                     <Item id="42006" name="В&amp;ыдаліць"/>
                     <Item id="42007" name="&amp;Select All"/>
@@ -114,48 +114,48 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42084" name="Date Time (short)"/>
                     <Item id="42085" name="Date Time (long)"/>
                     <Item id="42086" name="Date Time (customized)"/>
-                    <Item id="42008" name="Increase Line Indent"/>
-                    <Item id="42009" name="Decrease Line Indent"/>
-                    <Item id="42010" name="Duplicate Current Line"/>
+                    <Item id="42008" name="Павялічыць водступ радка"/>
+                    <Item id="42009" name="Паменшыць водступ радка"/>
+                    <Item id="42010" name="Дубляваць бягучы радок"/>
                     <Item id="42079" name="Remove Duplicate Lines"/>
                     <Item id="42077" name="Remove Consecutive Duplicate Lines"/>
-                    <Item id="42012" name="Split Lines"/>
-                    <Item id="42013" name="Join Lines"/>
-                    <Item id="42014" name="Move Up Current Line"/>
-                    <Item id="42015" name="Move Down Current Line"/>
-                    <Item id="42059" name="Sort Lines Lexicographically Ascending"/>
-                    <Item id="42060" name="Sort Lines Lexicographically Descending"/>
-                    <Item id="42080" name="Sort Lines Lex. Ascending Ignoring Case"/>
-                    <Item id="42081" name="Sort Lines Lex. Descending Ignoring Case"/>
-                    <Item id="42061" name="Sort Lines As Integers Ascending"/>
-                    <Item id="42062" name="Sort Lines As Integers Descending"/>
-                    <Item id="42063" name="Sort Lines As Decimals (Comma) Ascending"/>
-                    <Item id="42064" name="Sort Lines As Decimals (Comma) Descending"/>
-                    <Item id="42065" name="Sort Lines As Decimals (Dot) Ascending"/>
-                    <Item id="42066" name="Sort Lines As Decimals (Dot) Descending"/>
-                    <Item id="42083" name="Reverse Line Order"/>
-                    <Item id="42078" name="Randomize Line Order"/>
-                    <Item id="42016" name="&amp;UPPERCASE"/>
-                    <Item id="42017" name="&amp;lowercase"/>
+                    <Item id="42012" name="Раздзяліць радкі"/>
+                    <Item id="42013" name="Аб'яднаць радкі"/>
+                    <Item id="42014" name="Перамясціць уверх бягучы радок"/>
+                    <Item id="42015" name="Перамясціць уніз бягучы радок"/>
+                    <Item id="42059" name="Сартаваць радкі па ўзрастанні"/>
+                    <Item id="42060" name="Сартаваць радкі па змяншэнні"/>
+                    <Item id="42080" name="Сартаваць радкі Lex. па ўзрастанні ігнаруючы рэгістр"/>
+                    <Item id="42081" name="Сартаваць радкі Lex. па змяншэнні ігнаруючы рэгістр"/>
+                    <Item id="42061" name="Сартаваць радкі як цэлыя па ўзрастанні"/>
+                    <Item id="42062" name="Сартаваць радкі як цэлыя па змяншэнні"/>
+                    <Item id="42063" name="Сартаваць радкі як дзесятковыя (коска) па ўзрастанні"/>
+                    <Item id="42064" name="Сартаваць радкі як дзесятковыя (коска) па змяншэнні"/>
+                    <Item id="42065" name="Сартаваць радкі як дзесятковыя (кропка) па ўзрастанні"/>
+                    <Item id="42066" name="Сартаваць радкі як дзесятковыя (кропка) па змяншэнні"/>
+                    <Item id="42083" name="Адваротны парадак радкоў"/>
+                    <Item id="42078" name="Выпадковы парадак радкоў"/>
+                    <Item id="42016" name="&amp;ВЯЛІКІМІ"/>
+                    <Item id="42017" name="&amp;маленькімі"/>
                     <Item id="42067" name="&amp;Proper Case"/>
                     <Item id="42068" name="Proper Case (blend)"/>
-                    <Item id="42069" name="&amp;Sentence case"/>
-                    <Item id="42070" name="Sentence case (blend)"/>
+                    <Item id="42069" name="&amp;Як у сказах"/>
+                    <Item id="42070" name="Як у сказах (змешаны)"/>
                     <Item id="42071" name="&amp;iNVERT cASE"/>
                     <Item id="42072" name="&amp;ranDOm CasE"/>
-                    <Item id="42073" name="Open File"/>
+                    <Item id="42073" name="Адкрыць файл"/>
                     <Item id="42074" name="Адкрыць папку дакумента ў правадніку"/>
-                    <Item id="42075" name="Search on Internet"/>
+                    <Item id="42075" name="Шукаць у інтэрнэце"/>
                     <Item id="42076" name="Change Search Engine..."/>
-                    <Item id="42018" name="Start Re&amp;cording"/>
-                    <Item id="42019" name="S&amp;top Recording"/>
-                    <Item id="42021" name="&amp;Playback"/>
-                    <Item id="42022" name="Toggle Single Line Comment"/>
-                    <Item id="42023" name="Block Comment"/>
-                    <Item id="42047" name="Block Uncomment"/>
-                    <Item id="42024" name="Trim Trailing Space"/>
-                    <Item id="42042" name="Trim Leading Space"/>
-                    <Item id="42043" name="Trim Leading and Trailing Space"/>
+                    <Item id="42018" name="Пачаць зап&amp;іс"/>
+                    <Item id="42019" name="Спын&amp;іць запіс"/>
+                    <Item id="42021" name="&amp;Прайграванне"/>
+                    <Item id="42022" name="Пераключыць у каментарый аднаго радка"/>
+                    <Item id="42023" name="Закаментаваць блок"/>
+                    <Item id="42047" name="Раскаментаваць блок"/>
+                    <Item id="42024" name="Прыбраць прабелы з канца"/>
+                    <Item id="42042" name="Прыбраць прабелы спачатку"/>
+                    <Item id="42043" name="Прыбраць прабелы з пачатку і ў канцы"/>
                     <Item id="42044" name="EOL to Space"/>
                     <Item id="42045" name="Remove Unnecessary Blank and EOL"/>
                     <Item id="42046" name="TAB to Space"/>
@@ -163,48 +163,48 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42053" name="Space to TAB (Leading)"/>
                     <Item id="42038" name="Paste HTML Content"/>
                     <Item id="42039" name="Paste RTF Content"/>
-                    <Item id="42048" name="Copy Binary Content"/>
-                    <Item id="42049" name="Cut Binary Content"/>
-                    <Item id="42050" name="Paste Binary Content"/>
-                    <Item id="42082" name="Copy link"/>
-                    <Item id="42037" name="Column Mode..."/>
+                    <Item id="42048" name="Капіяваць двайковае змесціва"/>
+                    <Item id="42049" name="Выразаць двайковае змесціва"/>
+                    <Item id="42050" name="Уставіць двайковае змесціва"/>
+                    <Item id="42082" name="Капіяваць спасылку"/>
+                    <Item id="42037" name="Рэжым слупкоў..."/>
                     <Item id="42034" name="Colum&amp;n Editor..."/>
                     <Item id="42051" name="Character &amp;Panel"/>
                     <Item id="42052" name="Clipboard &amp;History"/>
                     <Item id="42025" name="&amp;Save Currently Recorded Macro..."/>
-                    <Item id="42026" name="Text Direction RTL"/>
-                    <Item id="42027" name="Text Direction LTR"/>
+                    <Item id="42026" name="Тэкст справа налева"/>
+                    <Item id="42027" name="Тэкст злева направа"/>
                     <Item id="42028" name="&amp;Set Read-Only"/>
-                    <Item id="42029" name="Current File Path to Clipboard"/>
-                    <Item id="42030" name="Current Filename to Clipboard"/>
-                    <Item id="42031" name="Бягучы шлях да буфера абмену"/>
+                    <Item id="42029" name="Шлях і назву файла ў буфер абмену"/>
+                    <Item id="42030" name="Назву файла ў буфер абмену"/>
+                    <Item id="42031" name="Current Dir. Path to Clipboard"/>
                     <Item id="42032" name="&amp;Run a Macro Multiple Times..."/>
-                    <Item id="42033" name="Зняць атрыбут толькі на чытанне"/>
-                    <Item id="42035" name="Single Line Comment"/>
-                    <Item id="42036" name="Single Line Uncomment"/>
-                    <Item id="42055" name="Remove Empty Lines"/>
-                    <Item id="42056" name="Remove Empty Lines (Containing Blank characters)"/>
-                    <Item id="42057" name="Insert Blank Line Above Current"/>
-                    <Item id="42058" name="Insert Blank Line Below Current"/>
-                    <Item id="43001" name="&amp;Find..."/>
-                    <Item id="43002" name="Find &amp;Next"/>
-                    <Item id="43003" name="&amp;Replace..."/>
-                    <Item id="43004" name="&amp;Go to..."/>
-                    <Item id="43005" name="Toggle Bookmark"/>
-                    <Item id="43006" name="Next Bookmark"/>
-                    <Item id="43007" name="Previous Bookmark"/>
-                    <Item id="43008" name="Clear All Bookmarks"/>
-                    <Item id="43018" name="Cut Bookmarked Lines"/>
-                    <Item id="43019" name="Copy Bookmarked Lines"/>
-                    <Item id="43020" name="Paste to (Replace) Bookmarked Lines"/>
-                    <Item id="43021" name="Remove Bookmarked Lines"/>
-                    <Item id="43051" name="Remove Unmarked Lines"/>
-                    <Item id="43050" name="Inverse Bookmark"/>
-                    <Item id="43052" name="Find characters in rang&amp;e..."/>
+                    <Item id="42033" name="Clear Read-Only Flag"/>
+                    <Item id="42035" name="Закаментаваць радок"/>
+                    <Item id="42036" name="Раскаментаваць радок"/>
+                    <Item id="42055" name="Выдаліць пустыя радкі"/>
+                    <Item id="42056" name="Выдаліць пустыя радкі (уключаючы пустыя сімвалы)"/>
+                    <Item id="42057" name="Уставіць пустыя радкі над бягучым"/>
+                    <Item id="42058" name="Уставіць пустыя радкі пад бягучым"/>
+                    <Item id="43001" name="&amp;Знайсці..."/>
+                    <Item id="43002" name="Знайсці &amp;наступны"/>
+                    <Item id="43003" name="&amp;Замяніць..."/>
+                    <Item id="43004" name="&amp;Перайсці да..."/>
+                    <Item id="43005" name="Пераключэнне закладкі"/>
+                    <Item id="43006" name="Наступная закладка"/>
+                    <Item id="43007" name="Папярэдняя закладка"/>
+                    <Item id="43008" name="Ачысціць усе закладкі"/>
+                    <Item id="43018" name="Выразаць закладзеныя радкі"/>
+                    <Item id="43019" name="Капіяваць закладзеныя радкі"/>
+                    <Item id="43020" name="Уставіць у (замяняючы) закладзеныя радкі"/>
+                    <Item id="43021" name="Выдаліць закладзеныя радкі"/>
+                    <Item id="43051" name="Выдаліць непазначаныя радкі"/>
+                    <Item id="43050" name="Інвертаваць закладкі"/>
+                    <Item id="43052" name="Зна&amp;йсці сімвалы ў дыяпазоне..."/>
                     <Item id="43053" name="Select All Between &amp;Matching Braces"/>
                     <Item id="43009" name="Go to &amp;Matching Brace"/>
-                    <Item id="43010" name="Find &amp;Previous"/>
-                    <Item id="43011" name="&amp;Incremental Search"/>
+                    <Item id="43010" name="Знайсці &amp;папярэдні"/>
+                    <Item id="43011" name="&amp;Пакрокавы пошук"/>
                     <Item id="43013" name="Find in Fi&amp;les"/>
                     <Item id="43014" name="Find (&amp;Volatile) Next"/>
                     <Item id="43015" name="Find (&amp;Volatile) Previous"/>
@@ -215,21 +215,21 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="43026" name="Using 3rd Style"/>
                     <Item id="43027" name="Clear 3rd Style"/>
                     <Item id="43028" name="Using 4th Style"/>
-                    <Item id="43029" name="Clear 4th Style"/>
-                    <Item id="43030" name="Using 5th Style"/>
-                    <Item id="43031" name="Clear 5th Style"/>
-                    <Item id="43032" name="Clear All Styles"/>
-                    <Item id="43033" name="1st style"/>
-                    <Item id="43034" name="2nd style"/>
-                    <Item id="43035" name="3rd style"/>
-                    <Item id="43036" name="4th style"/>
-                    <Item id="43037" name="5th style"/>
+                    <Item id="43029" name="Ачысціць 4-ы стыль"/>
+                    <Item id="43030" name="Выкарыстанне 5-га стылю"/>
+                    <Item id="43031" name="Ачысціць 5-ы стыль"/>
+                    <Item id="43032" name="Ачысціць усе стылі"/>
+                    <Item id="43033" name="Стыль 1"/>
+                    <Item id="43034" name="Стыль 2"/>
+                    <Item id="43035" name="Стыль 3"/>
+                    <Item id="43036" name="Стыль 4"/>
+                    <Item id="43037" name="Стыль 5"/>
                     <Item id="43038" name="Find Mark Style"/>
-                    <Item id="43039" name="1st style"/>
-                    <Item id="43040" name="2nd style"/>
-                    <Item id="43041" name="3rd style"/>
-                    <Item id="43042" name="4th style"/>
-                    <Item id="43043" name="5th style"/>
+                    <Item id="43039" name="Стыль 1"/>
+                    <Item id="43040" name="Стыль 2"/>
+                    <Item id="43041" name="Стыль 3"/>
+                    <Item id="43042" name="Стыль 4"/>
+                    <Item id="43043" name="Стыль 5"/>
                     <Item id="43044" name="Find Mark Style"/>
                     <Item id="43055" name="1st Style"/>
                     <Item id="43056" name="2nd Style"/>
@@ -242,7 +242,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="43063" name="Using 2nd Style"/>
                     <Item id="43064" name="Using 3rd Style"/>
                     <Item id="43065" name="Using 4th Style"/>
-                    <Item id="43066" name="Using 5th Style"/>
+                    <Item id="43066" name="Выкарыстанне 5-га стылю"/>
                     <Item id="43045" name="Search Results &amp;Window"/>
                     <Item id="43046" name="Next Search Resul&amp;t"/>
                     <Item id="43047" name="Previous Search Resul&amp;t"/>
@@ -370,11 +370,11 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item CMID="6" name="Кланіраваць у іншую вобласць"/>
                     <Item CMID="7" name="Поўны шлях файла да буфера абмену"/>
                     <Item CMID="8" name="Назву файла ў буфер абмену"/>
-                    <Item CMID="9" name="Бягучы шлях да буфера абмену"/>
+                    <Item CMID="9" name="Current Dir. Path to Clipboard"/>
                     <Item CMID="10" name="Перайменаваць..."/>
                     <Item CMID="11" name="Перамясціць у сметніцу"/>
                     <Item CMID="12" name="Толькі чытанне"/>
-                    <Item CMID="13" name="Зняць атрыбут толькі на чытанне"/>
+                    <Item CMID="13" name="Clear Read-Only Flag"/>
                     <Item CMID="14" name="Перамясціць у новы экзэмпляр"/>
                     <Item CMID="15" name="Адкрыць у новым экзэмпляры"/>
                     <Item CMID="16" name="Перазагрузіць"/>
