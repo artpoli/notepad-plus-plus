@@ -795,25 +795,25 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="24520" name="Адкрыць:"/>
                     <Item id="24521" name="Escape:"/>
                     <Item id="24522" name="Закрыць:"/>
-                    <Item id="24523" name="Стыль"/>
-                    <Item id="24551" name="Стыль раздзяляльніка 6"/>
+                    <Item id="24523" name="Styler"/>
+                    <Item id="24551" name="Delimiter 6 style"/>
                     <Item id="24570" name="Адкрыць:"/>
-                    <Item id="24571" name="Экранаванне:"/>
+                    <Item id="24571" name="Escape:"/>
                     <Item id="24572" name="Закрыць:"/>
-                    <Item id="24573" name="Стыль"/>
-                    <Item id="24601" name="Стыль раздзяляльніка 7"/>
+                    <Item id="24573" name="Styler"/>
+                    <Item id="24601" name="Delimiter 7 style"/>
                     <Item id="24620" name="Адкрыць:"/>
-                    <Item id="24621" name="Экранаванне:"/>
+                    <Item id="24621" name="Escape:"/>
                     <Item id="24622" name="Закрыць:"/>
-                    <Item id="24623" name="Стыль"/>
-                    <Item id="24651" name="Стыль раздзяляльніка 8"/>
+                    <Item id="24623" name="Styler"/>
+                    <Item id="24651" name="Delimiter 8 style"/>
                     <Item id="24670" name="Адкрыць:"/>
-                    <Item id="24671" name="Экранаванне:"/>
+                    <Item id="24671" name="Escape:"/>
                     <Item id="24672" name="Закрыць:"/>
-                    <Item id="24673" name="Стыль"/>
+                    <Item id="24673" name="Styler"/>
                 </Operator>
             </UserDefine>
-            <Preference title="Налады">
+            <Preference title="Preferences">
                 <Item id="6001" name="Закрыць"/>
                 <Global title="Агульныя">
                     <Item id="6101" name="Панэль інструментаў"/>
@@ -923,7 +923,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6420" name="Пры адкрыцці файлаў ANSI"/>
                 </NewDoc>
 
-                <DefaultDir title="Каталог па змаўчанні">
+                <DefaultDir title="Default Directory">
                     <Item id="6413" name="Default Open/Save file Directory"/>
                     <Item id="6414" name="Перайсці за бягучым дакументам"/>
                     <Item id="6415" name="Памятаць апошні каталог"/>
@@ -1202,7 +1202,8 @@ You can re-activate this dialog in Preferences later."/>
             <SettingsOnCloudError title="Налады воблачнага сховішча" message="Відавочна, што налады шляху да воблака ўсталяваныя з пазнакай толькі на чытанне\rабо ў папку, якая патрабуе адпаведных праў на запіс.\rВашы налады ў воблаку будуць скасаваныя. Калі ласка, скіньце адпаведнае значэнне праз дыялог Налады."/>
             <FilePathNotFoundWarning title="Адкрыццё файла" message="Файл, які вы спрабуеце адкрыць не існуе."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <SessionFileInvalidError title="Не атрымалася загрузіць сеанс" message="Файл сеансу пашкоджаны або з'яўляецца памылковым."/> <!-- HowToReproduce: Save current session via menu "File -> Save Session...", use another editor to modify the session you saved to make it an invalid xml file. Then load this invalid session via menu "File -> Load Session...". -->
-            <DroppingFolderAsProjectModeWarning title="Недапушчальнае дзеянне" message="Вы можаце выключыць толькі файлы або толькі папкі, але не ўсё адразу, паколькі вы знаходзіцеся ў рэжыме &quot;Папка як праект&quot;. Каб гэты параметр пачаў працаваць вам неабходна ўключыць &quot;Адкрыць усе файлы папкі, замест адкрыцця папкі ў якасці працоўнай прасторы&quot; ў &quot;Наладах - Каталог па змаўчанні&quot;."/>
+            <DroppingFolderAsProjectModeWarning title="Недапушчальнае дзеянне" message="You can only drop files or folders but not both, because you're in dropping Folder as Project mode.
+you have to enable &quot;Open all files of folder instead of launching Folder as Workspace on folder dropping&quot; in &quot;Default Directory&quot; section of Preferences dialog to make this operation work."/>
             <SortingError title="Памылка сартавання" message="Не атрымліваецца выканаць сартаванне па ліках з-за радка $INT_REPLACE$."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <ColumnModeTip title="Парада для рэжыму слупкоў" message="Калі ласка, выкарыстоўвайце &quot;ALT+выбар мышы&quot; або &quot;Alt+Shift+клавіша стрэлкі&quot;, каб пераключыць рэжым слупкоў."/>
             <BufferInvalidWarning title="Памылка захавання" message="Не атрымалася захаваць: Няправільны буфер."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
