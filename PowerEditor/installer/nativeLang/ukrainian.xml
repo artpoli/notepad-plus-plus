@@ -3,7 +3,7 @@
 The comments are here for explanation, it's not necessary to translate them.
 -->
 <NotepadPlus>
-    <Native-Langue name="Українська" filename="ukrainian.xml" version="8.1.9.3">
+    <Native-Langue name="Українська" filename="ukrainian.xml" version="8.2">
         <Menu>
             <Main>
                 <!-- Main Menu Entries -->
@@ -178,116 +178,122 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42029" name="Шлях та назву файлу в буфер обміну"/>
                     <Item id="42030" name="Назву файлу в буфер обміну"/>
                     <Item id="42031" name="Шлях теки до буфера"/>
-                    <Item id="42032" name="Багаторазовий запуск макросу..."/>
+                    <Item id="42087" name="All Filenames to Clipboard"/>
+                    <Item id="42088" name="All File Paths to Clipboard"/>
+                    <Item id="42032" name="&amp;Run a Macro Multiple Times..."/>
                     <Item id="42033" name="Прибрати атрибут «Лише читання»"/>
-                    <Item id="42035" name="Коментувати рядок"/>
-                    <Item id="42036" name="Розкоментувати рядок"/>
-                    <Item id="42055" name="Вилучити порожні рядки"/>
-                    <Item id="42056" name="Вилучити порожні рядки (включно з порожніми символами)"/>
-                    <Item id="42057" name="Додати порожній рядок над поточним"/>
-                    <Item id="42058" name="Додати порожній рядок під поточним"/>
-                    <Item id="43001" name="Знайти..."/>
-                    <Item id="43002" name="Знайти далі"/>
-                    <Item id="43003" name="Замінити..."/>
-                    <Item id="43004" name="Перейти до..."/>
-                    <Item id="43005" name="Закладки"/>
-                    <Item id="43006" name="Наступна закладка"/>
-                    <Item id="43007" name="Попередня закладка"/>
-                    <Item id="43008" name="Стерти всі закладки"/>
-                    <Item id="43018" name="Вирізати закладені рядки"/>
-                    <Item id="43019" name="Копіювати закладені рядки"/>
-                    <Item id="43020" name="Вставити й замінити позначені рядки"/>
-                    <Item id="43021" name="Вилучити позначені рядки"/>
-                    <Item id="43051" name="Вилучити непозначені рядки"/>
-                    <Item id="43050" name="Інвертувати закладки"/>
-                    <Item id="43052" name="Знайти символи в діапазоні..."/>
-                    <Item id="43053" name="Вибрати все у відповідному діапазоні"/>
-                    <Item id="43009" name="Перейти до парної дужки"/>
-                    <Item id="43010" name="Знайти перед"/>
-                    <Item id="43011" name="Покроковий пошук"/>
-                    <Item id="43013" name="Знайти у файлах"/>
-                    <Item id="43014" name="Знайти далі (змінне)"/>
-                    <Item id="43015" name="Знайти попереднє (змінне)"/>
-                    <Item id="43022" name="Використання стилю 1"/>
-                    <Item id="43023" name="Стерти стиль 1"/>
-                    <Item id="43024" name="Використання стилю 2"/>
-                    <Item id="43025" name="Стерти стиль 2"/>
-                    <Item id="43026" name="Використання стилю 3"/>
-                    <Item id="43027" name="Стерти стиль 3"/>
-                    <Item id="43028" name="Використання стилю 4"/>
-                    <Item id="43029" name="Стерти стиль 4"/>
-                    <Item id="43030" name="Використання стилю 5"/>
-                    <Item id="43031" name="Стерти стиль 5"/>
-                    <Item id="43032" name="Стерти всі стилі"/>
-                    <Item id="43033" name="Стиль 1"/>
-                    <Item id="43034" name="Стиль 2"/>
-                    <Item id="43035" name="Стиль 3"/>
-                    <Item id="43036" name="Стиль 4"/>
-                    <Item id="43037" name="Стиль 5"/>
-                    <Item id="43038" name="Знайти стиль позначок"/>
-                    <Item id="43039" name="Стиль 1"/>
-                    <Item id="43040" name="Стиль 2"/>
-                    <Item id="43041" name="Стиль 3"/>
-                    <Item id="43042" name="Стиль 4"/>
-                    <Item id="43043" name="Стиль 5"/>
-                    <Item id="43044" name="Знайти стиль позначок"/>
-                    <Item id="43055" name="Стиль 1"/>
-                    <Item id="43056" name="Стиль 2"/>
-                    <Item id="43057" name="Стиль 3"/>
-                    <Item id="43058" name="Стиль 4"/>
-                    <Item id="43059" name="Стиль 5"/>
-                    <Item id="43060" name="Всі стилі"/>
-                    <Item id="43061" name="Знайти стиль позначок"/>
-                    <Item id="43062" name="Використання стилю 1"/>
-                    <Item id="43063" name="Використання стилю 2"/>
-                    <Item id="43064" name="Використання стилю 3"/>
-                    <Item id="43065" name="Використання стилю 4"/>
-                    <Item id="43066" name="Використання стилю 5"/>
-                    <Item id="43045" name="Вікно результатів пошуку"/>
-                    <Item id="43046" name="Наступний результат пошуку"/>
-                    <Item id="43047" name="Попередній результат пошуку"/>
-                    <Item id="43048" name="Обрати й знайти далі"/>
-                    <Item id="43049" name="Обрати й знайти попереднє"/>
-                    <Item id="43054" name="Позначка..."/>
-                    <Item id="44009" name="Текст на все вікно"/>
-                    <Item id="44010" name="Згорнути все"/>
-                    <Item id="44011" name="Режим зосередження"/>
-                    <Item id="44019" name="Показати всі символи"/>
-                    <Item id="44020" name="Значення відступів"/>
-                    <Item id="44022" name="Перенесення слів"/>
-                    <Item id="44023" name="Збільшити (Ctrl + коліщатко миші вгору)"/>
-                    <Item id="44024" name="Зменшити (Ctrl + коліщатко миші вниз)"/>
-                    <Item id="44025" name="Показувати пробіли і Tab"/>
-                    <Item id="44026" name="Показувати символ закінчення рядка"/>
-                    <Item id="44029" name="Розгорнути все"/>
-                    <Item id="44030" name="Згорнути поточний фрагмент"/>
-                    <Item id="44031" name="Розгорнути поточний фрагмент"/>
-                    <Item id="44049" name="Підсумок..."/>
+                    <Item id="42035" name="Single Line Comment"/>
+                    <Item id="42036" name="Single Line Uncomment"/>
+                    <Item id="42055" name="Remove Empty Lines"/>
+                    <Item id="42056" name="Remove Empty Lines (Containing Blank characters)"/>
+                    <Item id="42057" name="Insert Blank Line Above Current"/>
+                    <Item id="42058" name="Insert Blank Line Below Current"/>
+                    <Item id="43001" name="&amp;Find..."/>
+                    <Item id="43002" name="Find &amp;Next"/>
+                    <Item id="43003" name="&amp;Replace..."/>
+                    <Item id="43004" name="&amp;Go to..."/>
+                    <Item id="43005" name="Toggle Bookmark"/>
+                    <Item id="43006" name="Next Bookmark"/>
+                    <Item id="43007" name="Previous Bookmark"/>
+                    <Item id="43008" name="Clear All Bookmarks"/>
+                    <Item id="43018" name="Cut Bookmarked Lines"/>
+                    <Item id="43019" name="Copy Bookmarked Lines"/>
+                    <Item id="43020" name="Paste to (Replace) Bookmarked Lines"/>
+                    <Item id="43021" name="Remove Bookmarked Lines"/>
+                    <Item id="43051" name="Remove Unmarked Lines"/>
+                    <Item id="43050" name="Inverse Bookmark"/>
+                    <Item id="43052" name="Find characters in rang&amp;e..."/>
+                    <Item id="43053" name="Select All Between &amp;Matching Braces"/>
+                    <Item id="43009" name="Go to &amp;Matching Brace"/>
+                    <Item id="43010" name="Find &amp;Previous"/>
+                    <Item id="43011" name="&amp;Incremental Search"/>
+                    <Item id="43013" name="Find in Fi&amp;les"/>
+                    <Item id="43014" name="Find (&amp;Volatile) Next"/>
+                    <Item id="43015" name="Find (&amp;Volatile) Previous"/>
+                    <Item id="43022" name="Using 1st Style"/>
+                    <Item id="43023" name="Clear 1st Style"/>
+                    <Item id="43024" name="Using 2nd Style"/>
+                    <Item id="43025" name="Clear 2nd Style"/>
+                    <Item id="43026" name="Using 3rd Style"/>
+                    <Item id="43027" name="Clear 3rd Style"/>
+                    <Item id="43028" name="Using 4th Style"/>
+                    <Item id="43029" name="Clear 4th Style"/>
+                    <Item id="43030" name="Using 5th Style"/>
+                    <Item id="43031" name="Clear 5th Style"/>
+                    <Item id="43032" name="Clear All Styles"/>
+                    <Item id="43033" name="1st style"/>
+                    <Item id="43034" name="2nd style"/>
+                    <Item id="43035" name="3rd style"/>
+                    <Item id="43036" name="4th style"/>
+                    <Item id="43037" name="5th style"/>
+                    <Item id="43038" name="Find Mark Style"/>
+                    <Item id="43039" name="1st style"/>
+                    <Item id="43040" name="2nd style"/>
+                    <Item id="43041" name="3rd style"/>
+                    <Item id="43042" name="4th style"/>
+                    <Item id="43043" name="5th style"/>
+                    <Item id="43044" name="Find Mark Style"/>
+                    <Item id="43055" name="1st Style"/>
+                    <Item id="43056" name="2nd Style"/>
+                    <Item id="43057" name="3rd Style"/>
+                    <Item id="43058" name="4th Style"/>
+                    <Item id="43059" name="5th Style"/>
+                    <Item id="43060" name="All Styles"/>
+                    <Item id="43061" name="Find Mark Style"/>
+                    <Item id="43062" name="Using 1st Style"/>
+                    <Item id="43063" name="Using 2nd Style"/>
+                    <Item id="43064" name="Using 3rd Style"/>
+                    <Item id="43065" name="Using 4th Style"/>
+                    <Item id="43066" name="Using 5th Style"/>
+                    <Item id="43045" name="Search Results &amp;Window"/>
+                    <Item id="43046" name="Next Search Resul&amp;t"/>
+                    <Item id="43047" name="Previous Search Resul&amp;t"/>
+                    <Item id="43048" name="&amp;Select and Find Next"/>
+                    <Item id="43049" name="&amp;Select and Find Previous"/>
+                    <Item id="43054" name="Mar&amp;k..."/>
+                    <Item id="43501" name="Close Selected"/>
+                    <Item id="43502" name="Close Others"/>
+                    <Item id="43503" name="Copy Selected Names"/>
+                    <Item id="43504" name="Copy Selected Pathnames"/>
+                    <Item id="44009" name="Post-It"/>
+                    <Item id="44010" name="Fold All"/>
+                    <Item id="44011" name="Distraction Free Mode"/>
+                    <Item id="44019" name="Show All Characters"/>
+                    <Item id="44020" name="Show Indent Guide"/>
+                    <Item id="44022" name="Word wrap"/>
+                    <Item id="44023" name="Zoom &amp;In (Ctrl+Mouse Wheel Up)"/>
+                    <Item id="44024" name="Zoom &amp;Out (Ctrl+Mouse Wheel Down)"/>
+                    <Item id="44025" name="Show White Space and TAB"/>
+                    <Item id="44026" name="Show End of Line"/>
+                    <Item id="44029" name="Unfold All"/>
+                    <Item id="44030" name="Collapse Current Level"/>
+                    <Item id="44031" name="Uncollapse Current Level"/>
+                    <Item id="44049" name="Summary..."/>
                     <Item id="44080" name="Карта документа"/>
                     <Item id="44070" name="Список документів"/>
                     <Item id="44084" name="Список функцій"/>
                     <Item id="44085" name="Тека як робоча область"/>
-                    <Item id="44086" name="Вкладка 1"/>
-                    <Item id="44087" name="Вкладка 2"/>
-                    <Item id="44088" name="Вкладка 3"/>
-                    <Item id="44089" name="Вкладка 4"/>
-                    <Item id="44090" name="Вкладка 5"/>
-                    <Item id="44091" name="Вкладка 6"/>
-                    <Item id="44092" name="Вкладка 7"/>
-                    <Item id="44093" name="Вкладка 8"/>
-                    <Item id="44094" name="Вкладка 9"/>
-                    <Item id="44095" name="Наступна вкладка"/>
-                    <Item id="44096" name="Попередня вкладка"/>
-                    <Item id="44097" name="Моніторинг (tail -f)"/>
-                    <Item id="44098" name="Посунути вкладку вперед"/>
-                    <Item id="44099" name="Посунути вкладку назад"/>
-                    <Item id="44032" name="На весь екран"/>
-                    <Item id="44033" name="Відновити масштаб"/>
-                    <Item id="44034" name="Завжди вгорі"/>
-                    <Item id="44035" name="Синхронізувати вертикальну смугу прокрутки"/>
-                    <Item id="44036" name="Синхронізувати горизонтальну смугу прокрутки"/>
-                    <Item id="44041" name="Показувати символ переведення рядка"/>
-                    <Item id="44072" name="Сфокусуватися на інший вигляд"/>
+                    <Item id="44086" name="1st Tab"/>
+                    <Item id="44087" name="2nd Tab"/>
+                    <Item id="44088" name="3rd Tab"/>
+                    <Item id="44089" name="4th Tab"/>
+                    <Item id="44090" name="5th Tab"/>
+                    <Item id="44091" name="6th Tab"/>
+                    <Item id="44092" name="7th Tab"/>
+                    <Item id="44093" name="8th Tab"/>
+                    <Item id="44094" name="9th Tab"/>
+                    <Item id="44095" name="Next Tab"/>
+                    <Item id="44096" name="Previous Tab"/>
+                    <Item id="44097" name="Monitoring (tail -f)"/>
+                    <Item id="44098" name="Move Tab Forward"/>
+                    <Item id="44099" name="Move Tab Backward"/>
+                    <Item id="44032" name="Toggle Full Screen Mode"/>
+                    <Item id="44033" name="Restore Default Zoom"/>
+                    <Item id="44034" name="Always on Top"/>
+                    <Item id="44035" name="Synchronise Vertical Scrolling"/>
+                    <Item id="44036" name="Synchronise Horizontal Scrolling"/>
+                    <Item id="44041" name="Show Wrap Symbol"/>
+                    <Item id="44072" name="Focus on Another View"/>
                     <Item id="44081" name="Панель проєкту 1"/>
                     <Item id="44082" name="Панель проєкту 2"/>
                     <Item id="44083" name="Панель проєкту 3"/>
@@ -298,64 +304,64 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="45005" name="UTF-8-BOM"/>
                     <Item id="45006" name="UTF-16 BE BOM"/>
                     <Item id="45007" name="UTF-16 LE BOM"/>
-                    <Item id="45008" name="UTF-8 без мітки BOM"/>
-                    <Item id="45009" name="Перетворити на ANSI"/>
-                    <Item id="45010" name="Перетворити на UTF-8"/>
-                    <Item id="45011" name="Перетворити на UTF-8-BOM"/>
-                    <Item id="45012" name="Перетворити на UTF-16 BE BOM"/>
-                    <Item id="45013" name="Перетворити на UTF-16 LE BOM"/>
-                    <Item id="45060" name="Big5 (Традиційна)"/>
-                    <Item id="45061" name="GB2312 (Спрощена)"/>
-                    <Item id="45054" name="OEM 861: Ісландська"/>
-                    <Item id="45057" name="OEM 865: Скандинавська"/>
-                    <Item id="45053" name="OEM 860: Португальська"/>
-                    <Item id="45056" name="OEM 863: Французька"/>
+                    <Item id="45008" name="UTF-8"/>
+                    <Item id="45009" name="Convert to ANSI"/>
+                    <Item id="45010" name="Convert to UTF-8"/>
+                    <Item id="45011" name="Convert to UTF-8-BOM"/>
+                    <Item id="45012" name="Convert to UTF-16 BE BOM"/>
+                    <Item id="45013" name="Convert to UTF-16 LE BOM"/>
+                    <Item id="45060" name="Big5 (Traditional)"/>
+                    <Item id="45061" name="GB2312 (Simplified)"/>
+                    <Item id="45054" name="OEM 861: Icelandic"/>
+                    <Item id="45057" name="OEM 865: Nordic"/>
+                    <Item id="45053" name="OEM 860: Portuguese"/>
+                    <Item id="45056" name="OEM 863: French"/>
 
                     <Item id="10001" name="Відкрити в іншому вікні"/>
                     <Item id="10002" name="Копіювати в інше вікно"/>
                     <Item id="10003" name="Перейти до нового екземпляра"/>
                     <Item id="10004" name="Відкрити в новому екземплярі"/>
 
-                    <Item id="46001" name="Конфігуратор стилю..."/>
-                    <Item id="46250" name="Визначити мову..."/>
-                    <Item id="46300" name="Відкрити користувацьку теку мови..."/>
-                    <Item id="46301" name="Збірка мов Notepad++ визначених користувачем"/>
+                    <Item id="46001" name="Style Configurator..."/>
+                    <Item id="46250" name="Define your language..."/>
+                    <Item id="46300" name="Open User Defined Language folder..."/>
+                    <Item id="46301" name="Notepad++ User Defined Languages Collection"/>
                     <Item id="46180" name="Визначено користувачем"/>
-                    <Item id="47000" name="Про Notepad++"/>
-                    <Item id="47010" name="Аргументи командного рядка..."/>
-                    <Item id="47001" name="Домівка Notepad++"/>
-                    <Item id="47002" name="Сторінка проєкту Notepad++"/>
-                    <Item id="47003" name="Посібник користувача Notepad++"/>
-                    <Item id="47004" name="Спільнота (Форум) Notepad++"/>
-                    <Item id="47012" name="Інформація зневадження..."/>
-                    <Item id="47005" name="Отримати більше плагінів"/>
-                    <Item id="47006" name="Оновити Notepad++"/>
-                    <Item id="47009" name="Встановити проксі оновлення..."/>
-                    <Item id="48005" name="Імпорт плагінів..."/>
-                    <Item id="48006" name="Імпорт тем стилів..."/>
-                    <Item id="48018" name="Змінити контекстне меню"/>
-                    <Item id="48009" name="Гарячі клавіші..."/>
-                    <Item id="48011" name="Налаштування..."/>
-                    <Item id="48014" name="Відкрити теку плагінів..."/>
-                    <Item id="48015" name="Адміністрування плагінів..."/>
-                    <Item id="48501" name="Генерувати..."/>
-                    <Item id="48502" name="Генерувати з файлів..."/>
-                    <Item id="48503" name="Генерувати з вибраного в буфер обміну"/>
-                    <Item id="48504" name="Генерувати..."/>
-                    <Item id="48505" name="Генерувати з файлів..."/>
-                    <Item id="48506" name="Генерувати з вибраного в буфер обміну"/>
-                    <Item id="49000" name="Виконати..."/>
+                    <Item id="47000" name="About Notepad++"/>
+                    <Item id="47010" name="Command Line Arguments..."/>
+                    <Item id="47001" name="Notepad++ Home"/>
+                    <Item id="47002" name="Notepad++ Project Page"/>
+                    <Item id="47003" name="Notepad++ Online User Manual"/>
+                    <Item id="47004" name="Notepad++ Community (Forum)"/>
+                    <Item id="47012" name="Debug Info..."/>
+                    <Item id="47005" name="Get More Plugins"/>
+                    <Item id="47006" name="Update Notepad++"/>
+                    <Item id="47009" name="Set Updater Proxy..."/>
+                    <Item id="48005" name="Import plugin(s)..."/>
+                    <Item id="48006" name="Import style theme(s)..."/>
+                    <Item id="48018" name="Edit Popup ContextMenu"/>
+                    <Item id="48009" name="Shortcut Mapper..."/>
+                    <Item id="48011" name="Preferences..."/>
+                    <Item id="48014" name="Open Plugins Folder..."/>
+                    <Item id="48015" name="Plugins Admin..."/>
+                    <Item id="48501" name="Generate..."/>
+                    <Item id="48502" name="Generate from files..."/>
+                    <Item id="48503" name="Generate from selection into clipboard"/>
+                    <Item id="48504" name="Generate..."/>
+                    <Item id="48505" name="Generate from files..."/>
+                    <Item id="48506" name="Generate from selection into clipboard"/>
+                    <Item id="49000" name="&amp;Run..."/>
 
-                    <Item id="50000" name="Завершення функцій"/>
-                    <Item id="50001" name="Завершення слів"/>
-                    <Item id="50002" name="Підказка параметрів функцій"/>
-                    <Item id="50005" name="Перемкнути запис макросу"/>
-                    <Item id="50006" name="Завершення шляху"/>
-                    <Item id="44042" name="Приховати рядки"/>
-                    <Item id="42040" name="Відкрити всі останні файли"/>
-                    <Item id="42041" name="Очистити список останніх файлів"/>
-                    <Item id="48016" name="Змінити комб. клавіш/Видалити макрос..."/>
-                    <Item id="48017" name="Змінити комб. клавіш/Видалити команду..."/>
+                    <Item id="50000" name="Function Completion"/>
+                    <Item id="50001" name="Word Completion"/>
+                    <Item id="50002" name="Function Parameters Hint"/>
+                    <Item id="50005" name="Toggle macro record"/>
+                    <Item id="50006" name="Path Completion"/>
+                    <Item id="44042" name="Hide Lines"/>
+                    <Item id="42040" name="Open All Recent Files"/>
+                    <Item id="42041" name="Empty Recent Files List"/>
+                    <Item id="48016" name="Modify Shortcut/Delete Macro..."/>
+                    <Item id="48017" name="Modify Shortcut/Delete Command..."/>
                 </Commands>
             </Main>
             <Splitter>
@@ -880,7 +886,8 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="7122" name="Темніший текст"/>
                     <Item id="7123" name="Вимкнений текст"/>
                     <Item id="7124" name="Край"/>
-                    <Item id="7130" name="Скинути"/>
+                    <Item id="7125" name="Link"/>
+                    <Item id="7130" name="Reset"/>
                 </DarkMode>
 
                 <MarginsBorderEdge title="Відступи/Межі/Краї">
@@ -1051,7 +1058,7 @@ The comments are here for explanation, it's not necessary to translate them.
 
                 <MultiInstance title="Дата з повторенням">
                     <Item id="6151" name="Режим відкриття файлів"/>
-                    <Item id="6152" name="Відкривати сеанс у новому вікні Notepad++"/>
+                    <Item id="6152" name="Open session in a new instance (and save session automatically on exit)"/>
                     <Item id="6153" name="Завжди відкривати в новому вікні"/>
                     <Item id="6154" name="Все в одному вікні (типово)"/>
                     <Item id="6155" name="* Зміна цих налаштувань потребує перезапуску Notepad++"/>
@@ -1384,11 +1391,17 @@ Notepad++ перезапуститься після завершення всі�
             <shift-change-direction-tip value="Використовуйте Shift+Enter для пошуку у зворотному напрямку"/>
             <two-find-buttons-tip value="2-кнопковий режим пошуку"/>
             <file-rename-title value="Перейменувати"/>
-            <find-in-files-filter-tip value="Знайти в cpp, cxx, h, hxx &amp;&amp; hpp:
+            <find-in-files-filter-tip value="Find in cpp, cxx, h, hxx &amp;&amp; hpp:
 *.cpp *.cxx *.h *.hxx *.hpp
 
-Знайти у всіх файлах, за винятком exe, obj &amp;&amp; log:
-*.* !*.exe !*.obj !*.log"/> <!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
+Find in all files except exe, obj &amp;&amp; log:
+*.* !*.exe !*.obj !*.log
+
+Find in all files but exclude folders tests, bin &amp;&amp; bin64:
+*.* !\tests !\bin*
+
+Find in all files but exclude all folders log or logs recursively:
+*.* !+\log*"/> <!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
             <find-status-top-reached value="Знайти: Знайдено 1-й збіг знизу. Було досягнуто початку документа."/>
             <find-status-end-reached value="Знайти: Знайдено 1-й збіг згори. Було досягнуто кінця документа."/>
             <find-status-replaceinfiles-1-replaced value="Замінити у файлах: Виконано 1 заміну"/>
