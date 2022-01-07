@@ -618,38 +618,38 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44081" name="Toggle Project Panel 1"/>
                     <Item id="44082" name="Toggle Project Panel 2"/>
                     <Item id="44083" name="Toggle Project Panel 3"/>
-                    <Item id="44085" name="Toggle Folder as Workspace"/>
-                    <Item id="44080" name="Toggle Document Map"/>
-                    <Item id="44070" name="Toggle Document List"/>
-                    <Item id="44084" name="Toggle Function List"/>
-                    <Item id="50005" name="Toggle macro recording"/>
-                    <Item id="44104" name="Switch to Project Panel 1"/>
-                    <Item id="44105" name="Switch to Project Panel 2"/>
-                    <Item id="44106" name="Switch to Project Panel 3"/>
-                    <Item id="44107" name="Switch to Folder as Workspace"/>
+                    <Item id="44085" name="Папка як працоўная вобласць"/>
+                    <Item id="44080" name="Карта дакумента"/>
+                    <Item id="44070" name="Пераключыць спіс дакументаў"/>
+                    <Item id="44084" name="Пералік функцый"/>
+                    <Item id="50005" name="Запіс макраса"/>
+                    <Item id="44104" name="Пераключыцца на панэль 1-га праекта"/>
+                    <Item id="44105" name="Пераключыцца на панэль 2-га праекта"/>
+                    <Item id="44106" name="Пераключыцца на панэль 3-га праекта"/>
+                    <Item id="44107" name="Пераключыць папку як працоўную вобласць"/>
                     <Item id="44109" name="Switch to Document List"/>
-                    <Item id="44108" name="Switch to Function List"/>
+                    <Item id="44108" name="Пераключыцца на пералік функцый"/>
                 </MainCommandNames>
             </ShortcutMapper>
-            <ShortcutMapperSubDialg title="Ярлык">
-                <Item id="1" name="OK"/>
-                <Item id="2" name="Адмена"/>
-                <Item id="5006" name="Назва"/>
+            <ShortcutMapperSubDialg title="Гарачая клавіша">
+                <Item id="1" name="Добра"/>
+                <Item id="2" name="Cancel"/>
+                <Item id="5006" name="Name"/>
                 <Item id="5008" name="Дадаць"/>
                 <Item id="5009" name="Выдаліць"/>
-                <Item id="5010" name="Ужыць"/>
-                <Item id="5007" name="Гэта дзеянне прывядзе да выдалення камбінацыі клавіш з гэтай каманды"/>
-                <Item id="5012" name="ЗНОЙДЗЕНЫ КАНФЛІКТ!"/>
+                <Item id="5010" name="Apply"/>
+                <Item id="5007" name="This will remove shortcut from this command"/>
+                <Item id="5012" name="CONFLICT FOUND!"/>
             </ShortcutMapperSubDialg>
             <UserDefine title="Вызначаныя карыстальнікам">
                 <Item id="20001" name="Прымацаваць"/>
-                <Item id="20002" name="Перайменаваць"/>
-                <Item id="20003" name="Стварыць новы..."/>
+                <Item id="20002" name="Rename"/>
+                <Item id="20003" name="Create New..."/>
                 <Item id="20004" name="Выдаліць"/>
                 <Item id="20005" name="Захаваць як..."/>
-                <Item id="20007" name="Мова карыстальніка: "/>
-                <Item id="20009" name="Пашыр.:"/>
-                <Item id="20012" name="Любы рэгістр"/>
+                <Item id="20007" name="User language: "/>
+                <Item id="20009" name="Ext.:"/>
+                <Item id="20012" name="Ignore case"/>
                 <Item id="20011" name="Празрыстасць"/>
                 <Item id="20015" name="Імпарт..."/>
                 <Item id="20016" name="Экспарт..."/>
@@ -1385,7 +1385,7 @@ Your workspace has not been saved."/> <!-- HowToReproduce: this message prevents
             <cloud-select-folder value="Выберыце папку, адкуль/куды ў Notepad++ чытаць/запісваць свае налады"/> <!-- HowToReproduce: In "Cloud" section of Preferences dialog, check "Set your cloud location path here: ", then click the button "...". This message is displayed in the "Browse For Folder" dialog. -->
             <shift-change-direction-tip value="Выкарыстоўвайце Shift+Enter для пошуку ў адваротным напрамку"/>
             <two-find-buttons-tip value="2-клавішны рэжым пошуку"/>
-            <file-rename-title value="Перайменаваць"/>
+            <file-rename-title value="Rename"/>
             <find-in-files-filter-tip value="Знайсці ў cpp, cxx, h, hxx &amp;&amp; hpp:
 *.cpp *.cxx *.h *.hxx *.hpp
 
