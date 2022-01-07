@@ -81,7 +81,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="41002" name="&amp;Адкрыць..."/>
                     <Item id="41019" name="Праваднік"/>
                     <Item id="41020" name="cmd"/>
-                    <Item id="41025" name="Folder as Workspace"/>
+                    <Item id="41025" name="Папка як працоўная вобласць"/>
                     <Item id="41003" name="&amp;Закрыць"/>
                     <Item id="41004" name="Clos&amp;e All"/>
                     <Item id="41005" name="Close All BUT Current Document"/>
@@ -252,24 +252,24 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44009" name="Post-It"/>
                     <Item id="44010" name="Fold All"/>
                     <Item id="44011" name="Distraction Free Mode"/>
-                    <Item id="44019" name="Show All Characters"/>
-                    <Item id="44020" name="Show Indent Guide"/>
-                    <Item id="44022" name="Word wrap"/>
+                    <Item id="44019" name="Паказаць усе сімвалы"/>
+                    <Item id="44020" name="Паказваць водступы"/>
+                    <Item id="44022" name="Перанос па словах"/>
                     <Item id="44023" name="Zoom &amp;In (Ctrl+Mouse Wheel Up)"/>
                     <Item id="44024" name="Zoom &amp;Out (Ctrl+Mouse Wheel Down)"/>
                     <Item id="44025" name="Show White Space and TAB"/>
-                    <Item id="44026" name="Show End of Line"/>
-                    <Item id="44029" name="Unfold All"/>
-                    <Item id="44030" name="Collapse Current Level"/>
-                    <Item id="44031" name="Uncollapse Current Level"/>
+                    <Item id="44026" name="Паказваць сімвал заканчэння радка"/>
+                    <Item id="44029" name="Разгарнуць усе"/>
+                    <Item id="44030" name="Згарнуць бягучы ўзровень"/>
+                    <Item id="44031" name="Разгарнуць бягучы ўзровень"/>
                     <Item id="44049" name="Summary..."/>
                     <Item id="44080" name="Карта дакумента"/>
                     <Item id="44070" name="Спіс дакументаў"/>
-                    <Item id="44084" name="Спіс функцый"/>
-                    <Item id="44085" name="Folder as Workspace"/>
-                    <Item id="44086" name="1st Tab"/>
-                    <Item id="44087" name="2nd Tab"/>
-                    <Item id="44088" name="3rd Tab"/>
+                    <Item id="44084" name="Function List"/>
+                    <Item id="44085" name="Папка як працоўная вобласць"/>
+                    <Item id="44086" name="1-ая ўкладка"/>
+                    <Item id="44087" name="2-ая ўкладка"/>
+                    <Item id="44088" name="3-я ўкладка"/>
                     <Item id="44089" name="4th Tab"/>
                     <Item id="44090" name="5th Tab"/>
                     <Item id="44091" name="6th Tab"/>
@@ -1302,12 +1302,12 @@ Your workspace has not been saved."/> <!-- HowToReproduce: this message prevents
             <PanelTitle name="Карта дакумента"/>
         </DocumentMap>
         <FunctionList>
-            <PanelTitle name="Спіс функцый"/>
+            <PanelTitle name="Function List"/>
             <SortTip name="Сартаваць"/>
             <ReloadTip name="Перазагрузіць"/>
         </FunctionList>
         <FolderAsWorkspace>
-            <PanelTitle name="Folder as Workspace"/>
+            <PanelTitle name="Папка як працоўная вобласць"/>
             <SelectFolderFromBrowserString name="Выберыце папку, каб дадаць яе ў якасці панэлі працоўнай вобласці"/>
             <ExpandAllFoldersTip name="Разгарнуць усе папкі"/>
             <CollapseAllFoldersTip name="Згарнуць усе папкі"/>
