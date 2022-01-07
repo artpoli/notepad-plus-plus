@@ -144,7 +144,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42071" name="&amp;iNVERT cASE"/>
                     <Item id="42072" name="&amp;ranDOm CasE"/>
                     <Item id="42073" name="Адкрыць файл"/>
-                    <Item id="42074" name="Адкрыць папку дакумента ў правадніку"/>
+                    <Item id="42074" name="Open Containing Folder in Explorer"/>
                     <Item id="42075" name="Шукаць у інтэрнэце"/>
                     <Item id="42076" name="Change Search Engine..."/>
                     <Item id="42018" name="Пачаць зап&amp;іс"/>
@@ -380,11 +380,11 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item CMID="16" name="Перазагрузіць"/>
                     <Item CMID="17" name="Close All to the Left"/>
                     <Item CMID="18" name="Close All to the Right"/>
-                    <Item CMID="19" name="Адкрыць папку дакумента ў правадніку"/>
+                    <Item CMID="19" name="Open Containing Folder in Explorer"/>
                     <Item CMID="20" name="Адкрыць папку дакумента ў cmd"/>
                     <Item CMID="21" name="Open in Default Viewer"/>
                     <Item CMID="22" name="Close All Unchanged"/>
-                    <Item CMID="23" name="Адкрыць папку зместу як працоўную вобласць"/>
+                    <Item CMID="23" name="Open Containing Folder as Workspace"/>
             </TabBar>
         </Menu>
 
@@ -493,7 +493,7 @@ The comments are here for explanation, it's not necessary to translate them.
             </SHA256FromTextDlg>
 
             <PluginsAdminDlg title="Plugins Admin" titleAvailable = "Available" titleUpdates = "Updates" titleInstalled = "Installed">
-                <ColumnPlugin   name="Убудова"/>
+                <ColumnPlugin   name="Plugin"/>
                 <ColumnVersion  name="Version"/>
                 <Item id="5501" name="Search:"/>
                 <Item id="5503" name="Install"/>
@@ -511,49 +511,49 @@ The comments are here for explanation, it's not necessary to translate them.
                 <SubDialog>
                     <Item id="2204" name="Bold"/>
                     <Item id="2205" name="Italic"/>
-                    <Item id="2206" name="Колер пярэд. плана"/>
+                    <Item id="2206" name="Foreground colour"/>
                     <Item id="2207" name="Колер фону"/>
-                    <Item id="2208" name="Назва шрыфту:"/>
+                    <Item id="2208" name="Font name:"/>
                     <Item id="2209" name="Памер шрыфту:"/>
-                    <Item id="2211" name="Стыль:"/>
-                    <Item id="2212" name="Стыль колеру"/>
-                    <Item id="2213" name="Стыль шрыфту"/>
-                    <Item id="2214" name="Пашырэнні:"/>
+                    <Item id="2211" name="Style:"/>
+                    <Item id="2212" name="Colour Style"/>
+                    <Item id="2213" name="Font Style"/>
+                    <Item id="2214" name="Default ext.:"/>
                     <Item id="2216" name="Пашырэнні карыстальніка:"/>
                     <Item id="2218" name="Падкрэслены"/>
-                    <Item id="2219" name="Ключавыя словы"/>
-                    <Item id="2221" name="Ключавыя словы карыстальніка"/>
+                    <Item id="2219" name="Default keywords"/>
+                    <Item id="2221" name="User-defined keywords"/>
                     <Item id="2225" name="Мова:"/>
-                    <Item id="2226" name="Агульны колер пярэдняга плана"/>
-                    <Item id="2227" name="Агульны колер фону"/>
-                    <Item id="2228" name="Агульны шрыфт"/>
-                    <Item id="2229" name="Агульны памер шрыфту"/>
-                    <Item id="2230" name="Агульны тлусты шрыфт"/>
-                    <Item id="2231" name="Агульны шрыфт курсівам"/>
-                    <Item id="2232" name="Агульны падкрэслены шрыфт"/>
+                    <Item id="2226" name="Enable global foreground colour"/>
+                    <Item id="2227" name="Enable global background colour"/>
+                    <Item id="2228" name="Enable global font"/>
+                    <Item id="2229" name="Enable global font size"/>
+                    <Item id="2230" name="Enable global bold font style"/>
+                    <Item id="2231" name="Enable global italic font style"/>
+                    <Item id="2232" name="Enable global underline font style"/>
                 </SubDialog>
             </StyleConfig>
 
-            <ShortcutMapper title="Спалучэнні клавіш">
-                <Item id="2602" name="Змяніць"/>
-                <Item id="2603" name="Выдаліць"/>
-                <Item id="2606" name="Ачысціць"/>
-                <Item id="2607" name="Фільтр: "/>
+            <ShortcutMapper title="Shortcut Mapper">
+                <Item id="2602" name="Modify"/>
+                <Item id="2603" name="Delete"/>
+                <Item id="2606" name="Clear"/>
+                <Item id="2607" name="Filter: "/>
                 <Item id="1" name="Закрыць"/>
-                <ColumnName name="Назва"/>
-                <ColumnShortcut name="Ярлык"/>
-                <ColumnCategory name="Катэгорыя"/>
-                <ColumnPlugin name="Убудова"/>
-                <MainMenuTab name="Галоўнае меню"/>
-                <MacrosTab name="Макрас"/>
-                <RunCommandsTab name="Выканаць каманды"/>
-                <PluginCommandsTab name="Каманды ўбудовы"/>
-                <ScintillaCommandsTab name="Каманды Scintilla"/>
-                <ConflictInfoOk name="Няма канфліктаў гарачых клавіш для гэта элемента."/>
-                <ConflictInfoEditing name="Няма канфліктаў . . ."/>
+                <ColumnName name="Name"/>
+                <ColumnShortcut name="Shortcut"/>
+                <ColumnCategory name="Category"/>
+                <ColumnPlugin name="Plugin"/>
+                <MainMenuTab name="Main menu"/>
+                <MacrosTab name="Macros"/>
+                <RunCommandsTab name="Run commands"/>
+                <PluginCommandsTab name="Plugin commands"/>
+                <ScintillaCommandsTab name="Scintilla commands"/>
+                <ConflictInfoOk name="No shortcut conflicts for this item."/>
+                <ConflictInfoEditing name="No conflicts . . ."/>
                 <MainCommandNames>
-                    <Item id="41019" name="Адкрыць папку са змесцівам у Правадніку"/>
-                    <Item id="41020" name="Адкрыць папку са змесцівам у камандным радку"/>
+                    <Item id="41019" name="Open containing folder in Explorer"/>
+                    <Item id="41020" name="Open containing folder in Command Prompt"/>
                     <Item id="41021" name="Аднавіць нядаўна закрыты файл"/>
                     <Item id="45001" name="Пераўтварыць сімвал канца радка ў Windows (CR LF)"/>
                     <Item id="45002" name="Пераўтварыць сімвал канца радка ў Unix (LF)"/>
@@ -593,28 +593,28 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="43059" name="Copy Styled Text of 5th Style"/>
                     <Item id="43060" name="Copy Styled Text of All Styles"/>
                     <Item id="43061" name="Copy Styled Text of Find Mark style"/>
-                    <Item id="44100" name="View current file in Firefox"/>
-                    <Item id="44101" name="View current file in Chrome"/>
-                    <Item id="44103" name="View current file in IE"/>
-                    <Item id="44102" name="View current file in Edge"/>
-                    <Item id="50003" name="Switch to previous document"/>
-                    <Item id="50004" name="Switch to next document"/>
-                    <Item id="44051" name="Collapse Level 1"/>
-                    <Item id="44052" name="Collapse Level 2"/>
-                    <Item id="44053" name="Collapse Level 3"/>
-                    <Item id="44054" name="Collapse Level 4"/>
-                    <Item id="44055" name="Collapse Level 5"/>
-                    <Item id="44056" name="Collapse Level 6"/>
-                    <Item id="44057" name="Collapse Level 7"/>
-                    <Item id="44058" name="Collapse Level 8"/>
-                    <Item id="44061" name="Uncollapse Level 1"/>
-                    <Item id="44062" name="Uncollapse Level 2"/>
-                    <Item id="44063" name="Uncollapse Level 3"/>
-                    <Item id="44064" name="Uncollapse Level 4"/>
-                    <Item id="44065" name="Uncollapse Level 5"/>
-                    <Item id="44066" name="Uncollapse Level 6"/>
-                    <Item id="44067" name="Uncollapse Level 7"/>
-                    <Item id="44068" name="Uncollapse Level 8"/>
+                    <Item id="44100" name="Паглядзець бягучы файл у Firefox"/>
+                    <Item id="44101" name="Паглядзець бягучы файл у Chrome"/>
+                    <Item id="44103" name="Паглядзець бягучы файл у IE"/>
+                    <Item id="44102" name="Паглядзець бягучы файл у Edge"/>
+                    <Item id="50003" name="Пераключыцца на папярэдні дакумент"/>
+                    <Item id="50004" name="Пераключыцца на наступны дакумент"/>
+                    <Item id="44051" name="Згарнуць узровень 1"/>
+                    <Item id="44052" name="Згарнуць узровень 2"/>
+                    <Item id="44053" name="Згарнуць узровень 3"/>
+                    <Item id="44054" name="Згарнуць узровень 4"/>
+                    <Item id="44055" name="Згарнуць узровень 5"/>
+                    <Item id="44056" name="Згарнуць узровень 6"/>
+                    <Item id="44057" name="Згарнуць узровень 7"/>
+                    <Item id="44058" name="Згарнуць узровень 8"/>
+                    <Item id="44061" name="Разгарнуць узровень 1"/>
+                    <Item id="44062" name="Разгарнуць узровень 2"/>
+                    <Item id="44063" name="Разгарнуць узровень 3"/>
+                    <Item id="44064" name="Разгарнуць узровень 4"/>
+                    <Item id="44065" name="Разгарнуць узровень 5"/>
+                    <Item id="44066" name="Разгарнуць узровень 6"/>
+                    <Item id="44067" name="Разгарнуць узровень 7"/>
+                    <Item id="44068" name="Разгарнуць узровень 8"/>
                     <Item id="44081" name="Toggle Project Panel 1"/>
                     <Item id="44082" name="Toggle Project Panel 2"/>
                     <Item id="44083" name="Toggle Project Panel 3"/>
@@ -1277,7 +1277,7 @@ Your workspace has not been saved."/> <!-- HowToReproduce: this message prevents
         </ClipboardHistory>
         <DocList>
             <PanelTitle name="Спіс дакументаў"/>
-            <ColumnName name="Назва"/>
+            <ColumnName name="Name"/>
             <ColumnExt name="Ext."/>
             <ColumnPath name="Шлях"/>
         </DocList>
