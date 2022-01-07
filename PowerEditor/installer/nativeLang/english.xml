@@ -3,7 +3,7 @@
 The comments are here for explanation, it's not necessary to translate them.
 -->
 <NotepadPlus>
-    <Native-Langue name="English" filename="english.xml" version="8.1.9.3">
+    <Native-Langue name="English" filename="english.xml" version="8.2">
         <Menu>
             <Main>
                 <!-- Main Menu Entries -->
@@ -178,6 +178,8 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42029" name="Current File Path to Clipboard"/>
                     <Item id="42030" name="Current Filename to Clipboard"/>
                     <Item id="42031" name="Current Dir. Path to Clipboard"/>
+                    <Item id="42087" name="All Filenames to Clipboard"/>
+                    <Item id="42088" name="All File Paths to Clipboard"/>
                     <Item id="42032" name="&amp;Run a Macro Multiple Times..."/>
                     <Item id="42033" name="Clear Read-Only Flag"/>
                     <Item id="42035" name="Single Line Comment"/>
@@ -249,6 +251,10 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="43048" name="&amp;Select and Find Next"/>
                     <Item id="43049" name="&amp;Select and Find Previous"/>
                     <Item id="43054" name="Mar&amp;k..."/>
+                    <Item id="43501" name="Close Selected"/>
+                    <Item id="43502" name="Close Others"/>
+                    <Item id="43503" name="Copy Selected Names"/>
+                    <Item id="43504" name="Copy Selected Pathnames"/>
                     <Item id="44009" name="Post-It"/>
                     <Item id="44010" name="Fold All"/>
                     <Item id="44011" name="Distraction Free Mode"/>
@@ -880,6 +886,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="7122" name="Darker text"/>
                     <Item id="7123" name="Disabled text"/>
                     <Item id="7124" name="Edge"/>
+                    <Item id="7125" name="Link"/>
                     <Item id="7130" name="Reset"/>
                 </DarkMode>
 
@@ -1051,7 +1058,7 @@ You can define several column markers by using white space to separate the diffe
 
                 <MultiInstance title="Multi-Instance &amp; Date">
                     <Item id="6151" name="Multi-instance settings"/>
-                    <Item id="6152" name="Open session in a new instance of Notepad++"/>
+                    <Item id="6152" name="Open session in a new instance (and save session automatically on exit)"/>
                     <Item id="6153" name="Always in multi-instance mode"/>
                     <Item id="6154" name="Default (mono-instance)"/>
                     <Item id="6155" name="* The modification of this setting needs to restart Notepad++"/>
@@ -1393,7 +1400,13 @@ Continue?"/>
 *.cpp *.cxx *.h *.hxx *.hpp
 
 Find in all files except exe, obj &amp;&amp; log:
-*.* !*.exe !*.obj !*.log"/> <!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
+*.* !*.exe !*.obj !*.log
+
+Find in all files but exclude folders tests, bin &amp;&amp; bin64:
+*.* !\tests !\bin*
+
+Find in all files but exclude all folders log or logs recursively:
+*.* !+\log*"/> <!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
             <find-status-top-reached value="Find: Found the 1st occurrence from the bottom. The beginning of the document has been reached."/>
             <find-status-end-reached value="Find: Found the 1st occurrence from the top. The end of the document has been reached."/>
             <find-status-replaceinfiles-1-replaced value="Replace in Files: 1 occurrence was replaced"/>

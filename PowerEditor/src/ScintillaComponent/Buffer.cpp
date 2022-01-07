@@ -222,6 +222,8 @@ void Buffer::setFileName(const TCHAR *fn, LangType defaultLang)
 			newLang = L_PYTHON;
 		else if ((OrdinalIgnoreCaseCompareStrings(_fileName, TEXT("Rakefile")) == 0) || (OrdinalIgnoreCaseCompareStrings(_fileName, TEXT("Vagrantfile")) == 0))
 			newLang = L_RUBY;
+		else if ((OrdinalIgnoreCaseCompareStrings(_fileName, TEXT("crontab")) == 0))
+			newLang = L_BASH;
 	}
 
 	updateTimeStamp();
@@ -1227,11 +1229,13 @@ BufferID FileManager::bufferFromDocument(Document doc, bool dontIncrease, bool d
 
 int FileManager::detectCodepage(char* buf, size_t len)
 {
+	int codepage = -1;
 	uchardet_t ud = uchardet_new();
 	uchardet_handle_data(ud, buf, len);
 	uchardet_data_end(ud);
 	const char* cs = uchardet_get_charset(ud);
-	int codepage = EncodingMapper::getInstance().getEncodingFromString(cs);
+	if (stricmp(cs, "TIS-620") != 0) // TIS-620 detection is disabled here because uchardet detects usually wrongly UTF-8 as TIS-620
+		codepage = EncodingMapper::getInstance().getEncodingFromString(cs);
 	uchardet_delete(ud);
 	return codepage;
 }

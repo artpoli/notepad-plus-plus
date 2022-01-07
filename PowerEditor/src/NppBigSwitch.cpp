@@ -740,6 +740,40 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		{
 			_mainDocTab.changeIcons(static_cast<unsigned char>(lParam));
 			_subDocTab.changeIcons(static_cast<unsigned char>(lParam));
+
+			//restart document list with the same icons as the DocTabs
+			if (_pDocumentListPanel)
+			{
+				if (!_pDocumentListPanel->isClosed()) // if doclist is open
+				{
+					//close the doclist
+					_pDocumentListPanel->display(false);
+
+					//clean doclist
+					_pDocumentListPanel->destroy();
+					_pDocumentListPanel = nullptr;
+
+					//relaunch with new icons
+					launchDocumentListPanel();
+				}
+				else //if doclist is closed
+				{
+					//clean doclist
+					_pDocumentListPanel->destroy();
+					_pDocumentListPanel = nullptr;
+
+					//relaunch doclist with new icons and close it
+					launchDocumentListPanel();
+					if (_pDocumentListPanel)
+					{
+						_pDocumentListPanel->display(false);
+						_pDocumentListPanel->setClosed(true);
+						checkMenuItem(IDM_VIEW_DOCLIST, false);
+						_toolBar.setCheck(IDM_VIEW_DOCLIST, false);
+					}
+				}
+			}
+
 			return TRUE;
 		}
 
@@ -1994,6 +2028,14 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 				//
 				if (nppgui._rememberLastSession && !nppgui._isCmdlineNosessionActivated)
 					saveSession(currentSession);
+
+				//
+				// saving session.xml into loaded session if a saved session is loaded and saveLoadedSessionOnExit option is enabled
+				//
+				
+				generic_string loadedSessionFilePath = nppParam.getLoadedSessionFilePath();
+				if (!loadedSessionFilePath.empty() && PathFileExists(loadedSessionFilePath.c_str()))
+					nppParam.writeSession(currentSession, loadedSessionFilePath.c_str());
 
 				// write settings on cloud if enabled, if the settings files don't exist
 				if (nppgui._cloudPath != TEXT("") && nppParam.isCloudPathChanged())

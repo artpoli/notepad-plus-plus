@@ -726,8 +726,14 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	loadBufferIntoView(_subEditView.getCurrentBufferID(), SUB_VIEW);
 	activateBuffer(_mainEditView.getCurrentBufferID(), MAIN_VIEW);
 	activateBuffer(_subEditView.getCurrentBufferID(), SUB_VIEW);
-	//::SetFocus(_mainEditView.getHSelf());
+
 	_mainEditView.getFocus();
+
+	if (_nativeLangSpeaker.isRTL())
+	{
+		_mainEditView.changeTextDirection(true);
+		_subEditView.changeTextDirection(true);
+	}
 
 	return TRUE;
 }
@@ -6096,6 +6102,8 @@ std::vector<generic_string> Notepad_plus::loadCommandlineParams(const TCHAR * co
 		{
 			const bool isSnapshotMode = false;
 			const bool shouldLoadFileBrowser = true;
+
+			nppParams.setLoadedSessionFilePath(fnss.getFileName(0));
 			loadSession(session2Load, isSnapshotMode, shouldLoadFileBrowser);
 		}
 		return std::vector<generic_string>();
@@ -6604,9 +6612,10 @@ void Notepad_plus::launchDocumentListPanel()
 	if (!_pDocumentListPanel)
 	{
 		NppParameters& nppParams = NppParameters::getInstance();
+		int tabBarStatus = nppParams.getNppGUI()._tabStatus;
 
 		_pDocumentListPanel = new VerticalFileSwitcher;
-		HIMAGELIST hImgLst = _docTabIconList.getHandle();
+		HIMAGELIST hImgLst = ((tabBarStatus & TAB_ALTICONS) ? _docTabIconListAlt.getHandle() : NppDarkMode::isEnabled() ? _docTabIconListDarkMode.getHandle() : _docTabIconList.getHandle());
 		_pDocumentListPanel->init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), hImgLst);
 		NativeLangSpeaker *pNativeSpeaker = nppParams.getNativeLangSpeaker();
 		bool isRTL = pNativeSpeaker->isRTL();
