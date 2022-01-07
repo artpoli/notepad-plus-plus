@@ -816,8 +816,8 @@ The comments are here for explanation, it's not necessary to translate them.
             <Preference title="Preferences">
                 <Item id="6001" name="Закрыць"/>
                 <Global title="Агульныя">
-                    <Item id="6101" name="Панэль інструментаў"/>
-                    <Item id="6102" name="Схаваць"/>
+                    <Item id="6101" name="Toolbar"/>
+                    <Item id="6102" name="Hide"/>
                     <Item id="6103" name="Fluent UI: small"/>
                     <Item id="6104" name="Fluent UI: large"/>
                     <Item id="6129" name="Filled Fluent UI: small"/>
@@ -833,7 +833,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6111" name="Show status bar"/>
                     <Item id="6112" name="Show close button on each tab"/>
                     <Item id="6113" name="Double click to close document"/>
-                    <Item id="6118" name="Схаваць"/>
+                    <Item id="6118" name="Hide"/>
                     <Item id="6119" name="Multi-line"/>
                     <Item id="6120" name="Vertical"/>
                     <Item id="6121" name="Exit on close the last tab"/>
