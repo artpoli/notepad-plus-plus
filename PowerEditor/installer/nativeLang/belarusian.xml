@@ -250,7 +250,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="43047" name="Previous Search Resul&amp;t"/>
                     <Item id="43048" name="&amp;Select and Find Next"/>
                     <Item id="43049" name="&amp;Select and Find Previous"/>
-                    <Item id="43054" name="Mar&amp;k..."/>
+                    <Item id="43054" name="Пазнака..."/>
                     <Item id="43501" name="Close Selected"/>
                     <Item id="43502" name="Close Others"/>
                     <Item id="43503" name="Copy Selected Names"/>
@@ -890,7 +890,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="7130" name="Reset"/>
                 </DarkMode>
 
-                <MarginsBorderEdge title="Палі/Межы/Краі">
+                <MarginsBorderEdge title="Margins/Border/Edge">
                     <Item id="6201" name="Афармленне меж блоку"/>
                     <Item id="6202" name="Просты"/>
                     <Item id="6203" name="Стрэлкамі"/>
@@ -978,7 +978,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6604" name="Інвертаваць"/>
                     <Item id="6605" name="Black on white"/>
                     <Item id="6606" name="Без колеру фону"/>
-                    <Item id="6607" name="Налады палёў (у мм)"/>
+                    <Item id="6607" name="Margin Settings (Unit:mm)"/>
                     <Item id="6612" name="Злева"/>
                     <Item id="6613" name="Уверсе"/>
                     <Item id="6614" name="Справа"/>
@@ -1161,8 +1161,8 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="2"    name="Close"/>
                 <Item id="1711" name="&amp;Find what :"/>
                 <Item id="1713" name="Шукаць толькі ў знойдзеных радках"/>
-                <Item id="1714" name="Толькі цэлыя словы"/>
-                <Item id="1715" name="Улічваць рэгістр"/>
+                <Item id="1714" name="Match &amp;whole word only"/>
+                <Item id="1715" name="Match &amp;case"/>
                 <Item id="1716" name="Рэжым пошуку"/>
                 <Item id="1717" name="&amp;Normal"/>
                 <Item id="1719" name="Рэгулярны выраз"/>
@@ -1416,7 +1416,7 @@ Find in all files but exclude all folders log or logs recursively:
             <find-status-mark-re-malformed value="Mark: The regular expression to search is malformed"/>
             <find-status-invalid-re value="Find: Invalid regular expression"/>
             <find-status-search-failed value="Find: Search failed"/>
-            <find-status-mark-1-match value="Пазнака: Адно супадзенне"/>
+            <find-status-mark-1-match value="Mark: 1 match"/>
             <find-status-mark-nb-matches value="Пазнака: $INT_REPLACE$ супадзенняў"/>
             <find-status-count-re-malformed value="Count: The regular expression to search is malformed"/>
             <find-status-count-1-match value="Count: 1 match"/>
