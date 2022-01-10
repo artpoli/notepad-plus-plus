@@ -1204,8 +1204,8 @@ You can re-activate this dialog in Preferences later."/>
             <RenameTabTemporaryNameAlreadyInUse title="Не атрымалася перайменаваць" message="Азначаная назва ўжо выкарыстоўваецца на іншай укладцы."/> <!-- HowToReproduce: Rename the tab of an untitled document and provide a name that is the same as an already-existing tab of an untitled document. -->
             <DeleteFileFailed title="Выдаліць файл" message="Не атрымалася выдаліць файл"/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 
-            <NbFileToOpenImportantWarning title="Надта вялікая колькасць файлаў для адкрыцця" message="$INT_REPLACE$ файлаў неўзабаве будзе адкрыта.
-Вы ўпэўненыя, што хочаце адкрыць іх?"/> <!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
+            <NbFileToOpenImportantWarning title="Надта вялікая колькасць файлаў для адкрыцця" message="$INT_REPLACE$ files are about to be opened.
+Are you sure you want to open them?"/> <!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
             <SettingsOnCloudError title="Налады воблачнага сховішча" message="Відавочна, што налады шляху да воблака ўсталяваныя з пазнакай толькі на чытанне\rабо ў папку, якая патрабуе адпаведных праў на запіс.\rВашы налады ў воблаку будуць скасаваныя. Калі ласка, скіньце адпаведнае значэнне праз дыялог Налады."/>
             <FilePathNotFoundWarning title="Адкрыццё файла" message="Файл, які вы спрабуеце адкрыць не існуе."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <SessionFileInvalidError title="Не атрымалася загрузіць сеанс" message="Файл сеансу пашкоджаны або з'яўляецца памылковым."/> <!-- HowToReproduce: Save current session via menu "File -> Save Session...", use another editor to modify the session you saved to make it an invalid xml file. Then load this invalid session via menu "File -> Load Session...". -->
@@ -1385,8 +1385,8 @@ Your workspace has not been saved."/> <!-- HowToReproduce: this message prevents
             <word-chars-list-tip value="Гэта дазваляе вам уключаць дадатковы сімвал у бягучыя сімвалы слова пры падвоеным націску для выбару або пошуку з дапамогай параметра &quot;Толькі цэлае слова&quot;."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, hover your mouse on the "?" button. -->
 
             <word-chars-list-warning-begin value="Майце на ўвазе: "/>
-            <word-chars-list-space-warning value="$INT_REPLACE$ прабел(-ы)"/>
-            <word-chars-list-tab-warning value="$INT_REPLACE$ TAB"/>
+            <word-chars-list-space-warning value="$INT_REPLACE$ space(s)"/>
+            <word-chars-list-tab-warning value="$INT_REPLACE$ TAB(s)"/>
             <word-chars-list-warning-end value="  у вашым спісе сімвалаў."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, check "Add your character as part of word\r(don't choose it unless you know what you're doing)", then type a white-space in the text field. -->
             <cloud-invalid-warning value="Памылковы шлях."/>
             <cloud-restart-warning value="Перазапусціце Notepad++, каб адбыліся змены."/>
