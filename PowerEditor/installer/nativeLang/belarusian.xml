@@ -857,7 +857,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6222" name="-"/>
                     <Item id="6225" name="Уключыць мульты-рэдагаванне (Ctrl+націск мышы/выбар)"/>
                     <Item id="6227" name="Перанос радкоў"/>
-                    <Item id="6228" name="Па змаўчанні"/>
+                    <Item id="6228" name="Default"/>
                     <Item id="6229" name="Выраўнены"/>
                     <Item id="6230" name="Водступ"/>
                     <Item id="6234" name="Адключыць пашыраную прагортку, калі ёсць праблемы з тачпадам"/>
@@ -1017,7 +1017,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6424" name="У падменю"/>
                     <Item id="6425" name="Толькі назва файла"/>
                     <Item id="6426" name="Поўны шлях да файла"/>
-                    <Item id="6427" name="Прызначыць даўжыню:"/>
+                    <Item id="6427" name="Customize Maximum Length:"/>
                 </RecentFilesHistory>
 
                 <Backup title="Рэзервовыя копіі">
@@ -1031,7 +1031,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6315" name="Няма"/>
                     <Item id="6316" name="Простая рэзервовая копія"/>
                     <Item id="6317" name="Пашыраная рэзервовая копія"/>
-                    <Item id="6804" name="Уласны каталог рэзервовай копіі"/>
+                    <Item id="6804" name="Custom Backup Directory"/>
                     <Item id="6803" name="Каталог:"/>
                 </Backup>
 
@@ -1237,7 +1237,7 @@ Do you want to reload it and lose the changes made in Notepad++?"/>
             <DocTooDirtyToMonitor title="Праблема маніторынгу" message="&quot;Брудны&quot; дакумент. Калі ласка, захавайце змяненні перад пачаткам яго маніторынгу."/>
             <DocNoExistToMonitor title="Праблема маніторынгу" message="Файл павінен існаваць для яго маніторынгу."/>
             <FileTooBigToOpen title="Праблема памеру файла" message="Надта вялікі файл для адкрыцця ў Notepad++"/> <!-- HowToReproduce: Try to open a 4GB file (it's not easy to reproduce, it depends on your system). -->
-            <CreateNewFileOrNot title="Стварыць новы файл" message="&quot;$STR_REPLACE$&quot; doesn't exist. Create it?"/>
+            <CreateNewFileOrNot title="Create new file" message="&quot;$STR_REPLACE$&quot; doesn't exist. Create it?"/>
             <CreateNewFileError title="Стварыць новы файл" message="Cannot create the file &quot;$STR_REPLACE$&quot;."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <OpenFileError title="ПАМЫЛКА" message="Can not open file &quot;$STR_REPLACE$&quot;."/>
             <FileBackupFailed title="Збой рэзервовага капіявання файла" message="Папярэдняя версія файла не была захаваная ў каталог для рэзервовага капіявання &quot;$STR_REPLACE$&quot;.
@@ -1417,8 +1417,8 @@ Find in all files but exclude all folders log or logs recursively:
             <find-status-search-failed value="Find: Search failed"/>
             <find-status-mark-1-match value="Пазнака: Адно супадзенне"/>
             <find-status-mark-nb-matches value="Пазнака: $INT_REPLACE$ супадзенняў"/>
-            <find-status-count-re-malformed value="Падлічыць: Няправільны рэгулярны выраз для пошуку"/>
-            <find-status-count-1-match value="Падлічыць: Адно супадзенне"/>
+            <find-status-count-re-malformed value="Count: The regular expression to search is malformed"/>
+            <find-status-count-1-match value="Count: 1 match"/>
             <find-status-count-nb-matches value="Падлічыць: $INT_REPLACE$ супадзенняў"/>
             <find-status-replaceall-re-malformed value="Replace All: The regular expression is malformed"/>
             <find-status-replaceall-1-replaced value="Замяніць усе: Адно супадзенне заменена"/>
@@ -1457,14 +1457,14 @@ Find in all files but exclude all folders log or logs recursively:
             <splitter-rotate-right value="Rotate to right"/>
             <recent-file-history-maxfile value="Макс. файл: "/>
             <language-tabsize value="Памер укладкі: "/>
-            <userdefined-title-new value="Стварыць новую мову..."/>
+            <userdefined-title-new value="Create New Language..."/>
             <userdefined-title-save value="Захаваць бягучую назву мовы як..."/>
             <userdefined-title-rename value="Змяніць назву бягучай мовы"/>
             <autocomplete-nb-char value="К-сць сімв.: "/>
             <edit-verticaledge-nb-col value="К-сць слупкоў:"/>
             <summary value="Зводка"/>
             <summary-filepath value="Поўны шлях да файла: "/>
-            <summary-filecreatetime value="Створана: "/>
+            <summary-filecreatetime value="Created: "/>
             <summary-filemodifytime value="Зменена: "/>
             <summary-nbchar value="Characters (without line endings): "/>
             <summary-nbword value="Слоў: "/>
