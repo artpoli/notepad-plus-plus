@@ -369,7 +369,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <TabBar>
                     <Item CMID="0" name="Close"/>
                     <Item CMID="1" name="Закрыць усе, акрамя гэтай"/>
-                    <Item CMID="2" name="Захаваць"/>
+                    <Item CMID="2" name="Save"/>
                     <Item CMID="3" name="Захаваць як..."/>
                     <Item CMID="4" name="Друк..."/>
                     <Item CMID="5" name="Move to Other View"/>
@@ -511,7 +511,7 @@ The comments are here for explanation, it's not necessary to translate them.
 
             <StyleConfig title="Вызначэнне стылю">
                 <Item id="2"    name="Cancel"/>
-                <Item id="2301" name="Захаваць і закрыць"/>
+                <Item id="2301" name="Save &amp;&amp; Close"/>
                 <Item id="2303" name="Transparency"/>
                 <Item id="2306" name="Select theme: "/>
                 <SubDialog>
@@ -988,7 +988,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6708" name="Верхні калантытул"/>
                     <Item id="6709" name="Left part"/>
                     <Item id="6710" name="Middle part"/>
-                    <Item id="6711" name="Правая частка"/>
+                    <Item id="6711" name="Right part"/>
                     <Item id="6717" name="Тоўсты"/>
                     <Item id="6718" name="Курсіў"/>
                     <Item id="6719" name="Ніжні калантытул"/>
@@ -1126,13 +1126,13 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6361" name="Enable Save All confirm dialog"/>
                 </MISC>
             </Preference>
-            <MultiMacro title="Шматразовае выкананне макраса">
+            <MultiMacro title="Run a Macro Multiple Times">
                 <Item id="1" name="&amp;Run"/>
                 <Item id="2" name="&amp;Cancel"/>
                 <Item id="8006" name="Макрас:"/>
-                <Item id="8001" name="Выканаць"/>
+                <Item id="8001" name="Run"/>
                 <Item id="8005" name="разоў"/>
-                <Item id="8002" name="Выканаць да канца файла"/>
+                <Item id="8002" name="Run until the &amp;end of file"/>
             </MultiMacro>
             <Window title="Вокны">
                 <Item id="1" name="&amp;Activate"/>
@@ -1169,7 +1169,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="1718" name="Пашыраны (\n, \r, \t, \0, \x...)"/>
                 <Item id="1720" name="&amp;. matches newline"/>
             </FindInFinder>
-            <DoSaveOrNot title="Захаваць">
+            <DoSaveOrNot title="Save">
                 <Item id="1761" name="Захаваць файл &quot;$STR_REPLACE$&quot; ?"/>
                 <Item id="6" name="&amp;Yes"/>
                 <Item id="7" name="&amp;No"/>
@@ -1190,7 +1190,7 @@ You can re-activate this dialog in Preferences later."/>
         <MessageBox> <!-- $INT_REPLACE$ is a place holder, don't translate it -->
             <ContextMenuXmlEditWarning title="Editing contextMenu" message="Editing contextMenu.xml allows you to modify your Notepad++ popup context menu.
 You have to restart your Notepad++ to take effect after modifying contextMenu.xml."/>
-            <SaveCurrentModifWarning title="Захаваць бягучую мадыфікацыю" message="Вы павінны захаваць бягучую мадыфікацыю.
+            <SaveCurrentModifWarning title="Save Current Modification" message="Вы павінны захаваць бягучую мадыфікацыю.
 Аднавіць усе зробленыя вамі змяненні будзе немагчыма.
 
 Працягнуць?"/> <!-- HowToReproduce: when you openned file is modified but unsaved yet, and you are changing file encoding. -->
@@ -1220,7 +1220,7 @@ you have to enable &quot;Open all files of folder instead of launching Folder as
             <DoDeleteOrNot title="Выдаліць файл" message="Файл &quot;$STR_REPLACE$&quot;
 будзе адпраўлены ў сметніцу і гэты дакумент будзе закрыты.
 Працягнуць?"/>
-            <NoBackupDoSaveFile title="Захаваць" message="Ваш файл рэзервовай копіі не знойдзены (выдалена звонку)
+            <NoBackupDoSaveFile title="Save" message="Ваш файл рэзервовай копіі не знойдзены (выдалена звонку)
 Калі вы не захаваеце яго, то ўсе вашы даныя будуць страчаныя
 Захаваць файл &quot;$STR_REPLACE$&quot; ?"/>
             <DoReloadOrNot title="Reload" message="&quot;$STR_REPLACE$&quot;
@@ -1325,7 +1325,7 @@ Continue?"/>
                 <Item id="3511" name="Выдаліць"/>
                 <Item id="3512" name="Remove All"/>
                 <Item id="3513" name="Дадаць"/>
-                <Item id="3514" name="Выконваецца сістэмай"/>
+                <Item id="3514" name="Run by system"/>
                 <Item id="3515" name="Open"/>
                 <Item id="3516" name="Copy path"/>
                 <Item id="3517" name="Знайсці ў файлах..."/>
@@ -1348,9 +1348,9 @@ Continue?"/>
                     <Item id="3122" name="New Workspace"/>
                     <Item id="3123" name="Open Workspace"/>
                     <Item id="3124" name="Reload Workspace"/>
-                    <Item id="3125" name="Захаваць"/>
+                    <Item id="3125" name="Save"/>
                     <Item id="3126" name="Захаваць як..."/>
-                    <Item id="3127" name="Захаваць копію як..."/>
+                    <Item id="3127" name="Save a Copy As..."/>
                     <Item id="3121" name="Add New Project"/>
                     <Item id="3128" name="Find in Projects..."/>
                 </WorkspaceMenu>
@@ -1427,11 +1427,11 @@ Find in all files but exclude all folders log or logs recursively:
             <find-status-replaceall-readonly value="Replace All: Cannot replace text. The current document is read only"/>
             <find-status-replace-end-reached value="Замяніць: Заменена першае супадзенне зверху. Быў дасягнуты канец дакумента"/>
             <find-status-replace-top-reached value="Замяніць: Заменена першае супадзенне знізу. Быў дасягнуты пачатак дакумента"/>
-            <find-status-replaced-next-found value="Замяніць: Выканана адна замена. Знойдзена наступнае супадзенне."/>
+            <find-status-replaced-next-found value="Replace: 1 occurrence was replaced. The next occurrence found."/>
             <find-status-replaced-without-continuing value="Replace: 1 occurrence was replaced."/>
-            <find-status-replaced-next-not-found value="Замяніць: Выканана адна замена. Іншых супадзенняў не знойдзена."/>
+            <find-status-replaced-next-not-found value="Replace: 1 occurrence was replaced. No more occurrences were found."/>
             <find-status-replace-not-found value="Замяніць: Наступнае супадзенне не знойдзена"/>
-            <find-status-replace-readonly value="Замяніць: Немагчыма замяніць тэкст. Бягучы дакумент мае правы толькі на чытанне"/>
+            <find-status-replace-readonly value="Replace: Cannot replace text. The current document is read only"/>
             <find-status-cannot-find value="Find: Can't find the text &quot;$STR_REPLACE$&quot;"/>
             <find-status-scope-selection value="in selected text"/>
             <find-status-scope-all value="in entire file"/>
