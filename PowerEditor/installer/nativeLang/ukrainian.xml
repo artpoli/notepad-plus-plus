@@ -3,7 +3,7 @@
 The comments are here for explanation, it's not necessary to translate them.
 -->
 <NotepadPlus>
-    <Native-Langue name="Українська" filename="ukrainian.xml" version="8.2">
+    <Native-Langue name="Українська" filename="ukrainian.xml" version="8.2.1">
         <Menu>
             <Main>
                 <!-- Main Menu Entries -->
@@ -1042,18 +1042,21 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6809" name="Завершення функцій"/>
                     <Item id="6810" name="Завершення слів"/>
                     <Item id="6816" name="Завершення функцій і слів"/>
-                    <Item id="6824" name="Ігнорувати цифри"/>
-                    <Item id="6811" name="З"/>
-                    <Item id="6813" name="-го символу"/>
-                    <Item id="6814" name="Дозволене значення: 1 - 9"/>
-                    <Item id="6815" name="Підказка параметрів функції при введенні"/>
-                    <Item id="6851" name="Автовставлення"/>
-                    <Item id="6857" name=" закр. теґ html/xml"/>
+                    <Item id="6869" name="Insert Selection"/>
+                    <Item id="6870" name="TAB"/> <!-- TAB key on the keyboard, it's not necessary to translate it normally -->
+                    <Item id="6871" name="ENTER"/> <!-- ENTER key on the keyboard, it's not necessary to translate it normally -->
+                    <Item id="6824" name="Ignore numbers"/>
+                    <Item id="6811" name="From"/>
+                    <Item id="6813" name="th character"/>
+                    <Item id="6814" name="Valid value : 1 - 9"/>
+                    <Item id="6815" name="Function parameters hint on input"/>
+                    <Item id="6851" name="Auto-Insert"/>
+                    <Item id="6857" name=" html/xml close tag"/>
                     <Item id="6858" name="Відкрити"/>
                     <Item id="6859" name="Закрити"/>
-                    <Item id="6860" name="Пара збігів 1:"/>
-                    <Item id="6863" name="Пара збігів 2:"/>
-                    <Item id="6866" name="Пара збігів 3:"/>
+                    <Item id="6860" name="Matched pair 1:"/>
+                    <Item id="6863" name="Matched pair 2:"/>
+                    <Item id="6866" name="Matched pair 3:"/>
                 </AutoCompletion>
 
                 <MultiInstance title="Дата з повторенням">
@@ -1385,9 +1388,11 @@ Notepad++ перезапуститься після завершення всі�
             <word-chars-list-space-warning value="$INT_REPLACE$ пробіл(и)"/>
             <word-chars-list-tab-warning value="$INT_REPLACE$ TAB"/>
             <word-chars-list-warning-end value="  у вашому списку символів."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, check "Add your character as part of word\r(don't choose it unless you know what you're doing)", then type a white-space in the text field. -->
+            <backup-select-folder value="Select a folder as backup directory"/> <!-- HowToReproduce: Settings > Preferences > Backup > [...] -->
             <cloud-invalid-warning value="Неправильний шлях."/>
             <cloud-restart-warning value="Перезапустіть Notepad++ для застосування змін."/>
             <cloud-select-folder value="Виберіть теку, звідки/куди в Notepad++ читати/записувати свої параметри"/> <!-- HowToReproduce: In "Cloud" section of Preferences dialog, check "Set your cloud location path here: ", then click the button "...". This message is displayed in the "Browse For Folder" dialog. -->
+            <default-open-save-select-folder value="Select a folder as default directory"/> <!-- HowToReproduce: Settings > Preferences > Default Directory > [...] -->
             <shift-change-direction-tip value="Використовуйте Shift+Enter для пошуку у зворотному напрямку"/>
             <two-find-buttons-tip value="2-кнопковий режим пошуку"/>
             <file-rename-title value="Перейменувати"/>
@@ -1402,6 +1407,7 @@ Find in all files but exclude folders tests, bin &amp;&amp; bin64:
 
 Find in all files but exclude all folders log or logs recursively:
 *.* !+\log*"/> <!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
+            <find-in-files-select-folder value="Select a folder to search from"/> <!-- HowToReproduce: Search > Find in Files > [...] -->
             <find-status-top-reached value="Знайти: Знайдено 1-й збіг знизу. Було досягнуто початку документа."/>
             <find-status-end-reached value="Знайти: Знайдено 1-й збіг згори. Було досягнуто кінця документа."/>
             <find-status-replaceinfiles-1-replaced value="Замінити у файлах: Виконано 1 заміну"/>
