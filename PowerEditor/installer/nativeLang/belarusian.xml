@@ -12,7 +12,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item menuId="edit" name="&amp;Edit"/>
                     <Item menuId="search" name="Пошук"/>
                     <Item menuId="view" name="Выгляд"/>
-                    <Item menuId="encoding" name="Кадаванне"/>
+                    <Item menuId="encoding" name="E&amp;ncoding"/>
                     <Item menuId="language" name="Сінтаксіс"/>
                     <Item menuId="settings" name="Se&amp;ttings"/>
                     <Item menuId="tools" name="To&amp;ols"/>
@@ -77,7 +77,7 @@ The comments are here for explanation, it's not necessary to translate them.
 
                 <!-- all menu item -->
                 <Commands>
-                    <Item id="41001" name="Стварыць"/>
+                    <Item id="41001" name="&amp;New"/>
                     <Item id="41002" name="Адкрыць..."/>
                     <Item id="41019" name="Explorer"/>
                     <Item id="41020" name="cmd"/>
@@ -133,7 +133,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42064" name="Сартаваць радкі як дзесятковыя (коска) па змяншэнні"/>
                     <Item id="42065" name="Сартаваць радкі як дзесятковыя (кропка) па ўзрастанні"/>
                     <Item id="42066" name="Сартаваць радкі як дзесятковыя (кропка) па змяншэнні"/>
-                    <Item id="42083" name="Адваротны парадак радкоў"/>
+                    <Item id="42083" name="Reverse Line Order"/>
                     <Item id="42078" name="Randomize Line Order"/>
                     <Item id="42016" name="ВЯЛІКІМІ"/>
                     <Item id="42017" name="маленькімі"/>
@@ -159,8 +159,8 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42044" name="EOL to Space"/>
                     <Item id="42045" name="Remove Unnecessary Blank and EOL"/>
                     <Item id="42046" name="TAB to Space"/>
-                    <Item id="42054" name="Space to TAB (All)"/>
-                    <Item id="42053" name="Space to TAB (Leading)"/>
+                    <Item id="42054" name="Прабел у табуляцыю (усе)"/>
+                    <Item id="42053" name="Прабел у табуляцыю (у пачатку)"/>
                     <Item id="42038" name="Paste HTML Content"/>
                     <Item id="42039" name="Paste RTF Content"/>
                     <Item id="42048" name="Капіяваць двайковае змесціва"/>
@@ -260,7 +260,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44011" name="Distraction Free Mode"/>
                     <Item id="44019" name="Show All Characters"/>
                     <Item id="44020" name="Show Indent Guide"/>
-                    <Item id="44022" name="Word wrap"/>
+                    <Item id="44022" name="Перанос па словах"/>
                     <Item id="44023" name="Zoom &amp;In (Ctrl+Mouse Wheel Up)"/>
                     <Item id="44024" name="Zoom &amp;Out (Ctrl+Mouse Wheel Down)"/>
                     <Item id="44025" name="Show White Space and TAB"/>
@@ -304,7 +304,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="45005" name="UTF-8-BOM"/>
                     <Item id="45006" name="UTF-16 BE BOM"/>
                     <Item id="45007" name="UTF-16 LE BOM"/>
-                    <Item id="45008" name="UTF-8 без BOM"/>
+                    <Item id="45008" name="UTF-8"/>
                     <Item id="45009" name="Convert to ANSI"/>
                     <Item id="45010" name="Convert to UTF-8"/>
                     <Item id="45011" name="Convert to UTF-8-BOM"/>
@@ -353,7 +353,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="49000" name="&amp;Run..."/>
 
                     <Item id="50000" name="Function Completion"/>
-                    <Item id="50001" name="Word Completion"/>
+                    <Item id="50001" name="Завяршэнне слоў"/>
                     <Item id="50002" name="Падказка параметраў функцый"/>
                     <Item id="50005" name="Toggle macro record"/>
                     <Item id="50006" name="Path Completion"/>
@@ -403,7 +403,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="1603" name="Match &amp;whole word only"/>
                 <Item id="1604" name="Match &amp;case"/>
                 <Item id="1605" name="Re&amp;gular expression"/>
-                <Item id="1606" name="Цыклічны пошук"/>
+                <Item id="1606" name="Wra&amp;p around"/>
                 <Item id="1614" name="Coun&amp;t"/>
                 <Item id="1615" name="Mark All"/>
                 <Item id="1616" name="Book&amp;mark line"/>
@@ -417,7 +417,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="1633" name="Clear all marks"/>
                 <Item id="1635" name="Replace All in All &amp;Opened Documents"/>
                 <Item id="1636" name="Find All in All &amp;Opened Documents"/>
-                <Item id="1654" name="Фільтры:"/>
+                <Item id="1654" name="Filter&amp;s :"/>
                 <Item id="1655" name="Dir&amp;ectory :"/>
                 <Item id="1656" name="Знайсці ўсе"/>
                 <Item id="1658" name="In all su&amp;b-folders"/>
@@ -442,7 +442,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <IncrementalFind title="">
                 <Item id="1681" name="Знайсці"/>
                 <Item id="1685" name="Улічваць рэгістр"/>
-                <Item id="1690" name="Вылучыць усё"/>
+                <Item id="1690" name="Highlight all"/>
             </IncrementalFind>
 
             <FindCharsInRange title="Знайсці сімвалы ў дыяпазоне...">
@@ -453,17 +453,17 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="2906" name="&amp;Up"/>
                 <Item id="2907" name="&amp;Down"/>
                 <Item id="2908" name="Direction"/>
-                <Item id="2909" name="Цыклічны пошук"/>
+                <Item id="2909" name="Wra&amp;p around"/>
                 <Item id="2910" name="Знайсці"/>
             </FindCharsInRange>
 
             <GoToLine title="Перайсці да...">
-                <Item id="2007" name="Радок"/>
+                <Item id="2007" name="&amp;Line"/>
                 <Item id="2008" name="&amp;Offset"/>
-                <Item id="1"    name="Наперад!"/>
+                <Item id="1"    name="Go"/>
                 <Item id="2"    name="I'm going nowhere"/>
                 <Item id="2004" name="Вы тут:"/>
-                <Item id="2005" name="Хочаце перайсці да:"/>
+                <Item id="2005" name="You want to go to:"/>
                 <Item id="2006" name="You can't go further than:"/>
             </GoToLine>
 
@@ -493,7 +493,7 @@ The comments are here for explanation, it's not necessary to translate them.
             </SHA256FromFilesDlg>
 
             <SHA256FromTextDlg title="Generate SHA-256 digest">
-                <Item id="1932" name="Апрацаваць кожны радок як асобны"/>
+                <Item id="1932" name="Treat each line as a separate string"/>
                 <Item id="1934" name="Copy to Clipboard"/>
                 <Item id="2"    name="Close"/>
             </SHA256FromTextDlg>
@@ -525,11 +525,11 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="2212" name="Colour Style"/>
                     <Item id="2213" name="Font Style"/>
                     <Item id="2214" name="Default ext.:"/>
-                    <Item id="2216" name="Пашырэнні карыстальніка:"/>
-                    <Item id="2218" name="Падкрэслены"/>
+                    <Item id="2216" name="User ext.:"/>
+                    <Item id="2218" name="Underline"/>
                     <Item id="2219" name="Default keywords"/>
                     <Item id="2221" name="User-defined keywords"/>
-                    <Item id="2225" name="Мова:"/>
+                    <Item id="2225" name="Language:"/>
                     <Item id="2226" name="Enable global foreground colour"/>
                     <Item id="2227" name="Enable global background colour"/>
                     <Item id="2228" name="Enable global font"/>
@@ -561,9 +561,9 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="41019" name="Open containing folder in Explorer"/>
                     <Item id="41020" name="Open containing folder in Command Prompt"/>
                     <Item id="41021" name="Аднавіць нядаўна закрыты файл"/>
-                    <Item id="45001" name="Пераўтварыць сімвал канца радка ў Windows (CR LF)"/>
-                    <Item id="45002" name="Пераўтварыць сімвал канца радка ў Unix (LF)"/>
-                    <Item id="45003" name="Пераўтварыць сімвал канца радка ў Macintosh (CR)"/>
+                    <Item id="45001" name="EOL Conversion to Windows (CR LF)"/>
+                    <Item id="45002" name="EOL Conversion to Unix (LF)"/>
+                    <Item id="45003" name="EOL Conversion to Macintosh (CR)"/>
                     <Item id="43022" name="Style all using 1st style"/>
                     <Item id="43024" name="Style all using 2nd style"/>
                     <Item id="43026" name="Style all using 3rd style"/>
@@ -625,9 +625,9 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44082" name="Toggle Project Panel 2"/>
                     <Item id="44083" name="Toggle Project Panel 3"/>
                     <Item id="44085" name="Папка як працоўная вобласць"/>
-                    <Item id="44080" name="Карта дакумента"/>
-                    <Item id="44070" name="Пераключыць спіс дакументаў"/>
-                    <Item id="44084" name="Пералік функцый"/>
+                    <Item id="44080" name="Toggle Document Map"/>
+                    <Item id="44070" name="Toggle Document List"/>
+                    <Item id="44084" name="Toggle Function List"/>
                     <Item id="50005" name="Запіс макраса"/>
                     <Item id="44104" name="Пераключыцца на панэль 1-га праекта"/>
                     <Item id="44105" name="Пераключыцца на панэль 2-га праекта"/>
@@ -637,7 +637,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44108" name="Пераключыцца на пералік функцый"/>
                 </MainCommandNames>
             </ShortcutMapper>
-            <ShortcutMapperSubDialg title="Гарачая клавіша">
+            <ShortcutMapperSubDialg title="Shortcut">
                 <Item id="1" name="OK"/>
                 <Item id="2" name="Cancel"/>
                 <Item id="5006" name="Name"/>
@@ -664,10 +664,10 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="25006" name="Foreground colour"/>
                     <Item id="25007" name="Колер фону"/>
                     <Item id="25031" name="Name:"/>
-                    <Item id="25032" name="Памер:"/>
+                    <Item id="25032" name="Size:"/>
                     <Item id="25001" name="Bold"/>
                     <Item id="25002" name="Курсіў"/>
-                    <Item id="25003" name="Падкрэслены"/>
+                    <Item id="25003" name="Underline"/>
                     <Item id="25029" name="Nesting:"/>
                     <Item id="25008" name="Delimiter 1"/>
                     <Item id="25009" name="Delimiter 2"/>
@@ -701,16 +701,16 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="21105" name="Documentation:"/>
                     <Item id="21104" name="Temporary doc site:"/>
                     <Item id="21106" name="Fold &amp;compact (fold empty lines too)"/>
-                    <Item id="21220" name="Згортванне ў кодзе стылю 1:"/>
+                    <Item id="21220" name="Folding in code 1 style:"/>
                     <Item id="21224" name="Open:"/>
                     <Item id="21225" name="Middle:"/>
                     <Item id="21226" name="Close:"/>
-                    <Item id="21227" name="Стыль"/>
+                    <Item id="21227" name="Styler"/>
                     <Item id="21320" name="Folding in code 2 style (separators needed):"/>
                     <Item id="21324" name="Open:"/>
                     <Item id="21325" name="Middle:"/>
                     <Item id="21326" name="Close:"/>
-                    <Item id="21327" name="Стыль"/>
+                    <Item id="21327" name="Styler"/>
                     <Item id="21420" name="Folding in comment style:"/>
                     <Item id="21424" name="Open:"/>
                     <Item id="21425" name="Middle:"/>
@@ -791,7 +791,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="24420" name="Open:"/>
                     <Item id="24421" name="Escape:"/>
                     <Item id="24422" name="Close:"/>
-                    <Item id="24423" name="Стыль"/>
+                    <Item id="24423" name="Styler"/>
                     <Item id="24451" name="Delimiter 4 style"/>
                     <Item id="24470" name="Open:"/>
                     <Item id="24471" name="Escape:"/>
@@ -851,17 +851,17 @@ The comments are here for explanation, it's not necessary to translate them.
                 </Global>
                 <Scintillas title="Editing">
                     <Item id="6216" name="Caret Settings"/>
-                    <Item id="6217" name="Шырыня:"/>
+                    <Item id="6217" name="Width :"/>
                     <Item id="6219" name="Blink rate :"/>
-                    <Item id="6221" name="+"/>
-                    <Item id="6222" name="-"/>
-                    <Item id="6225" name="Уключыць мульты-рэдагаванне (Ctrl+націск мышы/выбар)"/>
+                    <Item id="6221" name="F"/>
+                    <Item id="6222" name="S"/>
+                    <Item id="6225" name="Enable Multi-Editing (Ctrl+Mouse click/selection)"/>
                     <Item id="6227" name="Перанос радкоў"/>
                     <Item id="6228" name="Default"/>
                     <Item id="6229" name="Выраўнены"/>
                     <Item id="6230" name="Водступ"/>
-                    <Item id="6234" name="Адключыць пашыраную прагортку, калі ёсць праблемы з тачпадам"/>
-                    <Item id="6214" name="Падсвятляць бягучы радок"/>
+                    <Item id="6234" name="Disable advanced scrolling feature due to touchpad issue"/>
+                    <Item id="6214" name="Enable current line highlighting"/>
                     <Item id="6215" name="Уключыць згладжванне шрыфту"/>
                     <Item id="6236" name="Прагортка за межы апошняга радка"/>
                     <Item id="6239" name="Утрымліваць выбар пры націску за межамі выбару"/>
@@ -878,7 +878,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="7109" name="Olive tone"/>
                     <Item id="7115" name="Customized tone"/>
                     <Item id="7116" name="Уверсе"/>
-                    <Item id="7117" name="Menu hot track"/>
+                    <Item id="7117" name="Гарачы трэк меню"/>
                     <Item id="7118" name="Active"/>
                     <Item id="7119" name="Main"/>
                     <Item id="7120" name="Error"/>
@@ -897,8 +897,8 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6204" name="Кружкамі"/>
                     <Item id="6205" name="Квадрацікамі"/>
                     <Item id="6226" name="None"/>
-                    <Item id="6291" name="Нумар радка"/>
-                    <Item id="6206" name="Адлюстраванне"/>
+                    <Item id="6291" name="Line Number"/>
+                    <Item id="6206" name="Display"/>
                     <Item id="6292" name="Dynamic width"/>
                     <Item id="6293" name="Constant width"/>
                     <Item id="6207" name="Паказваць закладку"/>
@@ -915,18 +915,18 @@ The comments are here for explanation, it's not necessary to translate them.
                 </MarginsBorderEdge>
 
                 <NewDoc title="New Document">
-                    <Item id="6401" name="Фармат (сканчэнне радка)"/>
+                    <Item id="6401" name="Format (Line ending)"/>
                     <Item id="6402" name="Windows (CR LF)"/>
                     <Item id="6403" name="Unix (LF)"/>
                     <Item id="6404" name="Macintosh (CR)"/>
                     <Item id="6405" name="Кадаванне"/>
                     <Item id="6406" name="ANSI"/>
-                    <Item id="6407" name="UTF-8 без BOM"/>
-                    <Item id="6408" name="UTF-8 з BOM"/>
+                    <Item id="6407" name="UTF-8"/>
+                    <Item id="6408" name="UTF-8 with BOM"/>
                     <Item id="6409" name="UTF-16 Big Endian with BOM"/>
                     <Item id="6410" name="UTF-16 Little Endian with BOM"/>
                     <Item id="6411" name="Сінтаксіс:"/>
-                    <Item id="6419" name="Стварыць дакумент"/>
+                    <Item id="6419" name="New Document"/>
                     <Item id="6420" name="Apply to opened ANSI files"/>
                 </NewDoc>
 
@@ -939,22 +939,22 @@ The comments are here for explanation, it's not necessary to translate them.
 
                 <FileAssoc title="Асацыяцыі файлаў">
                     <Item id="4008" name="Please exit Notepad++ and relaunch Notepad++ in Administrator mode to use this feature."/>
-                    <Item id="4009" name="Падтрымліваюцца:"/>
+                    <Item id="4009" name="Supported extensions:"/>
                     <Item id="4010" name="Registered extensions:"/>
                 </FileAssoc>
                 <Language title="Сінтаксіс">
                     <Item id="6505" name="Даступныя мовы"/>
                     <Item id="6506" name="Адключаныя мовы"/>
-                    <Item id="6507" name="Кампактнае меню сінтаксісу"/>
-                    <Item id="6508" name="Меню сінтаксісу"/>
-                    <Item id="6301" name="Налады табуляцыі"/>
-                    <Item id="6302" name="Замяніць прабелам"/>
-                    <Item id="6303" name="Памер табуляцыі: "/>
+                    <Item id="6507" name="Make language menu compact"/>
+                    <Item id="6508" name="Language Menu"/>
+                    <Item id="6301" name="Tab Settings"/>
+                    <Item id="6302" name="Replace by space"/>
+                    <Item id="6303" name="Tab size: "/>
                     <Item id="6510" name="Use default value"/>
-                    <Item id="6335" name="Зваротны слэш як сімвал Escape для SQL"/>
+                    <Item id="6335" name="Treat backslash as escape character for SQL"/>
                 </Language>
 
-                <Highlighting title="Вылучэнне">
+                <Highlighting title="Highlighting">
                     <Item id="6351" name="Style All Occurrences of Token"/>
                     <Item id="6352" name="Улічваць рэгістр"/>
                     <Item id="6353" name="Толькі цэлае слова"/>
@@ -985,35 +985,35 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6615" name="Bottom"/>
                     <Item id="6706" name="Bold"/>
                     <Item id="6707" name="Курсіў"/>
-                    <Item id="6708" name="Верхні калантытул"/>
+                    <Item id="6708" name="Header"/>
                     <Item id="6709" name="Left part"/>
                     <Item id="6710" name="Middle part"/>
                     <Item id="6711" name="Right part"/>
                     <Item id="6717" name="Тоўсты"/>
                     <Item id="6718" name="Курсіў"/>
-                    <Item id="6719" name="Ніжні калантытул"/>
+                    <Item id="6719" name="Footer"/>
                     <Item id="6720" name="Левая частка"/>
                     <Item id="6721" name="Сярэдняя частка"/>
                     <Item id="6722" name="Правая частка"/>
                     <Item id="6723" name="Дадаць"/>
-                    <Item id="6725" name="Зменная:"/>
+                    <Item id="6725" name="Variable:"/>
                     <Item id="6727" name="Here display your variable settings"/>
-                    <Item id="6728" name="Верхні і ніжні калантытул"/>
+                    <Item id="6728" name="Header and Footer"/>
                 </Print>
 
                 <Searching title="Searching">
                     <Item id="6901" name="Не запаўняць поле пошуку ў акне &quot;Пошук&quot; выбраным словам"/>
                     <Item id="6902" name="Выкарыстоўваць шрыфт з аднолькавай шырынёй у акне Пошук (патрабуецца перазапуск праграмы)"/>
-                    <Item id="6903" name="Акно пошуку можа быць адкрытым пасля ўвядзення вынікаў"/>
+                    <Item id="6903" name="Find dialog remains open after search that outputs to results window"/>
                     <Item id="6904" name="Confirm Replace All in All Opened Documents"/>
                     <Item id="6905" name="Replace: Don't move to the following occurrence"/>
                 </Searching>
 
                 <RecentFilesHistory title="Гісторыя файлаў">
                     <Item id="6304" name="Гісторыя файлаў"/>
-                    <Item id="6306" name="Макс. колькасць запісаў:"/>
-                    <Item id="6305" name="Не правяраць падчас запуску"/>
-                    <Item id="6429" name="Адлюстраванне"/>
+                    <Item id="6306" name="Max. number of entries :"/>
+                    <Item id="6305" name="Don't check at launch time"/>
+                    <Item id="6429" name="Display"/>
                     <Item id="6424" name="In Submenu"/>
                     <Item id="6425" name="Only File Name"/>
                     <Item id="6426" name="Full File Name Path"/>
@@ -1029,23 +1029,23 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6309" name="Remember current session for next launch"/>
                     <Item id="6801" name="Backup on save"/>
                     <Item id="6315" name="None"/>
-                    <Item id="6316" name="Простая рэзервовая копія"/>
-                    <Item id="6317" name="Пашыраная рэзервовая копія"/>
+                    <Item id="6316" name="Simple backup"/>
+                    <Item id="6317" name="Verbose backup"/>
                     <Item id="6804" name="Custom Backup Directory"/>
-                    <Item id="6803" name="Каталог:"/>
+                    <Item id="6803" name="Directory :"/>
                 </Backup>
 
                 <AutoCompletion title="Auto-Completion">
                     <Item id="6115" name="Auto-indent"/>
-                    <Item id="6807" name="Аўтазавяршэнне"/>
-                    <Item id="6808" name="Уключыць аўтазавяршэнне для кожнага ўвядзення"/>
+                    <Item id="6807" name="Auto-Completion"/>
+                    <Item id="6808" name="Enable auto-completion on each input"/>
                     <Item id="6809" name="Function completion"/>
-                    <Item id="6810" name="Завяршэнне слоў"/>
+                    <Item id="6810" name="Word completion"/>
                     <Item id="6816" name="Function and word completion"/>
                     <Item id="6824" name="Ignore numbers"/>
-                    <Item id="6811" name="З"/>
-                    <Item id="6813" name="-га сімвала"/>
-                    <Item id="6814" name="Дазволеныя значэнні: 1 - 9"/>
+                    <Item id="6811" name="From"/>
+                    <Item id="6813" name="th character"/>
+                    <Item id="6814" name="Valid value : 1 - 9"/>
                     <Item id="6815" name="Function parameters hint on input"/>
                     <Item id="6851" name="Auto-Insert"/>
                     <Item id="6857" name=" html/xml close tag"/>
@@ -1057,7 +1057,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 </AutoCompletion>
 
                 <MultiInstance title="Multi-Instance &amp; Date">
-                    <Item id="6151" name="Рэжым адкрыцця файлаў"/>
+                    <Item id="6151" name="Multi-instance settings"/>
                     <Item id="6152" name="Open session in a new instance (and save session automatically on exit)"/>
                     <Item id="6153" name="Always in multi-instance mode"/>
                     <Item id="6154" name="Default (mono-instance)"/>
@@ -1067,12 +1067,12 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6172" name="Custom format:"/>
                 </MultiInstance>
 
-                <Delimiter title="Раздзяляльнік">
-                    <Item id="6251" name="Параметры выбару раздзяляльніка (Ctrl + падвоены націск мышы)"/>
+                <Delimiter title="Delimiter">
+                    <Item id="6251" name="Delimiter selection settings (Ctrl + Mouse double click)"/>
                     <Item id="6252" name="Open"/>
                     <Item id="6255" name="Close"/>
-                    <Item id="6256" name="Дазволіць захоп некалькіх радкоў"/>
-                    <Item id="6161" name="Спіс сімвалаў"/>
+                    <Item id="6256" name="Allow on several lines"/>
+                    <Item id="6161" name="Word character list"/>
                     <Item id="6162" name="Use default Word character list as it is"/>
                     <Item id="6163" name="Add your character as part of word
 (don't choose it unless you know what you're doing)"/>
@@ -1086,7 +1086,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6319" name="Уключыць"/>
                     <Item id="6320" name="Не падкрэсліваць"/>
                     <Item id="6350" name="Уключыць поўны рэжым"/>
-                    <Item id="6264" name="Уласныя схемы URI:"/>
+                    <Item id="6264" name="URI customized schemes:"/>
                 </Cloud>
 
                 <SearchEngine title="Пошукавая сістэма">
@@ -1097,13 +1097,13 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6275" name="Yahoo!"/>
                     <Item id="6276" name="Задаць сваю пошукавую сістэму:"/>
                     <!-- Don't change anything after Example: -->
-                    <Item id="6278" name="Узор: https://www.google.com/search?q=$(CURRENT_WORD)"/>
+                    <Item id="6278" name="Example: https://www.google.com/search?q=$(CURRENT_WORD)"/>
                 </SearchEngine>
 
                 <MISC title="MISC.">
                     <ComboBox id="6347">
                         <Element name="Уключыць"/>
-                        <Element name="Уключыць для адкрытых файлаў"/>
+                        <Element name="Enable for all opened files"/>
                         <Element name="Адключыць"/>
                     </ComboBox>
                     <Item id="6308" name="Minimize to system tray"/>
@@ -1139,14 +1139,14 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="2" name="&amp;OK"/>
                 <Item id="7002" name="&amp;Save"/>
                 <Item id="7003" name="Закрыць акно/вокны"/>
-                <Item id="7004" name="Сартаваць укладкі"/>
+                <Item id="7004" name="Sort &amp;tabs"/>
             </Window>
             <ColumnEditor title="Column Editor">
-                <Item id="2023" name="Тэкст для ўстаўкі"/>
+                <Item id="2023" name="&amp;Text to Insert"/>
                 <Item id="2033" name="&amp;Number to Insert"/>
                 <Item id="2030" name="&amp;Initial number :"/>
                 <Item id="2031" name="Increase b&amp;y :"/>
-                <Item id="2035" name="Дадаць нуль злева"/>
+                <Item id="2035" name="Leading &amp;zeros"/>
                 <Item id="2036" name="&amp;Repeat :"/>
                 <Item id="2032" name="Фармат"/>
                 <Item id="2024" name="&amp;Dec"/>
@@ -1156,7 +1156,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="1" name="OK"/>
                 <Item id="2" name="Cancel"/>
             </ColumnEditor>
-            <FindInFinder title="Знайсці ў выніках пошуку">
+            <FindInFinder title="Find in search results">
                 <Item id="1"    name="Знайсці ўсе"/>
                 <Item id="2"    name="Close"/>
                 <Item id="1711" name="&amp;Find what :"/>
@@ -1166,16 +1166,16 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="1716" name="Search Mode"/>
                 <Item id="1717" name="&amp;Normal"/>
                 <Item id="1719" name="Re&amp;gular expression"/>
-                <Item id="1718" name="Пашыраны (\n, \r, \t, \0, \x...)"/>
+                <Item id="1718" name="E&amp;xtended (\n, \r, \t, \0, \x...)"/>
                 <Item id="1720" name="&amp;. matches newline"/>
             </FindInFinder>
             <DoSaveOrNot title="Save">
-                <Item id="1761" name="Захаваць файл &quot;$STR_REPLACE$&quot; ?"/>
+                <Item id="1761" name="Save file &quot;$STR_REPLACE$&quot; ?"/>
                 <Item id="6" name="&amp;Yes"/>
                 <Item id="7" name="&amp;No"/>
                 <Item id="2" name="&amp;Cancel"/>
-                <Item id="4" name="Так для ўсіх"/>
-                <Item id="5" name="Не для ўсіх"/>
+                <Item id="4" name="Yes to &amp;all"/>
+                <Item id="5" name="N&amp;o to all"/>
             </DoSaveOrNot>
             <DoSaveAll title="Save All Confirmation">
                 <Item id="1766" name="Are you sure you want to save all modified documents?
@@ -1190,39 +1190,41 @@ You can re-activate this dialog in Preferences later."/>
         <MessageBox> <!-- $INT_REPLACE$ is a place holder, don't translate it -->
             <ContextMenuXmlEditWarning title="Editing contextMenu" message="Editing contextMenu.xml allows you to modify your Notepad++ popup context menu.
 You have to restart your Notepad++ to take effect after modifying contextMenu.xml."/>
-            <SaveCurrentModifWarning title="Save Current Modification" message="Вы павінны захаваць бягучую мадыфікацыю.
-Аднавіць усе зробленыя вамі змяненні будзе немагчыма.
+            <SaveCurrentModifWarning title="Save Current Modification" message="You should save the current modification.
+All the saved modifications can not be undone.
 
-Працягнуць?"/> <!-- HowToReproduce: when you openned file is modified but unsaved yet, and you are changing file encoding. -->
-            <LoseUndoAbilityWarning title="Lose Undo Ability Warning" message="Вы павінны захаваць бягучую мадыфікацыю.
-Аднавіць усе зробленыя вамі змяненні будзе немагчыма.
+Continue?"/> <!-- HowToReproduce: when you openned file is modified but unsaved yet, and you are changing file encoding. -->
+            <LoseUndoAbilityWarning title="Lose Undo Ability Warning" message="You should save the current modification.
+All the saved modifications can not be undone.
 
-Працягнуць?"/> <!-- HowToReproduce: when you openned file is modified and saved, then you are changing file encoding. -->
+Continue?"/> <!-- HowToReproduce: when you openned file is modified and saved, then you are changing file encoding. -->
             <CannotMoveDoc title="Move to new Notepad++ Instance" message="Document is modified, save it then try again."/> <!-- HowToReproduce: From your Notepad++ drag & drop a clean (not dirty) file to outside of Notepad++, another instance of Notepad++ will be created. Then from your first Notepad++ drag & drop an unsaved file to the new instance. -->
             <DocReloadWarning title="Reload" message="Are you sure you want to reload the current file and lose the changes made in Notepad++?"/>
             <FileLockedWarning title="Save failed" message="Please check whether if this file is opened in another program"/>
-            <FileAlreadyOpenedInNpp title="" message="Файл ужо адкрыты ў Notepad++."/> <!-- HowToReproduce: Open a new document and open a file "c:/tmp/foo", save this new document by choosing "c:/tmp/foo" as file to save, reply the override popup "yes", then this message appears. -->
-            <RenameTabTemporaryNameAlreadyInUse title="Rename failed" message="Азначаная назва ўжо выкарыстоўваецца на іншай укладцы."/> <!-- HowToReproduce: Rename the tab of an untitled document and provide a name that is the same as an already-existing tab of an untitled document. -->
-            <DeleteFileFailed title="Выдаліць файл" message="Delete File failed"/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
+            <FileAlreadyOpenedInNpp title="" message="The file is already opened in Notepad++."/> <!-- HowToReproduce: Open a new document and open a file "c:/tmp/foo", save this new document by choosing "c:/tmp/foo" as file to save, reply the override popup "yes", then this message appears. -->
+            <RenameTabTemporaryNameAlreadyInUse title="Rename failed" message="The specified name is already in use on another tab."/> <!-- HowToReproduce: Rename the tab of an untitled document and provide a name that is the same as an already-existing tab of an untitled document. -->
+            <DeleteFileFailed title="Delete File" message="Delete File failed"/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 
             <NbFileToOpenImportantWarning title="Amount of files to open is too large" message="$INT_REPLACE$ files are about to be opened.
 Are you sure you want to open them?"/> <!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
-            <SettingsOnCloudError title="Settings on Cloud" message="Відавочна, што налады шляху да воблака ўсталяваныя з пазнакай толькі на чытанне\rабо ў папку, якая патрабуе адпаведных праў на запіс.\rВашы налады ў воблаку будуць скасаваныя. Калі ласка, скіньце адпаведнае значэнне праз дыялог Налады."/>
-            <FilePathNotFoundWarning title="File Open" message="Файл, які вы спрабуеце адкрыць не існуе."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
+            <SettingsOnCloudError title="Settings on Cloud" message="It seems the path of settings on cloud is set on a read only drive,
+or on a folder needed privilege right for writing access.
+Your settings on cloud will be canceled. Please reset a coherent value via Preference dialog."/>
+            <FilePathNotFoundWarning title="File Open" message="The file you're trying to open doesn't exist."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <SessionFileInvalidError title="Could not Load Session" message="Session file is either corrupted or not valid."/> <!-- HowToReproduce: Save current session via menu "File -> Save Session...", use another editor to modify the session you saved to make it an invalid xml file. Then load this invalid session via menu "File -> Load Session...". -->
             <DroppingFolderAsProjectModeWarning title="Invalid action" message="You can only drop files or folders but not both, because you're in dropping Folder as Project mode.
 you have to enable &quot;Open all files of folder instead of launching Folder as Workspace on folder dropping&quot; in &quot;Default Directory&quot; section of Preferences dialog to make this operation work."/>
-            <SortingError title="Памылка сартавання" message="Не атрымліваецца выканаць сартаванне па ліках з-за радка $INT_REPLACE$."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
-            <ColumnModeTip title="Column Mode Tip" message="Калі ласка, выкарыстоўвайце &quot;ALT+выбар мышы&quot; або &quot;Alt+Shift+клавіша стрэлкі&quot;, каб пераключыць рэжым слупкоў."/>
+            <SortingError title="Sorting Error" message="Unable to perform numeric sorting due to line $INT_REPLACE$."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
+            <ColumnModeTip title="Column Mode Tip" message="Please use &quot;ALT+Mouse Selection&quot; or &quot;Alt+Shift+Arrow key&quot; to switch to column mode."/>
             <BufferInvalidWarning title="Save failed" message="Не атрымалася захаваць: Няправільны буфер."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
-            <DoCloseOrNot title="Пакінуць не існуючы файл" message="Файл &quot;$STR_REPLACE$&quot; больш не існуе.
-Пакінуць файл у рэдактары?"/>
-            <DoDeleteOrNot title="Выдаліць файл" message="Файл &quot;$STR_REPLACE$&quot;
-будзе адпраўлены ў сметніцу і гэты дакумент будзе закрыты.
-Працягнуць?"/>
-            <NoBackupDoSaveFile title="Save" message="Ваш файл рэзервовай копіі не знойдзены (выдалена звонку)
-Калі вы не захаваеце яго, то ўсе вашы даныя будуць страчаныя
-Захаваць файл &quot;$STR_REPLACE$&quot; ?"/>
+            <DoCloseOrNot title="Keep non existing file" message="The file &quot;$STR_REPLACE$&quot; doesn't exist anymore.
+Keep this file in editor?"/>
+            <DoDeleteOrNot title="Delete file" message="The file &quot;$STR_REPLACE$&quot;
+will be moved to your Recycle Bin and this document will be closed.
+Continue?"/>
+            <NoBackupDoSaveFile title="Save" message="Your backup file cannot be found (deleted from outside).
+Save it otherwise your data will be lost
+Do you want to save file &quot;$STR_REPLACE$&quot; ?"/>
             <DoReloadOrNot title="Reload" message="&quot;$STR_REPLACE$&quot;
 
 This file has been modified by another program.
@@ -1232,54 +1234,53 @@ Do you want to reload it?"/>
 This file has been modified by another program.
 Do you want to reload it and lose the changes made in Notepad++?"/>
             <PrehistoricSystemDetected title="Prehistoric system detected" message="It seems you still use a prehistoric system. This feature works only on a modern system, sorry."/> <!-- HowToReproduce: Launch "Document Map" under Windows XP. -->
-            <XpUpdaterProblem title="Notepad++ Updater" message="Сістэма абнаўлення Notepad++ несумяшчальная з АС Windows XP з-за састарэлага ўзроўню бяспекі ў гэтай сістэме.
-Перайсці на старонку Notepad++ для таго, каб спампаваць апошнюю версію праграмы?"/> <!-- HowToReproduce: Run menu "? -> Update Notepad++" under Windows XP. -->
+            <XpUpdaterProblem title="Notepad++ Updater" message="Notepad++ updater is not compatible with XP due to the obsolete security layer under XP.
+Do you want to go to Notepad++ page to download the latest version?"/> <!-- HowToReproduce: Run menu "? -> Update Notepad++" under Windows XP. -->
             <GUpProxyConfNeedAdminMode title="Proxy Settings" message="Please relaunch Notepad++ in Admin mode to configure proxy."/>
-            <DocTooDirtyToMonitor title="Праблема маніторынгу" message="&quot;Брудны&quot; дакумент. Калі ласка, захавайце змяненні перад пачаткам яго маніторынгу."/>
-            <DocNoExistToMonitor title="Праблема маніторынгу" message="Файл павінен існаваць для яго маніторынгу."/>
+            <DocTooDirtyToMonitor title="Monitoring problem" message="The document is dirty. Please save the modification before monitoring it."/>
+            <DocNoExistToMonitor title="Monitoring problem" message="The file should exist to be monitored."/>
             <FileTooBigToOpen title="File size problem" message="File is too big to be opened by Notepad++"/> <!-- HowToReproduce: Try to open a 4GB file (it's not easy to reproduce, it depends on your system). -->
             <CreateNewFileOrNot title="Create new file" message="&quot;$STR_REPLACE$&quot; doesn't exist. Create it?"/>
-            <CreateNewFileError title="Стварыць новы файл" message="Cannot create the file &quot;$STR_REPLACE$&quot;."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
-            <OpenFileError title="ПАМЫЛКА" message="Can not open file &quot;$STR_REPLACE$&quot;."/>
-            <FileBackupFailed title="File Backup Failed" message="Папярэдняя версія файла не была захаваная ў каталог для рэзервовага капіявання &quot;$STR_REPLACE$&quot;.
+            <CreateNewFileError title="Create new file" message="Cannot create the file &quot;$STR_REPLACE$&quot;."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
+            <OpenFileError title="ERROR" message="Can not open file &quot;$STR_REPLACE$&quot;."/>
+            <FileBackupFailed title="File Backup Failed" message="The previous version of the file could not be saved into the backup directory at &quot;$STR_REPLACE$&quot;.
 
-
-Усё яшчэ хочаце захаваць бягучы файл?"/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
+Do you want to save the current file anyways?"/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <LoadStylersFailed title="Load stylers.xml failed" message="Load &quot;$STR_REPLACE$&quot; failed!"/>
             <LoadLangsFailed title="Configurator" message="Load langs.xml failed!
 Do you want to recover your langs.xml?"/> <!-- HowToReproduce: Close Notepad++. Use another editor to remove all content of "langs.xml" (0 length) then save it. Open Notepad++. -->
-            <LoadLangsFailedFinal title="Канфігуратар" message="Load langs.xml failed!"/> <!-- HowToReproduce: Close Notepad++. Use another editor to make "langs.xml" an invalid xml file then save it. Open Notepad++. -->
-            <FolderAsWorspaceSubfolderExists title="Folder as Workspace adding folder problem" message="Падпапка, якую вы спрабуеце дадаць ужо існуе.
-Калі ласка, выдаліце яе корань з панэлі перад тым, як дадаваць папку &quot;$STR_REPLACE$&quot;."/> <!-- HowToReproduce: Add a folder like "c:\temp\aFolder\" into "Folder as Workspace" panel, then try to add "c:\temp\". -->
+            <LoadLangsFailedFinal title="Configurator" message="Load langs.xml failed!"/> <!-- HowToReproduce: Close Notepad++. Use another editor to make "langs.xml" an invalid xml file then save it. Open Notepad++. -->
+            <FolderAsWorspaceSubfolderExists title="Folder as Workspace adding folder problem" message="A sub-folder of the folder you want to add exists.
+Please remove its root from the panel before you add folder &quot;$STR_REPLACE$&quot;."/> <!-- HowToReproduce: Add a folder like "c:\temp\aFolder\" into "Folder as Workspace" panel, then try to add "c:\temp\". -->
 
-            <ProjectPanelChanged title="$STR_REPLACE$" message="Працоўная вобласць была змененая. Хочаце захаваць яе?"/>
+            <ProjectPanelChanged title="$STR_REPLACE$" message="The workspace was modified. Do you want to save it?"/>
             <ProjectPanelSaveError title="$STR_REPLACE$" message="An error occurred while writing your workspace file.
 Your workspace has not been saved."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
-            <ProjectPanelOpenDoSaveDirtyWsOrNot title="Open Workspace" message="Бягучая працоўная вобласць была змененая. Хочаце захаваць бягучы праект?"/>
-            <ProjectPanelNewDoSaveDirtyWsOrNot title="Новая працоўная вобласць" message="Бягучая працоўная вобласць была змененая. Хочаце захаваць бягучы праект?"/>
-            <ProjectPanelOpenFailed title="Open Workspace" message="Не атрымалася адкрыць працоўную вобласць.
-Відавочна, што адкрыты файл не з'яўляецца дзейным файлам праекта."/>
+            <ProjectPanelOpenDoSaveDirtyWsOrNot title="Open Workspace" message="The current workspace was modified. Do you want to save the current project?"/>
+            <ProjectPanelNewDoSaveDirtyWsOrNot title="New Workspace" message="The current workspace was modified. Do you want to save the current project?"/>
+            <ProjectPanelOpenFailed title="Open Workspace" message="The workspace could not be opened.
+It seems the file to open is not a valid project file."/>
             <ProjectPanelRemoveFolderFromProject title="Remove folder from project" message="All the sub-items will be removed.
 Are you sure you want to remove this folder from the project?"/>
             <ProjectPanelRemoveFileFromProject title="Remove file from project" message="Are you sure you want to remove this file from the project?"/>
             <ProjectPanelReloadError title="Reload Workspace" message="Cannot find the file to reload."/>
-            <ProjectPanelReloadDirty title="Reload Workspace" message="Бягучая працоўная вобласць была змененая. Перазагрузка скасуе ўсе змяненні.
-Хочаце працягнуць?"/>
-            <UDLNewNameError title="Памылка UDL" message="Гэта назва выкарыстоўваецца іншай мовай,
-калі ласка, выберыце іншую."/>
+            <ProjectPanelReloadDirty title="Reload Workspace" message="The current workspace was modified. Reloading will discard all modifications.
+Do you want to continue?"/>
+            <UDLNewNameError title="UDL Error" message="This name is used by another language,
+please give another one."/>
             <UDLRemoveCurrentLang title="Remove the current language" message="Are you sure?"/>
             <SCMapperDoDeleteOrNot title="Are you sure?" message="Are you sure you want to delete this shortcut?"/>
-            <FindCharRangeValueError title="Range Value problem" message="Увядзіце значэнне ад 0 да 255."/>
-            <OpenInAdminMode title="Save failed" message="Не атрымалася захаваць файл. Магчыма ён абаронены.
-Запусціць Notepad++ у рэжыме адміністратара?"/>
-            <OpenInAdminModeWithoutCloseCurrent title="Save failed" message="Не атрымалася захаваць файл. Магчыма ён абаронены.
-Запусціць Notepad++ у рэжыме адміністратара?"/>
+            <FindCharRangeValueError title="Range Value problem" message="You should type between 0 and 255."/>
+            <OpenInAdminMode title="Save failed" message="The file cannot be saved and it may be protected.
+Do you want to launch Notepad++ in Administrator mode?"/>
+            <OpenInAdminModeWithoutCloseCurrent title="Save failed" message="The file cannot be saved and it may be protected.
+Do you want to launch Notepad++ in Administrator mode?"/>
             <OpenInAdminModeFailed title="Open in Administrator mode failed" message="Notepad++ cannot be opened in Administrator mode."/> <!-- HowToReproduce: When you have no Admin privilege and you try to save a modified file in a protected location (for example: any file in sub-folder of "C:\Program Files\". This message will appear after replying "Yes" to "Open in Admin mode" dialog. -->
-            <ViewInBrowser title="Паглядзець бягучы файл у браўзеры" message="Application cannot be found in your system."/>
+            <ViewInBrowser title="View Current File in Browser" message="Application cannot be found in your system."/>
             <ExitToUpdatePlugins title="Notepad++ is about to exit" message="If you click YES, you will quit Notepad++ to continue the operations.
 Notepad++ will be restarted after all the operations are terminated.
 Continue?"/>
-            <NeedToRestartToLoadPlugins title="Notepad++ need to be relaunched" message="Неабходна перазапусціць праграму, каб убудовы пачалі працаваць."/> <!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
+            <NeedToRestartToLoadPlugins title="Notepad++ need to be relaunched" message="You have to restart Notepad++ to load plugins you installed."/> <!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
         </MessageBox>
         <ClipboardHistory>
             <PanelTitle name="Clipboard History"/>
@@ -1293,33 +1294,33 @@ Continue?"/>
         <WindowsDlg>
             <ColumnName name="Name"/>
             <ColumnPath name="Path"/>
-            <ColumnType name="Тып"/>
-            <ColumnSize name="Памер"/>
-            <NbDocsTotal name="усяго дакументаў:"/>
+            <ColumnType name="Type"/>
+            <ColumnSize name="Size"/>
+            <NbDocsTotal name="total documents:"/>
             <MenuCopyName name="Copy Name(s)"/>
             <MenuCopyPath name="Copy Pathname(s)"/>
         </WindowsDlg>
         <AsciiInsertion>
-            <PanelTitle name="Панэль устаўкі кодаў ASCII"/>
-            <ColumnVal name="Значэнне"/>
+            <PanelTitle name="ASCII Codes Insertion Panel"/>
+            <ColumnVal name="Value"/>
             <ColumnHex name="Hex"/>
             <ColumnChar name="Character"/>
-            <ColumnHtmlNumber name="Нумар HTML"/>
-            <ColumnHtmlName name="Код HTML"/>
+            <ColumnHtmlNumber name="HTML Number"/>
+            <ColumnHtmlName name="HTML Code"/>
         </AsciiInsertion>
         <DocumentMap>
             <PanelTitle name="Document Map"/>
         </DocumentMap>
         <FunctionList>
             <PanelTitle name="Function List"/>
-            <SortTip name="Сартаваць"/>
+            <SortTip name="Sort"/>
             <ReloadTip name="Reload"/>
         </FunctionList>
         <FolderAsWorkspace>
             <PanelTitle name="Folder as Workspace"/>
             <SelectFolderFromBrowserString name="Select a folder to add in Folder as Workspace panel"/>
             <ExpandAllFoldersTip name="Expand all folders"/>
-            <CollapseAllFoldersTip name="Згарнуць усе папкі"/>
+            <CollapseAllFoldersTip name="Collapse all folders"/>
             <LocateCurrentFileTip name="Locate current file"/>
             <Menus>
                 <Item id="3511" name="Выдаліць"/>
@@ -1328,20 +1329,20 @@ Continue?"/>
                 <Item id="3514" name="Run by system"/>
                 <Item id="3515" name="Open"/>
                 <Item id="3516" name="Copy path"/>
-                <Item id="3517" name="Знайсці ў файлах..."/>
+                <Item id="3517" name="Find in Files..."/>
                 <Item id="3518" name="Explorer here"/>
-                <Item id="3519" name="CMD тут"/>
+                <Item id="3519" name="CMD here"/>
                 <Item id="3520" name="Copy file name"/>
             </Menus>
         </FolderAsWorkspace>
         <ProjectManager>
             <PanelTitle name="Project"/>
-            <WorkspaceRootName name="Працоўная вобласць"/>
+            <WorkspaceRootName name="Workspace"/>
             <NewProjectName name="Project Name"/>
             <NewFolderName name="Folder Name"/>
             <Menus>
                 <Entries>
-                    <Item id="0" name="Працоўная вобласць"/>
+                    <Item id="0" name="Workspace"/>
                     <Item id="1" name="Edit"/>
                 </Entries>
                 <WorkspaceMenu>
@@ -1365,27 +1366,27 @@ Continue?"/>
                 </ProjectMenu>
                 <FolderMenu>
                     <Item id="3111" name="Rename"/>
-                    <Item id="3112" name="Дадаць папку"/>
-                    <Item id="3113" name="Дадаць файлы..."/>
-                    <Item id="3117" name="Дадаць файл з каталога..."/>
+                    <Item id="3112" name="Add Folder"/>
+                    <Item id="3113" name="Add Files..."/>
+                    <Item id="3117" name="Add Files from Directory..."/>
                     <Item id="3114" name="Выдаліць"/>
-                    <Item id="3118" name="Перамясціць уверх"/>
-                    <Item id="3119" name="Перамясціць уніз"/>
+                    <Item id="3118" name="Move Up"/>
+                    <Item id="3119" name="Move Down"/>
                 </FolderMenu>
                 <FileMenu>
                     <Item id="3111" name="Rename"/>
                     <Item id="3115" name="Выдаліць"/>
-                    <Item id="3116" name="Змяніць шлях файла"/>
-                    <Item id="3118" name="Перамясціць уверх"/>
-                    <Item id="3119" name="Перамясціць уніз"/>
+                    <Item id="3116" name="Modify File Path"/>
+                    <Item id="3118" name="Move Up"/>
+                    <Item id="3119" name="Move Down"/>
                 </FileMenu>
             </Menus>
         </ProjectManager>
         <MiscStrings>
             <!-- $INT_REPLACE$  and $STR_REPLACE$ are a place holders, don't translate these place holders -->
-            <word-chars-list-tip value="Гэта дазваляе вам уключаць дадатковы сімвал у бягучыя сімвалы слова пры падвоеным націску для выбару або пошуку з дапамогай параметра &quot;Толькі цэлае слова&quot;."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, hover your mouse on the "?" button. -->
+            <word-chars-list-tip value="This allows you to include additional character into current word characters while double clicking for selection or searching with &quot;Match whole word only&quot; option checked."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, hover your mouse on the "?" button. -->
 
-            <word-chars-list-warning-begin value="Майце на ўвазе: "/>
+            <word-chars-list-warning-begin value="Be aware: "/>
             <word-chars-list-space-warning value="$INT_REPLACE$ space(s)"/>
             <word-chars-list-tab-warning value="$INT_REPLACE$ TAB(s)"/>
             <word-chars-list-warning-end value="  in your character list."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, check "Add your character as part of word\r(don't choose it unless you know what you're doing)", then type a white-space in the text field. -->
@@ -1417,20 +1418,20 @@ Find in all files but exclude all folders log or logs recursively:
             <find-status-invalid-re value="Find: Invalid regular expression"/>
             <find-status-search-failed value="Find: Search failed"/>
             <find-status-mark-1-match value="Mark: 1 match"/>
-            <find-status-mark-nb-matches value="Пазнака: $INT_REPLACE$ супадзенняў"/>
+            <find-status-mark-nb-matches value="Mark: $INT_REPLACE$ matches"/>
             <find-status-count-re-malformed value="Count: The regular expression to search is malformed"/>
             <find-status-count-1-match value="Count: 1 match"/>
-            <find-status-count-nb-matches value="Падлічыць: $INT_REPLACE$ супадзенняў"/>
+            <find-status-count-nb-matches value="Count: $INT_REPLACE$ matches"/>
             <find-status-replaceall-re-malformed value="Replace All: The regular expression is malformed"/>
             <find-status-replaceall-1-replaced value="Replace All: 1 occurrence was replaced"/>
-            <find-status-replaceall-nb-replaced value="Замяніць усе: Выканана замен $INT_REPLACE$"/>
+            <find-status-replaceall-nb-replaced value="Replace All: $INT_REPLACE$ occurrences were replaced"/>
             <find-status-replaceall-readonly value="Replace All: Cannot replace text. The current document is read only"/>
-            <find-status-replace-end-reached value="Замяніць: Заменена першае супадзенне зверху. Быў дасягнуты канец дакумента"/>
-            <find-status-replace-top-reached value="Замяніць: Заменена першае супадзенне знізу. Быў дасягнуты пачатак дакумента"/>
+            <find-status-replace-end-reached value="Replace: Replaced the 1st occurrence from the top. The end of document has been reached"/>
+            <find-status-replace-top-reached value="Replace: Replaced the 1st occurrence from the bottom. The begin of document has been reached"/>
             <find-status-replaced-next-found value="Replace: 1 occurrence was replaced. The next occurrence found."/>
             <find-status-replaced-without-continuing value="Replace: 1 occurrence was replaced."/>
             <find-status-replaced-next-not-found value="Replace: 1 occurrence was replaced. No more occurrences were found."/>
-            <find-status-replace-not-found value="Замяніць: Наступнае супадзенне не знойдзена"/>
+            <find-status-replace-not-found value="Replace: no occurrence was found"/>
             <find-status-replace-readonly value="Replace: Cannot replace text. The current document is read only"/>
             <find-status-cannot-find value="Find: Can't find the text &quot;$STR_REPLACE$&quot;"/>
             <find-status-scope-selection value="in selected text"/>
@@ -1440,15 +1441,15 @@ Find in all files but exclude all folders log or logs recursively:
             <finder-find-in-finder value="Find in these search results..."/>
             <finder-close-this value="Close these search results"/>
             <finder-collapse-all value="Collapse all"/>
-            <finder-uncollapse-all value="Разгарнуць усе"/>
-            <finder-copy value="Капіяваць выбраны(-я) радок(-і)"/>
+            <finder-uncollapse-all value="Uncollapse all"/>
+            <finder-copy value="Copy Selected Line(s)"/>
             <finder-copy-verbatim value="Copy"/>
             <finder-copy-paths value="Copy Pathname(s)"/>
             <finder-select-all value="Select all"/>
-            <finder-clear-all value="Ачысціць усе"/>
+            <finder-clear-all value="Clear all"/>
             <finder-open-all value="Open all"/>
             <finder-purge-for-every-search value="Purge for every search"/>
-            <finder-wrap-long-lines value="Пераносіць словы ў доўгіх радках"/>
+            <finder-wrap-long-lines value="Word wrap long lines"/>
             <common-ok value="OK"/>
             <common-cancel value="Cancel"/>
             <common-name value="Назва: "/>
@@ -1456,19 +1457,19 @@ Find in all files but exclude all folders log or logs recursively:
             <tabrename-newname value="New Name: "/>
             <splitter-rotate-left value="Rotate to left"/>
             <splitter-rotate-right value="Rotate to right"/>
-            <recent-file-history-maxfile value="Макс. файл: "/>
-            <language-tabsize value="Памер укладкі: "/>
+            <recent-file-history-maxfile value="Max File: "/>
+            <language-tabsize value="Tab Size: "/>
             <userdefined-title-new value="Create New Language..."/>
-            <userdefined-title-save value="Захаваць бягучую назву мовы як..."/>
+            <userdefined-title-save value="Save Current Language Name As..."/>
             <userdefined-title-rename value="Rename Current Language Name"/>
             <autocomplete-nb-char value="Nb char: "/>
             <edit-verticaledge-nb-col value="Nb of Column:"/>
-            <summary value="Зводка"/>
+            <summary value="Summary"/>
             <summary-filepath value="Full file path: "/>
             <summary-filecreatetime value="Created: "/>
             <summary-filemodifytime value="Modified: "/>
             <summary-nbchar value="Characters (without line endings): "/>
-            <summary-nbword value="Слоў: "/>
+            <summary-nbword value="Words: "/>
             <summary-nbline value="Lines: "/>
             <summary-nbbyte value="Document length: "/>
             <summary-nbsel1 value=" selected characters ("/>
@@ -1484,13 +1485,13 @@ Find in all files but exclude all folders log or logs recursively:
             <replace-in-open-docs-confirm-title value="Are you sure?"/>
             <replace-in-open-docs-confirm-message value="Are you sure you want to replace all occurrences in all open documents?"/>
             <find-result-caption value="Search results"/>
-            <find-result-title value="Пошук"/> <!-- Must not begin with space or tab character -->
+            <find-result-title value="Search"/> <!-- Must not begin with space or tab character -->
             <find-result-title-info value="($INT_REPLACE1$ hits in $INT_REPLACE2$ files of $INT_REPLACE3$ searched)"/>
             <find-result-title-info-selections value="($INT_REPLACE1$ hits in $INT_REPLACE2$ selections of $INT_REPLACE3$ searched)"/>
             <find-result-title-info-extra value=" - Line Filter Mode: only display the filtered results"/>
             <find-result-hits value="($INT_REPLACE$ hits)"/>
             <find-result-line-prefix value="Радок"/> <!-- Must not begin with space or tab character -->
-            <find-regex-zero-length-match value="нулявая даўжыня супадзення" />
+            <find-regex-zero-length-match value="zero length match" />
             <session-save-folder-as-workspace value="Save Folder as Workspace" />
             <tab-untitled-string value="new " />
             <file-save-assign-type value="&amp;Append extension" />
