@@ -14,7 +14,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item menuId="view" name="Выгляд"/>
                     <Item menuId="encoding" name="Кадаванне"/>
                     <Item menuId="language" name="Сінтаксіс"/>
-                    <Item menuId="settings" name="Налады"/>
+                    <Item menuId="settings" name="Se&amp;ttings"/>
                     <Item menuId="tools" name="To&amp;ols"/>
                     <Item menuId="macro" name="&amp;Macro"/>
                     <Item menuId="run" name="&amp;Run"/>
@@ -1001,7 +1001,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6728" name="Верхні і ніжні калантытул"/>
                 </Print>
 
-                <Searching title="Пошук">
+                <Searching title="Searching">
                     <Item id="6901" name="Не запаўняць поле пошуку ў акне &quot;Пошук&quot; выбраным словам"/>
                     <Item id="6902" name="Выкарыстоўваць шрыфт з аднолькавай шырынёй у акне Пошук (патрабуецца перазапуск праграмы)"/>
                     <Item id="6903" name="Акно пошуку можа быць адкрытым пасля ўвядзення вынікаў"/>
@@ -1024,7 +1024,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6817" name="Session snapshot and periodic backup"/>
                     <Item id="6818" name="Enable session snapshot and periodic backup"/>
                     <Item id="6819" name="Backup in every"/>
-                    <Item id="6821" name="секундаў"/>
+                    <Item id="6821" name="seconds"/>
                     <Item id="6822" name="Backup path:"/>
                     <Item id="6309" name="Remember current session for next launch"/>
                     <Item id="6801" name="Backup on save"/>
@@ -1079,10 +1079,10 @@ The comments are here for explanation, it's not necessary to translate them.
                 </Delimiter>
 
                 <Cloud title="Cloud &amp; Link">
-                    <Item id="6262" name="Налады воблачнага сховішча"/>
+                    <Item id="6262" name="Settings on cloud"/>
                     <Item id="6263" name="No Cloud"/>
-                    <Item id="6267" name="Шлях да вашага воблачнага сховішча:"/>
-                    <Item id="6318" name="Налада спасылак"/>
+                    <Item id="6267" name="Set your cloud location path here:"/>
+                    <Item id="6318" name="Clickable Link Settings"/>
                     <Item id="6319" name="Уключыць"/>
                     <Item id="6320" name="Не падкрэсліваць"/>
                     <Item id="6350" name="Уключыць поўны рэжым"/>
@@ -1160,10 +1160,10 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="1"    name="Знайсці ўсе"/>
                 <Item id="2"    name="Close"/>
                 <Item id="1711" name="&amp;Find what :"/>
-                <Item id="1713" name="Шукаць толькі ў знойдзеных радках"/>
+                <Item id="1713" name="Search only in found lines"/>
                 <Item id="1714" name="Match &amp;whole word only"/>
                 <Item id="1715" name="Match &amp;case"/>
-                <Item id="1716" name="Рэжым пошуку"/>
+                <Item id="1716" name="Search Mode"/>
                 <Item id="1717" name="&amp;Normal"/>
                 <Item id="1719" name="Re&amp;gular expression"/>
                 <Item id="1718" name="Пашыраны (\n, \r, \t, \0, \x...)"/>
@@ -1207,7 +1207,7 @@ You have to restart your Notepad++ to take effect after modifying contextMenu.xm
 
             <NbFileToOpenImportantWarning title="Amount of files to open is too large" message="$INT_REPLACE$ files are about to be opened.
 Are you sure you want to open them?"/> <!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
-            <SettingsOnCloudError title="Налады воблачнага сховішча" message="Відавочна, што налады шляху да воблака ўсталяваныя з пазнакай толькі на чытанне\rабо ў папку, якая патрабуе адпаведных праў на запіс.\rВашы налады ў воблаку будуць скасаваныя. Калі ласка, скіньце адпаведнае значэнне праз дыялог Налады."/>
+            <SettingsOnCloudError title="Settings on Cloud" message="Відавочна, што налады шляху да воблака ўсталяваныя з пазнакай толькі на чытанне\rабо ў папку, якая патрабуе адпаведных праў на запіс.\rВашы налады ў воблаку будуць скасаваныя. Калі ласка, скіньце адпаведнае значэнне праз дыялог Налады."/>
             <FilePathNotFoundWarning title="File Open" message="Файл, які вы спрабуеце адкрыць не існуе."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <SessionFileInvalidError title="Could not Load Session" message="Session file is either corrupted or not valid."/> <!-- HowToReproduce: Save current session via menu "File -> Save Session...", use another editor to modify the session you saved to make it an invalid xml file. Then load this invalid session via menu "File -> Load Session...". -->
             <DroppingFolderAsProjectModeWarning title="Invalid action" message="You can only drop files or folders but not both, because you're in dropping Folder as Project mode.
@@ -1317,7 +1317,7 @@ Continue?"/>
         </FunctionList>
         <FolderAsWorkspace>
             <PanelTitle name="Folder as Workspace"/>
-            <SelectFolderFromBrowserString name="Выберыце папку, каб дадаць яе ў якасці панэлі працоўнай вобласці"/>
+            <SelectFolderFromBrowserString name="Select a folder to add in Folder as Workspace panel"/>
             <ExpandAllFoldersTip name="Expand all folders"/>
             <CollapseAllFoldersTip name="Згарнуць усе папкі"/>
             <LocateCurrentFileTip name="Locate current file"/>
@@ -1391,7 +1391,7 @@ Continue?"/>
             <word-chars-list-warning-end value="  in your character list."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, check "Add your character as part of word\r(don't choose it unless you know what you're doing)", then type a white-space in the text field. -->
             <cloud-invalid-warning value="Invalid path."/>
             <cloud-restart-warning value="Please restart Notepad++ to take effect."/>
-            <cloud-select-folder value="Выберыце папку, адкуль/куды ў Notepad++ чытаць/запісваць свае налады"/> <!-- HowToReproduce: In "Cloud" section of Preferences dialog, check "Set your cloud location path here: ", then click the button "...". This message is displayed in the "Browse For Folder" dialog. -->
+            <cloud-select-folder value="Select a folder from/to where Notepad++ reads/writes its settings"/> <!-- HowToReproduce: In "Cloud" section of Preferences dialog, check "Set your cloud location path here: ", then click the button "...". This message is displayed in the "Browse For Folder" dialog. -->
             <shift-change-direction-tip value="Use Shift+Enter to search in the opposite direction"/>
             <two-find-buttons-tip value="2 find buttons mode"/>
             <file-rename-title value="Rename"/>
@@ -1444,7 +1444,7 @@ Find in all files but exclude all folders log or logs recursively:
             <finder-copy value="Капіяваць выбраны(-я) радок(-і)"/>
             <finder-copy-verbatim value="Copy"/>
             <finder-copy-paths value="Copy Pathname(s)"/>
-            <finder-select-all value="Выбраць усе"/>
+            <finder-select-all value="Select all"/>
             <finder-clear-all value="Ачысціць усе"/>
             <finder-open-all value="Open all"/>
             <finder-purge-for-every-search value="Purge for every search"/>
@@ -1471,7 +1471,7 @@ Find in all files but exclude all folders log or logs recursively:
             <summary-nbword value="Слоў: "/>
             <summary-nbline value="Lines: "/>
             <summary-nbbyte value="Document length: "/>
-            <summary-nbsel1 value=" выбраныя сімвалы ("/>
+            <summary-nbsel1 value=" selected characters ("/>
             <summary-nbsel2 value=" bytes) in "/>
             <summary-nbrange value=" ranges"/>
             <find-in-files-progress-title value="Find In Files progress..."/>
@@ -1483,7 +1483,7 @@ Find in all files but exclude all folders log or logs recursively:
             <replace-in-projects-confirm-message value="Do you want to replace all occurrences in all documents in the selected Project Panel(s)?"/>
             <replace-in-open-docs-confirm-title value="Are you sure?"/>
             <replace-in-open-docs-confirm-message value="Are you sure you want to replace all occurrences in all open documents?"/>
-            <find-result-caption value="Вынікі пошуку"/>
+            <find-result-caption value="Search results"/>
             <find-result-title value="Пошук"/> <!-- Must not begin with space or tab character -->
             <find-result-title-info value="($INT_REPLACE1$ hits in $INT_REPLACE2$ files of $INT_REPLACE3$ searched)"/>
             <find-result-title-info-selections value="($INT_REPLACE1$ hits in $INT_REPLACE2$ selections of $INT_REPLACE3$ searched)"/>
