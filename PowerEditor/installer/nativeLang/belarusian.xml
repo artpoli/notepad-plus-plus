@@ -3,22 +3,22 @@
 The comments are here for explanation, it's not necessary to translate them.
 -->
 <NotepadPlus>
-    <Native-Langue name="English" filename="belarusian.xml" version="8.2.1">
+    <Native-Langue name="Беларуская" filename="belarusian.xml" version="8.2.1">
         <Menu>
             <Main>
                 <!-- Main Menu Entries -->
                 <Entries>
-                    <Item menuId="file" name="&amp;File"/>
-                    <Item menuId="edit" name="&amp;Edit"/>
+                    <Item menuId="file" name="Файл"/>
+                    <Item menuId="edit" name="Праўка"/>
                     <Item menuId="search" name="Пошук"/>
                     <Item menuId="view" name="Выгляд"/>
-                    <Item menuId="encoding" name="E&amp;ncoding"/>
+                    <Item menuId="encoding" name="Кадаванне"/>
                     <Item menuId="language" name="Сінтаксіс"/>
-                    <Item menuId="settings" name="Se&amp;ttings"/>
-                    <Item menuId="tools" name="To&amp;ols"/>
-                    <Item menuId="macro" name="&amp;Macro"/>
-                    <Item menuId="run" name="&amp;Run"/>
-                    <Item idName="Plugins" name="&amp;Plugins"/>
+                    <Item menuId="settings" name="Налады"/>
+                    <Item menuId="tools" name="Інструменты"/>
+                    <Item menuId="macro" name="Макрас"/>
+                    <Item menuId="run" name="Выканаць"/>
+                    <Item idName="Убудовы" name="&amp;Plugins"/>
                     <Item idName="Window" name="&amp;Window"/>
                 </Entries>
                 <!-- Sub Menu Entries -->
@@ -1130,7 +1130,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 </MISC>
             </Preference>
             <MultiMacro title="Run a Macro Multiple Times">
-                <Item id="1" name="&amp;Run"/>
+                <Item id="1" name="Выканаць"/>
                 <Item id="2" name="&amp;Cancel"/>
                 <Item id="8006" name="Макрас:"/>
                 <Item id="8001" name="Run"/>
