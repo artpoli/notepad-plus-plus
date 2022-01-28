@@ -18,14 +18,14 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item menuId="tools" name="Інструменты"/>
                     <Item menuId="macro" name="Макрас"/>
                     <Item menuId="run" name="Выканаць"/>
-                    <Item idName="Убудовы" name="&amp;Plugins"/>
-                    <Item idName="Window" name="&amp;Window"/>
+                    <Item idName="Убудовы" name="Убудовы"/>
+                    <Item idName="Window" name="Акно"/>
                 </Entries>
                 <!-- Sub Menu Entries -->
                 <SubEntries>
-                    <Item subMenuId="file-openFolder" name="Open Containing &amp;Folder"/>
-                    <Item subMenuId="file-closeMore" name="Close &amp;More"/>
-                    <Item subMenuId="file-recentFiles" name="&amp;Recent Files"/>
+                    <Item subMenuId="file-openFolder" name="Адкрыць папку размяшчэння"/>
+                    <Item subMenuId="file-closeMore" name="Закрыць яшчэ"/>
+                    <Item subMenuId="file-recentFiles" name="Нядаўнія файлы"/>
                     <Item subMenuId="edit-insert" name="Insert"/>
                     <Item subMenuId="edit-copyToClipboard" name="Cop&amp;y to Clipboard"/>
                     <Item subMenuId="edit-indent" name="&amp;Indent"/>
@@ -144,7 +144,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42071" name="&amp;iNVERT cASE"/>
                     <Item id="42072" name="&amp;ranDOm CasE"/>
                     <Item id="42073" name="Адкрыць файл"/>
-                    <Item id="42074" name="Open Containing Folder in Explorer"/>
+                    <Item id="42074" name="Адкрыць папку размяшчэння ў Правадніку"/>
                     <Item id="42075" name="Шукаць у інтэрнэце"/>
                     <Item id="42076" name="Change Search Engine..."/>
                     <Item id="42018" name="Пачаць запіс"/>
@@ -386,11 +386,11 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item CMID="16" name="Reload"/>
                     <Item CMID="17" name="Close All to the Left"/>
                     <Item CMID="18" name="Close All to the Right"/>
-                    <Item CMID="19" name="Open Containing Folder in Explorer"/>
-                    <Item CMID="20" name="Open Containing Folder in cmd"/>
+                    <Item CMID="19" name="Адкрыць папку размяшчэння ў Правадніку"/>
+                    <Item CMID="20" name="Адкрыць папку размяшчэння ў cmd"/>
                     <Item CMID="21" name="Open in Default Viewer"/>
                     <Item CMID="22" name="Close All Unchanged"/>
-                    <Item CMID="23" name="Open Containing Folder as Workspace"/>
+                    <Item CMID="23" name="Адкрыць папку размяшчэння як працоўную вобласць"/>
             </TabBar>
         </Menu>
 
@@ -558,8 +558,8 @@ The comments are here for explanation, it's not necessary to translate them.
                 <ConflictInfoOk name="No shortcut conflicts for this item."/>
                 <ConflictInfoEditing name="No conflicts . . ."/>
                 <MainCommandNames>
-                    <Item id="41019" name="Open containing folder in Explorer"/>
-                    <Item id="41020" name="Open containing folder in Command Prompt"/>
+                    <Item id="41019" name="Адкрыць папку размяшчэння ў Правадніку"/>
+                    <Item id="41020" name="Адкрыць папку размяшчэння ў камандным радку"/>
                     <Item id="41021" name="Аднавіць нядаўна закрыты файл"/>
                     <Item id="45001" name="EOL Conversion to Windows (CR LF)"/>
                     <Item id="45002" name="EOL Conversion to Unix (LF)"/>
