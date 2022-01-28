@@ -26,14 +26,14 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item subMenuId="file-openFolder" name="Адкрыць папку размяшчэння"/>
                     <Item subMenuId="file-closeMore" name="Закрыць яшчэ"/>
                     <Item subMenuId="file-recentFiles" name="Нядаўнія файлы"/>
-                    <Item subMenuId="edit-insert" name="Insert"/>
-                    <Item subMenuId="edit-copyToClipboard" name="Cop&amp;y to Clipboard"/>
-                    <Item subMenuId="edit-indent" name="&amp;Indent"/>
-                    <Item subMenuId="edit-convertCaseTo" name="Con&amp;vert Case to"/>
-                    <Item subMenuId="edit-lineOperations" name="&amp;Line Operations"/>
-                    <Item subMenuId="edit-comment" name="Co&amp;mment/Uncomment"/>
-                    <Item subMenuId="edit-autoCompletion" name="&amp;Auto-Completion"/>
-                    <Item subMenuId="edit-eolConversion" name="&amp;EOL Conversion"/>
+                    <Item subMenuId="edit-insert" name="Уставіць"/>
+                    <Item subMenuId="edit-copyToClipboard" name="Капіяваць у буфер абмену"/>
+                    <Item subMenuId="edit-indent" name="Водступ"/>
+                    <Item subMenuId="edit-convertCaseTo" name="Змяніць рэгістр"/>
+                    <Item subMenuId="edit-lineOperations" name="Аперацыі з радкамі"/>
+                    <Item subMenuId="edit-comment" name="Закаментаваць/Раскаментаваць"/>
+                    <Item subMenuId="edit-autoCompletion" name="Аўтазавяршэнне"/>
+                    <Item subMenuId="edit-eolConversion" name="Пераўтварыць у сімвал канца радка"/>
                     <Item subMenuId="edit-blankOperations" name="&amp;Blank Operations"/>
                     <Item subMenuId="edit-pasteSpecial" name="&amp;Paste Special"/>
                     <Item subMenuId="edit-onSelection" name="&amp;On Selection"/>
@@ -144,7 +144,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42071" name="&amp;iNVERT cASE"/>
                     <Item id="42072" name="&amp;ranDOm CasE"/>
                     <Item id="42073" name="Адкрыць файл"/>
-                    <Item id="42074" name="Адкрыць папку размяшчэння ў Правадніку"/>
+                    <Item id="42074" name="Адкрыць папку размяшчэння ў правадніку"/>
                     <Item id="42075" name="Шукаць у інтэрнэце"/>
                     <Item id="42076" name="Change Search Engine..."/>
                     <Item id="42018" name="Пачаць запіс"/>
@@ -386,7 +386,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item CMID="16" name="Reload"/>
                     <Item CMID="17" name="Close All to the Left"/>
                     <Item CMID="18" name="Close All to the Right"/>
-                    <Item CMID="19" name="Адкрыць папку размяшчэння ў Правадніку"/>
+                    <Item CMID="19" name="Адкрыць папку размяшчэння ў правадніку"/>
                     <Item CMID="20" name="Адкрыць папку размяшчэння ў cmd"/>
                     <Item CMID="21" name="Open in Default Viewer"/>
                     <Item CMID="22" name="Close All Unchanged"/>
@@ -558,7 +558,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <ConflictInfoOk name="No shortcut conflicts for this item."/>
                 <ConflictInfoEditing name="No conflicts . . ."/>
                 <MainCommandNames>
-                    <Item id="41019" name="Адкрыць папку размяшчэння ў Правадніку"/>
+                    <Item id="41019" name="Адкрыць папку размяшчэння ў правадніку"/>
                     <Item id="41020" name="Адкрыць папку размяшчэння ў камандным радку"/>
                     <Item id="41021" name="Аднавіць нядаўна закрыты файл"/>
                     <Item id="45001" name="EOL Conversion to Windows (CR LF)"/>
