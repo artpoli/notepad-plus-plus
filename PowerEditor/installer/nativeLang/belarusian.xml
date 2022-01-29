@@ -109,7 +109,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42004" name="Вярнуць"/>
                     <Item id="42005" name="Уставіць"/>
                     <Item id="42006" name="Выдаліць"/>
-                    <Item id="42007" name="Выбраць усё"/>
+                    <Item id="42007" name="Выбраць усе"/>
                     <Item id="42020" name="Выбраць пачатак/канец"/>
                     <Item id="42084" name="Дата і час (кароткі)"/>
                     <Item id="42085" name="Дата і час (доўгі)"/>
@@ -372,8 +372,8 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item CMID="2" name="Захаваць"/>
                     <Item CMID="3" name="Захаваць як..."/>
                     <Item CMID="4" name="Друк..."/>
-                    <Item CMID="5" name="Move to Other View"/>
-                    <Item CMID="6" name="Clone to Other View"/>
+                    <Item CMID="5" name="Перамясціць у іншы выгляд"/>
+                    <Item CMID="6" name="Кланіраваць у іншы выгляд"/>
                     <Item CMID="7" name="Full File Path to Clipboard"/>
                     <Item CMID="8" name="Назву файла ў буфер абмену"/>
                     <Item CMID="9" name="Бягучы шлях у буфер абмену"/>
@@ -400,40 +400,40 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="1722" name="Backward direction"/>
                 <Item id="2"    name="Close"/>
                 <Item id="1620" name="Што шукаць:"/>
-                <Item id="1603" name="Match &amp;whole word only"/>
-                <Item id="1604" name="Match &amp;case"/>
-                <Item id="1605" name="Re&amp;gular expression"/>
-                <Item id="1606" name="Wra&amp;p around"/>
-                <Item id="1614" name="Coun&amp;t"/>
-                <Item id="1615" name="Mark All"/>
-                <Item id="1616" name="Book&amp;mark line"/>
-                <Item id="1618" name="Purge for each search"/>
-                <Item id="1611" name="Rep&amp;lace with :"/>
-                <Item id="1608" name="&amp;Replace"/>
-                <Item id="1609" name="Replace &amp;All"/>
-                <Item id="1687" name="On losing focus"/>
-                <Item id="1688" name="Always"/>
-                <Item id="1632" name="In select&amp;ion"/>
-                <Item id="1633" name="Clear all marks"/>
-                <Item id="1635" name="Replace All in All &amp;Opened Documents"/>
-                <Item id="1636" name="Find All in All &amp;Opened Documents"/>
-                <Item id="1654" name="Filter&amp;s :"/>
-                <Item id="1655" name="Dir&amp;ectory :"/>
+                <Item id="1603" name="Толькі цэлыя словы"/>
+                <Item id="1604" name="Улічваць рэгістр"/>
+                <Item id="1605" name="Рэгулярны выраз"/>
+                <Item id="1606" name="Цыклічны пошук"/>
+                <Item id="1614" name="Падлік"/>
+                <Item id="1615" name="Пазначыць усе"/>
+                <Item id="1616" name="Закладка радка"/>
+                <Item id="1618" name="Ачышчаць для кожнага пошуку"/>
+                <Item id="1611" name="Замяніць на:"/>
+                <Item id="1608" name="Замяніць"/>
+                <Item id="1609" name="Замяніць усе"/>
+                <Item id="1687" name="Калі не актыўна"/>
+                <Item id="1688" name="Заўсёды"/>
+                <Item id="1632" name="У выбраным"/>
+                <Item id="1633" name="Ачысціць усе пазнакі"/>
+                <Item id="1635" name="Замяніць усе ў адкрытых дакументах"/>
+                <Item id="1636" name="Знайсці ўсе ў адкрытых дакументах"/>
+                <Item id="1654" name="Фільтры:"/>
+                <Item id="1655" name="Каталог:"/>
                 <Item id="1656" name="Знайсці ўсе"/>
-                <Item id="1658" name="In all su&amp;b-folders"/>
-                <Item id="1659" name="In &amp;hidden folders"/>
+                <Item id="1658" name="Ва ўсіх падпапках"/>
+                <Item id="1659" name="У схаваных папках"/>
                 <Item id="1624" name="Рэжым пошуку"/>
-                <Item id="1625" name="&amp;Normal"/>
-                <Item id="1626" name="E&amp;xtended (\n, \r, \t, \0, \x...)"/>
-                <Item id="1660" name="Replace in Files"/>
-                <Item id="1665" name="Replace in Projects"/>
-                <Item id="1661" name="Follow current doc."/>
+                <Item id="1625" name="Звычайны"/>
+                <Item id="1626" name="Пашыраны (\n, \r, \t, \0, \x...)"/>
+                <Item id="1660" name="Замяніць у файлах"/>
+                <Item id="1665" name="Замяніць у праектах"/>
+                <Item id="1661" name="У папцы бягучага файла"/>
                 <Item id="1662" name="Панэль праекта 1"/>
                 <Item id="1663" name="Панэль праекта 2"/>
                 <Item id="1664" name="Панэль праекта 3"/>
                 <Item id="1641" name="Знайсці ўсе ў бягучым дакуменце"/>
                 <Item id="1686" name="Празрыстасць"/>
-                <Item id="1703" name="&amp;. matches newline"/>
+                <Item id="1703" name=". адпавядае новаму радку"/>
                 <Item id="1721" name="▲"/>
                 <Item id="1723" name="▼ Знайсці далей"/>
                 <Item id="1725" name="Капіяваць пазначаны тэкст"/>
@@ -442,7 +442,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <IncrementalFind title="">
                 <Item id="1681" name="Знайсці"/>
                 <Item id="1685" name="Улічваць рэгістр"/>
-                <Item id="1690" name="Highlight all"/>
+                <Item id="1690" name="Вылучыць усе"/>
             </IncrementalFind>
 
             <FindCharsInRange title="Знайсці сімвалы ў дыяпазоне...">
@@ -450,118 +450,118 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="2901" name="Не ASCII сімвалы (128-255)"/>
                 <Item id="2902" name="Сімвалы ASCII (0-127)"/>
                 <Item id="2903" name="Мой дыяпазон:"/>
-                <Item id="2906" name="&amp;Up"/>
-                <Item id="2907" name="&amp;Down"/>
-                <Item id="2908" name="Direction"/>
-                <Item id="2909" name="Wra&amp;p around"/>
+                <Item id="2906" name="Уверх"/>
+                <Item id="2907" name="Уніз"/>
+                <Item id="2908" name="Напрамак"/>
+                <Item id="2909" name="Цыклічны пошук"/>
                 <Item id="2910" name="Знайсці"/>
             </FindCharsInRange>
 
             <GoToLine title="Перайсці да...">
-                <Item id="2007" name="&amp;Line"/>
-                <Item id="2008" name="&amp;Offset"/>
-                <Item id="1"    name="Go"/>
-                <Item id="2"    name="I'm going nowhere"/>
+                <Item id="2007" name="Радок"/>
+                <Item id="2008" name="Зрух"/>
+                <Item id="1"    name="Наперад!"/>
+                <Item id="2"    name="Не хачу нікуды"/>
                 <Item id="2004" name="Вы тут:"/>
-                <Item id="2005" name="You want to go to:"/>
-                <Item id="2006" name="You can't go further than:"/>
+                <Item id="2005" name="Хочаце перайсці да:"/>
+                <Item id="2006" name="Далей не прайсці:"/>
             </GoToLine>
 
-            <Run title="Run...">
+            <Run title="Выканаць...">
                 <Item id="1903" name="Увядзіце параметр запуску праграмы"/>
-                <Item id="1"    name="Run"/>
-                <Item id="2"    name="Cancel"/>
+                <Item id="1"    name="Выканаць"/>
+                <Item id="2"    name="Скасаваць"/>
                 <Item id="1904" name="Захаваць..."/>
             </Run>
 
-            <MD5FromFilesDlg title="Generate MD5 digest from files">
-                <Item id="1922" name="Choose files to generate MD5..."/>
-                <Item id="1924" name="Copy to Clipboard"/>
-                <Item id="2"    name="Close"/>
+            <MD5FromFilesDlg title="Генерыраваць MD5 з файлаў">
+                <Item id="1922" name="Выберыце файлы для генерацыі MD5..."/>
+                <Item id="1924" name="Капіяваць у буфер абмену"/>
+                <Item id="2"    name="Закрыць"/>
             </MD5FromFilesDlg>
 
-            <MD5FromTextDlg title="Generate MD5 digest">
-                <Item id="1932" name="Treat each line as a separate string"/>
-                <Item id="1934" name="Copy to Clipboard"/>
-                <Item id="2"    name="Close"/>
+            <MD5FromTextDlg title="Генерыраваць MD5">
+                <Item id="1932" name="Апрацаваць кожны радок як асобны"/>
+                <Item id="1934" name="Капіяваць у буфер абмену"/>
+                <Item id="2"    name="Закрыць"/>
             </MD5FromTextDlg>
 
-            <SHA256FromFilesDlg title="Generate SHA-256 digest from files">
-                <Item id="1922" name="Choose files to generate SHA-256..."/>
-                <Item id="1924" name="Copy to Clipboard"/>
-                <Item id="2"    name="Close"/>
+            <SHA256FromFilesDlg title="Генерыраваць SHA-256 з файлаў">
+                <Item id="1922" name="Выберыце файлы для генерацыі SHA-256..."/>
+                <Item id="1924" name="Капіяваць у буфер абмену"/>
+                <Item id="2"    name="Закрыць"/>
             </SHA256FromFilesDlg>
 
-            <SHA256FromTextDlg title="Generate SHA-256 digest">
-                <Item id="1932" name="Treat each line as a separate string"/>
-                <Item id="1934" name="Copy to Clipboard"/>
-                <Item id="2"    name="Close"/>
+            <SHA256FromTextDlg title="Генерыраваць SHA-256">
+                <Item id="1932" name="Апрацаваць кожны радок як асобны"/>
+                <Item id="1934" name="Капіяваць у буфер абмену"/>
+                <Item id="2"    name="Закрыць"/>
             </SHA256FromTextDlg>
 
-            <PluginsAdminDlg title="Plugins Admin" titleAvailable = "Available" titleUpdates = "Updates" titleInstalled = "Installed">
-                <ColumnPlugin   name="Plugin"/>
-                <ColumnVersion  name="Version"/>
-                <Item id="5501" name="Search:"/>
-                <Item id="5503" name="Install"/>
-                <Item id="5504" name="Update"/>
+            <PluginsAdminDlg title="Адміністраванне ўбудоў" titleAvailable = "Даступна" titleUpdates = "Абнаўленні" titleInstalled = "Усталявана">
+                <ColumnPlugin   name="Убудова"/>
+                <ColumnVersion  name="Версія"/>
+                <Item id="5501" name="Пошук:"/>
+                <Item id="5503" name="Усталяваць"/>
+                <Item id="5504" name="Абнавіць"/>
                 <Item id="5505" name="Выдаліць"/>
-                <Item id="5508" name="Next"/>
-                <Item id="2"    name="Close"/>
+                <Item id="5508" name="Далей"/>
+                <Item id="2"    name="Закрыць"/>
             </PluginsAdminDlg>
 
             <StyleConfig title="Вызначэнне стылю">
-                <Item id="2"    name="Cancel"/>
-                <Item id="2301" name="Save &amp;&amp; Close"/>
-                <Item id="2303" name="Transparency"/>
-                <Item id="2306" name="Select theme: "/>
+                <Item id="2"    name="Скасаваць"/>
+                <Item id="2301" name="Захаваць і закрыць"/>
+                <Item id="2303" name="Празрыстасць"/>
+                <Item id="2306" name="Выбраць тэму: "/>
                 <SubDialog>
-                    <Item id="2204" name="Bold"/>
+                    <Item id="2204" name="Тоўсты"/>
                     <Item id="2205" name="Курсіў"/>
-                    <Item id="2206" name="Foreground colour"/>
+                    <Item id="2206" name="Колер пярэдняга плана"/>
                     <Item id="2207" name="Колер фону"/>
-                    <Item id="2208" name="Font name:"/>
+                    <Item id="2208" name="Назва шрыфту:"/>
                     <Item id="2209" name="Памер шрыфту:"/>
-                    <Item id="2211" name="Style:"/>
-                    <Item id="2212" name="Colour Style"/>
-                    <Item id="2213" name="Font Style"/>
-                    <Item id="2214" name="Default ext.:"/>
-                    <Item id="2216" name="User ext.:"/>
-                    <Item id="2218" name="Underline"/>
-                    <Item id="2219" name="Default keywords"/>
-                    <Item id="2221" name="User-defined keywords"/>
-                    <Item id="2225" name="Language:"/>
-                    <Item id="2226" name="Enable global foreground colour"/>
-                    <Item id="2227" name="Enable global background colour"/>
-                    <Item id="2228" name="Enable global font"/>
-                    <Item id="2229" name="Enable global font size"/>
-                    <Item id="2230" name="Enable global bold font style"/>
-                    <Item id="2231" name="Enable global italic font style"/>
-                    <Item id="2232" name="Enable global underline font style"/>
+                    <Item id="2211" name="Стыль:"/>
+                    <Item id="2212" name="Стыль колеру"/>
+                    <Item id="2213" name="Стыль шрыфту"/>
+                    <Item id="2214" name="Пашырэнні праграмы:"/>
+                    <Item id="2216" name="Пашырэнні карыстальніка:"/>
+                    <Item id="2218" name="Падкрэслены"/>
+                    <Item id="2219" name="Ключавыя словы праграмы"/>
+                    <Item id="2221" name="Ключавыя словы карыстальніка"/>
+                    <Item id="2225" name="Мова:"/>
+                    <Item id="2226" name="Агульны колер пярэдняга плана"/>
+                    <Item id="2227" name="Агульны колер фону"/>
+                    <Item id="2228" name="Агульны шрыфт"/>
+                    <Item id="2229" name="Агульны памер шрыфту"/>
+                    <Item id="2230" name="Агульны тоўсты шрыфт"/>
+                    <Item id="2231" name="Агульны шрыфт курсівам"/>
+                    <Item id="2232" name="Агульны падкрэслены шрыфт"/>
                 </SubDialog>
             </StyleConfig>
 
-            <ShortcutMapper title="Shortcut Mapper">
-                <Item id="2602" name="Modify"/>
-                <Item id="2603" name="Delete"/>
-                <Item id="2606" name="Clear"/>
-                <Item id="2607" name="Filter: "/>
-                <Item id="1" name="Close"/>
-                <ColumnName name="Name"/>
-                <ColumnShortcut name="Shortcut"/>
-                <ColumnCategory name="Category"/>
-                <ColumnPlugin name="Plugin"/>
-                <MainMenuTab name="Main menu"/>
-                <MacrosTab name="Macros"/>
-                <RunCommandsTab name="Run commands"/>
-                <PluginCommandsTab name="Plugin commands"/>
-                <ScintillaCommandsTab name="Scintilla commands"/>
-                <ConflictInfoOk name="No shortcut conflicts for this item."/>
-                <ConflictInfoEditing name="No conflicts . . ."/>
+            <ShortcutMapper title="Карта спалучэння клавіш">
+                <Item id="2602" name="Змяніць"/>
+                <Item id="2603" name="Выдаліць"/>
+                <Item id="2606" name="Ачысціць"/>
+                <Item id="2607" name="Фільтр: "/>
+                <Item id="1" name="Закрыць"/>
+                <ColumnName name="Назва"/>
+                <ColumnShortcut name="Спалучэнні клавіш"/>
+                <ColumnCategory name="Катэгорыя"/>
+                <ColumnPlugin name="Убудова"/>
+                <MainMenuTab name="Галоўнае меню"/>
+                <MacrosTab name="Макрас"/>
+                <RunCommandsTab name="Каманды запуску"/>
+                <PluginCommandsTab name="Каманды ўбудовы"/>
+                <ScintillaCommandsTab name="Каманды Scintilla"/>
+                <ConflictInfoOk name="Няма канфліктаў спалучэнняў клавіш для гэта элемента."/>
+                <ConflictInfoEditing name="Няма канфліктаў . . ."/>
                 <MainCommandNames>
                     <Item id="41019" name="Адкрыць папку размяшчэння ў правадніку"/>
                     <Item id="41020" name="Адкрыць папку размяшчэння ў камандным радку"/>
                     <Item id="41021" name="Аднавіць нядаўна закрыты файл"/>
-                    <Item id="45001" name="EOL Conversion to Windows (CR LF)"/>
+                    <Item id="45001" name="Пераўтварыць сімвал канца радка ў Windows (CR LF)"/>
                     <Item id="45002" name="EOL Conversion to Unix (LF)"/>
                     <Item id="45003" name="EOL Conversion to Macintosh (CR)"/>
                     <Item id="43022" name="Style all using 1st style"/>
@@ -637,17 +637,17 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44108" name="Пераключыцца на пералік функцый"/>
                 </MainCommandNames>
             </ShortcutMapper>
-            <ShortcutMapperSubDialg title="Shortcut">
+            <ShortcutMapperSubDialg title="Спалучэнні клавіш">
                 <Item id="1" name="OK"/>
-                <Item id="2" name="Cancel"/>
-                <Item id="5006" name="Name"/>
+                <Item id="2" name="Скасаваць"/>
+                <Item id="5006" name="Назва"/>
                 <Item id="5008" name="Дадаць"/>
                 <Item id="5009" name="Выдаліць"/>
                 <Item id="5010" name="Apply"/>
                 <Item id="5007" name="This will remove shortcut from this command"/>
                 <Item id="5012" name="CONFLICT FOUND!"/>
             </ShortcutMapperSubDialg>
-            <UserDefine title="User-Defined">
+            <UserDefine title="Вызначана карыстальнікам">
                 <Item id="20001" name="Dock"/>
                 <Item id="20002" name="Rename"/>
                 <Item id="20003" name="Create New..."/>
@@ -656,18 +656,18 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="20007" name="User language: "/>
                 <Item id="20009" name="Ext.:"/>
                 <Item id="20012" name="Ignore case"/>
-                <Item id="20011" name="Transparency"/>
+                <Item id="20011" name="Празрыстасць"/>
                 <Item id="20015" name="Import..."/>
                 <Item id="20016" name="Export..."/>
                 <StylerDialog title="Styler Dialog">
                     <Item id="25030" name="Font options:"/>
-                    <Item id="25006" name="Foreground colour"/>
+                    <Item id="25006" name="Колер пярэдняга плана"/>
                     <Item id="25007" name="Колер фону"/>
                     <Item id="25031" name="Name:"/>
                     <Item id="25032" name="Size:"/>
-                    <Item id="25001" name="Bold"/>
+                    <Item id="25001" name="Тоўсты"/>
                     <Item id="25002" name="Курсіў"/>
-                    <Item id="25003" name="Underline"/>
+                    <Item id="25003" name="Падкрэслены"/>
                     <Item id="25029" name="Nesting:"/>
                     <Item id="25008" name="Delimiter 1"/>
                     <Item id="25009" name="Delimiter 2"/>
@@ -693,7 +693,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="25033" name="Transparent"/>
                     <Item id="25034" name="Transparent"/>
                     <Item id="1" name="OK"/>
-                    <Item id="2" name="Cancel"/>
+                    <Item id="2" name="Скасаваць"/>
                 </StylerDialog>
                 <Folder title="Folder &amp;&amp; Default">
                     <Item id="21101" name="Default style"/>
@@ -903,7 +903,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6293" name="Constant width"/>
                     <Item id="6207" name="Паказваць закладку"/>
                     <Item id="6211" name="Налады вертыкальнай мяжы"/>
-                    <Item id="6213" name="Фон"/>
+                    <Item id="6213" name="Рэжым фону"/>
                     <Item id="6237" name="Дадайце сваю пазнаку слупка, азначыўшы яе размяшчэнне дзесятковым лікам. 
 Вы можаце вызначыць некалькі пазнак слупкоў скарыстаўшыся прабелам для раздзялення розных лічбаў."/>
                     <Item id="6231" name="Шырыня мяжы"/>
@@ -977,13 +977,13 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6603" name="WYSIWYG"/>
                     <Item id="6604" name="Інвертаваць"/>
                     <Item id="6605" name="Black on white"/>
-                    <Item id="6606" name="No background colour"/>
+                    <Item id="6606" name="Без колеру фону"/>
                     <Item id="6607" name="Margin Settings (Unit:mm)"/>
                     <Item id="6612" name="Злева"/>
                     <Item id="6613" name="Уверсе"/>
                     <Item id="6614" name="Справа"/>
                     <Item id="6615" name="Bottom"/>
-                    <Item id="6706" name="Bold"/>
+                    <Item id="6706" name="Тоўсты"/>
                     <Item id="6707" name="Курсіў"/>
                     <Item id="6708" name="Header"/>
                     <Item id="6709" name="Left part"/>
@@ -1133,7 +1133,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="1" name="Выканаць"/>
                 <Item id="2" name="&amp;Cancel"/>
                 <Item id="8006" name="Макрас:"/>
-                <Item id="8001" name="Run"/>
+                <Item id="8001" name="Выканаць"/>
                 <Item id="8005" name="разоў"/>
                 <Item id="8002" name="Run until the &amp;end of file"/>
             </MultiMacro>
@@ -1157,19 +1157,19 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="2026" name="&amp;Hex"/>
                 <Item id="2027" name="&amp;Bin"/>
                 <Item id="1" name="OK"/>
-                <Item id="2" name="Cancel"/>
+                <Item id="2" name="Скасаваць"/>
             </ColumnEditor>
             <FindInFinder title="Find in search results">
                 <Item id="1"    name="Знайсці ўсе"/>
                 <Item id="2"    name="Close"/>
                 <Item id="1711" name="Што шукаць:"/>
                 <Item id="1713" name="Search only in found lines"/>
-                <Item id="1714" name="Match &amp;whole word only"/>
-                <Item id="1715" name="Match &amp;case"/>
+                <Item id="1714" name="Толькі цэлыя словы"/>
+                <Item id="1715" name="Улічваць рэгістр"/>
                 <Item id="1716" name="Search Mode"/>
-                <Item id="1717" name="&amp;Normal"/>
-                <Item id="1719" name="Re&amp;gular expression"/>
-                <Item id="1718" name="E&amp;xtended (\n, \r, \t, \0, \x...)"/>
+                <Item id="1717" name="Звычайны"/>
+                <Item id="1719" name="Рэгулярны выраз"/>
+                <Item id="1718" name="Пашыраны (\n, \r, \t, \0, \x...)"/>
                 <Item id="1720" name="&amp;. matches newline"/>
             </FindInFinder>
             <DoSaveOrNot title="Захаваць">
@@ -1246,9 +1246,10 @@ Do you want to go to Notepad++ page to download the latest version?"/> <!-- HowT
             <CreateNewFileOrNot title="Create new file" message="&quot;$STR_REPLACE$&quot; doesn't exist. Create it?"/>
             <CreateNewFileError title="Create new file" message="Cannot create the file &quot;$STR_REPLACE$&quot;."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <OpenFileError title="ERROR" message="Can not open file &quot;$STR_REPLACE$&quot;."/>
-            <FileBackupFailed title="File Backup Failed" message="The previous version of the file could not be saved into the backup directory at &quot;$STR_REPLACE$&quot;.
+            <FileBackupFailed title="File Backup Failed" message="Папярэдняя версія файла не была захавана ў каталог для рэзервовага капіявання &quot;$STR_REPLACE$&quot;.
 
-Do you want to save the current file anyways?"/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
+
+Усё яшчэ хочаце захаваць бягучы файл?"/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <LoadStylersFailed title="Load stylers.xml failed" message="Load &quot;$STR_REPLACE$&quot; failed!"/>
             <LoadLangsFailed title="Configurator" message="Load langs.xml failed!
 Do you want to recover your langs.xml?"/> <!-- HowToReproduce: Close Notepad++. Use another editor to remove all content of "langs.xml" (0 length) then save it. Open Notepad++. -->
@@ -1290,12 +1291,12 @@ Continue?"/>
         </ClipboardHistory>
         <DocList>
             <PanelTitle name="Спіс дакументаў"/>
-            <ColumnName name="Name"/>
+            <ColumnName name="Назва"/>
             <ColumnExt name="Ext."/>
             <ColumnPath name="Path"/>
         </DocList>
         <WindowsDlg>
-            <ColumnName name="Name"/>
+            <ColumnName name="Назва"/>
             <ColumnPath name="Path"/>
             <ColumnType name="Type"/>
             <ColumnSize name="Size"/>
@@ -1457,7 +1458,7 @@ Find in all files but exclude all folders log or logs recursively:
             <finder-purge-for-every-search value="Purge for every search"/>
             <finder-wrap-long-lines value="Word wrap long lines"/>
             <common-ok value="OK"/>
-            <common-cancel value="Cancel"/>
+            <common-cancel value="Скасаваць"/>
             <common-name value="Назва: "/>
             <tabrename-title value="Rename Current Tab"/>
             <tabrename-newname value="New Name: "/>
@@ -1509,7 +1510,7 @@ Find in all files but exclude all folders log or logs recursively:
             <contextMenu-styleAlloccurrencesOfToken value="Style all occurrences of token" />
             <contextMenu-styleOneToken value="Style one token" />
             <contextMenu-clearStyle value="Clear style" />
-            <contextMenu-PluginCommands value="Plugin commands" />
+            <contextMenu-PluginCommands value="Каманды ўбудовы" />
         </MiscStrings>
     </Native-Langue>
 </NotepadPlus>
