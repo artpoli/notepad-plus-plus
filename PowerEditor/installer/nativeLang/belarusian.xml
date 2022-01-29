@@ -34,24 +34,24 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item subMenuId="edit-comment" name="Закаментаваць/Раскаментаваць"/>
                     <Item subMenuId="edit-autoCompletion" name="Аўтазавяршэнне"/>
                     <Item subMenuId="edit-eolConversion" name="Пераўтварыць у сімвал канца радка"/>
-                    <Item subMenuId="edit-blankOperations" name="&amp;Blank Operations"/>
-                    <Item subMenuId="edit-pasteSpecial" name="&amp;Paste Special"/>
-                    <Item subMenuId="edit-onSelection" name="&amp;On Selection"/>
-                    <Item subMenuId="search-markAll" name="Style &amp;All Occurrences of Token"/>
-                    <Item subMenuId="search-markOne" name="Style &amp;One Token"/>
-                    <Item subMenuId="search-unmarkAll" name="Clear Style"/>
-                    <Item subMenuId="search-jumpUp" name="&amp;Jump Up"/>
-                    <Item subMenuId="search-jumpDown" name="Jump &amp;Down"/>
-                    <Item subMenuId="search-copyStyledText" name="&amp;Copy Styled Text"/>
-                    <Item subMenuId="search-bookmark" name="&amp;Bookmark"/>
+                    <Item subMenuId="edit-blankOperations" name="Пустыя аперацыі"/>
+                    <Item subMenuId="edit-pasteSpecial" name="Адмысловая ўстаўка"/>
+                    <Item subMenuId="edit-onSelection" name="У выбраным"/>
+                    <Item subMenuId="search-markAll" name="Стыль для ўсіх выпадкаў токена"/>
+                    <Item subMenuId="search-markOne" name="Стыль для аднаго токена"/>
+                    <Item subMenuId="search-unmarkAll" name="Ачысціць стыль"/>
+                    <Item subMenuId="search-jumpUp" name="Уверх"/>
+                    <Item subMenuId="search-jumpDown" name="Уніз"/>
+                    <Item subMenuId="search-copyStyledText" name="Капіяваць стыль тэксту"/>
+                    <Item subMenuId="search-bookmark" name="Закладка"/>
                     <Item subMenuId="view-currentFileIn" name="Паглядзець бягучы файл у"/>
                     <Item subMenuId="view-showSymbol"  name="Паказаць сімвал"/>
                     <Item subMenuId="view-zoom"  name="Маштаб"/>
-                    <Item subMenuId="view-moveCloneDocument"  name="Move/Clone Current Document"/>
+                    <Item subMenuId="view-moveCloneDocument"  name="Перамясціць/Кланіраваць бягучы дакумент"/>
                     <Item subMenuId="view-tab"  name="Укладка"/>
                     <Item subMenuId="view-collapseLevel" name="Згарнуць узровень"/>
                     <Item subMenuId="view-uncollapseLevel" name="Разгарнуць узровень"/>
-                    <Item subMenuId="view-project" name="Project"/>
+                    <Item subMenuId="view-project" name="Праект"/>
                     <Item subMenuId="encoding-characterSets"  name="Набор сімвалаў"/>
                     <Item subMenuId="encoding-arabic"  name="Арабская"/>
                     <Item subMenuId="encoding-baltic"  name="Балтыйская"/>
@@ -77,48 +77,48 @@ The comments are here for explanation, it's not necessary to translate them.
 
                 <!-- all menu item -->
                 <Commands>
-                    <Item id="41001" name="&amp;New"/>
+                    <Item id="41001" name="Стварыць"/>
                     <Item id="41002" name="Адкрыць..."/>
-                    <Item id="41019" name="Explorer"/>
+                    <Item id="41019" name="Праваднік"/>
                     <Item id="41020" name="cmd"/>
-                    <Item id="41025" name="Folder as Workspace"/>
-                    <Item id="41003" name="&amp;Close"/>
-                    <Item id="41004" name="Clos&amp;e All"/>
-                    <Item id="41005" name="Close All BUT Current Document"/>
-                    <Item id="41009" name="Close All to the Left"/>
-                    <Item id="41018" name="Close All to the Right"/>
-                    <Item id="41024" name="Close All Unchanged"/>
-                    <Item id="41006" name="&amp;Save"/>
+                    <Item id="41025" name="Папка як працоўная вобласць"/>
+                    <Item id="41003" name="Закрыць"/>
+                    <Item id="41004" name="Закрыць усе"/>
+                    <Item id="41005" name="Закрыць усе, АКРАМЯ актыўнага"/>
+                    <Item id="41009" name="Закрыць усе злева"/>
+                    <Item id="41018" name="Закрыць усе справа"/>
+                    <Item id="41024" name="Закрыць усе не змененыя"/>
+                    <Item id="41006" name="Захаваць"/>
                     <Item id="41007" name="Захаваць усе"/>
                     <Item id="41008" name="Захаваць як..."/>
-                    <Item id="41010" name="&amp;Print..."/>
-                    <Item id="1001"  name="Print No&amp;w"/>
+                    <Item id="41010" name="Друк..."/>
+                    <Item id="1001"  name="Надрукаваць"/>
                     <Item id="41011" name="Выйсці"/>
-                    <Item id="41012" name="Load Sess&amp;ion..."/>
-                    <Item id="41013" name="Save Sess&amp;ion..."/>
+                    <Item id="41012" name="Загрузіць сеанс..."/>
+                    <Item id="41013" name="Захаваць сеанс..."/>
                     <Item id="41014" name="Перазагрузіць з дыска"/>
-                    <Item id="41015" name="Save a Cop&amp;y As..."/>
-                    <Item id="41016" name="Move to Recycle &amp;Bin"/>
-                    <Item id="41017" name="&amp;Rename..."/>
+                    <Item id="41015" name="Захаваць копію як..."/>
+                    <Item id="41016" name="Перамясціць у сметніцу"/>
+                    <Item id="41017" name="Перайменаваць..."/>
                     <Item id="41021" name="Аднавіць нядаўна закрыты файл"/>
-                    <Item id="41022" name="Open Folder as &amp;Workspace..."/>
-                    <Item id="41023" name="Open in &amp;Default Viewer"/>
+                    <Item id="41022" name="Адкрыць папку як працоўную вобласць..."/>
+                    <Item id="41023" name="Адкрыць у прадвызначаным аглядальніку"/>
                     <Item id="42001" name="Выразаць"/>
-                    <Item id="42002" name="&amp;Copy"/>
-                    <Item id="42003" name="&amp;Undo"/>
-                    <Item id="42004" name="&amp;Redo"/>
+                    <Item id="42002" name="Капіяваць"/>
+                    <Item id="42003" name="Адрабіць"/>
+                    <Item id="42004" name="Вярнуць"/>
                     <Item id="42005" name="Уставіць"/>
-                    <Item id="42006" name="&amp;Delete"/>
-                    <Item id="42007" name="&amp;Select All"/>
-                    <Item id="42020" name="Begin/End &amp;Select"/>
-                    <Item id="42084" name="Date Time (short)"/>
-                    <Item id="42085" name="Date Time (long)"/>
-                    <Item id="42086" name="Date Time (customized)"/>
+                    <Item id="42006" name="Выдаліць"/>
+                    <Item id="42007" name="Выбраць усё"/>
+                    <Item id="42020" name="Выбраць пачатак/канец"/>
+                    <Item id="42084" name="Дата і час (кароткі)"/>
+                    <Item id="42085" name="Дата і час (доўгі)"/>
+                    <Item id="42086" name="Дата і час (карыстальніцкі)"/>
                     <Item id="42008" name="Павялічыць водступ радка"/>
                     <Item id="42009" name="Паменшыць водступ радка"/>
-                    <Item id="42010" name="Duplicate Current Line"/>
-                    <Item id="42079" name="Remove Duplicate Lines"/>
-                    <Item id="42077" name="Remove Consecutive Duplicate Lines"/>
+                    <Item id="42010" name="Дубліраваць бягучы радок"/>
+                    <Item id="42079" name="Выдаліць дублікаты радкоў"/>
+                    <Item id="42077" name="Выдаліць паслядоўныя дублікаты радкоў"/>
                     <Item id="42012" name="Раздзяліць радкі"/>
                     <Item id="42013" name="Аб'яднаць радкі"/>
                     <Item id="42014" name="Перамясціць уверх бягучы радок"/>
@@ -133,20 +133,20 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42064" name="Сартаваць радкі як дзесятковыя (коска) па змяншэнні"/>
                     <Item id="42065" name="Сартаваць радкі як дзесятковыя (кропка) па ўзрастанні"/>
                     <Item id="42066" name="Сартаваць радкі як дзесятковыя (кропка) па змяншэнні"/>
-                    <Item id="42083" name="Reverse Line Order"/>
-                    <Item id="42078" name="Randomize Line Order"/>
+                    <Item id="42083" name="Адваротны парадак радкоў"/>
+                    <Item id="42078" name="Выпадковы парадак радкоў"/>
                     <Item id="42016" name="ВЯЛІКІМІ"/>
                     <Item id="42017" name="маленькімі"/>
-                    <Item id="42067" name="&amp;Proper Case"/>
-                    <Item id="42068" name="Proper Case (blend)"/>
+                    <Item id="42067" name="Першыя Літары Вялікія"/>
+                    <Item id="42068" name="Першыя Літары Вялікія (змешаны)"/>
                     <Item id="42069" name="Як у сказах"/>
                     <Item id="42070" name="Як у сказах (змешаны)"/>
-                    <Item id="42071" name="&amp;iNVERT cASE"/>
-                    <Item id="42072" name="&amp;ranDOm CasE"/>
+                    <Item id="42071" name="зВАРОТНЫ пАРАДАК"/>
+                    <Item id="42072" name="выПАДковы ПарАдак"/>
                     <Item id="42073" name="Адкрыць файл"/>
                     <Item id="42074" name="Адкрыць папку размяшчэння ў правадніку"/>
                     <Item id="42075" name="Шукаць у інтэрнэце"/>
-                    <Item id="42076" name="Change Search Engine..."/>
+                    <Item id="42076" name="Змяніць сістэму пошуку..."/>
                     <Item id="42018" name="Пачаць запіс"/>
                     <Item id="42019" name="Спыніць запіс"/>
                     <Item id="42021" name="Прайграванне"/>
@@ -272,7 +272,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44080" name="Document Map"/>
                     <Item id="44070" name="Спіс дакументаў"/>
                     <Item id="44084" name="Function List"/>
-                    <Item id="44085" name="Folder as Workspace"/>
+                    <Item id="44085" name="Папка як працоўная вобласць"/>
                     <Item id="44086" name="1st Tab"/>
                     <Item id="44087" name="2nd Tab"/>
                     <Item id="44088" name="3rd Tab"/>
@@ -384,12 +384,12 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item CMID="14" name="Move to New Instance"/>
                     <Item CMID="15" name="Open in New Instance"/>
                     <Item CMID="16" name="Reload"/>
-                    <Item CMID="17" name="Close All to the Left"/>
-                    <Item CMID="18" name="Close All to the Right"/>
+                    <Item CMID="17" name="Закрыць усе злева"/>
+                    <Item CMID="18" name="Закрыць усе справа"/>
                     <Item CMID="19" name="Адкрыць папку размяшчэння ў правадніку"/>
                     <Item CMID="20" name="Адкрыць папку размяшчэння ў cmd"/>
                     <Item CMID="21" name="Open in Default Viewer"/>
-                    <Item CMID="22" name="Close All Unchanged"/>
+                    <Item CMID="22" name="Закрыць усе не змененыя"/>
                     <Item CMID="23" name="Адкрыць папку размяшчэння як працоўную вобласць"/>
             </TabBar>
         </Menu>
@@ -1140,7 +1140,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <Window title="Вокны">
                 <Item id="1" name="&amp;Activate"/>
                 <Item id="2" name="&amp;OK"/>
-                <Item id="7002" name="&amp;Save"/>
+                <Item id="7002" name="Захаваць"/>
                 <Item id="7003" name="Закрыць акно/вокны"/>
                 <Item id="7004" name="Sort &amp;tabs"/>
             </Window>
@@ -1320,7 +1320,7 @@ Continue?"/>
             <ReloadTip name="Reload"/>
         </FunctionList>
         <FolderAsWorkspace>
-            <PanelTitle name="Folder as Workspace"/>
+            <PanelTitle name="Папка як працоўная вобласць"/>
             <SelectFolderFromBrowserString name="Select a folder to add in Folder as Workspace panel"/>
             <ExpandAllFoldersTip name="Expand all folders"/>
             <CollapseAllFoldersTip name="Collapse all folders"/>
@@ -1339,7 +1339,7 @@ Continue?"/>
             </Menus>
         </FolderAsWorkspace>
         <ProjectManager>
-            <PanelTitle name="Project"/>
+            <PanelTitle name="Праект"/>
             <WorkspaceRootName name="Workspace"/>
             <NewProjectName name="Project Name"/>
             <NewFolderName name="Folder Name"/>
