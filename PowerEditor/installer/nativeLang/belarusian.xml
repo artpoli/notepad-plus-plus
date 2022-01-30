@@ -1377,7 +1377,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <FileMenu>
                     <Item id="3111" name="Перайменаваць"/>
                     <Item id="3115" name="Выдаліць"/>
-                    <Item id="3116" name="Modify File Path"/>
+                    <Item id="3116" name="Змяніць шлях файла"/>
                     <Item id="3118" name="Перамясціць уверх"/>
                     <Item id="3119" name="Перамясціць уніз"/>
                 </FileMenu>
@@ -1385,128 +1385,128 @@ The comments are here for explanation, it's not necessary to translate them.
         </ProjectManager>
         <MiscStrings>
             <!-- $INT_REPLACE$  and $STR_REPLACE$ are a place holders, don't translate these place holders -->
-            <word-chars-list-tip value="This allows you to include additional character into current word characters while double clicking for selection or searching with &quot;Match whole word only&quot; option checked."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, hover your mouse on the "?" button. -->
+            <word-chars-list-tip value="Гэта дазваляе вам уключаць дадатковы сімвал у бягучыя сімвалы слова пры падвоеным націску для выбару або пошуку з дапамогай параметра &quot;Толькі цэлае слова&quot;."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, hover your mouse on the "?" button. -->
 
-            <word-chars-list-warning-begin value="Be aware: "/>
-            <word-chars-list-space-warning value="$INT_REPLACE$ space(s)"/>
-            <word-chars-list-tab-warning value="$INT_REPLACE$ TAB(s)"/>
-            <word-chars-list-warning-end value="  in your character list."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, check "Add your character as part of word\r(don't choose it unless you know what you're doing)", then type a white-space in the text field. -->
-            <backup-select-folder value="Select a folder as backup directory"/> <!-- HowToReproduce: Settings > Preferences > Backup > [...] -->
-            <cloud-invalid-warning value="Invalid path."/>
-            <cloud-restart-warning value="Please restart Notepad++ to take effect."/>
-            <cloud-select-folder value="Select a folder from/to where Notepad++ reads/writes its settings"/> <!-- HowToReproduce: In "Cloud" section of Preferences dialog, check "Set your cloud location path here: ", then click the button "...". This message is displayed in the "Browse For Folder" dialog. -->
-            <default-open-save-select-folder value="Select a folder as default directory"/> <!-- HowToReproduce: Settings > Preferences > Default Directory > [...] -->
-            <shift-change-direction-tip value="Use Shift+Enter to search in the opposite direction"/>
-            <two-find-buttons-tip value="2 find buttons mode"/>
+            <word-chars-list-warning-begin value="Майце на ўвазе: "/>
+            <word-chars-list-space-warning value="$INT_REPLACE$ прабел(-ы)"/>
+            <word-chars-list-tab-warning value="$INT_REPLACE$ TAB"/>
+            <word-chars-list-warning-end value="  у вашым спісе сімвалаў."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, check "Add your character as part of word\r(don't choose it unless you know what you're doing)", then type a white-space in the text field. -->
+            <backup-select-folder value="Выбраць папку для рэзервовай копіі"/> <!-- HowToReproduce: Settings > Preferences > Backup > [...] -->
+            <cloud-invalid-warning value="Памылковы шлях."/>
+            <cloud-restart-warning value="Перазапусціце Notepad++, каб адбыліся змены."/>
+            <cloud-select-folder value="Выберыце папку, адкуль/куды ў Notepad++ чытаць/запісваць свае налады"/> <!-- HowToReproduce: In "Cloud" section of Preferences dialog, check "Set your cloud location path here: ", then click the button "...". This message is displayed in the "Browse For Folder" dialog. -->
+            <default-open-save-select-folder value="Выбраць папку як прадвызначаны каталог"/> <!-- HowToReproduce: Settings > Preferences > Default Directory > [...] -->
+            <shift-change-direction-tip value="Выкарыстоўвайце Shift+Enter для пошуку ў адваротным напрамку"/>
+            <two-find-buttons-tip value="2-клавішны рэжым пошуку"/>
             <file-rename-title value="Перайменаваць"/>
-            <find-in-files-filter-tip value="Find in cpp, cxx, h, hxx &amp;&amp; hpp:
+            <find-in-files-filter-tip value="Знайсці ў cpp, cxx, h, hxx &amp;&amp; hpp:
 *.cpp *.cxx *.h *.hxx *.hpp
 
-Find in all files except exe, obj &amp;&amp; log:
+Знайсці ва ўсіх файлах за выключэннем exe, obj &amp;&amp; log:
 *.* !*.exe !*.obj !*.log
 
-Find in all files but exclude folders tests, bin &amp;&amp; bin64:
+Знайсці ва ўсіх файлах за выключэннем папак tests, bin &amp;&amp; bin64:
 *.* !\tests !\bin*
 
-Find in all files but exclude all folders log or logs recursively:
+Знайсці ва ўсіх файлах за выключэннем усіх папак log або папак рэкурсіўным значэннем log:
 *.* !+\log*"/> <!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
-            <find-in-files-select-folder value="Select a folder to search from"/> <!-- HowToReproduce: Search > Find in Files > [...] -->
-            <find-status-top-reached value="Find: Found the 1st occurrence from the bottom. The beginning of the document has been reached."/>
-            <find-status-end-reached value="Find: Found the 1st occurrence from the top. The end of the document has been reached."/>
-            <find-status-replaceinfiles-1-replaced value="Replace in Files: 1 occurrence was replaced"/>
-            <find-status-replaceinfiles-nb-replaced value="Replace in Files: $INT_REPLACE$ occurrences were replaced"/>
-            <find-status-replaceinfiles-re-malformed value="Replace in Opened Files: The regular expression is malformed"/>
-            <find-status-replaceinopenedfiles-1-replaced value="Replace in Opened Files: 1 occurrence was replaced"/>
-            <find-status-replaceinopenedfiles-nb-replaced value="Replace in Opened Files: $INT_REPLACE$ occurrences were replaced"/>
-            <find-status-mark-re-malformed value="Mark: The regular expression to search is malformed"/>
-            <find-status-invalid-re value="Find: Invalid regular expression"/>
-            <find-status-search-failed value="Find: Search failed"/>
-            <find-status-mark-1-match value="Mark: 1 match"/>
-            <find-status-mark-nb-matches value="Mark: $INT_REPLACE$ matches"/>
-            <find-status-count-re-malformed value="Count: The regular expression to search is malformed"/>
-            <find-status-count-1-match value="Count: 1 match"/>
-            <find-status-count-nb-matches value="Count: $INT_REPLACE$ matches"/>
-            <find-status-replaceall-re-malformed value="Replace All: The regular expression is malformed"/>
-            <find-status-replaceall-1-replaced value="Replace All: 1 occurrence was replaced"/>
-            <find-status-replaceall-nb-replaced value="Replace All: $INT_REPLACE$ occurrences were replaced"/>
-            <find-status-replaceall-readonly value="Replace All: Cannot replace text. The current document is read only"/>
-            <find-status-replace-end-reached value="Replace: Replaced the 1st occurrence from the top. The end of document has been reached"/>
-            <find-status-replace-top-reached value="Replace: Replaced the 1st occurrence from the bottom. The begin of document has been reached"/>
-            <find-status-replaced-next-found value="Replace: 1 occurrence was replaced. The next occurrence found."/>
-            <find-status-replaced-without-continuing value="Replace: 1 occurrence was replaced."/>
-            <find-status-replaced-next-not-found value="Replace: 1 occurrence was replaced. No more occurrences were found."/>
-            <find-status-replace-not-found value="Replace: no occurrence was found"/>
-            <find-status-replace-readonly value="Replace: Cannot replace text. The current document is read only"/>
-            <find-status-cannot-find value="Find: Can't find the text &quot;$STR_REPLACE$&quot;"/>
-            <find-status-scope-selection value="in selected text"/>
-            <find-status-scope-all value="in entire file"/>
-            <find-status-scope-backward value="from start-of-file to caret"/>
-            <find-status-scope-forward value="from caret to end-of-file"/>
-            <finder-find-in-finder value="Find in these search results..."/>
-            <finder-close-this value="Close these search results"/>
-            <finder-collapse-all value="Collapse all"/>
-            <finder-uncollapse-all value="Uncollapse all"/>
-            <finder-copy value="Copy Selected Line(s)"/>
-            <finder-copy-verbatim value="Copy"/>
+            <find-in-files-select-folder value="Выбраць папку для пошуку з"/> <!-- HowToReproduce: Search > Find in Files > [...] -->
+            <find-status-top-reached value="Знайсці: Знойдзена першае супадзенне знізу. Быў дасягнуты пачатак дакумента."/>
+            <find-status-end-reached value="Знайсці: Знойдзена адно супадзенне зверху. Быў дасягнуты канец дакумента."/>
+            <find-status-replaceinfiles-1-replaced value="Замяніць у файлах: 1 супадзенне заменена"/>
+            <find-status-replaceinfiles-nb-replaced value="Замяніць у файлах: Выканана $INT_REPLACE$ замен"/>
+            <find-status-replaceinfiles-re-malformed value="Замяніць у адкрытых файлах: Няправільны рэгулярны выраз"/>
+            <find-status-replaceinopenedfiles-1-replaced value="Замяніць у адкрытых файлах: Выканана 1 замена"/>
+            <find-status-replaceinopenedfiles-nb-replaced value="Замяніць у адкрытых файлах: Выканана $INT_REPLACE$ замен"/>
+            <find-status-mark-re-malformed value="Пазнака: Няправільны рэгулярны выраз для пошуку"/>
+            <find-status-invalid-re value="Знайсці: Памылковы рэгулярны выраз"/>
+            <find-status-search-failed value="Знайсці: Збой пошуку"/>
+            <find-status-mark-1-match value="Пазнака: 1 супадзенне"/>
+            <find-status-mark-nb-matches value="Пазнака: $INT_REPLACE$ супадзенняў"/>
+            <find-status-count-re-malformed value="Падлічыць: Няправільны рэгулярны выраз для пошуку"/>
+            <find-status-count-1-match value="Падлічыць: 1 супадзенне"/>
+            <find-status-count-nb-matches value="Падлічыць: $INT_REPLACE$ супадзенняў"/>
+            <find-status-replaceall-re-malformed value="Замяніць усе: Няправільны рэгулярны выраз"/>
+            <find-status-replaceall-1-replaced value="Замяніць усе: 1 супадзенне заменена"/>
+            <find-status-replaceall-nb-replaced value="Замяніць усе: Заменена $INT_REPLACE$ супадзенняў"/>
+            <find-status-replaceall-readonly value="Замяніць усе: Немагчыма замяніць тэкст. Бягучы дакумент прызначаны толькі для чытання"/>
+            <find-status-replace-end-reached value="Замяніць: Заменена першае супадзенне зверху. Быў дасягнуты канец дакумента"/>
+            <find-status-replace-top-reached value="Замяніць: Заменена першае супадзенне знізу. Быў дасягнуты пачатак дакумента"/>
+            <find-status-replaced-next-found value="Замяніць: Выканана 1 замена. Знойдзена наступнае супадзенне."/>
+            <find-status-replaced-without-continuing value="Замяніць: 1 супадзенне было заменена."/>
+            <find-status-replaced-next-not-found value="Замяніць: Выканана 1 замена. Іншых супадзенняў не знойдзена."/>
+            <find-status-replace-not-found value="Замяніць: Ніводнага супадзення не знойдзена"/>
+            <find-status-replace-readonly value="Замяніць: Немагчыма замяніць тэкст. Бягучы дакумент прызначаны толькі для чытання"/>
+            <find-status-cannot-find value="Знайсці: Немагчыма знайсці тэкст &quot;$STR_REPLACE$&quot;"/>
+            <find-status-scope-selection value="у выбраным тэксце"/>
+            <find-status-scope-all value="у ва ўсім файле"/>
+            <find-status-scope-backward value="ад пачатку файла да пункту ўстаўкі"/>
+            <find-status-scope-forward value="ад пункту ўстаўкі да канца файла"/>
+            <finder-find-in-finder value="Знайсці ў гэтых выніках пошуку..."/>
+            <finder-close-this value="Закрыць гэтыя вынікі пошуку"/>
+            <finder-collapse-all value="Згарнуць усе"/>
+            <finder-uncollapse-all value="Разгарнуць усе"/>
+            <finder-copy value="Капіяваць выбраныя радкі"/>
+            <finder-copy-verbatim value="Капіяваць"/>
             <finder-copy-paths value="Капіяваць назвы шляхоў"/>
-            <finder-select-all value="Select all"/>
-            <finder-clear-all value="Clear all"/>
-            <finder-open-all value="Open all"/>
-            <finder-purge-for-every-search value="Purge for every search"/>
-            <finder-wrap-long-lines value="Word wrap long lines"/>
+            <finder-select-all value="Выбраць усе"/>
+            <finder-clear-all value="Ачысціць усе"/>
+            <finder-open-all value="Адкрыць усе"/>
+            <finder-purge-for-every-search value="Ачышчаць для кожнага пошуку"/>
+            <finder-wrap-long-lines value="Пераносіць словы ў доўгіх радках"/>
             <common-ok value="Добра"/>
             <common-cancel value="Скасаваць"/>
             <common-name value="Назва: "/>
-            <tabrename-title value="Rename Current Tab"/>
-            <tabrename-newname value="New Name: "/>
-            <splitter-rotate-left value="Rotate to left"/>
-            <splitter-rotate-right value="Rotate to right"/>
-            <recent-file-history-maxfile value="Max File: "/>
-            <language-tabsize value="Tab Size: "/>
-            <userdefined-title-new value="Create New Language..."/>
-            <userdefined-title-save value="Save Current Language Name As..."/>
-            <userdefined-title-rename value="Rename Current Language Name"/>
-            <autocomplete-nb-char value="Nb char: "/>
-            <edit-verticaledge-nb-col value="Nb of Column:"/>
-            <summary value="Summary"/>
-            <summary-filepath value="Full file path: "/>
-            <summary-filecreatetime value="Created: "/>
-            <summary-filemodifytime value="Modified: "/>
-            <summary-nbchar value="Characters (without line endings): "/>
-            <summary-nbword value="Words: "/>
-            <summary-nbline value="Lines: "/>
-            <summary-nbbyte value="Document length: "/>
-            <summary-nbsel1 value=" selected characters ("/>
-            <summary-nbsel2 value=" bytes) in "/>
-            <summary-nbrange value=" ranges"/>
-            <find-in-files-progress-title value="Find In Files progress..."/>
+            <tabrename-title value="Перайменаваць бягучую ўкладку"/>
+            <tabrename-newname value="Новая назва: "/>
+            <splitter-rotate-left value="Павярнуць улева"/>
+            <splitter-rotate-right value="Павярнуць управа"/>
+            <recent-file-history-maxfile value="Макс. файл: "/>
+            <language-tabsize value="Памер укладкі: "/>
+            <userdefined-title-new value="Стварыць новую мову..."/>
+            <userdefined-title-save value="Захаваць назву бягучай мовы як..."/>
+            <userdefined-title-rename value="Перайменаваць назву бягучай мовы"/>
+            <autocomplete-nb-char value="К-сць сімв.: "/>
+            <edit-verticaledge-nb-col value="К-сць слупкоў:"/>
+            <summary value="Зводка"/>
+            <summary-filepath value="Поўны шлях да файла: "/>
+            <summary-filecreatetime value="Створана: "/>
+            <summary-filemodifytime value="Зменена: "/>
+            <summary-nbchar value="Сімвалаў (без сканчэння радка): "/>
+            <summary-nbword value="Слоў: "/>
+            <summary-nbline value="Радкі: "/>
+            <summary-nbbyte value="Даўжыня дакумента: "/>
+            <summary-nbsel1 value=" выбраныя сімвалы ("/>
+            <summary-nbsel2 value=" байтаў) у "/>
+            <summary-nbrange value=" дыяпазоны"/>
+            <find-in-files-progress-title value="Выкананне пошуку ў файлах..."/>
             <replace-in-files-confirm-title value="Вы ўпэўнены?"/>
             <replace-in-files-confirm-directory value="Вы ўпэўнены, што хочаце замяніць усе супадзенні для:"/>
-            <replace-in-files-confirm-filetype value="For file type :"/>
-            <replace-in-files-progress-title value="Replace In Files progress..."/>
+            <replace-in-files-confirm-filetype value="Для тыпу файла:"/>
+            <replace-in-files-progress-title value="Адбываецца замена ў файлах..."/>
             <replace-in-projects-confirm-title value="Вы ўпэўнены?"/>
-            <replace-in-projects-confirm-message value="Do you want to replace all occurrences in all documents in the selected Project Panel(s)?"/>
+            <replace-in-projects-confirm-message value="Ці хочаце вы замяніць усе супадзенні ва ўсіх дакументах у выбранай панэлі праектаў?"/>
             <replace-in-open-docs-confirm-title value="Вы ўпэўнены?"/>
             <replace-in-open-docs-confirm-message value="Вы ўпэўнены, што хочаце замяніць усе супадзенні ў ва ўсіх адкрытых дакументах?"/>
-            <find-result-caption value="Search results"/>
-            <find-result-title value="Search"/> <!-- Must not begin with space or tab character -->
-            <find-result-title-info value="($INT_REPLACE1$ hits in $INT_REPLACE2$ files of $INT_REPLACE3$ searched)"/>
-            <find-result-title-info-selections value="($INT_REPLACE1$ hits in $INT_REPLACE2$ selections of $INT_REPLACE3$ searched)"/>
-            <find-result-title-info-extra value=" - Line Filter Mode: only display the filtered results"/>
-            <find-result-hits value="($INT_REPLACE$ hits)"/>
+            <find-result-caption value="Вынікі пошуку"/>
+            <find-result-title value="Пошук"/> <!-- Must not begin with space or tab character -->
+            <find-result-title-info value="($INT_REPLACE1$ супадзенняў у $INT_REPLACE2$ файлах для $INT_REPLACE3$ пошукаў)"/>
+            <find-result-title-info-selections value="($INT_REPLACE1$ супадзенняў у $INT_REPLACE2$ выбраных з $INT_REPLACE3$ шуканых)"/>
+            <find-result-title-info-extra value=" - Рэжым фільтра радкоў: паказваць толькі фільтраваныя вынікі"/>
+            <find-result-hits value="($INT_REPLACE$ супадзенняў)"/>
             <find-result-line-prefix value="Радок"/> <!-- Must not begin with space or tab character -->
-            <find-regex-zero-length-match value="zero length match" />
+            <find-regex-zero-length-match value="нулявая даўжыня супадзення" />
             <session-save-folder-as-workspace value="Захаваць папку як працоўную вобласць" />
-            <tab-untitled-string value="new " />
-            <file-save-assign-type value="&amp;Append extension" />
+            <tab-untitled-string value="новы " />
+            <file-save-assign-type value="Дадаць пашырэнне" />
             <close-panel-tip value="Закрыць" />
-            <IncrementalFind-FSFound value="$INT_REPLACE$ matches" />
-            <IncrementalFind-FSNotFound value="Phrase not found" />
-            <IncrementalFind-FSTopReached value="Reached top of page, continued from bottom" />
-            <IncrementalFind-FSEndReached value="Reached end of page, continued from top" />
-            <contextMenu-styleAlloccurrencesOfToken value="Style all occurrences of token" />
-            <contextMenu-styleOneToken value="Style one token" />
-            <contextMenu-clearStyle value="Clear style" />
+            <IncrementalFind-FSFound value="$INT_REPLACE$ супадзенняў" />
+            <IncrementalFind-FSNotFound value="Фраза не знойдзена" />
+            <IncrementalFind-FSTopReached value="Дасягнуты пачатак старонкі, працягнута з канца" />
+            <IncrementalFind-FSEndReached value="Дасягнуты канец старонкі, працягнута спачатку" />
+            <contextMenu-styleAlloccurrencesOfToken value="Стыль усіх супадзенняў токена" />
+            <contextMenu-styleOneToken value="Стыль аднаго токена" />
+            <contextMenu-clearStyle value="Ачысціць стыль" />
             <contextMenu-PluginCommands value="Каманды ўбудовы" />
         </MiscStrings>
     </Native-Langue>
