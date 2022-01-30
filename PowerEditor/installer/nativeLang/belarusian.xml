@@ -177,7 +177,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42028" name="Толькі чытанне"/>
                     <Item id="42029" name="Бягучы шлях і назву файла ў буфер абмену"/>
                     <Item id="42030" name="Бягучую назву файла ў буфер абмену"/>
-                    <Item id="42031" name="Бягучы шлях у буфер абмену"/>
+                    <Item id="42031" name="Бягучы шлях каталога ў буфер абмену"/>
                     <Item id="42087" name="Усе назвы файлаў у буфер абмену"/>
                     <Item id="42088" name="Усе шляхі файлаў у буфер абмену"/>
                     <Item id="42032" name="Шматразовае выкананне макраса..."/>
@@ -376,7 +376,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item CMID="6" name="Кланіраваць у іншы выгляд"/>
                     <Item CMID="7" name="Full File Path to Clipboard"/>
                     <Item CMID="8" name="Назву файла ў буфер абмену"/>
-                    <Item CMID="9" name="Бягучы шлях у буфер абмену"/>
+                    <Item CMID="9" name="Current Dir. Path to Clipboard"/>
                     <Item CMID="10" name="Перайменаваць..."/>
                     <Item CMID="11" name="Перамясціць у сметніцу"/>
                     <Item CMID="12" name="Толькі чытанне"/>
