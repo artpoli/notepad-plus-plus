@@ -70,11 +70,11 @@ void Notepad_plus::command(int id)
 		case IDM_EDIT_INSERT_DATETIME_SHORT:
 		case IDM_EDIT_INSERT_DATETIME_LONG:
 		{
-			SYSTEMTIME currentTime = { 0 };
+			SYSTEMTIME currentTime = {};
 			::GetLocalTime(&currentTime);
 
-			wchar_t dateStr[128] = { 0 };
-			wchar_t timeStr[128] = { 0 };
+			wchar_t dateStr[128] = { '\0' };
+			wchar_t timeStr[128] = { '\0' };
 
 			int dateFlag = (id == IDM_EDIT_INSERT_DATETIME_SHORT) ? DATE_SHORTDATE : DATE_LONGDATE;
 			GetDateFormatEx(LOCALE_NAME_USER_DEFAULT, dateFlag, &currentTime, NULL, dateStr, sizeof(dateStr) / sizeof(dateStr[0]), NULL);
@@ -103,7 +103,7 @@ void Notepad_plus::command(int id)
 
 		case IDM_EDIT_INSERT_DATETIME_CUSTOMIZED:
 		{
-			SYSTEMTIME currentTime = { 0 };
+			SYSTEMTIME currentTime = {};
 			::GetLocalTime(&currentTime);
 
 			NppGUI& nppGUI = NppParameters::getInstance().getNppGUI();
@@ -708,7 +708,7 @@ void Notepad_plus::command(int id)
 			}
 			else if (id == IDM_EDIT_SORTLINES_INTEGER_DESCENDING || id == IDM_EDIT_SORTLINES_INTEGER_ASCENDING)
 			{
-				pSorter = std::unique_ptr<ISorter>(new NaturalSorter(isDescending, fromColumn, toColumn));
+				pSorter = std::unique_ptr<ISorter>(new IntegerSorter(isDescending, fromColumn, toColumn));
 			}
 			else if (id == IDM_EDIT_SORTLINES_DECIMALCOMMA_DESCENDING || id == IDM_EDIT_SORTLINES_DECIMALCOMMA_ASCENDING)
 			{
@@ -2915,6 +2915,9 @@ void Notepad_plus::command(int id)
 
 				//Do not free anything, EmptyClipboard does that
 				_pEditView->execute(SCI_EMPTYUNDOBUFFER);
+
+				// The "save" point is on dirty state, so let's memorize it
+				buf->setSavePointDirty(true);
 			}
 			break;
 		}
@@ -2973,7 +2976,7 @@ void Notepad_plus::command(int id)
 			if (isFirstTime)
 			{
 				_nativeLangSpeaker.changePluginsAdminDlgLang(_pluginsAdminDlg);
-				_pluginsAdminDlg.updateListAndLoadFromJson();
+				_pluginsAdminDlg.updateList();
 			}
 			break;
 		}
@@ -3555,6 +3558,77 @@ void Notepad_plus::command(int id)
 		}
 		break;
 
+		case IDM_WINDOW_SORT_FN_ASC :
+		{
+			WindowsDlg windowsDlg;
+			windowsDlg.init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), _pDocTab);
+			windowsDlg.sortFileNameASC();
+			windowsDlg.doSort();
+		}
+		break;
+
+		case IDM_WINDOW_SORT_FN_DSC :
+		{
+			WindowsDlg windowsDlg;
+			windowsDlg.init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), _pDocTab);
+			windowsDlg.sortFileNameDSC();
+			windowsDlg.doSort();
+		}
+		break;
+
+		case IDM_WINDOW_SORT_FP_ASC :
+		{
+			WindowsDlg windowsDlg;
+			windowsDlg.init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), _pDocTab);
+			windowsDlg.sortFilePathASC();
+			windowsDlg.doSort();
+		}
+		break;
+
+		case IDM_WINDOW_SORT_FP_DSC :
+		{
+			WindowsDlg windowsDlg;
+			windowsDlg.init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), _pDocTab);
+			windowsDlg.sortFilePathDSC();
+			windowsDlg.doSort();
+		}
+		break;
+
+		case IDM_WINDOW_SORT_FT_ASC :
+		{
+			WindowsDlg windowsDlg;
+			windowsDlg.init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), _pDocTab);
+			windowsDlg.sortFileTypeASC();
+			windowsDlg.doSort();
+		}
+		break;
+
+		case IDM_WINDOW_SORT_FT_DSC :
+		{
+			WindowsDlg windowsDlg;
+			windowsDlg.init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), _pDocTab);
+			windowsDlg.sortFileTypeDSC();
+			windowsDlg.doSort();
+		}
+		break;
+
+		case IDM_WINDOW_SORT_FS_ASC :
+		{
+			WindowsDlg windowsDlg;
+			windowsDlg.init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), _pDocTab);
+			windowsDlg.sortFileSizeASC();
+			windowsDlg.doSort();
+		}
+		break;
+
+		case IDM_WINDOW_SORT_FS_DSC :
+		{
+			WindowsDlg windowsDlg;
+			windowsDlg.init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), _pDocTab);
+			windowsDlg.sortFileSizeDSC();
+			windowsDlg.doSort();
+		}
+		break;
 
 		case IDM_SYSTRAYPOPUP_NEWDOC:
 		{
@@ -3670,9 +3744,13 @@ void Notepad_plus::command(int id)
 
 		case IDM_VIEW_CURLINE_HILITING:
 		{
-			COLORREF colour = (NppParameters::getInstance()).getCurLineHilitingColour();
-			_mainEditView.setCurrentLineHiLiting(!_pEditView->isCurrentLineHiLiting(), colour);
-			_subEditView.setCurrentLineHiLiting(!_pEditView->isCurrentLineHiLiting(), colour);
+			NppParameters& nppParams = NppParameters::getInstance();
+
+			COLORREF colour{ nppParams.getCurLineHilitingColour() };
+			bool hilite{ nppParams.getSVP()._currentLineHilitingShow };
+
+			_mainEditView.setCurrentLineHiLiting(hilite, colour);
+			_subEditView.setCurrentLineHiLiting(hilite, colour);
 		}
 		break;
 

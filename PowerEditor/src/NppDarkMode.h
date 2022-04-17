@@ -165,8 +165,12 @@ namespace NppDarkMode
 	void setTreeViewStyle(HWND hwnd);
 	void setBorder(HWND hwnd, bool border = true);
 
+	BOOL CALLBACK enumAutocompleteProc(HWND hwnd, LPARAM lParam);
+	void setDarkAutoCompletion();
+
 	LRESULT onCtlColor(HDC hdc);
 	LRESULT onCtlColorSofter(HDC hdc);
 	LRESULT onCtlColorDarker(HDC hdc);
 	LRESULT onCtlColorError(HDC hdc);
+	LRESULT onCtlColorDarkerBGStaticText(HDC hdc, bool isTextEnabled);
 }

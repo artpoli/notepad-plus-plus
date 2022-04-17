@@ -83,6 +83,7 @@ void RegExtDlg::doDialog(bool isRTL)
 
 intptr_t CALLBACK RegExtDlg::run_dlgProc(UINT Message, WPARAM wParam, LPARAM lParam)
 {
+	NppParameters& nppParam = NppParameters::getInstance();
 	switch (Message)
 	{
 		case WM_INITDIALOG :
@@ -92,14 +93,11 @@ intptr_t CALLBACK RegExtDlg::run_dlgProc(UINT Message, WPARAM wParam, LPARAM lPa
 			::EnableWindow(::GetDlgItem(_hSelf, IDC_ADDFROMLANGEXT_BUTTON), false);
 			::EnableWindow(::GetDlgItem(_hSelf, IDC_REMOVEEXT_BUTTON), false);
 
-			NppParameters& nppParam = NppParameters::getInstance();
 			if (!nppParam.isAdmin())
 			{
 				::EnableWindow(::GetDlgItem(_hSelf, IDC_REGEXT_LANG_LIST), false);
 				::EnableWindow(::GetDlgItem(_hSelf, IDC_REGEXT_LANGEXT_LIST), false);
 				::EnableWindow(::GetDlgItem(_hSelf, IDC_REGEXT_REGISTEREDEXTS_LIST), false);
-				::EnableWindow(::GetDlgItem(_hSelf, IDC_SUPPORTEDEXTS_STATIC), false);
-				::EnableWindow(::GetDlgItem(_hSelf, IDC_REGISTEREDEXTS_STATIC), false);
 			}
 			else
 			{
@@ -119,13 +117,31 @@ intptr_t CALLBACK RegExtDlg::run_dlgProc(UINT Message, WPARAM wParam, LPARAM lPa
 		}
 
 		case WM_CTLCOLORDLG:
-		case WM_CTLCOLORSTATIC:
 		{
 			if (NppDarkMode::isEnabled())
 			{
 				return NppDarkMode::onCtlColorDarker(reinterpret_cast<HDC>(wParam));
 			}
 			break;
+		}
+
+		case WM_CTLCOLORSTATIC:
+		{
+			auto hdcStatic = reinterpret_cast<HDC>(wParam);
+			auto dlgCtrlID = ::GetDlgCtrlID(reinterpret_cast<HWND>(lParam));
+
+			bool isStaticText = dlgCtrlID == IDC_SUPPORTEDEXTS_STATIC || dlgCtrlID == IDC_REGISTEREDEXTS_STATIC;
+			//set the static text colors to show enable/disable instead of ::EnableWindow which causes blurry text
+			if (isStaticText)
+			{
+				return NppDarkMode::onCtlColorDarkerBGStaticText(hdcStatic, nppParam.isAdmin());
+			}
+
+			if (NppDarkMode::isEnabled())
+			{
+				return NppDarkMode::onCtlColorDarker(hdcStatic);
+			}
+			return FALSE;
 		}
 
 		case WM_PRINTCLIENT:
@@ -258,7 +274,7 @@ intptr_t CALLBACK RegExtDlg::run_dlgProc(UINT Message, WPARAM wParam, LPARAM lPa
 					{
 						const size_t itemNameLen = 32;
 						TCHAR itemName[itemNameLen + 1] = { '\0' };
-						auto lbTextLen = ::SendDlgItemMessage(_hSelf, LOWORD(wParam), LB_GETTEXTLEN, i, 0);
+						size_t lbTextLen = ::SendDlgItemMessage(_hSelf, LOWORD(wParam), LB_GETTEXTLEN, i, 0);
 						if (lbTextLen > itemNameLen)
 							return TRUE;
 

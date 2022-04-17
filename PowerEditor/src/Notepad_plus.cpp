@@ -273,9 +273,6 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	_mainEditView.setWrapMode(svp._lineWrapMethod);
 	_subEditView.setWrapMode(svp._lineWrapMethod);
 
-	_mainEditView.execute(SCI_SETCARETLINEVISIBLE, svp._currentLineHilitingShow);
-	_subEditView.execute(SCI_SETCARETLINEVISIBLE, svp._currentLineHilitingShow);
-
 	_mainEditView.execute(SCI_SETENDATLASTLINE, !svp._scrollBeyondLastLine);
 	_subEditView.execute(SCI_SETENDATLASTLINE, !svp._scrollBeyondLastLine);
 
@@ -319,8 +316,12 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	_subEditView.execute(SCI_SETADDITIONALSELECTIONTYPING, true);
 
 	// Turn virtual space on
-	_mainEditView.execute(SCI_SETVIRTUALSPACEOPTIONS, SCVS_RECTANGULARSELECTION);
-	_subEditView.execute(SCI_SETVIRTUALSPACEOPTIONS, SCVS_RECTANGULARSELECTION);
+	int virtualSpaceOptions = SCVS_RECTANGULARSELECTION;
+	if(svp._virtualSpace)
+		virtualSpaceOptions |= SCVS_USERACCESSIBLE | SCVS_NOWRAPLINESTART;
+
+	_mainEditView.execute(SCI_SETVIRTUALSPACEOPTIONS, virtualSpaceOptions);
+	_subEditView.execute(SCI_SETVIRTUALSPACEOPTIONS, virtualSpaceOptions);
 
 	// Turn multi-paste on
 	_mainEditView.execute(SCI_SETMULTIPASTE, SC_MULTIPASTE_EACH);
@@ -331,8 +332,8 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	_subEditView.execute(SCI_SETMOUSESELECTIONRECTANGULARSWITCH, true);
 
 	// Let Scintilla deal with some of the folding functionality
-	_mainEditView.execute(SCI_SETAUTOMATICFOLD, SC_AUTOMATICFOLD_SHOW);
-	_subEditView.execute(SCI_SETAUTOMATICFOLD, SC_AUTOMATICFOLD_SHOW);
+	_mainEditView.execute(SCI_SETAUTOMATICFOLD, SC_AUTOMATICFOLD_SHOW | SC_AUTOMATICFOLD_CHANGE);
+	_subEditView.execute(SCI_SETAUTOMATICFOLD, SC_AUTOMATICFOLD_SHOW | SC_AUTOMATICFOLD_CHANGE);
 
 	// Set padding info
 	_mainEditView.execute(SCI_SETMARGINLEFT, 0, svp._paddingLeft);
@@ -366,6 +367,17 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	TabBarPlus::setDbClk2Close((tabBarStatus & TAB_DBCLK2CLOSE) != 0);
 	TabBarPlus::setVertical((tabBarStatus & TAB_VERTICAL) != 0);
 	drawTabbarColoursFromStylerArray();
+
+	// Autocomplete list and calltip
+	const Style* pStyle = NppParameters::getInstance().getGlobalStylers().findByID(STYLE_DEFAULT);
+	if (pStyle)
+	{
+		NppParameters::getInstance().setCurrentDefaultFgColor(pStyle->_fgColor);
+		NppParameters::getInstance().setCurrentDefaultBgColor(pStyle->_bgColor);
+		drawAutocompleteColoursFromTheme(pStyle->_fgColor, pStyle->_bgColor);
+	}
+	AutoCompletion::drawAutocomplete(_pEditView);
+	AutoCompletion::drawAutocomplete(_pNonEditView);
 
 	// Document Map
 	drawDocumentMapColoursFromStylerArray();
@@ -408,7 +420,8 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	_scintillaCtrls4Plugins.init(_pPublicInterface->getHinst(), hwnd);
 	_pluginsManager.init(nppData);
 
-	_pluginsManager.loadPluginsV2(nppParam.getPluginRootDir());
+	bool enablePluginAdmin = _pluginsAdminDlg.initFromJson();
+	_pluginsManager.loadPlugins(nppParam.getPluginRootDir(), enablePluginAdmin ? &_pluginsAdminDlg.getAvailablePluginUpdateInfoList() : nullptr);
 	_restoreButton.init(_pPublicInterface->getHinst(), hwnd);
 
 	// ------------ //
@@ -458,9 +471,7 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	{
 		::DeleteMenu(_mainMenuHandle, IDM_UPDATE_NPP, MF_BYCOMMAND);
 		::DeleteMenu(_mainMenuHandle, IDM_CONFUPDATERPROXY, MF_BYCOMMAND);
-		HMENU hHelpMenu = ::GetSubMenu(_mainMenuHandle, MENUINDEX_PLUGINS + 1);
-		if (!hHelpMenu)
-			hHelpMenu = ::GetSubMenu(_mainMenuHandle, MENUINDEX_PLUGINS);
+		HMENU hHelpMenu = ::GetSubMenu(_mainMenuHandle, MENUINDEX_HELP);
 		if (hHelpMenu)
 			::DeleteMenu(hHelpMenu, 7, MF_BYPOSITION); // SEPARATOR
 		::DrawMenuBar(hwnd);
@@ -468,6 +479,7 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	//Languages Menu
 	HMENU hLangMenu = ::GetSubMenu(_mainMenuHandle, MENUINDEX_LANGUAGE);
 
+	WcharMbcsConvertor& wmc = WcharMbcsConvertor::getInstance();
 	// Add external languages to menu
 	for (int i = 0; i < nppParam.getNbExternalLang(); ++i)
 	{
@@ -476,14 +488,15 @@ LRESULT Notepad_plus::init(HWND hwnd)
 		int numLangs = ::GetMenuItemCount(hLangMenu);
 		const int bufferSize = 100;
 		TCHAR buffer[bufferSize];
+		const TCHAR* lexerNameW = wmc.char2wchar(externalLangContainer._name.c_str(), CP_ACP);
 
-		int x;
-		for (x = 0; (x == 0 || lstrcmp(externalLangContainer._name, buffer) > 0) && x < numLangs; ++x)
+		int x = 0;
+		for (; (x == 0 || lstrcmp(lexerNameW, buffer) > 0) && x < numLangs; ++x)
 		{
 			::GetMenuString(hLangMenu, x, buffer, bufferSize, MF_BYPOSITION);
 		}
 
-		::InsertMenu(hLangMenu, x - 1, MF_BYPOSITION, IDM_LANG_EXTERNAL + i, externalLangContainer._name);
+		::InsertMenu(hLangMenu, x - 1, MF_BYPOSITION, IDM_LANG_EXTERNAL + i, lexerNameW);
 	}
 
 	if (nppGUI._excludedLangList.size() > 0)
@@ -527,9 +540,8 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	}
 
 	//Plugin menu
-	bool enablePluginAdmin = _pluginsAdminDlg.isValide();
 	_pluginsAdminDlg.setPluginsManager(&_pluginsManager);
-	_pluginsManager.setMenu(_mainMenuHandle, NULL, enablePluginAdmin);
+	_pluginsManager.initMenu(_mainMenuHandle, enablePluginAdmin);
 
 	//Search menu
 	//disable "Search Results Window" under Search Menu 
@@ -544,17 +556,12 @@ LRESULT Notepad_plus::init(HWND hwnd)
 		_subEditView.execute(SCI_USEPOPUP, FALSE);
 	}
 
-	generic_string pluginsTrans, windowTrans;
-	_nativeLangSpeaker.changeMenuLang(_mainMenuHandle, pluginsTrans, windowTrans);
+	_nativeLangSpeaker.changeMenuLang(_mainMenuHandle);
 	::DrawMenuBar(hwnd);
 
 
-	if (pluginsTrans != TEXT(""))
-	{
-		::ModifyMenu(_mainMenuHandle, MENUINDEX_PLUGINS, MF_BYPOSITION, 0, pluginsTrans.c_str());
-	}
 	//Windows menu
-	_windowsMenu.init(_pPublicInterface->getHinst(), _mainMenuHandle, windowTrans.c_str());
+	_windowsMenu.init(_mainMenuHandle);
 
 	// Update context menu strings (translated)
 	vector<MenuItemUnit> & tmp = nppParam.getContextMenuItems();
@@ -2264,7 +2271,7 @@ void Notepad_plus::setupColorSampleBitmapsOnMainMenuItems()
 		{ IDM_SEARCH_GONEXTMARKER_DEF, SCE_UNIVERSAL_FOUND_STYLE, { IDM_SEARCH_GOPREVMARKER_DEF, IDM_SEARCH_MARKEDTOCLIP } }
 	};
 
-	for (int j = 0; j < sizeof(bitmapOnStyleMenuItemsInfo) / sizeof(bitmapOnStyleMenuItemsInfo[0]); ++j)
+	for (size_t j = 0; j < sizeof(bitmapOnStyleMenuItemsInfo) / sizeof(bitmapOnStyleMenuItemsInfo[0]); ++j)
 	{
 		const Style * pStyle = NppParameters::getInstance().getMiscStylerArray().findByID(bitmapOnStyleMenuItemsInfo[j].styleIndic);
 		if (pStyle)
@@ -2370,10 +2377,9 @@ generic_string Notepad_plus::getLangDesc(LangType langType, bool getName)
 	if ((langType >= L_EXTERNAL) && (langType < nppParams.L_END))
 	{
 		ExternalLangContainer & elc = nppParams.getELCFromIndex(langType - L_EXTERNAL);
-		if (getName)
-			return generic_string(elc._name);
-		else
-			return generic_string(elc._desc);
+		WcharMbcsConvertor& wmc = WcharMbcsConvertor::getInstance();
+		const TCHAR* lexerNameW = wmc.char2wchar(elc._name.c_str(), CP_ACP);
+		return generic_string(lexerNameW);
 	}
 
 	if (langType > L_EXTERNAL)
@@ -2381,9 +2387,9 @@ generic_string Notepad_plus::getLangDesc(LangType langType, bool getName)
 
 	generic_string str2Show;
 	if (getName)
-		str2Show = ScintillaEditView::langNames[langType].shortName;
+		str2Show = ScintillaEditView::_langNameInfoArray[langType]._shortName;
 	else
-		str2Show = ScintillaEditView::langNames[langType].longName;
+		str2Show = ScintillaEditView::_langNameInfoArray[langType]._longName;
 
 	if (langType == L_USER)
 	{
@@ -3110,6 +3116,16 @@ void Notepad_plus::maintainIndentation(TCHAR ch)
 	intptr_t tabWidth = _pEditView->execute(SCI_GETTABWIDTH);
 
 	LangType type = _pEditView->getCurrentBuffer()->getLangType();
+	ExternalLexerAutoIndentMode autoIndentMode = ExternalLexerAutoIndentMode::Standard;
+
+	// For external languages, query for custom auto-indentation funcionality
+	if (type >= L_EXTERNAL)
+	{
+		NppParameters& nppParam = NppParameters::getInstance();
+		autoIndentMode = nppParam.getELCFromIndex(type - L_EXTERNAL)._autoIndentMode;
+		if (autoIndentMode == ExternalLexerAutoIndentMode::Custom)
+			return;
+	}
 
 	// Do not alter indentation if we were at the beginning of the line and we pressed Enter
 	if ((((eolMode == SC_EOL_CRLF || eolMode == SC_EOL_LF) && ch == '\n') ||
@@ -3117,7 +3133,8 @@ void Notepad_plus::maintainIndentation(TCHAR ch)
 		return;
 
 	if (type == L_C || type == L_CPP || type == L_JAVA || type == L_CS || type == L_OBJC ||
-		type == L_PHP || type == L_JS || type == L_JAVASCRIPT || type == L_JSP || type == L_CSS || type == L_PERL || type == L_RUST || type == L_POWERSHELL || type == L_JSON)
+		type == L_PHP || type == L_JS || type == L_JAVASCRIPT || type == L_JSP || type == L_CSS || type == L_PERL || 
+		type == L_RUST || type == L_POWERSHELL || type == L_JSON || autoIndentMode == ExternalLexerAutoIndentMode::C_Like)
 	{
 		if (((eolMode == SC_EOL_CRLF || eolMode == SC_EOL_LF) && ch == '\n') ||
 			(eolMode == SC_EOL_CR && ch == '\r'))
@@ -3601,7 +3618,7 @@ size_t Notepad_plus::getSelectedCharNumber(UniMode u)
 			for (size_t j = line1; j <= line2; ++j)
 			{
 				size_t stpos = _pEditView->execute(SCI_GETLINESELSTARTPOSITION, j);
-				if (stpos != INVALID_POSITION)
+				if (static_cast<intptr_t>(stpos) != INVALID_POSITION)
 				{
 					size_t endpos = _pEditView->execute(SCI_GETLINESELENDPOSITION, j);
 					for (size_t pos = stpos; pos < endpos; ++pos)
@@ -4282,7 +4299,7 @@ void Notepad_plus::docOpenInNewInstance(FileTransferMode mode, int x, int y)
 	if (lt != L_USER)
 	{
 		command += TEXT(" -l");
-		command += ScintillaEditView::langNames[lt].lexerName;
+		command += ScintillaEditView::_langNameInfoArray[lt]._langName;
 	}
 	command += TEXT(" -n");
 	command += to_wstring(_pEditView->getCurrentLineNumber() + 1);
@@ -5778,7 +5795,7 @@ bool Notepad_plus::dumpFiles(const TCHAR * outdir, const TCHAR * fileprefix)
 	//start dumping unsaved files to recovery directory
 	bool somethingsaved = false;
 	bool somedirty = false;
-	TCHAR savePath[MAX_PATH] = {0};
+	TCHAR savePath[MAX_PATH] = { '\0' };
 
 	//rescue primary
 	for (size_t i = 0; i < MainFileManager.getNbBuffers(); ++i)
@@ -5803,30 +5820,59 @@ bool Notepad_plus::dumpFiles(const TCHAR * outdir, const TCHAR * fileprefix)
 void Notepad_plus::drawTabbarColoursFromStylerArray()
 {
 	Style *stActText = getStyleFromName(TABBAR_ACTIVETEXT);
-	if (stActText && stActText->_fgColor != -1)
+	if (stActText && static_cast<long>(stActText->_fgColor) != -1)
 		TabBarPlus::setColour(stActText->_fgColor, TabBarPlus::activeText);
 
 	Style *stActfocusTop = getStyleFromName(TABBAR_ACTIVEFOCUSEDINDCATOR);
-	if (stActfocusTop && stActfocusTop->_fgColor != -1)
+	if (stActfocusTop && static_cast<long>(stActfocusTop->_fgColor) != -1)
 		TabBarPlus::setColour(stActfocusTop->_fgColor, TabBarPlus::activeFocusedTop);
 
 	Style *stActunfocusTop = getStyleFromName(TABBAR_ACTIVEUNFOCUSEDINDCATOR);
-	if (stActunfocusTop && stActunfocusTop->_fgColor != -1)
+	if (stActunfocusTop && static_cast<long>(stActunfocusTop->_fgColor) != -1)
 		TabBarPlus::setColour(stActunfocusTop->_fgColor, TabBarPlus::activeUnfocusedTop);
 
 	Style *stInact = getStyleFromName(TABBAR_INACTIVETEXT);
-	if (stInact && stInact->_fgColor != -1)
+	if (stInact && static_cast<long>(stInact->_fgColor) != -1)
 		TabBarPlus::setColour(stInact->_fgColor, TabBarPlus::inactiveText);
-	if (stInact && stInact->_bgColor != -1)
+	if (stInact && static_cast<long>(stInact->_bgColor) != -1)
 		TabBarPlus::setColour(stInact->_bgColor, TabBarPlus::inactiveBg);
+}
+
+void Notepad_plus::drawAutocompleteColoursFromTheme(COLORREF fgColor, COLORREF bgColor)
+{
+	int rbv = GetRValue(bgColor);
+	int gbv = GetGValue(bgColor);
+	int bbv = GetBValue(bgColor);
+
+	int rfv = GetRValue(fgColor);
+	int gfv = GetGValue(fgColor);
+	int bfv = GetBValue(fgColor);
+
+	COLORREF bgDarker = RGB(rbv - 20 <= 0 ? 0 : rbv - 20, gbv - 20 <= 0 ? 0 : gbv - 20, bbv - 20 <= 0 ? 0 : bbv - 20);
+
+	if (bgColor == RGB(0, 0, 0)) // if the bg is pure black
+		bgDarker = RGB(20, 20, 20); // make bgDarker lighter for distinguishing between both
+
+	COLORREF fgDarker = RGB(rfv - 20 <= 0 ? 0 : rfv - 20, gfv - 20 <= 0 ? 0 : gfv - 20, bfv - 20 <= 0 ? 0 : bfv - 20);
+	COLORREF fgLigher = RGB(rfv + 20 >= 255 ? 255 : rfv + 20, gfv + 20 >= 255 ? 255 : gfv + 20, bfv + 20 >= 255 ? 255 : bfv + 20);
+
+	AutoCompletion::setColour(bgDarker, AutoCompletion::AutocompleteColorIndex::autocompleteBg);
+	AutoCompletion::setColour(bgColor, AutoCompletion::AutocompleteColorIndex::selectedBg);
+	AutoCompletion::setColour(fgDarker, AutoCompletion::AutocompleteColorIndex::autocompleteText);
+	AutoCompletion::setColour(fgColor, AutoCompletion::AutocompleteColorIndex::selectedText);
+
+	AutoCompletion::setColour(bgDarker, AutoCompletion::AutocompleteColorIndex::calltipBg);
+	AutoCompletion::setColour(fgDarker, AutoCompletion::AutocompleteColorIndex::calltipText);
+	AutoCompletion::setColour(fgLigher, AutoCompletion::AutocompleteColorIndex::calltipHighlight);
+	
 }
 
 void Notepad_plus::drawDocumentMapColoursFromStylerArray()
 {
 	Style* docMap = getStyleFromName(VIEWZONE_DOCUMENTMAP);
-	if (docMap && docMap->_fgColor != -1)
+	if (docMap && static_cast<long>(docMap->_fgColor) != -1)
 		ViewZoneDlg::setColour(docMap->_fgColor, ViewZoneDlg::ViewZoneColorIndex::focus);
-	if (docMap && docMap->_bgColor != -1)
+	if (docMap && static_cast<long>(docMap->_bgColor) != -1)
 		ViewZoneDlg::setColour(docMap->_bgColor, ViewZoneDlg::ViewZoneColorIndex::frost);
 }
 
@@ -6104,6 +6150,7 @@ std::vector<generic_string> Notepad_plus::loadCommandlineParams(const TCHAR * co
 		return std::vector<generic_string>();
 
 	NppParameters& nppParams = NppParameters::getInstance();
+	const NppGUI& nppGUI = nppParams.getNppGUI();
 	FileNameStringSplitter fnss(commandLine);
 
 	// loading file as session file is allowed only when there is only one file
@@ -6115,7 +6162,8 @@ std::vector<generic_string> Notepad_plus::loadCommandlineParams(const TCHAR * co
 			const bool isSnapshotMode = false;
 			const bool shouldLoadFileBrowser = true;
 
-			nppParams.setLoadedSessionFilePath(fnss.getFileName(0));
+			if ((nppGUI._multiInstSetting == multiInstOnSession) || (nppGUI._multiInstSetting == multiInst))
+				nppParams.setLoadedSessionFilePath(fnss.getFileName(0));
 			loadSession(session2Load, isSnapshotMode, shouldLoadFileBrowser);
 		}
 		return std::vector<generic_string>();
@@ -6123,9 +6171,9 @@ std::vector<generic_string> Notepad_plus::loadCommandlineParams(const TCHAR * co
 
  	LangType lt = pCmdParams->_langType;
 	generic_string udl = pCmdParams->_udlName;
-	int lineNumber =  pCmdParams->_line2go;
-	int columnNumber = pCmdParams->_column2go;
-	size_t positionNumber = pCmdParams->_pos2go;
+	intptr_t lineNumber =  pCmdParams->_line2go;
+	intptr_t columnNumber = pCmdParams->_column2go;
+	intptr_t positionNumber = pCmdParams->_pos2go;
 	bool recursive = pCmdParams->_isRecursive;
 	bool readOnly = pCmdParams->_isReadOnly;
 	bool openFoldersAsWorkspace = pCmdParams->_openFoldersAsWorkspace;
@@ -6437,23 +6485,9 @@ bool Notepad_plus::reloadLang()
 
     nppParam.reloadContextMenuFromXmlTree(_mainMenuHandle, _pluginsManager.getMenuHandle());
 
-	generic_string pluginsTrans, windowTrans;
-	_nativeLangSpeaker.changeMenuLang(_mainMenuHandle, pluginsTrans, windowTrans);
+	_nativeLangSpeaker.changeMenuLang(_mainMenuHandle);
     ::DrawMenuBar(_pPublicInterface->getHSelf());
 
-	int indexWindow = ::GetMenuItemCount(_mainMenuHandle) - 3;
-
-	if (pluginsTrans != TEXT(""))
-	{
-		::ModifyMenu(_mainMenuHandle, indexWindow - 1, MF_BYPOSITION, 0, pluginsTrans.c_str());
-	}
-
-	if (windowTrans != TEXT(""))
-	{
-		::ModifyMenu(_mainMenuHandle, indexWindow, MF_BYPOSITION, 0, windowTrans.c_str());
-		windowTrans += TEXT("...");
-		::ModifyMenu(_mainMenuHandle, IDM_WINDOW_WINDOWS, MF_BYCOMMAND, IDM_WINDOW_WINDOWS, windowTrans.c_str());
-	}
 	// Update scintilla context menu strings
 	vector<MenuItemUnit> & tmp = nppParam.getContextMenuItems();
 	size_t len = tmp.size();
@@ -6578,7 +6612,7 @@ void Notepad_plus::launchClipboardHistoryPanel()
 
 		NativeLangSpeaker *pNativeSpeaker = nppParams.getNativeLangSpeaker();
 		bool isRTL = pNativeSpeaker->isRTL();
-		tTbData	data = {0};
+		tTbData	data = {};
 		_pClipboardHistoryPanel->create(&data, isRTL);
 
 		::SendMessage(_pPublicInterface->getHSelf(), NPPM_MODELESSDIALOG, MODELESSDIALOGREMOVE, reinterpret_cast<LPARAM>(_pClipboardHistoryPanel->getHSelf()));
@@ -6631,7 +6665,7 @@ void Notepad_plus::launchDocumentListPanel()
 		_pDocumentListPanel->init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), hImgLst);
 		NativeLangSpeaker *pNativeSpeaker = nppParams.getNativeLangSpeaker();
 		bool isRTL = pNativeSpeaker->isRTL();
-		tTbData	data = {0};
+		tTbData	data = {};
 		_pDocumentListPanel->create(&data, isRTL);
 
 		::SendMessage(_pPublicInterface->getHSelf(), NPPM_MODELESSDIALOG, MODELESSDIALOGREMOVE, reinterpret_cast<LPARAM>(_pDocumentListPanel->getHSelf()));
@@ -6682,7 +6716,7 @@ void Notepad_plus::launchAnsiCharPanel()
 
 		NativeLangSpeaker *pNativeSpeaker = nppParams.getNativeLangSpeaker();
 		bool isRTL = pNativeSpeaker->isRTL();
-		tTbData	data = {0};
+		tTbData	data = {};
 		_pAnsiCharPanel->create(&data, isRTL);
 
 		::SendMessage(_pPublicInterface->getHSelf(), NPPM_MODELESSDIALOG, MODELESSDIALOGREMOVE, reinterpret_cast<LPARAM>(_pAnsiCharPanel->getHSelf()));
@@ -6806,7 +6840,7 @@ void Notepad_plus::checkProjectMenuItem()
 			{
 				UINT const ids [] = {IDM_VIEW_PROJECT_PANEL_1, IDM_VIEW_PROJECT_PANEL_2, IDM_VIEW_PROJECT_PANEL_3};
 				UINT id = GetMenuItemID (subMenu, j);
-				for (int k = 0; k < _countof(ids); k++)
+				for (size_t k = 0; k < _countof(ids); k++)
 				{
 					if (id == ids [k])
 					{
@@ -6905,7 +6939,7 @@ void Notepad_plus::launchDocMap()
 		_pDocMap = new DocumentMap();
 		_pDocMap->init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), &_pEditView);
 
-		tTbData	data = {0};
+		tTbData	data = {};
 		_pDocMap->create(&data);
 
 		::SendMessage(_pPublicInterface->getHSelf(), NPPM_MODELESSDIALOG, MODELESSDIALOGREMOVE, reinterpret_cast<LPARAM>(_pDocMap->getHSelf()));
@@ -6952,7 +6986,7 @@ void Notepad_plus::launchFunctionList()
 		_pFuncList = new FunctionListPanel();
 		_pFuncList->init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), &_pEditView);
 
-		tTbData	data = {0};
+		tTbData	data = {};
 		_pFuncList->create(&data);
 
 		::SendMessage(_pPublicInterface->getHSelf(), NPPM_MODELESSDIALOG, MODELESSDIALOGREMOVE, reinterpret_cast<LPARAM>(_pFuncList->getHSelf()));
@@ -7118,7 +7152,7 @@ static const QuoteParams quotes[] =
 	{TEXT("Anonymous #65"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("A man without God is like a fish without a bicycle.")},
 	{TEXT("Anonymous #66"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("I hate how spiders just sit there on the walls and act like they pay rent!")},
 	{TEXT("Anonymous #67"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Whenever someone starts a sentence by saying \"I'm not racist...\"),they are about to say something super racist.")},
-	{TEXT("Anonymous #68"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("I'm not laughing at you, I'm laughing with you, you're just not laughing.")},
+	{TEXT("Anonymous #68"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("I'm not laughing at you, I'm laughing with you, you're just not laughing.\n")},
 	{TEXT("Anonymous #69"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("Women need a reason to have sex. Men just need a place.")},
 	{TEXT("Anonymous #70"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("If abortion is murder then are condoms kidnapping?")},
 	{TEXT("Anonymous #71"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("Men also have feelings.\nFor example, they can feel hungry.")},
@@ -7128,12 +7162,12 @@ static const QuoteParams quotes[] =
 	{TEXT("Anonymous #75"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("I think therefore I am\nnot religious.")},
 	{TEXT("Anonymous #76"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("Even if being gay were a choice, so what?\nPeople choose to be assholes and they can get married.")},
 	{TEXT("Anonymous #77"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("Governments are like diapers.\nThey should be changed often, and for the same reason.")},
-	{TEXT("Anonymous #78"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("Mathématiquement, un cocu est un entier qui partage sa moitié avec un tiers.")},
-	{TEXT("Anonymous #79"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("I'm a creationist.\nI believe man created God.")},
-	{TEXT("Anonymous #80"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("Let's eat kids.\nLet's eat, kids.\n\nUse a comma.\nSave lives.")},
+	{TEXT("Anonymous #78"), QuoteParams::slow, true, SC_CP_UTF8, L_TEXT, TEXT("Mathématiquement, un cocu est un entier qui partage sa moitié avec un tiers.\n")},
+	{TEXT("Anonymous #79"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("I'm a creationist.\nI believe man created God.\n")},
+	{TEXT("Anonymous #80"), QuoteParams::slow, true, SC_CP_UTF8, L_TEXT, TEXT("Let's eat kids.\nLet's eat, kids.\n\nUse a comma.\nSave lives.\n")},
 	{TEXT("Anonymous #81"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("A male engineering student was crossing a road one day when a frog called out to him and said, \"If you kiss me, I'll turn into a beautiful princess.\" He bent over, picked up the frog, and put it in his pocket.\n\nThe frog spoke up again and said, \"If you kiss me and turn me back into a beautiful princess, I will stay with you for one week.\" The engineering student took the frog out of his pocket, smiled at it; and returned it to his pocket.\n\nThe frog then cried out, \"If you kiss me and turn me back into a princess, I'll stay with you and do ANYTHING you want.\" Again the boy took the frog out, smiled at it, and put it back into his pocket.\n\nFinally, the frog asked, \"What is the matter? I've told you I'm a beautiful princess, that I'll stay with you for a week and do anything you want. Why won't you kiss me?\" The boy said, \"Look I'm an engineer. I don't have time for a girlfriend, but a talking frog is cool.\"\n")},
-	{TEXT("Anonymous #82"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("Gamers never die.\nThey just go offline.")},
-	{TEXT("Anonymous #83"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("Copy from one, it's plagiarism.\nCopy from two, it's research.")},
+	{TEXT("Anonymous #82"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("Gamers never die.\nThey just go offline.\n")},
+	{TEXT("Anonymous #83"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("Copy from one, it's plagiarism.\nCopy from two, it's research.\n")},
 	{TEXT("Anonymous #84"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("Saying that Java is nice because it works on all OSes is like saying that anal sex is nice because it works on all genders.")},
 	{TEXT("Anonymous #85"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Race, religion, ethnic pride and nationalism etc... does nothing but teach you how to hate people that you've never met.")},
 	{TEXT("Anonymous #86"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("Farts are just the ghosts of the things we eat.")},
@@ -7230,6 +7264,18 @@ static const QuoteParams quotes[] =
 	{TEXT("Anonymous #178"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("When I die, I hope it's early in the morning so I don't have to go to work that day for no reason.\n") },
 	{TEXT("Anonymous #179"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Workers plaay football\nManagers play tennis\nCEOs play golf\n\nHigher the function, smaller the balls.\n") },
 	{TEXT("Anonymous #180"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Friends are just like trees.\nThey fall down when you hit them multiple times with an axe.\n") },
+	{TEXT("Anonymous #181"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("I met a magical Genie. He gave me one wish.\nI said: \"I wish I could be you.\"\nThe Genue saud: \"Weurd wush but U wull grant ut.\"\n") },
+	{TEXT("Anonymous #182"), QuoteParams::slow, false, SC_CP_UTF8, L_CPP, TEXT("printf(\"%s%s\", \"\\\\o/\\n| |\\n| |8=\", \"=D\\n/ \\\\\\n\");\n") },
+	{TEXT("Anonymous #183"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Dear Optimist, Pessimist and Realist,\n\nWhile you guys were busy arguing about\nthe glass of water, I drank it!\n\n\n					Sincerely,\n					The Opportunist\n") },
+	{TEXT("Anonymous #184"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("Dance like nobody's watching.\nEncrypt like everyone is.\n") },
+	{TEXT("Anonymous #185"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Me: \"I'm 45 years old but I've got a 19 year-old young man's body\"\nHer: \"Show me\"\nI opened the freezer to show her the body.\nShe screamed.\nMe too.\n") },
+	{TEXT("Anonymous #186"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("Everyone complains about the weather,\nbut no one wants to sacrifice a virgin to change it.\n") },
+	{TEXT("Anonymous #187"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("If you are alone at home and feel lonely:\nTurn off the lights, turn on the TV and watch a horror movie.\nThen you will have feeling that there are someone hidden in the kitchen, in the toilet\nand even under your bed.\n") },
+	{TEXT("Anonymous #188"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("*Knock knock*\n\"Race condition\"\n\"Who's there?\"\n") },
+	{TEXT("Anonymous #189"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("The two most difficult programming challenges are naming things, cache invalidation, and off-by-one errors.\n") },
+	{TEXT("Anonymous #190"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("The greatest security vulnerability in any computer system is located between the keyboard and the chair.\n") },
+	{TEXT("Anonymous #191"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("My biggest talent is always being able to tell what's in a wrapped present.\n\nIt's a gift.\n") },
+	{TEXT("Anonymous #192"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("You can't force someone to love you.\nBut you can lock this person in the basement and wait for him/her to develop Stockholm syndrome.\n") },
 	{TEXT("xkcd"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Never have I felt so close to another soul\nAnd yet so helplessly alone\nAs when I Google an error\nAnd there's one result\nA thread by someone with the same problem\nAnd no answer\nLast posted to in 2003\n\n\"Who were you, DenverCoder9?\"\n\"What did you see?!\"\n\n(ref: https://xkcd.com/979/)") },
 	{TEXT("A developer"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("No hugs & kisses.\nOnly bugs & fixes.") },
 	{TEXT("Elon Musk"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Don't set your password as your child's name.\nName your child after your password.") },
@@ -7257,6 +7303,7 @@ static const QuoteParams quotes[] =
 	{TEXT("Chewbacca"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("Uuuuuuuuuur Ahhhhrrrrrr\nUhrrrr Ahhhhrrrrrr\nAaaarhg...")},
 	{TEXT("Alexandria Ocasio-Cortez"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("No one ever makes a billion dollars.\nYou TAKE a billion dollars.")},
 	{TEXT("Freddy Krueger"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("Never stop dreaming.\n")},
+	{TEXT("Ricky Gervais"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Feel free to mock my lack of belief in any Gods.\nIt won't hurt my feelings.\nIt won't damage my faith in reason.\nAnd I won't kill you for it.")},
 	{TEXT("Francis bacon"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Knowledge is power. France is bacon.\n\nWhen I was young my father said to me: \"Knowledge is power, Francis Bacon.\" I understood it as \"Knowledge is power, France is bacon.\"\n\nFor more than a decade I wondered over the meaning of the second part and what was the surreal linkage between the two. If I said the quote to someone, \"Knowledge is power, France is Bacon\", they nodded knowingly. Or someone might say, \"Knowledge is power\" and I'd finish the quote \"France is Bacon\" and they wouldn't look at me like I'd said something very odd, but thoughtfully agree. I did ask a teacher what did \"Knowledge is power, France is bacon\" mean and got a full 10-minute explanation of the \"knowledge is power\" bit but nothing on \"France is bacon\". When I prompted further explanation by saying \"France is bacon?\" in a questioning tone I just got a \"yes\". At 12 I didn't have the confidence to press it further. I just accepted it as something I'd never understand.\n\nIt wasn't until years later I saw it written down that the penny dropped.\n")},
 	{TEXT("Space Invaders"), QuoteParams::speedOfLight, false, SC_CP_UTF8, L_TEXT, TEXT("\n\n       ▄██▄\n     ▄██████▄           █   █  █▀▀▀\n     ██▄██▄██           █   █  █▄▄\n      ▄▀▄▄▀▄            █ █ █  █\n     ▀ ▀  ▀ ▀           ▀▀ ▀▀  ▀▀▀▀\n\n      ▀▄   ▄▀           ▄█▀▀▀  ▄█▀▀█▄  █▀▄▀█  █▀▀▀\n     ▄█▀███▀█▄          █      █    █  █ ▀ █  █▄▄\n    █ █▀▀▀▀▀█ █         █▄     █▄  ▄█  █   █  █\n       ▀▀ ▀▀             ▀▀▀▀   ▀▀▀▀   ▀   ▀  ▀▀▀▀\n\n     ▄▄█████▄▄          ▀█▀  █▀▄  █\n    ██▀▀███▀▀██          █   █ ▀▄ █\n    ▀▀██▀▀▀██▀▀          █   █  ▀▄█\n    ▄█▀ ▀▀▀ ▀█▄         ▀▀▀  ▀   ▀▀\n\n      ▄▄████▄▄          █▀▀█  █▀▀▀  ▄▀▀▄  ▄█▀▀▀  █▀▀▀\n    ▄██████████▄        █▄▄█  █▄▄   █▄▄█  █      █▄▄ \n  ▄██▄██▄██▄██▄██▄      █     █     █  █  █▄     █   \n    ▀█▀  ▀▀  ▀█▀        ▀     ▀▀▀▀  ▀  ▀   ▀▀▀▀  ▀▀▀▀\n\n") },
 	{TEXT("#JeSuisCharlie"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Freedom of expression is like the air we breathe, we don't feel it, until people take it away from us.\n\nFor this reason, Je suis Charlie, not because I endorse everything they published, but because I cherish the right to speak out freely without risk even when it offends others.\nAnd no, you cannot just take someone's life for whatever he/she expressed.\n\nHence this \"Je suis Charlie\" edition.\n")}

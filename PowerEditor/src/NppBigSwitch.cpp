@@ -181,7 +181,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		{
 			if (NppDarkMode::isEnabled())
 			{
-				RECT rc = { 0 };
+				RECT rc = {};
 				GetClientRect(hwnd, &rc);
 				::FillRect(reinterpret_cast<HDC>(wParam), &rc, NppDarkMode::getDarkerBackgroundBrush());
 				return 0;
@@ -505,7 +505,15 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 		case NPPM_RELOADFILE:
 		{
-			BufferID id = MainFileManager.getBufferFromName(reinterpret_cast<const TCHAR *>(lParam));
+			TCHAR longNameFullpath[MAX_PATH];
+			const TCHAR* pFilePath = reinterpret_cast<const TCHAR*>(lParam);
+			wcscpy_s(longNameFullpath, MAX_PATH, pFilePath);
+			if (_tcschr(longNameFullpath, '~'))
+			{
+				::GetLongPathName(longNameFullpath, longNameFullpath, MAX_PATH);
+			}
+
+			BufferID id = MainFileManager.getBufferFromName(longNameFullpath);
 			if (id != BUFFER_INVALID)
 				doReload(id, wParam != 0);
 			break;
@@ -851,11 +859,17 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		}
 
 		case NPPM_GETCURRENTWORD:
+		case NPPM_GETCURRENTLINESTR:
 		{
 			const int strSize = CURRENTWORD_MAXLENGTH;
-			TCHAR str[strSize];
+			TCHAR str[strSize] = { '\0' };
 			TCHAR *pTchar = reinterpret_cast<TCHAR *>(lParam);
-			_pEditView->getGenericSelectedText(str, strSize);
+
+			if (message == NPPM_GETCURRENTWORD)
+				_pEditView->getGenericSelectedText(str, strSize);
+			else if (message == NPPM_GETCURRENTLINESTR)
+				_pEditView->getLine(_pEditView->getCurrentLineNumber(), str, strSize);
+
 			// For the compability reason, if wParam is 0, then we assume the size of generic_string buffer (lParam) is large enough.
 			// otherwise we check if the generic_string buffer size is enough for the generic_string to copy.
 			if (wParam != 0)
@@ -1281,11 +1295,13 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			return MAKELONG(auxVer, mainVer);
 		}
 
-		case WM_GETCURRENTMACROSTATUS:
+		case NPPM_GETCURRENTMACROSTATUS:
 		{
 			if (_recordingMacro)
-				return MACRO_RECORDING_IN_PROGRESS;
-			return (_macro.empty())?0:MACRO_RECORDING_HAS_STOPPED;
+				return static_cast<LRESULT>(MacroStatus::RecordInProgress);
+			if (_playingBackMacro)
+				return static_cast<LRESULT>(MacroStatus::PlayingBack);
+			return (_macro.empty()) ? static_cast<LRESULT>(MacroStatus::Idle) : static_cast<LRESULT>(MacroStatus::RecordingStopped);
 		}
 
 		case WM_FRSAVE_INT:
@@ -1552,6 +1568,20 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			bool withBorderEdge = (lParam == 1);
 			_mainEditView.setBorderEdge(withBorderEdge);
 			_subEditView.setBorderEdge(withBorderEdge);
+			return TRUE;
+		}
+
+		case NPPM_INTERNAL_VIRTUALSPACE:
+		{
+			const bool virtualSpace = (nppParam.getSVP())._virtualSpace;
+
+			int virtualSpaceOptions = SCVS_RECTANGULARSELECTION;
+			if(virtualSpace)
+				virtualSpaceOptions |= SCVS_USERACCESSIBLE | SCVS_NOWRAPLINESTART;
+
+			_mainEditView.execute(SCI_SETVIRTUALSPACEOPTIONS, virtualSpaceOptions);
+			_subEditView.execute(SCI_SETVIRTUALSPACEOPTIONS, virtualSpaceOptions);
+
 			return TRUE;
 		}
 
@@ -1840,12 +1870,16 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			drawDocumentMapColoursFromStylerArray();
 
 			// Update default fg/bg colors in Parameters for both internal/plugins docking dialog
-			const Style * pStyle = NppParameters::getInstance().getGlobalStylers().findByID(STYLE_DEFAULT);
+			const Style* pStyle = NppParameters::getInstance().getGlobalStylers().findByID(STYLE_DEFAULT);
 			if (pStyle)
 			{
 				NppParameters::getInstance().setCurrentDefaultFgColor(pStyle->_fgColor);
 				NppParameters::getInstance().setCurrentDefaultBgColor(pStyle->_bgColor);
+				drawAutocompleteColoursFromTheme(pStyle->_fgColor, pStyle->_bgColor);
 			}
+
+			AutoCompletion::drawAutocomplete(_pEditView);
+			AutoCompletion::drawAutocomplete(_pNonEditView);
 
 			NppDarkMode::calculateTreeViewStyle();
 			auto refreshOnlyTreeView = static_cast<LPARAM>(TRUE);
@@ -1967,7 +2001,8 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 				}
 
 				Session currentSession;
-				getCurrentOpenedFiles(currentSession, true);
+				if (!((nppgui._multiInstSetting == monoInst) && !nppgui._rememberLastSession))
+					getCurrentOpenedFiles(currentSession, true);
 
 				if (nppgui._rememberLastSession)
 				{
@@ -2538,6 +2573,31 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			return langDesc.length();
 		}
 
+		case NPPM_GETEXTERNALLEXERAUTOINDENTMODE:
+		{
+			int index = nppParam.getExternalLangIndexFromName(reinterpret_cast<TCHAR*>(wParam));
+			if (index < 0)
+				return FALSE;
+
+			*(reinterpret_cast<ExternalLexerAutoIndentMode*>(lParam)) = nppParam.getELCFromIndex(index)._autoIndentMode;
+			return TRUE;
+		}
+
+		case NPPM_SETEXTERNALLEXERAUTOINDENTMODE:
+		{
+			int index = nppParam.getExternalLangIndexFromName(reinterpret_cast<TCHAR*>(wParam));
+			if (index < 0)
+				return FALSE;
+
+			nppParam.getELCFromIndex(index)._autoIndentMode = static_cast<ExternalLexerAutoIndentMode>(lParam);
+			return TRUE;
+		}
+
+		case NPPM_ISAUTOINDENTON:
+		{
+			return nppParam.getNppGUI()._maitainIndent;
+		}
+
 		case NPPM_DOCLISTDISABLEPATHCOLUMN:
 		case NPPM_DOCLISTDISABLEEXTCOLUMN:
 		{
@@ -2837,6 +2897,9 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 							_pDocTab->setBuffer(i, tempBufs[nmdlg->Items[i]]);
 						}
 						activateBuffer(_pDocTab->getBufferByIndex(_pDocTab->getCurrentTabIndex()), currentView());
+
+						::SendMessage(_pDocTab->getHParent(), NPPM_INTERNAL_DOCORDERCHANGED, 0, _pDocTab->getCurrentTabIndex());
+
 						break;
 					}
 				}

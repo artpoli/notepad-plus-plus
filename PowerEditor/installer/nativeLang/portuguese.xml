@@ -3,7 +3,7 @@
 The comments are here for explanation, it's not necessary to translate them.
 -->
 <NotepadPlus>
-    <Native-Langue name="Portuguese Portugal" filename="portuguese.xml" version="8.2.1">
+    <Native-Langue name="Portuguese Portugal" filename="portuguese.xml" version="8.3.3">
         <Menu>
             <Main>
                 <!-- Main Menu Entries -->
@@ -18,8 +18,8 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item menuId="tools" name="F&amp;erramentas"/>
                     <Item menuId="macro" name="&amp;Macro"/>
                     <Item menuId="run" name="E&amp;xecutar"/>
-                    <Item idName="Plugins" name="P&amp;lugins"/>
-                    <Item idName="Window" name="J&amp;anela"/>
+                    <Item menuId="Plugins" name="P&amp;lugins"/>
+                    <Item menuId="Window" name="J&amp;anela"/>
                 </Entries>
                 <!-- Sub Menu Entries -->
                 <SubEntries>
@@ -73,6 +73,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item subMenuId="settings-import" name="Importar"/>
                     <Item subMenuId="tools-md5" name="MD5"/>
                     <Item subMenuId="tools-sha256" name="SHA-256"/>
+                    <Item subMenuId="window-sortby" name="Ordenar por"/>
                 </SubEntries>
 
                 <!-- all menu item -->
@@ -362,6 +363,16 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42041" name="Limpar a lista dos ficheiros recentes"/>
                     <Item id="48016" name="Modificar atalho/eliminar macro..."/>
                     <Item id="48017" name="Modificar atalho/eliminar comando..."/>
+
+                    <Item id="11001" name="Janelas..."/>
+                    <Item id="11002" name="Nome de A a Z"/>
+                    <Item id="11003" name="Nome de Z a A"/>
+                    <Item id="11004" name="Localização de A a Z"/>
+                    <Item id="11005" name="Localização de Z a A"/>
+                    <Item id="11006" name="Tipo de A a Z"/>
+                    <Item id="11007" name="Tipo de Z a A"/>
+                    <Item id="11008" name="Tamanho de menor a maior"/>
+                    <Item id="11009" name="Tamanho de maior a menor"/>
                 </Commands>
             </Main>
             <Splitter>
@@ -395,7 +406,7 @@ The comments are here for explanation, it's not necessary to translate them.
         </Menu>
 
         <Dialog>
-            <Find title="" titleFind="Encontrar" titleReplace="Substituir" titleFindInFiles="Encontrar nos ficheiros" titleMark="Marca">
+            <Find title="" titleFind="Encontrar" titleReplace="Substituir" titleFindInFiles="Encontrar nos ficheiros" titleFindInProjects="Encontrar nos projetos" titleMark="Marcar">
                 <Item id="1"    name="Encontrar seguinte"/>
                 <Item id="1722" name="Direção para trás"/>
                 <Item id="2"    name="Fechar"/>
@@ -635,6 +646,14 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44107" name="Mudar pasta como área de trabalho"/>
                     <Item id="44109" name="Mudar para lista de documentos"/>
                     <Item id="44108" name="Mudar lista de funções"/>
+                    <Item id="11002" name="Ordenar por nome de A a Z"/>
+                    <Item id="11003" name="Ordenar por nome de Z a A"/>
+                    <Item id="11004" name="Ordenar por localização de A a Z"/>
+                    <Item id="11005" name="Ordenar por localização de Z a A"/>
+                    <Item id="11006" name="Ordenar por tipo de A a Z"/>
+                    <Item id="11007" name="Ordenar por tipo de Z a A"/>
+                    <Item id="11008" name="Ordenar por tamanho de menor a maior"/>
+                    <Item id="11009" name="Ordenar por tamanho de maior a menor"/>
                 </MainCommandNames>
             </ShortcutMapper>
             <ShortcutMapperSubDialg title="Atalho">
@@ -865,6 +884,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6215" name="Ativar letra suave"/>
                     <Item id="6236" name="Ativar deslizamento para além da última linha"/>
                     <Item id="6239" name="Manter selecção quando clicar com o botão direito do rato fora da selecção"/>
+                    <Item id="6245" name="Ativar o espaço virtual"/>
                 </Scintillas>
 
                 <DarkMode title="Modo Escuro">
@@ -916,9 +936,9 @@ Pode definir vários marcadores de coluna utilizando espaço branco para separar
 
                 <NewDoc title="Novo documento">
                     <Item id="6401" name="Formato (Fim da linha)"/>
-                    <Item id="6402" name="Windows"/>
-                    <Item id="6403" name="Unix"/>
-                    <Item id="6404" name="Mac"/>
+                    <Item id="6402" name="Windows (CR LF)"/>
+                    <Item id="6403" name="Unix (LF)"/>
+                    <Item id="6404" name="Mac (CR)"/>
                     <Item id="6405" name="Codificação"/>
                     <Item id="6406" name="ANSI"/>
                     <Item id="6407" name="UTF-8"/>
@@ -996,6 +1016,15 @@ Pode definir vários marcadores de coluna utilizando espaço branco para separar
                     <Item id="6721" name="Parte central"/>
                     <Item id="6722" name="Parte direita"/>
                     <Item id="6723" name="Adicionar"/>
+                    <ComboBox id="6724">
+                        <Element name="Localização do nome completo do ficheiro"/>
+                        <Element name="Nome do ficheiro"/>
+                        <Element name="Diretório do ficheiro"/>
+                        <Element name="Página"/>
+                        <Element name="Data e Hora (curto)"/>
+                        <Element name="Data e Hora (longo)"/>
+                        <Element name="Hora"/>
+                    </ComboBox>
                     <Item id="6725" name="Variável:"/>
                     <Item id="6727" name="Aqui mostra as definições da sua variável"/>
                     <Item id="6728" name="Cabeçalho e Rodapé"/>
@@ -1043,8 +1072,8 @@ Pode definir vários marcadores de coluna utilizando espaço branco para separar
                     <Item id="6810" name="Completar palavra"/>
                     <Item id="6816" name="Completar função e palavra"/>
                     <Item id="6869" name="Inserir seleção"/>
-                    <Item id="6870" name="TAB"/>
-                    <Item id="6871" name="ENTER"/>
+                    <Item id="6870" name="TAB"/> <!-- TAB key on the keyboard, it's not necessary to translate it normally -->
+                    <Item id="6871" name="ENTER"/> <!-- ENTER key on the keyboard, it's not necessary to translate it normally -->
                     <Item id="6824" name="Ignorar números"/>
                     <Item id="6811" name="De"/>
                     <Item id="6813" name="º. caráter"/>
@@ -1243,6 +1272,9 @@ Deseja ir à página Notepad++ para descarregar a versão mais recente?"/> <!-- 
             <DocTooDirtyToMonitor title="Problema de monitorização" message="O documento está corrompido. Guarde a modificação antes de a monitorizar."/>
             <DocNoExistToMonitor title="Problema de monitorização" message="O ficheiro deve existir para ser monitorizado."/>
             <FileTooBigToOpen title="Problema do tamanho do ficheiro" message="O ficheiro é demasiado grande para ser aberto pelo Notepad++"/> <!-- HowToReproduce: Try to open a 4GB file (it's not easy to reproduce, it depends on your system). -->
+            <FileLoadingException title="Código de exceção: $STR_REPLACE$" message="Ocorreu um erro ao carregar o ficheiro!"/>
+            <WantToOpenHugeFile title="Aviso de abertura de ficheiro enorme" message="A abertura de um ficheiro enorme de 2GB+ pode demorar vários minutos.
+Deseja abri-lo?"/>
             <CreateNewFileOrNot title="Criar novo ficheiro" message="&quot;$STR_REPLACE$&quot; não existe. Criá-lo?"/>
             <CreateNewFileError title="Criar novo ficheiro" message="Não é possível criar o ficheiro &quot;$STR_REPLACE$&quot;."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <OpenFileError title="ERRO" message="Não pode abrir ficheiro &quot;$STR_REPLACE$&quot;."/>
@@ -1318,6 +1350,8 @@ Continuar?"/>
             <PanelTitle name="Lista da função"/>
             <SortTip name="Ordenar"/>
             <ReloadTip name="Recarregar"/>
+            <PreferencesTip name="Preferências"/>
+            <PreferencesInitialSort name="Ordenar funções (de A a Z) por predefinição"/>
         </FunctionList>
         <FolderAsWorkspace>
             <PanelTitle name="Pasta como área de trabalho"/>
@@ -1392,12 +1426,12 @@ Continuar?"/>
             <word-chars-list-warning-begin value="Esteja ciente: "/>
             <word-chars-list-space-warning value="$INT_REPLACE$ espaço(s)"/>
             <word-chars-list-tab-warning value="$INT_REPLACE$ TAB(s)"/>
-            <word-chars-list-warning-end value="  na sua lista de caracteres."/>
-            <backup-select-folder value="Selecione uma pasta como diretório de backup"/>
+            <word-chars-list-warning-end value="  na sua lista de caracteres."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, check "Add your character as part of word\r(don't choose it unless you know what you're doing)", then type a white-space in the text field. -->
+            <backup-select-folder value="Selecione uma pasta como diretório de backup"/> <!-- HowToReproduce: Settings > Preferences > Backup > [...] -->
             <cloud-invalid-warning value="Localização inválida."/>
             <cloud-restart-warning value="Reinicie o Notepad++ para ter efeito."/>
-            <cloud-select-folder value="Selecione uma pasta de/para onde o Notepad++ lê/grava as suas definições"/>
-            <default-open-save-select-folder value="Selecione uma pasta como diretório predefinido"/>
+            <cloud-select-folder value="Selecione uma pasta de/para onde o Notepad++ lê/grava as suas definições"/> <!-- HowToReproduce: In "Cloud" section of Preferences dialog, check "Set your cloud location path here: ", then click the button "...". This message is displayed in the "Browse For Folder" dialog. -->
+            <default-open-save-select-folder value="Selecione uma pasta como diretório predefinido"/> <!-- HowToReproduce: Settings > Preferences > Default Directory > [...] -->
             <shift-change-direction-tip value="Use Shift+Enter para procurar na direção oposta"/>
             <two-find-buttons-tip value="Modo de 2 botões de localização"/>
             <file-rename-title value="Renomear"/>
@@ -1411,8 +1445,8 @@ Procurar em todos os ficheiros mas excluir testes de pastas, bin &amp;&amp; bin6
 *.* !\tests !\bin*
 
 Procurar em todos os ficheiros mas excluir todos os registos de pastas ou registos recursivamente:
-*.* !+\log*"/>
-            <find-in-files-select-folder value="Selecione uma pasta para pesquisar de"/>
+*.* !+\log*"/> <!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
+            <find-in-files-select-folder value="Selecione uma pasta para pesquisar de"/> <!-- HowToReproduce: Search > Find in Files > [...] -->
             <find-status-top-reached value="Localizar: Encontrada a 1ª ocorrência a partir do final. O início do documento foi alcançado."/>
             <find-status-end-reached value="Localizar: Encontrada a 1ª ocorrência a partir do início. O final do documento foi alcançado.."/>
             <find-status-replaceinfiles-1-replaced value="Substituir em Ficheiros: 1 ocorrência foi substituída"/>
@@ -1534,7 +1568,7 @@ João Pereira <joaopereira@openmailbox.org>
 29/07/2015
 
 Hugo Carvalho <hugokarvalho@hotmail.com>
-12/01/2022 (versão 8.0, 8.1, 8.2)
+08/04/2022 (versão 8.0, 8.1, 8.2, 8.3)
 
 Changelog:
 PT- Corrigidos erros de tradução, palavras por interpretar, ordem das frases e novas traduções concluídas.

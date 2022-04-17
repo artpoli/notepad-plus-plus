@@ -55,6 +55,16 @@ public:
 		delete _pXmlFile;
 	};
 
+	enum class AutocompleteColorIndex {
+		autocompleteText,
+		autocompleteBg,
+		selectedText,
+		selectedBg,
+		calltipBg,
+		calltipText,
+		calltipHighlight
+	};
+
 	bool setLanguage(LangType language);
 
 	//AutoComplete from the list
@@ -73,12 +83,25 @@ public:
 	void callTipClick(size_t direction);
 	void getCloseTag(char *closeTag, size_t closeTagLen, size_t caretPos, bool isHTML);
 
+	static void setColour(COLORREF colour2Set, AutocompleteColorIndex i);
+	static void drawAutocomplete(ScintillaEditView* pEditView);
+
+protected:
+	static COLORREF _autocompleteBg;
+	static COLORREF _autocompleteText;
+	static COLORREF _selectedBg;
+	static COLORREF _selectedText;
+	static COLORREF _calltipBg;
+	static COLORREF _calltipText;
+	static COLORREF _calltipHighlight;
+
 private:
 	bool _funcCompletionActive = false;
 	ScintillaEditView * _pEditView = nullptr;
 	LangType _curLang = L_TEXT;
 	TiXmlDocument *_pXmlFile = nullptr;
 	TiXmlElement *_pXmlKeyword = nullptr;
+	bool _isFxImageRegistered = false;
 
 	InsertedMatchedChars _insertedMatchedChars;
 

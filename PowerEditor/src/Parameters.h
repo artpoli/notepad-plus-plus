@@ -30,6 +30,8 @@
 #include <assert.h>
 #include <tchar.h>
 #include <map>
+#include "ILexer.h"
+#include "Lexilla.h"
 
 #ifdef _WIN64
 
@@ -139,23 +141,27 @@ const TCHAR nppLogNetworkDriveIssue[] = TEXT("nppLogNetworkDriveIssue");
 const TCHAR nppLogNulContentCorruptionIssue[] = TEXT("nppLogNulContentCorruptionIssue");
 
 void cutString(const TCHAR *str2cut, std::vector<generic_string> & patternVect);
+void cutStringBy(const TCHAR *str2cut, std::vector<generic_string> & patternVect, char byChar, bool allowEmptyStr);
 
 
 struct Position
 {
-	size_t _firstVisibleLine = 0;
-	size_t _startPos = 0;
-	size_t _endPos = 0;
-	size_t _xOffset = 0;
-	size_t _selMode = 0;
-	size_t _scrollWidth = 1;
-	size_t _offset = 0;
-	size_t _wrapCount = 0;
+	intptr_t _firstVisibleLine = 0;
+	intptr_t _startPos = 0;
+	intptr_t _endPos = 0;
+	intptr_t _xOffset = 0;
+	intptr_t _selMode = 0;
+	intptr_t _scrollWidth = 1;
+	intptr_t _offset = 0;
+	intptr_t _wrapCount = 0;
 };
 
 
 struct MapPosition
 {
+private:
+	intptr_t _maxPeekLenInKB = 512; // 512 KB
+public:
 	intptr_t _firstVisibleDisplayLine = -1;
 
 	intptr_t _firstVisibleDocLine = -1; // map
@@ -171,9 +177,6 @@ struct MapPosition
 	bool _isWrap = false;
 	bool isValid() const { return (_firstVisibleDisplayLine != -1); };
 	bool canScroll() const { return (_KByteInDoc < _maxPeekLenInKB); }; // _nbCharInDoc < _maxPeekLen : Don't scroll the document for the performance issue
-
-private:
-	intptr_t _maxPeekLenInKB = 512; // 512 KB
 };
 
 
@@ -228,11 +231,11 @@ struct CmdLineParams
 	bool _isPreLaunch = false;
 	bool _showLoadingTime = false;
 	bool _alwaysOnTop = false;
-	int _line2go   = -1;
-	int _column2go = -1;
-	int _pos2go = -1;
+	intptr_t _line2go   = -1;
+	intptr_t _column2go = -1;
+	intptr_t _pos2go = -1;
 
-	POINT _point = { 0 };
+	POINT _point = {};
 	bool _isPointXValid = false;
 	bool _isPointYValid = false;
 
@@ -269,9 +272,9 @@ struct CmdLineParamsDTO
 	bool _isRecursive = false;
 	bool _openFoldersAsWorkspace = false;
 
-	int _line2go = 0;
-	int _column2go = 0;
-	int _pos2go = 0;
+	intptr_t _line2go = 0;
+	intptr_t _column2go = 0;
+	intptr_t _pos2go = 0;
 
 	LangType _langType = L_EXTERNAL;
 	generic_string _udlName;
@@ -298,7 +301,7 @@ struct CmdLineParamsDTO
 struct FloatingWindowInfo
 {
 	int _cont = 0;
-	RECT _pos = { 0 };
+	RECT _pos = {};
 
 	FloatingWindowInfo(int cont, int x, int y, int w, int h)
 		: _cont(cont)
@@ -503,7 +506,11 @@ private :
 	generic_string _lexerUserExt;
 };
 
-
+struct SortLexersInAlphabeticalOrder {
+	bool operator() (LexerStyler& l, LexerStyler& r) {
+		return lstrcmp(l.getLexerDesc(), r.getLexerDesc()) < 0;
+	}
+};
 
 struct LexerStylerArray
 {
@@ -528,7 +535,12 @@ struct LexerStylerArray
 		}
 		return nullptr;
 	};
+
 	void addLexerStyler(const TCHAR *lexerName, const TCHAR *lexerDesc, const TCHAR *lexerUserExt, TiXmlNode *lexerNode);
+
+	void sort() {
+		std::sort(_lexerStylerVect.begin(), _lexerStylerVect.end(), SortLexersInAlphabeticalOrder());
+	};
 
 private :
 	std::vector<LexerStyler> _lexerStylerVect;
@@ -573,7 +585,7 @@ struct PrintSettings final {
 	int _footerFontStyle = 0;
 	int _footerFontSize = 0;
 
-	RECT _marge = {0};
+	RECT _marge = {};
 
 	PrintSettings() {
 		_marge.left = 0; _marge.top = 0; _marge.right = 0; _marge.bottom = 0;
@@ -742,9 +754,9 @@ struct NppGUI final
 
 	bool _checkHistoryFiles = false;
 
-	RECT _appPos = {0};
+	RECT _appPos = {};
 
-	RECT _findWindowPos = { 0 };
+	RECT _findWindowPos = {};
 
 	bool _isMaximized = false;
 	bool _isMinimizedToTray = false;
@@ -796,7 +808,7 @@ struct NppGUI final
 	bool _isLangMenuCompact = true;
 
 	PrintSettings _printSettings;
-	BackupFeature _backup = bak_simple;
+	BackupFeature _backup = bak_none;
 	bool _useDir = false;
 	generic_string _backupDir;
 	DockingManagerData _dockingData;
@@ -805,7 +817,7 @@ struct NppGUI final
 	AutocStatus _autocStatus = autoc_both;
 	size_t  _autocFromLen = 1;
 	bool _autocIgnoreNumbers = true;
-	bool _autocInsertSelectedUseENTER = false;
+	bool _autocInsertSelectedUseENTER = true;
 	bool _autocInsertSelectedUseTAB = true;
 	bool _funcParams = true;
 	MatchedPairConf _matchedPairConf;
@@ -856,6 +868,9 @@ struct NppGUI final
 	bool _isDocPeekOnTab = false;
 	bool _isDocPeekOnMap = false;
 
+	// function list should be sorted by default on new file open
+	bool _shouldSortFunctionList = false;
+
 	DarkModeConf _darkmode;
 };
 
@@ -879,6 +894,7 @@ struct ScintillaViewParams
 	bool _whiteSpaceShow = false;
 	bool _eolShow = false;
 	int _borderWidth = 2;
+	bool _virtualSpace = false;
 	bool _scrollBeyondLastLine = true;
 	bool _rightClickKeepsSelection = false;
 	bool _disableAdvancedScrolling = false;
@@ -1071,22 +1087,21 @@ private:
 	friend class StylerDlg;
 };
 
-#define MAX_EXTERNAL_LEXER_NAME_LEN 16
-#define MAX_EXTERNAL_LEXER_DESC_LEN 32
+#define MAX_EXTERNAL_LEXER_NAME_LEN 128
 
 
 
 class ExternalLangContainer final
 {
 public:
-	TCHAR _name[MAX_EXTERNAL_LEXER_NAME_LEN];
-	TCHAR _desc[MAX_EXTERNAL_LEXER_DESC_LEN];
+	// Mandatory for Lexilla
+	std::string _name;
+	Lexilla::CreateLexerFn fnCL = nullptr;
+	//Lexilla::GetLibraryPropertyNamesFn fnGLPN = nullptr;
+	//Lexilla::SetLibraryPropertyFn fnSLP = nullptr;
 
-	ExternalLangContainer(const TCHAR* name, const TCHAR* desc)
-	{
-		generic_strncpy(_name, name, MAX_EXTERNAL_LEXER_NAME_LEN);
-		generic_strncpy(_desc, desc, MAX_EXTERNAL_LEXER_DESC_LEN);
-	}
+	// For Notepad++
+	ExternalLexerAutoIndentMode _autoIndentMode = ExternalLexerAutoIndentMode::Standard;
 };
 
 
@@ -1249,19 +1264,6 @@ private:
 };
 
 
-class PluginList final
-{
-public :
-	void add(generic_string fn, bool isInBL)
-	{
-		_list.push_back(std::pair<generic_string, bool>(fn, isInBL));
-	}
-
-private:
-	std::vector<std::pair<generic_string, bool>>_list;
-};
-
-
 struct UdlXmlFileState final {
 	TiXmlDocument* _udlXmlDoc = nullptr;
 	bool _isDirty = false;
@@ -1420,7 +1422,7 @@ public:
 
 	bool ExternalLangHasRoom() const {return _nbExternalLang < NB_MAX_EXTERNAL_LANG;};
 
-	void getExternalLexerFromXmlTree(TiXmlDocument *doc);
+	void getExternalLexerFromXmlTree(TiXmlDocument* externalLexerDoc);
 	std::vector<TiXmlDocument *> * getExternalLexerDoc() { return &_pXmlExternalLexerDoc; };
 
 	void writeDefaultUDL();
@@ -1448,7 +1450,7 @@ public:
 	int addUserLangToEnd(const UserLangContainer & userLang, const TCHAR *newName);
 	void removeUserLang(size_t index);
 
-	bool isExistingExternalLangName(const TCHAR *newName) const;
+	bool isExistingExternalLangName(const char* newName) const;
 
 	int addExternalLangToEnd(ExternalLangContainer * externalLang);
 
@@ -1598,7 +1600,6 @@ public:
 		return false;
 	}
 
-	PluginList & getPluginList() {return _pluginList;};
 	bool importUDLFromFile(const generic_string& sourceFile);
 	bool exportUDLToFile(size_t langIndex2export, const generic_string& fileName2save);
 	NativeLangSpeaker* getNativeLangSpeaker() {
@@ -1682,19 +1683,19 @@ private:
 	NppParameters& operator=(NppParameters&&) = delete;
 
 
-	TiXmlDocument *_pXmlDoc = nullptr;
-	TiXmlDocument *_pXmlUserDoc = nullptr;
-	TiXmlDocument *_pXmlUserStylerDoc = nullptr;
-	TiXmlDocument *_pXmlUserLangDoc = nullptr;
-	std::vector<UdlXmlFileState> _pXmlUserLangsDoc;
-	TiXmlDocument *_pXmlToolIconsDoc = nullptr;
-	TiXmlDocument *_pXmlShortcutDoc = nullptr;
-	TiXmlDocument *_pXmlBlacklistDoc = nullptr;
+	TiXmlDocument *_pXmlDoc = nullptr; // langs.xml
+	TiXmlDocument *_pXmlUserDoc = nullptr; // config.xml
+	TiXmlDocument *_pXmlUserStylerDoc = nullptr; // stylers.xml
+	TiXmlDocument *_pXmlUserLangDoc = nullptr; // userDefineLang.xml
+	std::vector<UdlXmlFileState> _pXmlUserLangsDoc; // userDefineLang customized XMLs
+	TiXmlDocument *_pXmlToolIconsDoc = nullptr; // toolbarIcons.xml
+	TiXmlDocument *_pXmlShortcutDoc = nullptr; // shortcuts.xml
+	TiXmlDocument *_pXmlBlacklistDoc = nullptr; // not implemented
 
-	TiXmlDocumentA *_pXmlNativeLangDocA = nullptr;
-	TiXmlDocumentA *_pXmlContextMenuDocA = nullptr;
+	TiXmlDocumentA *_pXmlNativeLangDocA = nullptr; // nativeLang.xml
+	TiXmlDocumentA *_pXmlContextMenuDocA = nullptr; // contextMenu.xml
 
-	std::vector<TiXmlDocument *> _pXmlExternalLexerDoc;
+	std::vector<TiXmlDocument *> _pXmlExternalLexerDoc; // External lexer plugins' XMLs
 
 	NppGUI _nppGUI;
 	ScintillaViewParams _svp;
@@ -1730,7 +1731,6 @@ private:
 
 	std::vector<generic_string> _fontlist;
 	std::vector<generic_string> _blacklist;
-	PluginList _pluginList;
 
 	HMODULE _hUXTheme = nullptr;
 

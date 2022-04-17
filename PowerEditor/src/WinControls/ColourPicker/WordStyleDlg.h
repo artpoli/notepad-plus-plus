@@ -163,6 +163,8 @@ private :
         }
 	};
 
+	bool getStyleName(TCHAR *styleName, const size_t styleNameLen);
+
 	int whichTabColourIndex();
 	bool isDocumentMapStyle();
 	void move2CtrlRight(int ctrlID, HWND handle2Move, int handle2MoveWidth, int handle2MoveHeight);
@@ -176,26 +178,6 @@ private :
 	void updateThemeName(const generic_string& themeName);
 
 	void loadLangListFromNppParam();
-
-	void enableFg(bool isEnable) {
-		::EnableWindow(_pFgColour->getHSelf(), isEnable);
-		::EnableWindow(_hFgColourStaticText, isEnable);
-	};
-
-	void enableBg(bool isEnable) {
-		::EnableWindow(_pBgColour->getHSelf(), isEnable);
-		::EnableWindow(_hBgColourStaticText, isEnable);
-	};
-
-	void enableFontName(bool isEnable) {
-		::EnableWindow(_hFontNameCombo, isEnable);
-		::EnableWindow(_hFontNameStaticText, isEnable);
-	};
-
-	void enableFontSize(bool isEnable) {
-		::EnableWindow(_hFontSizeCombo, isEnable);
-		::EnableWindow(_hFontSizeStaticText, isEnable);
-	};
 
 	void enableFontStyle(bool isEnable) {
 		::EnableWindow(_hCheckBold, isEnable);

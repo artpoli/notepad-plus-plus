@@ -94,7 +94,7 @@ struct VisibleGUIConf final
 	bool _isStatusbarShown = true;
 
 	//used by fullscreen
-	WINDOWPLACEMENT _winPlace = {0};
+	WINDOWPLACEMENT _winPlace = {};
 
 	//used by distractionFree
 	bool _was2ViewModeOn = false;
@@ -585,6 +585,7 @@ private:
 	Style * getStyleFromName(const TCHAR *styleName);
 	bool dumpFiles(const TCHAR * outdir, const TCHAR * fileprefix = TEXT(""));	//helper func
 	void drawTabbarColoursFromStylerArray();
+	void drawAutocompleteColoursFromTheme(COLORREF fgColor, COLORREF bgColor);
 	void drawDocumentMapColoursFromStylerArray();
 
 	std::vector<generic_string> loadCommandlineParams(const TCHAR * commandLine, const CmdLineParams * pCmdParams) {

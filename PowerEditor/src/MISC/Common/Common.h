@@ -22,6 +22,7 @@
 #include <cstdint>
 #include <unordered_set>
 #include <algorithm>
+#include <tchar.h>
 
 
 const bool dirUp = true;
@@ -97,7 +98,7 @@ public:
 	const wchar_t * char2wchar(const char *mbStr, size_t codepage, int lenMbcs =-1, int* pLenOut=NULL, int* pBytesNotProcessed=NULL);
 	const wchar_t * char2wchar(const char *mbcs2Convert, size_t codepage, intptr_t* mstart, intptr_t* mend);
 	const char * wchar2char(const wchar_t *wcStr, size_t codepage, int lenIn = -1, int* pLenOut = NULL);
-	const char * wchar2char(const wchar_t *wcStr, size_t codepage, long* mstart, long* mend);
+	const char * wchar2char(const wchar_t *wcStr, size_t codepage, intptr_t* mstart, intptr_t* mend);
 
 	const char * encode(UINT fromCodepage, UINT toCodepage, const char *txt2Encode, int lenIn = -1, int* pLenOut=NULL, int* pBytesNotProcessed=NULL)
 	{
@@ -158,10 +159,6 @@ protected:
 	StringBuffer<wchar_t> _wideCharStr;
 };
 
-
-
-#define MACRO_RECORDING_IN_PROGRESS 1
-#define MACRO_RECORDING_HAS_STOPPED 2
 
 #define REBARBAND_SIZE sizeof(REBARBANDINFO)
 
@@ -235,3 +232,57 @@ int nbDigitsFromNbLines(size_t nbLines);
 generic_string getDateTimeStrFrom(const generic_string& dateTimeFormat, const SYSTEMTIME& st);
 
 HFONT createFont(const TCHAR* fontName, int fontSize, bool isBold, HWND hDestParent);
+
+class Version final
+{
+public:
+	Version() = default;
+	Version(const generic_string& versionStr);
+
+	void setVersionFrom(const generic_string& filePath);
+	generic_string toString();
+	bool isNumber(const generic_string& s) const {
+		return !s.empty() &&
+			find_if(s.begin(), s.end(), [](TCHAR c) { return !_istdigit(c); }) == s.end();
+	};
+
+	int compareTo(const Version& v2c) const;
+
+	bool operator < (const Version& v2c) const {
+		return compareTo(v2c) == -1;
+	};
+
+	bool operator <= (const Version& v2c) const {
+		int r = compareTo(v2c);
+		return r == -1 || r == 0;
+	};
+
+	bool operator > (const Version& v2c) const {
+		return compareTo(v2c) == 1;
+	};
+
+	bool operator >= (const Version& v2c) const {
+		int r = compareTo(v2c);
+		return r == 1 || r == 0;
+	};
+
+	bool operator == (const Version& v2c) const {
+		return compareTo(v2c) == 0;
+	};
+
+	bool operator != (const Version& v2c) const {
+		return compareTo(v2c) != 0;
+	};
+
+	bool empty() const {
+		return _major == 0 && _minor == 0 && _patch == 0 && _build == 0;
+	}
+
+	bool isCompatibleTo(const Version& from, const Version& to) const;
+
+private:
+	unsigned long _major = 0;
+	unsigned long _minor = 0;
+	unsigned long _patch = 0;
+	unsigned long _build = 0;
+};

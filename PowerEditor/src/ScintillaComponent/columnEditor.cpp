@@ -36,7 +36,7 @@ void ColumnEditorDlg::display(bool toShow) const
         ::SetFocus(::GetDlgItem(_hSelf, ID_GOLINE_EDIT));
 }
 
-intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM)
+intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message) 
 	{
@@ -61,13 +61,34 @@ intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 		}
 
 		case WM_CTLCOLORDLG:
-		case WM_CTLCOLORSTATIC:
 		{
 			if (NppDarkMode::isEnabled())
 			{
 				return NppDarkMode::onCtlColorDarker(reinterpret_cast<HDC>(wParam));
 			}
 			break;
+		}
+
+		case WM_CTLCOLORSTATIC:
+		{
+			auto hdcStatic = reinterpret_cast<HDC>(wParam);
+			auto dlgCtrlID = ::GetDlgCtrlID(reinterpret_cast<HWND>(lParam));
+
+			bool isStaticText = (dlgCtrlID == IDC_COL_INITNUM_STATIC ||
+				dlgCtrlID == IDC_COL_INCRNUM_STATIC ||
+				dlgCtrlID == IDC_COL_REPEATNUM_STATIC);
+			//set the static text colors to show enable/disable instead of ::EnableWindow which causes blurry text
+			if (isStaticText)
+			{
+				bool isTextEnabled = isCheckedOrNot(IDC_COL_NUM_RADIO);
+				return NppDarkMode::onCtlColorDarkerBGStaticText(hdcStatic, isTextEnabled);
+			}
+
+			if (NppDarkMode::isEnabled())
+			{
+				return NppDarkMode::onCtlColorDarker(hdcStatic);
+			}
+			return FALSE;
 		}
 
 		case WM_PRINTCLIENT:
@@ -83,7 +104,7 @@ intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 		{
 			if (NppDarkMode::isEnabled())
 			{
-				RECT rc = { 0 };
+				RECT rc = {};
 				getClientRect(rc);
 				::FillRect(reinterpret_cast<HDC>(wParam), &rc, NppDarkMode::getDarkerBackgroundBrush());
 				return TRUE;
@@ -333,11 +354,8 @@ void ColumnEditorDlg::switchTo(bool toText)
 
 	HWND hNum = ::GetDlgItem(_hSelf, IDC_COL_INITNUM_EDIT);
 	::SendDlgItemMessage(_hSelf, IDC_COL_NUM_RADIO, BM_SETCHECK, !toText, 0);
-	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_INITNUM_STATIC), !toText);
 	::EnableWindow(hNum, !toText);
-	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_INCRNUM_STATIC), !toText);
 	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_INCREASENUM_EDIT), !toText);
-	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_REPEATNUM_STATIC), !toText);
 	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_REPEATNUM_EDIT), !toText);
 	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_DEC_RADIO), !toText);
 	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_HEX_RADIO), !toText);
@@ -346,6 +364,8 @@ void ColumnEditorDlg::switchTo(bool toText)
 	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_LEADZERO_CHECK), !toText);
 
 	::SetFocus(toText?hText:hNum);
+
+	redraw();
 }
 
 UCHAR ColumnEditorDlg::getFormat() 

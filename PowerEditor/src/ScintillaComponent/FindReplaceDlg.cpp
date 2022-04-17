@@ -20,6 +20,7 @@
 #include "ScintillaEditView.h"
 #include "Notepad_plus_msgs.h"
 #include "localization.h"
+#include "Common.h"
 #include "Utf8.h"
 
 using namespace std;
@@ -499,7 +500,7 @@ bool Finder::notify(SCNotification *notification)
 			::SendMessage(_scintView.getHSelf(), WM_LBUTTONUP, 0, 0);
 
 			size_t pos = notification->position;
-			if (pos == INVALID_POSITION)
+			if (static_cast<intptr_t>(pos) == INVALID_POSITION)
 				pos = _scintView.execute(SCI_GETLINEENDPOSITION, notification->line);
 			_scintView.execute(SCI_SETSEL, pos, pos);
 
@@ -552,7 +553,7 @@ void Finder::deleteResult()
 	auto end = _scintView.execute(SCI_GETLINEENDPOSITION, lno);
 	if (start + 2 >= end) return; // avoid empty lines
 
-	_scintView.setLexer(SCLEX_SEARCHRESULT, L_SEARCHRESULT, 0); // Restore searchResult lexer in case the lexer was changed to SCLEX_NULL in GotoFoundLine()
+	_scintView.setLexer(L_SEARCHRESULT, LIST_NONE); // Restore searchResult lexer in case the lexer was changed to SCLEX_NULL in GotoFoundLine()
 
 	if (_scintView.execute(SCI_GETFOLDLEVEL, lno) & SC_FOLDLEVELHEADERFLAG)  // delete a folder
 	{
@@ -751,7 +752,7 @@ intptr_t CALLBACK FindInFinderDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 		{
 			if (NppDarkMode::isEnabled())
 			{
-				RECT rc = { 0 };
+				RECT rc = {};
 				getClientRect(rc);
 				::FillRect(reinterpret_cast<HDC>(wParam), &rc, NppDarkMode::getDarkerBackgroundBrush());
 				return TRUE;
@@ -932,7 +933,7 @@ intptr_t CALLBACK FindReplaceDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 		{
 			if (NppDarkMode::isEnabled())
 			{
-				RECT rc = { 0 };
+				RECT rc = {};
 				getClientRect(rc);
 				::FillRect(reinterpret_cast<HDC>(wParam), &rc, NppDarkMode::getDarkerBackgroundBrush());
 				return TRUE;
@@ -995,6 +996,19 @@ intptr_t CALLBACK FindReplaceDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 				SendMessage(hReplaceCombo, WM_SETFONT, (WPARAM)_hMonospaceFont, MAKELPARAM(true, 0));
 				SendMessage(hFiltersCombo, WM_SETFONT, (WPARAM)_hMonospaceFont, MAKELPARAM(true, 0));
 				SendMessage(hDirCombo, WM_SETFONT, (WPARAM)_hMonospaceFont, MAKELPARAM(true, 0));
+			}
+
+			// Change ComboBox height to accomodate High-DPI settings.
+			// ComboBoxes are scaled using the font used in them, however this results in weird optics
+			// on scaling > 200% (192 DPI). Using this method we accomodate these scalings way better
+			// than the OS does with the current dpiAware.manifest...
+			for (HWND hComboBox : { hFindCombo, hReplaceCombo, hFiltersCombo, hDirCombo })
+			{
+				LOGFONT lf = {};
+				HFONT font = reinterpret_cast<HFONT>(SendMessage(hComboBox, WM_GETFONT, 0, 0));
+				::GetObject(font, sizeof(lf), &lf);
+				lf.lfHeight = (NppParameters::getInstance()._dpiManager.scaleY(16) - 5) * -1;
+				SendMessage(hComboBox, WM_SETFONT, (WPARAM)CreateFontIndirect(&lf), MAKELPARAM(true, 0));
 			}
 
 			RECT arc;
@@ -1182,7 +1196,7 @@ intptr_t CALLBACK FindReplaceDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 
 		case WM_COMMAND :
 		{
-			bool isMacroRecording = (::SendMessage(_hParent, WM_GETCURRENTMACROSTATUS,0,0) == MACRO_RECORDING_IN_PROGRESS);
+			bool isMacroRecording = (static_cast<MacroStatus>(::SendMessage(_hParent, NPPM_GETCURRENTMACROSTATUS,0,0)) == MacroStatus::RecordInProgress);
 			NppParameters& nppParamInst = NppParameters::getInstance();
 			FindHistory & findHistory = nppParamInst.getFindHistory();
 			switch (LOWORD(wParam))
@@ -1287,22 +1301,34 @@ intptr_t CALLBACK FindReplaceDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 				return TRUE;
 
 				case IDM_SEARCH_FIND:
-					enableReplaceFunc(false); // enable relace false so only find
+					if (_currentStatus == FIND_DLG)
+						goToCenter();
+					else
+						enableReplaceFunc(false);
 					return TRUE;
 
 				case IDM_SEARCH_REPLACE:
-					enableReplaceFunc(true);
+					if (_currentStatus == REPLACE_DLG)
+						goToCenter();
+					else
+						enableReplaceFunc(true);
 					return TRUE;
 
 				case IDM_SEARCH_FINDINFILES:
-					enableFindInFilesFunc();
+					if (_currentStatus == FINDINFILES_DLG)
+						goToCenter();
+					else
+						enableFindInFilesFunc();
 					return TRUE;
 
 				case IDM_SEARCH_MARK:
-					enableMarkFunc();
+					if (_currentStatus == MARK_DLG)
+						goToCenter();
+					else
+						enableMarkFunc();
 					return TRUE;
 
-				case IDREPLACE :
+				case IDREPLACE:
 				{
 					std::lock_guard<std::mutex> lock(findOps_mutex);
 
@@ -2054,7 +2080,7 @@ bool FindReplaceDlg::processFindNext(const TCHAR *txt2find, const FindOption *op
 		msg = TEXT("^ ") + msg;
 		(*_ppEditView)->showCallTip(start, msg.c_str());
 	}
-	if (::SendMessage(_hParent, WM_GETCURRENTMACROSTATUS,0,0) == MACRO_RECORDING_IN_PROGRESS)
+	if (static_cast<MacroStatus>(::SendMessage(_hParent, NPPM_GETCURRENTMACROSTATUS,0,0)) == MacroStatus::RecordInProgress)
 		(*_ppEditView)->execute(SCI_STARTRECORD);
 
 	delete [] pText;
@@ -2287,7 +2313,11 @@ int FindReplaceDlg::processRange(ProcessOperation op, FindReplaceInfo & findRepl
 	if (!isCreated() && !findReplaceInfo._txt2find)
 		return nbProcessed;
 
+	if (!_ppEditView)
+		return nbProcessed;
+
 	ScintillaEditView *pEditView = *_ppEditView;
+
 	if (view2Process)
 		pEditView = view2Process;
 
@@ -2411,6 +2441,7 @@ int FindReplaceDlg::processRange(ProcessOperation op, FindReplaceInfo & findRepl
 					findAllFileNameAdded = true;
 				}
 
+				auto totalLineNumber = pEditView->execute(SCI_GETLINECOUNT);
 				auto lineNumber = pEditView->execute(SCI_LINEFROMPOSITION, targetStart);
 				intptr_t lend = pEditView->execute(SCI_GETLINEENDPOSITION, lineNumber);
 				intptr_t lstart = pEditView->execute(SCI_POSITIONFROMLINE, lineNumber);
@@ -2432,7 +2463,7 @@ int FindReplaceDlg::processRange(ProcessOperation op, FindReplaceInfo & findRepl
 				SearchResultMarking srm;
 				srm._start = static_cast<long>(start_mark);
 				srm._end = static_cast<long>(end_mark);
-				_pFinder->add(FoundInfo(targetStart, targetEnd, lineNumber + 1, pFileName), srm, line.c_str());
+				_pFinder->add(FoundInfo(targetStart, targetEnd, lineNumber + 1, pFileName), srm, line.c_str(), totalLineNumber);
 
 				break;
 			}
@@ -2444,6 +2475,7 @@ int FindReplaceDlg::processRange(ProcessOperation op, FindReplaceInfo & findRepl
 
 				const TCHAR *pFileName = pFindersInfo->_pFileName ? pFindersInfo->_pFileName : TEXT("");
 
+				auto totalLineNumber = pEditView->execute(SCI_GETLINECOUNT);
 				auto lineNumber = pEditView->execute(SCI_LINEFROMPOSITION, targetStart);
 				intptr_t lend = pEditView->execute(SCI_GETLINEENDPOSITION, lineNumber);
 				intptr_t lstart = pEditView->execute(SCI_POSITIONFROMLINE, lineNumber);
@@ -2473,7 +2505,7 @@ int FindReplaceDlg::processRange(ProcessOperation op, FindReplaceInfo & findRepl
 						pFindersInfo->_pDestFinder->addFileNameTitle(pFileName);
 						findAllFileNameAdded = true;
 					}
-					pFindersInfo->_pDestFinder->add(FoundInfo(targetStart, targetEnd, lineNumber + 1, pFileName), srm, line.c_str());
+					pFindersInfo->_pDestFinder->add(FoundInfo(targetStart, targetEnd, lineNumber + 1, pFileName), srm, line.c_str(), totalLineNumber);
 				}
 				break;
 			}
@@ -2614,7 +2646,7 @@ void FindReplaceDlg::findAllIn(InWhat op)
 		_pFinder->init(_hInst, (*_ppEditView)->getHParent(), _ppEditView);
 		_pFinder->setVolatiled(false);
 
-		tTbData	data = {0};
+		tTbData	data = {};
 		_pFinder->create(&data);
 		::SendMessage(_hParent, NPPM_MODELESSDIALOG, MODELESSDIALOGREMOVE, reinterpret_cast<LPARAM>(_pFinder->getHSelf()));
 		// define the default docking behaviour
@@ -2746,7 +2778,7 @@ Finder * FindReplaceDlg::createFinder()
 	Finder *pFinder = new Finder();
 	pFinder->init(_hInst, (*_ppEditView)->getHParent(), _ppEditView);
 
-	tTbData	data = { 0 };
+	tTbData	data = {};
 	bool isRTL = _pFinder->_scintView.isTextDirectionRTL();
 	pFinder->create(&data, isRTL);
 	::SendMessage(_hParent, NPPM_MODELESSDIALOG, MODELESSDIALOGREMOVE, reinterpret_cast<WPARAM>(pFinder->getHSelf()));
@@ -3494,7 +3526,7 @@ void FindReplaceDlg::enableProjectCheckmarks()
 		for (int i = 0; i < 3; i++)
 		{
 			UINT s = GetMenuState (hMenu, idm [i], MF_BYCOMMAND);
-			if (s != -1)
+			if (s != ((UINT)-1))
 			{
 				if (s & MF_CHECKED)
 				{
@@ -4053,7 +4085,7 @@ void Finder::addSearchHitCount(int count, int countSearched, bool isMatchLines, 
 	setFinderReadOnly(true);
 }
 
-void Finder::add(FoundInfo fi, SearchResultMarking mi, const TCHAR* foundline)
+void Finder::add(FoundInfo fi, SearchResultMarking mi, const TCHAR* foundline, size_t totalLineNumber)
 {
 	_pMainFoundInfos->push_back(fi);
 
@@ -4061,12 +4093,16 @@ void Finder::add(FoundInfo fi, SearchResultMarking mi, const TCHAR* foundline)
 	str += _prefixLineStr;
 	str += TEXT(" ");
 
-	TCHAR lnb[16];
-	wsprintf(lnb, TEXT("%d"), static_cast<int>(fi._lineNumber));
-	str += lnb;
+	size_t totalLineNumberDigit = static_cast<size_t>(nbDigitsFromNbLines(totalLineNumber) + 1);
+	size_t currentLineNumberDigit = static_cast<size_t>(nbDigitsFromNbLines(fi._lineNumber) + 1);
+
+	generic_string lineNumberStr = TEXT("");
+	lineNumberStr.append(totalLineNumberDigit - currentLineNumberDigit, ' ');
+	lineNumberStr.append(std::to_wstring(fi._lineNumber));
+	str += lineNumberStr;
 	str += TEXT(": ");
-	mi._start += static_cast<int32_t>(str.length());
-	mi._end += static_cast<int32_t>(str.length());
+	mi._start += str.length();
+	mi._end += str.length();
 	str += foundline;
 
 	WcharMbcsConvertor& wmc = WcharMbcsConvertor::getInstance();
@@ -4268,7 +4304,12 @@ void Finder::finishFilesSearch(int count, int searchedCount, bool isMatchLines, 
 	addSearchHitCount(count, searchedCount, isMatchLines, searchedEntireNotSelection);
 	_scintView.execute(SCI_SETSEL, 0, 0);
 
-	_scintView.execute(SCI_SETLEXER, SCLEX_SEARCHRESULT);
+	//SCI_SETILEXER resets the lexer property @MarkingsStruct and then no data could be exchanged with the searchResult lexer
+	char ptrword[sizeof(void*) * 2 + 1];
+	sprintf(ptrword, "%p", &_markingsStruct);
+	_scintView.execute(SCI_SETPROPERTY, reinterpret_cast<WPARAM>("@MarkingsStruct"), reinterpret_cast<LPARAM>(ptrword));
+
+	//previous code: _scintView.execute(SCI_SETILEXER, 0, reinterpret_cast<LPARAM>(CreateLexer("searchResult")));
 	_scintView.execute(SCI_SETPROPERTY, reinterpret_cast<WPARAM>("fold"), reinterpret_cast<LPARAM>("1"));
 }
 
@@ -4281,7 +4322,7 @@ void Finder::setFinderStyle()
 	NppDarkMode::setBorder(_scintView.getHSelf());
 
 	// Set current line background color for the finder
-	const TCHAR * lexerName = ScintillaEditView::langNames[L_SEARCHRESULT].lexerName;
+	const TCHAR * lexerName = ScintillaEditView::_langNameInfoArray[L_SEARCHRESULT]._langName;
 	LexerStyler *pStyler = (NppParameters::getInstance().getLStylerArray()).getLexerStylerByName(lexerName);
 	if (pStyler)
 	{
@@ -4584,6 +4625,15 @@ intptr_t CALLBACK FindIncrementDlg::run_dlgProc(UINT message, WPARAM wParam, LPA
 			return NppDarkMode::onCtlColorDarker(reinterpret_cast<HDC>(wParam));
 		}
 
+		case WM_PRINTCLIENT:
+		{
+			if (NppDarkMode::isEnabled())
+			{
+				return TRUE;
+			}
+			break;
+		}
+
 		case NPPM_INTERNAL_REFRESHDARKMODE:
 		{
 			NppDarkMode::autoThemeChildControls(getHSelf());
@@ -4698,7 +4748,7 @@ intptr_t CALLBACK FindIncrementDlg::run_dlgProc(UINT message, WPARAM wParam, LPA
 		{
 			if (NppDarkMode::isEnabled())
 			{
-				RECT rcClient = { 0 };
+				RECT rcClient = {};
 				GetClientRect(_hSelf, &rcClient);
 				::FillRect(reinterpret_cast<HDC>(wParam), &rcClient, NppDarkMode::getDarkerBackgroundBrush());
 				return TRUE;
@@ -4848,7 +4898,7 @@ Progress::Progress(HINSTANCE hInst) : _hwnd(NULL), _hCallerWnd(NULL)
 	{
 		_hInst = hInst;
 
-		WNDCLASSEX wcex = {0};
+		WNDCLASSEX wcex = {};
 		wcex.cbSize = sizeof(wcex);
 		wcex.style = CS_HREDRAW | CS_VREDRAW;
 		wcex.lpfnWndProc = wndProc;
@@ -4859,7 +4909,7 @@ Progress::Progress(HINSTANCE hInst) : _hwnd(NULL), _hCallerWnd(NULL)
 
 		::RegisterClassEx(&wcex);
 
-		INITCOMMONCONTROLSEX icex = {0};
+		INITCOMMONCONTROLSEX icex = {};
 		icex.dwSize = sizeof(icex);
 		icex.dwICC = ICC_STANDARD_CLASSES | ICC_PROGRESS_CLASS;
 
@@ -5074,11 +5124,20 @@ LRESULT APIENTRY Progress::wndProc(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM l
 			break;
 		}
 
+		case WM_PRINTCLIENT:
+		{
+			if (NppDarkMode::isEnabled())
+			{
+				return TRUE;
+			}
+			break;
+		}
+
 		case WM_ERASEBKGND:
 		{
 			if (NppDarkMode::isEnabled())
 			{
-				RECT rc = { 0 };
+				RECT rc = {};
 				GetClientRect(hwnd, &rc);
 				::FillRect(reinterpret_cast<HDC>(wparam), &rc, NppDarkMode::getDarkerBackgroundBrush());
 				return TRUE;

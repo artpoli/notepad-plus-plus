@@ -22,6 +22,8 @@
 #include <sys/stat.h>
 #include "Buffer.h"
 #include "Scintilla.h"
+#include "ILexer.h"
+#include "Lexilla.h"
 #include "Parameters.h"
 #include "Notepad_plus.h"
 #include "ScintillaEditView.h"
@@ -774,7 +776,6 @@ bool FileManager::reloadBuffer(BufferID id)
 	buf->setLoadedDirty(false);	// Since the buffer will be reloaded from the disk, and it will be clean (not dirty), we can set _isLoadedDirty false safetly.
 								// Set _isLoadedDirty false before calling "_pscratchTilla->execute(SCI_CLEARALL);" in loadFileData() to avoid setDirty in SCN_SAVEPOINTREACHED / SCN_SAVEPOINTLEFT
 
-	buf->_canNotify = false;	//disable notify during file load, we don't want dirty status to be triggered
 
 	//Get file size
 	FILE* fp = generic_fopen(buf->getFullPathName(), TEXT("rb"));
@@ -784,16 +785,19 @@ bool FileManager::reloadBuffer(BufferID id)
 	int64_t fileSize = _ftelli64(fp);
 	fclose(fp);
 
+	buf->_canNotify = false;	//disable notify during file load, we don't want dirty status to be triggered
 	bool res = loadFileData(doc, fileSize, buf->getFullPathName(), data, &UnicodeConvertor, loadedFileFormat);
+	buf->_canNotify = true;
 
 	delete[] data;
-	buf->_canNotify = true;
 
 	if (res)
 	{
 		// now we are synchronized with the file on disk, so reset relevant flags
 		buf->setUnsync(false);
 		buf->setDirty(false); // if the _isUnsync was true before the reloading, the _isDirty had been set to true somehow in the loadFileData()
+
+		buf->setSavePointDirty(false);
 
 		setLoadedBufferEncodingAndEol(buf, UnicodeConvertor, loadedFileFormat._encoding, loadedFileFormat._eolFormat);
 	}
@@ -846,7 +850,7 @@ bool FileManager::deleteFile(BufferID id)
 	if (!PathFileExists(fileNamePath.c_str()))
 		return false;
 
-	SHFILEOPSTRUCT fileOpStruct = {0};
+	SHFILEOPSTRUCT fileOpStruct = {};
 	fileOpStruct.hwnd = NULL;
 	fileOpStruct.pFrom = fileNamePath.c_str();
 	fileOpStruct.pTo = NULL;
@@ -1176,6 +1180,7 @@ SavingStatus FileManager::saveBuffer(BufferID id, const TCHAR * filename, bool i
 		buffer->setFileName(fullpath, language);
 		buffer->setDirty(false);
 		buffer->setUnsync(false);
+		buffer->setSavePointDirty(false);
 		buffer->setStatus(DOC_REGULAR);
 		buffer->checkFileState();
 		_pscratchTilla->execute(SCI_SETSAVEPOINT);
@@ -1445,15 +1450,16 @@ bool FileManager::loadFileData(Document doc, int64_t fileSize, const TCHAR * fil
 
 	if (fileFormat._language < L_EXTERNAL)
 	{
-		_pscratchTilla->execute(SCI_SETLEXER, ScintillaEditView::langNames[fileFormat._language].lexerID);
+		const char* lexerNameID = ScintillaEditView::_langNameInfoArray[fileFormat._language]._lexerID;
+		_pscratchTilla->execute(SCI_SETILEXER, 0, reinterpret_cast<LPARAM>(CreateLexer(lexerNameID)));
 	}
 	else
 	{
 		int id = fileFormat._language - L_EXTERNAL;
-		TCHAR * name = nppParam.getELCFromIndex(id)._name;
-		WcharMbcsConvertor& wmc = WcharMbcsConvertor::getInstance();
-		const char *pName = wmc.wchar2char(name, CP_ACP);
-		_pscratchTilla->execute(SCI_SETLEXERLANGUAGE, 0, reinterpret_cast<LPARAM>(pName));
+		ExternalLangContainer& externalLexer = nppParam.getELCFromIndex(id);
+		const char* lexerName = externalLexer._name.c_str();
+		if (externalLexer.fnCL)
+			_pscratchTilla->execute(SCI_SETILEXER, 0, reinterpret_cast<LPARAM>(externalLexer.fnCL(lexerName)));
 	}
 
 	if (fileFormat._encoding != -1)
@@ -1461,12 +1467,15 @@ bool FileManager::loadFileData(Document doc, int64_t fileSize, const TCHAR * fil
 
 	bool success = true;
 	EolType format = EolType::unknown;
+	int sciStatus = SC_STATUS_OK;
+	TCHAR szException[64] = { '\0' };
 	__try
 	{
 		// First allocate enough memory for the whole file (this will reduce memory copy during loading)
 		_pscratchTilla->execute(SCI_ALLOCATE, WPARAM(bufferSizeRequested));
-		if (_pscratchTilla->execute(SCI_GETSTATUS) != SC_STATUS_OK)
-			throw;
+		sciStatus = static_cast<int>(_pscratchTilla->execute(SCI_GETSTATUS));
+		if ((sciStatus > SC_STATUS_OK) && (sciStatus < SC_STATUS_WARN_START))
+			throw std::runtime_error("Scintilla error");
 
 		size_t lenFile = 0;
 		size_t lenConvert = 0;	//just in case conversion results in 0, but file not empty
@@ -1533,25 +1542,53 @@ bool FileManager::loadFileData(Document doc, int64_t fileSize, const TCHAR * fil
 					format = getEOLFormatForm(unicodeConvertor->getNewBuf(), unicodeConvertor->getNewSize(), EolType::unknown);
 			}
 
-			if (_pscratchTilla->execute(SCI_GETSTATUS) != SC_STATUS_OK)
-				throw;
+			sciStatus = static_cast<int>(_pscratchTilla->execute(SCI_GETSTATUS));
+			if ((sciStatus > SC_STATUS_OK) && (sciStatus < SC_STATUS_WARN_START))
+				throw std::runtime_error("Scintilla error");
 
 			if (incompleteMultibyteChar != 0)
 			{
 				// copy bytes to next buffer
 				memcpy(data, data + blockSize - incompleteMultibyteChar, incompleteMultibyteChar);
 			}
-
 		}
 		while (lenFile > 0);
 	}
-	__except(EXCEPTION_EXECUTE_HANDLER) //TODO: should filter correctly for other exceptions; the old filter(GetExceptionCode(), GetExceptionInformation()) was only catching access violations
+	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
-		pNativeSpeaker->messageBox("FileTooBigToOpen",
-			_pNotepadPlus->_pEditView->getHSelf(),
-			TEXT("File is too big to be opened by Notepad++"),
-			TEXT("Exception: File size problem"),
-			MB_OK | MB_APPLMODAL);
+		switch (sciStatus)
+		{
+			case SC_STATUS_OK:
+				// either the Scintilla doesn't catch this exception or the error is in the Notepad++ code, report the exception anyway
+#if defined(__GNUC__)
+				// there is the std::current_exception() possibility, but getting the real exception code from there requires an ugly hack,
+				// because of the std::exception_ptr has its members _Data1 (GetExceptionCode) and _Data2 (GetExceptionInformation) private
+				_stprintf_s(szException, _countof(szException), TEXT("unknown exception"));
+#else
+				_stprintf_s(szException, _countof(szException), TEXT("0x%X (SEH)"), ::GetExceptionCode());
+#endif
+				break;
+			case SC_STATUS_BADALLOC:
+				pNativeSpeaker->messageBox("FileTooBigToOpen",
+					_pNotepadPlus->_pEditView->getHSelf(),
+					TEXT("File is too big to be opened by Notepad++"),
+					TEXT("Exception: File size problem"),
+					MB_OK | MB_APPLMODAL);
+			case SC_STATUS_FAILURE:
+			default:
+				_stprintf_s(szException, _countof(szException), TEXT("%d (Scintilla)"), sciStatus);
+				break;
+		}
+		if (sciStatus != SC_STATUS_BADALLOC)
+		{
+			pNativeSpeaker->messageBox("FileLoadingException",
+				_pNotepadPlus->_pEditView->getHSelf(),
+				TEXT("An error occurred while loading the file!"),
+				TEXT("Exception code: $STR_REPLACE$"),
+				MB_OK | MB_APPLMODAL,
+				0,
+				szException);
+		}
 		success = false;
 	}
 
@@ -1590,20 +1627,13 @@ bool FileManager::loadFileData(Document doc, int64_t fileSize, const TCHAR * fil
 
 BufferID FileManager::getBufferFromName(const TCHAR* name)
 {
-	TCHAR fullpath[MAX_PATH];
-	::GetFullPathName(name, MAX_PATH, fullpath, NULL);
-	if (_tcschr(fullpath, '~'))
+	for (auto buf : _buffers)
 	{
-		::GetLongPathName(fullpath, fullpath, MAX_PATH);
-	}
-
-	for (size_t i = 0; i < _buffers.size(); i++)
-	{
-		if (OrdinalIgnoreCaseCompareStrings(name, _buffers.at(i)->getFullPathName()) == 0)
+		if (OrdinalIgnoreCaseCompareStrings(name, buf->getFullPathName()) == 0)
 		{
-			if (_buffers.at(i)->_referees[0]->isVisible())
+			if (buf->_referees[0]->isVisible())
 			{
-				return _buffers.at(i)->getID();
+				return buf->getID();
 			}
 		}
 	}
