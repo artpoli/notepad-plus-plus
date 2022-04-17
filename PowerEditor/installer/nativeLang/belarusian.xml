@@ -3,7 +3,7 @@
 The comments are here for explanation, it's not necessary to translate them.
 -->
 <NotepadPlus>
-    <Native-Langue name="Беларуская" filename="belarusian.xml" version="8.2.1">
+    <Native-Langue name="Беларуская" filename="belarusian.xml" version="8.3.3">
         <Menu>
             <Main>
                 <!-- Main Menu Entries -->
@@ -18,8 +18,8 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item menuId="tools" name="Інструменты"/>
                     <Item menuId="macro" name="Макрас"/>
                     <Item menuId="run" name="Выканаць"/>
-                    <Item idName="Убудовы" name="Убудовы"/>
-                    <Item idName="Window" name="Акно"/>
+                    <Item menuId="Plugins" name="Убудовы"/>
+                    <Item menuId="Window" name="Акно"/>
                 </Entries>
                 <!-- Sub Menu Entries -->
                 <SubEntries>
@@ -73,6 +73,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item subMenuId="settings-import" name="Імпарт"/>
                     <Item subMenuId="tools-md5" name="MD5"/>
                     <Item subMenuId="tools-sha256" name="SHA-256"/>
+                    <Item subMenuId="window-sortby" name="Sort By"/>
                 </SubEntries>
 
                 <!-- all menu item -->
@@ -362,6 +363,16 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42041" name="Ачысціць спіс нядаўніх файлаў"/>
                     <Item id="48016" name="Змяніць спалучэнні клавіш/выдаліць макрас..."/>
                     <Item id="48017" name="Змяніць спалучэнні клавіш/выдаліць каманду..."/>
+
+                    <Item id="11001" name="&amp;Windows..."/>
+                    <Item id="11002" name="Name A to Z"/>
+                    <Item id="11003" name="Name Z to A"/>
+                    <Item id="11004" name="Path A to Z"/>
+                    <Item id="11005" name="Path Z to A"/>
+                    <Item id="11006" name="Type A to Z"/>
+                    <Item id="11007" name="Type Z to A"/>
+                    <Item id="11008" name="Size Smaller to Larger"/>
+                    <Item id="11009" name="Size Larger to Smaller"/>
                 </Commands>
             </Main>
             <Splitter>
@@ -635,6 +646,14 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44107" name="Пераключыць папку як працоўную вобласць"/>
                     <Item id="44109" name="Пераключыцца на спіс дакументаў"/>
                     <Item id="44108" name="Пераключыцца на спіс функцый"/>
+                    <Item id="11002" name="Sort By Name A to Z"/>
+                    <Item id="11003" name="Sort By Name Z to A"/>
+                    <Item id="11004" name="Sort By Path A to Z"/>
+                    <Item id="11005" name="Sort By Path Z to A"/>
+                    <Item id="11006" name="Sort By Type A to Z"/>
+                    <Item id="11007" name="Sort By Type Z to A"/>
+                    <Item id="11008" name="Sort By Size Smaller to Larger"/>
+                    <Item id="11009" name="Sort By Size Larger to Smaller"/>
                 </MainCommandNames>
             </ShortcutMapper>
             <ShortcutMapperSubDialg title="Спалучэнні клавіш">
@@ -865,6 +884,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6215" name="Згладжванне шрыфту"/>
                     <Item id="6236" name="Прагортка за межы апошняга радка"/>
                     <Item id="6239" name="Утрымліваць выбар пры націску за межамі выбару"/>
+                    <Item id="6245" name="Enable virtual space"/>
                 </Scintillas>
 
                 <DarkMode title="Цёмны рэжым">
@@ -996,6 +1016,15 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6721" name="Сярэдняя частка"/>
                     <Item id="6722" name="Правая частка"/>
                     <Item id="6723" name="Дадаць"/>
+                    <ComboBox id="6724">
+                        <Element name="Full file name path"/>
+                        <Element name="File name"/>
+                        <Element name="File directory"/>
+                        <Element name="Page"/>
+                        <Element name="Short date format"/>
+                        <Element name="Long date format"/>
+                        <Element name="Time"/>
+                    </ComboBox>
                     <Item id="6725" name="Пераменная:"/>
                     <Item id="6727" name="Тут будуць паказаны налады пераменных"/>
                     <Item id="6728" name="Верхні і ніжні калонтытул"/>
@@ -1240,6 +1269,9 @@ The comments are here for explanation, it's not necessary to translate them.
             <DocTooDirtyToMonitor title="Праблема маніторынгу" message="Дакументы зменены. Калі ласка, захавайце змяненні перад пачаткам яго маніторынгу."/>
             <DocNoExistToMonitor title="Праблема маніторынгу" message="Файл павінен існаваць для яго маніторынгу."/>
             <FileTooBigToOpen title="Праблема памеру файла" message="Надта вялікі файл для адкрыцця ў Notepad++"/> <!-- HowToReproduce: Try to open a 4GB file (it's not easy to reproduce, it depends on your system). -->
+            <FileLoadingException title="Exception code: $STR_REPLACE$" message="An error occurred while loading the file!"/>
+            <WantToOpenHugeFile title="Opening huge file warning" message="Opening a huge file of 2GB+ could take several minutes.
+Do you want to open it?"/>
             <CreateNewFileOrNot title="Стварыць новы файл" message="&quot;$STR_REPLACE$&quot; не існуе. Стварыць яго?"/>
             <CreateNewFileError title="Стварыць новы файл" message="Не атрымалася стварыць файл &quot;$STR_REPLACE$&quot;."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <OpenFileError title="ПАМЫЛКА" message="Не атрымалася адкрыць файл &quot;$STR_REPLACE$&quot;."/>
@@ -1316,6 +1348,8 @@ The comments are here for explanation, it's not necessary to translate them.
             <PanelTitle name="Спіс функцый"/>
             <SortTip name="Сартаваць"/>
             <ReloadTip name="Перазагрузіць"/>
+            <PreferencesTip name="Параметры"/>
+            <PreferencesInitialSort name="Sort functions (A to Z) by default"/>
         </FunctionList>
         <FolderAsWorkspace>
             <PanelTitle name="Папка як працоўная вобласць"/>
