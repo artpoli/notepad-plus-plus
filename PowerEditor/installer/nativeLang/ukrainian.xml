@@ -181,35 +181,35 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42031" name="Шлях теки до буфера"/>
                     <Item id="42087" name="Усі назви файлів до буфера"/>
                     <Item id="42088" name="Усі шляхи файлів до буфера"/>
-                    <Item id="42032" name="&amp;Run a Macro Multiple Times..."/>
+                    <Item id="42032" name="Багаторазовий запуск макросу..."/>
                     <Item id="42033" name="Прибрати атрибут «Лише читання»"/>
                     <Item id="42035" name="Single Line Comment"/>
-                    <Item id="42036" name="Single Line Uncomment"/>
+                    <Item id="42036" name="Розкоментувати рядок"/>
                     <Item id="42055" name="Remove Empty Lines"/>
                     <Item id="42056" name="Remove Empty Lines (Containing Blank characters)"/>
-                    <Item id="42057" name="Insert Blank Line Above Current"/>
-                    <Item id="42058" name="Insert Blank Line Below Current"/>
+                    <Item id="42057" name="Додати порожній рядок над поточним"/>
+                    <Item id="42058" name="Додати порожній рядок під поточним"/>
                     <Item id="43001" name="&amp;Find..."/>
                     <Item id="43002" name="Find &amp;Next"/>
-                    <Item id="43003" name="&amp;Replace..."/>
+                    <Item id="43003" name="Замінити..."/>
                     <Item id="43004" name="&amp;Go to..."/>
-                    <Item id="43005" name="Toggle Bookmark"/>
-                    <Item id="43006" name="Next Bookmark"/>
-                    <Item id="43007" name="Previous Bookmark"/>
-                    <Item id="43008" name="Clear All Bookmarks"/>
-                    <Item id="43018" name="Cut Bookmarked Lines"/>
-                    <Item id="43019" name="Copy Bookmarked Lines"/>
+                    <Item id="43005" name="Закладки"/>
+                    <Item id="43006" name="Наступна закладка"/>
+                    <Item id="43007" name="Попередня закладка"/>
+                    <Item id="43008" name="Стерти всі закладки"/>
+                    <Item id="43018" name="Вирізати закладені рядки"/>
+                    <Item id="43019" name="Копіювати закладені рядки"/>
                     <Item id="43020" name="Paste to (Replace) Bookmarked Lines"/>
                     <Item id="43021" name="Remove Bookmarked Lines"/>
                     <Item id="43051" name="Remove Unmarked Lines"/>
-                    <Item id="43050" name="Inverse Bookmark"/>
-                    <Item id="43052" name="Find characters in rang&amp;e..."/>
-                    <Item id="43053" name="Select All Between &amp;Matching Braces"/>
-                    <Item id="43009" name="Go to &amp;Matching Brace"/>
-                    <Item id="43010" name="Find &amp;Previous"/>
-                    <Item id="43011" name="&amp;Incremental Search"/>
-                    <Item id="43013" name="Find in Fi&amp;les"/>
-                    <Item id="43014" name="Find (&amp;Volatile) Next"/>
+                    <Item id="43050" name="Інвертувати закладки"/>
+                    <Item id="43052" name="Знайти символи в діапазоні..."/>
+                    <Item id="43053" name="Вибрати все у відповідному діапазоні"/>
+                    <Item id="43009" name="Перейти до парної дужки"/>
+                    <Item id="43010" name="Знайти перед"/>
+                    <Item id="43011" name="Покроковий пошук"/>
+                    <Item id="43013" name="Знайти у файлах"/>
+                    <Item id="43014" name="Знайти далі (змінне)"/>
                     <Item id="43015" name="Find (&amp;Volatile) Previous"/>
                     <Item id="43022" name="Using 1st Style"/>
                     <Item id="43023" name="Clear 1st Style"/>
