@@ -3,7 +3,7 @@
 The comments are here for explanation, it's not necessary to translate them.
 -->
 <NotepadPlus>
-    <Native-Langue name="Українська" filename="ukrainian.xml" version="8.3.3">
+    <Native-Langue name="Українська" filename="ukrainian.xml" version="8.4.1">
         <Menu>
             <Main>
                 <!-- Main Menu Entries -->
@@ -880,23 +880,27 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6229" name="Вирівняний"/>
                     <Item id="6230" name="З відступом"/>
                     <Item id="6234" name="Вимкнути розширену прокрутку якщо є проблеми з тачпадом"/>
-                    <Item id="6214" name="Підсвічувати поточний рядок"/>
-                    <Item id="6215" name="Згладжувати шрифти"/>
-                    <Item id="6236" name="Прокручування за межі останнього рядка"/>
-                    <Item id="6239" name="Утримувати вибір при клацанні за межами вибору"/>
-                    <Item id="6245" name="Увімкнути віртуальний простір"/>
+                    <Item id="6215" name="Enable smooth font"/>
+                    <Item id="6236" name="Enable scrolling beyond last line"/>
+                    <Item id="6239" name="Keep selection when right-click outside of selection"/>
+                    <Item id="6245" name="Enable virtual space"/>
+                    <Item id="6651" name="Current Line Indicator"/>
+                    <Item id="6652" name="Немає"/>
+                    <Item id="6653" name="Highlight Background"/>
+                    <Item id="6654" name="Frame"/>
+                    <Item id="6655" name="Width"/>
                 </Scintillas>
 
                 <DarkMode title="Темний режим">
                     <Item id="7101" name="Увімкнути темний режим"/>
-                    <Item id="7102" name="Чорний відтінок"/>
-                    <Item id="7103" name="Червоний відтінок"/>
-                    <Item id="7104" name="Зелений відтінок"/>
-                    <Item id="7105" name="Блакитний відтінок"/>
-                    <Item id="7107" name="Пурпуровий відтінок"/>
-                    <Item id="7108" name="Бірюзовий відтінок"/>
-                    <Item id="7109" name="Оливковий відтінок"/>
-                    <Item id="7115" name="Власний відтінок"/>
+                    <Item id="7102" name="Black"/>
+                    <Item id="7103" name="Red"/>
+                    <Item id="7104" name="Green"/>
+                    <Item id="7105" name="Blue"/>
+                    <Item id="7107" name="Purple"/>
+                    <Item id="7108" name="Cyan"/>
+                    <Item id="7109" name="Olive"/>
+                    <Item id="7115" name="Customized"/>
                     <Item id="7116" name="Згори"/>
                     <Item id="7117" name="Гарячий трек меню"/>
                     <Item id="7118" name="Активний"/>
@@ -907,7 +911,9 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="7123" name="Вимкнений текст"/>
                     <Item id="7124" name="Край"/>
                     <Item id="7125" name="Посилання"/>
-                    <Item id="7130" name="Скинути"/>
+                    <Item id="7126" name="Edge highlight"/>
+                    <Item id="7130" name="Reset"/>
+                    <Item id="7135" name="Tones"/>
                 </DarkMode>
 
                 <MarginsBorderEdge title="Відступи/Межі/Краї">
