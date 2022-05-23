@@ -373,7 +373,7 @@ void Notepad_plus::command(int id)
 		case IDM_EDIT_COPY_BINARY:
 		case IDM_EDIT_CUT_BINARY:
 		{
-			size_t textLen = _pEditView->execute(SCI_GETSELTEXT, 0, 0) - 1;
+			size_t textLen = _pEditView->execute(SCI_GETSELTEXT, 0, 0);
 			if (!textLen)
 				return;
 
@@ -397,6 +397,8 @@ void Notepad_plus::command(int id)
 			unsigned char *lpucharCopy = (unsigned char *)GlobalLock(hglbCopy);
 			memcpy(lpucharCopy, pBinText, textLen * sizeof(unsigned char));
 			lpucharCopy[textLen] = 0;    // null character
+
+			delete[] pBinText;
 
 			GlobalUnlock(hglbCopy);
 
@@ -1975,16 +1977,27 @@ void Notepad_plus::command(int id)
 		break;
 
 
-		case IDM_VIEW_FOLD_CURRENT :
-		case IDM_VIEW_UNFOLD_CURRENT :
-			_pEditView->foldCurrentPos((id==IDM_VIEW_FOLD_CURRENT)?fold_collapse:fold_uncollapse);
-			break;
+		case IDM_VIEW_FOLD_CURRENT:
+		case IDM_VIEW_UNFOLD_CURRENT:
+		{
+			bool isToggleEnabled = NppParameters::getInstance().getNppGUI()._enableFoldCmdToggable;
+			bool mode = id == IDM_VIEW_FOLD_CURRENT ? fold_collapse : fold_uncollapse;
 
-		case IDM_VIEW_TOGGLE_FOLDALL:
-		case IDM_VIEW_TOGGLE_UNFOLDALL:
+			if (isToggleEnabled)
+			{
+				bool isFolded = _pEditView->isCurrentLineFolded();
+				mode = isFolded ? fold_uncollapse : fold_collapse;
+			}
+			
+			_pEditView->foldCurrentPos(mode);
+		}
+		break;
+
+		case IDM_VIEW_FOLDALL:
+		case IDM_VIEW_UNFOLDALL:
 		{
 			_isFolding = true; // So we can ignore events while folding is taking place
-			bool doCollapse = (id==IDM_VIEW_TOGGLE_FOLDALL)?fold_collapse:fold_uncollapse;
+			bool doCollapse = (id==IDM_VIEW_FOLDALL)?fold_collapse:fold_uncollapse;
  			_pEditView->foldAll(doCollapse);
 			if (_pDocMap)
 			{
@@ -2517,10 +2530,7 @@ void Notepad_plus::command(int id)
 					{
 						// Monitoring firstly for making monitoring icon
 						monitoringStartOrStopAndUpdateUI(curBuf, true);
-						
-						MonitorInfo *monitorInfo = new MonitorInfo(curBuf, _pPublicInterface->getHSelf());
-						HANDLE hThread = ::CreateThread(NULL, 0, monitorFileOnChange, (void *)monitorInfo, 0, NULL); // will be deallocated while quitting thread
-						::CloseHandle(hThread);
+						createMonitoringThread(curBuf);
 					}
 				}
 				else
@@ -3163,8 +3173,8 @@ void Notepad_plus::command(int id)
 		{
 			bool doAboutDlg = false;
 			const int maxSelLen = 32;
-			auto textLen = _pEditView->execute(SCI_GETSELTEXT, 0, 0) - 1;
-			if (!textLen)
+			auto textLen = _pEditView->execute(SCI_GETSELTEXT, 0, 0);
+			if (textLen <= 0)
 				doAboutDlg = true;
 			if (textLen > maxSelLen)
 				doAboutDlg = true;
@@ -3745,12 +3755,24 @@ void Notepad_plus::command(int id)
 		case IDM_VIEW_CURLINE_HILITING:
 		{
 			NppParameters& nppParams = NppParameters::getInstance();
+			const ScintillaViewParams& svp = nppParams.getSVP();
 
-			COLORREF colour{ nppParams.getCurLineHilitingColour() };
-			bool hilite{ nppParams.getSVP()._currentLineHilitingShow };
+			const COLORREF bgColour { nppParams.getCurLineHilitingColour() };
+			const LPARAM frameWidth { (svp._currentLineHiliteMode == LINEHILITE_FRAME) ? svp._currentLineFrameWidth : 0 };
 
-			_mainEditView.setCurrentLineHiLiting(hilite, colour);
-			_subEditView.setCurrentLineHiLiting(hilite, colour);
+			if (svp._currentLineHiliteMode != LINEHILITE_NONE)
+			{
+				_mainEditView.execute(SCI_SETELEMENTCOLOUR, SC_ELEMENT_CARET_LINE_BACK, bgColour);
+				_subEditView.execute(SCI_SETELEMENTCOLOUR, SC_ELEMENT_CARET_LINE_BACK, bgColour);
+			}
+			else
+			{
+				_mainEditView.execute(SCI_RESETELEMENTCOLOUR, SC_ELEMENT_CARET_LINE_BACK, NULL);
+				_subEditView.execute(SCI_RESETELEMENTCOLOUR, SC_ELEMENT_CARET_LINE_BACK, NULL);
+			}
+
+			_mainEditView.execute(SCI_SETCARETLINEFRAME, frameWidth);
+			_subEditView.execute(SCI_SETCARETLINEFRAME, frameWidth);
 		}
 		break;
 
@@ -3919,8 +3941,8 @@ void Notepad_plus::command(int id)
 			case IDM_VIEW_WRAP :
 			case IDM_VIEW_FOLD_CURRENT :
 			case IDM_VIEW_UNFOLD_CURRENT :
-			case IDM_VIEW_TOGGLE_FOLDALL:
-			case IDM_VIEW_TOGGLE_UNFOLDALL:
+			case IDM_VIEW_FOLDALL:
+			case IDM_VIEW_UNFOLDALL:
 			case IDM_VIEW_FOLD_1:
 			case IDM_VIEW_FOLD_2:
 			case IDM_VIEW_FOLD_3:

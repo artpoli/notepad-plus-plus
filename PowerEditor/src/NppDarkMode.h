@@ -41,6 +41,7 @@ namespace NppDarkMode
 		COLORREF disabledText = 0;
 		COLORREF linkText = 0;
 		COLORREF edge = 0;
+		COLORREF hotEdge = 0;
 	};
 
 	struct Options
@@ -103,6 +104,7 @@ namespace NppDarkMode
 	COLORREF getLinkTextColor();
 
 	COLORREF getEdgeColor();
+	COLORREF getHotEdgeColor();
 
 	HBRUSH getBackgroundBrush();
 	HBRUSH getDarkerBackgroundBrush();
@@ -110,8 +112,12 @@ namespace NppDarkMode
 	HBRUSH getHotBackgroundBrush();
 	HBRUSH getErrorBackgroundBrush();
 
+	HBRUSH getEdgeBrush();
+	HBRUSH getHotEdgeBrush();
+
 	HPEN getDarkerTextPen();
 	HPEN getEdgePen();
+	HPEN getHotEdgePen();
 
 	void setBackgroundColor(COLORREF c);
 	void setSofterBackgroundColor(COLORREF c);
@@ -123,6 +129,7 @@ namespace NppDarkMode
 	void setDisabledTextColor(COLORREF c);
 	void setLinkTextColor(COLORREF c);
 	void setEdgeColor(COLORREF c);
+	void setHotEdgeColor(COLORREF c);
 
 	Colors getDarkModeDefaultColors();
 	void changeCustomTheme(const Colors& colors);
@@ -152,6 +159,8 @@ namespace NppDarkMode
 
 	void autoSubclassAndThemeChildControls(HWND hwndParent, bool subclass = true, bool theme = true);
 	void autoThemeChildControls(HWND hwndParent);
+
+	bool subclassTabUpDownControl(HWND hwnd);
 
 	void setDarkTitleBar(HWND hwnd);
 	void setDarkExplorerTheme(HWND hwnd);

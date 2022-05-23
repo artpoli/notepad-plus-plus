@@ -235,7 +235,7 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	pIconListVector.push_back(&_docTabIconListAlt);     // 1
 	pIconListVector.push_back(&_docTabIconListDarkMode);// 2
 
-	unsigned char indexDocTabIcon = NppDarkMode::isEnabled() ? 2 : ((tabBarStatus & TAB_ALTICONS) ? 1 : 0);
+	unsigned char indexDocTabIcon = (((tabBarStatus & TAB_ALTICONS) == TAB_ALTICONS) ? 1 : NppDarkMode::isEnabled() ? 2 : 0);
 	
 	_mainDocTab.init(_pPublicInterface->getHinst(), hwnd, &_mainEditView, pIconListVector, indexDocTabIcon);
 	_subDocTab.init(_pPublicInterface->getHinst(), hwnd, &_subEditView, pIconListVector, indexDocTabIcon);
@@ -4399,7 +4399,7 @@ void Notepad_plus::docGotoAnotherEditView(FileTransferMode mode)
 	}
 }
 
-bool Notepad_plus::activateBuffer(BufferID id, int whichOne)
+bool Notepad_plus::activateBuffer(BufferID id, int whichOne, bool forceApplyHilite)
 {
 	NppGUI& nppGui = NppParameters::getInstance().getNppGUI();
 	bool isSnapshotMode = nppGui.isSnapshotMode();
@@ -4420,7 +4420,7 @@ bool Notepad_plus::activateBuffer(BufferID id, int whichOne)
 		if (_mainDocTab.activateBuffer(id))	//only activate if possible
 		{
 			_isFolding = true;
-			_mainEditView.activateBuffer(id);
+			_mainEditView.activateBuffer(id, forceApplyHilite);
 			_isFolding = false;
 		}
 		else
@@ -4431,7 +4431,7 @@ bool Notepad_plus::activateBuffer(BufferID id, int whichOne)
 		if (_subDocTab.activateBuffer(id))
 		{
 			_isFolding = true;
-			_subEditView.activateBuffer(id);
+			_subEditView.activateBuffer(id, forceApplyHilite);
 			_isFolding = false;
 		}
 		else
@@ -5840,6 +5840,9 @@ void Notepad_plus::drawTabbarColoursFromStylerArray()
 
 void Notepad_plus::drawAutocompleteColoursFromTheme(COLORREF fgColor, COLORREF bgColor)
 {
+	if (bgColor == 0xFFFFFF)
+		return;
+
 	int rbv = GetRValue(bgColor);
 	int gbv = GetGValue(bgColor);
 	int bbv = GetBValue(bgColor);
@@ -6177,6 +6180,7 @@ std::vector<generic_string> Notepad_plus::loadCommandlineParams(const TCHAR * co
 	bool recursive = pCmdParams->_isRecursive;
 	bool readOnly = pCmdParams->_isReadOnly;
 	bool openFoldersAsWorkspace = pCmdParams->_openFoldersAsWorkspace;
+	bool monitorFiles = pCmdParams->_monitorFiles;
 
 	if (openFoldersAsWorkspace)
 	{
@@ -6237,6 +6241,12 @@ std::vector<generic_string> Notepad_plus::loadCommandlineParams(const TCHAR * co
 			_pEditView->scrollPosToCenter(_pEditView->execute(SCI_GETCURRENTPOS));
 
 			switchEditViewTo(iView);	//restore view
+		}
+
+		if (monitorFiles)
+		{
+			monitoringStartOrStopAndUpdateUI(pBuf, true);
+			createMonitoringThread(pBuf);
 		}
 	}
 	if (lastOpened != BUFFER_INVALID)
@@ -7276,6 +7286,7 @@ static const QuoteParams quotes[] =
 	{TEXT("Anonymous #190"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("The greatest security vulnerability in any computer system is located between the keyboard and the chair.\n") },
 	{TEXT("Anonymous #191"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("My biggest talent is always being able to tell what's in a wrapped present.\n\nIt's a gift.\n") },
 	{TEXT("Anonymous #192"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("You can't force someone to love you.\nBut you can lock this person in the basement and wait for him/her to develop Stockholm syndrome.\n") },
+	{TEXT("Anonymous #193"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Do you know:\nthere are more airplanes in the oceans, than submarines in the sky?\n") },
 	{TEXT("xkcd"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Never have I felt so close to another soul\nAnd yet so helplessly alone\nAs when I Google an error\nAnd there's one result\nA thread by someone with the same problem\nAnd no answer\nLast posted to in 2003\n\n\"Who were you, DenverCoder9?\"\n\"What did you see?!\"\n\n(ref: https://xkcd.com/979/)") },
 	{TEXT("A developer"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("No hugs & kisses.\nOnly bugs & fixes.") },
 	{TEXT("Elon Musk"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Don't set your password as your child's name.\nName your child after your password.") },
@@ -7464,7 +7475,7 @@ DWORD WINAPI Notepad_plus::threadTextPlayer(void *params)
 
 		previousChar = text2display[i];
 		//char ch[64];
-		//sprintf(ch, "writting char == %c", text2display[i]);
+		//sprintf(ch, "writing char == %c", text2display[i]);
 		//writeLog(TEXT("c:\\tmp\\log.txt"), ch);
     }
 
@@ -7703,95 +7714,65 @@ void Notepad_plus::restoreMinimizeDialogs()
 
 void Notepad_plus::refreshDarkMode(bool resetStyle)
 {
-	NppParameters& nppParams = NppParameters::getInstance();
-
-	SendMessage(_pPublicInterface->getHSelf(), NPPM_SETEDITORBORDEREDGE, 0, nppParams.getSVP()._showBorderEdge);
-
-	if (resetStyle && NppDarkMode::isExperimentalSupported())
-	{
-		NppDarkMode::allowDarkModeForApp(NppDarkMode::isEnabled());
-
-		NppDarkMode::setDarkTitleBar(_pPublicInterface->getHSelf());
-		::SetWindowPos(_pPublicInterface->getHSelf(), nullptr, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
-
-		for (auto& docCont : _dockingManager.getContainerInfo())
-		{
-			NppDarkMode::setDarkTitleBar(docCont->getCaptionWnd());
-			::SetWindowPos(docCont->getCaptionWnd(), nullptr, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
-		}
-
-		for (auto& hwndDlg : _hModelessDlgs)
-		{
-			NppDarkMode::setDarkTitleBar(hwndDlg);
-			::SendMessage(hwndDlg, NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-			::RedrawWindow(hwndDlg, nullptr, nullptr, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME | RDW_ALLCHILDREN);
-			::SetWindowPos(hwndDlg, nullptr, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
-		}
-	}
-	else
-	{
-		for (auto& hwndDlg : _hModelessDlgs)
-		{
-			::SendMessage(hwndDlg, NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-			::RedrawWindow(hwndDlg, nullptr, nullptr, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME | RDW_ALLCHILDREN);
-		}
-	}
-
-	if (_pProjectPanel_1)
-	{
-		::SendMessage(_pProjectPanel_1->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-	}
-	if (_pProjectPanel_2)
-	{
-		::SendMessage(_pProjectPanel_2->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-	}
-	if (_pProjectPanel_3)
-	{
-		::SendMessage(_pProjectPanel_3->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-	}
-	if (_pFuncList)
-	{
-		::SendMessage(_pFuncList->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-	}
-	if (_pFileBrowser)
-	{
-		::SendMessage(_pFileBrowser->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-	}
-
-	if (_pAnsiCharPanel)
-	{
-		::SendMessage(_pAnsiCharPanel->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-	}
-	if (_pDocumentListPanel)
-	{
-		::SendMessage(_pDocumentListPanel->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-	}
-
-	if (_pClipboardHistoryPanel)
-	{
-		::SendMessage(_pClipboardHistoryPanel->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-	}
-
-	::SendMessage(_subEditView.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-	::SendMessage(_mainEditView.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-
-	::SendMessage(_mainDocTab.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-	::SendMessage(_subDocTab.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-
-	SendMessage(_incrementFindDlg.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-	RedrawWindow(_pPublicInterface->getHSelf(), nullptr, nullptr, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME | RDW_ALLCHILDREN);
-	SendMessage(_pPublicInterface->getHSelf(), NPPM_INTERNAL_CHANGETABBAEICONS, 0, NppDarkMode::isEnabled() ? 2 : 0);
-
-	::SendMessage(_findInFinderDlg.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
-	::RedrawWindow(_findInFinderDlg.getHSelf(), nullptr, nullptr, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME | RDW_ALLCHILDREN);
-	if (resetStyle && NppDarkMode::isExperimentalSupported())
-	{
-		NppDarkMode::setDarkTitleBar(_findInFinderDlg.getHSelf());
-		::SetWindowPos(_findInFinderDlg.getHSelf(), nullptr, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
-	}
-
 	if (resetStyle)
 	{
+		NppParameters& nppParams = NppParameters::getInstance();
+
+		::SendMessage(_pPublicInterface->getHSelf(), NPPM_SETEDITORBORDEREDGE, 0, nppParams.getSVP()._showBorderEdge);
+
+		::SendMessage(_subEditView.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+		::SendMessage(_mainEditView.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+
+		::SendMessage(_mainDocTab.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+		::SendMessage(_subDocTab.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+
+		::SendMessage(_findInFinderDlg.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+		::RedrawWindow(_findInFinderDlg.getHSelf(), nullptr, nullptr, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME | RDW_ALLCHILDREN);
+
+		::SendMessage(_incrementFindDlg.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+		::RedrawWindow(_pPublicInterface->getHSelf(), nullptr, nullptr, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME | RDW_ALLCHILDREN);
+
+		if (_pProjectPanel_1)
+		{
+			::SendMessage(_pProjectPanel_1->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+		}
+		if (_pProjectPanel_2)
+		{
+			::SendMessage(_pProjectPanel_2->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+		}
+		if (_pProjectPanel_3)
+		{
+			::SendMessage(_pProjectPanel_3->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+		}
+		if (_pFuncList)
+		{
+			::SendMessage(_pFuncList->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+		}
+		if (_pFileBrowser)
+		{
+			::SendMessage(_pFileBrowser->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+		}
+
+		if (_pAnsiCharPanel)
+		{
+			::SendMessage(_pAnsiCharPanel->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+		}
+		if (_pDocumentListPanel)
+		{
+			::SendMessage(_pDocumentListPanel->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+		}
+
+		if (_pClipboardHistoryPanel)
+		{
+			::SendMessage(_pClipboardHistoryPanel->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+		}
+
+		bool isChecked = _preference._generalSubDlg.isCheckedOrNot(IDC_CHECK_TAB_ALTICONS);
+		if (!isChecked)
+		{
+			::SendMessage(_pPublicInterface->getHSelf(), NPPM_INTERNAL_CHANGETABBAEICONS, 0, NppDarkMode::isEnabled() ? 2 : 0);
+		}
+
 		toolBarStatusType state = _toolBar.getState();
 		switch (state)
 		{
@@ -7852,6 +7833,49 @@ void Notepad_plus::refreshDarkMode(bool resetStyle)
 				::SendMessage(_pPublicInterface->getHSelf(), WM_UPDATESCINTILLAS, 0, 0);
 			}
 		}
+
+		if (NppDarkMode::isExperimentalSupported())
+		{
+			NppDarkMode::allowDarkModeForApp(NppDarkMode::isEnabled());
+
+			NppDarkMode::setDarkTitleBar(_pPublicInterface->getHSelf());
+			::SetWindowPos(_pPublicInterface->getHSelf(), nullptr, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
+
+			for (auto& docCont : _dockingManager.getContainerInfo())
+			{
+				auto hwndDocCont = docCont->getCaptionWnd();
+				NppDarkMode::setDarkTitleBar(hwndDocCont);
+				::SetWindowPos(hwndDocCont, nullptr, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
+			}
+
+			for (auto& hwndDlg : _hModelessDlgs)
+			{
+				NppDarkMode::setDarkTitleBar(hwndDlg);
+				::SendMessage(hwndDlg, NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+				::RedrawWindow(hwndDlg, nullptr, nullptr, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME | RDW_ALLCHILDREN);
+				::SetWindowPos(hwndDlg, nullptr, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
+			}
+
+			NppDarkMode::setDarkTitleBar(_findInFinderDlg.getHSelf());
+			::SetWindowPos(_findInFinderDlg.getHSelf(), nullptr, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
+		}
+	}
+	else
+	{
+		for (auto& docCont : _dockingManager.getContainerInfo())
+		{
+			auto hwndDocCont = docCont->getCaptionWnd();
+			::RedrawWindow(hwndDocCont, nullptr, nullptr, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME | RDW_ALLCHILDREN);
+		}
+
+		for (auto& hwndDlg : _hModelessDlgs)
+		{
+			//::SendMessage(hwndDlg, NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
+			::RedrawWindow(hwndDlg, nullptr, nullptr, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME | RDW_ALLCHILDREN);
+		}
+
+		::RedrawWindow(_findInFinderDlg.getHSelf(), nullptr, nullptr, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME | RDW_ALLCHILDREN);
+		::RedrawWindow(_pPublicInterface->getHSelf(), nullptr, nullptr, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME | RDW_ALLCHILDREN);
 	}
 }
 
@@ -8107,6 +8131,13 @@ void Notepad_plus::monitoringStartOrStopAndUpdateUI(Buffer* pBuf, bool isStartin
 		_toolBar.setCheck(IDM_VIEW_MONITORING, isStarting);
 		pBuf->setUserReadOnly(isStarting);
 	}
+}
+
+void Notepad_plus::createMonitoringThread(Buffer* pBuf)
+{
+	MonitorInfo *monitorInfo = new Notepad_plus::MonitorInfo(pBuf, _pPublicInterface->getHSelf());
+	HANDLE hThread = ::CreateThread(NULL, 0, monitorFileOnChange, (void *)monitorInfo, 0, NULL); // will be deallocated while quitting thread
+	::CloseHandle(hThread);
 }
 
 // Fill names into the shortcut list.

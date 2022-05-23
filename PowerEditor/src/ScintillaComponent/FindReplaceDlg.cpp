@@ -375,7 +375,6 @@ void FindReplaceDlg::fillFindHistory()
 
 		if (findHistory._transparencyMode == FindHistory::none)
 		{
-			enableFindDlgItem(IDC_TRANSPARENT_GRPBOX, false);
 			enableFindDlgItem(IDC_TRANSPARENT_LOSSFOCUS_RADIO, false);
 			enableFindDlgItem(IDC_TRANSPARENT_ALWAYS_RADIO, false);
 			enableFindDlgItem(IDC_PERCENTAGE_SLIDER, false);
@@ -1771,7 +1770,6 @@ intptr_t CALLBACK FindReplaceDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 				{
 					bool isChecked = isCheckedOrNot(IDC_TRANSPARENT_CHECK);
 
-					enableFindDlgItem(IDC_TRANSPARENT_GRPBOX, isChecked);
 					enableFindDlgItem(IDC_TRANSPARENT_LOSSFOCUS_RADIO, isChecked);
 					enableFindDlgItem(IDC_TRANSPARENT_ALWAYS_RADIO, isChecked);
 					enableFindDlgItem(IDC_PERCENTAGE_SLIDER, isChecked);
@@ -2680,8 +2678,6 @@ void FindReplaceDlg::findAllIn(InWhat op)
 		_pFinder->_scintView.execute(SCI_SETCODEPAGE, SC_CP_UTF8);
 		_pFinder->_scintView.execute(SCI_USEPOPUP, FALSE);
 		_pFinder->_scintView.execute(SCI_SETUNDOCOLLECTION, false);	//dont store any undo information
-		_pFinder->_scintView.execute(SCI_SETCARETLINEVISIBLE, 1);
-		_pFinder->_scintView.execute(SCI_SETCARETLINEVISIBLEALWAYS, true);
 		_pFinder->_scintView.execute(SCI_SETCARETWIDTH, 0);
 		_pFinder->_scintView.showMargin(ScintillaEditView::_SC_MARGE_FOLDER, true);
 
@@ -2814,8 +2810,6 @@ Finder * FindReplaceDlg::createFinder()
 	pFinder->_scintView.execute(SCI_SETCODEPAGE, SC_CP_UTF8);
 	pFinder->_scintView.execute(SCI_USEPOPUP, FALSE);
 	pFinder->_scintView.execute(SCI_SETUNDOCOLLECTION, false);	//dont store any undo information
-	pFinder->_scintView.execute(SCI_SETCARETLINEVISIBLE, 1);
-	pFinder->_scintView.execute(SCI_SETCARETLINEVISIBLEALWAYS, true);
 	pFinder->_scintView.execute(SCI_SETCARETWIDTH, 0);
 	pFinder->_scintView.showMargin(ScintillaEditView::_SC_MARGE_FOLDER, true);
 
@@ -4329,7 +4323,9 @@ void Finder::setFinderStyle()
 		const Style * pStyle = pStyler->findByID(SCE_SEARCHRESULT_CURRENT_LINE);
 		if (pStyle)
 		{
-			_scintView.execute(SCI_SETCARETLINEBACK, pStyle->_bgColor);
+			_scintView.execute(SCI_SETELEMENTCOLOUR, SC_ELEMENT_CARET_LINE_BACK, pStyle->_bgColor);
+			_scintView.execute(SCI_SETCARETLINEFRAME, 0);
+			_scintView.execute(SCI_SETCARETLINEVISIBLEALWAYS, true);
 		}
 	}
 	_scintView.setSearchResultLexer();
@@ -5056,10 +5052,12 @@ int Progress::createProgressWindow()
 
 	int xStartPos = dpiManager.scaleX(5);
 	int yTextPos = dpiManager.scaleY(5);
+	auto ctrlWidth = width - widthPadding - xStartPos;
+
 	_hPText = ::CreateWindowEx(0, TEXT("STATIC"), TEXT(""),
 		WS_CHILD | WS_VISIBLE | BS_TEXT | SS_PATHELLIPSIS,
 		xStartPos, yTextPos,
-		width - widthPadding, textHeight, _hwnd, NULL, _hInst, NULL);
+		ctrlWidth, textHeight, _hwnd, NULL, _hInst, NULL);
 
 	HFONT hf = (HFONT)::GetStockObject(DEFAULT_GUI_FONT);
 	if (hf)
@@ -5068,7 +5066,7 @@ int Progress::createProgressWindow()
 	_hPBar = ::CreateWindowEx(0, PROGRESS_CLASS, TEXT("Progress Bar"),
 		WS_CHILD | WS_VISIBLE | PBS_SMOOTH,
 		xStartPos, yTextPos + textHeight,
-		width - widthPadding, cPBheight,
+		ctrlWidth, cPBheight,
 		_hwnd, NULL, _hInst, NULL);
 	SendMessage(_hPBar, PBM_SETRANGE, 0, MAKELPARAM(0, 100));
 

@@ -222,7 +222,7 @@ public:
 		}
 	};
 
-	void activateBuffer(BufferID buffer);
+	void activateBuffer(BufferID buffer, bool force = false);
 
 	void getCurrentFoldStates(std::vector<size_t> & lineStateVector);
 	void syncFoldStateWith(const std::vector<size_t> & lineStateVectorNew);
@@ -466,15 +466,6 @@ public:
 	}
 
 	void updateLineNumberWidth();
-	
-
-	void setCurrentLineHiLiting(bool isHiliting, COLORREF bgColor) const {
-		if (isHiliting)
-			execute(SCI_SETELEMENTCOLOUR, SC_ELEMENT_CARET_LINE_BACK, bgColor);
-		else
-			execute(SCI_RESETELEMENTCOLOUR, SC_ELEMENT_CARET_LINE_BACK, NULL);
-	};
-
 	void performGlobalStyles();
 
 	void expand(size_t& line, bool doExpand, bool force = false, intptr_t visLevels = 0, intptr_t level = -1);
@@ -517,9 +508,10 @@ public:
 	void collapse(int level2Collapse, bool mode);
 	void foldAll(bool mode);
 	void fold(size_t line, bool mode);
-	bool isFolded(size_t line) {
+	bool isFolded(size_t line) const {
 		return (execute(SCI_GETFOLDEXPANDED, line) != 0);
 	};
+	bool isCurrentLineFolded() const;
 	void foldCurrentPos(bool mode);
 	int getCodepage() const {return _codepage;};
 

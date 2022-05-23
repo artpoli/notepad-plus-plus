@@ -284,8 +284,8 @@ static const WinMenuKeyDefinition winKeyDefs[] =
 	{ VK_H,       IDM_VIEW_HIDELINES,                           false, true,  false, nullptr },
 	{ VK_F8,      IDM_VIEW_SWITCHTO_OTHER_VIEW,                 false, false, false, nullptr },
 
-	{ VK_0,       IDM_VIEW_TOGGLE_FOLDALL,                      false, true,  false, nullptr },
-	{ VK_0,       IDM_VIEW_TOGGLE_UNFOLDALL,                    false, true,  true,  nullptr },
+	{ VK_0,       IDM_VIEW_FOLDALL,                             false, true,  false, nullptr },
+	{ VK_0,       IDM_VIEW_UNFOLDALL,                           false, true,  true,  nullptr },
 	{ VK_F,       IDM_VIEW_FOLD_CURRENT,                        true,  true,  false, nullptr },
 	{ VK_F,       IDM_VIEW_UNFOLD_CURRENT,                      true,  true,  true,  nullptr },
 	{ VK_1,       IDM_VIEW_FOLD_1,                              false, true,  false, TEXT("Collapse Level 1") },
@@ -5516,6 +5516,10 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 			const TCHAR * optMuteSounds = element->Attribute(TEXT("muteSounds"));
 			if (optMuteSounds)
 				_nppGUI._muteSounds = lstrcmp(optMuteSounds, TEXT("yes")) == 0;
+
+			const TCHAR * optEnableFoldCmdToggable = element->Attribute(TEXT("enableFoldCmdToggable"));
+			if (optEnableFoldCmdToggable)
+				_nppGUI._enableFoldCmdToggable = lstrcmp(optEnableFoldCmdToggable, TEXT("yes")) == 0;
 		}
 		else if (!lstrcmp(nm, TEXT("commandLineInterpreter")))
 		{
@@ -5582,13 +5586,17 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 			if (val)
 				_nppGUI._darkmode._customColors.disabledText = i;
 
-			val = element->Attribute(TEXT("customColorEdge"), &i);
-			if (val)
-				_nppGUI._darkmode._customColors.edge = i;
-			
 			val = element->Attribute(TEXT("customColorLinkText"), &i);
 			if (val)
 				_nppGUI._darkmode._customColors.linkText = i;
+
+			val = element->Attribute(TEXT("customColorEdge"), &i);
+			if (val)
+				_nppGUI._darkmode._customColors.edge = i;
+
+			val = element->Attribute(TEXT("customColorHotEdge"), &i);
+			if (val)
+				_nppGUI._darkmode._customColors.hotEdge = i;
 		}
 	}
 }
@@ -5671,9 +5679,38 @@ void NppParameters::feedScintillaParam(TiXmlNode *node)
 	if (nm)
 	{
 		if (!lstrcmp(nm, TEXT("show")))
-			_svp._currentLineHilitingShow = true;
-		else if (!lstrcmp(nm, TEXT("hide")))
-			_svp._currentLineHilitingShow = false;
+			_svp._currentLineHiliteMode = LINEHILITE_HILITE;
+		else
+			_svp._currentLineHiliteMode = LINEHILITE_NONE;
+	}
+	else
+	{
+		const TCHAR* currentLineModeStr = element->Attribute(TEXT("currentLineIndicator"));
+		if (currentLineModeStr && currentLineModeStr[0])
+		{
+			if (lstrcmp(currentLineModeStr, TEXT("1")) == 0)
+				_svp._currentLineHiliteMode = LINEHILITE_HILITE;
+			else if (lstrcmp(currentLineModeStr, TEXT("2")) == 0)
+				_svp._currentLineHiliteMode = LINEHILITE_FRAME;
+			else
+				_svp._currentLineHiliteMode = LINEHILITE_NONE;
+		}
+	}
+
+	// Current Line Frame Width
+	nm = element->Attribute(TEXT("currentLineFrameWidth"));
+	if (nm)
+	{
+		unsigned char frameWidth{ 1 };
+		try
+		{
+			frameWidth = static_cast<unsigned char>(std::stoi(nm));
+		}
+		catch (...)
+		{
+			// do nothing. frameWidth is already set to '1'.
+		}
+		_svp._currentLineFrameWidth = (frameWidth < 1) ? 1 : (frameWidth > 6) ? 6 : frameWidth;
 	}
 
 	// Virtual Space
@@ -6062,7 +6099,9 @@ bool NppParameters::writeScintillaParams()
 								(_svp._lineWrapMethod == LINEWRAP_INDENT)?TEXT("indent"):TEXT("default");
 	(scintNode->ToElement())->SetAttribute(TEXT("lineWrapMethod"), pWrapMethodStr);
 
-	(scintNode->ToElement())->SetAttribute(TEXT("currentLineHilitingShow"), _svp._currentLineHilitingShow?TEXT("show"):TEXT("hide"));
+	(scintNode->ToElement())->SetAttribute(TEXT("currentLineIndicator"), _svp._currentLineHiliteMode);
+	(scintNode->ToElement())->SetAttribute(TEXT("currentLineFrameWidth"), _svp._currentLineFrameWidth);
+
 	(scintNode->ToElement())->SetAttribute(TEXT("virtualSpace"), _svp._virtualSpace?TEXT("yes"):TEXT("no"));
 	(scintNode->ToElement())->SetAttribute(TEXT("scrollBeyondLastLine"), _svp._scrollBeyondLastLine?TEXT("yes"):TEXT("no"));
 	(scintNode->ToElement())->SetAttribute(TEXT("rightClickKeepsSelection"), _svp._rightClickKeepsSelection ? TEXT("yes") : TEXT("no"));
@@ -6584,6 +6623,7 @@ void NppParameters::createXmlTreeFromGUIParams()
 		GUIConfigElement->SetAttribute(TEXT("sortFunctionList"), _nppGUI._shouldSortFunctionList ? TEXT("yes") : TEXT("no"));
 		GUIConfigElement->SetAttribute(TEXT("saveDlgExtFilterToAllTypes"), _nppGUI._setSaveDlgExtFiltToAllTypes ? TEXT("yes") : TEXT("no"));
 		GUIConfigElement->SetAttribute(TEXT("muteSounds"), _nppGUI._muteSounds ? TEXT("yes") : TEXT("no"));
+		GUIConfigElement->SetAttribute(TEXT("enableFoldCmdToggable"), _nppGUI._enableFoldCmdToggable ? TEXT("yes") : TEXT("no"));
 	}
 
 	// <GUIConfig name="Searching" "monospacedFontFindDlg"="no" stopFillingFindField="no" findDlgAlwaysVisible="no" confirmReplaceOpenDocs="yes" confirmMacroReplaceOpenDocs="yes" confirmReplaceInFiles="yes" confirmMacroReplaceInFiles="yes" replaceStopsWithoutFindingNext="no"/>
@@ -6652,8 +6692,9 @@ void NppParameters::createXmlTreeFromGUIParams()
 		GUIConfigElement->SetAttribute(TEXT("customColorText"), _nppGUI._darkmode._customColors.text);
 		GUIConfigElement->SetAttribute(TEXT("customColorDarkText"), _nppGUI._darkmode._customColors.darkerText);
 		GUIConfigElement->SetAttribute(TEXT("customColorDisabledText"), _nppGUI._darkmode._customColors.disabledText);
-		GUIConfigElement->SetAttribute(TEXT("customColorEdge"), _nppGUI._darkmode._customColors.edge);
 		GUIConfigElement->SetAttribute(TEXT("customColorLinkText"), _nppGUI._darkmode._customColors.linkText);
+		GUIConfigElement->SetAttribute(TEXT("customColorEdge"), _nppGUI._darkmode._customColors.edge);
+		GUIConfigElement->SetAttribute(TEXT("customColorHotEdge"), _nppGUI._darkmode._customColors.hotEdge);
 	}
 
 	// <GUIConfig name="ScintillaPrimaryView" lineNumberMargin="show" bookMarkMargin="show" indentGuideLine="show" folderMarkStyle="box" lineWrapMethod="aligned" currentLineHilitingShow="show" scrollBeyondLastLine="no" rightClickKeepsSelection="no" disableAdvancedScrolling="no" wrapSymbolShow="hide" Wrap="no" borderEdge="yes" edge="no" edgeNbColumn="80" zoom="0" zoom2="0" whiteSpaceShow="hide" eolShow="hide" borderWidth="2" smoothFont="no" />

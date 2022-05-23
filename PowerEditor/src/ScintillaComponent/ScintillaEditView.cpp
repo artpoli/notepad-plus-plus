@@ -66,14 +66,14 @@ LanguageNameInfo ScintillaEditView::_langNameInfoArray[L_EXTERNAL + 1] = {
 	// _langName			_shortName					_longName												_langID			_lexerID
 	//
 	{TEXT("normal"),		TEXT("Normal text"),		TEXT("Normal text file"),								L_TEXT,			"null"},
-	{TEXT("php"),			TEXT("PHP"),				TEXT("PHP Hypertext Preprocessor file"),				L_PHP,			"html"},
+	{TEXT("php"),			TEXT("PHP"),				TEXT("PHP Hypertext Preprocessor file"),				L_PHP,			"phpscript"},
 	{TEXT("c"),				TEXT("C"),					TEXT("C source file"),									L_C,			"cpp"},
 	{TEXT("cpp"),			TEXT("C++"),				TEXT("C++ source file"),								L_CPP,			"cpp"},
 	{TEXT("cs"),			TEXT("C#"),					TEXT("C# source file"),									L_CS,			"cpp"},
 	{TEXT("objc"),			TEXT("Objective-C"),		TEXT("Objective-C source file"),						L_OBJC,			"objc"},
 	{TEXT("java"),			TEXT("Java"),				TEXT("Java source file"),								L_JAVA,			"cpp"},
 	{TEXT("rc"),			TEXT("RC"),					TEXT("Windows Resource file"),							L_RC,			"cpp"},
-	{TEXT("html"),			TEXT("HTML"),				TEXT("Hyper Text Markup Language file"),				L_HTML,			"html"},
+	{TEXT("html"),			TEXT("HTML"),				TEXT("Hyper Text Markup Language file"),				L_HTML,			"hypertext"},
 	{TEXT("xml"),			TEXT("XML"),				TEXT("eXtensible Markup Language file"),				L_XML,			"xml"},
 	{TEXT("makefile"),		TEXT("Makefile"),			TEXT("Makefile"),										L_MAKEFILE,		"makefile"},
 	{TEXT("pascal"),		TEXT("Pascal"),				TEXT("Pascal source file"),								L_PASCAL,		"pascal"},
@@ -81,7 +81,7 @@ LanguageNameInfo ScintillaEditView::_langNameInfoArray[L_EXTERNAL + 1] = {
 	{TEXT("ini"),			TEXT("ini"),				TEXT("MS ini file"),									L_INI,			"props"},
 	{TEXT("nfo"),			TEXT("NFO"),				TEXT("MSDOS Style/ASCII Art"),							L_ASCII,		"null"},
 	{TEXT("udf"),			TEXT("udf"),				TEXT("User Defined language file"),						L_USER,			"user"},
-	{TEXT("asp"),			TEXT("ASP"),				TEXT("Active Server Pages script file"),				L_ASP,			"html"},
+	{TEXT("asp"),			TEXT("ASP"),				TEXT("Active Server Pages script file"),				L_ASP,			"hypertext"},
 	{TEXT("sql"),			TEXT("SQL"),				TEXT("Structured Query Language file"),					L_SQL,			"sql"},
 	{TEXT("vb"),			TEXT("Visual Basic"),		TEXT("Visual Basic file"),								L_VB,			"vb"},
 	{TEXT("javascript"),	TEXT("JavaScript"),			TEXT("JavaScript file"),								L_JS,			"cpp"},
@@ -120,7 +120,7 @@ LanguageNameInfo ScintillaEditView::_langNameInfoArray[L_EXTERNAL + 1] = {
 	{TEXT("d"),				TEXT("D"),					TEXT("D programming language"),							L_D,			"d"},
 	{TEXT("powershell"),	TEXT("PowerShell"),			TEXT("Windows PowerShell"),								L_POWERSHELL,	"powershell"},
 	{TEXT("r"),				TEXT("R"),					TEXT("R programming language"),							L_R,			"r"},
-	{TEXT("jsp"),			TEXT("JSP"),				TEXT("JavaServer Pages script file"),					L_JSP,			"html"},
+	{TEXT("jsp"),			TEXT("JSP"),				TEXT("JavaServer Pages script file"),					L_JSP,			"hypertext"},
 	{TEXT("coffeescript"),	TEXT("CoffeeScript"),		TEXT("CoffeeScript file"),								L_COFFEESCRIPT,	"coffeescript"},
 	{TEXT("json"),			TEXT("json"),				TEXT("JSON file"),										L_JSON,			"json"},
 	{TEXT("javascript.js"), TEXT("JavaScript"),			TEXT("JavaScript file"),								L_JAVASCRIPT,	"cpp"},
@@ -361,7 +361,7 @@ LRESULT ScintillaEditView::scintillaNew_Proc(HWND hwnd, UINT Message, WPARAM wPa
 		case WM_MOUSEHWHEEL :
 		{
 			::CallWindowProc(_scintillaDefaultProc, hwnd, WM_HSCROLL, ((short)HIWORD(wParam) > 0)?SB_LINERIGHT:SB_LINELEFT, 0);
-			break;
+			return TRUE;
 		}
 
 		case WM_MOUSEWHEEL :
@@ -633,10 +633,10 @@ void ScintillaEditView::setStyle(Style styleToSet)
 
 void ScintillaEditView::setXmlLexer(LangType type)
 {
-	setLexerFromLangID(type);
-
 	if (type == L_XML)
 	{
+		setLexerFromLangID(L_XML);
+		
 		for (int i = 0 ; i < 4 ; ++i)
 			execute(SCI_SETKEYWORDS, i, reinterpret_cast<LPARAM>(TEXT("")));
 
@@ -646,6 +646,7 @@ void ScintillaEditView::setXmlLexer(LangType type)
 	}
 	else if ((type == L_HTML) || (type == L_PHP) || (type == L_ASP) || (type == L_JSP))
 	{
+		setLexerFromLangID(L_HTML);
 		const TCHAR *htmlKeyWords_generic = NppParameters::getInstance().getWordList(L_HTML, LANG_INDEX_INSTR);
 
 		WcharMbcsConvertor& wmc = WcharMbcsConvertor::getInstance();
@@ -1426,7 +1427,7 @@ void ScintillaEditView::defineDocType(LangType typeDoc)
 	pStyle = stylers.findByID(defaultIndicatorStyle._styleID);
 	setSpecialIndicator(pStyle ? *pStyle : defaultIndicatorStyle);
 
-    // Il faut surtout faire un test ici avant d'exécuter SCI_SETCODEPAGE
+    // Il faut surtout faire un test ici avant d'exÃ©cuter SCI_SETCODEPAGE
     // Sinon y'aura un soucis de performance!
 	if (isCJK())
 	{
@@ -1902,11 +1903,11 @@ bool ScintillaEditView::setLexerFromLangID(int langID) // Internal lexer only
 }
 
 
-void ScintillaEditView::activateBuffer(BufferID buffer)
+void ScintillaEditView::activateBuffer(BufferID buffer, bool force)
 {
 	if (buffer == BUFFER_INVALID)
 		return;
-	if (buffer == _currentBuffer)
+	if (!force && buffer == _currentBuffer)
 		return;
 	Buffer * newBuf = MainFileManager.getBufferByID(buffer);
 
@@ -2129,6 +2130,26 @@ void ScintillaEditView::foldCurrentPos(bool mode)
 {
 	auto currentLine = this->getCurrentLineNumber();
 	fold(currentLine, mode);
+}
+
+bool ScintillaEditView::isCurrentLineFolded() const
+{
+	auto currentLine = this->getCurrentLineNumber();
+
+	intptr_t headerLine;
+	auto level = execute(SCI_GETFOLDLEVEL, currentLine);
+
+	if (level & SC_FOLDLEVELHEADERFLAG)
+		headerLine = currentLine;
+	else
+	{
+		headerLine = execute(SCI_GETFOLDPARENT, currentLine);
+		if (headerLine == -1)
+			return false;
+	}
+
+	bool isExpanded = execute(SCI_GETFOLDEXPANDED, headerLine);
+	return !isExpanded;
 }
 
 void ScintillaEditView::fold(size_t line, bool mode)
@@ -2568,10 +2589,12 @@ void ScintillaEditView::expand(size_t& line, bool doExpand, bool force, intptr_t
 void ScintillaEditView::performGlobalStyles()
 {
 	NppParameters& nppParams = NppParameters::getInstance();
+	const ScintillaViewParams& svp = nppParams.getSVP();
+	
 	StyleArray& stylers = nppParams.getMiscStylerArray();
 	const Style* pStyle{};
 
-	if (nppParams.getSVP()._currentLineHilitingShow)
+	if (svp._currentLineHiliteMode != LINEHILITE_NONE)
 	{
 		pStyle = stylers.findByName(TEXT("Current line background colour"));
 		if (pStyle)
@@ -2579,6 +2602,8 @@ void ScintillaEditView::performGlobalStyles()
 			execute(SCI_SETELEMENTCOLOUR, SC_ELEMENT_CARET_LINE_BACK, pStyle->_bgColor);
 		}
 	}
+
+	execute(SCI_SETCARETLINEFRAME, (svp._currentLineHiliteMode == LINEHILITE_FRAME) ? svp._currentLineFrameWidth : 0);
 
 	COLORREF selectColorBack = grey;
 	COLORREF selectColorFore = black;
@@ -2589,6 +2614,7 @@ void ScintillaEditView::performGlobalStyles()
 		selectColorFore = pStyle->_fgColor;
 	}
 	execute(SCI_SETSELBACK, 1, selectColorBack);
+	execute(SCI_SETELEMENTCOLOUR, SC_ELEMENT_SELECTION_INACTIVE_BACK, selectColorBack);
 
 	if (nppParams.isSelectFgColorEnabled())
 		execute(SCI_SETSELFORE, 1, selectColorFore);
@@ -2649,7 +2675,6 @@ void ScintillaEditView::performGlobalStyles()
 	COLORREF foldfgColor = white, foldbgColor = grey, activeFoldFgColor = red;
 	getFoldColor(foldfgColor, foldbgColor, activeFoldFgColor);
 
-	ScintillaViewParams & svp = (ScintillaViewParams &)nppParams.getSVP();
 	for (int j = 0 ; j < NB_FOLDER_STATE ; ++j)
 		defineMarker(_markersArray[FOLDER_TYPE][j], _markersArray[svp._folderStyle][j], foldfgColor, foldbgColor, activeFoldFgColor);
 
@@ -2836,13 +2861,15 @@ intptr_t ScintillaEditView::caseConvertRange(intptr_t start, intptr_t end, TextC
 	char *mbStr = new char[mbLenMax];
 	getText(mbStr, start, end);
 
-	if (int wideLen = ::MultiByteToWideChar(codepage, 0, mbStr, mbLen, NULL, 0)) {
+	if (int wideLen = ::MultiByteToWideChar(codepage, 0, mbStr, mbLen, NULL, 0))
+	{
 		wchar_t *wideStr = new wchar_t[wideLen];  // not NUL terminated
 		::MultiByteToWideChar(codepage, 0, mbStr, mbLen, wideStr, wideLen);
 
 		changeCase(wideStr, wideLen, caseToConvert);
 
-		if (int mbLenOut = ::WideCharToMultiByte(codepage, 0, wideStr, wideLen, mbStr, mbLenMax, NULL, NULL)) {
+		if (int mbLenOut = ::WideCharToMultiByte(codepage, 0, wideStr, wideLen, mbStr, mbLenMax, NULL, NULL))
+		{
 			// mbStr isn't NUL terminated either at this point
 			mbLen = mbLenOut;
 

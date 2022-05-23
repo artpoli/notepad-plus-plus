@@ -980,6 +980,23 @@ LRESULT TabBarPlus::runProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPara
 			EndPaint(hwnd, &ps);
 			return 0;
 		}
+
+		case WM_PARENTNOTIFY:
+		{
+			switch (LOWORD(wParam))
+			{
+				case WM_CREATE:
+				{
+					auto hwndUpdown = reinterpret_cast<HWND>(lParam);
+					if (NppDarkMode::subclassTabUpDownControl(hwndUpdown))
+					{
+						return 0;
+					}
+					break;
+				}
+			}
+			return 0;
+		}
 	}
 
 	return ::CallWindowProc(_tabBarDefaultProc, hwnd, Message, wParam, lParam);
@@ -1075,7 +1092,7 @@ void TabBarPlus::drawItem(DRAWITEMSTRUCT *pDrawItemStruct, bool isDarkMode)
 	{
 		if (isDarkMode)
 		{
-			::FillRect(hDC, &barRect, NppDarkMode::getSofterBackgroundBrush());
+			::FillRect(hDC, &pDrawItemStruct->rcItem, NppDarkMode::getSofterBackgroundBrush());
 		}
 		if (_drawTopBar)
 		{

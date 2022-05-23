@@ -19,12 +19,12 @@
 //
 // Notepad++ version: begin
 //
-#define NOTEPAD_PLUS_VERSION TEXT("Notepad++ v8.3.3")
+#define NOTEPAD_PLUS_VERSION TEXT("Notepad++ v8.4.1")
 
 // should be X.Y : ie. if VERSION_DIGITALVALUE == 4, 7, 1, 0 , then X = 4, Y = 71
 // ex : #define VERSION_VALUE TEXT("5.63\0")
-#define VERSION_VALUE TEXT("8.33\0")
-#define VERSION_DIGITALVALUE 8, 3, 3, 0
+#define VERSION_VALUE TEXT("8.41\0")
+#define VERSION_DIGITALVALUE 8, 4, 1, 0
 
 // Notepad++ version: end
 
@@ -636,6 +636,7 @@
 	#define NPPM_INTERNAL_SCINTILLAFINDERCOPYPATHS      (NOTEPADPLUS_USER_INTERNAL + 60)
 	#define NPPM_INTERNAL_REFRESHWORKDIR                (NOTEPADPLUS_USER_INTERNAL + 61)
 	#define NPPM_INTERNAL_VIRTUALSPACE                  (NOTEPADPLUS_USER_INTERNAL + 62)
+	#define NPPM_INTERNAL_CARETLINEFRAME                (NOTEPADPLUS_USER_INTERNAL + 63)
 
 // See Notepad_plus_msgs.h
 //#define NOTEPADPLUS_USER   (WM_USER + 1000)

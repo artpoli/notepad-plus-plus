@@ -202,6 +202,12 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		case NPPM_INTERNAL_REFRESHDARKMODE:
 		{
 			refreshDarkMode(static_cast<bool>(wParam));
+			// Notify plugins that Dark Mode changed
+			SCNotification scnN;
+			scnN.nmhdr.code = NPPN_DARKMODECHANGED;
+			scnN.nmhdr.hwndFrom = reinterpret_cast<void*>(lParam);
+			scnN.nmhdr.idFrom = 0;
+			_pluginsManager.notify(&scnN);
 			return TRUE;
 		}
 
@@ -656,6 +662,12 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 			switch (pCopyData->dwData)
 			{
+				case COPYDATA_FULL_CMDLINE:
+				{
+					nppParam.setCmdLineString(static_cast<wchar_t*>(pCopyData->lpData));
+					break;
+				}
+
 				case COPYDATA_PARAMS:
 				{
 					const CmdLineParamsDTO *cmdLineParam = static_cast<const CmdLineParamsDTO *>(pCopyData->lpData); // CmdLineParams object from another instance
@@ -663,6 +675,15 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 					if (sizeof(CmdLineParamsDTO) == cmdLineParamsSize) // make sure the structure is the same
 					{
 						nppParam.setCmdlineParam(*cmdLineParam);
+						generic_string pluginMessage { nppParam.getCmdLineParams()._pluginMessage };
+						if (!pluginMessage.empty())
+						{
+							SCNotification scnN;
+							scnN.nmhdr.code = NPPN_CMDLINEPLUGINMSG;
+							scnN.nmhdr.hwndFrom = hwnd;
+							scnN.nmhdr.idFrom = reinterpret_cast<uptr_t>(pluginMessage.c_str());
+							_pluginsManager.notify(&scnN);
+						}
 					}
 					else
 					{
@@ -1259,15 +1280,35 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			return TRUE;
 		}
 
+		// ADD_ZERO_PADDING == TRUE
+		// 
+		// version  | HIWORD | LOWORD
+		//------------------------------
+		// 8.9.6.4  | 8      | 964
+		// 9        | 9      | 0
+		// 6.9      | 6      | 900
+		// 6.6.6    | 6      | 660
+		// 13.6.6.6 | 13     | 666
+		// 
+		// 
+		// ADD_ZERO_PADDING == FALSE
+		// 
+		// version  | HIWORD | LOWORD
+		//------------------------------
+		// 8.9.6.4  | 8      | 964
+		// 9        | 9      | 0
+		// 6.9      | 6      | 9
+		// 6.6.6    | 6      | 66
+		// 13.6.6.6 | 13     | 666
 		case NPPM_GETNPPVERSION:
 		{
-			const TCHAR * verStr = VERSION_VALUE;
+			const TCHAR* verStr = VERSION_VALUE;
 			TCHAR mainVerStr[16];
 			TCHAR auxVerStr[16];
 			bool isDot = false;
-			int j =0;
+			int j = 0;
 			int k = 0;
-			for (int i = 0 ; verStr[i] ; ++i)
+			for (int i = 0; verStr[i]; ++i)
 			{
 				if (verStr[i] == '.')
 				{
@@ -1284,6 +1325,32 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 			mainVerStr[j] = '\0';
 			auxVerStr[k] = '\0';
+
+			// if auxVerStr length should less or equal to 3.
+			// if auxVer is less 3 digits, the padding (0) will be added.
+			bool addZeroPadding = wParam == TRUE;
+			if (addZeroPadding)
+			{
+				size_t nbDigit = lstrlen(auxVerStr);
+				if (nbDigit > 0 && nbDigit <= 3)
+				{
+					if (nbDigit == 3)
+					{
+						// OK, nothing to do.
+					}
+					else if (nbDigit == 2)
+					{
+						auxVerStr[2] = '0';
+						auxVerStr[3] = '\0';
+					}
+					else // if (nbDigit == 1)
+					{
+						auxVerStr[1] = '0';
+						auxVerStr[2] = '0';
+						auxVerStr[3] = '\0';
+					}
+				}
+			}
 
 			int mainVer = 0, auxVer = 0;
 			if (mainVerStr[0])
@@ -1302,6 +1369,21 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			if (_playingBackMacro)
 				return static_cast<LRESULT>(MacroStatus::PlayingBack);
 			return (_macro.empty()) ? static_cast<LRESULT>(MacroStatus::Idle) : static_cast<LRESULT>(MacroStatus::RecordingStopped);
+		}
+
+		case NPPM_GETCURRENTCMDLINE:
+		{
+			generic_string cmdLineString = nppParam.getCmdLineString();
+
+			if (lParam != 0)
+			{
+				if (cmdLineString.length() >= static_cast<size_t>(wParam))
+				{
+					return 0;
+				}
+				lstrcpy(reinterpret_cast<TCHAR*>(lParam), cmdLineString.c_str());
+			}
+			return cmdLineString.length();
 		}
 
 		case WM_FRSAVE_INT:
@@ -1560,6 +1642,13 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			int param = (lParam == 0 ? SC_EFF_QUALITY_DEFAULT : SC_EFF_QUALITY_LCD_OPTIMIZED);
 			_mainEditView.execute(SCI_SETFONTQUALITY, param);
 			_subEditView.execute(SCI_SETFONTQUALITY, param);
+			return TRUE;
+		}
+
+		case NPPM_INTERNAL_CARETLINEFRAME:
+		{
+			_mainEditView.execute(SCI_SETCARETLINEFRAME, lParam);
+			_subEditView.execute(SCI_SETCARETLINEFRAME, lParam);
 			return TRUE;
 		}
 
@@ -2083,7 +2172,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 					{
 						_nativeLangSpeaker.messageBox("SettingsOnCloudError",
 							hwnd,
-							TEXT("It seems the path of settings on cloud is set on a read only drive,\ror on a folder needed privilege right for writting access.\rYour settings on cloud will be canceled. Please reset a coherent value via Preference dialog."),
+							TEXT("It seems the path of settings on cloud is set on a read only drive,\ror on a folder needed privilege right for writing access.\rYour settings on cloud will be canceled. Please reset a coherent value via Preference dialog."),
 							TEXT("Settings on Cloud"),
 							MB_OK | MB_APPLMODAL);
 						nppParam.removeCloudChoice();
@@ -2596,6 +2685,38 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		case NPPM_ISAUTOINDENTON:
 		{
 			return nppParam.getNppGUI()._maitainIndent;
+		}
+
+		case NPPM_ISDARKMODEENABLED:
+		{
+			return NppDarkMode::isEnabled();
+		}
+
+		case NPPM_GETDARKMODECOLORS:
+		{
+			if (static_cast<size_t>(wParam) != sizeof(NppDarkMode::Colors))
+				return static_cast<LRESULT>(false);
+
+			NppDarkMode::Colors* currentColors = reinterpret_cast<NppDarkMode::Colors*>(lParam);
+
+			if (currentColors != NULL)
+			{
+				currentColors->background = NppDarkMode::getBackgroundColor();
+				currentColors->softerBackground = NppDarkMode::getSofterBackgroundColor();
+				currentColors->hotBackground = NppDarkMode::getHotBackgroundColor();
+				currentColors->pureBackground = NppDarkMode::getDarkerBackgroundColor();
+				currentColors->errorBackground = NppDarkMode::getErrorBackgroundColor();
+				currentColors->text = NppDarkMode::getTextColor();
+				currentColors->darkerText = NppDarkMode::getDarkerTextColor();
+				currentColors->disabledText = NppDarkMode::getDisabledTextColor();
+				currentColors->linkText = NppDarkMode::getLinkTextColor();
+				currentColors->edge = NppDarkMode::getEdgeColor();
+				currentColors->hotEdge = NppDarkMode::getHotEdgeColor();
+
+				return static_cast<LRESULT>(true);
+			}
+
+			return static_cast<LRESULT>(false);
 		}
 
 		case NPPM_DOCLISTDISABLEPATHCOLUMN:
