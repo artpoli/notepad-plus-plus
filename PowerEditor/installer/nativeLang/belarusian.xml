@@ -3,7 +3,7 @@
 The comments are here for explanation, it's not necessary to translate them.
 -->
 <NotepadPlus>
-    <Native-Langue name="Беларуская" filename="belarusian.xml" version="8.3.3">
+    <Native-Langue name="Беларуская" filename="belarusian.xml" version="8.4.1">
         <Menu>
             <Main>
                 <!-- Main Menu Entries -->
@@ -880,23 +880,27 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6229" name="Выраўнены"/>
                     <Item id="6230" name="Водступ"/>
                     <Item id="6234" name="Адключыць пашыраную прагортку, калі ёсць праблемы з тачпадам"/>
-                    <Item id="6214" name="Вылучаць бягучы радок"/>
-                    <Item id="6215" name="Згладжванне шрыфту"/>
-                    <Item id="6236" name="Прагортка за межы апошняга радка"/>
-                    <Item id="6239" name="Утрымліваць выбар пры націску за межамі выбару"/>
+                    <Item id="6215" name="Enable smooth font"/>
+                    <Item id="6236" name="Enable scrolling beyond last line"/>
+                    <Item id="6239" name="Keep selection when right-click outside of selection"/>
                     <Item id="6245" name="Enable virtual space"/>
+                    <Item id="6651" name="Current Line Indicator"/>
+                    <Item id="6652" name="Няма"/>
+                    <Item id="6653" name="Highlight Background"/>
+                    <Item id="6654" name="Frame"/>
+                    <Item id="6655" name="Width"/>
                 </Scintillas>
 
                 <DarkMode title="Цёмны рэжым">
                     <Item id="7101" name="Уключыць цёмны рэжым"/>
-                    <Item id="7102" name="Чорнае адценне"/>
-                    <Item id="7103" name="Чырвонае адценне"/>
-                    <Item id="7104" name="Зялёнае адценне"/>
-                    <Item id="7105" name="Блакітнае адценне"/>
-                    <Item id="7107" name="Фіялетавае адценне"/>
-                    <Item id="7108" name="Бірузовае адценне"/>
-                    <Item id="7109" name="Аліўкавае адценне"/>
-                    <Item id="7115" name="Дапасаванае адценне"/>
+                    <Item id="7102" name="Black"/>
+                    <Item id="7103" name="Red"/>
+                    <Item id="7104" name="Green"/>
+                    <Item id="7105" name="Blue"/>
+                    <Item id="7107" name="Purple"/>
+                    <Item id="7108" name="Cyan"/>
+                    <Item id="7109" name="Olive"/>
+                    <Item id="7115" name="Customized"/>
                     <Item id="7116" name="Уверсе"/>
                     <Item id="7117" name="Гарачы трэк меню"/>
                     <Item id="7118" name="Актыўны"/>
@@ -907,7 +911,9 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="7123" name="Адключаны тэкст"/>
                     <Item id="7124" name="Край"/>
                     <Item id="7125" name="Спасылка"/>
-                    <Item id="7130" name="Скінуць"/>
+                    <Item id="7126" name="Edge highlight"/>
+                    <Item id="7130" name="Reset"/>
+                    <Item id="7135" name="Tones"/>
                 </DarkMode>
 
                 <MarginsBorderEdge title="Палі/Межы/Краі">
