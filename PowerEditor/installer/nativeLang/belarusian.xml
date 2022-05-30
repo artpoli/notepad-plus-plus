@@ -874,12 +874,13 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6219" name="Частата мігцення:"/>
                     <Item id="6221" name="+"/>
                     <Item id="6222" name="-"/>
-                    <Item id="6225" name="Уключыць мульты-рэдагаванне (Ctrl+націск мышы/выбар)"/>
-                    <Item id="6227" name="Перанос радкоў"/>
-                    <Item id="6228" name="Прадвызначана"/>
-                    <Item id="6229" name="Выраўнены"/>
-                    <Item id="6230" name="Водступ"/>
-                    <Item id="6234" name="Адключыць пашыраную прагортку, калі ёсць праблемы з тачпадам"/>
+                    <Item id="6246" name="Make current level folding/unfolding commands toggleable"/>
+                    <Item id="6225" name="Enable Multi-Editing (Ctrl+Mouse click/selection)"/>
+                    <Item id="6227" name="Line Wrap"/>
+                    <Item id="6228" name="Default"/>
+                    <Item id="6229" name="Aligned"/>
+                    <Item id="6230" name="Indent"/>
+                    <Item id="6234" name="Disable advanced scrolling feature due to touchpad issue"/>
                     <Item id="6215" name="Enable smooth font"/>
                     <Item id="6236" name="Enable scrolling beyond last line"/>
                     <Item id="6239" name="Keep selection when right-click outside of selection"/>
