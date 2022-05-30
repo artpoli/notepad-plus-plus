@@ -140,7 +140,7 @@ Notepad_plus::Notepad_plus()
 
 	nppParam.setNativeLangSpeaker(&_nativeLangSpeaker);
 
-	TiXmlDocument *toolIconsDocRoot = nppParam.getToolIcons();
+	TiXmlDocument *toolIconsDocRoot = nppParam.getCustomizedToolIcons();
 
 	if (toolIconsDocRoot)
 	{
@@ -612,8 +612,6 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	_pluginsManager.notify(&scnN);
 
 	_toolBar.init(_pPublicInterface->getHinst(), hwnd, tbStatus, toolBarIcons, sizeof(toolBarIcons) / sizeof(ToolBarButtonUnit));
-
-	changeToolBarIcons();
 
 	_rebarTop.init(_pPublicInterface->getHinst(), hwnd);
 	_rebarBottom.init(_pPublicInterface->getHinst(), hwnd);
@@ -5111,11 +5109,6 @@ bool Notepad_plus::addCurrentMacro()
 		return true;
 	}
 	return false;
-}
-
-void Notepad_plus::changeToolBarIcons()
-{
-    _toolBar.changeIcons();
 }
 
 bool Notepad_plus::switchToFile(BufferID id)
