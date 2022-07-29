@@ -18,6 +18,7 @@
 #pragma once
 
 #include "ColourPicker.h"
+#include "URLCtrl.h"
 #include "WordStyleDlgRes.h"
 #include "Parameters.h"
 
@@ -132,6 +133,8 @@ private :
 	HWND _hFontSizeStaticText = nullptr;
 	HWND _hStyleInfoStaticText = nullptr;
 
+	URLCtrl _goToSettings;
+
 	LexerStylerArray _lsArray;
     StyleArray _globalStyles;
 	generic_string _themeName;
@@ -146,6 +149,7 @@ private :
 	bool _isDirty = false;
 	bool _isThemeDirty = false;
 	bool _isShownGOCtrls = false;
+
 
 	intptr_t CALLBACK run_dlgProc(UINT Message, WPARAM wParam, LPARAM lParam);
 
@@ -179,6 +183,7 @@ private :
 	void updateUserKeywords();
 	void switchToTheme();
 	void updateThemeName(const generic_string& themeName);
+	std::pair<intptr_t, intptr_t> goToPreferencesSettings();
 
 	void loadLangListFromNppParam();
 

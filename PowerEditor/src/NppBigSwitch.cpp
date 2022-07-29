@@ -2206,6 +2206,9 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			if (_isEndingSessionButNotReady) 
 				::DestroyWindow(hwnd);
 
+			if (message == WM_CLOSE)
+				return 0;
+
 			return TRUE;
 		}
 
@@ -2659,6 +2662,17 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 			// go into the section we need
 			_configStyleDlg.goToSection(TEXT("Global Styles:EOL custom color"));
+
+			return TRUE;
+		}
+
+		case NPPM_INTERNAL_LAUNCHPREFERENCES:
+		{
+			// Launch _configStyleDlg (create or display it)
+			command(IDM_SETTING_PREFERENCE);
+
+			// go into the section we need
+			_preference.goToSection(wParam, lParam);
 
 			return TRUE;
 		}

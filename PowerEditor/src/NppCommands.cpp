@@ -46,7 +46,7 @@ void Notepad_plus::macroPlayback(Macro macro)
 	for (Macro::iterator step = macro.begin(); step != macro.end(); ++step)
 	{
 		if (step->isScintillaMacro())
-			step->PlayBack(this->_pPublicInterface, _pEditView);
+			step->PlayBack(_pPublicInterface, _pEditView);
 		else
 			_findReplaceDlg.execSavedCommand(step->_message, step->_lParameter, step->_sParameter);
 	}
@@ -3347,10 +3347,17 @@ void Notepad_plus::command(int id)
 
         case IDM_LANGSTYLE_CONFIG_DLG :
 		{
-			bool isFirstTime = !_configStyleDlg.isCreated();
-			_configStyleDlg.doDialog(_nativeLangSpeaker.isRTL());
-			if (isFirstTime)
-                _nativeLangSpeaker.changeConfigLang(_configStyleDlg.getHSelf());
+			if (!(NppParameters::getInstance()).isStylerDocLoaded())
+			{
+				// do nothing
+			}
+			else
+			{
+				bool isFirstTime = !_configStyleDlg.isCreated();
+				_configStyleDlg.doDialog(_nativeLangSpeaker.isRTL());
+				if (isFirstTime)
+					_nativeLangSpeaker.changeConfigLang(_configStyleDlg.getHSelf());
+			}
 			break;
 		}
 

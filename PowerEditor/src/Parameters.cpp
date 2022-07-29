@@ -417,7 +417,7 @@ static const WinMenuKeyDefinition winKeyDefs[] =
 	{ VK_NULL,    IDM_CMDLINEARGUMENTS,                         false, false, false, nullptr },
 	{ VK_NULL,    IDM_HOMESWEETHOME,                            false, false, false, nullptr },
 	{ VK_NULL,    IDM_PROJECTPAGE,                              false, false, false, nullptr },
-//  { VK_NULL,    IDM_ONLINEDOCUMENT,                               false, false, false, nullptr },
+	{ VK_NULL,    IDM_ONLINEDOCUMENT,                           false, false, false, nullptr },
 	{ VK_NULL,    IDM_FORUM,                                    false, false, false, nullptr },
 //	{ VK_NULL,    IDM_ONLINESUPPORT,                            false, false, false, nullptr },
 //	{ VK_NULL,    IDM_PLUGINSHOME,                              false, false, false, nullptr },
@@ -4848,6 +4848,10 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 			{
 				_nppGUI._findWindowPos = oldRect;
 			}
+
+			const TCHAR* val = element->Attribute(TEXT("isLessModeOn"));
+			if (val)
+				_nppGUI._findWindowLessMode = (lstrcmp(val, TEXT("yes")) == 0);
 		}
 
 		else if (!lstrcmp(nm, TEXT("FinderConfig")))
@@ -4857,10 +4861,17 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 			{
 				_nppGUI._finderLinesAreCurrentlyWrapped = (!lstrcmp(val, TEXT("yes")));
 			}
+
 			val = element->Attribute(TEXT("purgeBeforeEverySearch"));
 			if (val)
 			{
 				_nppGUI._finderPurgeBeforeEverySearch = (!lstrcmp(val, TEXT("yes")));
+			}
+
+			val = element->Attribute(TEXT("showOnlyOneEntryPerFoundLine"));
+			if (val)
+			{
+				_nppGUI._finderShowOnlyOneEntryPerFoundLine = (!lstrcmp(val, TEXT("yes")));
 			}
 		}
 
@@ -6317,9 +6328,10 @@ void NppParameters::createXmlTreeFromGUIParams()
 		GUIConfigElement->SetAttribute(TEXT("top"), _nppGUI._findWindowPos.top);
 		GUIConfigElement->SetAttribute(TEXT("right"), _nppGUI._findWindowPos.right);
 		GUIConfigElement->SetAttribute(TEXT("bottom"), _nppGUI._findWindowPos.bottom);
+		GUIConfigElement->SetAttribute(TEXT("isLessModeOn"), _nppGUI._findWindowLessMode ? TEXT("yes") : TEXT("no"));
 	}
 
-	// <GUIConfig name="FinderConfig" wrappedLines="no" purgeBeforeEverySearch="no"/>
+	// <GUIConfig name="FinderConfig" wrappedLines="no" purgeBeforeEverySearch="no" showOnlyOneEntryPerFoundLine="yes"/>
 	{
 		TiXmlElement* GUIConfigElement = (newGUIRoot->InsertEndChild(TiXmlElement(TEXT("GUIConfig"))))->ToElement();
 		GUIConfigElement->SetAttribute(TEXT("name"), TEXT("FinderConfig"));
@@ -6327,6 +6339,9 @@ void NppParameters::createXmlTreeFromGUIParams()
 		GUIConfigElement->SetAttribute(TEXT("wrappedLines"), pStr);
 		pStr = _nppGUI._finderPurgeBeforeEverySearch ? TEXT("yes") : TEXT("no");
 		GUIConfigElement->SetAttribute(TEXT("purgeBeforeEverySearch"), pStr);
+		pStr = _nppGUI._finderShowOnlyOneEntryPerFoundLine ? TEXT("yes") : TEXT("no");
+		GUIConfigElement->SetAttribute(TEXT("showOnlyOneEntryPerFoundLine"), pStr);
+
 	}
 
 	// <GUIConfig name="noUpdate" intervalDays="15" nextUpdateDate="20161022">no</GUIConfig>
@@ -6690,7 +6705,7 @@ void NppParameters::createXmlTreeFromGUIParams()
 	}
 
 	// <GUIConfig name="commandLineInterpreter">powershell</GUIConfig>
-	if (_nppGUI._commandLineInterpreter.compare(TEXT("cmd")))
+	if (_nppGUI._commandLineInterpreter.compare(CMD_INTERPRETER))
 	{
 		TiXmlElement *GUIConfigElement = (newGUIRoot->InsertEndChild(TiXmlElement(TEXT("GUIConfig"))))->ToElement();
 		GUIConfigElement->SetAttribute(TEXT("name"), TEXT("commandLineInterpreter"));
