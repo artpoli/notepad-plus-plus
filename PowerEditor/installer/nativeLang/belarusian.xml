@@ -548,6 +548,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="2230" name="Агульны тоўсты шрыфт"/>
                     <Item id="2231" name="Агульны шрыфт курсівам"/>
                     <Item id="2232" name="Агульны падкрэслены шрыфт"/>
+                    <Item id="2234" name="Go to settings"/>
                 </SubDialog>
             </StyleConfig>
 
@@ -1048,6 +1049,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6903" name="Акно пошуку можа быць адкрытым пасля ўвядзення вынікаў"/>
                     <Item id="6904" name="Пацвердзіць замену ўсяго ў ва ўсіх адкрытых дакументах"/>
                     <Item id="6905" name="Замяніць: Не пераходзіць да наступнага паўтарэння"/>
+                    <Item id="6906" name="Search Result window: show only one entry per found line"/>
                 </Searching>
 
                 <RecentFilesHistory title="Гісторыя файлаў">
