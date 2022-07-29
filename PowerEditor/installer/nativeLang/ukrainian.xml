@@ -548,6 +548,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="2230" name="Загальний жирний шрифт"/>
                     <Item id="2231" name="Загальний шрифт курсивом"/>
                     <Item id="2232" name="Загальний підкреслений шрифт"/>
+                    <Item id="2234" name="Go to settings"/>
                 </SubDialog>
             </StyleConfig>
 
@@ -1048,6 +1049,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6903" name="Вікно пошуку залишається відкритим після виведення результатів"/>
                     <Item id="6904" name="Підтвердити заміну всього в усіх відкритих документах"/>
                     <Item id="6905" name="Замінити: Не переходити до наступного входження"/>
+                    <Item id="6906" name="Search Result window: show only one entry per found line"/>
                 </Searching>
 
                 <RecentFilesHistory title="Історія файлів">
