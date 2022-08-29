@@ -1048,12 +1048,14 @@ The comments are here for explanation, it's not necessary to translate them.
                 </Print>
 
                 <Searching title="Адбываецца пошук">
-                    <Item id="6901" name="Не запаўняць поле пошуку ў акне &quot;Пошук&quot; выбраным словам"/>
-                    <Item id="6902" name="Выкарыстоўваць шрыфт з аднолькавай шырынёй у акне &quot;Пошук&quot; (патрабуецца перазапуск праграмы)"/>
-                    <Item id="6903" name="Акно пошуку можа быць адкрытым пасля ўвядзення вынікаў"/>
-                    <Item id="6904" name="Пацвердзіць замену ўсяго ў ва ўсіх адкрытых дакументах"/>
-                    <Item id="6905" name="Замяніць: Не пераходзіць да наступнага паўтарэння"/>
+                    <Item id="6902" name="Use monospaced font in Find dialog (Need to restart Notepad++)"/>
+                    <Item id="6903" name="Find dialog remains open after search that outputs to results window"/>
+                    <Item id="6904" name="Confirm Replace All in All Opened Documents"/>
+                    <Item id="6905" name="Replace: Don't move to the following occurrence"/>
                     <Item id="6906" name="Search Result window: show only one entry per found line"/>
+                    <Item id="6907" name="When Find Dialog is Invoked"/>
+                    <Item id="6908" name="Fill Find Field with Selected Text"/>
+                    <Item id="6909" name="Select Word Under Caret when Nothing Selected"/>
                 </Searching>
 
                 <RecentFilesHistory title="Гісторыя файлаў">
