@@ -2205,11 +2205,11 @@ bool ScintillaEditView::isCurrentLineFolded() const
 
 void ScintillaEditView::fold(size_t line, bool mode)
 {
-    auto endStyled = execute(SCI_GETENDSTYLED);
-    auto len = execute(SCI_GETTEXTLENGTH);
+	auto endStyled = execute(SCI_GETENDSTYLED);
+	auto len = execute(SCI_GETTEXTLENGTH);
 
-    if (endStyled < len)
-        execute(SCI_COLOURISE, 0, -1);
+	if (endStyled < len)
+		execute(SCI_COLOURISE, 0, -1);
 
 	intptr_t headerLine;
 	auto level = execute(SCI_GETFOLDLEVEL, line);
@@ -2227,7 +2227,7 @@ void ScintillaEditView::fold(size_t line, bool mode)
 	{
 		execute(SCI_TOGGLEFOLD, headerLine);
 
-		SCNotification scnN;
+		SCNotification scnN{};
 		scnN.nmhdr.code = SCN_FOLDINGSTATECHANGED;
 		scnN.nmhdr.hwndFrom = _hSelf;
 		scnN.nmhdr.idFrom = 0;
@@ -3387,7 +3387,7 @@ bool ScintillaEditView::getIndicatorRange(size_t indicatorNumber, size_t* from, 
 	if (to) *to = endPos;
 	if (cur) *cur = curPos;
 	return true;
-};
+}
 
 
 void ScintillaEditView::scrollPosToCenter(size_t pos)
@@ -3894,7 +3894,7 @@ pair<size_t, size_t> ScintillaEditView::getSelectedCharsAndLinesCount(long long 
 	}
 
 	return selectedCharsAndLines;
-};
+}
 
 size_t ScintillaEditView::getUnicodeSelectedLength() const
 {
@@ -3909,7 +3909,7 @@ size_t ScintillaEditView::getUnicodeSelectedLength() const
 	}
 
 	return length;
-};
+}
 
 
 void ScintillaEditView::markedTextToClipboard(int indiStyle, bool doAll /*= false*/)

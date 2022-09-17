@@ -113,13 +113,11 @@ const UCHAR BASE_08 = 0x02; // Oct
 const UCHAR BASE_02 = 0x03; // Bin
 
 
-const int MARK_BOOKMARK = 24;
-const int MARK_HIDELINESBEGIN = 23;
-const int MARK_HIDELINESEND = 22;
-const int MARK_HIDELINESUNDERLINE = 21;
-//const int MARK_LINEMODIFIEDUNSAVED = 20;
-//const int MARK_LINEMODIFIEDSAVED = 19;
-// 24 - 16 reserved for Notepad++ internal used
+const int MARK_BOOKMARK = 20;
+const int MARK_HIDELINESBEGIN = 19;
+const int MARK_HIDELINESEND = 18;
+const int MARK_HIDELINESUNDERLINE = 17;
+// 20 - 16 reserved for Notepad++ internal used
 // 15 - 0  are free to use for plugins
 
 
@@ -138,8 +136,8 @@ struct ColumnModeInfo {
 	intptr_t _selRpos = 0;
 	intptr_t _order = -1; // 0 based index
 	bool _direction = L2R; // L2R or R2L
-	intptr_t _nbVirtualCaretSpc = 0;
 	intptr_t _nbVirtualAnchorSpc = 0;
+	intptr_t _nbVirtualCaretSpc = 0;
 
 	ColumnModeInfo(intptr_t lPos, intptr_t rPos, intptr_t order, bool dir = L2R, intptr_t vAnchorNbSpc = 0, intptr_t vCaretNbSpc = 0)
 		: _selLpos(lPos), _selRpos(rPos), _order(order), _direction(dir), _nbVirtualAnchorSpc(vAnchorNbSpc), _nbVirtualCaretSpc(vCaretNbSpc){};

@@ -68,7 +68,7 @@
 //10  Rename...
 //11  Close
 //12  Close All
-//13  Close More
+//13  Close Multiple Documents
 //14  Move to Recycle Bin
 //15  --------
 //16  Load Session...
@@ -366,6 +366,13 @@
     #define    IDM_VIEW_SWITCHTO_FILEBROWSER      (IDM_VIEW + 107)
     #define    IDM_VIEW_SWITCHTO_FUNC_LIST        (IDM_VIEW + 108)
     #define    IDM_VIEW_SWITCHTO_DOCLIST          (IDM_VIEW + 109)
+
+    #define    IDM_VIEW_TAB_COLOUR_NONE           (IDM_VIEW + 110)
+    #define    IDM_VIEW_TAB_COLOUR_1              (IDM_VIEW + 111)
+    #define    IDM_VIEW_TAB_COLOUR_2              (IDM_VIEW + 112)
+    #define    IDM_VIEW_TAB_COLOUR_3              (IDM_VIEW + 113)
+    #define    IDM_VIEW_TAB_COLOUR_4              (IDM_VIEW + 114)
+    #define    IDM_VIEW_TAB_COLOUR_5              (IDM_VIEW + 115)
 
     #define    IDM_VIEW_GOTO_ANOTHER_VIEW        10001
     #define    IDM_VIEW_CLONE_TO_ANOTHER_VIEW    10002

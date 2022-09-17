@@ -43,20 +43,20 @@ void addText2Combo(const TCHAR * txt2add, HWND hCombo)
 
 	i = ::SendMessage(hCombo, CB_INSERTSTRING, 0, reinterpret_cast<LPARAM>(txt2add));
 	::SendMessage(hCombo, CB_SETCURSEL, i, 0);
-};
+}
 
 generic_string getTextFromCombo(HWND hCombo)
 {
 	TCHAR str[FINDREPLACE_MAXLENGTH] = { '\0' };
 	::SendMessage(hCombo, WM_GETTEXT, FINDREPLACE_MAXLENGTH - 1, reinterpret_cast<LPARAM>(str));
 	return generic_string(str);
-};
+}
 
 void delLeftWordInEdit(HWND hEdit)
 {
-	TCHAR str[FINDREPLACE_MAXLENGTH];
+	TCHAR str[FINDREPLACE_MAXLENGTH] = { '\0' };
 	::SendMessage(hEdit, WM_GETTEXT, FINDREPLACE_MAXLENGTH - 1, reinterpret_cast<LPARAM>(str));
-	WORD cursor;
+	WORD cursor = 0;
 	::SendMessage(hEdit, EM_GETSEL, (WPARAM)&cursor, 0);
 	WORD wordstart = cursor;
 	while (wordstart > 0) {
@@ -75,7 +75,7 @@ void delLeftWordInEdit(HWND hEdit)
 		::SendMessage(hEdit, EM_SETSEL, (WPARAM)wordstart, (LPARAM)cursor);
 		::SendMessage(hEdit, EM_REPLACESEL, (WPARAM)TRUE, reinterpret_cast<LPARAM>(L""));
 	}
-};
+}
 
 int Searching::convertExtendedToString(const TCHAR * query, TCHAR * result, int length)
 {	//query may equal to result, since it always gets smaller
@@ -228,8 +228,8 @@ void Searching::displaySectionCentered(size_t posStart, size_t posEnd, Scintilla
 	pEditView->execute(SCI_CHOOSECARETX);
 }
 
-LONG_PTR FindReplaceDlg::originalFinderProc = NULL;
-LONG_PTR FindReplaceDlg::originalComboEditProc = NULL;
+WNDPROC FindReplaceDlg::originalFinderProc = nullptr;
+WNDPROC FindReplaceDlg::originalComboEditProc = nullptr;
 
 // important : to activate all styles
 const int STYLING_MASK = 255;
@@ -1257,7 +1257,7 @@ intptr_t CALLBACK FindReplaceDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 			GetComboBoxInfo(hFindCombo, &cbinfo);
 			if (!cbinfo.hwndItem) return FALSE;
 
-			originalComboEditProc = SetWindowLongPtr(cbinfo.hwndItem, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(comboEditProc));
+			originalComboEditProc = reinterpret_cast<WNDPROC>(SetWindowLongPtr(cbinfo.hwndItem, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(comboEditProc)));
 			SetWindowLongPtr(cbinfo.hwndItem, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(cbinfo.hwndCombo));
 			GetComboBoxInfo(hReplaceCombo, &cbinfo);
 			SetWindowLongPtr(cbinfo.hwndItem, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(comboEditProc));
@@ -1294,12 +1294,12 @@ intptr_t CALLBACK FindReplaceDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 				SendMessage(hComboBox, WM_SETFONT, (WPARAM)CreateFontIndirect(&lf), MAKELPARAM(true, 0));
 			}
 
-			RECT arc;
+			RECT arc{};
 			::GetWindowRect(::GetDlgItem(_hSelf, IDCANCEL), &arc);
 			_markClosePos.bottom = _findInFilesClosePos.bottom = _replaceClosePos.bottom = _findClosePos.bottom = arc.bottom - arc.top;
 			_markClosePos.right = _findInFilesClosePos.right = _replaceClosePos.right = _findClosePos.right = arc.right - arc.left;
 
-			POINT p;
+			POINT p{};
 			p.x = arc.left;
 			p.y = arc.top;
 			::ScreenToClient(_hSelf, &p);
@@ -2190,7 +2190,7 @@ intptr_t CALLBACK FindReplaceDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 					RECT rc = { 0, 0, 0, 0};
 					getWindowRect(rc);
 					int w = rc.right - rc.left;
-					POINT p;
+					POINT p{};
 					p.x = rc.left;
 					p.y = rc.top;
 					bool& isLessModeOn = NppParameters::getInstance().getNppGUI()._findWindowLessMode;
@@ -3037,7 +3037,7 @@ void FindReplaceDlg::findAllIn(InWhat op)
 		_pFinder->_scintView.init(_hInst, _pFinder->getHSelf());
 
 		// Subclass the ScintillaEditView for the Finder (Scintilla doesn't notify all key presses)
-		originalFinderProc = SetWindowLongPtr(_pFinder->_scintView.getHSelf(), GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(finderProc));
+		originalFinderProc = reinterpret_cast<WNDPROC>(SetWindowLongPtr(_pFinder->_scintView.getHSelf(), GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(finderProc)));
 
 		_pFinder->setFinderReadOnly(true);
 		_pFinder->_scintView.execute(SCI_SETCODEPAGE, SC_CP_UTF8);
@@ -3087,7 +3087,7 @@ void FindReplaceDlg::findAllIn(InWhat op)
 	{
 		// Send the address of _MarkingsStruct to the lexer
 		char ptrword[sizeof(void*) * 2 + 1];
-		sprintf(ptrword, "%p", &_pFinder->_markingsStruct);
+		sprintf(ptrword, "%p", static_cast<void*>(&_pFinder->_markingsStruct));
 		_pFinder->_scintView.execute(SCI_SETPROPERTY, reinterpret_cast<WPARAM>("@MarkingsStruct"), reinterpret_cast<LPARAM>(ptrword));
 
 		//enable "Search Results Window" under Search Menu
@@ -3170,7 +3170,7 @@ Finder * FindReplaceDlg::createFinder()
 		pFinder->_scintView.changeTextDirection(true);
 
 	// Subclass the ScintillaEditView for the Finder (Scintilla doesn't notify all key presses)
-	originalFinderProc = SetWindowLongPtr(pFinder->_scintView.getHSelf(), GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(finderProc));
+	originalFinderProc = reinterpret_cast<WNDPROC>(SetWindowLongPtr(pFinder->_scintView.getHSelf(), GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(finderProc)));
 
 	pFinder->setFinderReadOnly(true);
 	pFinder->_scintView.execute(SCI_SETCODEPAGE, SC_CP_UTF8);
@@ -3206,7 +3206,7 @@ Finder * FindReplaceDlg::createFinder()
 
 	// Send the address of _MarkingsStruct to the lexer
 	char ptrword[sizeof(void*) * 2 + 1];
-	sprintf(ptrword, "%p", &pFinder->_markingsStruct);
+	sprintf(ptrword, "%p", static_cast<void*>(&pFinder->_markingsStruct));
 	pFinder->_scintView.execute(SCI_SETPROPERTY, reinterpret_cast<WPARAM>("@MarkingsStruct"), reinterpret_cast<LPARAM>(ptrword));
 
 	_findersOfFinder.push_back(pFinder);
@@ -3333,7 +3333,7 @@ void FindReplaceDlg::enableReplaceFunc(bool isEnable)
 	::MoveWindow(::GetDlgItem(_hSelf, IDC_IN_SELECTION_CHECK), pInSectionCheckPos->left + _deltaWidth, pInSectionCheckPos->top, pInSectionCheckPos->right, pInSectionCheckPos->bottom, TRUE);
 	::MoveWindow(::GetDlgItem(_hSelf, IDC_REPLACEINSELECTION), pInSelectionFramePos->left + _deltaWidth, pInSelectionFramePos->top, pInSelectionFramePos->right, pInSelectionFramePos->bottom, TRUE);
 
-	TCHAR label[MAX_PATH];
+	TCHAR label[MAX_PATH] = { '\0' };
 	_tab.getCurrentTitle(label, MAX_PATH);
 	::SetWindowText(_hSelf, label);
 
@@ -3496,7 +3496,7 @@ void FindReplaceDlg::setStatusbarMessage(const generic_string & msg, FindStatus 
 		if (!NppParameters::getInstance().getNppGUI()._muteSounds)
 			::MessageBeep(0xFFFFFFFF);
 
-		FLASHWINFO flashInfo;
+		FLASHWINFO flashInfo{};
 		flashInfo.cbSize = sizeof(FLASHWINFO);
 		flashInfo.hwnd = isVisible()?_hSelf:GetParent(_hSelf);
 		flashInfo.uCount = 3;
@@ -3508,7 +3508,7 @@ void FindReplaceDlg::setStatusbarMessage(const generic_string & msg, FindStatus 
 	{
 		if (!isVisible())
 		{
-			FLASHWINFO flashInfo;
+			FLASHWINFO flashInfo{};
 			flashInfo.cbSize = sizeof(FLASHWINFO);
 			flashInfo.hwnd = GetParent(_hSelf);
 			flashInfo.uCount = 2;
@@ -4027,7 +4027,7 @@ LRESULT FAR PASCAL FindReplaceDlg::finderProc(HWND hwnd, UINT message, WPARAM wP
 	}
 	else
 		// Call default (original) window procedure
-		return CallWindowProc((WNDPROC) originalFinderProc, hwnd, message, wParam, lParam);
+		return CallWindowProc(originalFinderProc, hwnd, message, wParam, lParam);
 }
 
 LRESULT FAR PASCAL FindReplaceDlg::comboEditProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -4061,7 +4061,7 @@ LRESULT FAR PASCAL FindReplaceDlg::comboEditProc(HWND hwnd, UINT message, WPARAM
 		delLeftWordInEdit(hwnd);
 		return 0;
 	}
-	return CallWindowProc((WNDPROC)originalComboEditProc, hwnd, message, wParam, lParam);
+	return CallWindowProc(originalComboEditProc, hwnd, message, wParam, lParam);
 }
 
 void FindReplaceDlg::hideOrShowCtrl4reduceOrNormalMode(DIALOG_TYPE dlgT)
@@ -4750,7 +4750,7 @@ void Finder::finishFilesSearch(int count, int searchedCount, bool isMatchLines, 
 
 	//SCI_SETILEXER resets the lexer property @MarkingsStruct and then no data could be exchanged with the searchResult lexer
 	char ptrword[sizeof(void*) * 2 + 1];
-	sprintf(ptrword, "%p", &_markingsStruct);
+	sprintf(ptrword, "%p", static_cast<void*>(&_markingsStruct));
 	_scintView.execute(SCI_SETPROPERTY, reinterpret_cast<WPARAM>("@MarkingsStruct"), reinterpret_cast<LPARAM>(ptrword));
 
 	//previous code: _scintView.execute(SCI_SETILEXER, 0, reinterpret_cast<LPARAM>(CreateLexer("searchResult")));
@@ -4922,8 +4922,8 @@ intptr_t CALLBACK Finder::run_dlgProc(UINT message, WPARAM wParam, LPARAM lParam
 
 				generic_string findInFinder = pNativeSpeaker->getLocalizedStrFromID("finder-find-in-finder", TEXT("Find in these search results..."));
 				generic_string closeThis = pNativeSpeaker->getLocalizedStrFromID("finder-close-this", TEXT("Close these search results"));
-				generic_string collapseAll = pNativeSpeaker->getLocalizedStrFromID("finder-collapse-all", TEXT("Collapse all"));
-				generic_string uncollapseAll = pNativeSpeaker->getLocalizedStrFromID("finder-uncollapse-all", TEXT("Uncollapse all"));
+				generic_string collapseAll = pNativeSpeaker->getLocalizedStrFromID("finder-collapse-all", TEXT("Fold all"));
+				generic_string uncollapseAll = pNativeSpeaker->getLocalizedStrFromID("finder-uncollapse-all", TEXT("Unfold all"));
 				generic_string copyLines = pNativeSpeaker->getLocalizedStrFromID("finder-copy", TEXT("Copy Selected Line(s)"));
 				generic_string copyVerbatim = pNativeSpeaker->getLocalizedStrFromID("finder-copy-verbatim", TEXT("Copy"));
 				copyVerbatim += TEXT("\tCtrl+C");

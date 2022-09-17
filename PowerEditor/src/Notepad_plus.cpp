@@ -425,7 +425,7 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	_pluginsManager.init(nppData);
 
 	bool enablePluginAdmin = _pluginsAdminDlg.initFromJson();
-	_pluginsManager.loadPlugins(nppParam.getPluginRootDir(), enablePluginAdmin ? &_pluginsAdminDlg.getAvailablePluginUpdateInfoList() : nullptr);
+	_pluginsManager.loadPlugins(nppParam.getPluginRootDir(), enablePluginAdmin ? &_pluginsAdminDlg.getAvailablePluginUpdateInfoList() : nullptr, enablePluginAdmin ? &_pluginsAdminDlg.getIncompatibleList() : nullptr);
 	_restoreButton.init(_pPublicInterface->getHinst(), hwnd);
 
 	// ------------ //
@@ -1245,7 +1245,7 @@ void Notepad_plus::wsTabConvert(spaceTab whichWay)
     char * source = new char[docLength];
     if (source == NULL)
         return;
-	_pEditView->execute(SCI_GETTEXT, docLength, reinterpret_cast<LPARAM>(source));
+    _pEditView->execute(SCI_GETTEXT, docLength, reinterpret_cast<LPARAM>(source));
 
     if (whichWay == tab2Space)
     {
@@ -2300,36 +2300,22 @@ void Notepad_plus::setupColorSampleBitmapsOnMainMenuItems()
 		const Style * pStyle = NppParameters::getInstance().getMiscStylerArray().findByID(bitmapOnStyleMenuItemsInfo[j].styleIndic);
 		if (pStyle)
 		{
+			HBITMAP hNewBitmap = generateSolidColourMenuItemIcon(pStyle->_bgColor);
 
-			HDC hDC = GetDC(NULL);
-			const int bitmapXYsize = 16;
-			HBITMAP hNewBitmap = CreateCompatibleBitmap(hDC, bitmapXYsize, bitmapXYsize);
-			HDC hDCn = CreateCompatibleDC(hDC);
-			HBITMAP hOldBitmap = static_cast<HBITMAP>(SelectObject(hDCn, hNewBitmap));
-			RECT rc = { 0, 0, bitmapXYsize, bitmapXYsize };
-
-			// paint full-size black square
-			HBRUSH hBlackBrush = CreateSolidBrush(RGB(0,0,0));
-			FillRect(hDCn, &rc, hBlackBrush);
-			DeleteObject(hBlackBrush);
-
-			// overpaint a slightly smaller colored square
-			rc.left = rc.top = 1;
-			rc.right = rc.bottom = bitmapXYsize - 1;
-			HBRUSH hColorBrush = CreateSolidBrush(pStyle->_bgColor);
-			FillRect(hDCn, &rc, hColorBrush);
-			DeleteObject(hColorBrush);
-
-			// restore old bitmap so we can delete it to avoid leak
-			SelectObject(hDCn, hOldBitmap);
-			DeleteDC(hDCn);
-			
 			SetMenuItemBitmaps(_mainMenuHandle, bitmapOnStyleMenuItemsInfo[j].firstOfThisColorMenuId, MF_BYCOMMAND, hNewBitmap, hNewBitmap);
 			for (int relatedMenuId : bitmapOnStyleMenuItemsInfo[j].sameColorMenuIds)
 			{
 				SetMenuItemBitmaps(_mainMenuHandle, relatedMenuId, MF_BYCOMMAND, hNewBitmap, NULL);
 			}
 		}
+	}
+
+	// Adds tab colour icons
+	for (int i = 0; i < 5; ++i)
+	{
+		COLORREF colour = NppDarkMode::getIndividualTabColour(i, NppDarkMode::isDarkMenuEnabled(), true);
+		HBITMAP hBitmap = generateSolidColourMenuItemIcon(colour);
+		SetMenuItemBitmaps(_mainMenuHandle, IDM_VIEW_TAB_COLOUR_1 + i, MF_BYCOMMAND, hBitmap, hBitmap);
 	}
 }
 
@@ -3358,7 +3344,7 @@ void Notepad_plus::setLanguage(LangType langType)
 		_subEditView.execute(SCI_SETDOCPOINTER, 0, prev);
 		_subEditView.restoreCurrentPosPreStep();
 	}
-};
+}
 
 LangType Notepad_plus::menuID2LangType(int cmdID)
 {
@@ -4703,7 +4689,7 @@ static generic_string extractSymbol(TCHAR firstChar, TCHAR secondChar, const TCH
 		}
 	}
 	return  generic_string(extracted);
-};
+}
 
 bool Notepad_plus::doBlockComment(comment_mode currCommentMode)
 {
@@ -5662,7 +5648,7 @@ void Notepad_plus::doSynScorll(HWND whichView)
 	intptr_t pixel;
 	intptr_t mainColumn, subColumn;
 
-    if (whichView == _mainEditView.getHSelf())
+	if (whichView == _mainEditView.getHSelf())
 	{
 		if (_syncInfo._isSynScollV)
 		{
@@ -5684,9 +5670,9 @@ void Notepad_plus::doSynScorll(HWND whichView)
 			column = mainColumn - _syncInfo._column - subColumn;
 		}
 		pView = &_subEditView;
-    }
-    else if (whichView == _subEditView.getHSelf())
-    {
+	}
+	else if (whichView == _subEditView.getHSelf())
+	{
 		if (_syncInfo._isSynScollV)
 		{
 			// Compute for Line
@@ -5707,9 +5693,9 @@ void Notepad_plus::doSynScorll(HWND whichView)
 			column = subColumn + _syncInfo._column - mainColumn;
 		}
 		pView = &_mainEditView;
-    }
-    else
-        return;
+	}
+	else
+		return;
 
 	pView->scroll(column, line);
 }
@@ -5780,6 +5766,7 @@ void Notepad_plus::getCurrentOpenedFiles(Session & session, bool includUntitledD
 			sessionFileInfo sfi(buf->getFullPathName(), langName, buf->getEncoding(), buf->getUserReadOnly(), buf->getPosition(editView), buf->getBackupFileName().c_str(), buf->getLastModifiedTimestamp(), buf->getMapPosition());
 
 			sfi._isMonitoring = buf->isMonitoringOn();
+			sfi._individualTabColour = docTab[0]->getIndividualTabColour(static_cast<int>(i));
 
 			_invisibleEditView.execute(SCI_SETDOCPOINTER, 0, buf->getDocument());
 			size_t maxLine = static_cast<size_t>(_invisibleEditView.execute(SCI_GETLINECOUNT));
@@ -7316,6 +7303,8 @@ static const QuoteParams quotes[] =
 	{TEXT("Anonymous #193"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Do you know:\nthere are more airplanes in the oceans, than submarines in the sky?\n") },
 	{TEXT("Anonymous #194"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("If you hold a Unix shell up to your ear,\nyou might just be able to hear the C.\n") },
 	{TEXT("Anonymous #195"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Why do programmers always mix up Halloween and Christmas?\nBecause Oct 31 == Dec 25\n") },
+	{TEXT("Anonymous #196"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("What happened to the function that ran away?\nIt never returned.\n") },
+	{TEXT("Anonymous #197"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("When I am tasked with sorting through a stack of résumés, I throw about half of them in the garbage.\nI do not want unlucky people working in our company.\n") },
 	{TEXT("xkcd"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Never have I felt so close to another soul\nAnd yet so helplessly alone\nAs when I Google an error\nAnd there's one result\nA thread by someone with the same problem\nAnd no answer\nLast posted to in 2003\n\n\"Who were you, DenverCoder9?\"\n\"What did you see?!\"\n\n(ref: https://xkcd.com/979/)") },
 	{TEXT("A developer"), QuoteParams::slow, false, SC_CP_UTF8, L_TEXT, TEXT("No hugs & kisses.\nOnly bugs & fixes.") },
 	{TEXT("Elon Musk"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Don't set your password as your child's name.\nName your child after your password.") },
@@ -8222,4 +8211,32 @@ void Notepad_plus::updateCommandShortcuts()
 
 		csc.setName(menuName.c_str(), shortcutName.c_str());
 	}
+}
+
+HBITMAP Notepad_plus::generateSolidColourMenuItemIcon(COLORREF colour)
+{
+	HDC hDC = GetDC(NULL);
+	const int bitmapXYsize = 16;
+	HBITMAP hNewBitmap = CreateCompatibleBitmap(hDC, bitmapXYsize, bitmapXYsize);
+	HDC hDCn = CreateCompatibleDC(hDC);
+	HBITMAP hOldBitmap = static_cast<HBITMAP>(SelectObject(hDCn, hNewBitmap));
+	RECT rc = { 0, 0, bitmapXYsize, bitmapXYsize };
+
+	// paint full-size black square
+	HBRUSH hBlackBrush = CreateSolidBrush(RGB(0,0,0));
+	FillRect(hDCn, &rc, hBlackBrush);
+	DeleteObject(hBlackBrush);
+
+	// overpaint a slightly smaller colored square
+	rc.left = rc.top = 1;
+	rc.right = rc.bottom = bitmapXYsize - 1;
+	HBRUSH hColorBrush = CreateSolidBrush(colour);
+	FillRect(hDCn, &rc, hColorBrush);
+	DeleteObject(hColorBrush);
+
+	// restore old bitmap so we can delete it to avoid leak
+	SelectObject(hDCn, hOldBitmap);
+	DeleteDC(hDCn);
+
+	return hNewBitmap;
 }

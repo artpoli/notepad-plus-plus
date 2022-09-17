@@ -509,7 +509,7 @@ private:
 	}
 
     void bookmarkDelete(size_t lineno) const {
-		if (lineno == -1)
+		if (lineno == static_cast<size_t>(-1))
 			lineno = _pEditView->getCurrentLineNumber();
 		while (bookmarkPresent(lineno))
 			_pEditView->execute(SCI_MARKERDELETE, lineno, MARK_BOOKMARK);
@@ -638,4 +638,6 @@ private:
 	void monitoringStartOrStopAndUpdateUI(Buffer* pBuf, bool isStarting);
 	void createMonitoringThread(Buffer* pBuf);
 	void updateCommandShortcuts();
+
+	HBITMAP generateSolidColourMenuItemIcon(COLORREF colour);
 };

@@ -290,23 +290,23 @@ static const WinMenuKeyDefinition winKeyDefs[] =
 	{ VK_0,       IDM_VIEW_UNFOLDALL,                           false, true,  true,  nullptr },
 	{ VK_F,       IDM_VIEW_FOLD_CURRENT,                        true,  true,  false, nullptr },
 	{ VK_F,       IDM_VIEW_UNFOLD_CURRENT,                      true,  true,  true,  nullptr },
-	{ VK_1,       IDM_VIEW_FOLD_1,                              false, true,  false, TEXT("Collapse Level 1") },
-	{ VK_2,       IDM_VIEW_FOLD_2,                              false, true,  false, TEXT("Collapse Level 2") },
-	{ VK_3,       IDM_VIEW_FOLD_3,                              false, true,  false, TEXT("Collapse Level 3") },
-	{ VK_4,       IDM_VIEW_FOLD_4,                              false, true,  false, TEXT("Collapse Level 4") },
-	{ VK_5,       IDM_VIEW_FOLD_5,                              false, true,  false, TEXT("Collapse Level 5") },
-	{ VK_6,       IDM_VIEW_FOLD_6,                              false, true,  false, TEXT("Collapse Level 6") },
-	{ VK_7,       IDM_VIEW_FOLD_7,                              false, true,  false, TEXT("Collapse Level 7") },
-	{ VK_8,       IDM_VIEW_FOLD_8,                              false, true,  false, TEXT("Collapse Level 8") },
+	{ VK_1,       IDM_VIEW_FOLD_1,                              false, true,  false, TEXT("Fold Level 1") },
+	{ VK_2,       IDM_VIEW_FOLD_2,                              false, true,  false, TEXT("Fold Level 2") },
+	{ VK_3,       IDM_VIEW_FOLD_3,                              false, true,  false, TEXT("Fold Level 3") },
+	{ VK_4,       IDM_VIEW_FOLD_4,                              false, true,  false, TEXT("Fold Level 4") },
+	{ VK_5,       IDM_VIEW_FOLD_5,                              false, true,  false, TEXT("Fold Level 5") },
+	{ VK_6,       IDM_VIEW_FOLD_6,                              false, true,  false, TEXT("Fold Level 6") },
+	{ VK_7,       IDM_VIEW_FOLD_7,                              false, true,  false, TEXT("Fold Level 7") },
+	{ VK_8,       IDM_VIEW_FOLD_8,                              false, true,  false, TEXT("Fold Level 8") },
 
-	{ VK_1,       IDM_VIEW_UNFOLD_1,                            false, true,  true,  TEXT("Uncollapse Level 1") },
-	{ VK_2,       IDM_VIEW_UNFOLD_2,                            false, true,  true,  TEXT("Uncollapse Level 2") },
-	{ VK_3,       IDM_VIEW_UNFOLD_3,                            false, true,  true,  TEXT("Uncollapse Level 3") },
-	{ VK_4,       IDM_VIEW_UNFOLD_4,                            false, true,  true,  TEXT("Uncollapse Level 4") },
-	{ VK_5,       IDM_VIEW_UNFOLD_5,                            false, true,  true,  TEXT("Uncollapse Level 5") },
-	{ VK_6,       IDM_VIEW_UNFOLD_6,                            false, true,  true,  TEXT("Uncollapse Level 6") },
-	{ VK_7,       IDM_VIEW_UNFOLD_7,                            false, true,  true,  TEXT("Uncollapse Level 7") },
-	{ VK_8,       IDM_VIEW_UNFOLD_8,                            false, true,  true,  TEXT("Uncollapse Level 8") },
+	{ VK_1,       IDM_VIEW_UNFOLD_1,                            false, true,  true,  TEXT("Unfold Level 1") },
+	{ VK_2,       IDM_VIEW_UNFOLD_2,                            false, true,  true,  TEXT("Unfold Level 2") },
+	{ VK_3,       IDM_VIEW_UNFOLD_3,                            false, true,  true,  TEXT("Unfold Level 3") },
+	{ VK_4,       IDM_VIEW_UNFOLD_4,                            false, true,  true,  TEXT("Unfold Level 4") },
+	{ VK_5,       IDM_VIEW_UNFOLD_5,                            false, true,  true,  TEXT("Unfold Level 5") },
+	{ VK_6,       IDM_VIEW_UNFOLD_6,                            false, true,  true,  TEXT("Unfold Level 6") },
+	{ VK_7,       IDM_VIEW_UNFOLD_7,                            false, true,  true,  TEXT("Unfold Level 7") },
+	{ VK_8,       IDM_VIEW_UNFOLD_8,                            false, true,  true,  TEXT("Unfold Level 8") },
 	{ VK_NULL,    IDM_VIEW_SUMMARY,                             false, false, false, nullptr },
 	{ VK_NULL,    IDM_VIEW_PROJECT_PANEL_1,                     false, false, false, TEXT("Toggle Project Panel 1") },
 	{ VK_NULL,    IDM_VIEW_PROJECT_PANEL_2,                     false, false, false, TEXT("Toggle Project Panel 2") },
@@ -321,6 +321,12 @@ static const WinMenuKeyDefinition winKeyDefs[] =
 	{ VK_NULL,    IDM_VIEW_SWITCHTO_FILEBROWSER,                false, false, false, TEXT("Switch to Folder as Workspace") },
 	{ VK_NULL,    IDM_VIEW_SWITCHTO_FUNC_LIST,                  false, false, false, TEXT("Switch to Function List") },
 	{ VK_NULL,    IDM_VIEW_SWITCHTO_DOCLIST,                    false, false, false, TEXT("Switch to Document List") },
+	{ VK_NULL,    IDM_VIEW_TAB_COLOUR_NONE,                     false, false, false, TEXT("Remove Tab Colour") },
+	{ VK_NULL,    IDM_VIEW_TAB_COLOUR_1,                        false, false, false, TEXT("Apply Tab Colour 1") },
+	{ VK_NULL,    IDM_VIEW_TAB_COLOUR_2,                        false, false, false, TEXT("Apply Tab Colour 2") },
+	{ VK_NULL,    IDM_VIEW_TAB_COLOUR_3,                        false, false, false, TEXT("Apply Tab Colour 3") },
+	{ VK_NULL,    IDM_VIEW_TAB_COLOUR_4,                        false, false, false, TEXT("Apply Tab Colour 4") },
+	{ VK_NULL,    IDM_VIEW_TAB_COLOUR_5,                        false, false, false, TEXT("Apply Tab Colour 5") },
 	{ VK_NULL,    IDM_VIEW_SYNSCROLLV,                          false, false, false, nullptr },
 	{ VK_NULL,    IDM_VIEW_SYNSCROLLH,                          false, false, false, nullptr },
 	{ VK_R,       IDM_EDIT_RTL,                                 true,  true,  false, nullptr },
@@ -595,91 +601,6 @@ int getKwClassFromName(const TCHAR *str)
 	return -1;
 }
 
-	
-size_t getAsciiLenFromBase64Len(size_t base64StrLen)
-{
-	return (base64StrLen % 4) ? 0 : (base64StrLen - base64StrLen / 4);
-}
-
-
-int base64ToAscii(char *dest, const char *base64Str)
-{
-	static const int base64IndexArray[123] =
-	{
-		-1, -1, -1, -1, -1, -1, -1, -1,
-		-1, -1, -1, -1, -1, -1, -1, -1,
-		-1, -1, -1, -1, -1, -1, -1, -1,
-		-1, -1, -1, -1, -1, -1, -1, -1,
-		-1, -1, -1, -1, -1, -1, -1, -1,
-		-1, -1, -1, 62, -1, -1, -1, 63,
-		52, 53, 54, 55 ,56, 57, 58, 59,
-		60, 61, -1, -1, -1, -1, -1, -1,
-		-1,  0,  1,  2,  3,  4,  5,  6,
-			7,  8,  9, 10, 11, 12, 13, 14,
-		15, 16, 17, 18, 19, 20, 21, 22,
-		23, 24, 25, -1, -1, -1, -1 ,-1,
-		-1, 26, 27, 28, 29, 30, 31, 32,
-		33, 34, 35, 36, 37, 38, 39, 40,
-		41, 42, 43, 44, 45, 46, 47, 48,
-		49, 50, 51
-	};
-
-	size_t b64StrLen = strlen(base64Str);
-	size_t nbLoop = b64StrLen / 4;
-
-	size_t i = 0;
-	int k = 0;
-
-	enum {b64_just, b64_1padded, b64_2padded} padd = b64_just;
-	for ( ; i < nbLoop ; i++)
-	{
-		size_t j = i * 4;
-		UCHAR uc0, uc1, uc2, uc3, p0, p1;
-
-		uc0 = (UCHAR)base64IndexArray[base64Str[j]];
-		uc1 = (UCHAR)base64IndexArray[base64Str[j+1]];
-		uc2 = (UCHAR)base64IndexArray[base64Str[j+2]];
-		uc3 = (UCHAR)base64IndexArray[base64Str[j+3]];
-
-		if ((static_cast<char>(uc0) == -1) || (static_cast<char>(uc1) == -1) || (static_cast<char>(uc2) == -1) || (static_cast<char>(uc3) == -1))
-			return -1;
-
-		if (base64Str[j+2] == '=') // && (uc3 == '=')
-		{
-			uc2 = uc3 = 0;
-			padd = b64_2padded;
-		}
-		else if (base64Str[j+3] == '=')
-		{
-			uc3 = 0;
-			padd = b64_1padded;
-		}
-
-		p0 = uc0 << 2;
-		p1 = uc1 << 2;
-		p1 >>= 6;
-		dest[k++] = p0 | p1;
-
-		p0 = uc1 << 4;
-		p1 = uc2 << 2;
-		p1 >>= 4;
-		dest[k++] = p0 | p1;
-
-		p0 = uc2 << 6;
-		p1 = uc3;
-		dest[k++] = p0 | p1;
-	}
-
-	//dest[k] = '\0';
-	if (padd == b64_1padded)
-	//	dest[k-1] = '\0';
-		return k-1;
-	else if (padd == b64_2padded)
-	//	dest[k-2] = '\0';
-		return k-2;
-
-	return k;
-}
 
 } // anonymous namespace
 
@@ -839,6 +760,9 @@ winVer NppParameters::getWindowsVersion()
    {
 		case VER_PLATFORM_WIN32_NT:
 		{
+			if (osvi.dwMajorVersion == 10 && osvi.dwMinorVersion == 0 && osvi.dwBuildNumber >= 22000)
+				return WV_WIN11;
+
 			if (osvi.dwMajorVersion == 10 && osvi.dwMinorVersion == 0)
 				return WV_WIN10;
 
@@ -1169,7 +1093,7 @@ bool NppParameters::load()
 	//---------------------------------------------//
 	// Dlg theme texture function for xp and vista //
 	//---------------------------------------------//
-	_hUXTheme = ::LoadLibrary(TEXT("uxtheme.dll"));
+	_hUXTheme = ::LoadLibraryEx(TEXT("uxtheme.dll"), nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32);
 	if (_hUXTheme)
 		_enableThemeDialogTextureFuncAddr = (WNDPROC)::GetProcAddress(_hUXTheme, "EnableThemeDialogTexture");
 
@@ -2277,6 +2201,12 @@ bool NppParameters::getSessionFromXmlTree(TiXmlDocument *pSessionDoc, Session& s
 
 					sessionFileInfo sfi(fileName, langName, encStr ? encoding : -1, isUserReadOnly, position, backupFilePath, fileModifiedTimestamp, mapPosition);
 
+					const TCHAR* intStrTabColour = (childNode->ToElement())->Attribute(TEXT("tabColourId"));
+					if (intStrTabColour)
+					{
+						sfi._individualTabColour = generic_atoi(intStrTabColour);
+					}
+
 					for (TiXmlNode *markNode = childNode->FirstChildElement(TEXT("Mark"));
 						markNode;
 						markNode = markNode->NextSibling(TEXT("Mark")))
@@ -3345,6 +3275,7 @@ void NppParameters::writeSession(const Session & session, const TCHAR *fileName)
 				(fileNameNode->ToElement())->SetAttribute(TEXT("backupFilePath"), viewSessionFiles[i]._backupFilePath.c_str());
 				(fileNameNode->ToElement())->SetAttribute(TEXT("originalFileLastModifTimestamp"), static_cast<int32_t>(viewSessionFiles[i]._originalFileLastModifTimestamp.dwLowDateTime));
 				(fileNameNode->ToElement())->SetAttribute(TEXT("originalFileLastModifTimestampHigh"), static_cast<int32_t>(viewSessionFiles[i]._originalFileLastModifTimestamp.dwHighDateTime));
+				(fileNameNode->ToElement())->SetAttribute(TEXT("tabColourId"), static_cast<int32_t>(viewSessionFiles[i]._individualTabColour));
 
 				// docMap 
 				(fileNameNode->ToElement())->SetAttribute(TEXT("mapFirstVisibleDisplayLine"), _i64tot(static_cast<LONGLONG>(viewSessionFiles[i]._mapPos._firstVisibleDisplayLine), szInt64, 10));
