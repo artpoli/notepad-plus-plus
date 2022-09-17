@@ -3,7 +3,7 @@
 The comments are here for explanation, it's not necessary to translate them.
 -->
 <NotepadPlus>
-    <Native-Langue name="Беларуская" filename="belarusian.xml" version="8.4.1">
+    <Native-Langue name="Беларуская" filename="belarusian.xml" version="8.4.6">
         <Menu>
             <Main>
                 <!-- Main Menu Entries -->
@@ -24,7 +24,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <!-- Sub Menu Entries -->
                 <SubEntries>
                     <Item subMenuId="file-openFolder" name="Адкрыць папку размяшчэння"/>
-                    <Item subMenuId="file-closeMore" name="Закрыць яшчэ"/>
+                    <Item subMenuId="file-closeMore" name="Close &amp;Multiple Documents"/>
                     <Item subMenuId="file-recentFiles" name="Нядаўнія файлы"/>
                     <Item subMenuId="edit-insert" name="Уставіць"/>
                     <Item subMenuId="edit-copyToClipboard" name="Капіяваць у буфер абмену"/>
@@ -49,8 +49,8 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item subMenuId="view-zoom"  name="Маштаб"/>
                     <Item subMenuId="view-moveCloneDocument"  name="Перамясціць/Кланіраваць бягучы дакумент"/>
                     <Item subMenuId="view-tab"  name="Укладка"/>
-                    <Item subMenuId="view-collapseLevel" name="Згарнуць узровень"/>
-                    <Item subMenuId="view-uncollapseLevel" name="Разгарнуць узровень"/>
+                    <Item subMenuId="view-collapseLevel" name="Fold Level"/>
+                    <Item subMenuId="view-uncollapseLevel" name="Unfold Level"/>
                     <Item subMenuId="view-project" name="Праект"/>
                     <Item subMenuId="encoding-characterSets"  name="Набор сімвалаў"/>
                     <Item subMenuId="encoding-arabic"  name="Арабская"/>
@@ -176,11 +176,11 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42026" name="Тэкст справа налева"/>
                     <Item id="42027" name="Тэкст злева направа"/>
                     <Item id="42028" name="Толькі чытанне"/>
-                    <Item id="42029" name="Бягучы шлях і назву файла ў буфер абмену"/>
-                    <Item id="42030" name="Бягучую назву файла ў буфер абмену"/>
-                    <Item id="42031" name="Бягучы шлях каталога ў буфер абмену"/>
-                    <Item id="42087" name="Усе назвы файлаў у буфер абмену"/>
-                    <Item id="42088" name="Усе шляхі файлаў у буфер абмену"/>
+                    <Item id="42029" name="Copy Current File Path"/>
+                    <Item id="42030" name="Copy Current Filename"/>
+                    <Item id="42031" name="Copy Current Dir. Path"/>
+                    <Item id="42087" name="Copy All Filenames"/>
+                    <Item id="42088" name="Copy All File Paths"/>
                     <Item id="42032" name="Шматразовае выкананне макраса..."/>
                     <Item id="42033" name="Зняць атрыбут толькі чытанне"/>
                     <Item id="42035" name="Закаментаваць радок"/>
@@ -267,8 +267,8 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44025" name="Паказваць прабелы і табуляцыю"/>
                     <Item id="44026" name="Паказваць сімвал заканчэння радка"/>
                     <Item id="44029" name="Разгарнуць усе"/>
-                    <Item id="44030" name="Згарнуць бягучы ўзровень"/>
-                    <Item id="44031" name="Разгарнуць бягучы ўзровень"/>
+                    <Item id="44030" name="Fold Current Level"/>
+                    <Item id="44031" name="Unfold Current Level"/>
                     <Item id="44049" name="Зводка..."/>
                     <Item id="44080" name="Карта дакумента"/>
                     <Item id="44070" name="Спіс дакументаў"/>
@@ -288,13 +288,19 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44097" name="Маніторынг (tail -f)"/>
                     <Item id="44098" name="Перамясціць укладку ўперад"/>
                     <Item id="44099" name="Перамясціць укладку назад"/>
-                    <Item id="44032" name="Поўнаэкранны рэжым"/>
-                    <Item id="44033" name="Аднавіць маштаб"/>
-                    <Item id="44034" name="Заўсёды зверху"/>
-                    <Item id="44035" name="Сінхранізаваць вертыкальную прагортку"/>
-                    <Item id="44036" name="Сінхранізаваць гарызантальную прагортку"/>
-                    <Item id="44041" name="Паказваць сімвал пераносу радка"/>
-                    <Item id="44072" name="Факусіравацца на іншым выглядзе"/>
+                    <Item id="44110" name="Remove Color"/>
+                    <Item id="44111" name="Apply Color 1"/>
+                    <Item id="44112" name="Apply Color 2"/>
+                    <Item id="44113" name="Apply Color 3"/>
+                    <Item id="44114" name="Apply Color 4"/>
+                    <Item id="44115" name="Apply Color 5"/>
+                    <Item id="44032" name="Toggle Full Screen Mode"/>
+                    <Item id="44033" name="Restore Default Zoom"/>
+                    <Item id="44034" name="Always on Top"/>
+                    <Item id="44035" name="Synchronise Vertical Scrolling"/>
+                    <Item id="44036" name="Synchronise Horizontal Scrolling"/>
+                    <Item id="44041" name="Show Wrap Symbol"/>
+                    <Item id="44072" name="Focus on Another View"/>
                     <Item id="44081" name="Панэль праекта 1"/>
                     <Item id="44082" name="Панэль праекта 2"/>
                     <Item id="44083" name="Панэль праекта 3"/>
@@ -306,56 +312,56 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="45006" name="UTF-16 BE BOM"/>
                     <Item id="45007" name="UTF-16 LE BOM"/>
                     <Item id="45008" name="UTF-8"/>
-                    <Item id="45009" name="Пераўтварыць у ANSI"/>
-                    <Item id="45010" name="Пераўтварыць у UTF-8"/>
-                    <Item id="45011" name="Пераўтварыць у UTF-8 BOM"/>
-                    <Item id="45012" name="Пераўтварыць у UTF-16 BE BOM"/>
-                    <Item id="45013" name="Пераўтварыць у UTF-16 LE BOM"/>
-                    <Item id="45060" name="Big5 (традыцыйная)"/>
-                    <Item id="45061" name="GB2312 (спрошчаная)"/>
-                    <Item id="45054" name="OEM 861: ісландская"/>
-                    <Item id="45057" name="OEM 865: скандынаўская"/>
-                    <Item id="45053" name="ОЕМ 860: партугальская"/>
-                    <Item id="45056" name="ОЕМ 863: французская"/>
+                    <Item id="45009" name="Convert to ANSI"/>
+                    <Item id="45010" name="Convert to UTF-8"/>
+                    <Item id="45011" name="Convert to UTF-8-BOM"/>
+                    <Item id="45012" name="Convert to UTF-16 BE BOM"/>
+                    <Item id="45013" name="Convert to UTF-16 LE BOM"/>
+                    <Item id="45060" name="Big5 (Traditional)"/>
+                    <Item id="45061" name="GB2312 (Simplified)"/>
+                    <Item id="45054" name="OEM 861: Icelandic"/>
+                    <Item id="45057" name="OEM 865: Nordic"/>
+                    <Item id="45053" name="OEM 860: Portuguese"/>
+                    <Item id="45056" name="OEM 863: French"/>
 
                     <Item id="10001" name="Перамясціць у іншы выгляд"/>
                     <Item id="10002" name="Кланіраваць у іншы выгляд"/>
                     <Item id="10003" name="Перамясціць у новы экзэмпляр"/>
                     <Item id="10004" name="Адкрыць у новым экзэмпляры"/>
 
-                    <Item id="46001" name="Канфігуратар стылю..."/>
-                    <Item id="46250" name="Вызначыце сваю мову..."/>
-                    <Item id="46300" name="Адкрыць карыстальніцкую папку мовы..."/>
-                    <Item id="46301" name="Калекцыя моў вызначаных карыстальнікамі Notepad++"/>
+                    <Item id="46001" name="Style Configurator..."/>
+                    <Item id="46250" name="Define your language..."/>
+                    <Item id="46300" name="Open User Defined Language folder..."/>
+                    <Item id="46301" name="Notepad++ User Defined Languages Collection"/>
                     <Item id="46180" name="Вызначана карыстальнікам"/>
-                    <Item id="47000" name="Аб Notepad++"/>
-                    <Item id="47010" name="Аргументы каманднага радка..."/>
-                    <Item id="47001" name="Хатняя старонка Notepad++"/>
-                    <Item id="47002" name="Старонка праекта Notepad++"/>
-                    <Item id="47003" name="Дакументацыя па Notepad++"/>
-                    <Item id="47004" name="Супольнасць Notepad++ (форум)"/>
-                    <Item id="47012" name="Адладачная інфармацыя..."/>
-                    <Item id="47005" name="Атрымаць больш убудоў"/>
-                    <Item id="47006" name="Абнавіць Notepad++"/>
-                    <Item id="47009" name="Задаць проксі абнаўлення..."/>
-                    <Item id="48005" name="Імпарт убудоў..."/>
-                    <Item id="48006" name="Імпарт тэм стыляў..."/>
-                    <Item id="48018" name="Правіць кантэкстнае меню"/>
-                    <Item id="48009" name="Карта спалучэнняў клавіш..."/>
-                    <Item id="48011" name="Параметры..."/>
-                    <Item id="48014" name="Адкрыць папку з убудовамі..."/>
-                    <Item id="48015" name="Адміністраванне ўбудоў..."/>
-                    <Item id="48501" name="Генерыраваць..."/>
-                    <Item id="48502" name="Генерыраваць з файлаў..."/>
-                    <Item id="48503" name="Генерыраваць з выбранага ў буфер абмену"/>
-                    <Item id="48504" name="Генерыраваць..."/>
-                    <Item id="48505" name="Генерыраваць з файлаў..."/>
-                    <Item id="48506" name="Генерыраваць з выбранага ў буфер абмену"/>
-                    <Item id="49000" name="Выканаць..."/>
+                    <Item id="47000" name="About Notepad++"/>
+                    <Item id="47010" name="Command Line Arguments..."/>
+                    <Item id="47001" name="Notepad++ Home"/>
+                    <Item id="47002" name="Notepad++ Project Page"/>
+                    <Item id="47003" name="Notepad++ Online User Manual"/>
+                    <Item id="47004" name="Notepad++ Community (Forum)"/>
+                    <Item id="47012" name="Debug Info..."/>
+                    <Item id="47005" name="Get More Plugins"/>
+                    <Item id="47006" name="Update Notepad++"/>
+                    <Item id="47009" name="Set Updater Proxy..."/>
+                    <Item id="48005" name="Import plugin(s)..."/>
+                    <Item id="48006" name="Import style theme(s)..."/>
+                    <Item id="48018" name="Edit Popup ContextMenu"/>
+                    <Item id="48009" name="Shortcut Mapper..."/>
+                    <Item id="48011" name="Preferences..."/>
+                    <Item id="48014" name="Open Plugins Folder..."/>
+                    <Item id="48015" name="Plugins Admin..."/>
+                    <Item id="48501" name="Generate..."/>
+                    <Item id="48502" name="Generate from files..."/>
+                    <Item id="48503" name="Generate from selection into clipboard"/>
+                    <Item id="48504" name="Generate..."/>
+                    <Item id="48505" name="Generate from files..."/>
+                    <Item id="48506" name="Generate from selection into clipboard"/>
+                    <Item id="49000" name="&amp;Run..."/>
 
-                    <Item id="50000" name="Завяршэнне функцый"/>
-                    <Item id="50001" name="Завяршэнне слоў"/>
-                    <Item id="50002" name="Падказка параметраў функцый"/>
+                    <Item id="50000" name="Function Completion"/>
+                    <Item id="50001" name="Word Completion"/>
+                    <Item id="50002" name="Function Parameters Hint"/>
                     <Item id="50010" name="Function Parameters Previous Hint"/>
                     <Item id="50011" name="Function Parameters Next Hint"/>
                     <Item id="50005" name="Toggle macro record"/>
@@ -387,9 +393,9 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item CMID="4" name="Друк..."/>
                     <Item CMID="5" name="Перамясціць у іншы выгляд"/>
                     <Item CMID="6" name="Кланіраваць у іншы выгляд"/>
-                    <Item CMID="7" name="Поўны шлях файла да буфера абмену"/>
-                    <Item CMID="8" name="Назву файла ў буфер абмену"/>
-                    <Item CMID="9" name="Бягучы шлях каталога ў буфер абмену"/>
+                    <Item CMID="7" name="Copy Full File Path"/>
+                    <Item CMID="8" name="Copy Filename"/>
+                    <Item CMID="9" name="Copy Current Dir. Path"/>
                     <Item CMID="10" name="Перайменаваць..."/>
                     <Item CMID="11" name="Перамясціць у сметніцу"/>
                     <Item CMID="12" name="Толькі чытанне"/>
@@ -404,6 +410,17 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item CMID="21" name="Адкрыць у прадвызначаным аглядальніку"/>
                     <Item CMID="22" name="Закрыць усе не змененыя"/>
                     <Item CMID="23" name="Адкрыць папку размяшчэння як працоўную вобласць"/>
+                    <Item CMID="24" name="Apply Color 1"/>
+                    <Item CMID="25" name="Apply Color 2"/>
+                    <Item CMID="26" name="Apply Color 3"/>
+                    <Item CMID="27" name="Apply Color 4"/>
+                    <Item CMID="28" name="Apply Color 5"/>
+                    <Item CMID="29" name="Remove Color"/>
+                    <Item CMID="30" name="Close Multiple Tabs"/>
+                    <Item CMID="31" name="Open into"/>
+                    <Item CMID="32" name="Капіяваць у буфер абмену"/>
+                    <Item CMID="33" name="Move Document"/>
+                    <Item CMID="34" name="Apply Color to Tab"/>
             </TabBar>
         </Menu>
 
@@ -511,7 +528,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="2"    name="Закрыць"/>
             </SHA256FromTextDlg>
 
-            <PluginsAdminDlg title="Адміністраванне ўбудоў" titleAvailable = "Даступна" titleUpdates = "Абнаўленні" titleInstalled = "Усталявана">
+            <PluginsAdminDlg title="Адміністраванне ўбудоў" titleAvailable="Даступна" titleUpdates="Абнаўленні" titleInstalled="Усталявана" titleIncompatible="Incompatible">
                 <ColumnPlugin   name="Убудова"/>
                 <ColumnVersion  name="Версія"/>
                 <Item id="5501" name="Пошук:"/>
@@ -519,6 +536,8 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="5504" name="Абнавіць"/>
                 <Item id="5505" name="Выдаліць"/>
                 <Item id="5508" name="Далей"/>
+                <Item id="5509" name="Plugin list version: "/>
+                <Item id="5511" name="Plugin list repository"/>
                 <Item id="2"    name="Закрыць"/>
             </PluginsAdminDlg>
 
@@ -619,22 +638,22 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44102" name="Паглядзець бягучы файл у Edge"/>
                     <Item id="50003" name="Пераключыцца на папярэдні дакумент"/>
                     <Item id="50004" name="Пераключыцца на наступны дакумент"/>
-                    <Item id="44051" name="Згарнуць узровень 1"/>
-                    <Item id="44052" name="Згарнуць узровень 2"/>
-                    <Item id="44053" name="Згарнуць узровень 3"/>
-                    <Item id="44054" name="Згарнуць узровень 4"/>
-                    <Item id="44055" name="Згарнуць узровень 5"/>
-                    <Item id="44056" name="Згарнуць узровень 6"/>
-                    <Item id="44057" name="Згарнуць узровень 7"/>
-                    <Item id="44058" name="Згарнуць узровень 8"/>
-                    <Item id="44061" name="Разгарнуць узровень 1"/>
-                    <Item id="44062" name="Разгарнуць узровень 2"/>
-                    <Item id="44063" name="Разгарнуць узровень 3"/>
-                    <Item id="44064" name="Разгарнуць узровень 4"/>
-                    <Item id="44065" name="Разгарнуць узровень 5"/>
-                    <Item id="44066" name="Разгарнуць узровень 6"/>
-                    <Item id="44067" name="Разгарнуць узровень 7"/>
-                    <Item id="44068" name="Разгарнуць узровень 8"/>
+                    <Item id="44051" name="Fold Level 1"/>
+                    <Item id="44052" name="Fold Level 2"/>
+                    <Item id="44053" name="Fold Level 3"/>
+                    <Item id="44054" name="Fold Level 4"/>
+                    <Item id="44055" name="Fold Level 5"/>
+                    <Item id="44056" name="Fold Level 6"/>
+                    <Item id="44057" name="Fold Level 7"/>
+                    <Item id="44058" name="Fold Level 8"/>
+                    <Item id="44061" name="Unfold Level 1"/>
+                    <Item id="44062" name="Unfold Level 2"/>
+                    <Item id="44063" name="Unfold Level 3"/>
+                    <Item id="44064" name="Unfold Level 4"/>
+                    <Item id="44065" name="Unfold Level 5"/>
+                    <Item id="44066" name="Unfold Level 6"/>
+                    <Item id="44067" name="Unfold Level 7"/>
+                    <Item id="44068" name="Unfold Level 8"/>
                     <Item id="44081" name="Панэль 1-га праекта"/>
                     <Item id="44082" name="Панэль 2-га праекта"/>
                     <Item id="44083" name="Панэль 3-га праекта"/>
@@ -649,6 +668,12 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44107" name="Пераключыць папку як працоўную вобласць"/>
                     <Item id="44109" name="Пераключыцца на спіс дакументаў"/>
                     <Item id="44108" name="Пераключыцца на спіс функцый"/>
+                    <Item id="44110" name="Remove Tab Colour"/>
+                    <Item id="44111" name="Apply Tab Colour 1"/>
+                    <Item id="44112" name="Apply Tab Colour 2"/>
+                    <Item id="44113" name="Apply Tab Colour 3"/>
+                    <Item id="44114" name="Apply Tab Colour 4"/>
+                    <Item id="44115" name="Apply Tab Colour 5"/>
                     <Item id="11002" name="Sort By Name A to Z"/>
                     <Item id="11003" name="Sort By Name Z to A"/>
                     <Item id="11004" name="Sort By Path A to Z"/>
@@ -928,7 +953,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 </DarkMode>
 
                 <MarginsBorderEdge title="Палі/Межы/Краі">
-                    <Item id="6201" name="Афармленне меж блоку"/>
+                    <Item id="6201" name="Fold Margin Style"/>
                     <Item id="6202" name="Просты"/>
                     <Item id="6203" name="Стрэлкамі"/>
                     <Item id="6204" name="Кружкамі"/>
@@ -1374,8 +1399,8 @@ Do you want to open it?"/>
         <FolderAsWorkspace>
             <PanelTitle name="Папка як працоўная вобласць"/>
             <SelectFolderFromBrowserString name="Выберыце папку, каб дадаць яе ў якасці панэлі працоўнай вобласці"/>
-            <ExpandAllFoldersTip name="Разгарнуць усе папкі"/>
-            <CollapseAllFoldersTip name="Згарнуць усе папкі"/>
+            <ExpandAllFoldersTip name="Unfold all"/>
+            <CollapseAllFoldersTip name="Fold all"/>
             <LocateCurrentFileTip name="Знайсці бягучы файл"/>
             <Menus>
                 <Item id="3511" name="Выдаліць"/>
@@ -1501,8 +1526,8 @@ Do you want to open it?"/>
             <find-status-scope-forward value="ад пункту ўстаўкі да канца файла"/>
             <finder-find-in-finder value="Знайсці ў гэтых выніках пошуку..."/>
             <finder-close-this value="Закрыць гэтыя вынікі пошуку"/>
-            <finder-collapse-all value="Згарнуць усе"/>
-            <finder-uncollapse-all value="Разгарнуць усе"/>
+            <finder-collapse-all value="Fold all"/>
+            <finder-uncollapse-all value="Unfold all"/>
             <finder-copy value="Капіяваць выбраныя радкі"/>
             <finder-copy-verbatim value="Капіяваць"/>
             <finder-copy-paths value="Капіяваць назвы шляхоў"/>
