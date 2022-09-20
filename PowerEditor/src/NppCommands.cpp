@@ -2955,7 +2955,7 @@ void Notepad_plus::command(int id)
 			{
 				NativeLangSpeaker *pNativeSpeaker = (NppParameters::getInstance()).getNativeLangSpeaker();
 				pNativeSpeaker->messageBox("NeedToRestartToLoadPlugins",
-					NULL,
+					_pPublicInterface->getHSelf(),
 					TEXT("You have to restart Notepad++ to load plugins you installed."),
 					TEXT("Notepad++ need to be relaunched"),
 					MB_OK | MB_APPLMODAL);
@@ -3741,13 +3741,12 @@ void Notepad_plus::command(int id)
 
 		case IDM_VIEW_LINENUMBER:
 		case IDM_VIEW_SYMBOLMARGIN:
-		case IDM_VIEW_DOCCHANGEMARGIN:
 		{
 			int margin;
 			if (id == IDM_VIEW_LINENUMBER)
 				margin = ScintillaEditView::_SC_MARGE_LINENUMBER;
 			else //if (id == IDM_VIEW_SYMBOLMARGIN)
-				margin = ScintillaEditView::_SC_MARGE_SYBOLE;
+				margin = ScintillaEditView::_SC_MARGE_SYMBOL;
 
 			if (_mainEditView.hasMarginShowed(margin))
 			{

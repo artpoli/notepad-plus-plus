@@ -25,7 +25,9 @@
 #include "UserDefineDialog.h"
 #include "WindowsDlgRc.h"
 
+#ifdef _MSC_VER
 #pragma warning(disable : 4996) // for GetVersionEx()
+#endif
 
 using namespace std;
 
@@ -3630,6 +3632,7 @@ bool NppParameters::feedStylerArray(TiXmlNode *node)
 			_widgetStyleArray.addStyler(styleID, childNode);
 		}
 	}
+
 	const Style* pStyle = _widgetStyleArray.findByName(TEXT("EOL custom color"));
 	if (!pStyle)
 	{
@@ -3639,6 +3642,17 @@ bool NppParameters::feedStylerArray(TiXmlNode *node)
 		eolColorkNode->ToElement()->SetAttribute(TEXT("fgColor"), TEXT("DADADA"));
 
 		_widgetStyleArray.addStyler(0, eolColorkNode);
+	}
+
+	pStyle = _widgetStyleArray.findByName(TEXT("Change History margin"));
+	if (!pStyle)
+	{
+		TiXmlNode* changeHistoryNode = globalStyleRoot->InsertEndChild(TiXmlElement(TEXT("WidgetStyle")));
+		changeHistoryNode->ToElement()->SetAttribute(TEXT("name"), TEXT("Change History margin"));
+		changeHistoryNode->ToElement()->SetAttribute(TEXT("styleID"), TEXT("0"));
+		changeHistoryNode->ToElement()->SetAttribute(TEXT("bgColor"), TEXT("E0E0E0"));
+
+		_widgetStyleArray.addStyler(0, changeHistoryNode);
 	}
 
 	return true;
@@ -5607,11 +5621,26 @@ void NppParameters::feedScintillaParam(TiXmlNode *node)
 	nm = element->Attribute(TEXT("bookMarkMargin"));
 	if (nm)
 	{
-
 		if (!lstrcmp(nm, TEXT("show")))
 			_svp._bookMarkMarginShow = true;
 		else if (!lstrcmp(nm, TEXT("hide")))
 			_svp._bookMarkMarginShow = false;
+	}
+
+	// Bookmark Margin
+	nm = element->Attribute(TEXT("isChangeHistoryEnabled"));
+	if (nm)
+	{
+		if (!lstrcmp(nm, TEXT("yes")))
+		{
+			_svp._isChangeHistoryEnabled = true;
+			_svp._isChangeHistoryEnabled4NextSession = true;
+		}
+		else if (!lstrcmp(nm, TEXT("no")))
+		{
+			_svp._isChangeHistoryEnabled = false;
+			_svp._isChangeHistoryEnabled4NextSession = false;
+		}
 	}
 
 	// Indent GuideLine
@@ -6079,7 +6108,7 @@ bool NppParameters::writeScintillaParams()
 										(_svp._folderStyle == FOLDER_STYLE_CIRCLE)?TEXT("circle"):
 										(_svp._folderStyle == FOLDER_STYLE_NONE)?TEXT("none"):TEXT("box");
 	(scintNode->ToElement())->SetAttribute(TEXT("folderMarkStyle"), pFolderStyleStr);
-
+	(scintNode->ToElement())->SetAttribute(TEXT("isChangeHistoryEnabled"), _svp._isChangeHistoryEnabled4NextSession ? TEXT("yes") : TEXT("no"));
 	const TCHAR *pWrapMethodStr = (_svp._lineWrapMethod == LINEWRAP_ALIGNED)?TEXT("aligned"):
 								(_svp._lineWrapMethod == LINEWRAP_INDENT)?TEXT("indent"):TEXT("default");
 	(scintNode->ToElement())->SetAttribute(TEXT("lineWrapMethod"), pWrapMethodStr);
