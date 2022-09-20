@@ -964,16 +964,17 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6292" name="Дынамічная шырыня"/>
                     <Item id="6293" name="Пастаянная шырыня"/>
                     <Item id="6207" name="Паказваць закладку"/>
-                    <Item id="6211" name="Налады вертыкальнай мяжы"/>
-                    <Item id="6213" name="Рэжым фону"/>
-                    <Item id="6237" name="Дадайце сваю пазнаку слупка, азначыўшы яе размяшчэнне дзесятковым лікам. 
-Вы можаце вызначыць некалькі пазнак слупкоў скарыстаўшыся прабелам для раздзялення розных лічбаў."/>
-                    <Item id="6231" name="Шырыня мяжы"/>
-                    <Item id="6235" name="Без краёў"/>
-                    <Item id="6208" name="Запаўненне"/>
+                    <Item id="6223" name="Display Change History"/>
+                    <Item id="6211" name="Vertical Edge Settings"/>
+                    <Item id="6213" name="Background mode"/>
+                    <Item id="6237" name="Add your column marker by indicating its position with a decimal number.
+You can define several column markers by using white space to separate the different numbers."/>
+                    <Item id="6231" name="Border Width"/>
+                    <Item id="6235" name="No edge"/>
+                    <Item id="6208" name="Padding"/>
                     <Item id="6209" name="Злева"/>
                     <Item id="6210" name="Справа"/>
-                    <Item id="6212" name="Канцэнтрацыя"/>
+                    <Item id="6212" name="Distraction Free"/>
                 </MarginsBorderEdge>
 
                 <NewDoc title="Стварыць дакумент">
@@ -1359,6 +1360,7 @@ Do you want to open it?"/>
 Пасля таго, як усе аперацыі будуць завершаны праграма запусціцца зноў. 
 Працягнуць?"/>
             <NeedToRestartToLoadPlugins title="Неабходна перазапусціць праграму" message="Неабходна перазапусціць праграму, каб убудовы пачалі працаваць."/> <!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
+            <ChangeHistoryEnabledWarning title="Неабходна перазапусціць праграму" message="You have to restart Notepad++ to enable Change History."/> <!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
         </MessageBox>
         <ClipboardHistory>
             <PanelTitle name="Гісторыя буфера абмену"/>
