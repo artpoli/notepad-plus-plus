@@ -334,35 +334,35 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="46300" name="Відкрити користувацьку теку мови..."/>
                     <Item id="46301" name="Збірка мов Notepad++ визначених користувачем"/>
                     <Item id="46180" name="Визначено користувачем"/>
-                    <Item id="47000" name="About Notepad++"/>
-                    <Item id="47010" name="Command Line Arguments..."/>
-                    <Item id="47001" name="Notepad++ Home"/>
-                    <Item id="47002" name="Notepad++ Project Page"/>
-                    <Item id="47003" name="Notepad++ Online User Manual"/>
-                    <Item id="47004" name="Notepad++ Community (Forum)"/>
-                    <Item id="47012" name="Debug Info..."/>
-                    <Item id="47005" name="Get More Plugins"/>
-                    <Item id="47006" name="Update Notepad++"/>
-                    <Item id="47009" name="Set Updater Proxy..."/>
-                    <Item id="48005" name="Import plugin(s)..."/>
-                    <Item id="48006" name="Import style theme(s)..."/>
-                    <Item id="48018" name="Edit Popup ContextMenu"/>
-                    <Item id="48009" name="Shortcut Mapper..."/>
-                    <Item id="48011" name="Preferences..."/>
-                    <Item id="48014" name="Open Plugins Folder..."/>
-                    <Item id="48015" name="Plugins Admin..."/>
-                    <Item id="48501" name="Generate..."/>
-                    <Item id="48502" name="Generate from files..."/>
-                    <Item id="48503" name="Generate from selection into clipboard"/>
-                    <Item id="48504" name="Generate..."/>
-                    <Item id="48505" name="Generate from files..."/>
-                    <Item id="48506" name="Generate from selection into clipboard"/>
-                    <Item id="49000" name="&amp;Run..."/>
+                    <Item id="47000" name="Про Notepad++"/>
+                    <Item id="47010" name="Аргументи командного рядка..."/>
+                    <Item id="47001" name="Домівка Notepad++"/>
+                    <Item id="47002" name="Сторінка проєкту Notepad++"/>
+                    <Item id="47003" name="Посібник користувача Notepad++"/>
+                    <Item id="47004" name="Спільнота (Форум) Notepad++"/>
+                    <Item id="47012" name="Інформація зневадження..."/>
+                    <Item id="47005" name="Отримати більше плагінів"/>
+                    <Item id="47006" name="Оновити Notepad++"/>
+                    <Item id="47009" name="Встановити проксі оновлення..."/>
+                    <Item id="48005" name="Імпорт плагінів..."/>
+                    <Item id="48006" name="Імпорт тем стилів..."/>
+                    <Item id="48018" name="Змінити контекстне меню"/>
+                    <Item id="48009" name="Гарячі клавіші..."/>
+                    <Item id="48011" name="Налаштування..."/>
+                    <Item id="48014" name="Відкрити теку плагінів..."/>
+                    <Item id="48015" name="Адміністрування плагінів..."/>
+                    <Item id="48501" name="Генерувати..."/>
+                    <Item id="48502" name="Генерувати з файлів..."/>
+                    <Item id="48503" name="Генерувати з вибраного в буфер обміну"/>
+                    <Item id="48504" name="Генерувати..."/>
+                    <Item id="48505" name="Генерувати з файлів..."/>
+                    <Item id="48506" name="Генерувати з вибраного в буфер обміну"/>
+                    <Item id="49000" name="Виконати..."/>
 
-                    <Item id="50000" name="Function Completion"/>
-                    <Item id="50001" name="Word Completion"/>
-                    <Item id="50002" name="Function Parameters Hint"/>
-                    <Item id="50010" name="Function Parameters Previous Hint"/>
+                    <Item id="50000" name="Завершення функцій"/>
+                    <Item id="50001" name="Завершення слів"/>
+                    <Item id="50002" name="Підказка параметрів функцій"/>
+                    <Item id="50010" name="Наступна підказка параметрів функцій"/>
                     <Item id="50011" name="Function Parameters Next Hint"/>
                     <Item id="50005" name="Toggle macro record"/>
                     <Item id="50006" name="Path Completion"/>
