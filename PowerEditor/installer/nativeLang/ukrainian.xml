@@ -367,12 +367,12 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="50005" name="Перемкнути запис макросу"/>
                     <Item id="50006" name="Завершення шляху"/>
                     <Item id="44042" name="Приховати рядки"/>
-                    <Item id="42040" name="Відкрити всі нещодавні файли"/>
+                    <Item id="42040" name="Відкрити всі останні файли"/>
                     <Item id="42041" name="Очистити список останніх файлів"/>
                     <Item id="48016" name="Змінити комб. клавіш/Видалити макрос..."/>
                     <Item id="48017" name="Змінити комб. клавіш/Видалити команду..."/>
 
-                    <Item id="11001" name="Вікна..."/>
+                    <Item id="11001" name="&amp;Windows..."/>
                     <Item id="11002" name="Назва від A до Z"/>
                     <Item id="11003" name="Назва від Z до A"/>
                     <Item id="11004" name="Шлях від A до Z"/>
