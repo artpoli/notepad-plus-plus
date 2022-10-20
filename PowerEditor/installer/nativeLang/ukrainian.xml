@@ -1158,13 +1158,13 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Performance title="Performance">
                     <Item id="7141" name="Large File Restriction"/>
                     <Item id="7142" name="While opening a large file, some features are turned off for optimizing the performance. You can customize them here."/>
-                    <Item id="7143" name="Enable Large File Restriction"/>
+                    <Item id="7143" name="Enable Large File Restriction (no syntax highlighting)"/>
                     <Item id="7144" name="Define Large File Size:"/>
                     <Item id="7146" name="MB   (1 - 4096)"/>
                     <Item id="7147" name="Allow Brace Match"/>
                     <Item id="7148" name="Allow Auto-Completion"/>
                     <Item id="7149" name="Allow Smart Highlighting"/>
-                    <Item id="7150" name="Allow Word Wrap"/>
+                    <Item id="7150" name="Deactivate Word Wrap globally"/>
                 </Performance>
 
                 <Cloud title="Хмарне посилання">
@@ -1600,7 +1600,9 @@ Notepad++ перезапуститься після завершення всі�
             <contextMenu-styleAlloccurrencesOfToken value="Стилізувати всі входження токена" />
             <contextMenu-styleOneToken value="Стилізувати один токен" />
             <contextMenu-clearStyle value="Очистити стиль" />
-            <contextMenu-PluginCommands value="Команди плагіну" />
+            <enable-disable-largeFileRestriction-tip value="Toggling &quot;Enable Large File Restriction&quot; takes effect only after closing and re-opening the large file" />
+            <change-largeFileRestriction_fileLength-tip value="Modifying file size value takes effect only after closing and re-opening the large file" />
+            <largeFileRestriction_wordWrap-tip value="Enabling &quot;Deactivate Word Wrap globally&quot; option will deactivate Word Wrap for all opened documents after opening a large file. You can reactivate Word Wrap feature manually." />
         </MiscStrings>
     </Native-Langue>
 </NotepadPlus>
