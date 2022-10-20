@@ -1159,13 +1159,13 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Performance title="Прадукцыйнасць">
                     <Item id="7141" name="Забараняць вялікія файлы"/>
                     <Item id="7142" name="Падчас адкрыцця вялікага файла, некаторыя функцыі будуць адключаны для аптымізацыі прадукцыйнасці. Вы можаце дапасаваць іх тут."/>
-                    <Item id="7143" name="Уключыць забарону вялікіх файлаў"/>
+                    <Item id="7143" name="Enable Large File Restriction (no syntax highlighting)"/>
                     <Item id="7144" name="Вызначыць памер вялікага файла:"/>
                     <Item id="7146" name="МБ  (1 - 4096)"/>
                     <Item id="7147" name="Дазволяць парныя дужкі"/>
                     <Item id="7148" name="Дазваляць аўтазавяршэнне"/>
                     <Item id="7149" name="Дазваляць інтэлектуальнае падсвятленне"/>
-                    <Item id="7150" name="Дазваляць перанос слоў"/>
+                    <Item id="7150" name="Deactivate Word Wrap globally"/>
                 </Performance>
 
                 <Cloud title="Воблачная  спасылка">
@@ -1603,7 +1603,9 @@ The comments are here for explanation, it's not necessary to translate them.
             <contextMenu-styleAlloccurrencesOfToken value="Стыль усіх супадзенняў токена" />
             <contextMenu-styleOneToken value="Стыль аднаго токена" />
             <contextMenu-clearStyle value="Ачысціць стыль" />
-            <contextMenu-PluginCommands value="Каманды ўбудовы" />
+            <enable-disable-largeFileRestriction-tip value="Toggling &quot;Enable Large File Restriction&quot; takes effect only after closing and re-opening the large file" />
+            <change-largeFileRestriction_fileLength-tip value="Modifying file size value takes effect only after closing and re-opening the large file" />
+            <largeFileRestriction_wordWrap-tip value="Enabling &quot;Deactivate Word Wrap globally&quot; option will deactivate Word Wrap for all opened documents after opening a large file. You can reactivate Word Wrap feature manually." />
         </MiscStrings>
     </Native-Langue>
 </NotepadPlus>
