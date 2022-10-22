@@ -24,7 +24,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <!-- Sub Menu Entries -->
                 <SubEntries>
                     <Item subMenuId="file-openFolder" name="Адкрыць папку размяшчэння"/>
-                    <Item subMenuId="file-closeMore" name="Закрыць &amp;некалькі дакументаў"/>
+                    <Item subMenuId="file-closeMore" name="Close &amp;Multiple Documents"/>
                     <Item subMenuId="file-recentFiles" name="Нядаўнія файлы"/>
                     <Item subMenuId="edit-insert" name="Уставіць"/>
                     <Item subMenuId="edit-copyToClipboard" name="Капіяваць у буфер абмену"/>
