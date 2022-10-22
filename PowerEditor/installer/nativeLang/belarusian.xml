@@ -24,7 +24,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <!-- Sub Menu Entries -->
                 <SubEntries>
                     <Item subMenuId="file-openFolder" name="Адкрыць папку размяшчэння"/>
-                    <Item subMenuId="file-closeMore" name="Close &amp;Multiple Documents"/>
+                    <Item subMenuId="file-closeMore" name="Закрыць некалькі дакументаў"/>
                     <Item subMenuId="file-recentFiles" name="Нядаўнія файлы"/>
                     <Item subMenuId="edit-insert" name="Уставіць"/>
                     <Item subMenuId="edit-copyToClipboard" name="Капіяваць у буфер абмену"/>
@@ -193,7 +193,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="43002" name="Знайсці наступны"/>
                     <Item id="43003" name="Замяніць..."/>
                     <Item id="43004" name="Перайсці да..."/>
-                    <Item id="43005" name="Пераключэнне закладкі"/>
+                    <Item id="43005" name="Пераключыць закладку"/>
                     <Item id="43006" name="Наступная закладка"/>
                     <Item id="43007" name="Папярэдняя закладка"/>
                     <Item id="43008" name="Ачысціць усе закладкі"/>
@@ -357,12 +357,12 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="48504" name="Генерыраваць..."/>
                     <Item id="48505" name="Генерыраваць з файла..."/>
                     <Item id="48506" name="Генерыраваць з выбранага ў буфер абмену"/>
-                    <Item id="49000" name="&amp;Выканаць..."/>
+                    <Item id="49000" name="Выканаць..."/>
 
                     <Item id="50000" name="Завяршэнне функцый"/>
                     <Item id="50001" name="Завяршэнне слоў"/>
                     <Item id="50002" name="Падказка параметраў функцый"/>
-                    <Item id="50010" name="Наступная падказка параметраў функцый"/>
+                    <Item id="50010" name="Папярэдняя падказка параметраў функцый"/>
                     <Item id="50011" name="Наступная падказка параметраў функцый"/>
                     <Item id="50005" name="Пераключыць запіс макраса"/>
                     <Item id="50006" name="Завяршэнне шляху"/>
@@ -372,7 +372,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="48016" name="Змяніць спалучэнні клавіш/выдаліць макрас..."/>
                     <Item id="48017" name="Змяніць спалучэнні клавіш/выдаліць каманду..."/>
 
-                    <Item id="11001" name="&amp;Windows..."/>
+                    <Item id="11001" name="Windows..."/>
                     <Item id="11002" name="Назва ад А да Я"/>
                     <Item id="11003" name="Назва ад Я да А"/>
                     <Item id="11004" name="Шлях ад А да Я"/>
@@ -658,9 +658,9 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44082" name="Панэль 2-га праекта"/>
                     <Item id="44083" name="Панэль 3-га праекта"/>
                     <Item id="44085" name="Папка як працоўная вобласць"/>
-                    <Item id="44080" name="Карта дакумента"/>
-                    <Item id="44070" name="Спіс дакументаў"/>
-                    <Item id="44084" name="Спіс функцый"/>
+                    <Item id="44080" name="Пераключыць карту дакумента"/>
+                    <Item id="44070" name="Пераключыць спіс дакументаў"/>
+                    <Item id="44084" name="Пераключыць спіс функцый"/>
                     <Item id="50005" name="Запіс макраса"/>
                     <Item id="44104" name="Пераключыцца на панэль 1-га праекта"/>
                     <Item id="44105" name="Пераключыцца на панэль 2-га праекта"/>
@@ -946,7 +946,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="7123" name="Адключаны тэкст"/>
                     <Item id="7124" name="Край"/>
                     <Item id="7125" name="Спасылка"/>
-                    <Item id="7126" name="Падсвятленне краёў"/>
+                    <Item id="7126" name="Падсветка краёў"/>
                     <Item id="7127" name="Край выключаны"/>
                     <Item id="7130" name="Скінуць"/>
                     <Item id="7135" name="Тоны"/>
@@ -967,7 +967,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6223" name="Паказаць гісторыю змен"/>
                     <Item id="6211" name="Налады вертыкальнага краю"/>
                     <Item id="6213" name="Фонавы рэжым"/>
-                    <Item id="6237" name="Дадайце сваю пазнаку слупка, азначыўшы яе размяшчэнне дзесятковым лікам. 
+                    <Item id="6237" name="Дадайце сваю пазнаку слупка, азначыўшы яго размяшчэнне дзесятковым лікам. 
 Вы можаце вызначыць некалькі пазнак слупкоў скарыстаўшыся прабелам для раздзялення розных лічбаў."/>
                     <Item id="6231" name="Шырыня мяжы"/>
                     <Item id="6235" name="Без краёў"/>
@@ -1081,7 +1081,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6906" name="Акно вынікаў пошуку: паказваць толькі адзін запіс на знойдзены радок"/>
                     <Item id="6907" name="Калі выклікана дыялогавае акно &quot;Знайсці&quot;"/>
                     <Item id="6908" name="Запоўніць поле для пошуку выбраным тэкстам"/>
-                    <Item id="6909" name="Select Word Under Caret when Nothing Selected"/>
+                    <Item id="6909" name="Выбраць слова пад стрэшкай, калі нічога не выбрана"/>
                 </Searching>
 
                 <RecentFilesHistory title="Гісторыя файлаў">
@@ -1159,13 +1159,13 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Performance title="Прадукцыйнасць">
                     <Item id="7141" name="Забараняць вялікія файлы"/>
                     <Item id="7142" name="Падчас адкрыцця вялікага файла, некаторыя функцыі будуць адключаны для аптымізацыі прадукцыйнасці. Вы можаце дапасаваць іх тут."/>
-                    <Item id="7143" name="Enable Large File Restriction (no syntax highlighting)"/>
+                    <Item id="7143" name="Уключыць забарону вялікіх файлаў (без падсветкі сінтаксісу)"/>
                     <Item id="7144" name="Вызначыць памер вялікага файла:"/>
                     <Item id="7146" name="МБ  (1 - 4096)"/>
-                    <Item id="7147" name="Дазволяць парныя дужкі"/>
+                    <Item id="7147" name="Дазваляць парныя дужкі"/>
                     <Item id="7148" name="Дазваляць аўтазавяршэнне"/>
-                    <Item id="7149" name="Дазваляць інтэлектуальнае падсвятленне"/>
-                    <Item id="7150" name="Deactivate Word Wrap globally"/>
+                    <Item id="7149" name="Дазваляць інтэлектуальнае падсветку"/>
+                    <Item id="7150" name="Дэактываваць агульны перанос слоў"/>
                 </Performance>
 
                 <Cloud title="Воблачная  спасылка">
@@ -1603,9 +1603,9 @@ The comments are here for explanation, it's not necessary to translate them.
             <contextMenu-styleAlloccurrencesOfToken value="Стыль усіх супадзенняў токена" />
             <contextMenu-styleOneToken value="Стыль аднаго токена" />
             <contextMenu-clearStyle value="Ачысціць стыль" />
-            <enable-disable-largeFileRestriction-tip value="Toggling &quot;Enable Large File Restriction&quot; takes effect only after closing and re-opening the large file" />
-            <change-largeFileRestriction_fileLength-tip value="Modifying file size value takes effect only after closing and re-opening the large file" />
-            <largeFileRestriction_wordWrap-tip value="Enabling &quot;Deactivate Word Wrap globally&quot; option will deactivate Word Wrap for all opened documents after opening a large file. You can reactivate Word Wrap feature manually." />
+            <enable-disable-largeFileRestriction-tip value="Пераключэнне на &quot;Уключыць забарону вялікіх файлаў&quot; пачне дзейнічаць толькі пасля закрыцця і паўторнага адкрыцця вялікага файла" />
+            <change-largeFileRestriction_fileLength-tip value="Змяненне значэння памеру файла пачне дзейнічаць толькі пасля закрыцця і паўторнага адкрыцця вялікага файла" />
+            <largeFileRestriction_wordWrap-tip value="Уключэнне параметра &quot;Дэактываваць агульны перанос слоў&quot; прывядзе да дэактывацыі пераносу слоў для ўсіх адкрытых дакументаў пасля адкрыцця вялікага файла. Вы можаце паўторна актываваць гэту функцыю ўручную." />
         </MiscStrings>
     </Native-Langue>
 </NotepadPlus>
