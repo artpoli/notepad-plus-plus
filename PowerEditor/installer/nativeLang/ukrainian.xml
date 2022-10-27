@@ -549,12 +549,12 @@ The comments are here for explanation, it's not necessary to translate them.
                 <SubDialog>
                     <Item id="2204" name="Жирний"/>
                     <Item id="2205" name="Курсив"/>
-                    <Item id="2206" name="Колір символів"/>
-                    <Item id="2207" name="Колір тла"/>
+                    <Item id="2206" name="Foreground color"/>
+                    <Item id="2207" name="Background color"/>
                     <Item id="2208" name="Шрифт:"/>
                     <Item id="2209" name="Розмір:"/>
                     <Item id="2211" name="Стиль:"/>
-                    <Item id="2212" name="Стиль кольору"/>
+                    <Item id="2212" name="Color Style"/>
                     <Item id="2213" name="Стиль шрифту"/>
                     <Item id="2214" name="Розширення Np++ :"/>
                     <Item id="2216" name="Користувацькі розширення:"/>
@@ -562,8 +562,8 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="2219" name="Ключові слова Np++"/>
                     <Item id="2221" name="Ключові слова користувача"/>
                     <Item id="2225" name="Мова:"/>
-                    <Item id="2226" name="Загальний колір переднього плану"/>
-                    <Item id="2227" name="Загальний колір заднього плану"/>
+                    <Item id="2226" name="Enable global foreground color"/>
+                    <Item id="2227" name="Enable global background color"/>
                     <Item id="2228" name="Загальний шрифт"/>
                     <Item id="2229" name="Загальний розмір шрифту"/>
                     <Item id="2230" name="Загальний жирний шрифт"/>
@@ -668,12 +668,12 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44107" name="Перемкнути теку як робочу область"/>
                     <Item id="44109" name="Перейти до списку документів"/>
                     <Item id="44108" name="Перемкнути на перелік функцій"/>
-                    <Item id="44110" name="Вилучити колір вкладки"/>
-                    <Item id="44111" name="Застосувати колір вкладки 1"/>
-                    <Item id="44112" name="Застосувати колір вкладки 2"/>
-                    <Item id="44113" name="Застосувати колір вкладки 3"/>
-                    <Item id="44114" name="Застосувати колір вкладки 4"/>
-                    <Item id="44115" name="Застосувати колір вкладки 5"/>
+                    <Item id="44110" name="Remove Tab Color"/>
+                    <Item id="44111" name="Apply Tab Color 1"/>
+                    <Item id="44112" name="Apply Tab Color 2"/>
+                    <Item id="44113" name="Apply Tab Color 3"/>
+                    <Item id="44114" name="Apply Tab Color 4"/>
+                    <Item id="44115" name="Apply Tab Color 5"/>
                     <Item id="11002" name="Сортувати за назвою від A до Z"/>
                     <Item id="11003" name="Сортувати за назвою від Z до A"/>
                     <Item id="11004" name="Сортувати за шляхом від A до Z"/>
@@ -708,8 +708,8 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="20016" name="Експорт..."/>
                 <StylerDialog title="Стиль">
                     <Item id="25030" name="Налаштування шрифту:"/>
-                    <Item id="25006" name="Колір переднього плану"/>
-                    <Item id="25007" name="Колір тла"/>
+                    <Item id="25006" name="Foreground color"/>
+                    <Item id="25007" name="Background color"/>
                     <Item id="25031" name="Назва:"/>
                     <Item id="25032" name="Розмір:"/>
                     <Item id="25001" name="Жирний"/>
@@ -881,7 +881,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6107" name="Зменшити"/>
                     <Item id="6108" name="Заборонити перетягування"/>
                     <Item id="6109" name="Затемнені неактивні вкладки"/>
-                    <Item id="6110" name="Кольорова панель активної вкладки"/>
+                    <Item id="6110" name="Draw a colored bar on active tab"/>
 
                     <Item id="6111" name="Рядок стану"/>
                     <Item id="6112" name="Кнопка закриття на кожній вкладці"/>
@@ -1036,11 +1036,11 @@ The comments are here for explanation, it's not necessary to translate them.
 
                 <Print title="Друк">
                     <Item id="6601" name="Друкувати номери рядків"/>
-                    <Item id="6602" name="Схема кольорів"/>
+                    <Item id="6602" name="Color Options"/>
                     <Item id="6603" name="WYSIWYG"/>
                     <Item id="6604" name="Інверсія"/>
                     <Item id="6605" name="Чорним по білому"/>
-                    <Item id="6606" name="Без кольору тла"/>
+                    <Item id="6606" name="No background color"/>
                     <Item id="6607" name="Відступи (в міліметрах)"/>
                     <Item id="6612" name="Зліва"/>
                     <Item id="6613" name="Вгорі"/>
@@ -1157,7 +1157,6 @@ The comments are here for explanation, it's not necessary to translate them.
 
                 <Performance title="Performance">
                     <Item id="7141" name="Large File Restriction"/>
-                    <Item id="7142" name="While opening a large file, some features are turned off for optimizing the performance. You can customize them here."/>
                     <Item id="7143" name="Enable Large File Restriction (no syntax highlighting)"/>
                     <Item id="7144" name="Define Large File Size:"/>
                     <Item id="7146" name="MB   (1 - 4096)"/>
@@ -1165,6 +1164,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="7148" name="Allow Auto-Completion"/>
                     <Item id="7149" name="Allow Smart Highlighting"/>
                     <Item id="7150" name="Deactivate Word Wrap globally"/>
+                    <Item id="7151" name="Allow URL Clickable Link"/>
                 </Performance>
 
                 <Cloud title="Хмарне посилання">
@@ -1600,9 +1600,12 @@ Notepad++ перезапуститься після завершення всі�
             <contextMenu-styleAlloccurrencesOfToken value="Стилізувати всі входження токена" />
             <contextMenu-styleOneToken value="Стилізувати один токен" />
             <contextMenu-clearStyle value="Очистити стиль" />
-            <enable-disable-largeFileRestriction-tip value="Toggling &quot;Enable Large File Restriction&quot; takes effect only after closing and re-opening the large file" />
-            <change-largeFileRestriction_fileLength-tip value="Modifying file size value takes effect only after closing and re-opening the large file" />
-            <largeFileRestriction_wordWrap-tip value="Enabling &quot;Deactivate Word Wrap globally&quot; option will deactivate Word Wrap for all opened documents after opening a large file. You can reactivate Word Wrap feature manually." />
+            <largeFileRestriction-tip value="Some features may slow performance in large files. These features can be auto-disabled on opening a large file. You can customize them here.
+
+NOTE:
+1. Modifying options here requires re-open currently opened large files to get proper behavior.
+
+2. If &quot;Deactivate Word Wrap globally&quot; is checked and you open a large file, &quot;Word Wrap&quot; will be disabled for all files. You can re-enable it via menu &quot;View-&gt;Word Wrap&quot;." />
         </MiscStrings>
     </Native-Langue>
 </NotepadPlus>
