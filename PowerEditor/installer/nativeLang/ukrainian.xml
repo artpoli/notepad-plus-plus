@@ -1600,6 +1600,7 @@ Notepad++ перезапуститься після завершення всі�
             <contextMenu-styleAlloccurrencesOfToken value="Стилізувати всі входження токена" />
             <contextMenu-styleOneToken value="Стилізувати один токен" />
             <contextMenu-clearStyle value="Очистити стиль" />
+            <contextMenu-PluginCommands value="Команди плагіну" />
             <largeFileRestriction-tip value="Some features may slow performance in large files. These features can be auto-disabled on opening a large file. You can customize them here.
 
 NOTE:
