@@ -1603,6 +1603,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <contextMenu-styleAlloccurrencesOfToken value="Стыль усіх супадзенняў токена" />
             <contextMenu-styleOneToken value="Стыль аднаго токена" />
             <contextMenu-clearStyle value="Ачысціць стыль" />
+            <contextMenu-PluginCommands value="Каманды ўбудовы" />
             <largeFileRestriction-tip value="Some features may slow performance in large files. These features can be auto-disabled on opening a large file. You can customize them here.
 
 NOTE:
