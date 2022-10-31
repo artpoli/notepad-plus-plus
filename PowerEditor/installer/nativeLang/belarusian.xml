@@ -549,12 +549,12 @@ The comments are here for explanation, it's not necessary to translate them.
                 <SubDialog>
                     <Item id="2204" name="Тоўсты"/>
                     <Item id="2205" name="Курсіў"/>
-                    <Item id="2206" name="Foreground color"/>
-                    <Item id="2207" name="Background color"/>
+                    <Item id="2206" name="Асноўны колер"/>
+                    <Item id="2207" name="Колер фону"/>
                     <Item id="2208" name="Назва шрыфту:"/>
                     <Item id="2209" name="Памер шрыфту:"/>
                     <Item id="2211" name="Стыль:"/>
-                    <Item id="2212" name="Color Style"/>
+                    <Item id="2212" name="Стыль колеру"/>
                     <Item id="2213" name="Стыль шрыфту"/>
                     <Item id="2214" name="Пашырэнні праграмы:"/>
                     <Item id="2216" name="Пашырэнні карыстальніка:"/>
@@ -562,8 +562,8 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="2219" name="Ключавыя словы праграмы"/>
                     <Item id="2221" name="Ключавыя словы карыстальніка"/>
                     <Item id="2225" name="Мова:"/>
-                    <Item id="2226" name="Enable global foreground color"/>
-                    <Item id="2227" name="Enable global background color"/>
+                    <Item id="2226" name="Агульны колер пярэдняга плана"/>
+                    <Item id="2227" name="Агульны колер фону"/>
                     <Item id="2228" name="Агульны шрыфт"/>
                     <Item id="2229" name="Агульны памер шрыфту"/>
                     <Item id="2230" name="Агульны тоўсты шрыфт"/>
@@ -668,12 +668,12 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44107" name="Пераключыць папку як працоўную вобласць"/>
                     <Item id="44109" name="Пераключыцца на спіс дакументаў"/>
                     <Item id="44108" name="Пераключыцца на спіс функцый"/>
-                    <Item id="44110" name="Remove Tab Color"/>
-                    <Item id="44111" name="Apply Tab Color 1"/>
-                    <Item id="44112" name="Apply Tab Color 2"/>
-                    <Item id="44113" name="Apply Tab Color 3"/>
-                    <Item id="44114" name="Apply Tab Color 4"/>
-                    <Item id="44115" name="Apply Tab Color 5"/>
+                    <Item id="44110" name="Выдаліць колер укладкі"/>
+                    <Item id="44111" name="Ужыць колер укладкі 1"/>
+                    <Item id="44112" name="Ужыць колер укладкі 2"/>
+                    <Item id="44113" name="Ужыць колер укладкі 3"/>
+                    <Item id="44114" name="Ужыць колер укладкі 4"/>
+                    <Item id="44115" name="Ужыць колер укладкі 5"/>
                     <Item id="11002" name="Сартаваць па назве ад А да Я"/>
                     <Item id="11003" name="Сартаваць па назве ад Я да А"/>
                     <Item id="11004" name="Сартаваць па шляху ад А да Я"/>
@@ -708,8 +708,8 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="20016" name="Экспарт..."/>
                 <StylerDialog title="Стыль">
                     <Item id="25030" name="Параметры шрыфту:"/>
-                    <Item id="25006" name="Foreground color"/>
-                    <Item id="25007" name="Background color"/>
+                    <Item id="25006" name="Асноўны колер"/>
+                    <Item id="25007" name="Колер фону"/>
                     <Item id="25031" name="Назва:"/>
                     <Item id="25032" name="Памер:"/>
                     <Item id="25001" name="Тоўсты"/>
@@ -881,7 +881,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6107" name="Паменшыць"/>
                     <Item id="6108" name="Забараніць перацягванне"/>
                     <Item id="6109" name="Неактыўныя шэрыя ўкладкі"/>
-                    <Item id="6110" name="Draw a colored bar on active tab"/>
+                    <Item id="6110" name="Каляровая панэль актыўнай укладкі"/>
 
                     <Item id="6111" name="Радок стану"/>
                     <Item id="6112" name="Клавіша закрыцця на кожнай укладцы"/>
@@ -1036,11 +1036,11 @@ The comments are here for explanation, it's not necessary to translate them.
 
                 <Print title="Друк">
                     <Item id="6601" name="Друкаваць нумары радкоў"/>
-                    <Item id="6602" name="Color Options"/>
+                    <Item id="6602" name="Параметры колеру"/>
                     <Item id="6603" name="WYSIWYG"/>
                     <Item id="6604" name="Інвертаваць"/>
                     <Item id="6605" name="Чорным па белым"/>
-                    <Item id="6606" name="No background color"/>
+                    <Item id="6606" name="Без колеру фону"/>
                     <Item id="6607" name="Налады водступаў (у мм)"/>
                     <Item id="6612" name="Злева"/>
                     <Item id="6613" name="Уверсе"/>
@@ -1158,14 +1158,14 @@ The comments are here for explanation, it's not necessary to translate them.
 
                 <Performance title="Прадукцыйнасць">
                     <Item id="7141" name="Забараняць вялікія файлы"/>
-                    <Item id="7143" name="Enable Large File Restriction (no syntax highlighting)"/>
-                    <Item id="7144" name="Define Large File Size:"/>
-                    <Item id="7146" name="MB   (1 - 4096)"/>
-                    <Item id="7147" name="Allow Brace Match"/>
-                    <Item id="7148" name="Allow Auto-Completion"/>
-                    <Item id="7149" name="Allow Smart Highlighting"/>
-                    <Item id="7150" name="Deactivate Word Wrap globally"/>
-                    <Item id="7151" name="Allow URL Clickable Link"/>
+                    <Item id="7143" name="Уключыць забарону вялікіх файлаў (без падсветкі сінтаксісу)"/>
+                    <Item id="7144" name="Вызначыць памер вялікага файла:"/>
+                    <Item id="7146" name="МБ  (1 - 4096)"/>
+                    <Item id="7147" name="Дазваляць парныя дужкі"/>
+                    <Item id="7148" name="Дазваляць аўтазавяршэнне"/>
+                    <Item id="7149" name="Дазваляць інтэлектуальнае падсветку"/>
+                    <Item id="7150" name="Дэактываваць агульны перанос слоў"/>
+                    <Item id="7151" name="Дазваляць націсканальныя спасылкі"/>
                 </Performance>
 
                 <Cloud title="Воблачная  спасылка">
@@ -1604,12 +1604,12 @@ The comments are here for explanation, it's not necessary to translate them.
             <contextMenu-styleOneToken value="Стыль аднаго токена" />
             <contextMenu-clearStyle value="Ачысціць стыль" />
             <contextMenu-PluginCommands value="Каманды ўбудовы" />
-            <largeFileRestriction-tip value="Some features may slow performance in large files. These features can be auto-disabled on opening a large file. You can customize them here.
+            <largeFileRestriction-tip value="Некаторыя функцыі могуць запаволіць прадукцыйнасць у вялікіх файлах. Гэтыя функцыі можна аўтаматычна адключаць пры адкрыцці вялікага файла. Вы можаце дапасаваць іх тут:
 
-NOTE:
-1. Modifying options here requires re-open currently opened large files to get proper behavior.
+НАТАТКА:
+1. Параметры, якія будуць тут зменены запатрабуюць паўторнага адкрыцця бягучых файлаў з вялікім памерам для дасягнення карэктных паводзін.
 
-2. If &quot;Deactivate Word Wrap globally&quot; is checked and you open a large file, &quot;Word Wrap&quot; will be disabled for all files. You can re-enable it via menu &quot;View-&gt;Word Wrap&quot;." />
+2. Калі пазначана &quot;Дэактываваць агульны перанос слоў&quot; і вы адкрываеце вялікі файл, то &quot;Перанос слоў&quot; будзе адключаны для ўсіх файлаў. Вы зможаце паўторна ўключыць яго праз меню &quot;Выгляд&gt;Перанос слоў&quot;." />
         </MiscStrings>
     </Native-Langue>
 </NotepadPlus>
