@@ -326,8 +326,8 @@ The comments are here for explanation, it's not necessary to translate them.
 
                     <Item id="10001" name="Відкрити в іншому вікні"/>
                     <Item id="10002" name="Копіювати в інше вікно"/>
-                    <Item id="10003" name="Перейти до нового примірника"/>
-                    <Item id="10004" name="Відкрити в новому примірнику"/>
+                    <Item id="10003" name="Перейти до нового екземпляра"/>
+                    <Item id="10004" name="Відкрити в новому екземплярі"/>
 
                     <Item id="46001" name="Конфігуратор стилю..."/>
                     <Item id="46250" name="Визначити мову..."/>
@@ -412,8 +412,8 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item CMDID="3" name="Перемістити документ"/>
                 <Item CMDID="10001" name="Відкрити в іншому вікні"/>
                 <Item CMDID="10002" name="Копіювати в інше вікно"/>
-                <Item CMDID="10003" name="Перейти до нового примірника"/>
-                <Item CMDID="10004" name="Відкрити в новому примірнику"/>
+                <Item CMDID="10003" name="Перейти до нового екземпляра"/>
+                <Item CMDID="10004" name="Відкрити в новому екземплярі"/>
                 <Item CMDID="4" name="Застосувати колір до вкладки"/>
                 <Item CMDID="44111" name="Застосувати колір 1"/>
                 <Item CMDID="44112" name="Застосувати колір 2"/>
@@ -881,7 +881,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6107" name="Зменшити"/>
                     <Item id="6108" name="Заборонити перетягування"/>
                     <Item id="6109" name="Затемнені неактивні вкладки"/>
-                    <Item id="6110" name="Кольорова рамка активної вкладки"/>
+                    <Item id="6110" name="Кольорова панель активної вкладки"/>
 
                     <Item id="6111" name="Рядок стану"/>
                     <Item id="6112" name="Кнопка закриття на кожній вкладці"/>
