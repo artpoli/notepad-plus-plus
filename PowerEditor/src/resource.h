@@ -19,12 +19,12 @@
 //
 // Notepad++ version: begin
 //
-#define NOTEPAD_PLUS_VERSION TEXT("Notepad++ v8.4.6")
+#define NOTEPAD_PLUS_VERSION TEXT("Notepad++ v8.4.7")
 
 // should be X.Y : ie. if VERSION_DIGITALVALUE == 4, 7, 1, 0 , then X = 4, Y = 71
 // ex : #define VERSION_VALUE TEXT("5.63\0")
-#define VERSION_VALUE TEXT("8.46\0")
-#define VERSION_DIGITALVALUE 8, 4, 6, 0
+#define VERSION_VALUE TEXT("8.47\0")
+#define VERSION_DIGITALVALUE 8, 4, 7, 0
 
 // Notepad++ version: end
 
@@ -643,6 +643,7 @@
 	#define NPPM_INTERNAL_ENABLECHANGEHISTORY           (NOTEPADPLUS_USER_INTERNAL + 67)
 	#define NPPM_INTERNAL_CLEANSMARTHILITING            (NOTEPADPLUS_USER_INTERNAL + 68)
 	#define NPPM_INTERNAL_CLEANBRACEMATCH               (NOTEPADPLUS_USER_INTERNAL + 69)
+	#define NPPM_INTERNAL_WINDOWSSESSIONEXIT            (NOTEPADPLUS_USER_INTERNAL + 70)
 
 // See Notepad_plus_msgs.h
 //#define NOTEPADPLUS_USER   (WM_USER + 1000)

@@ -190,6 +190,8 @@ Notepad_plus::~Notepad_plus()
 	delete _pFileBrowser;
 }
 
+
+
 LRESULT Notepad_plus::init(HWND hwnd)
 {
 	NppParameters& nppParam = NppParameters::getInstance();
@@ -235,8 +237,34 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	pIconListVector.push_back(&_docTabIconListAlt);     // 1
 	pIconListVector.push_back(&_docTabIconListDarkMode);// 2
 
-	unsigned char indexDocTabIcon = (((tabBarStatus & TAB_ALTICONS) == TAB_ALTICONS) ? 1 : NppDarkMode::isEnabled() ? 2 : 0);
-	
+	const int tabIconSet = NppDarkMode::getTabIconSet(NppDarkMode::isEnabled());
+	unsigned char indexDocTabIcon = 0;
+	switch (tabIconSet)
+	{
+		case 0:
+		{
+			nppGUI._tabStatus &= ~TAB_ALTICONS;
+			break;
+		}
+		case 1:
+		{
+			nppGUI._tabStatus |= TAB_ALTICONS;
+			indexDocTabIcon = 1;
+			break;
+		}
+		case 2:
+		{
+			nppGUI._tabStatus &= ~TAB_ALTICONS;
+			indexDocTabIcon = 2;
+			break;
+		}
+		//case -1:
+		default:
+		{
+			indexDocTabIcon = ((tabBarStatus & TAB_ALTICONS) == TAB_ALTICONS) ? 1 : (NppDarkMode::isEnabled() ? 2 : 0);
+		}
+	}
+
 	_mainDocTab.init(_pPublicInterface->getHinst(), hwnd, &_mainEditView, pIconListVector, indexDocTabIcon);
 	_subDocTab.init(_pPublicInterface->getHinst(), hwnd, &_subEditView, pIconListVector, indexDocTabIcon);
 
@@ -435,40 +463,25 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	setupColorSampleBitmapsOnMainMenuItems();
 
 	// Macro Menu
-	std::vector<MacroShortcut> & macros = nppParam.getMacroList();
 	HMENU hMacroMenu = ::GetSubMenu(_mainMenuHandle, MENUINDEX_MACRO);
-	size_t const posBase = 6;
-	size_t nbMacro = macros.size();
-	if (nbMacro >= 1)
-		::InsertMenu(hMacroMenu, posBase - 1, MF_BYPOSITION, static_cast<UINT>(-1), 0);
+	size_t const macroPosBase = 6;
+	DynamicMenu& macroMenuItems = nppParam.getMacroMenuItems();
+	size_t nbMacroTopLevelItem = macroMenuItems.getTopLevelItemNumber();
+	if (nbMacroTopLevelItem >= 1)
+		::InsertMenu(hMacroMenu, macroPosBase - 1, MF_BYPOSITION, static_cast<UINT>(-1), 0);
 
-	for (size_t i = 0; i < nbMacro; ++i)
-		::InsertMenu(hMacroMenu, static_cast<UINT>(posBase + i), MF_BYPOSITION, ID_MACRO + i, macros[i].toMenuItemString().c_str());
+	macroMenuItems.attach(hMacroMenu, macroPosBase, IDM_SETTING_SHORTCUT_MAPPER_MACRO, TEXT("Modify Shortcut/Delete Macro..."));
 
-	if (nbMacro >= 1)
-	{
-		::InsertMenu(hMacroMenu, static_cast<UINT>(posBase + nbMacro + 1), MF_BYPOSITION, static_cast<UINT>(-1), 0);
-		::InsertMenu(hMacroMenu, static_cast<UINT>(posBase + nbMacro + 2), MF_BYCOMMAND, IDM_SETTING_SHORTCUT_MAPPER_MACRO, TEXT("Modify Shortcut/Delete Macro..."));
-	}
 
 	// Run Menu
-	std::vector<UserCommand> & userCommands = nppParam.getUserCommandList();
 	HMENU hRunMenu = ::GetSubMenu(_mainMenuHandle, MENUINDEX_RUN);
 	int const runPosBase = 2;
-	size_t nbUserCommand = userCommands.size();
-	if (nbUserCommand >= 1)
+	DynamicMenu& runMenuItems = nppParam.getRunMenuItems();
+	size_t nbRunTopLevelItem = runMenuItems.getTopLevelItemNumber();
+	if (nbRunTopLevelItem >= 1)
 		::InsertMenu(hRunMenu, runPosBase - 1, MF_BYPOSITION, static_cast<UINT>(-1), 0);
 
-	for (size_t i = 0; i < nbUserCommand; ++i)
-	{
-		::InsertMenu(hRunMenu, static_cast<UINT>(runPosBase + i), MF_BYPOSITION, ID_USER_CMD + i, userCommands[i].toMenuItemString().c_str());
-	}
-
-	if (nbUserCommand >= 1)
-	{
-		::InsertMenu(hRunMenu, static_cast<UINT>(runPosBase + nbUserCommand + 1), MF_BYPOSITION, static_cast<UINT>(-1), 0);
-		::InsertMenu(hRunMenu, static_cast<UINT>(runPosBase + nbUserCommand + 2), MF_BYCOMMAND, IDM_SETTING_SHORTCUT_MAPPER_RUN, TEXT("Modify Shortcut/Delete Command..."));
-	}
+	runMenuItems.attach(hRunMenu, runPosBase, IDM_SETTING_SHORTCUT_MAPPER_RUN, TEXT("Modify Shortcut/Delete Command..."));
 
 	// Updater menu item
 	if (!nppGUI._doesExistUpdater)
@@ -551,8 +564,11 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	//disable "Search Results Window" under Search Menu 
 	::EnableMenuItem(_mainMenuHandle, IDM_FOCUS_ON_FOUND_RESULTS, MF_DISABLED | MF_GRAYED | MF_BYCOMMAND);
 
-	//Main menu is loaded, now load context menu items
+	//Main menu is loaded, now load editor context menu items
 	nppParam.getContextMenuFromXmlTree(_mainMenuHandle, _pluginsManager.getMenuHandle());
+
+	//Main menu is loaded, now load tab context menu items
+	nppParam.getContextMenuFromXmlTree(_mainMenuHandle, _pluginsManager.getMenuHandle(), false);
 
 	if (nppParam.hasCustomContextMenu())
 	{
@@ -567,7 +583,7 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	//Windows menu
 	_windowsMenu.init(_mainMenuHandle);
 
-	// Update context menu strings (translated)
+	// Update Scintilla context menu strings (translated)
 	vector<MenuItemUnit> & tmp = nppParam.getContextMenuItems();
 	size_t len = tmp.size();
 	TCHAR menuName[64];
@@ -577,6 +593,19 @@ LRESULT Notepad_plus::init(HWND hwnd)
 		{
 			::GetMenuString(_mainMenuHandle, tmp[i]._cmdID, menuName, 64, MF_BYCOMMAND);
 			tmp[i]._itemName = purgeMenuItemString(menuName);
+		}
+	}
+
+	// Update tab context menu strings (translated)
+	vector<MenuItemUnit>& tmp2 = nppParam.getTabContextMenuItems();
+	size_t len2 = tmp2.size();
+
+	for (size_t i = 0; i < len2; ++i)
+	{
+		if (tmp2[i]._itemName.empty())
+		{
+			::GetMenuString(_mainMenuHandle, tmp2[i]._cmdID, menuName, 64, MF_BYCOMMAND);
+			tmp2[i]._itemName = purgeMenuItemString(menuName);
 		}
 	}
 
@@ -605,6 +634,12 @@ LRESULT Notepad_plus::init(HWND hwnd)
 
 
 	//-- Tool Bar Section --//
+	
+	const int toolbarState = NppDarkMode::getToolBarIconSet(NppDarkMode::isEnabled());
+	if (toolbarState != -1)
+	{
+		nppGUI._toolBarStatus = static_cast<toolBarStatusType>(toolbarState);
+	}
 	toolBarStatusType tbStatus = nppGUI._toolBarStatus;
 	willBeShown = nppGUI._toolbarShow;
 
@@ -1451,8 +1486,10 @@ void Notepad_plus::doTrim(trimOp whichPart)
 	else
 		return;
 	env._str4Replace = TEXT("");
-    env._searchType = FindRegex;
-	_findReplaceDlg.processAll(ProcessReplaceAll, &env, true);
+	env._searchType = FindRegex;
+	bool isEntireDoc = _pEditView->execute(SCI_GETSELECTIONSTART) == _pEditView->execute(SCI_GETSELECTIONEND);
+	env._isInSelection = !isEntireDoc;
+	_findReplaceDlg.processAll(ProcessReplaceAll, &env, isEntireDoc);
 }
 
 void Notepad_plus::removeEmptyLine(bool isBlankContained)
@@ -1461,11 +1498,11 @@ void Notepad_plus::removeEmptyLine(bool isBlankContained)
 	FindOption env;
 	if (isBlankContained)
 	{
-		env._str2Search = TEXT("^[\\t ]*$(\\r\\n|\\r|\\n)");
+		env._str2Search = TEXT("^(?>[\\t ]*[\\r\\n]+)+");
 	}
 	else
 	{
-		env._str2Search = TEXT("^$(\\r\\n|\\r|\\n)");
+		env._str2Search = TEXT("^[\\r\\n]+");
 	}
 	env._str4Replace = TEXT("");
 	env._searchType = FindRegex;
@@ -1477,15 +1514,22 @@ void Notepad_plus::removeEmptyLine(bool isBlankContained)
 	_findReplaceDlg.processAll(ProcessReplaceAll, &env, isEntireDoc);
 
 	// remove the last line if it's an empty line.
-	if (isBlankContained)
+	auto lastLineDoc = _pEditView->execute(SCI_GETLINECOUNT) - 1;
+	auto str2Search = isBlankContained ? TEXT("[\\r\\n]+^[\\t ]*$|^[\\t ]+$") : TEXT("[\\r\\n]+^$");
+	auto startPos = _pEditView->execute(SCI_POSITIONFROMLINE, lastLineDoc - 1);
+	auto endPos = _pEditView->execute(SCI_GETLENGTH);
+	if (!isEntireDoc)
 	{
-		env._str2Search = TEXT("(\\r\\n|\\r|\\n)^[\\t ]*$");
+		startPos = _pEditView->execute(SCI_GETSELECTIONSTART);
+		endPos = _pEditView->execute(SCI_GETSELECTIONEND);
+		auto endLine = _pEditView->execute(SCI_LINEFROMPOSITION, endPos);
+		if (endPos != (_pEditView->execute(SCI_POSITIONFROMLINE, endLine) + _pEditView->execute(SCI_LINELENGTH, endLine)))
+			return;
 	}
-	else
-	{
-		env._str2Search = TEXT("(\\r\\n|\\r|\\n)^$");
-	}
-	_findReplaceDlg.processAll(ProcessReplaceAll, &env, isEntireDoc);
+	_pEditView->execute(SCI_SETSEARCHFLAGS, SCFIND_REGEXP|SCFIND_POSIX);
+	auto posFound = _pEditView->searchInTarget(str2Search, lstrlen(str2Search), startPos, endPos);
+	if (posFound >= 0)
+		_pEditView->replaceTarget(TEXT(""), posFound, endPos);
 }
 
 void Notepad_plus::removeDuplicateLines()
@@ -5133,7 +5177,9 @@ bool Notepad_plus::addCurrentMacro()
 	vector<MacroShortcut> & theMacros = nppParams.getMacroList();
 
 	int nbMacro = static_cast<int32_t>(theMacros.size());
-
+	
+	DynamicMenu& macroMenu = nppParams.getMacroMenuItems();
+	int nbTopLevelItem = macroMenu.getTopLevelItemNumber();
 	int cmdID = ID_MACRO + nbMacro;
 	MacroShortcut ms(Shortcut(), _macro, cmdID);
 	ms.init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf());
@@ -5141,23 +5187,24 @@ bool Notepad_plus::addCurrentMacro()
 	if (ms.doDialog() != -1)
 	{
 		HMENU hMacroMenu = ::GetSubMenu(_mainMenuHandle, MENUINDEX_MACRO);
-		int const posBase = 6;	//separator at index 5
-		if (nbMacro == 0)
+		unsigned int posBase = macroMenu.getPosBase();
+		if (nbTopLevelItem == 0)
 		{
-			::InsertMenu(hMacroMenu, posBase-1, MF_BYPOSITION, static_cast<UINT>(-1), 0);	//no separator yet, add one
+			::InsertMenu(hMacroMenu, posBase - 1, MF_BYPOSITION, static_cast<UINT>(-1), 0);	//no separator yet, add one
 
             // Insert the separator and modify/delete command
-			::InsertMenu(hMacroMenu, posBase + nbMacro + 1, MF_BYPOSITION, static_cast<UINT>(-1), 0);
+			::InsertMenu(hMacroMenu, posBase + nbTopLevelItem + 1, MF_BYPOSITION, static_cast<UINT>(-1), 0);
 
 			NativeLangSpeaker *pNativeLangSpeaker = nppParams.getNativeLangSpeaker();
 			generic_string nativeLangShortcutMapperMacro = pNativeLangSpeaker->getNativeLangMenuString(IDM_SETTING_SHORTCUT_MAPPER_MACRO);
 			if (nativeLangShortcutMapperMacro == TEXT(""))
-				nativeLangShortcutMapperMacro = TEXT("Modify Shortcut/Delete Macro...");
+				nativeLangShortcutMapperMacro = macroMenu.getLastCmdLabel();
 
-			::InsertMenu(hMacroMenu, posBase + nbMacro + 2, MF_BYCOMMAND, IDM_SETTING_SHORTCUT_MAPPER_MACRO, nativeLangShortcutMapperMacro.c_str());
+			::InsertMenu(hMacroMenu, posBase + nbTopLevelItem + 2, MF_BYCOMMAND, IDM_SETTING_SHORTCUT_MAPPER_MACRO, nativeLangShortcutMapperMacro.c_str());
         }
 		theMacros.push_back(ms);
-		::InsertMenu(hMacroMenu, posBase + nbMacro, MF_BYPOSITION, cmdID, ms.toMenuItemString().c_str());
+		macroMenu.push_back(MenuItemUnit(cmdID, ms.getName()));
+		::InsertMenu(hMacroMenu, static_cast<UINT>(posBase + nbTopLevelItem), MF_BYPOSITION, cmdID, ms.toMenuItemString().c_str());
 		_accelerator.updateShortcuts();
 		nppParams.setShortcutDirty();
 		return true;
@@ -6707,7 +6754,7 @@ void Notepad_plus::launchClipboardHistoryPanel()
 }
 
 
-void Notepad_plus::launchDocumentListPanel()
+void Notepad_plus::launchDocumentListPanel(bool changeFromBtnCmd)
 {
 	if (!_pDocumentListPanel)
 	{
@@ -6715,7 +6762,31 @@ void Notepad_plus::launchDocumentListPanel()
 		int tabBarStatus = nppParams.getNppGUI()._tabStatus;
 
 		_pDocumentListPanel = new VerticalFileSwitcher;
-		HIMAGELIST hImgLst = ((tabBarStatus & TAB_ALTICONS) ? _docTabIconListAlt.getHandle() : NppDarkMode::isEnabled() ? _docTabIconListDarkMode.getHandle() : _docTabIconList.getHandle());
+
+		HIMAGELIST hImgLst = nullptr;
+		const int tabIconSet = changeFromBtnCmd ? -1 : NppDarkMode::getTabIconSet(NppDarkMode::isEnabled());
+		switch (tabIconSet)
+		{
+			case 0:
+			{
+				hImgLst = _docTabIconList.getHandle();
+				break;
+			}
+			case 1:
+			{
+				hImgLst = _docTabIconListAlt.getHandle();
+				break;
+			}
+			case 2:
+			{
+				hImgLst = _docTabIconListDarkMode.getHandle();
+				break;
+			}
+			//case -1:
+			default:
+				hImgLst = (((tabBarStatus & TAB_ALTICONS) == TAB_ALTICONS) ? _docTabIconListAlt.getHandle() : NppDarkMode::isEnabled() ? _docTabIconListDarkMode.getHandle() : _docTabIconList.getHandle());
+		}
+
 		_pDocumentListPanel->init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), hImgLst);
 		NativeLangSpeaker *pNativeSpeaker = nppParams.getNativeLangSpeaker();
 		bool isRTL = pNativeSpeaker->isRTL();
@@ -7314,7 +7385,7 @@ static const QuoteParams quotes[] =
 	{TEXT("Anonymous #176"), QuoteParams::rapid, true, SC_CP_UTF8, L_TEXT, TEXT("A vegan said to me, \"people who sell meat are gross!\"\nI said, \"people who sell fruits and vegetables are grocer.\"\n") },
 	{TEXT("Anonymous #177"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Documentation is a love letter that you write to your future self.\n") },
 	{TEXT("Anonymous #178"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("When I die, I hope it's early in the morning so I don't have to go to work that day for no reason.\n") },
-	{TEXT("Anonymous #179"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Workers plaay football\nManagers play tennis\nCEOs play golf\n\nHigher the function, smaller the balls.\n") },
+	{TEXT("Anonymous #179"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Workers play football\nManagers play tennis\nCEOs play golf\n\nHigher the function, smaller the balls.\n") },
 	{TEXT("Anonymous #180"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("Friends are just like trees.\nThey fall down when you hit them multiple times with an axe.\n") },
 	{TEXT("Anonymous #181"), QuoteParams::rapid, false, SC_CP_UTF8, L_TEXT, TEXT("I met a magical Genie. He gave me one wish.\nI said: \"I wish I could be you.\"\nThe Genue saud: \"Weurd wush but U wull grant ut.\"\n") },
 	{TEXT("Anonymous #182"), QuoteParams::slow, false, SC_CP_UTF8, L_CPP, TEXT("printf(\"%s%s\", \"\\\\o/\\n| |\\n| |8=\", \"=D\\n/ \\\\\\n\");\n") },
@@ -7814,13 +7885,23 @@ void Notepad_plus::refreshDarkMode(bool resetStyle)
 			::SendMessage(_pClipboardHistoryPanel->getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
 		}
 
-		bool isChecked = _preference._generalSubDlg.isCheckedOrNot(IDC_CHECK_TAB_ALTICONS);
-		if (!isChecked)
+		const int tabIconSet = NppDarkMode::getTabIconSet(NppDarkMode::isEnabled());
+		if (tabIconSet != -1)
 		{
-			::SendMessage(_pPublicInterface->getHSelf(), NPPM_INTERNAL_CHANGETABBAEICONS, 0, NppDarkMode::isEnabled() ? 2 : 0);
+			_preference._generalSubDlg.setTabbarAlternateIcons(tabIconSet == 1);
+			::SendMessage(_pPublicInterface->getHSelf(), NPPM_INTERNAL_CHANGETABBAEICONS, static_cast<WPARAM>(false), tabIconSet);
+		}
+		else
+		{
+			const bool isChecked = _preference._generalSubDlg.isCheckedOrNot(IDC_CHECK_TAB_ALTICONS);
+			if (!isChecked)
+			{
+				::SendMessage(_pPublicInterface->getHSelf(), NPPM_INTERNAL_CHANGETABBAEICONS, static_cast<WPARAM>(false), NppDarkMode::isEnabled() ? 2 : 0);
+			}
 		}
 
-		toolBarStatusType state = _toolBar.getState();
+		const int iconState = NppDarkMode::getToolBarIconSet(NppDarkMode::isEnabled());
+		toolBarStatusType state = (iconState == -1) ? _toolBar.getState() : static_cast<toolBarStatusType>(iconState);
 		switch (state)
 		{
 			case TB_SMALL:
@@ -7840,20 +7921,19 @@ void Notepad_plus::refreshDarkMode(bool resetStyle)
 				break;
 
 			case TB_STANDARD:
-				// Force standard colorful icon to Fluent UI small icon in dark mode
-				if (NppDarkMode::isEnabled())
-					_toolBar.reduce();
+				_toolBar.setToBmpIcons();
 				break;
 		}
 
 		ThemeSwitcher& themeSwitcher = nppParams.getThemeSwitcher();
 		generic_string themePath;
 		generic_string themeName;
-		const TCHAR darkModeXmlFileName[] = TEXT("DarkModeDefault.xml");
-		if (NppDarkMode::isEnabled())
+
+		generic_string xmlFileName = NppDarkMode::getThemeName();
+		if (!xmlFileName.empty())
 		{
 			themePath = themeSwitcher.getThemeDirPath();
-			pathAppend(themePath, darkModeXmlFileName);
+			pathAppend(themePath, xmlFileName);
 
 			themeName = themeSwitcher.getThemeFromXmlFileName(themePath.c_str());
 		}

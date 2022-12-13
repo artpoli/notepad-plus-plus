@@ -194,6 +194,54 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		{
 			NppDarkMode::handleSettingChange(hwnd, lParam);
 
+			const bool enableDarkMode = NppDarkMode::isExperimentalActive();
+
+			NppParameters& nppParam = NppParameters::getInstance();
+			NppGUI& nppGUI = nppParam.getNppGUI();
+
+			// Windows mode is enabled
+			// and don't change if Notepad++ is already in same mode as OS after changing OS mode
+			if (NppDarkMode::isWindowsModeEnabled() && (enableDarkMode != NppDarkMode::isEnabled()))
+			{
+				nppGUI._darkmode._isEnabled = enableDarkMode;
+				if (!_preference.isCreated())
+				{
+					const int iconState = NppDarkMode::getToolBarIconSet(NppDarkMode::isEnabled());
+					toolBarStatusType state = (iconState == -1) ? _toolBar.getState() : static_cast<toolBarStatusType>(iconState);
+					switch (state)
+					{
+						case TB_SMALL:
+							_toolBar.reduce();
+							break;
+
+						case TB_LARGE:
+							_toolBar.enlarge();
+							break;
+
+						case TB_SMALL2:
+							_toolBar.reduceToSet2();
+							break;
+
+						case TB_LARGE2:
+							_toolBar.enlargeToSet2();
+							break;
+
+						case TB_STANDARD:
+							_toolBar.setToBmpIcons();
+							break;
+					}
+					NppDarkMode::refreshDarkMode(hwnd, false);
+				}
+				else
+				{
+					HWND hSubDlg = _preference._darkModeSubDlg.getHSelf();
+
+					// don't use IDC_RADIO_DARKMODE_FOLLOWWINDOWS, it is only for button,
+					// it calls NppDarkMode::handleSettingChange, which is not needed here
+					::SendMessage(hSubDlg, WM_COMMAND, IDC_RADIO_DARKMODE_DARKMODE, 0);
+				}
+			}
+
 			return ::DefWindowProc(hwnd, message, wParam, lParam);
 		}
 
@@ -781,7 +829,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 					_pDocumentListPanel = nullptr;
 
 					//relaunch with new icons
-					launchDocumentListPanel();
+					launchDocumentListPanel(static_cast<bool>(wParam));
 				}
 				else //if doclist is closed
 				{
@@ -790,7 +838,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 					_pDocumentListPanel = nullptr;
 
 					//relaunch doclist with new icons and close it
-					launchDocumentListPanel();
+					launchDocumentListPanel(static_cast<bool>(wParam));
 					if (_pDocumentListPanel)
 					{
 						_pDocumentListPanel->display(false);
@@ -2058,6 +2106,18 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			return TRUE;
 		}
 
+		case NPPM_INTERNAL_WINDOWSSESSIONEXIT:
+		{
+			int answer = _nativeLangSpeaker.messageBox("WindowsSessionExit",
+				_pPublicInterface->getHSelf(),
+				TEXT("Windows session is about to be terminated but you have some data unsaved. Do you want to exit Notepad++ now?"),
+				TEXT("Notepad++ - Windows session exit"),
+				MB_YESNO | MB_ICONQUESTION | MB_APPLMODAL);
+			if (answer == IDYES)
+				::PostMessage(_pPublicInterface->getHSelf(), WM_CLOSE, 0, 0);
+			return TRUE;
+		}
+
 		case WM_QUERYENDSESSION:
 		{
 			// app should return TRUE or FALSE immediately upon receiving this message,
@@ -2111,8 +2171,9 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			{
 				if (MainFileManager.getNbDirtyBuffers() > 0)
 				{
-					// we have unsaved filebuffer(s), give the user a chance to respond (non-critical shutdown only)
-					if (!isForcedShuttingDown && isFirstQueryEndSession)
+					// we have unsaved filebuffer(s), give the user a chance to respond
+					// (but only for a non-critical OS restart/shutdown and while the N++ backup mode is OFF)
+					if (!isForcedShuttingDown && isFirstQueryEndSession && !nppParam.getNppGUI().isSnapshotMode())
 					{
 						// if N++ has been minimized or invisible, we need to show it 1st
 						if (::IsIconic(hwnd))
@@ -2128,7 +2189,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 								::SendMessage(hwnd, WM_SIZE, 0, 0);	// to make window fit (specially to show tool bar.)
 							}
 						}
-						::PostMessage(hwnd, WM_COMMAND, IDM_FILE_SAVEALL, 0); // posting will not block us here
+						::PostMessage(hwnd, NPPM_INTERNAL_WINDOWSSESSIONEXIT, 0, 0); // posting will not block us here
 						return FALSE; // request abort of the shutdown 
 					}
 				}

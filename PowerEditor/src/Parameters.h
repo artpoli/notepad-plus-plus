@@ -720,6 +720,7 @@ struct DarkModeConf final
 	bool _isEnabledPlugin = true;
 	NppDarkMode::ColorTone _colorTone = NppDarkMode::blackTone;
 	NppDarkMode::Colors _customColors = NppDarkMode::getDarkModeDefaultColors();
+	NppDarkMode::AdvancedOptions _advOptions{};
 };
 
 
@@ -905,7 +906,6 @@ struct NppGUI final
 	bool _shouldSortFunctionList = false;
 
 	DarkModeConf _darkmode;
-	DarkModeConf _darkmodeplugins;
 
 	LargeFileRestriction _largeFileRestriction;
 };
@@ -1331,6 +1331,37 @@ const int NB_LANG = 100;
 const int RECENTFILES_SHOWFULLPATH = -1;
 const int RECENTFILES_SHOWONLYFILENAME = 0;
 
+class DynamicMenu final
+{
+public:
+	bool attach(HMENU hMenu, unsigned int posBase, int lastCmd, const generic_string& lastCmdLabel);
+	bool createMenu() const;
+	bool clearMenu() const;
+	int getTopLevelItemNumber() const;
+	void push_back(const MenuItemUnit& m) {
+		_menuItems.push_back(m);
+	};
+
+	MenuItemUnit& getItemFromIndex(size_t i) {
+		return _menuItems[i];
+	};
+
+	void erase(size_t i) {
+		_menuItems.erase(_menuItems.begin() + i);
+	}
+
+	unsigned int getPosBase() const { return _posBase; };
+
+	generic_string getLastCmdLabel() const { return _lastCmdLabel; };
+
+private:
+	std::vector<MenuItemUnit> _menuItems;
+	HMENU _hMenu = nullptr;
+	unsigned int _posBase = 0;
+	int _lastCmd = 0;
+	generic_string _lastCmdLabel;
+};
+
 class NppParameters final
 {
 private:
@@ -1552,10 +1583,14 @@ public:
 	std::vector<int> & getScintillaModifiedKeyIndices() { return _scintillaModifiedKeyIndices; };
 	void addScintillaModifiedIndex(int index);
 
-	std::vector<MenuItemUnit> & getContextMenuItems() { return _contextMenuItems; };
 	const Session & getSession() const {return _session;};
 
+	std::vector<MenuItemUnit>& getContextMenuItems() { return _contextMenuItems; };
+	std::vector<MenuItemUnit>& getTabContextMenuItems() { return _tabContextMenuItems; };
+	DynamicMenu& getMacroMenuItems() { return _macroMenuItems; };
+	DynamicMenu& getRunMenuItems() { return _runMenuItems; };
 	bool hasCustomContextMenu() const {return !_contextMenuItems.empty();};
+	bool hasCustomTabContextMenu() const {return !_tabContextMenuItems.empty();};
 
 	void setAccelerator(Accelerator *pAccel) {_pAccelerator = pAccel;};
 	Accelerator * getAccelerator() {return _pAccelerator;};
@@ -1628,7 +1663,7 @@ public:
 		return getPluginCmdsFromXmlTree();
 	}
 
-	bool getContextMenuFromXmlTree(HMENU mainMenuHadle, HMENU pluginsMenu);
+	bool getContextMenuFromXmlTree(HMENU mainMenuHadle, HMENU pluginsMenu, bool isEditCM = true);
 	bool reloadContextMenuFromXmlTree(HMENU mainMenuHadle, HMENU pluginsMenu);
 	winVer getWinVersion() const {return _winVersion;};
 	generic_string getWinVersionStr() const;
@@ -1667,7 +1702,7 @@ public:
 
 	bool isLocal() const {
 		return _isLocal;
-	};
+	}
 
 	void saveConfig_xml();
 
@@ -1751,6 +1786,7 @@ private:
 
 	TiXmlDocumentA *_pXmlNativeLangDocA = nullptr; // nativeLang.xml
 	TiXmlDocumentA *_pXmlContextMenuDocA = nullptr; // contextMenu.xml
+	TiXmlDocumentA *_pXmlTabContextMenuDocA = nullptr; // tabContextMenu.xml
 
 	std::vector<TiXmlDocument *> _pXmlExternalLexerDoc; // External lexer plugins' XMLs
 
@@ -1827,12 +1863,15 @@ private:
 
 	ThemeSwitcher _themeSwitcher;
 
-	//vector<generic_string> _noMenuCmdNames;
 	std::vector<MenuItemUnit> _contextMenuItems;
+	std::vector<MenuItemUnit> _tabContextMenuItems;
+	DynamicMenu _macroMenuItems;
+	DynamicMenu _runMenuItems;
 	Session _session;
 
 	generic_string _shortcutsPath;
 	generic_string _contextMenuPath;
+	generic_string _tabContextMenuPath;
 	generic_string _sessionPath;
 	generic_string _nppPath;
 	generic_string _userPath;
@@ -1932,13 +1971,13 @@ private:
 	bool feedBlacklist(TiXmlNode *node);
 
 	void getActions(TiXmlNode *node, Macro & macro);
-	bool getShortcuts(TiXmlNode *node, Shortcut & sc);
+	bool getShortcuts(TiXmlNode *node, Shortcut & sc, generic_string* folderName = nullptr);
 
 	void writeStyle2Element(const Style & style2Write, Style & style2Sync, TiXmlElement *element);
 	void insertUserLang2Tree(TiXmlNode *node, UserLangContainer *userLang);
 	void insertCmd(TiXmlNode *cmdRoot, const CommandShortcut & cmd);
-	void insertMacro(TiXmlNode *macrosRoot, const MacroShortcut & macro);
-	void insertUserCmd(TiXmlNode *userCmdRoot, const UserCommand & userCmd);
+	void insertMacro(TiXmlNode *macrosRoot, const MacroShortcut & macro, const generic_string& folderName);
+	void insertUserCmd(TiXmlNode *userCmdRoot, const UserCommand & userCmd, const generic_string& folderName);
 	void insertScintKey(TiXmlNode *scintKeyRoot, const ScintillaKeyMap & scintKeyMap);
 	void insertPluginCmd(TiXmlNode *pluginCmdRoot, const PluginCmdShortcut & pluginCmd);
 	TiXmlElement * insertGUIConfigBoolNode(TiXmlNode *r2w, const TCHAR *name, bool bVal);
