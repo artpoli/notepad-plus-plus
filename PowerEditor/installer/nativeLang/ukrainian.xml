@@ -86,9 +86,9 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="41003" name="Закрити"/>
                     <Item id="41004" name="Закрити все"/>
                     <Item id="41005" name="Закрити все, окрім активного"/>
-                    <Item id="41009" name="Закрити все зліва"/>
-                    <Item id="41018" name="Закрити все справа"/>
-                    <Item id="41024" name="Закрити всі незмінені"/>
+                    <Item id="41009" name="Close All to the Left"/>
+                    <Item id="41018" name="Close All to the Right"/>
+                    <Item id="41024" name="Close All Unchanged"/>
                     <Item id="41006" name="Зберегти"/>
                     <Item id="41007" name="Зберегти все"/>
                     <Item id="41008" name="Зберегти як..."/>
@@ -145,7 +145,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42071" name="зВОРОТНІЙ пОРЯДОК"/>
                     <Item id="42072" name="виПАдковиЙ ПорЯдок"/>
                     <Item id="42073" name="Відкрити файл"/>
-                    <Item id="42074" name="Відкрити теку в провіднику"/>
+                    <Item id="42074" name="Open Containing Folder in Explorer"/>
                     <Item id="42075" name="Пошук в Інтернеті"/>
                     <Item id="42076" name="Змінити пошуковий засіб..."/>
                     <Item id="42018" name="Почати запис"/>
@@ -182,7 +182,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42087" name="Копіювати всі назви файлів"/>
                     <Item id="42088" name="Копіювати всі шляхи до файлів"/>
                     <Item id="42032" name="Багаторазовий запуск макросу..."/>
-                    <Item id="42033" name="Прибрати атрибут «Лише читання»"/>
+                    <Item id="42033" name="Clear Read-Only Flag"/>
                     <Item id="42035" name="Коментувати рядок"/>
                     <Item id="42036" name="Розкоментувати рядок"/>
                     <Item id="42055" name="Вилучити порожні рядки"/>
@@ -324,10 +324,10 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="45053" name="OEM 860: Португальська"/>
                     <Item id="45056" name="OEM 863: Французька"/>
 
-                    <Item id="10001" name="Відкрити в іншому вікні"/>
-                    <Item id="10002" name="Копіювати в інше вікно"/>
-                    <Item id="10003" name="Перейти до нового екземпляра"/>
-                    <Item id="10004" name="Відкрити в новому екземплярі"/>
+                    <Item id="10001" name="Move to Other View"/>
+                    <Item id="10002" name="Clone to Other View"/>
+                    <Item id="10003" name="Move to New Instance"/>
+                    <Item id="10004" name="Open in New Instance"/>
 
                     <Item id="46001" name="Конфігуратор стилю..."/>
                     <Item id="46250" name="Визначити мову..."/>
@@ -386,41 +386,41 @@ The comments are here for explanation, it's not necessary to translate them.
             <Splitter>
             </Splitter>
             <TabBar>
-                    <Item CMID="0" name="Закрити"/>
-                    <Item CMID="1" name="Закрити всі, крім поточної"/>
-                    <Item CMID="2" name="Зберегти"/>
-                    <Item CMID="3" name="Зберегти як..."/>
-                    <Item CMID="4" name="Друкувати..."/>
-                    <Item CMID="5" name="Відкрити в іншому вікні"/>
-                    <Item CMID="6" name="Копіювати в інше вікно"/>
-                    <Item CMID="7" name="Копіювати повний шлях до файлу"/>
-                    <Item CMID="8" name="Копіювати назву файлу"/>
-                    <Item CMID="9" name="Копіювати шлях до поточної теки"/>
-                    <Item CMID="10" name="Перейменувати..."/>
-                    <Item CMID="11" name="Перемістити в смітник"/>
-                    <Item CMID="12" name="Лише читання"/>
-                    <Item CMID="13" name="Прибрати атрибут «Лише читання»"/>
-                    <Item CMID="14" name="Перейти до нового екземпляра"/>
-                    <Item CMID="15" name="Відкрити в новому екземплярі"/>
-                    <Item CMID="16" name="Перезавантажити"/>
-                    <Item CMID="17" name="Закрити все зліва"/>
-                    <Item CMID="18" name="Закрити все справа"/>
-                    <Item CMID="19" name="Відкрити теку в провіднику"/>
-                    <Item CMID="20" name="Відкрити теку в cmd"/>
-                    <Item CMID="21" name="Відкрити в типовому засобі перегляду"/>
-                    <Item CMID="22" name="Закрити всі незмінені"/>
-                    <Item CMID="23" name="Відкрити теку вмісту як робочу область"/>
-                    <Item CMID="24" name="Застосувати колір 1"/>
-                    <Item CMID="25" name="Застосувати колір 2"/>
-                    <Item CMID="26" name="Застосувати колір 3"/>
-                    <Item CMID="27" name="Застосувати колір 4"/>
-                    <Item CMID="28" name="Застосувати колір 5"/>
-                    <Item CMID="29" name="Вилучити колір"/>
-                    <Item CMID="30" name="Закрити декілька вкладок"/>
-                    <Item CMID="31" name="Відкрити в"/>
-                    <Item CMID="32" name="Копіювати в буфер обміну"/>
-                    <Item CMID="33" name="Перемістити документ"/>
-                    <Item CMID="34" name="Застосувати колір до вкладки"/>
+                <Item CMDID="41003" name="Закрити"/>
+                <Item CMDID="0" name="Close Multiple Tabs"/>
+                <Item CMDID="41005" name="Close All BUT This"/>
+                <Item CMDID="41009" name="Close All to the Left"/>
+                <Item CMDID="41018" name="Close All to the Right"/>
+                <Item CMDID="41024" name="Close All Unchanged"/>
+                <Item CMDID="41006" name="Save"/>
+                <Item CMDID="41008" name="Save As..."/>
+                <Item CMDID="1" name="Open into"/>
+                <Item CMDID="41019" name="Open Containing Folder in Explorer"/>
+                <Item CMDID="41020" name="Open Containing Folder in cmd"/>
+                <Item CMDID="41025" name="Open Containing Folder as Workspace"/>
+                <Item CMDID="41023" name="Open in Default Viewer"/>
+                <Item CMDID="41017" name="Rename..."/>
+                <Item CMDID="41016" name="Move to Recycle Bin"/>
+                <Item CMDID="41014" name="Reload"/>
+                <Item CMDID="41010" name="Print..."/>
+                <Item CMDID="42028" name="Read-Only"/>
+                <Item CMDID="42033" name="Clear Read-Only Flag"/>
+                <Item CMDID="2" name="Копіювати в буфер обміну"/>
+                <Item CMDID="42029" name="Copy Full File Path"/>
+                <Item CMDID="42030" name="Copy Filename"/>
+                <Item CMDID="42031" name="Копіювати шлях до поточної теки"/>
+                <Item CMDID="3" name="Move Document"/>
+                <Item CMDID="10001" name="Move to Other View"/>
+                <Item CMDID="10002" name="Clone to Other View"/>
+                <Item CMDID="10003" name="Move to New Instance"/>
+                <Item CMDID="10004" name="Open in New Instance"/>
+                <Item CMDID="4" name="Apply Color to Tab"/>
+                <Item CMDID="44111" name="Застосувати колір 1"/>
+                <Item CMDID="44112" name="Застосувати колір 2"/>
+                <Item CMDID="44113" name="Застосувати колір 3"/>
+                <Item CMDID="44114" name="Застосувати колір 4"/>
+                <Item CMDID="44115" name="Застосувати колір 5"/>
+                <Item CMDID="44110" name="Вилучити колір"/>
             </TabBar>
         </Menu>
 
@@ -927,29 +927,31 @@ The comments are here for explanation, it's not necessary to translate them.
                 </Scintillas>
 
                 <DarkMode title="Темний режим">
-                    <Item id="7101" name="Увімкнути темний режим"/>
-                    <Item id="7102" name="Чорний"/>
-                    <Item id="7103" name="Червоний"/>
-                    <Item id="7104" name="Зелений"/>
-                    <Item id="7105" name="Блакитний"/>
-                    <Item id="7107" name="Бузковий"/>
-                    <Item id="7108" name="Бірюзовий"/>
-                    <Item id="7109" name="Оливковий"/>
-                    <Item id="7115" name="Налаштований"/>
+                    <Item id="7131" name="Light mode"/>
+                    <Item id="7132" name="Dark mode"/>
+                    <Item id="7133" name="Follow Windows"/>
+                    <Item id="7102" name="Black"/>
+                    <Item id="7103" name="Red"/>
+                    <Item id="7104" name="Green"/>
+                    <Item id="7105" name="Blue"/>
+                    <Item id="7107" name="Purple"/>
+                    <Item id="7108" name="Cyan"/>
+                    <Item id="7109" name="Olive"/>
+                    <Item id="7115" name="Customized"/>
                     <Item id="7116" name="Вгорі"/>
-                    <Item id="7117" name="Гарячий трек меню"/>
-                    <Item id="7118" name="Активний"/>
-                    <Item id="7119" name="Основний"/>
-                    <Item id="7120" name="Помилка"/>
-                    <Item id="7121" name="Текст"/>
-                    <Item id="7122" name="Темніший текст"/>
-                    <Item id="7123" name="Вимкнений текст"/>
-                    <Item id="7124" name="Край"/>
-                    <Item id="7125" name="Посилання"/>
-                    <Item id="7126" name="Підсвічування країв"/>
-                    <Item id="7127" name="Краї вимкнено"/>
-                    <Item id="7130" name="Скинути"/>
-                    <Item id="7135" name="Тони"/>
+                    <Item id="7117" name="Menu hot track"/>
+                    <Item id="7118" name="Active"/>
+                    <Item id="7119" name="Main"/>
+                    <Item id="7120" name="Error"/>
+                    <Item id="7121" name="Text"/>
+                    <Item id="7122" name="Darker text"/>
+                    <Item id="7123" name="Disabled text"/>
+                    <Item id="7124" name="Edge"/>
+                    <Item id="7125" name="Link"/>
+                    <Item id="7126" name="Edge highlight"/>
+                    <Item id="7127" name="Edge disabled"/>
+                    <Item id="7130" name="Reset"/>
+                    <Item id="7135" name="Tones"/>
                 </DarkMode>
 
                 <MarginsBorderEdge title="Відступи/Межі/Краї">
@@ -1370,6 +1372,7 @@ Notepad++ перезапуститься після завершення всі�
 Продовжити?"/>
             <NeedToRestartToLoadPlugins title="Необхідно перезапустити Notepad++" message="Необхідно перезапустити Notepad++ для завантаження встановлених плагінів."/> <!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
             <ChangeHistoryEnabledWarning title="Необхідно перезапустити Notepad++" message="Для увімкнення історії змін потрібно перезапустити Notepad++."/> <!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
+            <WindowsSessionExit title="Notepad++ - Windows session exit" message="Windows session is about to be terminated but you have some data unsaved. Do you want to exit Notepad++ now?"/>
         </MessageBox>
         <ClipboardHistory>
             <PanelTitle name="Історія буфера"/>
@@ -1555,6 +1558,7 @@ Notepad++ перезапуститься після завершення всі�
             <splitter-rotate-left value="Обернути вліво"/>
             <splitter-rotate-right value="Обернути вправо"/>
             <recent-file-history-maxfile value="Макс. файл: "/>
+            <recent-file-history-customlength value="Length: "/>
             <language-tabsize value="Розм. вкладки: "/>
             <userdefined-title-new value="Створити нову мову..."/>
             <userdefined-title-save value="Зберегти назву поточної мови як..."/>
