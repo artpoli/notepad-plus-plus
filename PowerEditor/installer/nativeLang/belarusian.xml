@@ -158,7 +158,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42042" name="Прыбраць прабелы"/>
                     <Item id="42043" name="Прыбраць прабелы з пачатку і ў канцы"/>
                     <Item id="42044" name="Сімвал канца радка ў прабел"/>
-                    <Item id="42045" name="Выдаліць непатрэбныя прабелы і сімвалы канца радка"/>
+                    <Item id="42045" name="Trim both and EOL to Space"/>
                     <Item id="42046" name="Табуляцыю ў прабел"/>
                     <Item id="42054" name="Прабел у табуляцыю (усе)"/>
                     <Item id="42053" name="Прабел у табуляцыю (у пачатку)"/>
@@ -1137,7 +1137,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 </AutoCompletion>
 
                 <MultiInstance title="Дата з паўтарэннем">
-                    <Item id="6151" name="Рэжым адкрыцця файлаў"/>
+                    <Item id="6151" name="Multi-instance settings *"/>
                     <Item id="6152" name="Адкрыць у новым экзэмпляры (і захоўваць сеанс аўтаматычна пры выхадзе)"/>
                     <Item id="6153" name="Заўсёды адкрываць у новым акне"/>
                     <Item id="6154" name="Усе ў адным акне (прадвызначана)"/>
@@ -1145,6 +1145,16 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6171" name="Дапасаванне ўстаўкі даты і часу"/>
                     <Item id="6175" name="Зваротны парадак прадвызначанай даты і часу (кароткі і доўгія фарматы)"/>
                     <Item id="6172" name="Карыстальніцкі фармат:"/>
+                    <Item id="6181" name="Panel State and [-nosession] *"/>
+                    <Item id="6182" name="Remember panel state (panel is open) in other instances (multi-instance mode) or when using command line parameter [-nosession]"/>
+                    <Item id="6183" name="Гісторыя буфера абмену"/>
+                    <Item id="6184" name="Спіс дакументаў"/>
+                    <Item id="6185" name="Character Panel"/>
+                    <Item id="6186" name="Папка як працоўная вобласць"/>
+                    <Item id="6187" name="Project Panels"/>
+                    <Item id="6188" name="Карта дакумента"/>
+                    <Item id="6189" name="Спіс функцый"/>
+                    <Item id="6190" name="Plugin Panels"/>
                 </MultiInstance>
 
                 <Delimiter title="Раздзяляльнік">
