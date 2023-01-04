@@ -405,7 +405,7 @@ intptr_t CALLBACK WordStyleDlg::run_dlgProc(UINT Message, WPARAM wParam, LPARAM 
 						::SendMessage(_hParent, WM_UPDATEMAINMENUBITMAPS, 0, 0);
 
 						const TCHAR* fn = ::PathFindFileName(_themeName.c_str());
-						NppDarkMode::setThemeName(lstrcmp(fn, L"stylers.xml") == 0 ? L"" : fn);
+						NppDarkMode::setThemeName((!NppDarkMode::isEnabled() && lstrcmp(fn, L"stylers.xml") == 0) ? L"" : fn);
 
 						return TRUE;
 					}
@@ -942,6 +942,11 @@ std::pair<intptr_t, intptr_t> WordStyleDlg::goToPreferencesSettings()
 	{
 		result.first = 3;
 		result.second = IDC_CHECK_BOOKMARKMARGE;
+	}
+	else if (style._styleDesc == TEXT("Change History margin"))
+	{
+		result.first = 3;
+		result.second = IDC_CHECK_CHANGHISTORYMARGE;
 	}
 	else if (style._styleDesc == TEXT("Fold") || style._styleDesc == TEXT("Fold active") || style._styleDesc == TEXT("Fold margin"))
 	{

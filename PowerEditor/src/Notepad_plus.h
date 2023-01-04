@@ -66,7 +66,8 @@ enum WindowStatus {	//bitwise mask
 enum trimOp {
 	lineHeader = 0,
 	lineTail = 1,
-	lineEol = 2
+	lineBoth = 2,
+	lineEol = 3
 };
 
 enum spaceTab {
@@ -383,7 +384,7 @@ private:
 	bool _isFileOpening = false;
 	bool _isAdministrator = false;
 
-	bool _isNppSessionSavedAtExit = false; // guard flag, it prevents emptying of the N++ session.xml in case of multiple WM_ENDSESSION or WM_CLOSE messages
+	bool _isNppSessionSavedAtExit = false; // guard flag, it prevents emptying of the Notepad++ session.xml in case of multiple WM_ENDSESSION or WM_CLOSE messages
 
 	ScintillaCtrls _scintillaCtrls4Plugins;
 
@@ -598,6 +599,7 @@ private:
 
 	void wsTabConvert(spaceTab whichWay);
 	void doTrim(trimOp whichPart);
+	void eol2ws();
 	void removeEmptyLine(bool isBlankContained);
 	void removeDuplicateLines();
 	void launchAnsiCharPanel();

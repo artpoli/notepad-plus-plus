@@ -673,8 +673,8 @@ protected:
 		setLexer(L_MAKEFILE, LIST_NONE);
 	};
 
-	void setPropsLexer(bool notPropsButIni = false) {
-		LangType L_id = notPropsButIni ? L_INI : L_PROPS;
+	void setPropsLexer(bool isPropsButNotIni = true) {
+		LangType L_id = isPropsButNotIni ? L_PROPS : L_INI;
 		setLexer(L_id, LIST_NONE);
 		execute(SCI_STYLESETEOLFILLED, SCE_PROPS_SECTION, true);
 	};
@@ -942,6 +942,7 @@ protected:
 	void setSearchResultLexer() {
 		if (execute(SCI_GETLEXER) == SCLEX_SEARCHRESULT)
 		{
+			makeStyle(L_SEARCHRESULT, nullptr);
 			return;
 		}
 		execute(SCI_STYLESETEOLFILLED, SCE_SEARCHRESULT_FILE_HEADER, true);

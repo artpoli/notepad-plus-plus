@@ -101,6 +101,8 @@ copy /Y ..\src\stylers.model.xml .\minimalist\
 If ErrorLevel 1 goto End
 copy /Y ..\src\contextMenu.xml .\minimalist\
 If ErrorLevel 1 goto End
+copy /Y ..\src\tabContextMenu_example.xml .\minimalist\
+If ErrorLevel 1 goto End
 copy /Y ..\src\shortcuts.xml .\minimalist\
 If ErrorLevel 1 goto End
 copy /Y ..\bin\doLocalConf.xml .\minimalist\
@@ -110,6 +112,8 @@ If ErrorLevel 1 goto End
 copy /Y ..\bin\"notepad++.exe" .\minimalist\
 If ErrorLevel 1 goto End
 copy /Y ".\themes\DarkModeDefault.xml" .\minimalist\themes\
+If ErrorLevel 1 goto End
+copy /Y ..\src\toolbarIcons.xml .\minimalist\
 If ErrorLevel 1 goto End
 
 
@@ -132,6 +136,8 @@ copy /Y ..\src\stylers.model.xml .\minimalist64\
 If ErrorLevel 1 goto End
 copy /Y ..\src\contextMenu.xml .\minimalist64\
 If ErrorLevel 1 goto End
+copy /Y ..\src\tabContextMenu_example.xml .\minimalist64\
+If ErrorLevel 1 goto End
 copy /Y ..\src\shortcuts.xml .\minimalist64\
 If ErrorLevel 1 goto End
 copy /Y ..\bin\doLocalConf.xml .\minimalist64\
@@ -141,6 +147,8 @@ If ErrorLevel 1 goto End
 copy /Y ..\bin64\"notepad++.exe" .\minimalist64\
 If ErrorLevel 1 goto End
 copy /Y ".\themes\DarkModeDefault.xml" .\minimalist64\themes\
+If ErrorLevel 1 goto End
+copy /Y ..\src\toolbarIcons.xml .\minimalist64\
 If ErrorLevel 1 goto End
 
 
@@ -163,6 +171,8 @@ copy /Y ..\src\stylers.model.xml .\minimalistArm64\
 If ErrorLevel 1 goto End
 copy /Y ..\src\contextMenu.xml .\minimalistArm64\
 If ErrorLevel 1 goto End
+copy /Y ..\src\tabContextMenu_example.xml .\minimalistArm64\
+If ErrorLevel 1 goto End
 copy /Y ..\src\shortcuts.xml .\minimalistArm64\
 If ErrorLevel 1 goto End
 copy /Y ..\bin\doLocalConf.xml .\minimalistArm64\
@@ -172,6 +182,8 @@ If ErrorLevel 1 goto End
 copy /Y ..\binarm64\"notepad++.exe" .\minimalistArm64\
 If ErrorLevel 1 goto End
 copy /Y ".\themes\DarkModeDefault.xml" .\minimalistArm64\themes\
+If ErrorLevel 1 goto End
+copy /Y ..\src\toolbarIcons.xml .\minimalistArm64\
 If ErrorLevel 1 goto End
 
 
@@ -245,6 +257,8 @@ copy /Y ..\src\stylers.model.xml .\zipped.package.release\
 If ErrorLevel 1 goto End
 copy /Y ..\src\contextMenu.xml .\zipped.package.release\
 If ErrorLevel 1 goto End
+copy /Y ..\src\tabContextMenu_example.xml .\zipped.package.release\
+If ErrorLevel 1 goto End
 copy /Y ..\src\shortcuts.xml .\zipped.package.release\
 If ErrorLevel 1 goto End
 copy /Y ..\bin\doLocalConf.xml .\zipped.package.release\
@@ -253,6 +267,9 @@ copy /Y ..\bin\nppLogNulContentCorruptionIssue.xml .\zipped.package.release\
 If ErrorLevel 1 goto End
 copy /Y ..\bin\"notepad++.exe" .\zipped.package.release\
 If ErrorLevel 1 goto End
+copy /Y ..\src\toolbarIcons.xml .\zipped.package.release\
+If ErrorLevel 1 goto End
+
 
 
 rem Basic Copy needed files into Notepad++ 64-bit package folders
@@ -268,6 +285,8 @@ copy /Y ..\src\stylers.model.xml .\zipped.package.release64\
 If ErrorLevel 1 goto End
 copy /Y ..\src\contextMenu.xml .\zipped.package.release64\
 If ErrorLevel 1 goto End
+copy /Y ..\src\tabContextMenu_example.xml .\zipped.package.release64\
+If ErrorLevel 1 goto End
 copy /Y ..\src\shortcuts.xml .\zipped.package.release64\
 If ErrorLevel 1 goto End
 copy /Y ..\bin\doLocalConf.xml .\zipped.package.release64\
@@ -275,6 +294,8 @@ If ErrorLevel 1 goto End
 copy /Y ..\bin\nppLogNulContentCorruptionIssue.xml .\zipped.package.release64\
 If ErrorLevel 1 goto End
 copy /Y ..\bin64\"notepad++.exe" .\zipped.package.release64\
+If ErrorLevel 1 goto End
+copy /Y ..\src\toolbarIcons.xml .\zipped.package.release64\
 If ErrorLevel 1 goto End
 
 
@@ -291,6 +312,8 @@ copy /Y ..\src\stylers.model.xml .\zipped.package.releaseArm64\
 If ErrorLevel 1 goto End
 copy /Y ..\src\contextMenu.xml .\zipped.package.releaseArm64\
 If ErrorLevel 1 goto End
+copy /Y ..\src\tabContextMenu_example.xml .\zipped.package.releaseArm64\
+If ErrorLevel 1 goto End
 copy /Y ..\src\shortcuts.xml .\zipped.package.releaseArm64\
 If ErrorLevel 1 goto End
 copy /Y ..\bin\doLocalConf.xml .\zipped.package.releaseArm64\
@@ -298,6 +321,8 @@ If ErrorLevel 1 goto End
 copy /Y ..\bin\nppLogNulContentCorruptionIssue.xml .\zipped.package.releaseArm64\
 If ErrorLevel 1 goto End
 copy /Y ..\binarm64\"notepad++.exe" .\zipped.package.releaseArm64\
+If ErrorLevel 1 goto End
+copy /Y ..\src\toolbarIcons.xml .\zipped.package.releaseArm64\
 If ErrorLevel 1 goto End
 
 

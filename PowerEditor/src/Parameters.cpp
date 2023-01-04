@@ -991,8 +991,6 @@ NppParameters::~NppParameters()
 		delete _LRFileList[i];
 	for (int i = 0 ; i < _nbUserLang ; ++i)
 		delete _userLangArray[i];
-	if (_hUXTheme)
-		FreeLibrary(_hUXTheme);
 
 	for (std::vector<TiXmlDocument *>::iterator it = _pXmlExternalLexerDoc.begin(), end = _pXmlExternalLexerDoc.end(); it != end; ++it )
 		delete (*it);
@@ -1180,7 +1178,8 @@ bool NppParameters::load()
 	//
 	// the 2nd priority: cloud Choice Path
 	//
-	if (::PathFileExists(cloudChoicePath.c_str()))
+	_isCloud = (::PathFileExists(cloudChoicePath.c_str()) == TRUE);
+	if (_isCloud)
 	{
 		// Read cloud choice
 		std::string cloudChoiceStr = getFileContent(cloudChoicePath.c_str());
@@ -1192,6 +1191,10 @@ bool NppParameters::load()
 			_userPath = cloudChoiceStrW;
 			_nppGUI._cloudPath = cloudChoiceStrW;
 			_initialCloudChoice = _nppGUI._cloudPath;
+		}
+		else
+		{
+			_isCloud = false;
 		}
 	}
 
@@ -1216,20 +1219,6 @@ bool NppParameters::load()
 		}
 	}
 
-	//-------------------------------------//
-	// Transparent function for w2k and xp //
-	//-------------------------------------//
-	HMODULE hUser32 = ::GetModuleHandle(TEXT("User32"));
-	if (hUser32)
-		_transparentFuncAddr = (WNDPROC)::GetProcAddress(hUser32, "SetLayeredWindowAttributes");
-
-	//---------------------------------------------//
-	// Dlg theme texture function for xp and vista //
-	//---------------------------------------------//
-	_hUXTheme = ::LoadLibraryEx(TEXT("uxtheme.dll"), nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32);
-	if (_hUXTheme)
-		_enableThemeDialogTextureFuncAddr = (WNDPROC)::GetProcAddress(_hUXTheme, "EnableThemeDialogTexture");
-
 	//--------------------------//
 	// langs.xml : for per user //
 	//--------------------------//
@@ -1239,7 +1228,7 @@ bool NppParameters::load()
 	BOOL doRecover = FALSE;
 	if (::PathFileExists(langs_xml_path.c_str()))
 	{
-		WIN32_FILE_ATTRIBUTE_DATA attributes;
+		WIN32_FILE_ATTRIBUTE_DATA attributes{};
 
 		if (GetFileAttributesEx(langs_xml_path.c_str(), GetFileExInfoStandard, &attributes) != 0)
 		{
@@ -1614,7 +1603,7 @@ void NppParameters::destroyInstance()
 	delete _pXmlUserStylerDoc;
 	
 	//delete _pXmlUserLangDoc; will be deleted in the vector
-	for (auto l : _pXmlUserLangsDoc)
+	for (auto& l : _pXmlUserLangsDoc)
 	{
 		delete l._udlXmlDoc;
 	}
@@ -1646,22 +1635,19 @@ void NppParameters::setWorkSpaceFilePath(int i, const TCHAR* wsFile)
 
 void NppParameters::removeTransparent(HWND hwnd)
 {
-	if (hwnd != NULL)
-		::SetWindowLongPtr(hwnd, GWL_EXSTYLE,  ::GetWindowLongPtr(hwnd, GWL_EXSTYLE) & ~0x00080000);
+	if (hwnd != nullptr)
+		::SetWindowLongPtr(hwnd, GWL_EXSTYLE, ::GetWindowLongPtr(hwnd, GWL_EXSTYLE) & ~WS_EX_LAYERED);
 }
 
 
 void NppParameters::SetTransparent(HWND hwnd, int percent)
 {
-	if (nullptr != _transparentFuncAddr)
-	{
-		::SetWindowLongPtr(hwnd, GWL_EXSTYLE, ::GetWindowLongPtr(hwnd, GWL_EXSTYLE) | 0x00080000);
-		if (percent > 255)
-			percent = 255;
-		if (percent < 0)
-			percent = 0;
-		_transparentFuncAddr(hwnd, 0, percent, 0x00000002);
-	}
+	::SetWindowLongPtr(hwnd, GWL_EXSTYLE, ::GetWindowLongPtr(hwnd, GWL_EXSTYLE) | WS_EX_LAYERED);
+	if (percent > 255)
+		percent = 255;
+	else if (percent < 0)
+		percent = 0;
+	::SetLayeredWindowAttributes(hwnd, 0, static_cast<BYTE>(percent), LWA_ALPHA);
 }
 
 
@@ -1787,7 +1773,7 @@ void NppParameters::setFontList(HWND hWnd)
 	//---------------//
 	// Sys font list //
 	//---------------//
-	LOGFONT lf;
+	LOGFONT lf{};
 	_fontlist.clear();
 	_fontlist.reserve(64); // arbitrary
 	_fontlist.push_back(generic_string());
@@ -2345,7 +2331,7 @@ bool NppParameters::getSessionFromXmlTree(TiXmlDocument *pSessionDoc, Session& s
 					const TCHAR *encStr = (childNode->ToElement())->Attribute(TEXT("encoding"), &encoding);
 					const TCHAR *backupFilePath = (childNode->ToElement())->Attribute(TEXT("backupFilePath"));
 
-					FILETIME fileModifiedTimestamp;
+					FILETIME fileModifiedTimestamp{};
 					(childNode->ToElement())->Attribute(TEXT("originalFileLastModifTimestamp"), reinterpret_cast<int32_t*>(&fileModifiedTimestamp.dwLowDateTime));
 					(childNode->ToElement())->Attribute(TEXT("originalFileLastModifTimestampHigh"), reinterpret_cast<int32_t*>(&fileModifiedTimestamp.dwHighDateTime));
 
@@ -5598,13 +5584,6 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 			}
 		}
 
-		else if (!lstrcmp(nm, TEXT("stylerTheme")))
-		{
-			const TCHAR *themePath = element->Attribute(TEXT("path"));
-			if (themePath != NULL && themePath[0])
-				_nppGUI._themeName.assign(themePath);
-		}
-
 		else if (!lstrcmp(nm, TEXT("insertDateTime")))
 		{
 			const TCHAR* customFormat = element->Attribute(TEXT("customizedFormat"));
@@ -5707,6 +5686,27 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 			if (val < 0 || val > 2)
 				val = 0;
 			_nppGUI._multiInstSetting = (MultiInstSetting)val;
+
+			auto parseYesNoBoolAttribute = [&element](const TCHAR* name, bool defaultValue = false) -> bool {
+				const TCHAR* val = element->Attribute(name);
+				if (val != nullptr)
+				{
+					if (!lstrcmp(val, TEXT("yes")))
+						return true;
+					else if (!lstrcmp(val, TEXT("no")))
+						return false;
+				}
+				return defaultValue;
+			};
+
+			_nppGUI._clipboardHistoryPanelKeepState = parseYesNoBoolAttribute(TEXT("clipboardHistory"));
+			_nppGUI._docListKeepState = parseYesNoBoolAttribute(TEXT("documentList"));
+			_nppGUI._charPanelKeepState = parseYesNoBoolAttribute(TEXT("characterPanel"));
+			_nppGUI._fileBrowserKeepState = parseYesNoBoolAttribute(TEXT("folderAsWorkspace"));
+			_nppGUI._projectPanelKeepState = parseYesNoBoolAttribute(TEXT("projectPanels"));
+			_nppGUI._docMapKeepState = parseYesNoBoolAttribute(TEXT("documentMap"));
+			_nppGUI._funcListKeepState = parseYesNoBoolAttribute(TEXT("fuctionList"));
+			_nppGUI._pluginPanelKeepState = parseYesNoBoolAttribute(TEXT("pluginPanels"));
 		}
 		else if (!lstrcmp(nm, TEXT("searchEngine")))
 		{
@@ -5922,17 +5922,60 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 				return defaultValue;
 			};
 
-			_nppGUI._darkmode._advOptions._enableWindowsMode = parseYesNoBoolAttribute(TEXT("enableWindowsMode"));
+			auto& windowsMode = _nppGUI._darkmode._advOptions._enableWindowsMode;
+			windowsMode = parseYesNoBoolAttribute(TEXT("enableWindowsMode"));
 
-			_nppGUI._darkmode._advOptions._darkDefaults._xmlFileName = parseStringAttribute(TEXT("darkThemeName"), TEXT("DarkModeDefault.xml"));
-			_nppGUI._darkmode._advOptions._darkDefaults._toolBarIconSet = parseToolBarIconsAttribute(TEXT("darkToolBarIconSet"), 0);
-			_nppGUI._darkmode._advOptions._darkDefaults._tabIconSet = parseTabIconsAttribute(TEXT("darkTabIconSet"), 2);
-			_nppGUI._darkmode._advOptions._darkDefaults._tabUseTheme = parseYesNoBoolAttribute(TEXT("darkTabUseTheme"));
+			auto& darkDefaults = _nppGUI._darkmode._advOptions._darkDefaults;
+			auto& darkThemeName = darkDefaults._xmlFileName;
+			darkThemeName = parseStringAttribute(TEXT("darkThemeName"), TEXT("DarkModeDefault.xml"));
+			darkDefaults._toolBarIconSet = parseToolBarIconsAttribute(TEXT("darkToolBarIconSet"), 0);
+			darkDefaults._tabIconSet = parseTabIconsAttribute(TEXT("darkTabIconSet"), 2);
+			darkDefaults._tabUseTheme = parseYesNoBoolAttribute(TEXT("darkTabUseTheme"));
 
-			_nppGUI._darkmode._advOptions._lightDefaults._xmlFileName = parseStringAttribute(TEXT("lightThemeName"));
-			_nppGUI._darkmode._advOptions._lightDefaults._toolBarIconSet = parseToolBarIconsAttribute(TEXT("lightToolBarIconSet"), 4);
-			_nppGUI._darkmode._advOptions._lightDefaults._tabIconSet = parseTabIconsAttribute(TEXT("lightTabIconSet"), 0);
-			_nppGUI._darkmode._advOptions._lightDefaults._tabUseTheme = parseYesNoBoolAttribute(TEXT("lightTabUseTheme"), true);
+			auto& lightDefaults = _nppGUI._darkmode._advOptions._lightDefaults;
+			auto& lightThemeName = lightDefaults._xmlFileName;
+			lightThemeName = parseStringAttribute(TEXT("lightThemeName"));
+			lightDefaults._toolBarIconSet = parseToolBarIconsAttribute(TEXT("lightToolBarIconSet"), 4);
+			lightDefaults._tabIconSet = parseTabIconsAttribute(TEXT("lightTabIconSet"), 0);
+			lightDefaults._tabUseTheme = parseYesNoBoolAttribute(TEXT("lightTabUseTheme"), true);
+
+			// Windows mode is handled later in Notepad_plus_Window::init from Notepad_plus_Window.cpp
+			if (!windowsMode)
+			{
+				generic_string themePath;
+				generic_string xmlFileName = _nppGUI._darkmode._isEnabled ? darkThemeName : lightThemeName;
+				const bool isLocalOnly = _isLocal && !_isCloud;
+
+				if (!xmlFileName.empty() && lstrcmp(xmlFileName.c_str(), TEXT("stylers.xml")) != 0)
+				{
+					themePath = isLocalOnly ? _nppPath : _userPath;
+					pathAppend(themePath, TEXT("themes\\"));
+					pathAppend(themePath, xmlFileName);
+
+					if (!isLocalOnly && ::PathFileExists(themePath.c_str()) == FALSE)
+					{
+						themePath = _nppPath;
+						pathAppend(themePath, TEXT("themes\\"));
+						pathAppend(themePath, xmlFileName);
+					}
+				}
+				else
+				{
+					themePath = isLocalOnly ? _nppPath : _userPath;
+					pathAppend(themePath, TEXT("stylers.xml"));
+
+					if (!isLocalOnly && ::PathFileExists(themePath.c_str()) == FALSE)
+					{
+						themePath = _nppPath;
+						pathAppend(themePath, TEXT("stylers.xml"));
+					}
+				}
+
+				if (::PathFileExists(themePath.c_str()) == TRUE)
+				{
+					_nppGUI._themeName.assign(themePath);
+				}
+			}
 		}
 	}
 }
@@ -6927,13 +6970,6 @@ void NppParameters::createXmlTreeFromGUIParams()
 		GUIConfigElement->SetAttribute(TEXT("short"), pStr);
 	}
 
-	// <GUIConfig name="stylerTheme" path="C:\sources\notepad-plus-plus\PowerEditor\visual.net\..\bin\stylers.xml" />
-	{
-		TiXmlElement *GUIConfigElement = (newGUIRoot->InsertEndChild(TiXmlElement(TEXT("GUIConfig"))))->ToElement();
-		GUIConfigElement->SetAttribute(TEXT("name"), TEXT("stylerTheme"));
-		GUIConfigElement->SetAttribute(TEXT("path"), _nppGUI._themeName.c_str());
-	}
-
 	// <GUIConfig name="insertDateTime" path="C:\sources\notepad-plus-plus\PowerEditor\visual.net\..\bin\stylers.xml" />
 	{
 		TiXmlElement* GUIConfigElement = (newGUIRoot->InsertEndChild(TiXmlElement(TEXT("GUIConfig"))))->ToElement();
@@ -6980,6 +7016,20 @@ void NppParameters::createXmlTreeFromGUIParams()
 		TiXmlElement *GUIConfigElement = (newGUIRoot->InsertEndChild(TiXmlElement(TEXT("GUIConfig"))))->ToElement();
 		GUIConfigElement->SetAttribute(TEXT("name"), TEXT("multiInst"));
 		GUIConfigElement->SetAttribute(TEXT("setting"), _nppGUI._multiInstSetting);
+
+		auto setYesNoBoolAttribute = [&GUIConfigElement](const TCHAR* name, bool value) -> void {
+			const TCHAR* pStr = value ? TEXT("yes") : TEXT("no");
+			GUIConfigElement->SetAttribute(name, pStr);
+		};
+
+		setYesNoBoolAttribute(TEXT("clipboardHistory"), _nppGUI._clipboardHistoryPanelKeepState);
+		setYesNoBoolAttribute(TEXT("documentList"), _nppGUI._docListKeepState);
+		setYesNoBoolAttribute(TEXT("characterPanel"), _nppGUI._charPanelKeepState);
+		setYesNoBoolAttribute(TEXT("folderAsWorkspace"), _nppGUI._fileBrowserKeepState);
+		setYesNoBoolAttribute(TEXT("projectPanels"), _nppGUI._projectPanelKeepState);
+		setYesNoBoolAttribute(TEXT("documentMap"), _nppGUI._docMapKeepState);
+		setYesNoBoolAttribute(TEXT("fuctionList"), _nppGUI._funcListKeepState);
+		setYesNoBoolAttribute(TEXT("pluginPanels"), _nppGUI._pluginPanelKeepState);
 	}
 
 	// <GUIConfig name="MISC" fileSwitcherWithoutExtColumn="no" backSlashIsEscapeCharacterForSql="yes" isFolderDroppedOpenFiles="no" saveDlgExtFilterToAllTypes="no" />
@@ -7604,6 +7654,7 @@ generic_string NppParameters:: getWinVersionStr() const
 		case WV_WIN8: return TEXT("Windows 8");
 		case WV_WIN81: return TEXT("Windows 8.1");
 		case WV_WIN10: return TEXT("Windows 10");
+		case WV_WIN11: return TEXT("Windows 11");
 		default: /*case WV_UNKNOWN:*/ return TEXT("Windows unknown version");
 	}
 }

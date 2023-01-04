@@ -408,7 +408,7 @@ struct Style final
 
 	bool _isFontEnabled = false;
 	generic_string _fontName;
-	int _fontStyle = FONTSTYLE_NONE;
+	int _fontStyle = STYLE_NOT_USED;
 	int _fontSize = STYLE_NOT_USED;
 
 	int _nesting = FONTSTYLE_NONE;
@@ -883,6 +883,14 @@ struct NppGUI final
 	TCHAR _defaultDirExp[MAX_PATH];	//expanded environment variables
 	generic_string _themeName;
 	MultiInstSetting _multiInstSetting = monoInst;
+	bool _clipboardHistoryPanelKeepState = false;
+	bool _docListKeepState = false;
+	bool _charPanelKeepState = false;
+	bool _fileBrowserKeepState = false;
+	bool _projectPanelKeepState = false;
+	bool _docMapKeepState = false;
+	bool _funcListKeepState = false;
+	bool _pluginPanelKeepState = false;
 	bool _fileSwitcherWithoutExtColumn = true;
 	int _fileSwitcherExtWidth = 50;
 	bool _fileSwitcherWithoutPathColumn = true;
@@ -1272,7 +1280,7 @@ public:
 	bool themeNameExists(const TCHAR *themeName) {
 		for (size_t i = 0; i < _themeList.size(); ++i )
 		{
-			auto themeNameOnList = getElementFromIndex(i).first;
+			auto& themeNameOnList = getElementFromIndex(i).first;
 			if (lstrcmp(themeName, themeNameOnList.c_str()) == 0)
 				return true;
 		}
@@ -1545,7 +1553,7 @@ public:
 	TiXmlDocument * getCustomizedToolIcons() const {return _pXmlToolIconsDoc;};
 
 	bool isTransparentAvailable() const {
-		return (_transparentFuncAddr != NULL);
+		return (_winVersion >= WV_VISTA);
 	}
 
 	// 0 <= percent < 256
@@ -1645,7 +1653,6 @@ public:
 	};
 
 	int langTypeToCommandID(LangType lt) const;
-	WNDPROC getEnableThemeDlgTexture() const {return _enableThemeDialogTextureFuncAddr;};
 
 	struct FindDlgTabTitiles final {
 		generic_string _find;
@@ -1702,6 +1709,10 @@ public:
 
 	bool isLocal() const {
 		return _isLocal;
+	}
+
+	bool isCloud() const {
+		return _isCloud;
 	}
 
 	void saveConfig_xml();
@@ -1825,12 +1836,9 @@ private:
 	std::vector<generic_string> _fontlist;
 	std::vector<generic_string> _blacklist;
 
-	HMODULE _hUXTheme = nullptr;
-
-	WNDPROC _transparentFuncAddr = nullptr;
-	WNDPROC _enableThemeDialogTextureFuncAddr = nullptr;
 	bool _isLocal = false;
 	bool _isx64 = false; // by default 32-bit
+	bool _isCloud = false;
 
 	generic_string _cmdSettingsDir;
 	generic_string _titleBarAdditional;

@@ -26,8 +26,8 @@ BIN_DIRECTORY := ../bin
 INSTALLER_DIRECTORY := ../installer
 
 TARGET_BINARY := notepad++.exe
-SRC_DATA := contextMenu.xml langs.model.xml shortcuts.xml stylers.model.xml
-BIN_DATA := change.log doLocalConf.xml readme.txt userDefineLangs/
+SRC_DATA := contextMenu.xml langs.model.xml shortcuts.xml stylers.model.xml tabContextMenu_example.xml toolbarIcons.xml
+BIN_DATA := change.log doLocalConf.xml nppLogNulContentCorruptionIssue.xml readme.txt userDefineLangs/
 INSTALLER_DATA := autoCompletion/ functionList/ localization/ themes/
 
 SCINTILLA_DIRECTORY := ../../scintilla
@@ -53,13 +53,13 @@ SUBMAKEFLAGS := -O --no-print-directory
 ifeq "$(filter-out 0,$(DEBUG))" ""
 BUILD_TYPE := release
 BUILD_SUFFIX :=
-CXXFLAGS += -Os
+CXXFLAGS += -Os -Wconversion
 CPP_DEFINE += NDEBUG
 LDFLAGS += -s
 else
 BUILD_TYPE := debug
 BUILD_SUFFIX := -debug
-CXXFLAGS += -Og -g -Wall -Wpedantic
+CXXFLAGS += -Og -g -Wall -Wpedantic -Wconversion
 CPP_DEFINE += DEBUG
 endif
 

@@ -20,15 +20,6 @@
 
 #include "Common.h" // for generic_string
 
-constexpr COLORREF HEXRGB(DWORD rrggbb) {
-	// from 0xRRGGBB like natural #RRGGBB
-	// to the little-endian 0xBBGGRR
-	return
-		((rrggbb & 0xFF0000) >> 16) |
-		((rrggbb & 0x00FF00) ) |
-		((rrggbb & 0x0000FF) << 16);
-}
-
 namespace NppDarkMode
 {
 	struct Colors
@@ -100,8 +91,8 @@ namespace NppDarkMode
 	{
 		bool _enableWindowsMode = false;
 
-		NppDarkMode::AdvOptDefaults _darkDefaults{};
-		NppDarkMode::AdvOptDefaults _lightDefaults{};
+		NppDarkMode::AdvOptDefaults _darkDefaults{ L"DarkModeDefault.xml", 0, 2, false };
+		NppDarkMode::AdvOptDefaults _lightDefaults{ L"", 4, 0, true };
 	};
 
 	void initDarkMode();				// pulls options from NppParameters
@@ -239,6 +230,7 @@ namespace NppDarkMode
 	void disableVisualStyle(HWND hwnd, bool doDisable);
 	void calculateTreeViewStyle();
 	void setTreeViewStyle(HWND hwnd);
+	bool isThemeDark();
 	void setBorder(HWND hwnd, bool border = true);
 
 	BOOL CALLBACK enumAutocompleteProc(HWND hwnd, LPARAM lParam);

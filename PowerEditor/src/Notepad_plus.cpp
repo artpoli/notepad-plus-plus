@@ -766,14 +766,39 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	_dockingManager.setDockedContSize(CONT_TOP, nppGUI._dockingData._topHeight);
 	_dockingManager.setDockedContSize(CONT_BOTTOM, nppGUI._dockingData._bottomHight);
 
-	if (!nppGUI._isCmdlineNosessionActivated)
 	{
 		for (size_t i = 0, len = dmd._pluginDockInfo.size(); i < len; ++i)
 		{
 			PluginDlgDockingInfo& pdi = dmd._pluginDockInfo[i];
-			if (pdi._isVisible)
+			const bool isInternalFunc = pdi._name == NPP_INTERNAL_FUCTION_STR;
+
+			bool showPanel = true;
+			if (nppGUI._isCmdlineNosessionActivated)
 			{
-				if (pdi._name == NPP_INTERNAL_FUCTION_STR)
+				const bool showProjectPanel = isInternalFunc
+					&& nppGUI._projectPanelKeepState
+					&& (pdi._internalID != IDM_EDIT_CLIPBOARDHISTORY_PANEL
+						&& pdi._internalID != IDM_VIEW_DOCLIST
+						&& pdi._internalID != IDM_EDIT_CHAR_PANEL
+						&& pdi._internalID != IDM_VIEW_FILEBROWSER
+						&& pdi._internalID != IDM_VIEW_DOC_MAP
+						&& pdi._internalID != IDM_VIEW_FUNC_LIST);
+
+				const bool showInternalPanel = isInternalFunc
+					&& ((pdi._internalID == IDM_EDIT_CLIPBOARDHISTORY_PANEL && nppGUI._clipboardHistoryPanelKeepState)
+						|| (pdi._internalID == IDM_VIEW_DOCLIST && nppGUI._docListKeepState)
+						|| (pdi._internalID == IDM_EDIT_CHAR_PANEL && nppGUI._charPanelKeepState)
+						|| (pdi._internalID == IDM_VIEW_FILEBROWSER && nppGUI._fileBrowserKeepState)
+						|| (showProjectPanel)
+						|| (pdi._internalID == IDM_VIEW_DOC_MAP && nppGUI._docMapKeepState)
+						|| (pdi._internalID == IDM_VIEW_FUNC_LIST && nppGUI._funcListKeepState));
+
+				showPanel = ((!isInternalFunc && nppGUI._pluginPanelKeepState) || showInternalPanel);
+			}
+
+			if (pdi._isVisible && showPanel)
+			{
+				if (isInternalFunc)
 					_internalFuncIDs.push_back(pdi._internalID);
 				else
 					_pluginsManager.runPluginCommand(pdi._name.c_str(), pdi._internalID);
@@ -1473,23 +1498,70 @@ void Notepad_plus::wsTabConvert(spaceTab whichWay)
 
 void Notepad_plus::doTrim(trimOp whichPart)
 {
-	// whichPart : line head or line tail
+	// whichPart : line head or line tail or line both
 	FindOption env;
 	if (whichPart == lineHeader)
 	{
-		env._str2Search = TEXT("^[	 ]+");
+		env._str2Search = TEXT("^[\\t ]+");
 	}
 	else if (whichPart == lineTail)
 	{
-		env._str2Search = TEXT("[	 ]+$");
+		env._str2Search = TEXT("[\\t ]+$");
+	}
+	else if (whichPart == lineBoth)
+	{
+		env._str2Search = TEXT("^[\\t ]+|[\\t ]+$");
 	}
 	else
 		return;
 	env._str4Replace = TEXT("");
 	env._searchType = FindRegex;
-	bool isEntireDoc = _pEditView->execute(SCI_GETSELECTIONSTART) == _pEditView->execute(SCI_GETSELECTIONEND);
-	env._isInSelection = !isEntireDoc;
+	auto mainSelAnchor = _pEditView->execute(SCI_GETANCHOR);
+	auto mainSelCaretPos = _pEditView->execute(SCI_GETCURRENTPOS);
+	bool isEntireDoc = (mainSelAnchor == mainSelCaretPos);
+	auto docLength = _pEditView->execute(SCI_GETLENGTH);
+
+	// block selection is not supported
+	if ((_pEditView->execute(SCI_GETSELECTIONMODE) == SC_SEL_RECTANGLE) || (_pEditView->execute(SCI_GETSELECTIONMODE) == SC_SEL_THIN))
+		return;
+
+	// auto-expand of partially selected lines
+	if (!isEntireDoc)
+	{
+		env._isInSelection = !isEntireDoc;
+		auto startPos = _pEditView->execute(SCI_GETSELECTIONSTART);
+		auto startLine = _pEditView->execute(SCI_LINEFROMPOSITION, startPos);
+		auto endPos = _pEditView->execute(SCI_GETSELECTIONEND);
+		auto endLine = _pEditView->execute(SCI_LINEFROMPOSITION, endPos);
+
+		if (startPos != _pEditView->execute(SCI_POSITIONFROMLINE, startLine))
+			startPos = _pEditView->execute(SCI_POSITIONFROMLINE, startLine);
+
+		if (endPos != _pEditView->execute(SCI_POSITIONFROMLINE, endLine) && endPos < _pEditView->execute(SCI_GETLINEENDPOSITION, endLine))
+			endPos = _pEditView->execute(SCI_GETLINEENDPOSITION, endLine);
+
+		_pEditView->execute(SCI_SETSEL, startPos, endPos);
+	}
 	_findReplaceDlg.processAll(ProcessReplaceAll, &env, isEntireDoc);
+
+	// restore original selection if nothing has changed
+	if (!isEntireDoc && (docLength == _pEditView->execute(SCI_GETLENGTH)))
+	{
+		_pEditView->execute(SCI_SETANCHOR, mainSelAnchor);
+		_pEditView->execute(SCI_SETCURRENTPOS, mainSelCaretPos);
+	}
+}
+
+void Notepad_plus::eol2ws()
+{
+	bool isEntireDoc = (_pEditView->execute(SCI_GETANCHOR) == _pEditView->execute(SCI_GETCURRENTPOS));
+
+	// block selection is not supported
+	if ((_pEditView->execute(SCI_GETSELECTIONMODE) == SC_SEL_RECTANGLE) || (_pEditView->execute(SCI_GETSELECTIONMODE) == SC_SEL_THIN))
+		return;
+
+	_pEditView->execute(isEntireDoc ? SCI_TARGETWHOLEDOCUMENT: SCI_TARGETFROMSELECTION);
+	_pEditView->execute(SCI_LINESJOIN);
 }
 
 void Notepad_plus::removeEmptyLine(bool isBlankContained)
@@ -5936,7 +6008,29 @@ void Notepad_plus::drawTabbarColoursFromStylerArray()
 void Notepad_plus::drawAutocompleteColoursFromTheme(COLORREF fgColor, COLORREF bgColor)
 {
 	if (bgColor == 0xFFFFFF)
+	{
+		// default colors from PlatWin.cxx void ListBoxX::Draw(DRAWITEMSTRUCT *pDrawItem)
+		COLORREF autocompleteBg = ::GetSysColor(COLOR_WINDOW);
+		COLORREF selectedBg = ::GetSysColor(COLOR_HIGHLIGHT);
+		COLORREF autocompleteText = ::GetSysColor(COLOR_WINDOWTEXT);
+		COLORREF selectedText = ::GetSysColor(COLOR_HIGHLIGHTTEXT);
+
+		AutoCompletion::setColour(autocompleteBg, AutoCompletion::AutocompleteColorIndex::autocompleteBg);
+		AutoCompletion::setColour(selectedBg, AutoCompletion::AutocompleteColorIndex::selectedBg);
+		AutoCompletion::setColour(autocompleteText, AutoCompletion::AutocompleteColorIndex::autocompleteText);
+		AutoCompletion::setColour(selectedText, AutoCompletion::AutocompleteColorIndex::selectedText);
+
+		// default colors from CallTip.cxx CallTip::CallTip() noexcept
+		COLORREF colourBG = bgColor;
+		COLORREF colourUnSel = RGB(0x80, 0x80, 0x80);
+		COLORREF colourSel = RGB(0, 0, 0x80);
+
+		AutoCompletion::setColour(colourBG, AutoCompletion::AutocompleteColorIndex::calltipBg);
+		AutoCompletion::setColour(colourUnSel, AutoCompletion::AutocompleteColorIndex::calltipText);
+		AutoCompletion::setColour(colourSel, AutoCompletion::AutocompleteColorIndex::calltipHighlight);
+
 		return;
+	}
 
 	int rbv = GetRValue(bgColor);
 	int gbv = GetGValue(bgColor);
@@ -6155,7 +6249,7 @@ void Notepad_plus::notifyBufferChanged(Buffer * buffer, int mask)
 
 	if (mask & (BufferChangeLanguage))
 	{
-		checkLangsMenu(-1);	//let N++ do search for the item
+		checkLangsMenu(-1);	//let Notepad++ do search for the item
 		setLangStatus(buffer->getLangType());
 		if (_mainEditView.getCurrentBuffer() == buffer)
 			_autoCompleteMain.setLanguage(buffer->getLangType());
@@ -7932,8 +8026,18 @@ void Notepad_plus::refreshDarkMode(bool resetStyle)
 		generic_string xmlFileName = NppDarkMode::getThemeName();
 		if (!xmlFileName.empty())
 		{
-			themePath = themeSwitcher.getThemeDirPath();
-			pathAppend(themePath, xmlFileName);
+			if (!nppParams.isLocal() || nppParams.isCloud())
+			{
+				themePath = nppParams.getUserPath();
+				pathAppend(themePath, TEXT("themes\\"));
+				pathAppend(themePath, xmlFileName);
+			}
+
+			if (::PathFileExists(themePath.c_str()) == FALSE || themePath.empty())
+			{
+				themePath = themeSwitcher.getThemeDirPath();
+				pathAppend(themePath, xmlFileName);
+			}
 
 			themeName = themeSwitcher.getThemeFromXmlFileName(themePath.c_str());
 		}
@@ -7946,7 +8050,7 @@ void Notepad_plus::refreshDarkMode(bool resetStyle)
 			themeName = themeSwitcher.getDefaultThemeLabel();
 		}
 
-		if (::PathFileExists(themePath.c_str()))
+		if (::PathFileExists(themePath.c_str()) == TRUE)
 		{
 			nppParams.getNppGUI()._themeName = themePath;
 
