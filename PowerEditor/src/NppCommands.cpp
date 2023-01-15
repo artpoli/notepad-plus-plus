@@ -656,12 +656,12 @@ void Notepad_plus::command(int id)
 					size_t rectSelCaret = _pEditView->execute(SCI_GETRECTANGULARSELECTIONCARET);
 					size_t anchorLine = _pEditView->execute(SCI_LINEFROMPOSITION, rectSelAnchor);
 					size_t caretLine = _pEditView->execute(SCI_LINEFROMPOSITION, rectSelCaret);
-					fromLine = min(anchorLine, caretLine);
-					toLine = max(anchorLine, caretLine);
+					fromLine = std::min<size_t>(anchorLine, caretLine);
+					toLine = std::max<size_t>(anchorLine, caretLine);
 					size_t anchorLineOffset = rectSelAnchor - _pEditView->execute(SCI_POSITIONFROMLINE, anchorLine) + _pEditView->execute(SCI_GETRECTANGULARSELECTIONANCHORVIRTUALSPACE);
 					size_t caretLineOffset = rectSelCaret - _pEditView->execute(SCI_POSITIONFROMLINE, caretLine) + _pEditView->execute(SCI_GETRECTANGULARSELECTIONCARETVIRTUALSPACE);
-					fromColumn = min(anchorLineOffset, caretLineOffset);
-					toColumn = max(anchorLineOffset, caretLineOffset);
+					fromColumn = std::min<size_t>(anchorLineOffset, caretLineOffset);
+					toColumn = std::max<size_t>(anchorLineOffset, caretLineOffset);
 				}
 				else
 				{
@@ -1622,7 +1622,7 @@ void Notepad_plus::command(int id)
 				if (id == IDM_SEARCH_GOTOMATCHINGBRACE)
 					_pEditView->execute(SCI_GOTOPOS, braceOpposite);
 				else
-					_pEditView->execute(SCI_SETSEL, min(braceAtCaret, braceOpposite), max(braceAtCaret, braceOpposite) + 1); // + 1 so we always include the ending brace in the selection.
+					_pEditView->execute(SCI_SETSEL, std::min<intptr_t>(braceAtCaret, braceOpposite), std::max<intptr_t>(braceAtCaret, braceOpposite) + 1); // + 1 so we always include the ending brace in the selection.
 			}
 		}
 		break;
@@ -3390,6 +3390,7 @@ void Notepad_plus::command(int id)
         case IDM_LANG_XML :
         case IDM_LANG_JS :
 		case IDM_LANG_JSON :
+		case IDM_LANG_JSON5 :
         case IDM_LANG_PHP :
         case IDM_LANG_ASP :
         case IDM_LANG_CSS :
