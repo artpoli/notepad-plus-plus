@@ -1001,9 +1001,9 @@ bool FileManager::backupCurrentBuffer()
 				if (!today)
 					return false;
 
-				generic_strftime(tmpbuf, temBufLen, TEXT("%Y-%m-%d_%H%M%S"), today);
+				wcsftime(tmpbuf, temBufLen, L"%Y-%m-%d_%H%M%S", today);
 
-				backupFilePath += TEXT("@");
+				backupFilePath += L"@";
 				backupFilePath += tmpbuf;
 
 				// Set created file name in buffer
@@ -1015,7 +1015,7 @@ bool FileManager::backupCurrentBuffer()
 
 			TCHAR fullpath[MAX_PATH];
 			::GetFullPathName(backupFilePath.c_str(), MAX_PATH, fullpath, NULL);
-			if (_tcschr(fullpath, '~'))
+			if (wcschr(fullpath, '~'))
 			{
 				::GetLongPathName(fullpath, fullpath, MAX_PATH);
 			}

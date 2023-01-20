@@ -561,7 +561,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			TCHAR longNameFullpath[MAX_PATH];
 			const TCHAR* pFilePath = reinterpret_cast<const TCHAR*>(lParam);
 			wcscpy_s(longNameFullpath, MAX_PATH, pFilePath);
-			if (_tcschr(longNameFullpath, '~'))
+			if (wcschr(longNameFullpath, '~'))
 			{
 				::GetLongPathName(longNameFullpath, longNameFullpath, MAX_PATH);
 			}
@@ -741,16 +741,6 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 					NppGUI nppGui = (NppGUI)nppParam.getNppGUI();
 					nppGui._isCmdlineNosessionActivated = cmdLineParam->_isNoSession;
-					break;
-				}
-
-				case COPYDATA_FILENAMESA:
-				{
-					char *fileNamesA = static_cast<char *>(pCopyData->lpData);
-					const CmdLineParamsDTO & cmdLineParams = nppParam.getCmdLineParams();
-					WcharMbcsConvertor& wmc = WcharMbcsConvertor::getInstance();
-					const wchar_t *fileNamesW = wmc.char2wchar(fileNamesA, CP_ACP);
-					loadCommandlineParams(fileNamesW, &cmdLineParams);
 					break;
 				}
 
@@ -2616,12 +2606,12 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 				std::vector<tTbData *> tbData = dockContainer[i]->getDataOfAllTb();
 				for (size_t j = 0, len2 = tbData.size() ; j < len2 ; ++j)
 				{
-					if (generic_stricmp(moduleName, tbData[j]->pszModuleName) == 0)
+					if (wcsicmp(moduleName, tbData[j]->pszModuleName) == 0)
 					{
 						if (!windowName)
 							return (LRESULT)tbData[j]->hClient;
 
-						if (generic_stricmp(windowName, tbData[j]->pszName) == 0)
+						if (wcsicmp(windowName, tbData[j]->pszName) == 0)
 							return (LRESULT)tbData[j]->hClient;
 					}
 				}

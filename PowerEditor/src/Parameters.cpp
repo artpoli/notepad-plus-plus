@@ -568,7 +568,7 @@ int strVal(const TCHAR *str, int base)
 	if (!str[0]) return 0;
 
 	TCHAR *finStr;
-	int result = generic_strtol(str, &finStr, base);
+	int result = wcstol(str, &finStr, base);
 	if (*finStr != '\0')
 		return -1;
 	return result;
@@ -1680,7 +1680,7 @@ const TCHAR* NppParameters::getUserDefinedLangNameFromExt(TCHAR *ext, TCHAR *ful
 		// Force to use dark mode UDL in dark mode or to use  light mode UDL in light mode
 		for (size_t j = 0, len = extVect.size(); j < len; ++j)
 		{
-			if (!generic_stricmp(extVect[j].c_str(), ext) || (_tcschr(fullName, '.') && !generic_stricmp(extVect[j].c_str(), fullName)))
+			if (!wcsicmp(extVect[j].c_str(), ext) || (wcschr(fullName, '.') && !wcsicmp(extVect[j].c_str(), fullName)))
 			{
 				// preserve ext matched UDL
 				iMatched = i;
@@ -2033,7 +2033,7 @@ int NppParameters::getCmdIdFromMenuEntryItemName(HMENU mainMenuHadle, const gene
 	{
 		TCHAR menuEntryString[64];
 		::GetMenuString(mainMenuHadle, i, menuEntryString, 64, MF_BYPOSITION);
-		if (generic_stricmp(menuEntryName.c_str(), purgeMenuItemString(menuEntryString).c_str()) == 0)
+		if (wcsicmp(menuEntryName.c_str(), purgeMenuItemString(menuEntryString).c_str()) == 0)
 		{
 			vector< pair<HMENU, int> > parentMenuPos;
 			HMENU topMenu = ::GetSubMenu(mainMenuHadle, i);
@@ -2058,7 +2058,7 @@ int NppParameters::getCmdIdFromMenuEntryItemName(HMENU mainMenuHadle, const gene
 					//  Check current menu position.
 					TCHAR cmdStr[256];
 					::GetMenuString(currMenu, currMenuPos, cmdStr, 256, MF_BYPOSITION);
-					if (generic_stricmp(menuItemName.c_str(), purgeMenuItemString(cmdStr).c_str()) == 0)
+					if (wcsicmp(menuItemName.c_str(), purgeMenuItemString(cmdStr).c_str()) == 0)
 					{
 						return ::GetMenuItemID(currMenu, currMenuPos);
 					}
@@ -2093,7 +2093,7 @@ int NppParameters::getPluginCmdIdFromMenuEntryItemName(HMENU pluginsMenu, const 
 	{
 		TCHAR menuItemString[256];
 		::GetMenuString(pluginsMenu, i, menuItemString, 256, MF_BYPOSITION);
-		if (generic_stricmp(pluginName.c_str(), purgeMenuItemString(menuItemString).c_str()) == 0)
+		if (wcsicmp(pluginName.c_str(), purgeMenuItemString(menuItemString).c_str()) == 0)
 		{
 			HMENU pluginMenu = ::GetSubMenu(pluginsMenu, i);
 			int nbPluginCmd = ::GetMenuItemCount(pluginMenu);
@@ -2101,7 +2101,7 @@ int NppParameters::getPluginCmdIdFromMenuEntryItemName(HMENU pluginsMenu, const 
 			{
 				TCHAR pluginCmdStr[256];
 				::GetMenuString(pluginMenu, j, pluginCmdStr, 256, MF_BYPOSITION);
-				if (generic_stricmp(pluginCmdName.c_str(), purgeMenuItemString(pluginCmdStr).c_str()) == 0)
+				if (wcsicmp(pluginCmdName.c_str(), purgeMenuItemString(pluginCmdStr).c_str()) == 0)
 				{
 					return ::GetMenuItemID(pluginMenu, j);
 				}
@@ -2823,7 +2823,7 @@ void NppParameters::feedPluginCustomizedCmds(TiXmlNode *node)
 		for (size_t i = 0; i < len; ++i)
 		{
 			PluginCmdShortcut & pscOrig = _pluginCommands[i];
-			if (!generic_strnicmp(pscOrig.getModuleName(), moduleName, lstrlen(moduleName)) && pscOrig.getInternalID() == internalID)
+			if (!wcsnicmp(pscOrig.getModuleName(), moduleName, lstrlen(moduleName)) && pscOrig.getInternalID() == internalID)
 			{
 				//Found matching command
 				getShortcuts(childNode, _pluginCommands[i]);
@@ -3723,7 +3723,6 @@ void NppParameters::feedUserKeywordList(TiXmlNode *node)
 			else if (!lstrcmp(keywordsName, TEXT("Comment")))
 			{
 				kwl = (valueNode)?valueNode->Value():TEXT("");
-				//int len = _tcslen(kwl);
 				basic_string<TCHAR> temp{TEXT(" ")};
 
 				temp += kwl;
@@ -3760,7 +3759,7 @@ void NppParameters::feedUserKeywordList(TiXmlNode *node)
 				if (globalMappper().keywordIdMapper.find(keywordsName) != globalMappper().keywordIdMapper.end())
 				{
 					id = globalMappper().keywordIdMapper[keywordsName];
-					if (_tcslen(kwl) < max_char)
+					if (wcslen(kwl) < max_char)
 					{
 						wcscpy_s(_userLangArray[_nbUserLang - 1]->_keywordLists[id], kwl);
 					}
