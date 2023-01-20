@@ -685,7 +685,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 </MainCommandNames>
             </ShortcutMapper>
             <ShortcutMapperSubDialg title="Гаряча клавіша">
-                <Item id="1" name="OK"/>
+                <Item id="1" name="Гаразд"/>
                 <Item id="2" name="Скасувати"/>
                 <Item id="5006" name="Назва"/>
                 <Item id="5008" name="Додати"/>
@@ -1513,7 +1513,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <finder-open-all value="Відкрити все"/>
             <finder-purge-for-every-search value="Очищати для кожного пошуку"/>
             <finder-wrap-long-lines value="Обтинати слова в довгих рядках"/>
-            <common-ok value="OK"/>
+            <common-ok value="Гаразд"/>
             <common-cancel value="Скасувати"/>
             <common-name value="Назва: "/>
             <tabrename-title value="Перейменувати поточну вкладку"/>
