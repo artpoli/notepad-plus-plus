@@ -392,16 +392,16 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item CMDID="41009" name="Close All to the Left"/>
                 <Item CMDID="41018" name="Close All to the Right"/>
                 <Item CMDID="41024" name="Close All Unchanged"/>
-                <Item CMDID="41006" name="Save"/>
-                <Item CMDID="41008" name="Save As..."/>
+                <Item CMDID="41006" name="Захаваць"/>
+                <Item CMDID="41008" name="Захаваць як..."/>
                 <Item CMDID="1" name="Open into"/>
-                <Item CMDID="41019" name="Open Containing Folder in Explorer"/>
+                <Item CMDID="41019" name="Адкрыць папку размяшчэння ў правадніку"/>
                 <Item CMDID="41020" name="Open Containing Folder in cmd"/>
                 <Item CMDID="41025" name="Open Containing Folder as Workspace"/>
                 <Item CMDID="41023" name="Open in Default Viewer"/>
                 <Item CMDID="41017" name="Rename..."/>
                 <Item CMDID="41016" name="Move to Recycle Bin"/>
-                <Item CMDID="41014" name="Reload"/>
+                <Item CMDID="41014" name="Перазагрузіць"/>
                 <Item CMDID="41010" name="Print..."/>
                 <Item CMDID="42028" name="Read-Only"/>
                 <Item CMDID="42033" name="Clear Read-Only Flag"/>
