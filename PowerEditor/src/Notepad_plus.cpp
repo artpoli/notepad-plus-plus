@@ -1089,7 +1089,7 @@ int Notepad_plus::getHtmlXmlEncoding(const TCHAR *fileName) const
 		return -1;
 
 	// Get the beginning of file data
-	FILE *f = generic_fopen(fileName, TEXT("rb"));
+	FILE *f = _wfopen(fileName, TEXT("rb"));
 	if (!f)
 		return -1;
 	const int blockSize = 1024; // To ensure that length is long enough to capture the encoding in html
@@ -4497,7 +4497,7 @@ void Notepad_plus::docOpenInNewInstance(FileTransferMode mode, int x, int y)
 	if (x)
 	{
 		TCHAR pX[10];
-		generic_itoa(x, pX, 10);
+		_itow(x, pX, 10);
 		command += TEXT(" -x");
 		command += pX;
 	}
@@ -4505,7 +4505,7 @@ void Notepad_plus::docOpenInNewInstance(FileTransferMode mode, int x, int y)
 	if (y)
 	{
 		TCHAR pY[10];
-		generic_itoa(y, pY, 10);
+		_itow(y, pY, 10);
 		command += TEXT(" -y");
 		command += pY;
 	}
@@ -8270,6 +8270,8 @@ bool Notepad_plus::undoStreamComment(bool tryBlockComment)
 	size_t start_comment_length = start_comment.length();
 	size_t end_comment_length = end_comment.length();
 
+	_pEditView->execute(SCI_BEGINUNDOACTION);
+
 	// do as long as stream-comments are within selection
 	do
 	{
@@ -8352,7 +8354,10 @@ bool Notepad_plus::undoStreamComment(bool tryBlockComment)
 			}
 			//-- Finally, if there is no stream-comment, return
 			else
+			{
+				_pEditView->execute(SCI_ENDUNDOACTION);
 				return retVal;
+			}
 		}
 
 		//-- Ok, there are valid start-comment and valid end-comment around the caret-position.
@@ -8418,6 +8423,7 @@ bool Notepad_plus::undoStreamComment(bool tryBlockComment)
 		}
 	}
 	while (1); //do as long as stream-comments are within selection
+
 }
 
 void Notepad_plus::monitoringStartOrStopAndUpdateUI(Buffer* pBuf, bool isStarting)

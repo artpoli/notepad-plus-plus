@@ -37,11 +37,12 @@ const bool dirDown = false;
 #define BCKGRD_COLOR (RGB(255,102,102))
 #define TXT_COLOR    (RGB(255,255,255))
 
-#define generic_atoi _wtoi
-#define generic_itoa _itow
-#define generic_fprintf fwprintf
-#define generic_sprintf swprintf
-#define generic_fopen _wfopen
+#ifndef __MINGW32__
+#define WCSTOK wcstok
+#else
+#define WCSTOK wcstok_s
+#endif
+
 
 #define NPP_INTERNAL_FUCTION_STR L"Notepad++::InternalFunction"
 
