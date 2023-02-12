@@ -45,6 +45,24 @@ int CALLBACK ListViewCompareProc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSo
 	return (0 - result);
 }
 
+LRESULT run_listViewProc(WNDPROC oldEditProc, HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	switch (message)
+	{
+
+		case WM_MBUTTONUP:
+		{
+			// Redirect the message to parent
+			::SendMessage(::GetParent(hwnd), WM_PARENTNOTIFY, WM_MBUTTONUP, lParam);
+			return TRUE;
+		}
+
+		default:
+			break;
+	}
+	return ::CallWindowProc(oldEditProc, hwnd, message, wParam, lParam);
+}
+
 void VerticalFileSwitcher::startColumnSort()
 {
 	// reset sorting if exts column was just disabled
@@ -77,6 +95,9 @@ intptr_t CALLBACK VerticalFileSwitcher::run_dlgProc(UINT message, WPARAM wParam,
 			_fileListView.initList();
 			_fileListView.display();
 
+			::SetWindowLongPtr(_fileListView.getHSelf(), GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
+			_defaultListViewProc = reinterpret_cast<WNDPROC>(::SetWindowLongPtr(_fileListView.getHSelf(), GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(listViewStaticProc)));
+
 			NppDarkMode::autoSubclassAndThemeChildControls(_hSelf);
 			NppDarkMode::autoSubclassAndThemeWindowNotify(_hSelf);
 
@@ -88,6 +109,44 @@ intptr_t CALLBACK VerticalFileSwitcher::run_dlgProc(UINT message, WPARAM wParam,
 			NppDarkMode::autoThemeChildControls(_hSelf);
 			return TRUE;
 		}
+
+		// Different from WM_MBUTTONDOWN, WM_MBUTTONUP message is not sent to parent hwnd by WIN32 API
+		// So we subclass listview to redirect WM_MBUTTONUP via WM_PARENTNOTIFY (as WM_MBUTTONDOWN)
+		case WM_PARENTNOTIFY:
+		{
+			switch ( wParam )
+			{
+				case WM_MBUTTONUP:
+				{
+					// Get item ID under cursor
+					LVHITTESTINFO hitInfo{};
+					hitInfo.pt.x = GET_X_LPARAM(lParam);
+					hitInfo.pt.y = GET_Y_LPARAM(lParam);
+
+					::ClientToScreen(getHSelf(), &hitInfo.pt);
+					::ScreenToClient(_fileListView.getHSelf(), &hitInfo.pt);
+					ListView_HitTest(_fileListView.getHSelf(), &hitInfo);
+			
+					if (hitInfo.iItem != -1)
+					{
+						// Get the actual item info from the ID
+						LVITEM item{};
+						item.mask = LVIF_PARAM;
+						item.iItem = hitInfo.iItem;	
+						ListView_GetItem(_fileListView.getHSelf(), &item);
+						TaskLstFnStatus *tlfs = (TaskLstFnStatus *)item.lParam;
+
+						// Close the document
+						closeDoc(tlfs);
+
+						return TRUE;
+					}
+				}
+			}
+
+			break;
+		}
+
 
 		case WM_NOTIFY:
 		{
@@ -351,9 +410,21 @@ void VerticalFileSwitcher::activateDoc(TaskLstFnStatus *tlfs) const
 	
 	int docPosInfo = static_cast<int32_t>(::SendMessage(_hParent, NPPM_GETPOSFROMBUFFERID, reinterpret_cast<WPARAM>(bufferID), view));
 	int view2set = docPosInfo >> 30;
-	int index2Switch = (docPosInfo << 2) >> 2 ;
+	int index2Switch = (docPosInfo << 2) >> 2;
 
 	::SendMessage(_hParent, NPPM_ACTIVATEDOC, view2set, index2Switch);
+}
+
+void VerticalFileSwitcher::closeDoc(TaskLstFnStatus *tlfs) const
+{
+	int view = tlfs->_iView;
+	BufferID bufferID = static_cast<BufferID>(tlfs->_bufID);
+		
+	int docPosInfo = static_cast<int32_t>(::SendMessage(_hParent, NPPM_GETPOSFROMBUFFERID, reinterpret_cast<WPARAM>(bufferID), view));
+	int view2set = docPosInfo >> 30;
+	int index2Switch = (docPosInfo << 2) >> 2;
+
+	::SendMessage(_hParent, NPPM_INTERNAL_CLOSEDOC, view2set, index2Switch);
 }
 
 int VerticalFileSwitcher::setHeaderOrder(int columnIndex)

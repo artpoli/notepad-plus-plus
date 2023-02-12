@@ -1132,6 +1132,7 @@ You can define several column markers by using white space to separate the diffe
                     <Item id="6811" name="From"/>
                     <Item id="6813" name="th character"/>
                     <Item id="6814" name="Valid value : 1 - 9"/>
+                    <Item id="6872" name="Make auto-completion list brief"/>
                     <Item id="6815" name="Function parameters hint on input"/>
                     <Item id="6851" name="Auto-Insert"/>
                     <Item id="6857" name=" html/xml close tag"/>
@@ -1405,6 +1406,7 @@ Continue?"/>
             <NeedToRestartToLoadPlugins title="Notepad++ need to be relaunched" message="You have to restart Notepad++ to load plugins you installed."/> <!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
             <ChangeHistoryEnabledWarning title="Notepad++ need to be relaunched" message="You have to restart Notepad++ to enable Change History."/> <!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
             <WindowsSessionExit title="Notepad++ - Windows session exit" message="Windows session is about to be terminated but you have some data unsaved. Do you want to exit Notepad++ now?"/>
+            <LanguageMenuCompactWarning title="Compact Language Menu" message="This option will be changed on the next launch."/> <!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
         </MessageBox>
         <ClipboardHistory>
             <PanelTitle name="Clipboard History"/>
@@ -1667,6 +1669,8 @@ U+FEFF : zero-width no-break space
 
 For the full list check User Manual.
 Click on &quot;?&quot; button on right to open website with User Manual." />
+
+            <!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
             <npcCustomColor-tip value="Go to Style Configurator to change the default custom color for selected whitespace and non-printing characters (&quot;Non-printing characters custom color&quot;)." />
         </MiscStrings>
     </Native-Langue>

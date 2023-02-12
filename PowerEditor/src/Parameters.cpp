@@ -5531,6 +5531,9 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 			if (optName)
 				_nppGUI._autocInsertSelectedUseTAB = (lstrcmp(optName, TEXT("yes")) == 0);
 
+			optName = element->Attribute(TEXT("autoCBrief"));
+			if (optName)
+				_nppGUI._autocBrief = (lstrcmp(optName, TEXT("yes")) == 0);
 
 			optName = element->Attribute(TEXT("funcParams"));
 			if (optName)
@@ -6333,7 +6336,7 @@ void NppParameters::feedScintillaParam(TiXmlNode *node)
 	}
 
 	// Unicode non-printable characters visibility State
-	_svp._npcShow = parseShowHideBoolAttribute(TEXT("npcShow"));
+	_svp._npcShow = parseShowHideBoolAttribute(TEXT("npcShow"), true);
 
 	nm = element->Attribute(TEXT("npcMode"), &val);
 	if (nm)
@@ -7012,6 +7015,9 @@ void NppParameters::createXmlTreeFromGUIParams()
 
 		pStr = _nppGUI._autocInsertSelectedUseTAB ? TEXT("yes") : TEXT("no");
 		GUIConfigElement->SetAttribute(TEXT("insertSelectedItemUseTAB"), pStr);
+
+		pStr = _nppGUI._autocBrief ? TEXT("yes") : TEXT("no");
+		GUIConfigElement->SetAttribute(TEXT("autoCBrief"), pStr);
 
 		pStr = _nppGUI._funcParams ? TEXT("yes") : TEXT("no");
 		GUIConfigElement->SetAttribute(TEXT("funcParams"), pStr);

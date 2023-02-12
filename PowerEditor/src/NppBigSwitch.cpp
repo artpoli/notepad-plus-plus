@@ -1317,6 +1317,21 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			return TRUE;
 		}
 
+		case NPPM_INTERNAL_CLOSEDOC:
+		{
+			// Close a document without switching to it
+			int whichView = ((wParam != MAIN_VIEW) && (wParam != SUB_VIEW)) ? currentView() : static_cast<int32_t>(wParam);
+			int index = static_cast<int32_t>(lParam);
+			
+			// Gotta switch to correct view to get the correct buffer ID
+			switchEditViewTo(whichView);
+
+			// Close the document
+			fileClose(_pDocTab->getBufferByIndex(index), whichView);
+			
+			return TRUE;
+		}
+
 		// ADD_ZERO_PADDING == TRUE
 		// 
 		// version  | HIWORD | LOWORD
@@ -2117,6 +2132,18 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			return TRUE;
 		}
 
+		case NPPM_INTERNAL_EXTERNALLEXERBUFFER:
+		{
+			// A buffer is just applied to an external lexer, let's send a notification to lexer plugin 
+			// so the concerning plugin can manage it (associate the buffer & lexer instance).
+			SCNotification scnN{};
+			scnN.nmhdr.code = NPPN_EXTERNALLEXERBUFFER;
+			scnN.nmhdr.hwndFrom = hwnd;
+			scnN.nmhdr.idFrom = lParam;
+			_pluginsManager.notify(&scnN);
+			return TRUE;
+		}
+
 		case WM_QUERYENDSESSION:
 		{
 			// app should return TRUE or FALSE immediately upon receiving this message,
@@ -2488,31 +2515,16 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			return TRUE;
 		}
 
-		case NPPM_INTERNAL_RESTOREMONOINSTANCE:
+		case NPPM_INTERNAL_RESTOREFROMTRAY:
 		{
 			// When mono instance, bring this one to front
 			if (_pTrayIco != nullptr && _pTrayIco->isInTray())
 			{
 				// We are in tray, restore properly..
 				::SendMessage(hwnd, NPPM_INTERNAL_MINIMIZED_TRAY, 0, WM_LBUTTONUP);
+				return TRUE;
 			}
-			else
-			{
-				// We were not in tray..
-				int sw = 0;
-
-				if (::IsZoomed(hwnd))
-					sw = SW_MAXIMIZE;
-				else if (::IsIconic(hwnd))
-					sw = SW_RESTORE;
-
-				if (sw != 0)
-					::ShowWindow(hwnd, sw);
-
-				::SetForegroundWindow(hwnd);
-			}
-			
-			return TRUE;
+			return FALSE;
 		}
 
 		case WM_SYSCOMMAND:
