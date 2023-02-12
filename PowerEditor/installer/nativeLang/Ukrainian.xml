@@ -112,7 +112,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42006" name="Видалити"/>
                     <Item id="42007" name="Вибрати все"/>
                     <Item id="42020" name="Вибрати початок/кінець"/>
-                    <Item id="42089" name="Begin/End Select in Column Mode"/>
+                    <Item id="42089" name="Вибрати початок/кінець в режимі стовпця"/>
                     <Item id="42084" name="Дата й час (короткий)"/>
                     <Item id="42085" name="Дата й час (довгий)"/>
                     <Item id="42086" name="Дата й час (власне)"/>
@@ -265,7 +265,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44022" name="Перенесення слів"/>
                     <Item id="44023" name="Збільшити (Ctrl + коліщатко миші вгору)"/>
                     <Item id="44024" name="Зменшити (Ctrl + коліщатко миші вниз)"/>
-                    <Item id="44025" name="Show Space and Tab"/>
+                    <Item id="44025" name="Показувати пробіли й табуляцію"/>
                     <Item id="44026" name="Показувати символ закінчення рядка"/>
                     <Item id="44029" name="Розгорнути все"/>
                     <Item id="44030" name="Згорнути поточний рівень"/>
@@ -295,7 +295,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="44113" name="Застосувати колір 3"/>
                     <Item id="44114" name="Застосувати колір 4"/>
                     <Item id="44115" name="Застосувати колір 5"/>
-                    <Item id="44130" name="Show Non-Printing Characters"/>
+                    <Item id="44130" name="Показувати символи, що не друкуються"/>
                     <Item id="44032" name="На весь екран"/>
                     <Item id="44033" name="Відновити масштаб"/>
                     <Item id="44034" name="Завжди вгорі"/>
@@ -926,9 +926,9 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6248" name="Типово"/>
                     <Item id="6249" name="Звичайний текст"/>
                     <Item id="6250" name="Власний колір"/>
-                    <Item id="6252" name="Non-Printing Characters"/>
-                    <Item id="6254" name="Abbreviation"/>
-                    <Item id="6255" name="Codepoint"/>
+                    <Item id="6252" name="Символи, що не друкуються"/>
+                    <Item id="6254" name="Абревіатура"/>
+                    <Item id="6255" name="Точка коду"/>
                     <Item id="6256" name="Власний колір"/>
                 </Scintillas>
 
@@ -1131,7 +1131,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6811" name="Починаючи з"/>
                     <Item id="6813" name="-го символу"/>
                     <Item id="6814" name="Дозволене значення: 1 - 9"/>
-                    <Item id="6872" name="Make auto-completion list brief"/>
+                    <Item id="6872" name="Зробити короткий список автозавершення"/>
                     <Item id="6815" name="Підказка параметрів функції при введенні"/>
                     <Item id="6851" name="Автовставлення"/>
                     <Item id="6857" name=" закр. тег html/xml"/>
@@ -1143,7 +1143,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 </AutoCompletion>
 
                 <MultiInstance title="Дата з повторенням">
-                    <Item id="6151" name="Multi-instance settings *"/>
+                    <Item id="6151" name="Багаторівневі налаштування *"/>
                     <Item id="6152" name="Відкрити сеанс у новому екземплярі (автоматично зберігати сеанс при виході)"/>
                     <Item id="6153" name="Завжди відкривати в новому вікні"/>
                     <Item id="6154" name="Все в одному вікні (типово)"/>
@@ -1151,16 +1151,16 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6171" name="Налаштувати вставлення дати й часу"/>
                     <Item id="6175" name="Зворотний порядок типової дати й часу (короткий і довгий формати)"/>
                     <Item id="6172" name="Власний формат:"/>
-                    <Item id="6181" name="Panel State and [-nosession] *"/>
-                    <Item id="6182" name="Remember panel state (panel is open) in other instances (multi-instance mode) or when using command line parameter [-nosession]"/>
+                    <Item id="6181" name="Стан панелі та [-nosession] *"/>
+                    <Item id="6182" name="Пам'ятати стан панелі (панель відкрита) в інших екземплярах (багаторівневий режим) або при використанні параметра командного рядка [-nosession]"/>
                     <Item id="6183" name="Історія буфера"/>
                     <Item id="6184" name="Список документів"/>
-                    <Item id="6185" name="Character Panel"/>
+                    <Item id="6185" name="Панель символів"/>
                     <Item id="6186" name="Тека як робоча область"/>
-                    <Item id="6187" name="Project Panels"/>
+                    <Item id="6187" name="Панелі проєкту"/>
                     <Item id="6188" name="Карта документа"/>
                     <Item id="6189" name="Список функцій"/>
-                    <Item id="6190" name="Plugin Panels"/>
+                    <Item id="6190" name="Панелі плагіну"/>
                 </MultiInstance>
 
                 <Delimiter title="Розділювач">
