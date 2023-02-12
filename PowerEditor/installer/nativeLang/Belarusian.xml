@@ -1131,6 +1131,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6811" name="З"/>
                     <Item id="6813" name="-га сімвала"/>
                     <Item id="6814" name="Дазволеныя значэнні: 1 - 9"/>
+                    <Item id="6872" name="Make auto-completion list brief"/>
                     <Item id="6815" name="Падказка параметраў функцыі пры ўвядзенні"/>
                     <Item id="6851" name="Аўтаўстаўка"/>
                     <Item id="6857" name=" закр. тэг html/xml"/>
@@ -1352,6 +1353,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <NeedToRestartToLoadPlugins title="Неабходна перазапусціць праграму" message="Неабходна перазапусціць праграму, каб убудовы пачалі працаваць."/> <!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
             <ChangeHistoryEnabledWarning title="Неабходна перазапусціць праграму" message="Неабходна перазапусціць праграму, каб гісторыя змен пачала працаваць."/> <!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
             <WindowsSessionExit title="Notepad++ - Windows session exit" message="Windows session is about to be terminated but you have some data unsaved. Do you want to exit Notepad++ now?"/>
+            <LanguageMenuCompactWarning title="Compact Language Menu" message="This option will be changed on the next launch."/> <!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
         </MessageBox>
         <ClipboardHistory>
             <PanelTitle name="Гісторыя буфера абмену"/>
@@ -1578,6 +1580,8 @@ The comments are here for explanation, it's not necessary to translate them.
             <npcNote-tip value="Representation of selected &quot;non-ASCII&quot; whitespace and non-printing (control) characters.  NOTE: Some characters might already have some representation and are thus visible. Line separator and paragraph separator are already represented by abbreviation by default.  Using representation will disable character effects on text.  For the full list of selected whitespace and non-printing characters check User Manual.  Click on this button to open website with User Manual."/>
             <npcAbbreviation-tip value="Abbreviation : name NBSP : no-break space ZWSP : zero-width space ZWNBSP : zero-width no-break space  For the full list check User Manual. Click on &quot;?&quot; button on right to open website with User Manual."/>
             <npcCodepoint-tip value="Codepoint : name U+00A0 : no-break space U+200B : zero-width space U+FEFF : zero-width no-break space  For the full list check User Manual. Click on &quot;?&quot; button on right to open website with User Manual."/>
+
+            <!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
             <npcCustomColor-tip value="Go to Style Configurator to change the default custom color for selected whitespace and non-printing characters (&quot;Non-printing characters custom color&quot;)."/>
         </MiscStrings>
     </Native-Langue>
