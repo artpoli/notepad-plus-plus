@@ -3,7 +3,7 @@
 The comments are here for explanation, it's not necessary to translate them.
 -->
 <NotepadPlus>
-    <Native-Langue name="Українська" filename="ukrainian.xml" version="8.4.6">
+    <Native-Langue name="Українська" filename="ukrainian.xml" version="8.5">
         <Menu>
             <Main>
                 <!-- Main Menu Entries -->
@@ -202,7 +202,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="43019" name="Копіювати закладені рядки"/>
                     <Item id="43020" name="Вставити й замінити закладені рядки"/>
                     <Item id="43021" name="Вилучити закладені рядки"/>
-                    <Item id="43051" name="Вилучити незакладені рядки"/>
+                    <Item id="43051" name="Remove Non-Bookmarked Lines"/>
                     <Item id="43050" name="Інвертувати закладки"/>
                     <Item id="43052" name="Знайти символи в діапазоні..."/>
                     <Item id="43053" name="Вибрати все у відповідному діапазоні"/>
@@ -592,6 +592,20 @@ The comments are here for explanation, it's not necessary to translate them.
                 <ScintillaCommandsTab name="Команди Scintilla"/>
                 <ConflictInfoOk name="Для цього елемента немає конфліктів гарячих клавіш."/>
                 <ConflictInfoEditing name="Конфліктів немає . . ."/>
+                <WindowCategory name="Window"/>
+                <FileCategory name="File"/>
+                <EditCategory name="Редагувати"/>
+                <SearchCategory name="Пошук"/>
+                <ViewCategory name="View"/>
+                <FormatCategory name="Формат"/>
+                <LangCategory name="Lang"/>
+                <AboutCategory name="About"/>
+                <SettingCategory name="Setting"/>
+                <ToolCategory name="Tool"/>
+                <ExecuteCategory name="Execute"/>
+                <ModifyContextMenu name="Змінити"/>
+                <DeleteContextMenu name="Видалити"/>
+                <ClearContextMenu name="Очистити"/>
                 <MainCommandNames>
                     <Item id="41019" name="Відкрити теку вмісту в Провіднику"/>
                     <Item id="41020" name="Відкрити теку вмісту в командному рядку"/>
@@ -708,6 +722,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="20011" name="Прозорість"/>
                 <Item id="20015" name="Імпорт..."/>
                 <Item id="20016" name="Експорт..."/>
+                <Item id="20017" name="Undock"/>
                 <StylerDialog title="Стиль">
                     <Item id="25030" name="Налаштування шрифту:"/>
                     <Item id="25006" name="Колір переднього плану"/>
@@ -1130,7 +1145,6 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6824" name="Ігнорувати числа"/>
                     <Item id="6811" name="Починаючи з"/>
                     <Item id="6813" name="-го символу"/>
-                    <Item id="6814" name="Дозволене значення: 1 - 9"/>
                     <Item id="6872" name="Зробити короткий список автозавершення"/>
                     <Item id="6815" name="Підказка параметрів функції при введенні"/>
                     <Item id="6851" name="Автовставлення"/>
@@ -1291,7 +1305,8 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="4" name="Завжди так"/>
             </DoSaveAll> <!-- HowToReproduce: Check the 'Enable Save All confirm dialog' checkbox in Preference->MISC, now click 'Save all' -->
         </Dialog>
-        <MessageBox> <!-- $INT_REPLACE$ is a place holder, don't translate it -->
+        <MessageBox>
+            <!-- $INT_REPLACE$ and $STR_REPLACE$ are place holders, don't translate these place holders. -->
             <ContextMenuXmlEditWarning title="Зміна contextMenu" message="Зміна contextMenu.xml дозволяє вам змінювати випадаюче меню Notepad++. Для застосування змін необхідно перезапустити Notepad++."/>
             <SaveCurrentModifWarning title="Зберегти поточну модифікацію" message="Ви повинні зберегти поточні зміни. Всі збережені зміни неможливо відмінити.  Продовжити?"/> <!-- HowToReproduce: when you openned file is modified but unsaved yet, and you are changing file encoding. -->
             <LoseUndoAbilityWarning title="Попередження неможливості відміни" message="Ви повинні зберегти поточні зміни. Всі збережені зміни неможливо відмінити.  Продовжити?"/> <!-- HowToReproduce: when you openned file is modified and saved, then you are changing file encoding. -->
@@ -1326,6 +1341,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <CreateNewFileOrNot title="Створити новий файл" message="&quot;$STR_REPLACE$&quot; не існує. Створити його?"/>
             <CreateNewFileError title="Створити новий файл" message="Не вдалося створить файл &quot;$STR_REPLACE$&quot;."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <OpenFileError title="ПОМИЛКА" message="Не вдалося відкрити файл &quot;$STR_REPLACE$&quot;."/>
+            <OpenFileNoFolderError title="Cannot open file" message="&quot;$STR_REPLACE1$&quot; cannot be opened: Folder &quot;$STR_REPLACE2$&quot; doesn't exist."/>
             <FileBackupFailed title="Збій резервного копіювання файлу" message="Попередня версія файлу може бути не збережена в каталозі для резервного копіювання &quot;$STR_REPLACE$&quot;. Ви все ще хочете зберегти поточний файл?"/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <LoadStylersFailed title="Збій завантаження stylers.xml" message="Не вдалося завантажити &quot;$STR_REPLACE$&amp;quot!"/>
             <LoadLangsFailed title="Конфігуратор" message="Збій завантаження langs.xml! Хочете відновити langs.xml?"/> <!-- HowToReproduce: Close Notepad++. Use another editor to remove all content of "langs.xml" (0 length) then save it. Open Notepad++. -->
@@ -1354,6 +1370,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <ChangeHistoryEnabledWarning title="Необхідно перезапустити Notepad++" message="Для увімкнення історії змін потрібно перезапустити Notepad++."/> <!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
             <WindowsSessionExit title="Notepad++ - вихід із сеансу Windows" message="Сеанс Windows невдовзі буде завершено, але у вас є незбережені дані. Хочете вийти з Notepad++ зараз?"/>
             <LanguageMenuCompactWarning title="Compact Language Menu" message="This option will be changed on the next launch."/> <!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
+            <SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Unsaved changes are about to be discarded! Do you want to save your changes before switching themes?"/> <!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
         </MessageBox>
         <ClipboardHistory>
             <PanelTitle name="Історія буфера"/>
@@ -1363,6 +1380,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <ColumnName name="Назва"/>
             <ColumnExt name="Розш."/>
             <ColumnPath name="Шлях"/>
+            <ListGroups name="Group by View"/>
         </DocList>
         <WindowsDlg>
             <ColumnName name="Назва"/>
@@ -1458,7 +1476,7 @@ The comments are here for explanation, it's not necessary to translate them.
             </Menus>
         </ProjectManager>
         <MiscStrings>
-            <!-- $INT_REPLACE$  and $STR_REPLACE$ are a place holders, don't translate these place holders -->
+            <!-- $INT_REPLACE$ and $STR_REPLACE$ are place holders, don't translate these place holders. -->
             <word-chars-list-tip value="Це дозволяє вам включати додатковий символ у поточні символи слова при подвійному натисканні для вибору, або пошуку за допомогою параметру „Лише цілі слова“."/> <!-- HowToReproduce: In "Delimiter" section of Preferences dialog, hover your mouse on the "?" button. -->
 
             <!-- Don't translate "(&quot;EOL custom color&quot;)" -->
@@ -1530,11 +1548,9 @@ The comments are here for explanation, it's not necessary to translate them.
             <splitter-rotate-right value="Обернути вправо"/>
             <recent-file-history-maxfile value="Макс. файл: "/>
             <recent-file-history-customlength value="Довжина: "/>
-            <language-tabsize value="Розм. вкладки: "/>
             <userdefined-title-new value="Створити нову мову..."/>
             <userdefined-title-save value="Зберегти назву поточної мови як..."/>
             <userdefined-title-rename value="Змінити назву поточної мови"/>
-            <autocomplete-nb-char value="К-сть симв.: "/>
             <edit-verticaledge-nb-col value="К-сть стовп.:"/>
             <summary value="Підсумок"/>
             <summary-filepath value="Повний шлях до файлу: "/>
@@ -1547,6 +1563,8 @@ The comments are here for explanation, it's not necessary to translate them.
             <summary-nbsel1 value=" обрані символи ("/>
             <summary-nbsel2 value=" байтів) в "/>
             <summary-nbrange value=" діапазонах"/>
+            <progress-cancel-button value="Скасувати"/>
+            <progress-cancel-info value="Cancelling operation, please wait..."/>
             <find-in-files-progress-title value="Поступ пошуку в файлах..."/>
             <replace-in-files-confirm-title value="Ви впевнені?"/>
             <replace-in-files-confirm-directory value="Ви дійсно хочете замінити всі збіги для:"/>
