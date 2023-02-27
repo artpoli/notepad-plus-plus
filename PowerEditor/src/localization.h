@@ -44,7 +44,7 @@ public:
 	void changeLangTabContextMenu(HMENU hCM);
 	TiXmlNodeA * searchDlgNode(TiXmlNodeA *node, const char *dlgTagName);
 	bool changeDlgLang(HWND hDlg, const char *dlgTagName, char *title = NULL, size_t titleMaxSize = 0);
-	void changeLangTabDrapContextMenu(HMENU hCM);
+	void changeLangTabDropContextMenu(HMENU hCM);
 	generic_string getSpecialMenuEntryName(const char *entryName) const;
 	generic_string getNativeLangMenuString(int itemID) const;
 	generic_string getShortcutNameString(int itemID) const;
@@ -80,6 +80,7 @@ public:
 	generic_string getProjectPanelLangMenuStr(const char * nodeName, int cmdID, const TCHAR *defaultStr) const;
 	generic_string getFileBrowserLangMenuStr(int cmdID, const TCHAR *defaultStr) const;
 	generic_string getAttrNameStr(const TCHAR *defaultStr, const char *nodeL1Name, const char *nodeL2Name, const char *nodeL3Name = "name") const;
+	generic_string getAttrNameByIdStr(const TCHAR *defaultStr, TiXmlNodeA *targetNode, const char *nodeL1Value, const char *nodeL1Name = "id", const char *nodeL2Name = "name") const;
 	generic_string getLocalizedStrFromID(const char *strID, const generic_string& defaultString) const;
 
 	int messageBox(const char *msgBoxTagName, HWND hWnd, const TCHAR *message, const TCHAR *title, int msgBoxType, int intInfo = 0, const TCHAR *strInfo = NULL);

@@ -123,6 +123,7 @@ intptr_t CALLBACK AboutDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM lPar
 				default :
 					break;
 			}
+			break;
 		}
 
 		case WM_DESTROY :
@@ -168,7 +169,11 @@ intptr_t CALLBACK DebugInfoDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM 
 			_debugInfoStr += buildTime;
 			_debugInfoStr += TEXT("\r\n");
 
-#if defined(__GNUC__)
+#if defined(__clang__)
+			_debugInfoStr += TEXT("Built with : Clang ");
+			_debugInfoStr += wmc.char2wchar(__clang_version__, CP_ACP);
+			_debugInfoStr += TEXT("\r\n");
+#elif defined(__GNUC__)
 			_debugInfoStr += TEXT("Built with : GCC ");
 			_debugInfoStr += wmc.char2wchar(__VERSION__, CP_ACP);
 			_debugInfoStr += TEXT("\r\n");
@@ -386,6 +391,7 @@ intptr_t CALLBACK DebugInfoDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM 
 				default:
 					break;
 			}
+			break;
 		}
 
 		case WM_DESTROY:
@@ -534,6 +540,7 @@ intptr_t CALLBACK DoSaveOrNotBox::run_dlgProc(UINT message, WPARAM wParam, LPARA
 					return TRUE;
 				}
 			}
+			break;
 		}
 		default:
 			return FALSE;
@@ -640,6 +647,7 @@ intptr_t CALLBACK DoSaveAllBox::run_dlgProc(UINT message, WPARAM wParam, LPARAM 
 				return TRUE;
 			}
 		}
+		break;
 	}
 	default:
 		return FALSE;

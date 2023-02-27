@@ -373,8 +373,8 @@ void Notepad_plus::command(int id)
 				_pEditView->execute(WM_COPY);
 				checkClipboard();
 				_pEditView->execute(SCI_SETSEL, curPos, curPos);
-				break;
 			}
+			break;
 		}
 
 		case IDM_EDIT_COPY_BINARY:
@@ -999,7 +999,12 @@ void Notepad_plus::command(int id)
 			const auto current_index = _pDocTab->getCurrentTabIndex();
 			BufferID buffer_id = _pDocTab->getBufferByIndex(current_index);
 			_pDocTab->setIndividualTabColour(buffer_id, color_id);
-			::SendMessage(_pPublicInterface->getHSelf(), WM_SIZE, 0, 0);
+			_pDocTab->redraw();
+
+			if (_pDocumentListPanel != nullptr)
+			{
+				_pDocumentListPanel->setItemColor(buffer_id);
+			}
 		}
 		break;
 
@@ -1330,6 +1335,7 @@ void Notepad_plus::command(int id)
 				_nativeLangSpeaker.changeFindReplaceDlgLang(_findReplaceDlg);
 
 			FindOption op = _findReplaceDlg.getCurrentOptions();
+			op._searchType = FindNormal;
 			op._whichDirection = (id == IDM_SEARCH_SETANDFINDNEXT?DIR_DOWN:DIR_UP);
 
 			FindStatus status = FSNoMessage;
@@ -1372,15 +1378,19 @@ void Notepad_plus::command(int id)
 		case IDM_SEARCH_VOLATILE_FINDNEXT :
 		case IDM_SEARCH_VOLATILE_FINDPREV :
 		{
-			TCHAR text2Find[MAX_PATH] = { '\0' };
-			_pEditView->getGenericSelectedText(text2Find, MAX_PATH);
+			const int strSize = FINDREPLACE_MAXLENGTH;
+			TCHAR str[strSize] = { '\0' };
+			_pEditView->getGenericSelectedText(str, strSize);
 
 			FindOption op;
+			op._isMatchCase = false;
 			op._isWholeWord = false;
-			op._whichDirection = (id == IDM_SEARCH_VOLATILE_FINDNEXT?DIR_DOWN:DIR_UP);
+			op._isWrapAround = true;
+			op._searchType = FindNormal;
+			op._whichDirection = (id == IDM_SEARCH_VOLATILE_FINDNEXT ? DIR_DOWN : DIR_UP);
 
 			FindStatus status = FSNoMessage;
-			_findReplaceDlg.processFindNext(text2Find, &op, &status);
+			_findReplaceDlg.processFindNext(str, &op, &status);
 			if (status == FSEndReached)
 			{
 				generic_string msg = _nativeLangSpeaker.getLocalizedStrFromID("find-status-end-reached", TEXT("Find: Found the 1st occurrence from the top. The end of the document has been reached."));
@@ -2363,6 +2373,8 @@ void Notepad_plus::command(int id)
 			setCheckMenuItem(IDM_VIEW_ALL_CHARACTERS, allChecked);
 			_toolBar.setCheck(IDM_VIEW_ALL_CHARACTERS, allChecked);
 
+			_findReplaceDlg.updateFinderScintillaForNpc();
+
 			break;
 		}
 
@@ -2387,6 +2399,8 @@ void Notepad_plus::command(int id)
 			svp1._whiteSpaceShow = isChecked;
 			svp1._eolShow = isChecked;
 			svp1._npcShow = isChecked;
+
+			_findReplaceDlg.updateFinderScintillaForNpc();
 
 			break;
 		}
@@ -3112,11 +3126,13 @@ void Notepad_plus::command(int id)
         case IDM_VIEW_GOTO_ANOTHER_VIEW:
             docGotoAnotherEditView(TransferMove);
 			checkSyncState();
+			::SendMessage(_pPublicInterface->getHSelf(), WM_SIZE, 0, 0);
             break;
 
         case IDM_VIEW_CLONE_TO_ANOTHER_VIEW:
             docGotoAnotherEditView(TransferClone);
 			checkSyncState();
+			::SendMessage(_pPublicInterface->getHSelf(), WM_SIZE, 0, 0);
             break;
 
         case IDM_VIEW_GOTO_NEW_INSTANCE :

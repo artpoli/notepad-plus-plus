@@ -1803,8 +1803,9 @@ bool NppParameters::isInFontList(const generic_string& fontName2Search) const
 HFONT NppParameters::getDefaultUIFont()
 {
 	static HFONT g_defaultMessageFont = []() {
-		NONCLIENTMETRICS ncm = { sizeof(ncm) };
-		SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(ncm), &ncm, 0);
+		NONCLIENTMETRICS ncm{};
+		ncm.cbSize = sizeof(NONCLIENTMETRICS);
+		SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(NONCLIENTMETRICS), &ncm, 0);
 
 		return CreateFontIndirect(&ncm.lfMessageFont);
 	}();
@@ -3280,7 +3281,7 @@ void NppParameters::writeDefaultUDL()
 {
 	bool firstCleanDone = false;
 	std::vector<bool> deleteState;
-	for (auto udl : _pXmlUserLangsDoc)
+	for (const auto& udl : _pXmlUserLangsDoc)
 	{
 		if (!_pXmlUserLangDoc)
 		{
@@ -3337,7 +3338,7 @@ void NppParameters::writeDefaultUDL()
 
 void NppParameters::writeNonDefaultUDL()
 {
-	for (auto udl : _pXmlUserLangsDoc)
+	for (auto& udl : _pXmlUserLangsDoc)
 	{
 		if (udl._isDirty && udl._udlXmlDoc != nullptr && udl._udlXmlDoc != _pXmlUserLangDoc)
 		{
@@ -4513,6 +4514,18 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 		const TCHAR* nm = element->Attribute(TEXT("name"));
 		if (nullptr == nm)
 			continue;
+
+		auto parseYesNoBoolAttribute = [&element](const TCHAR* name, bool defaultValue = false) -> bool {
+			const TCHAR* val = element->Attribute(name);
+			if (val != nullptr)
+			{
+				if (!lstrcmp(val, TEXT("yes")))
+					return true;
+				else if (!lstrcmp(val, TEXT("no")))
+					return false;
+			}
+			return defaultValue;
+		};
 
 		if (!lstrcmp(nm, TEXT("ToolBar")))
 		{
@@ -5765,18 +5778,6 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 				val = 0;
 			_nppGUI._multiInstSetting = (MultiInstSetting)val;
 
-			auto parseYesNoBoolAttribute = [&element](const TCHAR* name, bool defaultValue = false) -> bool {
-				const TCHAR* val = element->Attribute(name);
-				if (val != nullptr)
-				{
-					if (!lstrcmp(val, TEXT("yes")))
-						return true;
-					else if (!lstrcmp(val, TEXT("no")))
-						return false;
-				}
-				return defaultValue;
-			};
-
 			_nppGUI._clipboardHistoryPanelKeepState = parseYesNoBoolAttribute(TEXT("clipboardHistory"));
 			_nppGUI._docListKeepState = parseYesNoBoolAttribute(TEXT("documentList"));
 			_nppGUI._charPanelKeepState = parseYesNoBoolAttribute(TEXT("characterPanel"));
@@ -5846,6 +5847,8 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 
 			if (element->Attribute(TEXT("fileSwitcherPathWidth"), &i))
 				_nppGUI._fileSwitcherPathWidth = i;
+
+			_nppGUI._fileSwitcherDisableListViewGroups = parseYesNoBoolAttribute(TEXT("fileSwitcherNoGroups"));
 
 			const TCHAR * optNameBackSlashEscape = element->Attribute(TEXT("backSlashIsEscapeCharacterForSql"));
 			if (optNameBackSlashEscape && !lstrcmp(optNameBackSlashEscape, TEXT("no")))
@@ -7167,10 +7170,16 @@ void NppParameters::createXmlTreeFromGUIParams()
 		TiXmlElement *GUIConfigElement = (newGUIRoot->InsertEndChild(TiXmlElement(TEXT("GUIConfig"))))->ToElement();
 		GUIConfigElement->SetAttribute(TEXT("name"), TEXT("MISC"));
 
+		auto setYesNoBoolAttribute = [&GUIConfigElement](const TCHAR* name, bool value) -> void {
+			const TCHAR* pStr = value ? TEXT("yes") : TEXT("no");
+			GUIConfigElement->SetAttribute(name, pStr);
+		};
+
 		GUIConfigElement->SetAttribute(TEXT("fileSwitcherWithoutExtColumn"), _nppGUI._fileSwitcherWithoutExtColumn ? TEXT("yes") : TEXT("no"));
 		GUIConfigElement->SetAttribute(TEXT("fileSwitcherExtWidth"), _nppGUI._fileSwitcherExtWidth);
 		GUIConfigElement->SetAttribute(TEXT("fileSwitcherWithoutPathColumn"), _nppGUI._fileSwitcherWithoutPathColumn ? TEXT("yes") : TEXT("no"));
 		GUIConfigElement->SetAttribute(TEXT("fileSwitcherPathWidth"), _nppGUI._fileSwitcherPathWidth);
+		setYesNoBoolAttribute(TEXT("fileSwitcherNoGroups"), _nppGUI._fileSwitcherDisableListViewGroups);
 		GUIConfigElement->SetAttribute(TEXT("backSlashIsEscapeCharacterForSql"), _nppGUI._backSlashIsEscapeCharacterForSql ? TEXT("yes") : TEXT("no"));
 		GUIConfigElement->SetAttribute(TEXT("writeTechnologyEngine"), _nppGUI._writeTechnologyEngine);
 		GUIConfigElement->SetAttribute(TEXT("isFolderDroppedOpenFiles"), _nppGUI._isFolderDroppedOpenFiles ? TEXT("yes") : TEXT("no"));

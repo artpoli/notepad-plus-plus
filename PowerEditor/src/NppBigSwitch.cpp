@@ -1070,6 +1070,8 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 				return nbDocPrimary;
 			else if (lParam == SECOND_VIEW)
 				return nbDocSecond;
+			else
+				return 0;
 		}
 
 		case NPPM_GETOPENFILENAMESPRIMARY:
@@ -1760,6 +1762,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			const bool isShown = nppParam.getSVP()._npcShow;
 			_mainEditView.showNpc(isShown);
 			_subEditView.showNpc(isShown);
+			_findReplaceDlg.updateFinderScintillaForNpc();
 			return TRUE;
 		}
 
@@ -2345,6 +2348,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 				nppParam.endSessionStart(); // ensure
 				nppParam.makeEndSessionCritical(); // set our exit-flag to critical even if the bitmask has not the ENDSESSION_CRITICAL set
 				// do not return 0 here and continue to the Notepad++ standard WM_CLOSE code-part (no verbose GUI there this time!!!)
+				[[fallthrough]];
 			}
 		} // case WM_ENDSESSION:
 
@@ -2936,8 +2940,14 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		
 		case NPPM_INTERNAL_NPCFORMCHANGED:
 		{
-			_mainEditView.setNPC();
-			_subEditView.setNPC();
+			NppParameters& nppParam = NppParameters::getInstance();
+			const bool isShown = nppParam.getSVP()._npcShow;
+			if (isShown)
+			{
+				_mainEditView.setNPC();
+				_subEditView.setNPC();
+				_findReplaceDlg.updateFinderScintillaForNpc(true);
+			}
 			return TRUE;
 		}
 
@@ -3290,6 +3300,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			{
 				addHotSpot(pView);
 			}
+			return TRUE;
 		}
 
 		case NPPM_INTERNAL_UPDATETEXTZONEPADDING:

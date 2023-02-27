@@ -801,8 +801,6 @@ bool FileManager::reloadBuffer(BufferID id)
 	Document doc = buf->getDocument();
 	Utf8_16_Read UnicodeConvertor;
 
-	char* data = new char[blockSize + 8]; // +8 for incomplete multibyte char
-
 	LoadedFileFormat loadedFileFormat;
 	loadedFileFormat._encoding = buf->getEncoding();
 	loadedFileFormat._eolFormat = EolType::unknown;
@@ -811,7 +809,6 @@ bool FileManager::reloadBuffer(BufferID id)
 	buf->setLoadedDirty(false);	// Since the buffer will be reloaded from the disk, and it will be clean (not dirty), we can set _isLoadedDirty false safetly.
 								// Set _isLoadedDirty false before calling "_pscratchTilla->execute(SCI_CLEARALL);" in loadFileData() to avoid setDirty in SCN_SAVEPOINTREACHED / SCN_SAVEPOINTLEFT
 
-
 	//Get file size
 	FILE* fp = _wfopen(buf->getFullPathName(), TEXT("rb"));
 	if (!fp)
@@ -819,6 +816,8 @@ bool FileManager::reloadBuffer(BufferID id)
 	_fseeki64(fp, 0, SEEK_END);
 	int64_t fileSize = _ftelli64(fp);
 	fclose(fp);
+	
+	char* data = new char[blockSize + 8]; // +8 for incomplete multibyte char
 
 	buf->_canNotify = false;	//disable notify during file load, we don't want dirty status to be triggered
 	bool res = loadFileData(doc, fileSize, buf->getFullPathName(), data, &UnicodeConvertor, loadedFileFormat);
@@ -1636,11 +1635,14 @@ bool FileManager::loadFileData(Document doc, int64_t fileSize, const TCHAR * fil
 #endif
 				break;
 			case SC_STATUS_BADALLOC:
+			{
 				pNativeSpeaker->messageBox("FileTooBigToOpen",
 					_pNotepadPlus->_pEditView->getHSelf(),
 					TEXT("File is too big to be opened by Notepad++"),
 					TEXT("Exception: File size problem"),
 					MB_OK | MB_APPLMODAL);
+			}
+			[[fallthrough]];
 			case SC_STATUS_FAILURE:
 			default:
 				_stprintf_s(szException, _countof(szException), TEXT("%d (Scintilla)"), sciStatus);

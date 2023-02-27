@@ -925,9 +925,32 @@ void UserDefineDialog::reloadLangCombo()
 void UserDefineDialog::changeStyle()
 {
     _status = !_status;
-    ::SetDlgItemText(_hSelf, IDC_DOCK_BUTTON, (_status == DOCK)?TEXT("Undock"):TEXT("Dock"));
+    NativeLangSpeaker *pNativeSpeaker = (NppParameters::getInstance()).getNativeLangSpeaker();
+    TiXmlNodeA *targetNode = nullptr;
+    if (pNativeSpeaker->getNativeLangA())
+    {
+        targetNode = (pNativeSpeaker->getNativeLangA())->FirstChildElement("Dialog");
+        if (targetNode)
+            targetNode = targetNode->FirstChildElement("UserDefine");
+    }
+    generic_string dockButtonLabel;
+    generic_string defauleLabel;
+    string idStr;
+    if (_status == DOCK)
+    {
+        defauleLabel = TEXT("Undock");
+        idStr = std::to_string(IDC_UNDOCK_BUTTON);
+    }
+    else
+    {
+        defauleLabel = TEXT("Dock");
+        idStr = std::to_string(IDC_DOCK_BUTTON);
+    }
 
-	auto style = ::GetWindowLongPtr(_hSelf, GWL_STYLE);
+    dockButtonLabel= pNativeSpeaker->getAttrNameByIdStr(defauleLabel.c_str(), targetNode, idStr.c_str());
+    ::SetDlgItemText(_hSelf, IDC_DOCK_BUTTON, dockButtonLabel.c_str());
+
+    auto style = ::GetWindowLongPtr(_hSelf, GWL_STYLE);
     if (!style)
         ::MessageBox(NULL, TEXT("GetWindowLongPtr failed in UserDefineDialog::changeStyle()"), TEXT(""), MB_OK);
 
@@ -1017,15 +1040,15 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
             _ctrlTab.createTabs(_wVector);
             _ctrlTab.display();
 
-            RECT arc;
+            RECT arc{};
             ::GetWindowRect(::GetDlgItem(_hSelf, IDC_IMPORT_BUTTON), &arc);
 
-            POINT p;
+            POINT p{};
             p.x = arc.left;
             p.y = arc.bottom;
             ::ScreenToClient(_hSelf, &p);
 
-            RECT rc;
+            RECT rc{};
             getClientRect(rc);
             rc.top = p.y + 10;
             rc.bottom -= 20;
@@ -1051,14 +1074,14 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
                 if (!(BST_CHECKED == ::SendDlgItemMessage(_hSelf, IDC_UD_PERCENTAGE_SLIDER, BM_GETCHECK, 0, 0)))
                     ::EnableWindow(::GetDlgItem(_hSelf, IDC_UD_PERCENTAGE_SLIDER), FALSE);
             }
-            SCROLLINFO si;
+            SCROLLINFO si{};
             si.cbSize = sizeof(si);
             si.fMask  = SIF_RANGE; //| SIF_PAGE;
             si.nMin   = 0;
             si.nMax   = 0;
             ::SetScrollInfo(_hSelf, SB_VERT, &si, TRUE);
 
-            TCHAR temp[32];
+            TCHAR temp[32] = { '\0' };
             generic_string udlVersion = TEXT("User Defined Language v.");
             udlVersion += _itow(SCE_UDL_VERSION_MAJOR, temp, 10);
             udlVersion += TEXT(".");
@@ -1221,7 +1244,7 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
                         {
                             auto i = ::SendDlgItemMessage(_hSelf, IDC_LANGNAME_COMBO, CB_GETCURSEL, 0, 0);
 							const size_t langNameLen = 256;
-							TCHAR langName[langNameLen + 1];
+							TCHAR langName[langNameLen + 1] = { '\0' };
 							auto cbTextLen = ::SendDlgItemMessage(_hSelf, IDC_LANGNAME_COMBO, CB_GETLBTEXTLEN, i, 0);
 							if (static_cast<size_t>(cbTextLen) > langNameLen)
 								return TRUE;
@@ -1250,7 +1273,7 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
                     {
                         auto i = ::SendDlgItemMessage(_hSelf, IDC_LANGNAME_COMBO, CB_GETCURSEL, 0, 0);
 						const size_t langNameLen = 256;
-						TCHAR langName[langNameLen + 1];
+						TCHAR langName[langNameLen + 1] = { '\0' };
 						auto cbTextLen = ::SendDlgItemMessage(_hSelf, IDC_LANGNAME_COMBO, CB_GETLBTEXTLEN, i, 0);
 						if (static_cast<size_t>(cbTextLen) > langNameLen)
 							return TRUE;
@@ -1454,7 +1477,7 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
 
              int maxPos = originalHight - _currentHight;
             // Set the vertical scrolling range and page size
-            SCROLLINFO si;
+            SCROLLINFO si{};
             si.cbSize = sizeof(si);
             si.fMask  = SIF_RANGE | SIF_PAGE;
             si.nMin   = 0;
@@ -1520,6 +1543,8 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
             }
             ::SetScrollPos(_hSelf, SB_VERT, _yScrollPos, TRUE);
             ::ScrollWindow(_hSelf, 0, oldy-_yScrollPos, NULL, NULL);
+
+            break;
         }
         case NPPM_MODELESSDIALOG :
             return ::SendMessage(_hParent, NPPM_MODELESSDIALOG, wParam, lParam);
@@ -1618,8 +1643,7 @@ intptr_t CALLBACK StringDlg::run_dlgProc(UINT Message, WPARAM wParam, LPARAM)
             {
                 case IDOK :
                 {
-                    TCHAR tmpName[langNameLenMax];
-                    tmpName[0] = '\0';
+                    TCHAR tmpName[langNameLenMax] = { '\0' };
                     ::GetDlgItemText(_hSelf, IDC_STRING_EDIT, tmpName, langNameLenMax);
                     _textValue = tmpName;
                     ::EndDialog(_hSelf, reinterpret_cast<intptr_t>(_textValue.c_str()));
@@ -1684,7 +1708,7 @@ LRESULT StringDlg::customEditProc(HWND hEdit, UINT msg, WPARAM wParam, LPARAM lP
 	return CallWindowProc(pSelf->_oldEditProc, hEdit, msg, wParam, lParam);
 }
 
-bool StringDlg::isAllowed(const generic_string & txt)
+bool StringDlg::isAllowed([[maybe_unused]] const generic_string & txt)
 {
 #ifndef __MINGW32__
 	for (auto ch : txt)

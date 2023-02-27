@@ -851,7 +851,7 @@ struct NppGUI final
 	GlobalOverride _globalOverride;
 	enum AutocStatus{autoc_none, autoc_func, autoc_word, autoc_both};
 	AutocStatus _autocStatus = autoc_both;
-	size_t  _autocFromLen = 1;
+	UINT  _autocFromLen = 1;
 	bool _autocIgnoreNumbers = true;
 	bool _autocInsertSelectedUseENTER = true;
 	bool _autocInsertSelectedUseTAB = true;
@@ -894,10 +894,11 @@ struct NppGUI final
 	bool _docMapKeepState = false;
 	bool _funcListKeepState = false;
 	bool _pluginPanelKeepState = false;
-	bool _fileSwitcherWithoutExtColumn = true;
+	bool _fileSwitcherWithoutExtColumn = false;
 	int _fileSwitcherExtWidth = 50;
 	bool _fileSwitcherWithoutPathColumn = true;
 	int _fileSwitcherPathWidth = 50;
+	bool _fileSwitcherDisableListViewGroups = false;
 	bool isSnapshotMode() const {return _isSnapshotMode && _rememberLastSession && !_isCmdlineNosessionActivated;};
 	bool _isSnapshotMode = true;
 	size_t _snapshotBackupTiming = 7000;
