@@ -28,6 +28,7 @@
 #define FIND_INHIDDENDIR 2
 
 #define FINDREPLACE_MAXLENGTH 2048
+#define FINDREPLACE_INSEL_TEXTSIZE_THRESHOLD 1024
 
 #define FINDTEMPSTRING_MAXSIZE 1024*1024
 
@@ -153,7 +154,7 @@ private:
 	enum CurrentPosInLineStatus { pos_infront, pos_between, pos_inside, pos_behind };
 
 	struct CurrentPosInLineInfo {
-		CurrentPosInLineStatus _status;
+		CurrentPosInLineStatus _status = pos_infront;
 		intptr_t auxiliaryInfo = -1; // according the status
 	};
 
@@ -237,6 +238,8 @@ private:
 	void writeOptions();
 };
 
+LRESULT run_swapButtonProc(WNDPROC oldEditProc, HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+
 class FindReplaceDlg : public StaticDialog
 {
 friend class FindIncrementDlg;
@@ -258,7 +261,7 @@ public :
 		_ppEditView = ppEditView;
 	};
 
-	virtual void create(int dialogID, bool isRTL = false, bool msgDestParent = true);
+	virtual void create(int dialogID, bool isRTL = false, bool msgDestParent = true, bool toShow = true);
 	
 	void initOptionsFromDlg();
 
@@ -501,6 +504,15 @@ private :
 	bool replaceInFilesConfirmCheck(generic_string directory, generic_string fileTypes);
 	bool replaceInProjectsConfirmCheck();
 	bool replaceInOpenDocsConfirmCheck(void);
+
+	ContextMenu _swapPopupMenu;
+	enum SwapButtonStatus {swap, down, up} _swapButtonStatus = swap;
+	HWND _hSwapButton = nullptr;
+	static LRESULT CALLBACK swapButtonProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
+		const auto dlg = (FindReplaceDlg*)(::GetWindowLongPtr(hwnd, GWLP_USERDATA));
+		return (run_swapButtonProc(dlg->_oldSwapButtonProc, hwnd, message, wParam, lParam));
+	};
+	WNDPROC _oldSwapButtonProc = nullptr;
 };
 
 //FindIncrementDlg: incremental search dialog, docked in rebar
@@ -556,13 +568,8 @@ public:
 		return false;
 	}
 
-	void setInfo(const TCHAR *info) const
-	{
-		if (_hwnd)
-			::SendMessage(_hPText, WM_SETTEXT, 0, reinterpret_cast<LPARAM>(info));
-	}
-
-	void setPercent(unsigned percent, const TCHAR *fileName) const;
+	void setPercent(unsigned percent, const TCHAR* fileName, int nbHitsSoFar) const;
+	void setInfo(const TCHAR* info, int nbHitsSoFar = -1) const;
 
 private:
 	static const TCHAR cClassName[];
@@ -587,7 +594,9 @@ private:
 	TCHAR _header[128] = {'\0'};
 	HANDLE _hThread = nullptr;
 	HANDLE _hActiveState = nullptr;
-	HWND _hPText = nullptr;
+	HWND _hPathText = nullptr;
+	HWND _hRunningHitsStaticText = nullptr;
+	HWND _hRunningHitsText = nullptr;
 	HWND _hPBar = nullptr;
 	HWND _hBtn = nullptr;
 };

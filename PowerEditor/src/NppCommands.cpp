@@ -1249,7 +1249,10 @@ void Notepad_plus::command(int id)
 			if (nppGui._fillFindFieldWithSelected)
 			{
 				_pEditView->getGenericSelectedText(str, strSize, nppGui._fillFindFieldSelectCaret);
-				_findReplaceDlg.setSearchText(str);
+				if (lstrlen(str) <= FINDREPLACE_INSEL_TEXTSIZE_THRESHOLD)
+				{
+					_findReplaceDlg.setSearchText(str);
+				}
 			}
 
 			setFindReplaceFolderFilter(NULL, NULL);
@@ -1651,6 +1654,11 @@ void Notepad_plus::command(int id)
 					_pEditView->execute(SCI_GOTOPOS, braceOpposite);
 				else
 					_pEditView->execute(SCI_SETSEL, std::min<intptr_t>(braceAtCaret, braceOpposite), std::max<intptr_t>(braceAtCaret, braceOpposite) + 1); // + 1 so we always include the ending brace in the selection.
+
+				// Update Scintilla's knowledge about what column the caret is in, so that if user
+				// does up/down arrow as first navigation after the brace-match operation,
+				// the caret doesn't jump to an unexpected column
+				_pEditView->execute(SCI_CHOOSECARETX);
 			}
 		}
 		break;
@@ -3480,6 +3488,7 @@ void Notepad_plus::command(int id)
         case IDM_LANG_OBJC :
         case IDM_LANG_VB :
         case IDM_LANG_SQL :
+        case IDM_LANG_MSSQL :
         case IDM_LANG_ASCII :
         case IDM_LANG_TEXT :
         case IDM_LANG_RC :
@@ -3544,6 +3553,8 @@ void Notepad_plus::command(int id)
         case IDM_LANG_TXT2TAGS :
         case IDM_LANG_VISUALPROLOG:
 		case IDM_LANG_TYPESCRIPT:
+		case IDM_LANG_GDSCRIPT:
+		case IDM_LANG_HOLLYWOOD:
 		case IDM_LANG_USER :
 		{
             setLanguage(menuID2LangType(id));
@@ -3611,7 +3622,7 @@ void Notepad_plus::command(int id)
 								hImgLst = _docTabIconList.getHandle();
 						}
 						tld.init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), hImgLst, direction);
-						tld.doDialog();
+						tld.doDialog(_nativeLangSpeaker.isRTL());
 					}
 				}
 			}

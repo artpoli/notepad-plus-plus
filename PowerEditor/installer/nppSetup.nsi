@@ -111,6 +111,7 @@ InstType "Minimalist"
 Var diffArchDir2Remove
 Var noUpdater
 
+
 !ifdef ARCH64 || ARCHARM64
 ; this is needed for the 64-bit InstallDirRegKey patch
 !include "StrFunc.nsh"
@@ -126,7 +127,7 @@ Function .onInit
 	;   so the InstallDirRegKey checks for the irrelevant HKLM\SOFTWARE\WOW6432Node\Notepad++, explanation:
 	;   https://nsis.sourceforge.io/Reference/SetRegView
 	;
-!ifdef ARCH64 || ARCHARM64
+!ifdef ARCH64 || ARCHARM64	
 	${If} ${RunningX64}
 		System::Call kernel32::GetCommandLine()t.r0 ; get the original cmdline (where a possible "/D=..." is not hidden from us by NSIS)
 		${StrStr} $1 $0 "/D="
@@ -265,56 +266,47 @@ FunctionEnd
 ${Using:StrFunc} StrStr
 
 Var muiVerbStr
-Var nppSubStrRes
-Var editWithNppLocalStr
+Var nppSubStr
 
 ${MementoSection} "Context Menu Entry" explorerContextMenu
 
-	${If} $WinVer == "11"
-		ReadRegStr $muiVerbStr HKLM "SOFTWARE\Classes\*\shell\pintohome" MUIVerb
-		
-		${StrStr} $nppSubStrRes $muiVerbStr "Notepad++"
-		;MessageBox MB_OK "entry value: $muiVerbStr"
-		;MessageBox MB_OK "result: $nppSubStrRes"
-		
-		; Make sure there's no entry before creating it, so we won't override other application if present 
-		${If} $muiVerbStr == ""
-			${OrIf} $nppSubStrRes != ""  ; it contains "Notepad++"
-			
-			ReadINIStr $editWithNppLocalStr "$PLUGINSDIR\nppLocalization\explorerContextMenuEntryLocal.ini" $(langFileName) "Edit_with_Notepad++"
-			${If} $editWithNppLocalStr == ""
-				StrCpy $editWithNppLocalStr "Edit with Notepad++"
-				MessageBox MB_OK "translation: $editWithNppLocalStr"
-			${EndIf}
-			
-			WriteRegStr HKLM "SOFTWARE\Classes\*\shell\pintohome" 'MUIVerb' $editWithNppLocalStr
-			WriteRegStr HKLM "SOFTWARE\Classes\*\shell\pintohome\command" "" '"$INSTDIR\notepad++.exe" "%1"'
-		
-		${EndIf}
-
-	${EndIf}
-
 	SetOverwrite try
-	SetOutPath "$INSTDIR\"
-	
-	; There is no need to keep x86 NppShell_06.dll in 64 bit installer
-	; But in 32bit installer both the Dlls are required
-	; As user can install 32bit npp version on x64 bit machine, that time x64 bit NppShell is required.
-	
-	!ifdef ARCH64
-		File /oname=$INSTDIR\NppShell_06.dll "..\bin\NppShell64_06.dll"
-	!else ifdef ARCHARM64
-		File /oname=$INSTDIR\NppShell_06.dll "..\binarm64\NppShell64.dll"
-	!else
-		${If} ${RunningX64}
-			File /oname=$INSTDIR\NppShell_06.dll "..\bin\NppShell64_06.dll"
-		${Else}
-			File "..\bin\NppShell_06.dll"
-		${EndIf}
-	!endif
-	Exec 'regsvr32 /s "$INSTDIR\NppShell_06.dll"'
+	SetOutPath "$INSTDIR\contextmenu\"
 
-	
+	!ifdef ARCH64
+		File /oname=$INSTDIR\contextmenu\NppShell.msix "..\bin64\NppShell.msix"
+		File /oname=$INSTDIR\contextmenu\NppShell.dll "..\bin64\NppShell.x64.dll"
+	!else ifdef ARCHARM64
+		File /oname=$INSTDIR\contextmenu\NppShell.msix "..\binarm64\NppShell.msix"
+		File /oname=$INSTDIR\contextmenu\NppShell.dll "..\binarm64\NppShell.arm64.dll"
+	!else
+		; We need to test which arch we are running on, since 32bit exe can be run on both 32bit and 64bit Windows.
+		${If} ${RunningX64}
+			; We are running on 64bit Windows, so we need the msix as well, since it might be Windows 11.
+			File /oname=$INSTDIR\contextmenu\NppShell.msix "..\bin64\NppShell.msix"
+			File /oname=$INSTDIR\contextmenu\NppShell.dll "..\bin64\NppShell.x64.dll"
+		${Else}
+			; We are running on 32bit Windows, so no need for the msix file, since there is no way this could even be upgraded to Windows 11.
+			File /oname=$INSTDIR\contextmenu\NppShell.dll "..\bin\NppShell.x86.dll"
+		${EndIf}    
+
+	!endif
+	Exec 'regsvr32 /s "$INSTDIR\contextmenu\NppShell.dll"'
+
+	; Make sure old NppShell dll's are unregistered and removed
+	Exec 'regsvr32 /u /s "$INSTDIR\NppShell_01.dll"'
+	Exec 'regsvr32 /u /s "$INSTDIR\NppShell_02.dll"'
+	Exec 'regsvr32 /u /s "$INSTDIR\NppShell_03.dll"'
+	Exec 'regsvr32 /u /s "$INSTDIR\NppShell_04.dll"'
+	Exec 'regsvr32 /u /s "$INSTDIR\NppShell_05.dll"'
+	Exec 'regsvr32 /u /s "$INSTDIR\NppShell_06.dll"'
+	Delete "$INSTDIR\NppShell_01.dll"
+	Delete "$INSTDIR\NppShell_02.dll"
+	Delete "$INSTDIR\NppShell_03.dll"
+	Delete "$INSTDIR\NppShell_04.dll"
+	Delete "$INSTDIR\NppShell_05.dll"
+	Delete "$INSTDIR\NppShell_06.dll"
+
 ${MementoSectionEnd}
 
 ${MementoSectionDone}

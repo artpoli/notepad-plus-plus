@@ -2412,16 +2412,16 @@ void NppParameters::feedFileListParameters(TiXmlNode *node)
 	if (!historyRoot) return;
 
 	// nbMaxFile value
-	int nbMaxFile;
+	int nbMaxFile = _nbMaxRecentFile;
 	const TCHAR *strVal = (historyRoot->ToElement())->Attribute(TEXT("nbMaxFile"), &nbMaxFile);
-	if (strVal && (nbMaxFile >= 0) && (nbMaxFile <= 50))
+	if (strVal && (nbMaxFile >= 0) && (nbMaxFile <= NB_MAX_LRF_FILE))
 		_nbMaxRecentFile = nbMaxFile;
 
 	// customLen value
-	int customLen;
+	int customLen = RECENTFILES_SHOWFULLPATH;
 	strVal = (historyRoot->ToElement())->Attribute(TEXT("customLength"), &customLen);
 	if (strVal)
-		_recentFileCustomLength = customLen;
+		_recentFileCustomLength = std::min<int>(customLen, NB_MAX_LRF_CUSTOMLENGTH);
 
 	// inSubMenu value
 	strVal = (historyRoot->ToElement())->Attribute(TEXT("inSubMenu"));
@@ -2495,9 +2495,9 @@ void NppParameters::feedColumnEditorParameters(TiXmlNode *node)
 	if (strVal)
 	{
 		if (lstrcmp(strVal, TEXT("text")) == 0)
-			_columnEditParam._mainChoice = false;
+			_columnEditParam._mainChoice = activeText;
 		else
-			_columnEditParam._mainChoice = true;
+			_columnEditParam._mainChoice = activeNumeric;
 	}
 	TiXmlNode *childNode = columnEditorRoot->FirstChildElement(TEXT("text"));
 	if (!childNode) return;
@@ -2525,7 +2525,6 @@ void NppParameters::feedColumnEditorParameters(TiXmlNode *node)
 		_columnEditParam._repeatNum = val;
 
 	strVal = (childNode->ToElement())->Attribute(TEXT("formatChoice"));
-
 	if (strVal)
 	{
 		if (lstrcmp(strVal, TEXT("hex")) == 0)
@@ -2534,13 +2533,23 @@ void NppParameters::feedColumnEditorParameters(TiXmlNode *node)
 			_columnEditParam._formatChoice = 2;
 		else if (lstrcmp(strVal, TEXT("bin")) == 0)
 			_columnEditParam._formatChoice = 3;
-		else // "bin"
+		else // "dec"
 			_columnEditParam._formatChoice = 0;
 	}
 
-	const TCHAR* boolStr = (childNode->ToElement())->Attribute(TEXT("leadingZeros"));
-	if (boolStr)
-		_columnEditParam._isLeadingZeros = (lstrcmp(TEXT("yes"), boolStr) == 0);
+	strVal = (childNode->ToElement())->Attribute(TEXT("leadingChoice"));
+	if (strVal)
+	{
+		_columnEditParam._leadingChoice = ColumnEditorParam::noneLeading;
+		if (lstrcmp(strVal, TEXT("zeros")) == 0)
+		{
+			_columnEditParam._leadingChoice = ColumnEditorParam::zeroLeading;
+		}
+		else if (lstrcmp(strVal, TEXT("spaces")) == 0)
+		{
+			_columnEditParam._leadingChoice = ColumnEditorParam::spaceLeading;
+		}
+	}
 }
 
 void NppParameters::feedFindHistoryParameters(TiXmlNode *node)
@@ -2692,6 +2701,14 @@ void NppParameters::feedFindHistoryParameters(TiXmlNode *node)
 	boolStr = (findHistoryRoot->ToElement())->Attribute(TEXT("regexBackward4PowerUser"));
 	if (boolStr)
 		_findHistory._regexBackward4PowerUser = (lstrcmp(TEXT("yes"), boolStr) == 0);
+
+	boolStr = (findHistoryRoot->ToElement())->Attribute(TEXT("bookmarkLine"));
+	if (boolStr)
+		_findHistory._isBookmarkLine = (lstrcmp(TEXT("yes"), boolStr) == 0);
+
+	boolStr = (findHistoryRoot->ToElement())->Attribute(TEXT("purge"));
+	if (boolStr)
+		_findHistory._isPurge = (lstrcmp(TEXT("yes"), boolStr) == 0);
 }
 
 void NppParameters::feedShortcut(TiXmlNode *node)
@@ -4092,7 +4109,7 @@ bool NppParameters::writeColumnEditorSettings() const
 
 	// Create the new ColumnEditor root
 	TiXmlElement columnEditorRootNode{TEXT("ColumnEditor")};
-	(columnEditorRootNode.ToElement())->SetAttribute(TEXT("choice"), _columnEditParam._mainChoice ? L"number" : L"text");
+	(columnEditorRootNode.ToElement())->SetAttribute(TEXT("choice"), _columnEditParam._mainChoice == activeNumeric ? L"number" : L"text");
 
 	TiXmlElement textNode{ TEXT("text") };
 	(textNode.ToElement())->SetAttribute(TEXT("content"), _columnEditParam._insertedTextContent.c_str());
@@ -4102,8 +4119,6 @@ bool NppParameters::writeColumnEditorSettings() const
 	(numberNode.ToElement())->SetAttribute(TEXT("initial"), _columnEditParam._initialNum);
 	(numberNode.ToElement())->SetAttribute(TEXT("increase"), _columnEditParam._increaseNum);
 	(numberNode.ToElement())->SetAttribute(TEXT("repeat"), _columnEditParam._repeatNum);
-	(numberNode.ToElement())->SetAttribute(TEXT("leadingZeros"), _columnEditParam._isLeadingZeros ? L"yes" : L"no");
-
 	wstring format = TEXT("dec");
 	if (_columnEditParam._formatChoice == 1)
 		format = TEXT("hex");
@@ -4112,9 +4127,13 @@ bool NppParameters::writeColumnEditorSettings() const
 	else if (_columnEditParam._formatChoice == 3)
 		format = TEXT("bin");
 	(numberNode.ToElement())->SetAttribute(TEXT("formatChoice"), format);
+	wstring leading = TEXT("none");
+	if (_columnEditParam._leadingChoice == ColumnEditorParam::zeroLeading)
+		leading = TEXT("zeros");
+	else if (_columnEditParam._leadingChoice == ColumnEditorParam::spaceLeading)
+		leading = TEXT("spaces");
+	(numberNode.ToElement())->SetAttribute(TEXT("leadingChoice"), leading);
 	(columnEditorRootNode.ToElement())->InsertEndChild(numberNode);
-
-
 
 	// (Re)Insert the Project Panel root
 	(nppRoot->ToElement())->InsertEndChild(columnEditorRootNode);
@@ -4262,6 +4281,8 @@ LangType NppParameters::getLangIDFromStr(const TCHAR *langName)
 
 generic_string NppParameters::getLocPathFromStr(const generic_string & localizationCode)
 {
+	if (localizationCode == TEXT("en") || localizationCode == TEXT("en-au") || localizationCode == TEXT("en-bz") || localizationCode == TEXT("en-ca") || localizationCode == TEXT("en-cb") || localizationCode == TEXT("en-gb") || localizationCode == TEXT("en-ie") || localizationCode == TEXT("en-jm") || localizationCode == TEXT("en-nz") || localizationCode == TEXT("en-ph") || localizationCode == TEXT("en-tt") || localizationCode == TEXT("en-us") || localizationCode == TEXT("en-za") || localizationCode == TEXT("en-zw"))
+		return TEXT("english.xml");
 	if (localizationCode == TEXT("af"))
 		return TEXT("afrikaans.xml");
 	if (localizationCode == TEXT("sq"))
@@ -5731,8 +5752,8 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 		{
 			int fileSizeLimit4StylingMB = 0;
 			element->Attribute(TEXT("fileSizeMB"), &fileSizeLimit4StylingMB);
-			if (fileSizeLimit4StylingMB > 0 && fileSizeLimit4StylingMB < 4096)
-				_nppGUI._largeFileRestriction._largeFileSizeDefInByte = (fileSizeLimit4StylingMB * 1024 * 1024);
+			if (fileSizeLimit4StylingMB > 0 && fileSizeLimit4StylingMB <= 4096)
+				_nppGUI._largeFileRestriction._largeFileSizeDefInByte = (static_cast<int64_t>(fileSizeLimit4StylingMB) * 1024 * 1024);
 
 			const TCHAR* boolVal = element->Attribute(TEXT("isEnabled"));
 			if (boolVal != NULL && !lstrcmp(boolVal, TEXT("no")))
@@ -7339,6 +7360,9 @@ bool NppParameters::writeFindHistory()
 	(findHistoryRoot->ToElement())->SetAttribute(TEXT("isSearch2ButtonsMode"),		_findHistory._isSearch2ButtonsMode?TEXT("yes"):TEXT("no"));
 	(findHistoryRoot->ToElement())->SetAttribute(TEXT("regexBackward4PowerUser"),		_findHistory._regexBackward4PowerUser ? TEXT("yes") : TEXT("no"));
 
+	(findHistoryRoot->ToElement())->SetAttribute(TEXT("bookmarkLine"), _findHistory._isBookmarkLine ? TEXT("yes") : TEXT("no"));
+	(findHistoryRoot->ToElement())->SetAttribute(TEXT("purge"), _findHistory._isPurge ? TEXT("yes") : TEXT("no"));
+
 	TiXmlElement hist_element{TEXT("")};
 
 	hist_element.SetValue(TEXT("Path"));
@@ -7615,6 +7639,8 @@ int NppParameters::langTypeToCommandID(LangType lt) const
 			id = IDM_LANG_USER; break;
 		case L_SQL :
 			id = IDM_LANG_SQL; break;
+		case L_MSSQL :
+			id = IDM_LANG_MSSQL; break;
 		case L_VB :
 			id = IDM_LANG_VB; break;
 		case L_TCL :
@@ -7761,6 +7787,12 @@ int NppParameters::langTypeToCommandID(LangType lt) const
 		case L_TYPESCRIPT:
 			id = IDM_LANG_TYPESCRIPT; break;
 
+		case L_GDSCRIPT:
+			id = IDM_LANG_GDSCRIPT; break;
+
+		case L_HOLLYWOOD:
+			id = IDM_LANG_HOLLYWOOD; break;
+			
 		case L_SEARCHRESULT :
 			id = -1;	break;
 

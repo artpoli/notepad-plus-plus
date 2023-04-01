@@ -672,6 +672,9 @@ void FileManager::closeBuffer(BufferID id, ScintillaEditView * identifier)
 // backupFileName is sentinel of backup mode: if it's not NULL, then we use it (load it). Otherwise we use filename
 BufferID FileManager::loadFile(const TCHAR* filename, Document doc, int encoding, const TCHAR* backupFileName, FILETIME fileNameTimestamp)
 {
+	if (!filename)
+		return BUFFER_INVALID;
+
 	//Get file size
 	int64_t fileSize = -1;
 	const TCHAR* pPath = filename;
@@ -754,7 +757,7 @@ BufferID FileManager::loadFile(const TCHAR* filename, Document doc, int encoding
 	if (res)
 	{
 		Buffer* newBuf = new Buffer(this, _nextBufferID, doc, DOC_REGULAR, fullpath, isLargeFile);
-		BufferID id = static_cast<BufferID>(newBuf);
+		BufferID id = newBuf;
 		newBuf->_id = id;
 
 		if (backupFileName != NULL)
@@ -1265,13 +1268,25 @@ size_t FileManager::nextUntitledNewNumber() const
 		Buffer *buf = _buffers.at(i);
 		if (buf->isUntitled())
 		{
-			// if untitled document is invisible, then don't put its number into array (so its number is available to be used)
-			if ((buf->_referees[0])->isVisible())
+			bool isVisible = false;
+			for (size_t k = 0; k < buf->_referees.size(); k++)
 			{
-				generic_string newTitle = ((NppParameters::getInstance()).getNativeLangSpeaker())->getLocalizedStrFromID("tab-untitled-string", UNTITLED_STR);
-				TCHAR *numberStr = buf->_fileName + newTitle.length();
-				int usedNumber = _wtoi(numberStr);
-				usedNumbers.push_back(usedNumber);
+				if (buf->_referees[k]->isVisible())
+				{
+					isVisible = true;
+					break;
+				}
+			}
+
+			if (isVisible)
+			{
+				if (buf->indexOfReference(_pNotepadPlus->_pEditView) > -1 || buf->indexOfReference(_pNotepadPlus->_pNonEditView) > -1)
+				{
+					generic_string newTitle = ((NppParameters::getInstance()).getNativeLangSpeaker())->getLocalizedStrFromID("tab-untitled-string", UNTITLED_STR);
+					TCHAR* numberStr = buf->_fileName + newTitle.length();
+					int usedNumber = _wtoi(numberStr);
+					usedNumbers.push_back(usedNumber);
+				}
 			}
 		}
 	}
@@ -1318,7 +1333,7 @@ BufferID FileManager::newEmptyDocument()
 	const NewDocDefaultSettings& ndds = (nppParamInst.getNppGUI()).getNewDocDefaultSettings();
 	newBuf->_lang = ndds._lang;
 
-	BufferID id = static_cast<BufferID>(newBuf);
+	BufferID id = newBuf;
 	newBuf->_id = id;
 	_buffers.push_back(newBuf);
 	++_nbBufs;
@@ -1337,7 +1352,7 @@ BufferID FileManager::bufferFromDocument(Document doc, bool dontIncrease, bool d
 	if (!dontRef)
 		_pscratchTilla->execute(SCI_ADDREFDOCUMENT, 0, doc);	//set reference for FileManager
 	Buffer* newBuf = new Buffer(this, _nextBufferID, doc, DOC_UNNAMED, newTitle.c_str(), false);
-	BufferID id = static_cast<BufferID>(newBuf);
+	BufferID id = newBuf;
 	newBuf->_id = id;
 	const NewDocDefaultSettings& ndds = (nppParamInst.getNppGUI()).getNewDocDefaultSettings();
 	newBuf->_lang = ndds._lang;

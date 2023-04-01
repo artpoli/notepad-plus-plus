@@ -73,6 +73,8 @@ const int TAB_HIDE = 256;          //0001 0000 0000
 const int TAB_QUITONEMPTY = 512;   //0010 0000 0000
 const int TAB_ALTICONS = 1024;     //0100 0000 0000
 
+const bool activeText = true;
+const bool activeNumeric = false;
 
 enum class EolType: std::uint8_t
 {
@@ -983,6 +985,9 @@ const int NB_MAX_USER_LANG = 30;
 const int NB_MAX_EXTERNAL_LANG = 30;
 const int NB_MAX_IMPORTED_UDL = 50;
 
+constexpr int NB_DEFAULT_LRF_CUSTOMLENGTH = 100;
+constexpr int NB_MAX_LRF_CUSTOMLENGTH = MAX_PATH - 1;
+
 const int NB_MAX_FINDHISTORY_FIND	= 30;
 const int NB_MAX_FINDHISTORY_REPLACE = 30;
 const int NB_MAX_FINDHISTORY_PATH	= 30;
@@ -1200,21 +1205,26 @@ struct FindHistory final
 	bool _isFilterFollowDoc = false;
 	bool _isFolderFollowDoc = false;
 
+	bool _isBookmarkLine = false;
+	bool _isPurge = false;
+
 	// Allow regExpr backward search: this option is not present in UI, only to modify in config.xml
 	bool _regexBackward4PowerUser = false;
 };
 
 struct ColumnEditorParam final
 {
-	bool _mainChoice = true; //  true (1): text   false (0): number 
+	enum leadingChoice : UCHAR { noneLeading, zeroLeading, spaceLeading };
+
+	bool _mainChoice = activeNumeric;
 
 	std::wstring _insertedTextContent;
 
 	int _initialNum = -1;
 	int _increaseNum = -1;
 	int _repeatNum = -1;
-	bool _isLeadingZeros = false;
 	int _formatChoice = 0; // 0:Dec 1:Hex 2:Oct 3:Bin
+	leadingChoice _leadingChoice = noneLeading;
 };
 
 class LocalizationSwitcher final
@@ -1460,11 +1470,11 @@ public:
 		return _LRFileList[index];
 	};
 
-	void setNbMaxRecentFile(int nb) {
+	void setNbMaxRecentFile(UINT nb) {
 		_nbMaxRecentFile = nb;
 	};
 
-	int getNbMaxRecentFile() const {return _nbMaxRecentFile;};
+	UINT getNbMaxRecentFile() const {return _nbMaxRecentFile;};
 
 	void setPutRecentFileInSubMenu(bool doSubmenu) {
 		_putRecentFileInSubMenu = doSubmenu;
@@ -1817,7 +1827,7 @@ private:
 	// Recent File History
 	generic_string* _LRFileList[NB_MAX_LRF_FILE] = { nullptr };
 	int _nbRecentFile = 0;
-	int _nbMaxRecentFile = 10;
+	UINT _nbMaxRecentFile = 10;
 	bool _putRecentFileInSubMenu = false;
 	int _recentFileCustomLength = RECENTFILES_SHOWFULLPATH;	//	<0: Full File Path Name
 															//	=0: Only File Name
