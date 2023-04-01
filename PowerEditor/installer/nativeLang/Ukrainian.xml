@@ -202,7 +202,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="43019" name="Копіювати закладені рядки"/>
                     <Item id="43020" name="Вставити й замінити закладені рядки"/>
                     <Item id="43021" name="Вилучити закладені рядки"/>
-                    <Item id="43051" name="Remove Non-Bookmarked Lines"/>
+                    <Item id="43051" name="Вилучити не закладені рядки"/>
                     <Item id="43050" name="Інвертувати закладки"/>
                     <Item id="43052" name="Знайти символи в діапазоні..."/>
                     <Item id="43053" name="Вибрати все у відповідному діапазоні"/>
@@ -423,12 +423,12 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item CMDID="44110" name="Вилучити колір"/>
             </TabBar>
             <TrayIcon>
-                <Item id="43101" name="Activate"/>
-                <Item id="43102" name="New"/>
-                <Item id="43103" name="New and Paste"/>
-                <Item id="43104" name="Open..."/>
+                <Item id="43101" name="Активувати"/>
+                <Item id="43102" name="Новий"/>
+                <Item id="43103" name="Новий і вставити"/>
+                <Item id="43104" name="Відкрити..."/>
                 <Item id="43013" name="Знайти у файлах..."/>
-                <Item id="43105" name="Close Tray Icon"/>
+                <Item id="43105" name="Закрити піктограму системного лотка"/>
             </TrayIcon>
         </Menu>
 
@@ -476,9 +476,9 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="1723" name="▼ Знайти далі"/>
                 <Item id="1725" name="Копіювати позначений текст"/>
                 <Menu>
-                    <Item id="1726" name="⇅ Swap Find with Replace"/>
-                    <Item id="1727" name="⤵ Copy from Find to Replace"/>
-                    <Item id="1728" name="⤴ Copy from Replace to Find"/>
+                    <Item id="1726" name="⇅ Перемкнути пошук і заміну"/>
+                    <Item id="1727" name="⤵ Копіювати з пошуку до заміни"/>
+                    <Item id="1728" name="⤴ Копіювати із заміни до пошуку"/>
                 </Menu>
             </Find>
 
