@@ -3,7 +3,7 @@
 The comments are here for explanation, it's not necessary to translate them.
 -->
 <NotepadPlus>
-    <Native-Langue name="Беларуская" filename="belarusian.xml" version="8.5">
+    <Native-Langue name="Беларуская" filename="belarusian.xml" version="8.5.1">
         <Menu>
             <Main>
                 <!-- Main Menu Entries -->
@@ -385,8 +385,6 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="11009" name="Па змяншэнні памеру"/>
                 </Commands>
             </Main>
-            <Splitter>
-            </Splitter>
             <TabBar>
                 <Item CMDID="41003" name="Закрыць"/>
                 <Item CMDID="0" name="Close Multiple Tabs"/>
@@ -424,6 +422,14 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item CMDID="44115" name="Ужыць колер 5"/>
                 <Item CMDID="44110" name="Выдаліць колер"/>
             </TabBar>
+            <TrayIcon>
+                <Item id="43101" name="Activate"/>
+                <Item id="43102" name="New"/>
+                <Item id="43103" name="New and Paste"/>
+                <Item id="43104" name="Open..."/>
+                <Item id="43013" name="Знайсці ў файлах..."/>
+                <Item id="43105" name="Close Tray Icon"/>
+            </TrayIcon>
         </Menu>
 
         <Dialog>
@@ -469,6 +475,11 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="1721" name="▲"/>
                 <Item id="1723" name="▼ Знайсці далей"/>
                 <Item id="1725" name="Капіяваць пазначаны тэкст"/>
+                <Menu>
+                    <Item id="1726" name="⇅ Swap Find with Replace"/>
+                    <Item id="1727" name="⤵ Copy from Find to Replace"/>
+                    <Item id="1728" name="⤴ Copy from Replace to Find"/>
+                </Menu>
             </Find>
 
             <IncrementalFind title="">
@@ -1108,7 +1119,7 @@ The comments are here for explanation, it's not necessary to translate them.
 
                 <RecentFilesHistory title="Гісторыя файлаў">
                     <Item id="6304" name="Гісторыя нядаўніх файлаў"/>
-                    <Item id="6306" name="Макс. колькасць запісаў:"/>
+                    <Item id="6306" name="Max. number of entries:"/>
                     <Item id="6305" name="Не правяраць падчас запуску"/>
                     <Item id="6429" name="Адлюстраванне"/>
                     <Item id="6424" name="У падменю"/>
@@ -1267,7 +1278,12 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="2033" name="Лічба для ўстаўкі"/>
                 <Item id="2030" name="Пачатковы нумар:"/>
                 <Item id="2031" name="Павялічыць на:"/>
-                <Item id="2035" name="Дадаць нуль злева"/>
+                <Item id="2038" name="&amp;Leading :"/>
+                <ComboBox id="2039">
+                    <Element name="Няма"/>
+                    <Element name="Zeros"/>
+                    <Element name="Spaces"/>
+                </ComboBox>
                 <Item id="2036" name="Паўтарыць:"/>
                 <Item id="2032" name="Фармат"/>
                 <Item id="2024" name="Дзесятковы"/>
@@ -1396,8 +1412,9 @@ The comments are here for explanation, it's not necessary to translate them.
             <ColumnVal name="Значэнне"/>
             <ColumnHex name="Hex"/>
             <ColumnChar name="Сімвал"/>
-            <ColumnHtmlNumber name="Нумар HTML"/>
-            <ColumnHtmlName name="Код HTML"/>
+            <ColumnHtmlName name="HTML Name"/>
+            <ColumnHtmlNumber name="HTML Decimal"/>
+            <ColumnHtmlHexNb name="HTML Hexadecimal"/>
         </AsciiInsertion>
         <DocumentMap>
             <PanelTitle name="Карта дакумента"/>
@@ -1415,7 +1432,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <ExpandAllFoldersTip name="Разгарнуць усе"/>
             <CollapseAllFoldersTip name="Згарнуць усе"/>
             <LocateCurrentFileTip name="Знайсці бягучы файл"/>
-            <Menus>
+            <Menu>
                 <Item id="3511" name="Выдаліць"/>
                 <Item id="3512" name="Выдаліць усе"/>
                 <Item id="3513" name="Дадаць"/>
@@ -1426,7 +1443,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="3518" name="Праваднік тут"/>
                 <Item id="3519" name="CMD тут"/>
                 <Item id="3520" name="Капіяваць назву файла"/>
-            </Menus>
+            </Menu>
         </FolderAsWorkspace>
         <ProjectManager>
             <PanelTitle name="Праект"/>
@@ -1546,12 +1563,9 @@ The comments are here for explanation, it's not necessary to translate them.
             <tabrename-newname value="Новая назва: "/>
             <splitter-rotate-left value="Павярнуць улева"/>
             <splitter-rotate-right value="Павярнуць управа"/>
-            <recent-file-history-maxfile value="Макс. файл: "/>
-            <recent-file-history-customlength value="Length: "/>
             <userdefined-title-new value="Стварыць новую мову..."/>
             <userdefined-title-save value="Захаваць назву бягучай мовы як..."/>
             <userdefined-title-rename value="Перайменаваць назву бягучай мовы"/>
-            <edit-verticaledge-nb-col value="К-сць слупкоў:"/>
             <summary value="Зводка"/>
             <summary-filepath value="Поўны шлях да файла: "/>
             <summary-filecreatetime value="Створана: "/>
@@ -1563,6 +1577,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <summary-nbsel1 value=" выбраныя сімвалы ("/>
             <summary-nbsel2 value=" байтаў) у "/>
             <summary-nbrange value=" дыяпазоны"/>
+            <progress-hits-title value="Hits:"/>
             <progress-cancel-button value="Скасаваць"/>
             <progress-cancel-info value="Cancelling operation, please wait..."/>
             <find-in-files-progress-title value="Выкананне пошуку ў файлах..."/>
