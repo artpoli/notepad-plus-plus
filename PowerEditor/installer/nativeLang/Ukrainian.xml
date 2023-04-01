@@ -159,7 +159,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42042" name="Прибрати пробіл на початку"/>
                     <Item id="42043" name="Прибрати пробіл на початку і в кінці"/>
                     <Item id="42044" name="Символ кінця рядка в пробіл"/>
-                    <Item id="42045" name="Trim both and EOL to Space"/>
+                    <Item id="42045" name="Обітнути обидва й EOL у пробіл"/>
                     <Item id="42046" name="TAB у пробіл"/>
                     <Item id="42054" name="Пробіл у TAB (все)"/>
                     <Item id="42053" name="Пробіл у TAB (на початку)"/>
@@ -603,17 +603,17 @@ The comments are here for explanation, it's not necessary to translate them.
                 <ScintillaCommandsTab name="Команди Scintilla"/>
                 <ConflictInfoOk name="Для цього елемента немає конфліктів гарячих клавіш."/>
                 <ConflictInfoEditing name="Конфліктів немає . . ."/>
-                <WindowCategory name="Window"/>
-                <FileCategory name="File"/>
+                <WindowCategory name="Вікно"/>
+                <FileCategory name="Файл"/>
                 <EditCategory name="Редагувати"/>
                 <SearchCategory name="Пошук"/>
-                <ViewCategory name="View"/>
+                <ViewCategory name="Вигляд"/>
                 <FormatCategory name="Формат"/>
-                <LangCategory name="Lang"/>
-                <AboutCategory name="About"/>
-                <SettingCategory name="Setting"/>
-                <ToolCategory name="Tool"/>
-                <ExecuteCategory name="Execute"/>
+                <LangCategory name="Мова"/>
+                <AboutCategory name="Про програму"/>
+                <SettingCategory name="Налаштування"/>
+                <ToolCategory name="Інструмент"/>
+                <ExecuteCategory name="Виконати"/>
                 <ModifyContextMenu name="Змінити"/>
                 <DeleteContextMenu name="Видалити"/>
                 <ClearContextMenu name="Очистити"/>
@@ -733,7 +733,7 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="20011" name="Прозорість"/>
                 <Item id="20015" name="Імпорт..."/>
                 <Item id="20016" name="Експорт..."/>
-                <Item id="20017" name="Undock"/>
+                <Item id="20017" name="Розстикувати"/>
                 <StylerDialog title="Стиль">
                     <Item id="25030" name="Налаштування шрифту:"/>
                     <Item id="25006" name="Колір переднього плану"/>
@@ -1119,7 +1119,7 @@ The comments are here for explanation, it's not necessary to translate them.
 
                 <RecentFilesHistory title="Історія файлів">
                     <Item id="6304" name="Історія останніх файлів"/>
-                    <Item id="6306" name="Max. number of entries:"/>
+                    <Item id="6306" name="Макс. кількість записів:"/>
                     <Item id="6305" name="Не перевіряти при запуску"/>
                     <Item id="6429" name="Відображення"/>
                     <Item id="6424" name="У підменю"/>
@@ -1278,11 +1278,11 @@ The comments are here for explanation, it's not necessary to translate them.
                 <Item id="2033" name="Число для вставлення"/>
                 <Item id="2030" name="Початковий номер :"/>
                 <Item id="2031" name="Збільшити на :"/>
-                <Item id="2038" name="&amp;Leading :"/>
+                <Item id="2038" name="Початкові :"/>
                 <ComboBox id="2039">
                     <Element name="Немає"/>
-                    <Element name="Zeros"/>
-                    <Element name="Spaces"/>
+                    <Element name="Нулі"/>
+                    <Element name="Пробіли"/>
                 </ComboBox>
                 <Item id="2036" name="Повторити :"/>
                 <Item id="2032" name="Формат"/>
@@ -1357,7 +1357,7 @@ The comments are here for explanation, it's not necessary to translate them.
             <CreateNewFileOrNot title="Створити новий файл" message="&quot;$STR_REPLACE$&quot; не існує. Створити його?"/>
             <CreateNewFileError title="Створити новий файл" message="Не вдалося створить файл &quot;$STR_REPLACE$&quot;."/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <OpenFileError title="ПОМИЛКА" message="Не вдалося відкрити файл &quot;$STR_REPLACE$&quot;."/>
-            <OpenFileNoFolderError title="Cannot open file" message="&quot;$STR_REPLACE1$&quot; cannot be opened: Folder &quot;$STR_REPLACE2$&quot; doesn't exist."/>
+            <OpenFileNoFolderError title="Не вдалося відкрити файл" message="Неможливо відкрити &quot;$STR_REPLACE1$&quot;: Тека &quot;$STR_REPLACE2$&quot; не існує."/>
             <FileBackupFailed title="Збій резервного копіювання файлу" message="Попередня версія файлу може бути не збережена в каталозі для резервного копіювання &quot;$STR_REPLACE$&quot;. Ви все ще хочете зберегти поточний файл?"/> <!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
             <LoadStylersFailed title="Збій завантаження stylers.xml" message="Не вдалося завантажити &quot;$STR_REPLACE$&amp;quot!"/>
             <LoadLangsFailed title="Конфігуратор" message="Збій завантаження langs.xml! Хочете відновити langs.xml?"/> <!-- HowToReproduce: Close Notepad++. Use another editor to remove all content of "langs.xml" (0 length) then save it. Open Notepad++. -->
@@ -1385,8 +1385,8 @@ The comments are here for explanation, it's not necessary to translate them.
             <NeedToRestartToLoadPlugins title="Необхідно перезапустити Notepad++" message="Необхідно перезапустити Notepad++ для завантаження встановлених плагінів."/> <!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
             <ChangeHistoryEnabledWarning title="Необхідно перезапустити Notepad++" message="Для увімкнення історії змін потрібно перезапустити Notepad++."/> <!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
             <WindowsSessionExit title="Notepad++ - вихід із сеансу Windows" message="Сеанс Windows невдовзі буде завершено, але у вас є незбережені дані. Хочете вийти з Notepad++ зараз?"/>
-            <LanguageMenuCompactWarning title="Compact Language Menu" message="This option will be changed on the next launch."/> <!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
-            <SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Unsaved changes are about to be discarded! Do you want to save your changes before switching themes?"/> <!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
+            <LanguageMenuCompactWarning title="Компактне меню мови" message="Цей параметр буде змінено під час наступного запуску."/> <!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
+            <SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незбережені зміни будуть скасовані! Ви хочете зберегти зміни перед зміною теми?"/> <!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
         </MessageBox>
         <ClipboardHistory>
             <PanelTitle name="Історія буфера"/>
