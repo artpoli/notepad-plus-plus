@@ -159,7 +159,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="42042" name="Прибрати пробіл на початку"/>
                     <Item id="42043" name="Прибрати пробіл на початку і в кінці"/>
                     <Item id="42044" name="Символ кінця рядка в пробіл"/>
-                    <Item id="42045" name="Обітнути обидва й EOL у пробіл"/>
+                    <Item id="42045" name="Прибрати зайві пробіли, а закінчення рядків у пробіл"/>
                     <Item id="42046" name="TAB у пробіл"/>
                     <Item id="42054" name="Пробіл у TAB (все)"/>
                     <Item id="42053" name="Пробіл у TAB (на початку)"/>
@@ -202,7 +202,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="43019" name="Копіювати закладені рядки"/>
                     <Item id="43020" name="Вставити й замінити закладені рядки"/>
                     <Item id="43021" name="Вилучити закладені рядки"/>
-                    <Item id="43051" name="Вилучити не закладені рядки"/>
+                    <Item id="43051" name="Вилучити незакладені рядки"/>
                     <Item id="43050" name="Інвертувати закладки"/>
                     <Item id="43052" name="Знайти символи в діапазоні..."/>
                     <Item id="43053" name="Вибрати все у відповідному діапазоні"/>
@@ -1091,7 +1091,7 @@ The comments are here for explanation, it's not necessary to translate them.
                     <Item id="6720" name="Ліва частина"/>
                     <Item id="6721" name="Середня частина"/>
                     <Item id="6722" name="Права частина"/>
-                    <Item id="6723" name="Долучити"/>
+                    <Item id="6723" name="Додати"/>
                     <ComboBox id="6724">
                         <Element name="Повний шлях файлу"/>
                         <Element name="Назва файлу"/>
