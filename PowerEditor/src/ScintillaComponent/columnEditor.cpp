@@ -15,13 +15,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#include <vector>
-#include <algorithm>
+//#include <vector>
+//#include <algorithm>
 #include "columnEditor.h"
 #include "ScintillaEditView.h"
 
 
-void ColumnEditorDlg::init(HINSTANCE hInst, HWND hPere, ScintillaEditView **ppEditView) 
+void ColumnEditorDlg::init(HINSTANCE hInst, HWND hPere, ScintillaEditView **ppEditView)
 {
 	Window::init(hInst, hPere);
 	if (!ppEditView)
@@ -29,7 +29,7 @@ void ColumnEditorDlg::init(HINSTANCE hInst, HWND hPere, ScintillaEditView **ppEd
 	_ppEditView = ppEditView;
 }
 
-void ColumnEditorDlg::display(bool toShow) const 
+void ColumnEditorDlg::display(bool toShow) const
 {
     Window::display(toShow);
     if (toShow)
@@ -38,7 +38,7 @@ void ColumnEditorDlg::display(bool toShow) const
 
 intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
-	switch (message) 
+	switch (message)
 	{
 		case WM_INITDIALOG :
 		{
@@ -78,7 +78,7 @@ intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 			::SendDlgItemMessage(_hSelf, format, BM_SETCHECK,  TRUE, 0);
 
 			switchTo(colEditParam._mainChoice);
-			goToCenter();
+			goToCenter(SWP_SHOWWINDOW | SWP_NOSIZE);
 
 			return TRUE;
 		}
@@ -86,6 +86,11 @@ intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 		case WM_CTLCOLOREDIT:
 		{
 			return NppDarkMode::onCtlColorSofter(reinterpret_cast<HDC>(wParam));
+		}
+
+		case WM_CTLCOLORLISTBOX:
+		{
+			return NppDarkMode::onCtlColor(reinterpret_cast<HDC>(wParam));
 		}
 
 		case WM_CTLCOLORDLG:
@@ -100,7 +105,8 @@ intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 
 			bool isStaticText = (dlgCtrlID == IDC_COL_INITNUM_STATIC ||
 				dlgCtrlID == IDC_COL_INCRNUM_STATIC ||
-				dlgCtrlID == IDC_COL_REPEATNUM_STATIC);
+				dlgCtrlID == IDC_COL_REPEATNUM_STATIC ||
+				dlgCtrlID == IDC_COL_LEADING_STATIC);
 			//set the static text colors to show enable/disable instead of ::EnableWindow which causes blurry text
 			if (isStaticText)
 			{
@@ -142,7 +148,7 @@ intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 			return TRUE;
 		}
 
-		case WM_COMMAND : 
+		case WM_COMMAND:
 		{
 			switch (wParam)
 			{
@@ -154,8 +160,8 @@ intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
                 {
 					(*_ppEditView)->execute(SCI_BEGINUNDOACTION);
 					
-					const int stringSize = 1024;
-					TCHAR str[stringSize];
+					constexpr int stringSize = 1024;
+					TCHAR str[stringSize]{};
 					
 					bool isTextMode = (BST_CHECKED == ::SendDlgItemMessage(_hSelf, IDC_COL_TEXT_RADIO, BM_GETCHECK, 0, 0));
 					
@@ -181,7 +187,7 @@ intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 							auto endPos = (*_ppEditView)->execute(SCI_GETLENGTH);
 							auto endLine = (*_ppEditView)->execute(SCI_LINEFROMPOSITION, endPos);
 
-							int lineAllocatedLen = 1024;
+							constexpr int lineAllocatedLen = 1024;
 							TCHAR *line = new TCHAR[lineAllocatedLen];
 
 							for (size_t i = cursorLine ; i <= static_cast<size_t>(endLine); ++i)
@@ -231,7 +237,7 @@ intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 						}
 						UCHAR format = getFormat();
 						display(false);
-						
+
 						if ((*_ppEditView)->execute(SCI_SELECTIONISRECTANGLE) || (*_ppEditView)->execute(SCI_GETSELECTIONS) > 1)
 						{
 							ColumnModeInfos colInfos = (*_ppEditView)->getColumnModeSelectInfo();
@@ -274,11 +280,11 @@ intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 							}
 							assert(numbers.size() > 0);
 
-							int lineAllocatedLen = 1024;
+							constexpr int lineAllocatedLen = 1024;
 							TCHAR *line = new TCHAR[lineAllocatedLen];
 
 							UCHAR f = format & MASK_FORMAT;
-							
+
 							int base = 10;
 							if (f == BASE_16)
 								base = 16;
@@ -372,15 +378,16 @@ intptr_t CALLBACK ColumnEditorDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 						case EN_CHANGE:
 						{
 							ColumnEditorParam& colEditParam = NppParameters::getInstance()._columnEditParam;
-							const int stringSize = MAX_PATH;
-							TCHAR str[stringSize];
+							constexpr int stringSize = MAX_PATH;
+							TCHAR str[stringSize]{};
 
 							switch (LOWORD(wParam))
-							{								
+							{
 								case IDC_COL_TEXT_EDIT:
 								{
 									::GetDlgItemText(_hSelf, LOWORD(wParam), str, stringSize);
 									colEditParam._insertedTextContent = str;
+									::EnableWindow(::GetDlgItem(_hSelf, IDOK), str[0]);
 									return TRUE;
 								}
 								case IDC_COL_INITNUM_EDIT:
@@ -467,14 +474,15 @@ void ColumnEditorDlg::switchTo(bool toText)
 	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_HEX_RADIO), !toText);
 	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_OCT_RADIO), !toText);
 	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_BIN_RADIO), !toText);
-	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_LEADING_STATIC), !toText);
 	::EnableWindow(::GetDlgItem(_hSelf, IDC_COL_LEADING_COMBO), !toText);
+	::EnableWindow(::GetDlgItem(_hSelf, IDOK), !toText || !NppParameters::getInstance()._columnEditParam._insertedTextContent.empty());
 
 	::SetFocus(toText?hText:hNum);
 
 	redrawDlgItem(IDC_COL_INITNUM_STATIC);
 	redrawDlgItem(IDC_COL_INCRNUM_STATIC);
 	redrawDlgItem(IDC_COL_REPEATNUM_STATIC);
+	redrawDlgItem(IDC_COL_LEADING_STATIC);
 
 	if (NppDarkMode::isEnabled())
 	{
@@ -483,14 +491,14 @@ void ColumnEditorDlg::switchTo(bool toText)
 	}
 }
 
-UCHAR ColumnEditorDlg::getFormat() 
+UCHAR ColumnEditorDlg::getFormat()
 {
 	UCHAR f = 0; // Dec by default
-	if (BST_CHECKED == ::SendDlgItemMessage(_hSelf, IDC_COL_HEX_RADIO, BM_GETCHECK, 0, 0))
+	if (isCheckedOrNot(IDC_COL_HEX_RADIO))
 		f = 1;
-	else if (BST_CHECKED == ::SendDlgItemMessage(_hSelf, IDC_COL_OCT_RADIO, BM_GETCHECK, 0, 0))
+	else if (isCheckedOrNot(IDC_COL_OCT_RADIO))
 		f = 2;
-	else if (BST_CHECKED == ::SendDlgItemMessage(_hSelf, IDC_COL_BIN_RADIO, BM_GETCHECK, 0, 0))
+	else if (isCheckedOrNot(IDC_COL_BIN_RADIO))
 		f = 3;
 	return f;
 }
@@ -503,18 +511,18 @@ ColumnEditorParam::leadingChoice ColumnEditorDlg::getLeading()
 	{
 		case 0:
 		default:
-		{ 
-			leading = ColumnEditorParam::noneLeading; 
-			break; 
-		}
-		case 1: 
-		{ 
-			leading = ColumnEditorParam::zeroLeading; 
-			break; 
-		}
-		case 2: 
 		{
-			leading = ColumnEditorParam::spaceLeading; 
+			leading = ColumnEditorParam::noneLeading;
+			break;
+		}
+		case 1:
+		{
+			leading = ColumnEditorParam::zeroLeading;
+			break;
+		}
+		case 2:
+		{
+			leading = ColumnEditorParam::spaceLeading;
 			break;
 		}
 	}
