@@ -1809,18 +1809,6 @@ bool NppParameters::isInFontList(const generic_string& fontName2Search) const
 	return false;
 }
 
-HFONT NppParameters::getDefaultUIFont()
-{
-	static HFONT g_defaultMessageFont = []() {
-		NONCLIENTMETRICS ncm{};
-		ncm.cbSize = sizeof(NONCLIENTMETRICS);
-		SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(NONCLIENTMETRICS), &ncm, 0);
-
-		return CreateFontIndirect(&ncm.lfMessageFont);
-	}();
-	return g_defaultMessageFont;
-}
-
 LOGFONT NppParameters::getDefaultGUIFont(DefaultFontType type)
 {
 	LOGFONT lf{};
@@ -1842,12 +1830,6 @@ LOGFONT NppParameters::getDefaultGUIFont(DefaultFontType type)
 				break;
 			}
 
-			case DefaultFontType::message:
-			{
-				lf = ncm.lfMessageFont;
-				break;
-			}
-
 			case DefaultFontType::caption:
 			{
 				lf = ncm.lfCaptionFont;
@@ -1860,16 +1842,15 @@ LOGFONT NppParameters::getDefaultGUIFont(DefaultFontType type)
 				break;
 			}
 
-			// case DefaultFontType::none
+			// case DefaultFontType::message:
 			default:
 			{
-				auto hf = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-				::GetObject(hf, sizeof(LOGFONT), &lf);
+				lf = ncm.lfMessageFont;
 				break;
 			}
 		}
 	}
-	else
+	else // should not happen, fallback
 	{
 		auto hf = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 		::GetObject(hf, sizeof(LOGFONT), &lf);
@@ -3615,6 +3596,10 @@ void NppParameters::writeSession(const Session & session, const TCHAR *fileName)
 				TEXT("The old session file will be restored."),
 				TEXT("Error of saving session file"),
 				MB_OK | MB_APPLMODAL | MB_ICONWARNING);
+
+			wstring sessionPathNameFail2Load = sessionPathName;
+			sessionPathNameFail2Load += L".fail2Load";
+			MoveFileEx(sessionPathName, sessionPathNameFail2Load.c_str(), MOVEFILE_REPLACE_EXISTING);
 			CopyFile(backupPathName, sessionPathName, FALSE);
 		}
 	}
