@@ -302,13 +302,13 @@ Translation note:
 					<Item id="44032" name="Відновити масштаб"/>
 					<Item id="44033" name="Завжди вгорі"/>
 					<Item id="44034" name="Синхронізувати вертикальне прокручування"/>
-					<Item id="44036" name="Синхронізувати горизонтальне прокручування"/>
-					<Item id="44041" name="Показувати символ переведення рядка"/>
-					<Item id="44072" name="Фокус на інший вигляд"/>
-					<Item id="44081" name="Панель проєкту 1"/>
-					<Item id="44082" name="Панель проєкту 2"/>
-					<Item id="44083" name="Панель проєкту 3"/>
-					<Item id="45001" name="Windows (CR LF)"/>
+					<Item id="44035" name="Синхронізувати горизонтальне прокручування"/>
+					<Item id="44036" name="Показувати символ переведення рядка"/>
+					<Item id="44041" name="Фокус на інший вигляд"/>
+					<Item id="44072" name="Панель проєкту 1"/>
+					<Item id="44081" name="Панель проєкту 2"/>
+					<Item id="44082" name="Панель проєкту 3"/>
+					<Item id="44083" name="Windows (CR LF)"/>
 					<Item id="45002" name="Unix (LF)"/>
 					<Item id="45003" name="Macintosh (CR)"/>
 					<Item id="45004" name="ANSI"/>
@@ -492,7 +492,7 @@ Translation note:
 			</IncrementalFind>
 
 			<FindCharsInRange title="Знайти символи в діапазоні...">
-				<Item id="2" name="&amp;Close"/>
+				<Item id="2" name="Закрити"/>
 				<Item id="2901" name="Не ASCII символи (128-255)"/>
 				<Item id="2902" name="ASCII символи (0-127)"/>
 				<Item id="2903" name="Мій діапазон:"/>
@@ -523,25 +523,25 @@ Translation note:
 			<MD5FromFilesDlg title="Згенерувати MD5 з файлів">
 				<Item id="1922" name="Вибрати файли для генерації MD5..."/>
 				<Item id="1924" name="Копіювати в буфер обміну"/>
-				<Item id="2" name="&amp;Close"/>
+				<Item id="2" name="Закрити"/>
 			</MD5FromFilesDlg>
 
 			<MD5FromTextDlg title="Згенерувати MD5">
 				<Item id="1932" name="Обробити кожен рядок як окремий"/>
 				<Item id="1934" name="Копіювати в буфер обміну"/>
-				<Item id="2" name="&amp;Close"/>
+				<Item id="2" name="Закрити"/>
 			</MD5FromTextDlg>
 
 			<SHA256FromFilesDlg title="Згенерувати SHA-256 з файлів">
 				<Item id="1922" name="Оберіть файли для генерування SHA-256..."/>
 				<Item id="1924" name="Копіювати в буфер обміну"/>
-				<Item id="2" name="&amp;Close"/>
+				<Item id="2" name="Закрити"/>
 			</SHA256FromFilesDlg>
 
 			<SHA256FromTextDlg title="Згенерувати SHA-256">
 				<Item id="1932" name="Обробити кожен рядок як окремий"/>
 				<Item id="1934" name="Копіювати в буфер обміну"/>
-				<Item id="2" name="&amp;Close"/>
+				<Item id="2" name="Закрити"/>
 			</SHA256FromTextDlg>
 
 			<PluginsAdminDlg title="Адміністрування плагінів" titleAvailable="Доступно" titleUpdates="Оновлення" titleInstalled="Встановлено" titleIncompatible="Несумісно">
@@ -932,7 +932,7 @@ Translation note:
 				</Global>
 				<Scintillas title="Редагування">
 					<Item id="6216" name="Налаштування вставки"/>
-					<Item id="6217" name="Width:"/>
+					<Item id="6217" name="Ширина:"/>
 					<Item id="6219" name="Частота мерехтіння:"/>
 					<Item id="6221" name="Ч"/>
 					<Item id="6222" name="Р"/>
