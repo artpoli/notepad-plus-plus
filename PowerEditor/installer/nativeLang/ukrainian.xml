@@ -298,10 +298,10 @@ Translation note:
 					<Item id="44114" name="Застосувати колір 4"/>
 					<Item id="44115" name="Застосувати колір 5"/>
 					<Item id="44130" name="Показувати символи, що не друкуються"/>
-					<Item id="44032" name="На весь екран"/>
-					<Item id="44033" name="Відновити масштаб"/>
-					<Item id="44034" name="Завжди вгорі"/>
-					<Item id="44035" name="Синхронізувати вертикальне прокручування"/>
+					<Item id="44131" name="На весь екран"/>
+					<Item id="44032" name="Відновити масштаб"/>
+					<Item id="44033" name="Завжди вгорі"/>
+					<Item id="44034" name="Синхронізувати вертикальне прокручування"/>
 					<Item id="44036" name="Синхронізувати горизонтальне прокручування"/>
 					<Item id="44041" name="Показувати символ переведення рядка"/>
 					<Item id="44072" name="Фокус на інший вигляд"/>
@@ -385,7 +385,7 @@ Translation note:
 					<Item id="11007" name="Тип від Z до A"/>
 					<Item id="11008" name="За збільшенням розміру"/>
 					<Item id="11009" name="За зменшенням розміру"/>
-					<Item id="11009" name="За зменшенням розміру"/>
+					<Item id="11009" name="Size Larger to Smaller"/>
 				</Commands>
 			</Main>
 			<TabBar>
@@ -492,7 +492,7 @@ Translation note:
 			</IncrementalFind>
 
 			<FindCharsInRange title="Знайти символи в діапазоні...">
-				<Item id="2" name="Закрити"/>
+				<Item id="2" name="&amp;Close"/>
 				<Item id="2901" name="Не ASCII символи (128-255)"/>
 				<Item id="2902" name="ASCII символи (0-127)"/>
 				<Item id="2903" name="Мій діапазон:"/>
@@ -523,25 +523,25 @@ Translation note:
 			<MD5FromFilesDlg title="Згенерувати MD5 з файлів">
 				<Item id="1922" name="Вибрати файли для генерації MD5..."/>
 				<Item id="1924" name="Копіювати в буфер обміну"/>
-				<Item id="2" name="Закрити"/>
+				<Item id="2" name="&amp;Close"/>
 			</MD5FromFilesDlg>
 
 			<MD5FromTextDlg title="Згенерувати MD5">
 				<Item id="1932" name="Обробити кожен рядок як окремий"/>
 				<Item id="1934" name="Копіювати в буфер обміну"/>
-				<Item id="2" name="Закрити"/>
+				<Item id="2" name="&amp;Close"/>
 			</MD5FromTextDlg>
 
 			<SHA256FromFilesDlg title="Згенерувати SHA-256 з файлів">
 				<Item id="1922" name="Оберіть файли для генерування SHA-256..."/>
 				<Item id="1924" name="Копіювати в буфер обміну"/>
-				<Item id="2" name="Закрити"/>
+				<Item id="2" name="&amp;Close"/>
 			</SHA256FromFilesDlg>
 
 			<SHA256FromTextDlg title="Згенерувати SHA-256">
 				<Item id="1932" name="Обробити кожен рядок як окремий"/>
 				<Item id="1934" name="Копіювати в буфер обміну"/>
-				<Item id="2" name="Закрити"/>
+				<Item id="2" name="&amp;Close"/>
 			</SHA256FromTextDlg>
 
 			<PluginsAdminDlg title="Адміністрування плагінів" titleAvailable="Доступно" titleUpdates="Оновлення" titleInstalled="Встановлено" titleIncompatible="Несумісно">
@@ -928,11 +928,11 @@ Translation note:
 					<Item id="6123" name="Локалізація"/>
 					<Item id="6128" name="Змінювати піктограми"/>
 
-					<Item id="6123" name="Локалізація"/>
+					<Item id="6123" name="Localization"/>
 				</Global>
 				<Scintillas title="Редагування">
 					<Item id="6216" name="Налаштування вставки"/>
-					<Item id="6217" name="Ширина:"/>
+					<Item id="6217" name="Width:"/>
 					<Item id="6219" name="Частота мерехтіння:"/>
 					<Item id="6221" name="Ч"/>
 					<Item id="6222" name="Р"/>
@@ -960,7 +960,7 @@ Translation note:
 					<Item id="6254" name="Абревіатура"/>
 					<Item id="6255" name="Точка коду"/>
 					<Item id="6256" name="Власний колір"/>
-					<Item id="6258" name="Застосувати до C0, C1 &amp;&amp; Unicode EOL"/>
+					<Item id="6258" name="Apply to C0, C1 &amp;&amp; Unicode EOL"/>
 				</Scintillas>
 
 				<DarkMode title="Темний режим">
@@ -1392,7 +1392,7 @@ Translation note:
 			<WindowsSessionExit title="Notepad++ - вихід із сеансу Windows" message="Сеанс Windows невдовзі буде завершено, але у вас є незбережені дані. Хочете вийти з Notepad++ зараз?"/>
 			<LanguageMenuCompactWarning title="Компактне меню мови" message="Цей параметр буде змінено під час наступного запуску."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
 			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незбережені зміни будуть скасовані! Ви хочете зберегти зміни перед зміною теми?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
-			<MacroAndRunCmdlWarning title="Сумісність макросів і запуск команд" message="Ваші команди Макрос і Виконання збережені в Notepad++ v.8.5.2 (або старіші) можуть бути несумісними з поточною версією Notepad++. Будь ласка, протестуйте ці команди і, якщо потрібно, повторно відредагуйте їх. Крім того, ви можете перейти до Notepad++ v8.5.2 і відновити попередні дані. Notepad++ зробить резервну копію старого &quot;shortcuts.xml&quot; і збереже його як &quot;shortcuts.xml.v8.5.2.backup&quot;. Перейменування &quot;shortcuts.xml.v8.5.2.backup&quot; -&gt; &quot;shortcuts.xml&quot;, ваші команди повинні бути відновлені та правильно працювати."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
+			<MacroAndRunCmdlWarning title="Macro and Run Commands Compatibility" message="Your Macro and Run commands saved in Notepad++ v.8.5.2 (or older) may not be compatible with the current version of Notepad++. Please test those commands and, if needed, re-edit them.  Alternatively, you can downgrade to Notepad++ v8.5.2 and restore your previous data. Notepad++ will backup your old &quot;shortcuts.xml&quot; and save it as &quot;shortcuts.xml.v8.5.2.backup&quot;. Renaming &quot;shortcuts.xml.v8.5.2.backup&quot; -&gt; &quot;shortcuts.xml&quot;, your commands should be restored and work properly."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Історія буфера"/>
@@ -1622,7 +1622,7 @@ Translation note:
 
 			<!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
 			<npcCustomColor-tip value="Відкрийте конфігуратор стилю, щоб змінити типовий власний колір для вибраних пропусків та не друкованих символів (&quot;Власний колір символів, що не друкуються&quot;)."/>
-			<npcIncludeCcUniEol-tip value="Застосувати налаштування вигляду символів, які не друкують до C0, C1 control і підтримка Unicode EOL (наступний рядок, роздільник ліній та роздільник абзац) символи."/>
+			<npcIncludeCcUniEol-tip value="Apply non-printing characters appearance settings to C0, C1 control and Unicode EOL (next line, line separator and paragraph separator) characters."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
