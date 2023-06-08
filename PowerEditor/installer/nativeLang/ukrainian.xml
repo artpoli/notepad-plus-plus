@@ -309,6 +309,7 @@ Translation note:
 					<Item id="44081" name="Панель проєкту 2"/>
 					<Item id="44082" name="Панель проєкту 3"/>
 					<Item id="44083" name="Windows (CR LF)"/>
+					<Item id="45001" name="Windows (CR LF)"/>
 					<Item id="45002" name="Unix (LF)"/>
 					<Item id="45003" name="Macintosh (CR)"/>
 					<Item id="45004" name="ANSI"/>
@@ -323,7 +324,6 @@ Translation note:
 					<Item id="45013" name="Перетворити на UTF-16 LE BOM"/>
 					<Item id="45060" name="Big5 (Традиційна)"/>
 					<Item id="45061" name="GB2312 (Спрощена)"/>
-					<Item id="45054" name="OEM 861: Ісландська"/>
 					<Item id="45057" name="OEM 865: Скандинавська"/>
 					<Item id="45053" name="OEM 860: Португальська"/>
 					<Item id="45056" name="OEM 863: Французька"/>
