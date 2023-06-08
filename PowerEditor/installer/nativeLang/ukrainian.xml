@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.5.1">
+	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.5.3">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -331,9 +331,10 @@ Translation note:
 
 					<Item id="10001" name="Відкрити в іншому вікні"/>
 					<Item id="10002" name="Копіювати в інше вікно"/>
-					<Item id="10003" name="Відкрити в новому екземплярі"/>
-					<Item id="46001" name="Конфігуратор стилю..."/>
+					<Item id="10003" name="Перемістити до нового екземпляра"/>
+					<Item id="10004" name="Відкрити в новому екземплярі"/>
 
+					<Item id="46001" name="Конфігуратор стилю..."/>
 					<Item id="46250" name="Визначити мову..."/>
 					<Item id="46300" name="Відкрити користувацьку теку мови..."/>
 					<Item id="46301" name="Збірка мов Notepad++ визначених користувачем"/>
@@ -361,9 +362,9 @@ Translation note:
 					<Item id="48504" name="Генерувати..."/>
 					<Item id="48505" name="Генерувати з файлів..."/>
 					<Item id="48506" name="Генерувати з вибраного в буфер обміну"/>
-					<Item id="49000" name="Виконати..."/>
-					<Item id="50000" name="Завершення функцій"/>
+					<Item id="49000" name="Запустити..."/>
 
+					<Item id="50000" name="Завершення функцій"/>
 					<Item id="50001" name="Завершення слів"/>
 					<Item id="50002" name="Підказка параметрів функцій"/>
 					<Item id="50010" name="Наступна підказка параметрів функцій"/>
@@ -375,8 +376,8 @@ Translation note:
 					<Item id="42041" name="Очистити список останніх файлів"/>
 					<Item id="48016" name="Змінити комб. клавіш/Видалити макрос..."/>
 					<Item id="48017" name="Змінити комб. клавіш/Видалити команду..."/>
-					<Item id="11001" name="&amp;Windows..."/>
 
+					<Item id="11001" name="&amp;Windows..."/>
 					<Item id="11002" name="Назва від A до Z"/>
 					<Item id="11003" name="Назва від Z до A"/>
 					<Item id="11004" name="Шлях від A до Z"/>
@@ -385,7 +386,6 @@ Translation note:
 					<Item id="11007" name="Тип від Z до A"/>
 					<Item id="11008" name="За збільшенням розміру"/>
 					<Item id="11009" name="За зменшенням розміру"/>
-					<Item id="11009" name="Size Larger to Smaller"/>
 				</Commands>
 			</Main>
 			<TabBar>
@@ -913,22 +913,22 @@ Translation note:
 					<Item id="6108" name="Заборонити перетягування"/>
 					<Item id="6109" name="Затемнені неактивні вкладки"/>
 					<Item id="6110" name="Кольорова панель активної вкладки"/>
-					<Item id="6111" name="Рядок стану"/>
 					<Item id="6112" name="Кнопка закриття на кожній вкладці"/>
 					<Item id="6113" name="Закривати подвійним клацанням"/>
 					<Item id="6118" name="Приховати"/>
 					<Item id="6119" name="Каскадом"/>
-					<Item id="6120" name="Вертикальна"/>
-					<Item id="6121" name="Вихід при закритті останньої вкладки"/>
+					<Item id="6120" name="Вертикально"/>
+					<Item id="6121" name="Виходити після закриття останньої вкладки"/>
+					<Item id="6128" name="Змінювати піктограми"/>
+
+					<Item id="6133" name="Рядок стану"/>
+					<Item id="6134" name="Приховати"/>
 
 					<Item id="6131" name="Меню"/>
 					<Item id="6122" name="Приховати панель меню (Alt чи F10)"/>
-
 					<Item id="6132" name="Приховати ярлики ＋ ▼ ✕ у правій частині панелі меню (Необхідно перезапустити Notepad++)"/>
-					<Item id="6123" name="Локалізація"/>
-					<Item id="6128" name="Змінювати піктограми"/>
 
-					<Item id="6123" name="Localization"/>
+					<Item id="6123" name="Локалізація"/>
 				</Global>
 				<Scintillas title="Редагування">
 					<Item id="6216" name="Налаштування вставки"/>
@@ -960,7 +960,7 @@ Translation note:
 					<Item id="6254" name="Абревіатура"/>
 					<Item id="6255" name="Точка коду"/>
 					<Item id="6256" name="Власний колір"/>
-					<Item id="6258" name="Apply to C0, C1 &amp;&amp; Unicode EOL"/>
+					<Item id="6258" name="Застосувати до C0, C1 &amp;&amp; Unicode EOL"/>
 				</Scintillas>
 
 				<DarkMode title="Темний режим">
@@ -1028,7 +1028,7 @@ Translation note:
 					<Item id="6410" name="UTF-16 Little Endian з BOM"/>
 					<Item id="6411" name="Синтаксис:"/>
 					<Item id="6419" name="Створити документ"/>
-					<Item id="6420" name="При відкритті ANSI-файла"/>
+					<Item id="6420" name="Застосувати до відкритих файлів ANSI"/>
 				</NewDoc>
 
 				<DefaultDir title="Типова тека">
@@ -1392,7 +1392,7 @@ Translation note:
 			<WindowsSessionExit title="Notepad++ - вихід із сеансу Windows" message="Сеанс Windows невдовзі буде завершено, але у вас є незбережені дані. Хочете вийти з Notepad++ зараз?"/>
 			<LanguageMenuCompactWarning title="Компактне меню мови" message="Цей параметр буде змінено під час наступного запуску."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
 			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незбережені зміни будуть скасовані! Ви хочете зберегти зміни перед зміною теми?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
-			<MacroAndRunCmdlWarning title="Macro and Run Commands Compatibility" message="Your Macro and Run commands saved in Notepad++ v.8.5.2 (or older) may not be compatible with the current version of Notepad++. Please test those commands and, if needed, re-edit them.  Alternatively, you can downgrade to Notepad++ v8.5.2 and restore your previous data. Notepad++ will backup your old &quot;shortcuts.xml&quot; and save it as &quot;shortcuts.xml.v8.5.2.backup&quot;. Renaming &quot;shortcuts.xml.v8.5.2.backup&quot; -&gt; &quot;shortcuts.xml&quot;, your commands should be restored and work properly."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
+			<MacroAndRunCmdlWarning title="Сумісність макросів і команд виконання" message="Ваші макроси й команди виконання, збережені в Notepad++ v.8.5.2 (чи старіше), можуть бути несумісними з поточною версією Notepad++. Випробуйте ці команди та, за потреби, відредагуйте їх.  Або ж ви можете встановити старішу версію Notepad++ v8.5.2 та відновити свої попередні дані. Notepad++ збереже резервну копію вашого файлу &quot;shortcuts.xml&quot; з назвою &quot;shortcuts.xml.v8.5.2.backup&quot;. Перейменувавши файл &quot;shortcuts.xml.v8.5.2.backup&quot; на -&gt; &quot;shortcuts.xml&quot;, ваші команди мають відновитися і працювати правильно."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Історія буфера"/>
@@ -1622,7 +1622,7 @@ Translation note:
 
 			<!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
 			<npcCustomColor-tip value="Відкрийте конфігуратор стилю, щоб змінити типовий власний колір для вибраних пропусків та не друкованих символів (&quot;Власний колір символів, що не друкуються&quot;)."/>
-			<npcIncludeCcUniEol-tip value="Apply non-printing characters appearance settings to C0, C1 control and Unicode EOL (next line, line separator and paragraph separator) characters."/>
+			<npcIncludeCcUniEol-tip value="Застосувати налаштування вигляду символів, що не друкуються, до символів C0, C1 control і Unicode EOL (наступний рядок, роздільник рядків та роздільник абзаців)."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
