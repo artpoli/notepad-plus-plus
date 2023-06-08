@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-The comments are here for explanation, it's not necessary to translate them.
+Translation note:
+1. Please install XML Tools plugin for formatting your XML translation. Via menu "Plugins -> XML Tools-> Pretty Print - indent only" command.
+2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
 	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.5.1">
@@ -325,13 +327,13 @@ The comments are here for explanation, it's not necessary to translate them.
 					<Item id="45057" name="OEM 865: Скандинавська"/>
 					<Item id="45053" name="OEM 860: Португальська"/>
 					<Item id="45056" name="OEM 863: Французька"/>
-
 					<Item id="10001" name="Відкрити в іншому вікні"/>
+
 					<Item id="10002" name="Копіювати в інше вікно"/>
 					<Item id="10003" name="Перейти до нового екземпляра"/>
 					<Item id="10004" name="Відкрити в новому екземплярі"/>
-
 					<Item id="46001" name="Конфігуратор стилю..."/>
+
 					<Item id="46250" name="Визначити мову..."/>
 					<Item id="46300" name="Відкрити користувацьку теку мови..."/>
 					<Item id="46301" name="Збірка мов Notepad++ визначених користувачем"/>
@@ -360,8 +362,8 @@ The comments are here for explanation, it's not necessary to translate them.
 					<Item id="48505" name="Генерувати з файлів..."/>
 					<Item id="48506" name="Генерувати з вибраного в буфер обміну"/>
 					<Item id="49000" name="Виконати..."/>
-
 					<Item id="50000" name="Завершення функцій"/>
+
 					<Item id="50001" name="Завершення слів"/>
 					<Item id="50002" name="Підказка параметрів функцій"/>
 					<Item id="50010" name="Наступна підказка параметрів функцій"/>
@@ -373,8 +375,8 @@ The comments are here for explanation, it's not necessary to translate them.
 					<Item id="42041" name="Очистити список останніх файлів"/>
 					<Item id="48016" name="Змінити комб. клавіш/Видалити макрос..."/>
 					<Item id="48017" name="Змінити комб. клавіш/Видалити команду..."/>
-
 					<Item id="11001" name="&amp;Windows..."/>
+
 					<Item id="11002" name="Назва від A до Z"/>
 					<Item id="11003" name="Назва від Z до A"/>
 					<Item id="11004" name="Шлях від A до Z"/>
@@ -382,6 +384,7 @@ The comments are here for explanation, it's not necessary to translate them.
 					<Item id="11006" name="Тип від A до Z"/>
 					<Item id="11007" name="Тип від Z до A"/>
 					<Item id="11008" name="За збільшенням розміру"/>
+					<Item id="11009" name="За зменшенням розміру"/>
 					<Item id="11009" name="За зменшенням розміру"/>
 				</Commands>
 			</Main>
@@ -910,7 +913,6 @@ The comments are here for explanation, it's not necessary to translate them.
 					<Item id="6108" name="Заборонити перетягування"/>
 					<Item id="6109" name="Затемнені неактивні вкладки"/>
 					<Item id="6110" name="Кольорова панель активної вкладки"/>
-
 					<Item id="6111" name="Рядок стану"/>
 					<Item id="6112" name="Кнопка закриття на кожній вкладці"/>
 					<Item id="6113" name="Закривати подвійним клацанням"/>
@@ -921,10 +923,12 @@ The comments are here for explanation, it's not necessary to translate them.
 
 					<Item id="6131" name="Меню"/>
 					<Item id="6122" name="Приховати панель меню (Alt чи F10)"/>
+
 					<Item id="6132" name="Приховати ярлики ＋ ▼ ✕ у правій частині панелі меню (Необхідно перезапустити Notepad++)"/>
 					<Item id="6123" name="Локалізація"/>
-
 					<Item id="6128" name="Змінювати піктограми"/>
+
+					<Item id="6123" name="Локалізація"/>
 				</Global>
 				<Scintillas title="Редагування">
 					<Item id="6216" name="Налаштування вставки"/>
@@ -956,6 +960,7 @@ The comments are here for explanation, it's not necessary to translate them.
 					<Item id="6254" name="Абревіатура"/>
 					<Item id="6255" name="Точка коду"/>
 					<Item id="6256" name="Власний колір"/>
+					<Item id="6258" name="Застосувати до C0, C1 &amp;&amp; Unicode EOL"/>
 				</Scintillas>
 
 				<DarkMode title="Темний режим">
@@ -1387,6 +1392,7 @@ The comments are here for explanation, it's not necessary to translate them.
 			<WindowsSessionExit title="Notepad++ - вихід із сеансу Windows" message="Сеанс Windows невдовзі буде завершено, але у вас є незбережені дані. Хочете вийти з Notepad++ зараз?"/>
 			<LanguageMenuCompactWarning title="Компактне меню мови" message="Цей параметр буде змінено під час наступного запуску."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
 			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незбережені зміни будуть скасовані! Ви хочете зберегти зміни перед зміною теми?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
+			<MacroAndRunCmdlWarning title="Сумісність макросів і запуск команд" message="Ваші команди Макрос і Виконання збережені в Notepad++ v.8.5.2 (або старіші) можуть бути несумісними з поточною версією Notepad++. Будь ласка, протестуйте ці команди і, якщо потрібно, повторно відредагуйте їх. Крім того, ви можете перейти до Notepad++ v8.5.2 і відновити попередні дані. Notepad++ зробить резервну копію старого &quot;shortcuts.xml&quot; і збереже його як &quot;shortcuts.xml.v8.5.2.backup&quot;. Перейменування &quot;shortcuts.xml.v8.5.2.backup&quot; -&gt; &quot;shortcuts.xml&quot;, ваші команди повинні бути відновлені та правильно працювати."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Історія буфера"/>
@@ -1616,6 +1622,7 @@ The comments are here for explanation, it's not necessary to translate them.
 
 			<!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
 			<npcCustomColor-tip value="Відкрийте конфігуратор стилю, щоб змінити типовий власний колір для вибраних пропусків та не друкованих символів (&quot;Власний колір символів, що не друкуються&quot;)."/>
+			<npcIncludeCcUniEol-tip value="Застосувати налаштування вигляду символів, які не друкують до C0, C1 control і підтримка Unicode EOL (наступний рядок, роздільник ліній та роздільник абзац) символи."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
