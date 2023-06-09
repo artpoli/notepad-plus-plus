@@ -1076,8 +1076,8 @@ Translation note:
 				<Print title="Друк">
 					<Item id="6601" name="Друкувати номери рядків"/>
 					<Item id="6602" name="Параметри кольору"/>
-					<Item id="6603" name="W&amp;YSIWYG"/>
-					<Item id="6604" name="I&amp;nvert"/>
+					<Item id="6603" name="Візуальний редактор"/>
+					<Item id="6604" name="Інвертувати"/>
 					<Item id="6605" name="Чорним по білому"/>
 					<Item id="6606" name="Без кольору тла"/>
 					<Item id="6607" name="Відступи (в міліметрах)"/>
@@ -1565,9 +1565,9 @@ Translation note:
 			<finder-wrap-long-lines value="Обтинати слова в довгих рядках"/>
 			<common-ok value="Гаразд"/>
 			<common-cancel value="Скасувати"/>
-			<common-name value="Name"/>
+			<common-name value="Назва"/>
 			<tabrename-title value="Перейменувати поточну вкладку"/>
-			<tabrename-newname value="New name"/>
+			<tabrename-newname value="Нова назва"/>
 			<splitter-rotate-left value="Обернути вліво"/>
 			<splitter-rotate-right value="Обернути вправо"/>
 			<userdefined-title-new value="Створити нову мову..."/>
@@ -1617,7 +1617,7 @@ Translation note:
 			<contextMenu-clearStyle value="Очистити стиль"/>
 			<contextMenu-PluginCommands value="Команди плагіну"/>
 			<largeFileRestriction-tip value="Деякі функції можуть сповільнити роботу з великими файлами. Ці функції можна автоматично вимикати після відкриття такого файлу. Ви можете налаштувати ці опції тут.  ПРИМІТКА: 1. Для застосування змін потрібно повторно відкрити великі файли.  2. Якщо позначено параметр &quot;Глобальне вимкнення перенесення слів&quot; під час відкриття великого файлу, &quot;Перенесення слів&quot; буде деактивовано для всіх файлів. Ви можете знову ввімкнути його в меню &quot;Вигляд-&gt;Перенесення слів&quot;."/>
-			<npcNote-tip value="Representation of selected &quot;non-ASCII&quot; whitespace and non-printing (control) characters.  NOTE: Using representation will disable character effects on text.  For the full list of selected whitespace and non-printing characters check User Manual.  Click on this button to open website with User Manual."/>
+			<npcNote-tip value="Представлення вибраного &quot;не ASCII&quot; пропуску та не друкованих (контрольних) символів.  ПРИМІТКА: Використання представлення вимкне ефекти символів у тексті.  Для повного списку вибраних символів пропуску та не друкованих символів перегляньте настанови для користувачів.  Натисніть цю кнопку, щоб відкрити вебсайт із настановами користувача."/>
 			<npcAbbreviation-tip value="Абревіатура : назва NBSP : нерозривний пропуск ZWSP : пропуск із нульовою шириною ZWNBSP : нерозривний пропуск із нульовою  Для повного списку перегляньте настанови для користувачів. Натисніть кнопку &quot;?&quot; праворуч, щоб відкрити вебсайт із настановами для користувачів."/>
 			<npcCodepoint-tip value="Точка коду : назва U+00A0 : нерозривний пропуск U+200B : пропуск із нульовою шириною U+FEFF : нерозривний пропуск із нульовою шириною  Для повного списку перегляньте настанови для користувачів. Натисніть кнопку &quot;?&quot; праворуч, щоб відкрити вебсайт із настановами для користувачів."/>
 
