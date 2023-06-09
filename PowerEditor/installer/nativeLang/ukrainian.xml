@@ -746,7 +746,7 @@ Translation note:
 					<Item id="25001" name="Жирний"/>
 					<Item id="25002" name="Курсив"/>
 					<Item id="25003" name="Підкреслений"/>
-					<Item id="25029" name="Вкладення"/>
+					<Item id="25029" name="Успадкування"/>
 					<Item id="25008" name="Розділювач 1"/>
 					<Item id="25009" name="Розділювач 2"/>
 					<Item id="25010" name="Розділювач 3"/>
@@ -776,20 +776,20 @@ Translation note:
 				<Folder title="Стандартний">
 					<Item id="21101" name="Типовий стиль"/>
 					<Item id="21102" name="Налаштувати"/>
-					<Item id="21105" name="Documentation"/>
+					<Item id="21105" name="Документація"/>
 					<Item id="21104" name="Тимчасовий сайт документації:"/>
 					<Item id="21106" name="Компактне згорт. (пусті рядки також)"/>
-					<Item id="21220" name="Folding in code 1 style"/>
+					<Item id="21220" name="Згортання в коді стилю 1"/>
 					<Item id="21224" name="Відкривати:"/>
 					<Item id="21225" name="Середина:"/>
 					<Item id="21226" name="Закривати:"/>
 					<Item id="21227" name="Стиль"/>
-					<Item id="21320" name="Folding in code 2 style (separators needed)"/>
+					<Item id="21320" name="Згортання в коді стилю 2 (потрібні розділювачі)"/>
 					<Item id="21324" name="Відкривати:"/>
 					<Item id="21325" name="Середина:"/>
 					<Item id="21326" name="Закривати:"/>
 					<Item id="21327" name="Стиль"/>
-					<Item id="21420" name="Folding in comment style"/>
+					<Item id="21420" name="Згортання в стилі коментаря"/>
 					<Item id="21424" name="Відкривати:"/>
 					<Item id="21425" name="Середина:"/>
 					<Item id="21426" name="Закривати:"/>
@@ -932,8 +932,8 @@ Translation note:
 				</Global>
 				<Scintillas title="Редагування">
 					<Item id="6216" name="Налаштування вставки"/>
-					<Item id="6217" name="Width:"/>
-					<Item id="6219" name="Blink rate:"/>
+					<Item id="6217" name="Ширина:"/>
+					<Item id="6219" name="Частота мерехтіння:"/>
 					<Item id="6221" name="Ч"/>
 					<Item id="6222" name="Р"/>
 					<Item id="6246" name="Перемикати команди згортання/розгортання поточного рівня"/>
@@ -951,7 +951,7 @@ Translation note:
 					<Item id="6652" name="Немає"/>
 					<Item id="6653" name="Підсвічувати задній план"/>
 					<Item id="6654" name="Рамка"/>
-					<Item id="6655" name="Width:"/>
+					<Item id="6655" name="Ширина:"/>
 					<Item id="6247" name="EOL (CRLF)"/><!-- Don't translate "(CRLF)" -->
 					<Item id="6248" name="Типово"/>
 					<Item id="6249" name="Звичайний текст"/>
