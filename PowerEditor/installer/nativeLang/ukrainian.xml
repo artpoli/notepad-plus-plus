@@ -492,15 +492,15 @@ Translation note:
 			</IncrementalFind>
 
 			<FindCharsInRange title="Знайти символи в діапазоні...">
-				<Item id="2" name="&amp;Close"/>
-				<Item id="2901" name="&amp;Non-ASCII characters (128–255)"/>
-				<Item id="2902" name="&amp;ASCII characters (0–127)"/>
+				<Item id="2" name="Закрити"/>
+				<Item id="2901" name="Не ASCII символи (128–255)"/>
+				<Item id="2902" name="ASCII символи (0–127)"/>
 				<Item id="2903" name="Custom &amp;range (0–255):"/>
 				<Item id="2906" name="Вгору"/>
 				<Item id="2907" name="Вниз"/>
 				<Item id="2908" name="Напрямок"/>
 				<Item id="2909" name="Циклічний пошук"/>
-				<Item id="2910" name="&amp;Find"/>
+				<Item id="2910" name="Знайти"/>
 			</FindCharsInRange>
 
 			<GoToLine title="Перехід до...">
@@ -547,7 +547,7 @@ Translation note:
 			<PluginsAdminDlg title="Адміністрування плагінів" titleAvailable="Доступно" titleUpdates="Оновлення" titleInstalled="Встановлено" titleIncompatible="Несумісно">
 				<ColumnPlugin name="Плагін"/>
 				<ColumnVersion name="Версія"/>
-				<Item id="5501" name="&amp;Search:"/>
+				<Item id="5501" name="Пошук:"/>
 				<Item id="5503" name="&amp;Install"/>
 				<Item id="5504" name="&amp;Update"/>
 				<Item id="5505" name="&amp;Remove"/>
@@ -727,10 +727,10 @@ Translation note:
 			<UserDefine title="Визначено користувачем">
 				<Item id="20001" name="Прикріпити"/>
 				<Item id="20002" name="Перейменувати"/>
-				<Item id="20003" name="Create new..."/>
+				<Item id="20003" name="Створити..."/>
 				<Item id="20004" name="Вилучити"/>
 				<Item id="20005" name="Зберегти як..."/>
-				<Item id="20007" name="User language"/>
+				<Item id="20007" name="Мова користувача"/>
 				<Item id="20009" name="Розширення:"/>
 				<Item id="20012" name="Будь-який регістр"/>
 				<Item id="20011" name="Прозорість"/>
@@ -738,7 +738,7 @@ Translation note:
 				<Item id="20016" name="Експорт..."/>
 				<Item id="20017" name="Розстикувати"/>
 				<StylerDialog title="Стиль">
-					<Item id="25030" name="Font options"/>
+					<Item id="25030" name="Налаштування шрифту"/>
 					<Item id="25006" name="Колір переднього плану"/>
 					<Item id="25007" name="Колір тла"/>
 					<Item id="25031" name="Назва:"/>
@@ -746,7 +746,7 @@ Translation note:
 					<Item id="25001" name="Жирний"/>
 					<Item id="25002" name="Курсив"/>
 					<Item id="25003" name="Підкреслений"/>
-					<Item id="25029" name="Nesting"/>
+					<Item id="25029" name="Вкладення"/>
 					<Item id="25008" name="Розділювач 1"/>
 					<Item id="25009" name="Розділювач 2"/>
 					<Item id="25010" name="Розділювач 3"/>
