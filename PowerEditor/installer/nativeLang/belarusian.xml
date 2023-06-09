@@ -1029,6 +1029,7 @@ Translation note:
 					<Item id="6411" name="Сінтаксіс:"/>
 					<Item id="6419" name="Стварыць дакумент"/>
 					<Item id="6420" name="Ужыць пры адкрыцці файлаў ANSI"/>
+					<Item id="6432" name="Always open a new document in addition at startup"/>
 				</NewDoc>
 
 				<DefaultDir title="Прадвызначаны каталог">
