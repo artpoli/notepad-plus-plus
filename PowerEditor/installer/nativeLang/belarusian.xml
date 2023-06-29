@@ -368,32 +368,32 @@ Translation note:
 					<Item id="48508" name="Завяршэнне функцый"/>
 					<Item id="48509" name="Завяршэнне слоў"/>
 					<Item id="48510" name="Выканаць..."/>
-					<Item id="48511" name="Generate from files..."/>
+					<Item id="48511" name="Завяршэнне функцый"/>
 					<Item id="48512" name="Завяршэнне слоў"/>
 					<Item id="50002" name="Падказка параметраў функцый"/>
 
-					<Item id="50010" name="Function Completion"/>
-					<Item id="50011" name="Word Completion"/>
-					<Item id="50005" name="Function Parameters Hint"/>
+					<Item id="50010" name="Папярэдняя падказка параметраў функцый"/>
+					<Item id="50011" name="Наступная падказка параметраў функцый"/>
+					<Item id="50005" name="Пераключыць запіс макраса"/>
 					<Item id="50006" name="Завяршэнне шляху"/>
 					<Item id="44042" name="Схаваць радкі"/>
 					<Item id="42040" name="Адкрыць усе нядаўнія файлы"/>
-					<Item id="42041" name="Path Completion"/>
-					<Item id="44042" name="Hide Lines"/>
-					<Item id="42040" name="Open All Recent Files"/>
-					<Item id="42041" name="Empty Recent Files List"/>
-					<Item id="48016" name="Modify Shortcut/Delete Macro..."/>
-					<Item id="48017" name="Modify Shortcut/Delete Command..."/>
+					<Item id="42041" name="Ачысціць спіс нядаўніх файлаў"/>
+					<Item id="48016" name="Змяніць спалучэнні клавіш/выдаліць макрас..."/>
+					<Item id="48017" name="Змяніць спалучэнні клавіш/выдаліць каманду..."/>
+					<Item id="11001" name="Windows..."/>
+					<Item id="11002" name="Назва ад А да Я"/>
+					<Item id="11003" name="Назва ад Я да А"/>
 
-					<Item id="11001" name="&amp;Windows..."/>
-					<Item id="11002" name="Name A to Z"/>
-					<Item id="11003" name="Name Z to A"/>
-					<Item id="11004" name="Path A to Z"/>
-					<Item id="11005" name="Path Z to A"/>
-					<Item id="11006" name="Type A to Z"/>
-					<Item id="11007" name="Type Z to A"/>
-					<Item id="11008" name="Size Smaller to Larger"/>
-					<Item id="11009" name="Size Larger to Smaller"/>
+					<Item id="11004" name="Шлях ад А да Я"/>
+					<Item id="11005" name="Шлях ад Я да А"/>
+					<Item id="11006" name="Тып ад А да Я"/>
+					<Item id="11007" name="Тып ад Я да А"/>
+					<Item id="11008" name="Па павелічэнні памеру"/>
+					<Item id="11009" name="Па змяншэнні памеру"/>
+					<Item id="11007" name="Тып ад Я да А"/>
+					<Item id="11008" name="Па павелічэнні памеру"/>
+					<Item id="11009" name="Па змяншэнні памеру"/>
 				</Commands>
 			</Main>
 			<TabBar>
@@ -554,26 +554,26 @@ Translation note:
 
 			<SHA1FromFilesDlg title="Generate SHA-1 digest from files">
 				<Item id="1922" name="Choose files to &amp;generate SHA-1..."/>
-				<Item id="1924" name="Co&amp;py to Clipboard"/>
-				<Item id="2" name="&amp;Close"/>
+				<Item id="1924" name="Капіяваць у буфер абмену"/>
+				<Item id="2" name="Закрыць"/>
 			</SHA1FromFilesDlg>
 
 			<SHA1FromTextDlg title="Generate SHA-1 digest">
-				<Item id="1932" name="Treat each line as a &amp;separate string"/>
-				<Item id="1934" name="Co&amp;py to Clipboard"/>
-				<Item id="2" name="&amp;Close"/>
+				<Item id="1932" name="Апрацаваць кожны радок як асобны"/>
+				<Item id="1934" name="Капіяваць у буфер абмену"/>
+				<Item id="2" name="Закрыць"/>
 			</SHA1FromTextDlg>
 
 			<SHA512FromFilesDlg title="Generate SHA-512 digest from files">
 				<Item id="1922" name="Choose files to &amp;generate SHA-512..."/>
-				<Item id="1924" name="Co&amp;py to Clipboard"/>
-				<Item id="2" name="&amp;Close"/>
+				<Item id="1924" name="Капіяваць у буфер абмену"/>
+				<Item id="2" name="Закрыць"/>
 			</SHA512FromFilesDlg>
 
 			<SHA512FromTextDlg title="Generate SHA-512 digest">
-				<Item id="1932" name="Treat each line as a &amp;separate string"/>
-				<Item id="1934" name="Co&amp;py to Clipboard"/>
-				<Item id="2" name="&amp;Close"/>
+				<Item id="1932" name="Апрацаваць кожны радок як асобны"/>
+				<Item id="1934" name="Капіяваць у буфер абмену"/>
+				<Item id="2" name="Закрыць"/>
 			</SHA512FromTextDlg>
 			<PluginsAdminDlg title="Адміністраванне ўбудоў" titleAvailable="Даступна" titleUpdates="Абнаўленні" titleInstalled="Усталявана" titleIncompatible="Несумяшчальны">
 				<ColumnPlugin name="Убудова"/>
