@@ -713,6 +713,14 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	_sha2FromFilesDlg.setHashType(hash_sha256);
 	_sha2FromTextDlg.init(_pPublicInterface->getHinst(), hwnd);
 	_sha2FromTextDlg.setHashType(hash_sha256);
+	_sha1FromFilesDlg.init(_pPublicInterface->getHinst(), hwnd);
+	_sha1FromFilesDlg.setHashType(hash_sha1);
+	_sha1FromTextDlg.init(_pPublicInterface->getHinst(), hwnd);
+	_sha1FromTextDlg.setHashType(hash_sha1);
+	_sha512FromFilesDlg.init(_pPublicInterface->getHinst(), hwnd);
+	_sha512FromFilesDlg.setHashType(hash_sha512);
+	_sha512FromTextDlg.init(_pPublicInterface->getHinst(), hwnd);
+	_sha512FromTextDlg.setHashType(hash_sha512);
 
 
 	//--User Define Dialog Section--//
