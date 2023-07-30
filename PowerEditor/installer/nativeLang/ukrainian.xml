@@ -47,7 +47,7 @@ Translation note:
 					<Item subMenuId="search-jumpDown" name="Вниз"/>
 					<Item subMenuId="search-copyStyledText" name="Копіювати стиль тексту"/>
 					<Item subMenuId="search-bookmark" name="Закладка"/>
-					<Item subMenuId="view-currentFileIn" name="Перегляд поточного файлу в"/>
+					<Item subMenuId="view-currentFileIn" name="Переглянути цей файл у"/>
 					<Item subMenuId="view-showSymbol" name="Показати символ"/>
 					<Item subMenuId="view-zoom" name="Масштаб"/>
 					<Item subMenuId="view-moveCloneDocument" name="Перемістити/Клонувати поточний документ"/>
