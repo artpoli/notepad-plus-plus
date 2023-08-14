@@ -587,7 +587,7 @@ Translation note:
 				<Item id="5504" name="&amp;Абнавіць"/>
 				<Item id="5505" name="&amp;Выдаліць"/>
 				<Item id="5508" name="&amp;Далей"/>
-				<Item id="5509" name="Plugin list version:"/>
+				<Item id="5509" name="Версія спісу ўбудовы:"/>
 				<Item id="5511" name="Рэпазіторый спісу ўбудовы"/>
 				<Item id="2" name="Закрыць"/>
 			</PluginsAdminDlg>
@@ -762,10 +762,10 @@ Translation note:
 			<UserDefine title="Вызначана карыстальнікам">
 				<Item id="20001" name="Прымацаваць"/>
 				<Item id="20002" name="Перайменаваць"/>
-				<Item id="20003" name="Create new..."/>
+				<Item id="20003" name="Стварыць новы..."/>
 				<Item id="20004" name="Выдаліць"/>
 				<Item id="20005" name="Захаваць як..."/>
-				<Item id="20007" name="User language"/>
+				<Item id="20007" name="Мова карыстальніка"/>
 				<Item id="20009" name="Пашырэнні:"/>
 				<Item id="20012" name="Любы рэгістр"/>
 				<Item id="20011" name="Празрыстасць"/>
@@ -773,7 +773,7 @@ Translation note:
 				<Item id="20016" name="Экспарт..."/>
 				<Item id="20017" name="Адстыкаваць"/>
 				<StylerDialog title="Стыль">
-					<Item id="25030" name="Font options"/>
+					<Item id="25030" name="Параметры шрыфту"/>
 					<Item id="25006" name="Асноўны колер"/>
 					<Item id="25007" name="Колер фону"/>
 					<Item id="25031" name="Назва:"/>
@@ -781,7 +781,7 @@ Translation note:
 					<Item id="25001" name="Тоўсты"/>
 					<Item id="25002" name="Курсіў"/>
 					<Item id="25003" name="Падкрэслены"/>
-					<Item id="25029" name="Nesting"/>
+					<Item id="25029" name="Укладанні"/>
 					<Item id="25008" name="1-ы раздзяляльнік"/>
 					<Item id="25009" name="2-гі раздзяляльнік"/>
 					<Item id="25010" name="3-і раздзяляльнік"/>
@@ -811,20 +811,20 @@ Translation note:
 				<Folder title="Стандартны">
 					<Item id="21101" name="Прадвызначаны стыль"/>
 					<Item id="21102" name="Стыль"/>
-					<Item id="21105" name="Documentation"/>
+					<Item id="21105" name="Дакументацыя"/>
 					<Item id="21104" name="Часовы сайт дакументацыі:"/>
 					<Item id="21106" name="Кампактнае згортванне (з пустымі радкамі)"/>
-					<Item id="21220" name="Folding in code 1 style"/>
+					<Item id="21220" name="Згортванне ў кодзе 1-га стылю"/>
 					<Item id="21224" name="Адкрыць:"/>
 					<Item id="21225" name="Сярэдзіна:"/>
 					<Item id="21226" name="Закрыць:"/>
 					<Item id="21227" name="Стыль"/>
-					<Item id="21320" name="Folding in code 2 style (separators needed)"/>
+					<Item id="21320" name="Згортванне ў кодзе 2-га стылю (патрэбныя раздзяляльнікі)"/>
 					<Item id="21324" name="Адкрыць:"/>
 					<Item id="21325" name="Сярэдзіна:"/>
 					<Item id="21326" name="Закрыць:"/>
 					<Item id="21327" name="Стыль"/>
-					<Item id="21420" name="Folding in comment style"/>
+					<Item id="21420" name="Згортванне ў стылі каментарыя"/>
 					<Item id="21424" name="Адкрыць:"/>
 					<Item id="21425" name="Сярэдзіна:"/>
 					<Item id="21426" name="Закрыць:"/>
@@ -956,7 +956,7 @@ Translation note:
 					<Item id="6121" name="Exit on close the last tab"/>
 					<Item id="6128" name="Alternate icons"/>
 
-					<Item id="6133" name="Status Bar"/>
+					<Item id="6133" name="Радок стану"/>
 					<Item id="6134" name="Hide"/>
 
 					<Item id="6131" name="Menu"/>
@@ -967,8 +967,8 @@ Translation note:
 				</Global>
 				<Scintillas title="Праўка">
 					<Item id="6216" name="Налады пункту ўстаўкі"/>
-					<Item id="6217" name="Width:"/>
-					<Item id="6219" name="Blink rate:"/>
+					<Item id="6217" name="Шырыня:"/>
+					<Item id="6219" name="Частата мігцення:"/>
 					<Item id="6221" name="+"/>
 					<Item id="6222" name="-"/>
 					<Item id="6246" name="Пераключаць каманды згортвання/разгортвання бягучага ўзроўню"/>
@@ -986,7 +986,7 @@ Translation note:
 					<Item id="6652" name="Няма"/>
 					<Item id="6653" name="Падсвятляць фон"/>
 					<Item id="6654" name="Рамка"/>
-					<Item id="6655" name="Width:"/>
+					<Item id="6655" name="Шырыня:"/>
 					<Item id="6247" name="EOL (CRLF)"/><!-- Don't translate "(CRLF)" -->
 					<Item id="6248" name="Прадвызначана"/>
 					<Item id="6249" name="Звычайны тэкст"/>
@@ -995,7 +995,7 @@ Translation note:
 					<Item id="6254" name="Скарачэнне"/>
 					<Item id="6255" name="Пункт кода"/>
 					<Item id="6256" name="Карыстальніцкі колер"/>
-					<Item id="6258" name="Apply to C0, C1 &amp;&amp; Unicode EOL"/>
+					<Item id="6258" name="Ужыць да C0, C1 &amp;&amp; Unicode EOL"/>
 				</Scintillas>
 
 				<DarkMode title="Цёмны рэжым">
@@ -1064,7 +1064,7 @@ Translation note:
 					<Item id="6411" name="Сінтаксіс:"/>
 					<Item id="6419" name="Стварыць дакумент"/>
 					<Item id="6420" name="Ужыць пры адкрыцці файлаў ANSI"/>
-					<Item id="6432" name="Always open a new document in addition at startup"/>
+					<Item id="6432" name="Заўсёды адкрываць новы дакумент пры запуску"/>
 				</NewDoc>
 
 				<DefaultDir title="Прадвызначаны каталог">
@@ -1109,30 +1109,30 @@ Translation note:
 				</Highlighting>
 
 				<Print title="Друк">
-					<Item id="6601" name="Print line n&amp;umber"/>
+					<Item id="6601" name="Друкаваць &amp;нумары радкоў"/>
 					<Item id="6602" name="Параметры колеру"/>
 					<Item id="6603" name="W&amp;YSIWYG"/>
-					<Item id="6604" name="I&amp;nvert"/>
-					<Item id="6605" name="Black on &amp;white"/>
-					<Item id="6606" name="No bac&amp;kground color"/>
+					<Item id="6604" name="Інвертаваць&amp;"/>
+					<Item id="6605" name="Чорным па &amp;белым"/>
+					<Item id="6606" name="Без &amp;колеру фону"/>
 					<Item id="6607" name="Налады водступаў (у мм)"/>
-					<Item id="6612" name="&amp;Left"/>
-					<Item id="6613" name="&amp;Top"/>
-					<Item id="6614" name="&amp;Right"/>
-					<Item id="6615" name="Botto&amp;m"/>
-					<Item id="6706" name="&amp;Bold"/>
-					<Item id="6707" name="&amp;Italic"/>
+					<Item id="6612" name="&amp;Злева"/>
+					<Item id="6613" name="&amp;Уверсе"/>
+					<Item id="6614" name="&amp;Справа"/>
+					<Item id="6615" name="&amp;Знізу"/>
+					<Item id="6706" name="&amp;Тоўсты"/>
+					<Item id="6707" name="&amp;Курсіў"/>
 					<Item id="6708" name="Верхні калонтытул"/>
-					<Item id="6709" name="L&amp;eft part"/>
-					<Item id="6710" name="&amp;Middle part"/>
-					<Item id="6711" name="Ri&amp;ght part"/>
-					<Item id="6717" name="Bol&amp;d"/>
-					<Item id="6718" name="Itali&amp;c"/>
+					<Item id="6709" name="&amp;Левая частка"/>
+					<Item id="6710" name="&amp;Сярэдняя частка"/>
+					<Item id="6711" name="&amp;Правая частка"/>
+					<Item id="6717" name="&amp;Тоўсты"/>
+					<Item id="6718" name="&amp;Курсіў"/>
 					<Item id="6719" name="Ніжні калонтытул"/>
-					<Item id="6720" name="Le&amp;ft part"/>
-					<Item id="6721" name="Middle &amp;part"/>
-					<Item id="6722" name="Rig&amp;ht part"/>
-					<Item id="6723" name="&amp;Add"/>
+					<Item id="6720" name="&amp;Левая частка"/>
+					<Item id="6721" name="&amp;Сярэдняя частка"/>
+					<Item id="6722" name="&amp;Правая частка"/>
+					<Item id="6723" name="&amp;Дадаць"/>
 					<ComboBox id="6724">
 						<Element name="Поўны шлях файла"/>
 						<Element name="Назва файла"/>
@@ -1142,7 +1142,7 @@ Translation note:
 						<Element name="Доўгі фармат даты"/>
 						<Element name="Час"/>
 					</ComboBox>
-					<Item id="6725" name="&amp;Variable:"/>
+					<Item id="6725" name="&amp;Пераменная:"/>
 					<Item id="6727" name="Тут будуць паказаны налады пераменных"/>
 					<Item id="6728" name="Верхні і ніжні калонтытул"/>
 				</Print>
@@ -1302,7 +1302,7 @@ Translation note:
 			<MultiMacro title="Шматразовае выкананне макраса">
 				<Item id="1" name="Выканаць"/>
 				<Item id="2" name="Скасаваць"/>
-				<Item id="8006" name="Macro to run"/>
+				<Item id="8006" name="Макрас"/>
 				<Item id="8001" name="Выканаць"/>
 				<Item id="8005" name="разоў"/>
 				<Item id="8002" name="Выканаць да канца файла"/>
@@ -1317,15 +1317,15 @@ Translation note:
 			<ColumnEditor title="Рэдактар слупкоў">
 				<Item id="2023" name="Тэкст для ўстаўкі"/>
 				<Item id="2033" name="Лічба для ўстаўкі"/>
-				<Item id="2030" name="&amp;Initial number:"/>
-				<Item id="2031" name="Increase b&amp;y:"/>
-				<Item id="2038" name="&amp;Leading:"/>
+				<Item id="2030" name="&amp;Пачатковы нумар:"/>
+				<Item id="2031" name="&amp;Павялічыць на:"/>
+				<Item id="2038" name="&amp;Пачатковы:"/>
 				<ComboBox id="2039">
 					<Element name="Няма"/>
 					<Element name="Нулі"/>
 					<Element name="Прабелы"/>
 				</ComboBox>
-				<Item id="2036" name="&amp;Repeat:"/>
+				<Item id="2036" name="&amp;Паўтарыць:"/>
 				<Item id="2032" name="Фармат"/>
 				<Item id="2024" name="Дзесятковы"/>
 				<Item id="2025" name="Васьмярковы"/>
@@ -1337,8 +1337,8 @@ Translation note:
 			<FindInFinder title="Знайсці ў выніках пошуку">
 				<Item id="1" name="Знайсці ўсе"/>
 				<Item id="2" name="Закрыць"/>
-				<Item id="1711" name="&amp;Find what:"/>
-				<Item id="1713" name="Search &amp;only in found lines"/>
+				<Item id="1711" name="&amp;Што шукаць:"/>
+				<Item id="1713" name="&amp;Шукаць толькі ў знойдзеных радках"/>
 				<Item id="1714" name="Толькі цэлыя словы"/>
 				<Item id="1715" name="Улічваць рэгістр"/>
 				<Item id="1716" name="Рэжым пошуку"/>
@@ -1356,10 +1356,10 @@ Translation note:
 				<Item id="5" name="Не для ўсіх"/>
 			</DoSaveOrNot>
 			<DoSaveAll title="Пацвярджаць пры захаванні ўсяго">
-				<Item id="1766" name="Are you sure you want to save all modified documents?  Choose &quot;Always yes&quot; if you don't want to see this dialog again. You can re-activate this dialog in Preferences later."/>
+				<Item id="1766" name="Вы ўпэўнены, што хочаце захаваць усе змяненні дакумента?  Выберыце &quot;Заўсёды так&quot;, калі вы хочаце ўбачыць гэту прапанову яшчэ раз. Вы можаце паўторна актываваць гэты запыт у параметрах пазней."/>
 				<Item id="6" name="Так"/>
 				<Item id="7" name="Не"/>
-				<Item id="4" name="&amp;Always yes"/>
+				<Item id="4" name="&amp;Заўсёды так"/>
 			</DoSaveAll><!-- HowToReproduce: Check the 'Enable Save All confirm dialog' checkbox in Preference->MISC, now click 'Save all' -->
 		</Dialog>
 		<MessageBox>
@@ -1428,7 +1428,7 @@ Translation note:
 			<WindowsSessionExit title="Notepad++ - выхад з сеанса Windows" message="Сеанс Windows неўзабаве будзе завершаны, але ў вас ёсць незахаваныя даныя. Вы сапраўды хочаце выйсці з Notepad++ зараз?"/>
 			<LanguageMenuCompactWarning title="Кампактнае меню мовы" message="Гэты параметр будзе зменены падчас наступнага запуску."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
 			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незахаваныя змены будуць скасаваны! Вы сапраўды хочаце захаваць змены перад тым, як пераключыць тэму?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
-			<MacroAndRunCmdlWarning title="Macro and Run Commands Compatibility" message="Your Macro and Run commands saved in Notepad++ v.8.5.2 (or older) may not be compatible with the current version of Notepad++. Please test those commands and, if needed, re-edit them.  Alternatively, you can downgrade to Notepad++ v8.5.2 and restore your previous data. Notepad++ will backup your old &quot;shortcuts.xml&quot; and save it as &quot;shortcuts.xml.v8.5.2.backup&quot;. Renaming &quot;shortcuts.xml.v8.5.2.backup&quot; -&gt; &quot;shortcuts.xml&quot;, your commands should be restored and work properly."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
+			<MacroAndRunCmdlWarning title="Сумяшчальнасць макрасаў і каманд выканання" message="Вашы макрасы і каманды выканання, якія захаваны ў Notepad++ v.8.5.2 (або больш позняй версіі), могуць быць несумяшчальнымі з бягучай версіяй Notepad++. Пратэсціруйце гэтыя каманды і пры неабходнасці адрэдагуйце іх. Таксама вы можаце панізіць версію да Notepad++ v8.5.2 і аднавіць свае папярэднія даныя. Notepad++ захоўвае старую рэзервовую копію вашага файла &quot;shortcuts.xml&quot; пад назвай  &quot;shortcuts.xml.v8.5.2.backup&quot;. Пры перайменаванні  &quot;shortcuts.xml.v8.5.2.backup&quot; на -&gt; &quot;shortcuts.xml&quot;, вашы каманды павінны аднавіцца і слушна працаваць у гэтай версіі."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Гісторыя буфера абмену"/>
@@ -1602,7 +1602,7 @@ Translation note:
 			<common-cancel value="Скасаваць"/>
 			<common-name value="Name"/>
 			<tabrename-title value="Перайменаваць бягучую ўкладку"/>
-			<tabrename-newname value="New name"/>
+			<tabrename-newname value="Новая назва"/>
 			<splitter-rotate-left value="Павярнуць улева"/>
 			<splitter-rotate-right value="Павярнуць управа"/>
 			<userdefined-title-new value="Стварыць новую мову..."/>
@@ -1652,13 +1652,13 @@ Translation note:
 			<contextMenu-clearStyle value="Ачысціць стыль"/>
 			<contextMenu-PluginCommands value="Каманды ўбудовы"/>
 			<largeFileRestriction-tip value="Некаторыя функцыі могуць запаволіць прадукцыйнасць у вялікіх файлах. Гэтыя функцыі можна аўтаматычна адключаць пры адкрыцці вялікага файла. Вы можаце дапасаваць іх тут:  НАТАТКА: 1. Параметры, якія будуць тут зменены запатрабуюць паўторнага адкрыцця бягучых файлаў з вялікім памерам для дасягнення карэктных паводзін.  2. Калі пазначана &quot;Дэактываваць агульны перанос слоў&quot; і вы адкрываеце вялікі файл, то &quot;Перанос слоў&quot; будзе адключаны для ўсіх файлаў. Вы зможаце паўторна ўключыць яго праз меню &quot;Выгляд&gt;Перанос слоў&quot;."/>
-			<npcNote-tip value="Representation of selected &quot;non-ASCII&quot; whitespace and non-printing (control) characters.  NOTE: Using representation will disable character effects on text.  For the full list of selected whitespace and non-printing characters check User Manual.  Click on this button to open website with User Manual."/>
+			<npcNote-tip value="Прадстаўленне выбранага&quot;не ASCII&quot; пропуску і сімвалаў, якія не друкуюцца (кантрольных). ЗАЎВАГА: Выкарыстанне прадстаўлення адключыць эфекты сімвалаў у тэксце. Для поўнага спісу выбраных пропускаў і сімвалаў, якія не друкуюцца звярніцеся да дапаможніка карыстальніка. Націсніце гэту кнопку, каб адкрыць вэб-сайт з дапаможнікам карыстальніка."/>
 			<npcAbbreviation-tip value="Скарачэнне : назва NBSP : неразрыўны прабел ZWSP : прабел з нулявой шырынёй ZWNBSP : неразрыўны прабел з нулявой шырынёй  Для поўнага спісу скарачэнняў звярніцеся да дапаможніка карыстальніка. Націсніце кнопку, &quot;?&quot; якая размяшчаецца справа, каб адкрыць сайт з дапаможнікам карыстальніка."/>
 			<npcCodepoint-tip value="Пункт кода : назва U+00A0 : неразрыўны прабел U+200B : прабел з нулявой шырынёй U+FEFF : неразрыўны прабел з нулявой шырынёй  Для поўнага спісу скарачэнняў звярніцеся да дапаможніка карыстальніка. Націсніце кнопку, &quot;?&quot; якая размяшчаецца справа, каб адкрыць сайт з дапаможнікам карыстальніка."/>
 
 			<!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
 			<npcCustomColor-tip value="Адкрыйце канфігуратар стылю, каб змяніць прадвызначаны карыстальніцкі колер для выбраных пропускаў і сімвалаў, якія не друкуюцца (&quot;Карыстальніцкі колер і сімвалы, якія не друкуюцца&quot;)."/>
-			<npcIncludeCcUniEol-tip value="Apply non-printing characters appearance settings to C0, C1 control and Unicode EOL (next line, line separator and paragraph separator) characters."/>
+			<npcIncludeCcUniEol-tip value="Ужыць налады выгляду сімвалаў, якія не друкуюцца да C0, C1 control і Unicode EOL (наступны радок, раздзяляльнік радкоў і раздзяляльнік абзацаў)."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
