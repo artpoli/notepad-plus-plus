@@ -39,7 +39,7 @@ Translation note:
 					<Item subMenuId="edit-blankOperations" name="Пустыя аперацыі"/>
 					<Item subMenuId="edit-pasteSpecial" name="Адмысловая ўстаўка"/>
 					<Item subMenuId="edit-onSelection" name="У выбраным"/>
-					<Item subMenuId="search-changeHistory" name="Change History"/>
+					<Item subMenuId="search-changeHistory" name="Гісторыя змен"/>
 					<Item subMenuId="search-markAll" name="Стыль для ўсіх выпадкаў токена"/>
 					<Item subMenuId="search-markOne" name="Стыль для аднаго токена"/>
 					<Item subMenuId="search-unmarkAll" name="Ачысціць стыль"/>
@@ -252,9 +252,9 @@ Translation note:
 					<Item id="43064" name="Выкарыстанне 3-га стылю"/>
 					<Item id="43065" name="Выкарыстанне 4-га стылю"/>
 					<Item id="43066" name="Выкарыстанне 5-га стылю"/>
-					<Item id="43067" name="Go to Next Change"/>
-					<Item id="43068" name="Go to Previous Change"/>
-					<Item id="43069" name="Clear Change History"/>
+					<Item id="43067" name="Перайсці да наступнай змены"/>
+					<Item id="43068" name="Перайсці да папярэдняй змены"/>
+					<Item id="43069" name="Ачысціць гісторыю змен"/>
 					<Item id="43045" name="Акно вынікаў пошуку"/>
 					<Item id="43046" name="Наступны вынік пошуку"/>
 					<Item id="43047" name="Папярэдні вынік пошуку"/>
@@ -304,7 +304,7 @@ Translation note:
 					<Item id="44114" name="Капіяваць у буфер абмену"/>
 					<Item id="44115" name="Перамясціць дакумент"/>
 					<Item id="44130" name="Паказваць сімвалы, якія не друкуюцца"/>
-					<Item id="44131" name="Show Control Characters &amp;&amp; Unicode EOL"/>
+					<Item id="44131" name="Паказаць сімвалы кіравання &amp;&amp; Unicode EOL"/>
 					<Item id="44032" name="Поўнаэкранны рэжым"/>
 					<Item id="44033" name="Аднавіць маштаб"/>
 					<Item id="44034" name="Заўсёды зверху"/>
@@ -505,14 +505,14 @@ Translation note:
 
 			<FindCharsInRange title="Знайсці сімвалы ў дыяпазоне...">
 				<Item id="2" name="&amp;Close"/>
-				<Item id="2901" name="&amp;Non-ASCII characters (128–255)"/>
-				<Item id="2902" name="&amp;ASCII characters (0–127)"/>
-				<Item id="2903" name="Custom &amp;range (0–255):"/>
+				<Item id="2901" name="&amp;Не сімвалы ASCII (128–255)"/>
+				<Item id="2902" name="&amp;Сімвалы ASCII (0–127)"/>
+				<Item id="2903" name="Карыстальніцкі &amp;дыяпазон (0–255):"/>
 				<Item id="2906" name="Уверх"/>
 				<Item id="2907" name="Уніз"/>
 				<Item id="2908" name="Напрамак"/>
 				<Item id="2909" name="Цыклічны пошук"/>
-				<Item id="2910" name="&amp;Find"/>
+				<Item id="2910" name="&amp;Знайсці"/>
 			</FindCharsInRange>
 
 			<GoToLine title="Перайсці да...">
@@ -533,48 +533,48 @@ Translation note:
 			</Run>
 
 			<MD5FromFilesDlg title="Генерыраваць MD5 з файлаў">
-				<Item id="1922" name="Choose files to &amp;generate MD5..."/>
-				<Item id="1924" name="Co&amp;py to Clipboard"/>
+				<Item id="1922" name="Выберыце файлы для &amp;генерацыі MD5..."/>
+				<Item id="1924" name="Капіяваць&amp; у буфер абмену"/>
 				<Item id="2" name="&amp;Close"/>
 			</MD5FromFilesDlg>
 
 			<MD5FromTextDlg title="Генерыраваць MD5">
-				<Item id="1932" name="Treat each line as a &amp;separate string"/>
-				<Item id="1934" name="Co&amp;py to Clipboard"/>
+				<Item id="1932" name="Апрацаваць кожны радок &amp;як асобны"/>
+				<Item id="1934" name="Капіяваць&amp; у буфер абмену"/>
 				<Item id="2" name="&amp;Close"/>
 			</MD5FromTextDlg>
 
 			<SHA256FromFilesDlg title="Генерыраваць SHA-256 з файлаў">
-				<Item id="1922" name="Choose files to &amp;generate SHA-256..."/>
-				<Item id="1924" name="Co&amp;py to Clipboard"/>
+				<Item id="1922" name="Выберыце файлы для &amp;генерацыі SHA-256..."/>
+				<Item id="1924" name="Капіяваць&amp; у буфер абмену"/>
 				<Item id="2" name="&amp;Close"/>
 			</SHA256FromFilesDlg>
 
 			<SHA256FromTextDlg title="Генерыраваць SHA-256">
-				<Item id="1932" name="Treat each line as a &amp;separate string"/>
-				<Item id="1934" name="Co&amp;py to Clipboard"/>
+				<Item id="1932" name="Апрацаваць кожны радок &amp;як асобны"/>
+				<Item id="1934" name="Капіяваць&amp; у буфер абмену"/>
 				<Item id="2" name="&amp;Close"/>
 			</SHA256FromTextDlg>
 
-			<SHA1FromFilesDlg title="Generate SHA-1 digest from files">
-				<Item id="1922" name="Choose files to &amp;generate SHA-1..."/>
+			<SHA1FromFilesDlg title="Генерыраваць SHA-1 з файлаў">
+				<Item id="1922" name="Выберыце файлы для &amp;генерацыі SHA-1..."/>
 				<Item id="1924" name="Капіяваць у буфер абмену"/>
 				<Item id="2" name="Закрыць"/>
 			</SHA1FromFilesDlg>
 
-			<SHA1FromTextDlg title="Generate SHA-1 digest">
+			<SHA1FromTextDlg title="Генерыраваць дайджэст SHA-1">
 				<Item id="1932" name="Апрацаваць кожны радок як асобны"/>
 				<Item id="1934" name="Капіяваць у буфер абмену"/>
 				<Item id="2" name="Закрыць"/>
 			</SHA1FromTextDlg>
 
-			<SHA512FromFilesDlg title="Generate SHA-512 digest from files">
-				<Item id="1922" name="Choose files to &amp;generate SHA-512..."/>
+			<SHA512FromFilesDlg title="Генерыраваць дайджэст SHA-512 з файлаў">
+				<Item id="1922" name="Выберыце файлы для &amp;генерацыі SHA-512..."/>
 				<Item id="1924" name="Капіяваць у буфер абмену"/>
 				<Item id="2" name="Закрыць"/>
 			</SHA512FromFilesDlg>
 
-			<SHA512FromTextDlg title="Generate SHA-512 digest">
+			<SHA512FromTextDlg title="Генерыраваць дайджэст SHA-512">
 				<Item id="1932" name="Апрацаваць кожны радок як асобны"/>
 				<Item id="1934" name="Капіяваць у буфер абмену"/>
 				<Item id="2" name="Закрыць"/>
@@ -582,11 +582,11 @@ Translation note:
 			<PluginsAdminDlg title="Адміністраванне ўбудоў" titleAvailable="Даступна" titleUpdates="Абнаўленні" titleInstalled="Усталявана" titleIncompatible="Несумяшчальны">
 				<ColumnPlugin name="Убудова"/>
 				<ColumnVersion name="Версія"/>
-				<Item id="5501" name="&amp;Search:"/>
-				<Item id="5503" name="&amp;Install"/>
-				<Item id="5504" name="&amp;Update"/>
-				<Item id="5505" name="&amp;Remove"/>
-				<Item id="5508" name="&amp;Next"/>
+				<Item id="5501" name="&amp;Пошук:"/>
+				<Item id="5503" name="&amp;Усталяваць"/>
+				<Item id="5504" name="&amp;Абнавіць"/>
+				<Item id="5505" name="&amp;Выдаліць"/>
+				<Item id="5508" name="&amp;Далей"/>
 				<Item id="5509" name="Plugin list version:"/>
 				<Item id="5511" name="Рэпазіторый спісу ўбудовы"/>
 				<Item id="2" name="Закрыць"/>
