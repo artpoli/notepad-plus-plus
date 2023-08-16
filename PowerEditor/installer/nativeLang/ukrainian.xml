@@ -812,22 +812,21 @@ Translation note:
 					<Item id="21101" name="Типовий стиль"/>
 					<Item id="21102" name="Налаштувати"/>
 					<Item id="21105" name="Документація"/>
-					<Item id="21104" name="Тимчасовий сайт документації:"/>
 					<Item id="21106" name="Компактне згорт. (пусті рядки також)"/>
 					<Item id="21220" name="Згортання в коді стилю 1"/>
-					<Item id="21224" name="Відкривати:"/>
+					<Item id="21224" name="Відкриття:"/>
 					<Item id="21225" name="Середина:"/>
-					<Item id="21226" name="Закривати:"/>
+					<Item id="21226" name="Закриття:"/>
 					<Item id="21227" name="Стиль"/>
 					<Item id="21320" name="Згортання в коді стилю 2 (потрібні розділювачі)"/>
-					<Item id="21324" name="Відкривати:"/>
+					<Item id="21324" name="Відкриття:"/>
 					<Item id="21325" name="Середина:"/>
-					<Item id="21326" name="Закривати:"/>
+					<Item id="21326" name="Закриття:"/>
 					<Item id="21327" name="Стиль"/>
 					<Item id="21420" name="Згортання в стилі коментаря"/>
-					<Item id="21424" name="Відкривати:"/>
+					<Item id="21424" name="Відкриття:"/>
 					<Item id="21425" name="Середина:"/>
-					<Item id="21426" name="Закривати:"/>
+					<Item id="21426" name="Закриття:"/>
 					<Item id="21427" name="Стиль"/>
 				</Folder>
 				<Keywords title="Списки ключових слів">
@@ -1372,6 +1371,7 @@ Translation note:
 			<FileLockedWarning title="Збереження невдале" message="Перевірте, чи цей файл не відкритий в іншій програмі"/>
 			<FileAlreadyOpenedInNpp title="" message="Файл вже відкрито в Notepad++."/><!-- HowToReproduce: Open a new document and open a file "c:/tmp/foo", save this new document by choosing "c:/tmp/foo" as file to save, reply the override popup "yes", then this message appears. -->
 			<RenameTabTemporaryNameAlreadyInUse title="Не вдалося перейменувати" message="Вказана назва вже використовується в іншій вкладці."/><!-- HowToReproduce: Rename the tab of an untitled document and provide a name that is the same as an already-existing tab of an untitled document. -->
+			<RenameTabTemporaryNameIsEmpty title="Не вдалося перейменувати" message="The specified name cannot be empty, or it cannot contain only space(s) or TAB(s)."/><!-- HowToReproduce: Rename the tab of an untitled document and provide an empty string or only some white speces. -->
 			<DeleteFileFailed title="Видалити файл" message="Не вдалося видалити файл"/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 
 			<NbFileToOpenImportantWarning title="Надто велика кількість файлів для відкриття" message="$INT_REPLACE$ файлів невдовзі будуть відкриті. Ви дійсно хочете відкрити їх?"/><!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
@@ -1559,18 +1559,14 @@ Translation note:
 			<find-status-end-reached value="Знайти: Знайдено 1-й збіг згори. Було досягнуто кінця документа."/>
 			<find-status-replaceinfiles-1-replaced value="Замінити у файлах: Виконано 1 заміну"/>
 			<find-status-replaceinfiles-nb-replaced value="Замінити у файлах: Виконано $INT_REPLACE$ замін"/>
-			<find-status-replaceinfiles-re-malformed value="Замінити у Відкритих файлах: Неправильний регулярний вираз"/>
 			<find-status-replaceinopenedfiles-1-replaced value="Замінити у Відкритих файлах: Виконано 1 заміну"/>
 			<find-status-replaceinopenedfiles-nb-replaced value="Замінити у Відкритих файлах: Виконано $INT_REPLACE$ замін"/>
-			<find-status-mark-re-malformed value="Позначити: Неправильний регулярний вираз для пошуку"/>
 			<find-status-invalid-re value="Знайти: Неправильний регулярний вираз"/>
 			<find-status-search-failed value="Знайти: Пошук невдалий"/>
 			<find-status-mark-1-match value="Позначка: 1 збіг"/>
 			<find-status-mark-nb-matches value="Позначка: $INT_REPLACE$ збігів"/>
-			<find-status-count-re-malformed value="Підрахунок: Неправильний регулярний вираз для пошуку"/>
 			<find-status-count-1-match value="Підрахунок: 1 збіг"/>
 			<find-status-count-nb-matches value="Підрахунок: $INT_REPLACE$ збігів"/>
-			<find-status-replaceall-re-malformed value="Замінити все: Неправильний регулярний вираз"/>
 			<find-status-replaceall-1-replaced value="Замінити все: Замінено 1 випадок"/>
 			<find-status-replaceall-nb-replaced value="Замінити все: Замінено $INT_REPLACE$ випадків"/>
 			<find-status-replaceall-readonly value="Замінити все: Неможливо замінити текст. Цей документ призначений тільки для читання"/>
