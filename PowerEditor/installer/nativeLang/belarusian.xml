@@ -812,7 +812,6 @@ Translation note:
 					<Item id="21101" name="Прадвызначаны стыль"/>
 					<Item id="21102" name="Стыль"/>
 					<Item id="21105" name="Дакументацыя"/>
-					<Item id="21104" name="Часовы сайт дакументацыі:"/>
 					<Item id="21106" name="Кампактнае згортванне (з пустымі радкамі)"/>
 					<Item id="21220" name="Згортванне ў кодзе 1-га стылю"/>
 					<Item id="21224" name="Адкрыць:"/>
@@ -1372,6 +1371,7 @@ Translation note:
 			<FileLockedWarning title="Збой захавання" message="Праверце, ці не адкрыты гэты файл у іншай праграме"/>
 			<FileAlreadyOpenedInNpp title="" message="Файл ужо адкрыты ў Notepad++."/><!-- HowToReproduce: Open a new document and open a file "c:/tmp/foo", save this new document by choosing "c:/tmp/foo" as file to save, reply the override popup "yes", then this message appears. -->
 			<RenameTabTemporaryNameAlreadyInUse title="Збой перайменавання" message="Азначаная назва ўжо выкарыстоўваецца на іншай укладцы."/><!-- HowToReproduce: Rename the tab of an untitled document and provide a name that is the same as an already-existing tab of an untitled document. -->
+			<RenameTabTemporaryNameIsEmpty title="Збой перайменавання" message="The specified name cannot be empty, or it cannot contain only space(s) or TAB(s)."/><!-- HowToReproduce: Rename the tab of an untitled document and provide an empty string or only some white speces. -->
 			<DeleteFileFailed title="Выдаліць файл" message="Збой выдалення файла"/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 
 			<NbFileToOpenImportantWarning title="Надта вялікая колькасць файлаў для адкрыцця" message="$INT_REPLACE$ файлаў неўзабаве будзе адкрыта. Вы ўпэўнены, што хочаце адкрыць іх?"/><!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
@@ -1559,18 +1559,14 @@ Translation note:
 			<find-status-end-reached value="Знайсці: Знойдзена адно супадзенне зверху. Быў дасягнуты канец дакумента."/>
 			<find-status-replaceinfiles-1-replaced value="Замяніць у файлах: 1 супадзенне заменена"/>
 			<find-status-replaceinfiles-nb-replaced value="Замяніць у файлах: Выканана $INT_REPLACE$ замен"/>
-			<find-status-replaceinfiles-re-malformed value="Замяніць у адкрытых файлах: Няправільны рэгулярны выраз"/>
 			<find-status-replaceinopenedfiles-1-replaced value="Замяніць у адкрытых файлах: Выканана 1 замена"/>
 			<find-status-replaceinopenedfiles-nb-replaced value="Замяніць у адкрытых файлах: Выканана $INT_REPLACE$ замен"/>
-			<find-status-mark-re-malformed value="Пазнака: Няправільны рэгулярны выраз для пошуку"/>
 			<find-status-invalid-re value="Знайсці: Памылковы рэгулярны выраз"/>
 			<find-status-search-failed value="Знайсці: Збой пошуку"/>
 			<find-status-mark-1-match value="Пазнака: 1 супадзенне"/>
 			<find-status-mark-nb-matches value="Пазнака: $INT_REPLACE$ супадзенняў"/>
-			<find-status-count-re-malformed value="Падлічыць: Няправільны рэгулярны выраз для пошуку"/>
 			<find-status-count-1-match value="Падлічыць: 1 супадзенне"/>
 			<find-status-count-nb-matches value="Падлічыць: $INT_REPLACE$ супадзенняў"/>
-			<find-status-replaceall-re-malformed value="Замяніць усе: Няправільны рэгулярны выраз"/>
 			<find-status-replaceall-1-replaced value="Замяніць усе: 1 супадзенне заменена"/>
 			<find-status-replaceall-nb-replaced value="Замяніць усе: Заменена $INT_REPLACE$ супадзенняў"/>
 			<find-status-replaceall-readonly value="Замяніць усе: Немагчыма замяніць тэкст. Бягучы дакумент прызначаны толькі для чытання"/>
