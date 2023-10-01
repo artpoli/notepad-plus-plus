@@ -421,6 +421,7 @@ static const WinMenuKeyDefinition winKeyDefs[] =
 
 	{ VK_F5,      IDM_EXECUTE,                                  false, false, false, nullptr },
 
+	{ VK_NULL,    IDM_WINDOW_WINDOWS,                           false, false, false, nullptr },
 	{ VK_NULL,    IDM_WINDOW_SORT_FN_ASC,                       false, false, false, TEXT("Sort By Name A to Z") },
 	{ VK_NULL,    IDM_WINDOW_SORT_FN_DSC,                       false, false, false, TEXT("Sort By Name Z to A") },
 	{ VK_NULL,    IDM_WINDOW_SORT_FP_ASC,                       false, false, false, TEXT("Sort By Path A to Z") },
@@ -1604,8 +1605,22 @@ bool NppParameters::load()
 		_doNppLogNulContentCorruptionIssue = (PathFileExists(filePath2.c_str()) == TRUE);
 	}
 
-
-
+	//-------------------------------------------------------------//
+	// noRestartAutomatically.xml                                  //
+	// This empty xml file is optional - user adds this empty file //
+	// manually in order to prevent Notepad++ registration         //
+	// for the Win10+ OS app-restart feature.                      //
+	//-------------------------------------------------------------//
+	filePath = _nppPath;
+	std::wstring noRegForOSAppRestartTrigger = L"noRestartAutomatically.xml";
+	pathAppend(filePath, noRegForOSAppRestartTrigger);
+	_isRegForOSAppRestartDisabled = (::PathFileExists(filePath.c_str()) == TRUE);
+	if (!_isRegForOSAppRestartDisabled)
+	{
+		filePath = _userPath;
+		pathAppend(filePath, noRegForOSAppRestartTrigger);
+		_isRegForOSAppRestartDisabled = (::PathFileExists(filePath.c_str()) == TRUE);
+	}
 
 	return isAllLaoded;
 }
@@ -3476,6 +3491,9 @@ void NppParameters::writeSession(const Session & session, const TCHAR *fileName)
 {
 	const TCHAR *sessionPathName = fileName ? fileName : _sessionPath.c_str();
 
+	// Make sure session file is not read-only
+	removeReadOnlyFlagFromFileAttributes(sessionPathName);
+
 	// Backup session file before overriting it
 	TCHAR backupPathName[MAX_PATH]{};
 	BOOL doesBackupCopyExist = FALSE;
@@ -3483,6 +3501,9 @@ void NppParameters::writeSession(const Session & session, const TCHAR *fileName)
 	{
 		_tcscpy(backupPathName, sessionPathName);
 		_tcscat(backupPathName, TEXT(".inCaseOfCorruption.bak"));
+		
+		// Make sure backup file is not read-only, if it exists
+		removeReadOnlyFlagFromFileAttributes(backupPathName);
 		doesBackupCopyExist = CopyFile(sessionPathName, backupPathName, FALSE);
 		if (!doesBackupCopyExist)
 		{
@@ -5858,6 +5879,12 @@ void NppParameters::feedGUIParameters(TiXmlNode *node)
 				_nppGUI._largeFileRestriction._deactivateWordWrap = false;
 			else
 				_nppGUI._largeFileRestriction._deactivateWordWrap = true;
+
+			boolVal = element->Attribute(TEXT("suppress2GBWarning"));
+			if (boolVal != NULL && !lstrcmp(boolVal, TEXT("yes")))
+				_nppGUI._largeFileRestriction._suppress2GBWarning = true;
+			else
+				_nppGUI._largeFileRestriction._suppress2GBWarning = false;
 		}
 		else if (!lstrcmp(nm, TEXT("multiInst")))
 		{
@@ -7216,7 +7243,7 @@ void NppParameters::createXmlTreeFromGUIParams()
 		GUIConfigElement->SetAttribute(TEXT("delimiterSelectionOnEntireDocument"), _nppGUI._delimiterSelectionOnEntireDocument ? TEXT("yes") : TEXT("no"));
 	}
 
-	// <GUIConfig name="largeFileRestriction" fileSizeMB="200" isEnabled="yes" allowAutoCompletion="no" allowBraceMatch="no" deactivateWordWrap="yes" allowClickableLink="no" />
+	// <GUIConfig name="largeFileRestriction" fileSizeMB="200" isEnabled="yes" allowAutoCompletion="no" allowBraceMatch="no" deactivateWordWrap="yes" allowClickableLink="no" suppress2GBWarning="no" />
 	{
 		TiXmlElement *GUIConfigElement = (newGUIRoot->InsertEndChild(TiXmlElement(TEXT("GUIConfig"))))->ToElement();
 		GUIConfigElement->SetAttribute(TEXT("name"), TEXT("largeFileRestriction"));
@@ -7227,6 +7254,7 @@ void NppParameters::createXmlTreeFromGUIParams()
 		GUIConfigElement->SetAttribute(TEXT("allowSmartHilite"), _nppGUI._largeFileRestriction._allowSmartHilite ? TEXT("yes") : TEXT("no"));
 		GUIConfigElement->SetAttribute(TEXT("allowClickableLink"), _nppGUI._largeFileRestriction._allowClickableLink ? TEXT("yes") : TEXT("no"));
 		GUIConfigElement->SetAttribute(TEXT("deactivateWordWrap"), _nppGUI._largeFileRestriction._deactivateWordWrap ? TEXT("yes") : TEXT("no"));
+		GUIConfigElement->SetAttribute(TEXT("suppress2GBWarning"), _nppGUI._largeFileRestriction._suppress2GBWarning ? TEXT("yes") : TEXT("no"));
 	}
 
 	// <GUIConfig name="multiInst" setting="0" />

@@ -59,6 +59,8 @@ std::string getFileContent(const TCHAR *file2read)
 	char data[blockSize];
 	std::string wholeFileContent = "";
 	FILE *fp = _wfopen(file2read, TEXT("rb"));
+    if (!fp)
+        return "";
 
 	size_t lenFile = 0;
 	do
@@ -1515,6 +1517,16 @@ HFONT createFont(const TCHAR* fontName, int fontSize, bool isBold, HWND hDestPar
 	ReleaseDC(hDestParent, hdc);
 
 	return newFont;
+}
+
+bool removeReadOnlyFlagFromFileAttributes(const wchar_t* fileFullPath)
+{
+	if (!PathFileExists(fileFullPath))
+		return false;
+
+	DWORD dwFileAttribs = ::GetFileAttributes(fileFullPath);
+	dwFileAttribs &= ~FILE_ATTRIBUTE_READONLY;
+	return (::SetFileAttributes(fileFullPath, dwFileAttribs) != FALSE);
 }
 
 // "For file I/O, the "\\?\" prefix to a path string tells the Windows APIs to disable all string parsing

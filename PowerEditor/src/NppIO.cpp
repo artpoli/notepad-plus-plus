@@ -628,13 +628,18 @@ bool Notepad_plus::doSave(BufferID id, const TCHAR * filename, bool isCopy)
 		_pluginsManager.notify(&scnN);
 	}
 
-	if (res == SavingStatus::SaveWritingFailed)
+	if (res == SavingStatus::NotEnoughRoom)
 	{
 		_nativeLangSpeaker.messageBox("NotEnoughRoom4Saving",
 			_pPublicInterface->getHSelf(),
-			TEXT("Failed to save file.\nIt seems there's not enough space on disk to save file."),
+			TEXT("Failed to save file.\nIt seems there's not enough space on disk to save file. Your file is not saved."),
 			TEXT("Save failed"),
 			MB_OK);
+	}
+	else if (res == SavingStatus::SaveWritingFailed)
+	{
+		wstring errorMessage = GetLastErrorAsString(GetLastError());
+		::MessageBox(_pPublicInterface->getHSelf(), errorMessage.c_str(), TEXT("Save failed"), MB_OK | MB_ICONWARNING);
 	}
 	else if (res == SavingStatus::SaveOpenFailed)
 	{
@@ -2246,6 +2251,13 @@ bool Notepad_plus::loadSession(Session & session, bool isSnapshotMode, bool shou
 			continue;	//skip session files, not supporting recursive sessions or embedded workspace files
 		}
 
+		BufferID clonedBuf = _mainDocTab.findBufferByName(pFn);
+		if (clonedBuf != BUFFER_INVALID)
+		{
+			loadBufferIntoView(clonedBuf, SUB_VIEW);
+			++k;
+			continue;
+		}
 		bool isWow64Off = false;
 		if (!PathFileExists(pFn))
 		{

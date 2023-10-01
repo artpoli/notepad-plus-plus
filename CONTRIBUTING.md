@@ -12,14 +12,8 @@ Bug reports are appreciated. Following a few guidelines listed below will help s
     * NppExport
     * Converter
     * mimeTools
-4. Include additional information such as:
-    * A detailed explanation
-    * Notepad++ Debug-Info containing:
-      * Operating System version
-      * Notepad++ version
-      * List of installed plugins (if it is related to a plugin)
-    * Screen shots (if applicable)
-    * ...and any other relevant information
+4. Fill the complete information: a template will be shown when you create an issue. Please fill the complete information in the template. To fill the field **Debug Information** you can get it from your Notepad++ via menu `?>Debug Info...`. Please take your time to fill these information. If you don't bother to complete the information we need to help you, we won't bother to solve your problem either.
+    
 
 ## Pull Requests
 
@@ -434,7 +428,7 @@ In short: The easier the code review is, the better the chance your pull request
     parseYesNoBoolAttribute();
     ```
 
-11. Check if there is already defined global variable, and reuse it instead of defining new one.
+11. Check if there are already defined global variables, and reuse them instead of defining new ones.
 
 12. Avoid "Yoda conditions".
 
@@ -452,4 +446,4 @@ In short: The easier the code review is, the better the chance your pull request
     ...
     ```
 
-13. Check [C++ Core Guidlines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md) for additional guidelines.
+13. Check [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md) for additional guidelines.

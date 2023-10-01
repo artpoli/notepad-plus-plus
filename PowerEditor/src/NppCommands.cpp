@@ -1994,11 +1994,7 @@ void Notepad_plus::command(int id)
 		case IDM_EDIT_CLEARREADONLY:
 		{
 			Buffer * buf = _pEditView->getCurrentBuffer();
-
-			DWORD dwFileAttribs = ::GetFileAttributes(buf->getFullPathName());
-			dwFileAttribs &= ~FILE_ATTRIBUTE_READONLY;
-
-			::SetFileAttributes(buf->getFullPathName(), dwFileAttribs);
+			removeReadOnlyFlagFromFileAttributes(buf->getFullPathName());
 			buf->setFileReadOnly(false);
 		}
 		break;

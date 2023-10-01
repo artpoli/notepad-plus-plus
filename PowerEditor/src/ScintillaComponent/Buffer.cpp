@@ -1023,12 +1023,8 @@ bool FileManager::backupCurrentBuffer()
 			}
 
 			// Make sure the backup file is not read only
-			DWORD dwFileAttribs = ::GetFileAttributes(fullpath);
-			if (dwFileAttribs & FILE_ATTRIBUTE_READONLY) // if file is read only, remove read only attribute
-			{
-				dwFileAttribs ^= FILE_ATTRIBUTE_READONLY;
-				::SetFileAttributes(fullpath, dwFileAttribs);
-			}
+			removeReadOnlyFlagFromFileAttributes(fullpath);
+
 
 			if (UnicodeConvertor.openFile(fullpath))
 			{
@@ -1118,7 +1114,7 @@ bool FileManager::deleteBufferBackup(BufferID id)
 
 std::mutex save_mutex;
 
-SavingStatus FileManager::saveBuffer(BufferID id, const TCHAR * filename, bool isCopy)
+SavingStatus FileManager::saveBuffer(BufferID id, const TCHAR* filename, bool isCopy)
 {
 	std::lock_guard<std::mutex> lock(save_mutex);
 
@@ -1139,6 +1135,28 @@ SavingStatus FileManager::saveBuffer(BufferID id, const TCHAR * filename, bool i
 		{
 			::GetLongPathName(fullpath, fullpath, MAX_PATH);
 		}
+	}
+	
+	wchar_t dirDest[MAX_PATH];
+	wcscpy_s(dirDest, MAX_PATH, fullpath);
+	::PathRemoveFileSpecW(dirDest);
+
+	const wchar_t* currentBufFilePath = buffer->getFullPathName();
+	ULARGE_INTEGER freeBytesForUser;
+	 
+	BOOL getFreeSpaceRes = ::GetDiskFreeSpaceExW(dirDest, &freeBytesForUser, nullptr, nullptr);
+	if (getFreeSpaceRes != FALSE)
+	{
+		int64_t fileSize = buffer->getFileLength();
+		if (fileSize >= 0 && lstrcmp(fullpath, currentBufFilePath) == 0) // if file to save does exist, and it's an operation "Save" but not "Save As"
+		{
+			// if file exists and the operation "Save" but not "Save As", its current length should be considered as part of free room space since the file itself will be overrrided 
+			freeBytesForUser.QuadPart += fileSize;
+		}
+
+		// determinate if free space is enough
+		if (freeBytesForUser.QuadPart < buffer->docLength())
+			return SavingStatus::NotEnoughRoom;
 	}
 
 	if (PathFileExists(fullpath))
@@ -1394,8 +1412,11 @@ LangType FileManager::detectLanguageFromTextBegining(const unsigned char *data, 
 			break;
 	}
 
+	if (i == dataLen)
+		return L_TEXT;
+
 	// Create the buffer to need to test
-	const size_t longestLength = 40; // shebangs can be large
+	const size_t longestLength = std::min<size_t>(40, dataLen - i); // shebangs can be large
 	std::string buf2Test = std::string((const char *)data + i, longestLength);
 
 	// Is there a \r or \n in the buffer? If so, truncate it
@@ -1487,21 +1508,24 @@ bool FileManager::loadFileData(Document doc, int64_t fileSize, const TCHAR * fil
 		}
 		else // x64
 		{
-
-			int res = pNativeSpeaker->messageBox("WantToOpenHugeFile",
-				_pNotepadPlus->_pEditView->getHSelf(),
-				TEXT("Opening a huge file of 2GB+ could take several minutes.\nDo you want to open it?"),
-				TEXT("Opening huge file warning"),
-				MB_YESNO | MB_APPLMODAL);
-
-			if (res == IDYES)
+			NppGUI& nppGui = NppParameters::getInstance().getNppGUI();
+			if (!nppGui._largeFileRestriction._suppress2GBWarning) 
 			{
-				// Do nothing
-			}
-			else
-			{
-				fclose(fp);
-				return false;
+				int res = pNativeSpeaker->messageBox("WantToOpenHugeFile",
+					_pNotepadPlus->_pEditView->getHSelf(),
+					TEXT("Opening a huge file of 2GB+ could take several minutes.\nDo you want to open it?"),
+					TEXT("Opening huge file warning"),
+					MB_YESNO | MB_APPLMODAL);
+
+				if (res == IDYES)
+				{
+					// Do nothing
+				}
+				else
+				{
+					fclose(fp);
+					return false;
+				}
 			}
 		}
 	}
