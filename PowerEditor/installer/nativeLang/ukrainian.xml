@@ -641,17 +641,7 @@ Translation note:
 				<ScintillaCommandsTab name="Команди Scintilla"/>
 				<ConflictInfoOk name="Для цього елемента немає конфліктів гарячих клавіш."/>
 				<ConflictInfoEditing name="Конфліктів немає . . ."/>
-				<WindowCategory name="Вікно"/>
-				<FileCategory name="Файл"/>
-				<EditCategory name="Редагувати"/>
-				<SearchCategory name="Пошук"/>
-				<ViewCategory name="Вигляд"/>
-				<FormatCategory name="Формат"/>
-				<LangCategory name="Мова"/>
 				<AboutCategory name="Про програму"/>
-				<SettingCategory name="Налаштування"/>
-				<ToolCategory name="Інструмент"/>
-				<ExecuteCategory name="Виконати"/>
 				<ModifyContextMenu name="Змінити"/>
 				<DeleteContextMenu name="Видалити"/>
 				<ClearContextMenu name="Очистити"/>
@@ -1248,6 +1238,7 @@ Translation note:
 					<Item id="7149" name="Дозволити розумне підсвічування"/>
 					<Item id="7150" name="Глобальне вимкнення перенесення слів"/>
 					<Item id="7151" name="Дозволити активні URL-посилання"/>
+					<Item id="7152" name="Suppress warning when opening ≥2GB files"/>
 				</Performance>
 
 				<Cloud title="Хмарне посилання">
@@ -1429,6 +1420,7 @@ Translation note:
 			<LanguageMenuCompactWarning title="Компактне меню мови" message="Цей параметр буде змінено під час наступного запуску."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
 			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незбережені зміни будуть скасовані! Ви хочете зберегти зміни перед зміною теми?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
 			<MacroAndRunCmdlWarning title="Сумісність макросів і команд виконання" message="Ваші макроси й команди виконання, збережені в Notepad++ v.8.5.2 (чи старіше), можуть бути несумісними з поточною версією Notepad++. Випробуйте ці команди та, за потреби, відредагуйте їх.  Або ж ви можете встановити старішу версію Notepad++ v8.5.2 та відновити свої попередні дані. Notepad++ збереже резервну копію вашого файлу &quot;shortcuts.xml&quot; з назвою &quot;shortcuts.xml.v8.5.2.backup&quot;. Перейменувавши файл &quot;shortcuts.xml.v8.5.2.backup&quot; на -&gt; &quot;shortcuts.xml&quot;, ваші команди мають відновитися і працювати правильно."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
+			<NotEnoughRoom4Saving title="Не вдалося зберегти" message="Failed to save file. It seems there's not enough space on disk to save file. Your file is not saved."/>
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Історія буфера"/>
