@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Беларуская" filename="belarusian.xml" version="8.5.5">
+	<Native-Langue name="Беларуская" filename="belarusian.xml" version="8.5.9">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -1166,12 +1166,13 @@ Translation note:
 					<Item id="6821" name="секундаў"/>
 					<Item id="6822" name="Размяшчэнне рэзервовай копіі:"/>
 					<Item id="6309" name="Памятаць бягучы сеанс для наступнага запуску"/>
-					<Item id="6801" name="Рэзервовая копія пры захаванні"/>
+					<Item id="6825" name="Remember inaccessible files from past session"/>
+					<Item id="6801" name="Backup on save"/>
 					<Item id="6315" name="Няма"/>
-					<Item id="6316" name="Простая рэзервовая копія"/>
-					<Item id="6317" name="Пашыраная рэзервовая копія"/>
-					<Item id="6804" name="Карыстальніцкі каталог рэзервовай копіі"/>
-					<Item id="6803" name="Каталог:"/>
+					<Item id="6316" name="Simple backup"/>
+					<Item id="6317" name="Verbose backup"/>
+					<Item id="6804" name="Custom Backup Directory"/>
+					<Item id="6803" name="Directory :"/>
 				</Backup>
 
 				<AutoCompletion title="Аўтазавяршэнне">
@@ -1421,7 +1422,10 @@ Translation note:
 			<LanguageMenuCompactWarning title="Кампактнае меню мовы" message="Гэты параметр будзе зменены падчас наступнага запуску."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
 			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незахаваныя змены будуць скасаваны! Вы сапраўды хочаце захаваць змены перад тым, як пераключыць тэму?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
 			<MacroAndRunCmdlWarning title="Сумяшчальнасць макрасаў і каманд выканання" message="Вашы макрасы і каманды выканання, якія захаваны ў Notepad++ v.8.5.2 (або больш позняй версіі), могуць быць несумяшчальнымі з бягучай версіяй Notepad++. Пратэсціруйце гэтыя каманды і пры неабходнасці адрэдагуйце іх. Таксама вы можаце панізіць версію да Notepad++ v8.5.2 і аднавіць свае папярэднія даныя. Notepad++ захоўвае старую рэзервовую копію вашага файла &quot;shortcuts.xml&quot; пад назвай  &quot;shortcuts.xml.v8.5.2.backup&quot;. Пры перайменаванні  &quot;shortcuts.xml.v8.5.2.backup&quot; на -&gt; &quot;shortcuts.xml&quot;, вашы каманды павінны аднавіцца і слушна працаваць у гэтай версіі."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
+			<NbFileToOpenImportantWarning title="Amount of files to open is too large" message="$INT_REPLACE$ файлаў неўзабаве будзе адкрыта. Вы ўпэўнены, што хочаце адкрыць іх?"/>
 			<NotEnoughRoom4Saving title="Збой захавання" message="Failed to save file. It seems there's not enough space on disk to save file. Your file is not saved."/>
+			<FileInaccessibleUserSession title="File inaccessible" message="Some files from your manually-saved session &quot;$STR_REPLACE$&quot; are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your manually-saved session will NOT be modified on exit."/>
+			<FileInaccessibleDefaultSessionXml title="File inaccessible" message="Some files from your past session are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your session WILL BE MODIFIED ON EXIT! We suggest you backup your &quot;session.xml&quot; now."/>
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Гісторыя буфера абмену"/>
