@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.5.5">
+	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.5.9">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -1166,6 +1166,7 @@ Translation note:
 					<Item id="6821" name="секунд"/>
 					<Item id="6822" name="Розташування резервної копії:"/>
 					<Item id="6309" name="Пам'ятати поточний сеанс для наступного запуску"/>
+					<Item id="6825" name="Remember inaccessible files from past session"/>
 					<Item id="6801" name="Резервна копія при збереженні"/>
 					<Item id="6315" name="Немає"/>
 					<Item id="6316" name="Проста резервна копія"/>
@@ -1421,7 +1422,10 @@ Translation note:
 			<LanguageMenuCompactWarning title="Компактне меню мови" message="Цей параметр буде змінено під час наступного запуску."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
 			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незбережені зміни будуть скасовані! Ви хочете зберегти зміни перед зміною теми?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
 			<MacroAndRunCmdlWarning title="Сумісність макросів і команд виконання" message="Ваші макроси й команди виконання, збережені в Notepad++ v.8.5.2 (чи старіше), можуть бути несумісними з поточною версією Notepad++. Випробуйте ці команди та, за потреби, відредагуйте їх.  Або ж ви можете встановити старішу версію Notepad++ v8.5.2 та відновити свої попередні дані. Notepad++ збереже резервну копію вашого файлу &quot;shortcuts.xml&quot; з назвою &quot;shortcuts.xml.v8.5.2.backup&quot;. Перейменувавши файл &quot;shortcuts.xml.v8.5.2.backup&quot; на -&gt; &quot;shortcuts.xml&quot;, ваші команди мають відновитися і працювати правильно."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
+			<NbFileToOpenImportantWarning title="Надто велика кількість файлів для відкриття" message="$INT_REPLACE$ файлів невдовзі будуть відкриті. Ви дійсно хочете відкрити їх?"/>
 			<NotEnoughRoom4Saving title="Не вдалося зберегти" message="Не вдалося зберегти файл. Схоже, на диску недостатньо вільного місця."/>
+			<FileInaccessibleUserSession title="File inaccessible" message="Some files from your manually-saved session &quot;$STR_REPLACE$&quot; are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your manually-saved session will NOT be modified on exit."/>
+			<FileInaccessibleDefaultSessionXml title="File inaccessible" message="Some files from your past session are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your session WILL BE MODIFIED ON EXIT! We suggest you backup your &quot;session.xml&quot; now."/>
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Історія буфера"/>
