@@ -1145,7 +1145,7 @@ Translation note:
 					<Item id="6907" name="Коли викликано діалогове вікно &quot;Знайти&quot;"/>
 					<Item id="6908" name="Заповнити поле для пошуку вибраним текстом"/>
 					<Item id="6909" name="Вибрати слово під узгодженим, якщо нічого не вибрано"/>
-					<Item id="6910" name="Minimum Size for Auto-Checking 'In selection'"/>
+					<Item id="6910" name="Minimum Size for Auto-Checking &quot;In selection&quot;:"/>
 				</Searching>
 
 				<RecentFilesHistory title="Історія файлів">
@@ -1352,7 +1352,7 @@ Translation note:
 				<Item id="6" name="Так"/>
 				<Item id="7" name="Ні"/>
 				<Item id="4" name="Завжди так"/>
-			</DoSaveAll><!-- HowToReproduce: Check the 'Enable Save All confirm dialog' checkbox in Preference->MISC, now click 'Save all' -->
+			</DoSaveAll><!-- HowToReproduce: Check the "Enable Save All confirm dialog" checkbox in Preference->MISC, now click "Save all" -->
 		</Dialog>
 		<MessageBox>
 			<!-- $INT_REPLACE$ and $STR_REPLACE$ are place holders, don't translate these place holders. -->
@@ -1652,7 +1652,7 @@ Translation note:
 			<!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
 			<npcCustomColor-tip value="Відкрийте конфігуратор стилю, щоб змінити типовий власний колір для вибраних пропусків та не друкованих символів (&quot;Власний колір символів, що не друкуються&quot;)."/>
 			<npcIncludeCcUniEol-tip value="Застосувати налаштування вигляду символів, що не друкуються, до символів C0, C1 control і Unicode EOL (наступний рядок, роздільник рядків та роздільник абзаців)."/>
-			<searchingInSelThresh-tip value="Number of selected characters in edit zone to automatically check the 'In selection' checkbox when the Find dialog is activated. The maximum value is 1024. Set the value to 0 to disable auto-checking."/>
+			<searchingInSelThresh-tip value="Number of selected characters in edit zone to automatically check the &quot;In selection&quot; checkbox when the Find dialog is activated. The maximum value is 1024. Set the value to 0 to disable auto-checking."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
