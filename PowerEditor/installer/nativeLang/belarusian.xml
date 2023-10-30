@@ -961,30 +961,29 @@ Translation note:
 					<Item id="6221" name="+"/>
 					<Item id="6222" name="-"/>
 					<Item id="6246" name="Пераключаць каманды згортвання/разгортвання бягучага ўзроўню"/>
-					<Item id="6225" name="Уключыць мульты-рэдагаванне (Ctrl+націск мышы/выбар)"/>
-					<Item id="6227" name="Перанос радкоў"/>
-					<Item id="6228" name="Прадвызначана"/>
-					<Item id="6229" name="Выраўнены"/>
-					<Item id="6230" name="З водступам"/>
-					<Item id="6234" name="Адключыць пашыраную прагортку, калі ёсць праблемы з тачпадам"/>
-					<Item id="6215" name="Уключыць згладжванне шрыфту"/>
-					<Item id="6236" name="Прагортка за межы апошняга радка"/>
-					<Item id="6239" name="Утрымліваць выбар пры націску за межамі выбару"/>
-					<Item id="6245" name="Уключыць віртуальны прабел"/>
-					<Item id="6651" name="Індыкатар бягучага радка"/>
-					<Item id="6652" name="Няма"/>
-					<Item id="6653" name="Падсвятляць фон"/>
+					<Item id="6227" name="Line Wrap"/>
+					<Item id="6228" name="Default"/>
+					<Item id="6229" name="Aligned"/>
+					<Item id="6230" name="Indent"/>
+					<Item id="6234" name="Disable advanced scrolling feature due to touchpad issue"/>
+					<Item id="6215" name="Enable smooth font"/>
+					<Item id="6236" name="Enable scrolling beyond last line"/>
+					<Item id="6239" name="Keep selection when right-click outside of selection"/>
+					<Item id="6245" name="Enable virtual space"/>
+					<Item id="6651" name="Current Line Indicator"/>
+					<Item id="6652" name="None"/>
+					<Item id="6653" name="Highlight Background"/>
 					<Item id="6654" name="Рамка"/>
-					<Item id="6655" name="Шырыня:"/>
+					<Item id="6655" name="Width:"/>
 					<Item id="6247" name="EOL (CRLF)"/><!-- Don't translate "(CRLF)" -->
-					<Item id="6248" name="Прадвызначана"/>
+					<Item id="6248" name="Default"/>
 					<Item id="6249" name="Звычайны тэкст"/>
-					<Item id="6250" name="Карыстальніцкі колер"/>
-					<Item id="6252" name="Сімвалы, якія не друкуюцца"/>
-					<Item id="6254" name="Скарачэнне"/>
+					<Item id="6250" name="Custom Color"/>
+					<Item id="6252" name="Non-Printing Characters"/>
+					<Item id="6254" name="Abbreviation"/>
 					<Item id="6255" name="Пункт кода"/>
-					<Item id="6256" name="Карыстальніцкі колер"/>
-					<Item id="6258" name="Ужыць да C0, C1 &amp;&amp; Unicode EOL"/>
+					<Item id="6256" name="Custom Color"/>
+					<Item id="6258" name="Apply to C0, C1 &amp;&amp; Unicode EOL"/>
 				</Scintillas>
 
 				<DarkMode title="Цёмны рэжым">
