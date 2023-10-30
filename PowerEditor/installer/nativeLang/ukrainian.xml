@@ -967,23 +967,23 @@ Translation note:
 					<Item id="6230" name="З відступом"/>
 					<Item id="6234" name="Вимкнути розширене прокручування якщо є проблеми з тачпадом"/>
 					<Item id="6215" name="Згладжувати шрифти"/>
-					<Item id="6236" name="Enable scrolling beyond last line"/>
-					<Item id="6239" name="Keep selection when right-click outside of selection"/>
-					<Item id="6245" name="Enable virtual space"/>
-					<Item id="6651" name="Current Line Indicator"/>
-					<Item id="6652" name="None"/>
-					<Item id="6653" name="Highlight Background"/>
+					<Item id="6236" name="Прокручування за межі останнього рядка"/>
+					<Item id="6239" name="Утримувати вибір при клацанні за межами вибору"/>
+					<Item id="6245" name="Увімкнути віртуальний простір"/>
+					<Item id="6651" name="Індикатор поточного рядка"/>
+					<Item id="6652" name="Немає"/>
+					<Item id="6653" name="Підсвічувати задній план"/>
 					<Item id="6654" name="Рамка"/>
-					<Item id="6655" name="Width:"/>
+					<Item id="6655" name="Ширина:"/>
 					<Item id="6247" name="EOL (CRLF)"/><!-- Don't translate "(CRLF)" -->
-					<Item id="6248" name="Default"/>
+					<Item id="6248" name="Типово"/>
 					<Item id="6249" name="Звичайний текст"/>
-					<Item id="6250" name="Custom Color"/>
-					<Item id="6252" name="Non-Printing Characters"/>
-					<Item id="6254" name="Abbreviation"/>
+					<Item id="6250" name="Власний колір"/>
+					<Item id="6252" name="Символи, що не друкуються"/>
+					<Item id="6254" name="Абревіатура"/>
 					<Item id="6255" name="Точка коду"/>
-					<Item id="6256" name="Custom Color"/>
-					<Item id="6258" name="Apply to C0, C1 &amp;&amp; Unicode EOL"/>
+					<Item id="6256" name="Власний колір"/>
+					<Item id="6258" name="Застосувати до C0, C1 &amp;&amp; Unicode EOL"/>
 				</Scintillas>
 
 				<DarkMode title="Темний режим">
