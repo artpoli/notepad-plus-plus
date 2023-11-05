@@ -39,8 +39,8 @@ Translation note:
 					<Item subMenuId="edit-blankOperations" name="Порожні операції"/>
 					<Item subMenuId="edit-pasteSpecial" name="Спеціальна вставка"/>
 					<Item subMenuId="edit-onSelection" name="У вибраному"/>
-					<Item subMenuId="edit-multiSelectALL" name="Multi-select ALL"/>
-					<Item subMenuId="edit-multiSelectNext" name="Multi-select Next"/>
+					<Item subMenuId="edit-multiSelectALL" name="Множинний вибір УСЕ"/>
+					<Item subMenuId="edit-multiSelectNext" name="Множинний вибір Далі"/>
 					<Item subMenuId="search-changeHistory" name="Історія змін"/>
 					<Item subMenuId="search-markAll" name="Стиль до всіх випадків токену"/>
 					<Item subMenuId="search-markOne" name="Стиль до одного токену"/>
@@ -156,16 +156,16 @@ Translation note:
 					<Item id="42074" name="Відкрити теку в провіднику"/>
 					<Item id="42075" name="Пошук в Інтернеті"/>
 					<Item id="42076" name="Змінити пошуковий засіб..."/>
-					<Item id="42090" name="Ignore Case &amp;&amp; Whole Word"/>
-					<Item id="42091" name="Match Case Only"/>
-					<Item id="42092" name="Match Whole Word Only"/>
-					<Item id="42093" name="Match Case &amp;&amp; Whole Word"/>
-					<Item id="42094" name="Ignore Case &amp;&amp; Whole Word"/>
-					<Item id="42095" name="Match Case Only"/>
-					<Item id="42096" name="Match Whole Word Only"/>
-					<Item id="42097" name="Match Case &amp;&amp; Whole Word"/>
-					<Item id="42098" name="Undo the Latest Added Multi-Select"/>
-					<Item id="42099" name="Skip Current &amp;&amp; Go to Next Multi-select"/>
+					<Item id="42090" name="Ігнорувати регістр і ціле слово"/>
+					<Item id="42091" name="Враховувати лише регістр"/>
+					<Item id="42092" name="Враховувати лише ціле слово"/>
+					<Item id="42093" name="Враховувати регістр і ціле слово"/>
+					<Item id="42094" name="Ігнорувати регістр і ціле слово"/>
+					<Item id="42095" name="Враховувати лише регістр"/>
+					<Item id="42096" name="Враховувати лише ціле слово"/>
+					<Item id="42097" name="Враховувати регістр і ціле слово"/>
+					<Item id="42098" name="Скасувати останній доданий множинний вибір"/>
+					<Item id="42099" name="Пропустити поточний і перейти до наступного множинного вибору"/>
 					<Item id="42018" name="Почати запис"/>
 					<Item id="42019" name="Зупинити запис"/>
 					<Item id="42021" name="Відтворити"/>
@@ -1156,7 +1156,7 @@ Translation note:
 					<Item id="6907" name="Коли викликано діалогове вікно &quot;Знайти&quot;"/>
 					<Item id="6908" name="Заповнити поле для пошуку вибраним текстом"/>
 					<Item id="6909" name="Вибрати слово під узгодженим, якщо нічого не вибрано"/>
-					<Item id="6910" name="Minimum Size for Auto-Checking &quot;In selection&quot;:"/>
+					<Item id="6910" name="Мінімальний розмір для автоматичної перевірки &quot;у виборі&quot;:"/>
 				</Searching>
 
 				<RecentFilesHistory title="Історія файлів">
@@ -1177,7 +1177,7 @@ Translation note:
 					<Item id="6821" name="секунд"/>
 					<Item id="6822" name="Розташування резервної копії:"/>
 					<Item id="6309" name="Пам'ятати поточний сеанс для наступного запуску"/>
-					<Item id="6825" name="Remember inaccessible files from past session"/>
+					<Item id="6825" name="Запам'ятати недоступні файли з минулого сеансу"/>
 					<Item id="6801" name="Резервна копія при збереженні"/>
 					<Item id="6315" name="Немає"/>
 					<Item id="6316" name="Проста резервна копія"/>
@@ -1435,8 +1435,8 @@ Translation note:
 			<MacroAndRunCmdlWarning title="Сумісність макросів і команд виконання" message="Ваші макроси й команди виконання, збережені в Notepad++ v.8.5.2 (чи старіше), можуть бути несумісними з поточною версією Notepad++. Випробуйте ці команди та, за потреби, відредагуйте їх.  Або ж ви можете встановити старішу версію Notepad++ v8.5.2 та відновити свої попередні дані. Notepad++ збереже резервну копію вашого файлу &quot;shortcuts.xml&quot; з назвою &quot;shortcuts.xml.v8.5.2.backup&quot;. Перейменувавши файл &quot;shortcuts.xml.v8.5.2.backup&quot; на -&gt; &quot;shortcuts.xml&quot;, ваші команди мають відновитися і працювати правильно."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
 			<NbFileToOpenImportantWarning title="Надто велика кількість файлів для відкриття" message="$INT_REPLACE$ файлів невдовзі будуть відкриті. Ви дійсно хочете відкрити їх?"/>
 			<NotEnoughRoom4Saving title="Не вдалося зберегти" message="Не вдалося зберегти файл. Схоже, на диску недостатньо вільного місця."/>
-			<FileInaccessibleUserSession title="File inaccessible" message="Some files from your manually-saved session &quot;$STR_REPLACE$&quot; are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your manually-saved session will NOT be modified on exit."/>
-			<FileInaccessibleDefaultSessionXml title="File inaccessible" message="Some files from your past session are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your session WILL BE MODIFIED ON EXIT! We suggest you backup your &quot;session.xml&quot; now."/>
+			<FileInaccessibleUserSession title="Файл недоступний" message="Деякі файли з вашого збереженого вручну сеансу &quot;$STR_REPLACE$&quot; недоступні. Їх можна відкрити як заповнювачі –  порожні та доступні лише для читання документи.  Бажаєте створити ці заповнювачі?  ПРИМІТКА: якщо ви вирішите не створювати заповнювачі або закрити їх згодом, ваш збережений вручну сеанс НЕ буде змінено при виході."/>
+			<FileInaccessibleDefaultSessionXml title="Файл недоступний" message="Деякі файли з вашого минулого сеансу недоступні. Їх можна відкрити як заповнювачі – порожні та доступні лише для читання документи.  Бажаєте створити ці заповнювачі?  ПРИМІТКА: якщо ви вирішите не створювати заповнювачі або закрити їх згодом, ваш сеанс БУДЕ ЗМІНЕНО ПРИ ВИХОДІ! Пропонуємо вам створити резервну копію &quot;session.xml&quot; зараз."/>
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Історія буфера"/>
@@ -1663,7 +1663,7 @@ Translation note:
 			<!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
 			<npcCustomColor-tip value="Відкрийте конфігуратор стилю, щоб змінити типовий власний колір для вибраних пропусків та не друкованих символів (&quot;Власний колір символів, що не друкуються&quot;)."/>
 			<npcIncludeCcUniEol-tip value="Застосувати налаштування вигляду символів, що не друкуються, до символів C0, C1 control і Unicode EOL (наступний рядок, роздільник рядків та роздільник абзаців)."/>
-			<searchingInSelThresh-tip value="Number of selected characters in edit zone to automatically check the &quot;In selection&quot; checkbox when the Find dialog is activated. The maximum value is 1024. Set the value to 0 to disable auto-checking."/>
+			<searchingInSelThresh-tip value="Кількість вибраних символів у зоні редагування для автоматичного встановлення прапорця &quot;у виборі&quot;, коли активовано діалогове вікно Знайти. Максимальне значення – 1024. Встановіть значення 0, щоб вимкнути автоматичну перевірку."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
