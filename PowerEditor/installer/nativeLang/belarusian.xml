@@ -1641,6 +1641,11 @@ Translation note:
 			<find-result-title value="Пошук"/><!-- Must not begin with space or tab character -->
 			<find-result-title-info value="($INT_REPLACE1$ супадзенняў у $INT_REPLACE2$ файлах для $INT_REPLACE3$ пошукаў)"/>
 			<find-result-title-info-selections value="($INT_REPLACE1$ супадзенняў у $INT_REPLACE2$ выбраных з $INT_REPLACE3$ шуканых)"/>
+			<find-result-title-info-options-searchmode-normal value="Normal"/>
+			<find-result-title-info-options-searchmode-extended value="Extended"/>
+			<find-result-title-info-options-searchmode-regexp value="RegEx"/>
+			<find-result-title-info-options-case value="Case"/>
+			<find-result-title-info-options-word value="Word"/>
 			<find-result-title-info-extra value=" - Рэжым фільтра радкоў: паказваць толькі фільтраваныя вынікі"/>
 			<find-result-hits value="($INT_REPLACE$ супадзенняў)"/>
 			<find-result-line-prefix value="Радок"/><!-- Must not begin with space or tab character -->
