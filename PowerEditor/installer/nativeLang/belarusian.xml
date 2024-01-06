@@ -439,17 +439,19 @@ Translation note:
 				<Item CMDID="42030" name="Капіяваць назву файла"/>
 				<Item CMDID="42031" name="Капіяваць шлях да бягучага каталога"/>
 				<Item CMDID="3" name="Перамясціць дакумент"/>
-				<Item CMDID="10001" name="Перамясціць у іншае акно"/>
-				<Item CMDID="10002" name="Кланіраваць у іншае акно"/>
-				<Item CMDID="10003" name="Перамясціць у іншы экзэмпляр"/>
-				<Item CMDID="10004" name="Адкрыць у новым экзэмпляры"/>
+				<Item CMDID="10005" name="Move to Start"/>
+				<Item CMDID="10006" name="Move to End"/>
+				<Item CMDID="10004" name="Ужыць колер 1"/>
+				<Item CMDID="46001" name="Ужыць колер 2"/>
+				<Item CMDID="46250" name="Ужыць колер 3"/>
+				<Item CMDID="46300" name="Ужыць колер 4"/>
 				<Item CMDID="4" name="Ужыць колер ва ўкладцы"/>
-				<Item CMDID="44111" name="Ужыць колер 1"/>
-				<Item CMDID="44112" name="Ужыць колер 2"/>
-				<Item CMDID="44113" name="Ужыць колер 3"/>
-				<Item CMDID="44114" name="Ужыць колер 4"/>
-				<Item CMDID="44115" name="Ужыць колер 5"/>
-				<Item CMDID="44110" name="Выдаліць колер"/>
+				<Item CMDID="44111" name="Выдаліць колер"/>
+				<Item CMDID="44112" name="Закрыць некалькі ўкладак"/>
+				<Item CMDID="44113" name="Адкрыць у"/>
+				<Item CMDID="44114" name="Капіяваць у буфер абмену"/>
+				<Item CMDID="44115" name="Перамясціць дакумент"/>
+				<Item CMDID="44110" name="Ужыць колер да ўкладкі"/>
 			</TabBar>
 			<TrayIcon>
 				<Item id="43101" name="Актываваць"/>
@@ -1154,7 +1156,7 @@ Translation note:
 					<Item id="6903" name="Акно пошуку можа быць адкрытым пасля ўвядзення вынікаў"/>
 					<Item id="6904" name="Пацвердзіць замену ўсяго ў ва ўсіх адкрытых дакументах"/>
 					<Item id="6905" name="Замяніць: Не пераходзіць да наступнага паўтарэння"/>
-					<Item id="6906" name="Акно вынікаў пошуку: паказваць толькі адзін запіс на знойдзены радок"/>
+					<Item id="6906" name="Search Result window: show only one entry per found line if possible"/>
 					<Item id="6907" name="Калі выклікана дыялогавае акно &quot;Знайсці&quot;"/>
 					<Item id="6908" name="Запоўніць поле для пошуку выбраным тэкстам"/>
 					<Item id="6909" name="Выбраць слова пад стрэшкай, калі нічога не выбрана"/>
