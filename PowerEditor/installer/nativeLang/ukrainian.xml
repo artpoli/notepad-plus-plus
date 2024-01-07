@@ -309,8 +309,8 @@ Translation note:
 					<Item id="44095" name="Наступна вкладка"/>
 					<Item id="44096" name="Попередня вкладка"/>
 					<Item id="44097" name="Моніторинг (tail -f)"/>
-					<Item id="44098" name="Посунути вкладку вперед"/>
-					<Item id="44099" name="Посунути вкладку назад"/>
+					<Item id="44098" name="Перемістити вкладку вперед"/>
+					<Item id="44099" name="Перемістити вкладку назад"/>
 					<Item id="44110" name="Вилучити колір"/>
 					<Item id="44111" name="Застосувати колір 1"/>
 					<Item id="44112" name="Застосувати колір 2"/>
@@ -325,7 +325,7 @@ Translation note:
 					<Item id="44035" name="Синхронізувати вертикальне прокручування"/>
 					<Item id="44036" name="Синхронізувати горизонтальне прокручування"/>
 					<Item id="44041" name="Показувати символ переведення рядка"/>
-					<Item id="44072" name="Фокус на інший вигляд"/>
+					<Item id="44072" name="Фокус на інше подання"/>
 					<Item id="44081" name="Панель проєкту 1"/>
 					<Item id="44082" name="Панель проєкту 2"/>
 					<Item id="44083" name="Панель проєкту 3"/>
@@ -441,8 +441,8 @@ Translation note:
 				<Item CMDID="3" name="Перемістити документ"/>
 				<Item CMDID="10005" name="Move to Start"/>
 				<Item CMDID="10006" name="Move to End"/>
-				<Item CMDID="10001" name="Відкрити в іншому вікні"/>
-				<Item CMDID="10002" name="Копіювати в інше вікно"/>
+				<Item CMDID="10001" name="Перемістити до іншого подання"/>
+				<Item CMDID="10002" name="Клонувати до іншого подання"/>
 				<Item CMDID="10003" name="Перемістити до нового екземпляра"/>
 				<Item CMDID="10004" name="Відкрити в новому екземплярі"/>
 				<Item CMDID="4" name="Застосувати колір до вкладки"/>
@@ -1429,7 +1429,7 @@ Translation note:
 			<OpenInAdminMode title="Не вдалося зберегти" message="Не вдається зберегти файл, він може бути захищеним. Хочете запустити Notepad++ в режимі адміністратора?"/>
 			<OpenInAdminModeWithoutCloseCurrent title="Не вдалося зберегти" message="Не вдається зберегти файл, він може бути захищеним. Хочете запустити Notepad++ в режимі адміністратора?"/>
 			<OpenInAdminModeFailed title="Не вдалося запустити в режимі адміністратора" message="Notepad++ не може бути відкритий в режимі адміністратора."/><!-- HowToReproduce: When you have no Admin privilege and you try to save a modified file in a protected location (for example: any file in sub-folder of "C:\Program Files\". This message will appear after replying "Yes" to "Open in Admin mode" dialog. -->
-			<ViewInBrowser title="Перегляд поточного файлу в браузері" message="У вашій системі не вдалося знайти програму."/>
+			<ViewInBrowser title="Переглянути поточний файл у браузері" message="У вашій системі не вдалося знайти програму."/>
 			<ExitToUpdatePlugins title="Ви збираєтеся закрити Notepad++" message="Якщо ви оберете ТАК, ви вийдете з Notepad++ для продовження операцій. Notepad++ перезапуститься після завершення всіх операцій. Продовжити?"/>
 			<NeedToRestartToLoadPlugins title="Необхідно перезапустити Notepad++" message="Необхідно перезапустити Notepad++ для завантаження встановлених плагінів."/><!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
 			<ChangeHistoryEnabledWarning title="Необхідно перезапустити Notepad++" message="Для увімкнення історії змін потрібно перезапустити Notepad++."/><!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
