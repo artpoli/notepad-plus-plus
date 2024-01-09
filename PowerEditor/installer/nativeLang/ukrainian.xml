@@ -37,7 +37,7 @@ Translation note:
 					<Item subMenuId="edit-autoCompletion" name="Автозавершення"/>
 					<Item subMenuId="edit-eolConversion" name="Перетворення EOL"/>
 					<Item subMenuId="edit-blankOperations" name="Порожні операції"/>
-					<Item subMenuId="edit-pasteSpecial" name="Спеціальна вставка"/>
+					<Item subMenuId="edit-pasteSpecial" name="&amp;Вставити спеціальне"/>
 					<Item subMenuId="edit-onSelection" name="У вибраному"/>
 					<Item subMenuId="edit-multiSelectALL" name="Множинний вибір УСЕ"/>
 					<Item subMenuId="edit-multiSelectNext" name="Множинний вибір Далі"/>
@@ -400,8 +400,8 @@ Translation note:
 					<Item id="44042" name="Приховати рядки"/>
 					<Item id="42040" name="Відкрити всі останні файли"/>
 					<Item id="42041" name="Очистити список останніх файлів"/>
-					<Item id="48016" name="Змінити комб. клавіш/Видалити макрос..."/>
-					<Item id="48017" name="Змінити комб. клавіш/Видалити команду..."/>
+					<Item id="48016" name="Змінити комбінації клавіш/Видалити макрос..."/>
+					<Item id="48017" name="Змінити комбінації клавіш/Видалити команду..."/>
 
 					<Item id="11001" name="&amp;Вікна..."/>
 					<Item id="11002" name="Назва від A до Z"/>
@@ -426,7 +426,7 @@ Translation note:
 				<Item CMDID="1" name="Відкрити в"/>
 				<Item CMDID="41019" name="Відкрити теку в провіднику"/>
 				<Item CMDID="41020" name="Відкрити теку в cmd"/>
-				<Item CMDID="41025" name="Відкрити теку як робочу область"/>
+				<Item CMDID="41025" name="Відкрити вкладену теку як робочу область"/>
 				<Item CMDID="41023" name="Відкрити в типовому засобі перегляду"/>
 				<Item CMDID="41017" name="Перейменувати..."/>
 				<Item CMDID="41016" name="Перемістити до смітника"/>
@@ -487,7 +487,7 @@ Translation note:
 				<Item id="1635" name="Замінити все в активних документах"/>
 				<Item id="1636" name="Знайти все у відкритих документах"/>
 				<Item id="1654" name="Фільтри:"/>
-				<Item id="1655" name="Директорія:"/>
+				<Item id="1655" name="Шлях:"/>
 				<Item id="1656" name="Знайти все"/>
 				<Item id="1658" name="У всіх підтеках"/>
 				<Item id="1659" name="У прихованих теках"/>
@@ -505,7 +505,7 @@ Translation note:
 				<Item id="1703" name="&amp;. відповідає новому рядку"/>
 				<Item id="1721" name="▲"/>
 				<Item id="1723" name="▼ Знайти далі"/>
-				<Item id="1725" name="Копіювати позначений текст"/>
+				<Item id="1725" name="Копіювати позначене"/>
 				<Menu>
 					<Item id="1726" name="⇅ Перемкнути пошук і заміну"/>
 					<Item id="1727" name="⤵ Копіювати з пошуку до заміни"/>
@@ -616,8 +616,8 @@ Translation note:
 				<SubDialog>
 					<Item id="2204" name="Жирний"/>
 					<Item id="2205" name="Курсив"/>
-					<Item id="2206" name="Колір переднього плану"/>
-					<Item id="2207" name="Колір тла"/>
+					<Item id="2206" name="Передній план"/>
+					<Item id="2207" name="Тло"/>
 					<Item id="2208" name="Шрифт:"/>
 					<Item id="2209" name="Розмір:"/>
 					<Item id="2211" name="Стиль:"/>
@@ -629,8 +629,8 @@ Translation note:
 					<Item id="2219" name="Ключові слова Np++"/>
 					<Item id="2221" name="Ключові слова користувача"/>
 					<Item id="2225" name="Мова:"/>
-					<Item id="2226" name="Увімкнути глобальний колір переднього плану"/>
-					<Item id="2227" name="Увімкнути глобальний колір тла"/>
+					<Item id="2226" name="Глобальний колір переднього плану"/>
+					<Item id="2227" name="Глобальний колір тла"/>
 					<Item id="2228" name="Загальний шрифт"/>
 					<Item id="2229" name="Загальний розмір шрифту"/>
 					<Item id="2230" name="Загальний жирний шрифт"/>
@@ -640,22 +640,22 @@ Translation note:
 				</SubDialog>
 			</StyleConfig>
 
-			<ShortcutMapper title="Мапа гарячих клавіш">
+			<ShortcutMapper title="Комбінації клавіш">
 				<Item id="2602" name="Змінити"/>
 				<Item id="2603" name="Видалити"/>
 				<Item id="2606" name="Очистити"/>
-				<Item id="2607" name="Фільтр: "/>
+				<Item id="2607" name="Фільтр "/>
 				<Item id="1" name="Закрити"/>
 				<ColumnName name="Назва"/>
-				<ColumnShortcut name="Гарячі клавіші"/>
+				<ColumnShortcut name="Комбінація клавіш"/>
 				<ColumnCategory name="Категорія"/>
 				<ColumnPlugin name="Плагін"/>
 				<MainMenuTab name="Головне меню"/>
 				<MacrosTab name="Макрос"/>
 				<RunCommandsTab name="Команди запуску"/>
-				<PluginCommandsTab name="Команди плагіну"/>
+				<PluginCommandsTab name="Команди плагіна"/>
 				<ScintillaCommandsTab name="Команди Scintilla"/>
-				<ConflictInfoOk name="Для цього елемента немає конфліктів гарячих клавіш."/>
+				<ConflictInfoOk name="Для цього елемента немає конфліктів комбінацій клавіш."/>
 				<ConflictInfoEditing name="Конфліктів немає . . ."/>
 				<AboutCategory name="Про програму"/>
 				<ModifyContextMenu name="Змінити"/>
@@ -736,7 +736,7 @@ Translation note:
 					<Item id="44104" name="Перемкнути на панель 1 проєкту"/>
 					<Item id="44105" name="Перемкнути на панель 2 проєкту"/>
 					<Item id="44106" name="Перемкнути на панель 3 проєкту"/>
-					<Item id="44107" name="Перемкнути теку як робочу область"/>
+					<Item id="44107" name="Перемкнути на теку як робочу область"/>
 					<Item id="44109" name="Перейти до списку документів"/>
 					<Item id="44108" name="Перемкнути на перелік функцій"/>
 					<Item id="44110" name="Вилучити колір вкладки"/>
@@ -755,7 +755,7 @@ Translation note:
 					<Item id="11009" name="Сортувати за зменшенням розміру"/>
 				</MainCommandNames>
 			</ShortcutMapper>
-			<ShortcutMapperSubDialg title="Гаряча клавіша">
+			<ShortcutMapperSubDialg title="Комбінація клавіш">
 				<Item id="1" name="Гаразд"/>
 				<Item id="2" name="Скасувати"/>
 				<Item id="5006" name="Назва"/>
@@ -780,8 +780,8 @@ Translation note:
 				<Item id="20017" name="Розстикувати"/>
 				<StylerDialog title="Стиль">
 					<Item id="25030" name="Налаштування шрифту"/>
-					<Item id="25006" name="Колір переднього плану"/>
-					<Item id="25007" name="Колір тла"/>
+					<Item id="25006" name="Передній план"/>
+					<Item id="25007" name="Тло"/>
 					<Item id="25031" name="Назва:"/>
 					<Item id="25032" name="Розмір:"/>
 					<Item id="25001" name="Жирний"/>
@@ -1075,7 +1075,7 @@ Translation note:
 					<Item id="6413" name="Типова тека відкриття/збереження"/>
 					<Item id="6414" name="Наслідувати поточний документ"/>
 					<Item id="6415" name="Пам'ятати останню теку"/>
-					<Item id="6431" name="Відкривати всі файли теки, замість відкриття теки в якості робочого простору"/>
+					<Item id="6431" name="Відкривати всі файли теки, замість відкриття теки як робочої області"/>
 				</DefaultDir>
 
 				<FileAssoc title="Асоціації файлів">
@@ -1232,7 +1232,7 @@ Translation note:
 					<Item id="6187" name="Панелі проєкту"/>
 					<Item id="6188" name="Карта документа"/>
 					<Item id="6189" name="Список функцій"/>
-					<Item id="6190" name="Панелі плагіну"/>
+					<Item id="6190" name="Панелі плагіна"/>
 				</MultiInstance>
 
 				<Delimiter title="Розділювач">
@@ -1319,7 +1319,7 @@ Translation note:
 				<Item id="2" name="OK"/>
 				<Item id="7002" name="Зберегти"/>
 				<Item id="7003" name="Закрити"/>
-				<Item id="7004" name="Сортувати вкладки"/>
+				<Item id="7004" name="Сортувати"/>
 			</Window>
 			<ColumnEditor title="Редактор стовпців">
 				<Item id="2023" name="Текст для вставлення"/>
@@ -1371,7 +1371,7 @@ Translation note:
 		</Dialog>
 		<MessageBox>
 			<!-- $INT_REPLACE$ and $STR_REPLACE$ are place holders, don't translate these place holders. -->
-			<ContextMenuXmlEditWarning title="Зміна contextMenu" message="Зміна contextMenu.xml дозволяє вам змінювати випадаюче меню Notepad++. Для застосування змін необхідно перезапустити Notepad++."/>
+			<ContextMenuXmlEditWarning title="Зміна contextMenu" message="Редагування contextMenu.xml дає змогу змінювати контекстне меню Notepad++. Для застосування змін необхідно перезапустити Notepad++."/>
 			<SaveCurrentModifWarning title="Зберегти поточну модифікацію" message="Ви повинні зберегти поточні зміни. Всі збережені зміни неможливо відмінити.  Продовжити?"/><!-- HowToReproduce: when you openned file is modified but unsaved yet, and you are changing file encoding. -->
 			<LoseUndoAbilityWarning title="Попередження неможливості відміни" message="Ви повинні зберегти поточні зміни. Всі збережені зміни неможливо відмінити.  Продовжити?"/><!-- HowToReproduce: when you openned file is modified and saved, then you are changing file encoding. -->
 			<CannotMoveDoc title="Перемістити в новий екземпляр Notepad++" message="Документ змінений. Збережіть його і спробуйте знову."/><!-- HowToReproduce: From your Notepad++ drag & drop a clean (not dirty) file to outside of Notepad++, another instance of Notepad++ will be created. Then from your first Notepad++ drag & drop an unsaved file to the new instance. -->
@@ -1386,7 +1386,7 @@ Translation note:
 			<SettingsOnCloudError title="Налаштування хмарного сховища" message="Схоже, шлях налаштувань в хмарі встановлений на диск лише для читання, або в теку, яка потребує відповідних прав на запис. Ваші налаштування в хмарі будуть скасовані. Будь ласка, скиньте відповідні значення через діалог Налаштування."/>
 			<FilePathNotFoundWarning title="Відкриття файла" message="Файл, який ви намагаєтесь відкрити, не існує."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<SessionFileInvalidError title="Не вдалося завантажити сеанс" message="Файл сеансу пошкоджений, або недійсний."/><!-- HowToReproduce: Save current session via menu "File -> Save Session...", use another editor to modify the session you saved to make it an invalid xml file. Then load this invalid session via menu "File -> Load Session...". -->
-			<DroppingFolderAsProjectModeWarning title="Неприпустима дія" message="Ви можете виключити лише файли або лише теки, але не разом, оскільки ви зараз в режимі &quot;Тека як проєкт&quot;. Щоб запрацювала ця операція, вам необхідно активувати &quot;Відкривати всі файли теки, замість відкриття теки, як робочого простору&quot; в меню &quot;Налаштування - Типова тека&quot;."/>
+			<DroppingFolderAsProjectModeWarning title="Неприпустима дія" message="Ви можете включити лише файли або теки, але не разом, оскільки ви зараз в режимі &quot;Тека як проєкт&quot;. Щоб запрацювала ця операція, вам необхідно активувати &quot;Відкривати всі файли теки, замість відкриття теки, як робочої області&quot; в меню &quot;Налаштування - Типова тека&quot;."/>
 			<SortingError title="Помилка впорядкування" message="Не вдається виконати впорядкування за числами, через рядок $INT_REPLACE$."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<ColumnModeTip title="Порада для режиму стовпців" message=" Є 3 способи перемикання на режим вибору стовпців:  1. (Клавіатура й миша)  Утримуйте клавішу Alt та одночасно перетягуйте лівою кнопкою миші  2. (Лише клавіатура)  Утримуйте Alt+Shift та одночасно використовуйте клавіші стрілок  3. (Клавіатура або миша)       Розташуйте курсор на бажаний початок позиції початку блоку стовпця, потім виконайте команду &quot;Вибрати початок/кінець у режимі стовпців&quot;;       Перемістіть курсор у бажаний кінець позиції блоку стовпця, потім знову виконайте команду &quot;Вибрати початок/кінець у режимі стовпців&quot;"/>
 			<BufferInvalidWarning title="Не вдалося зберегти" message="Неможливо зберегти: Неправильний буфер."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
@@ -1441,7 +1441,7 @@ Translation note:
 			<FileInaccessibleUserSession title="Файл недоступний" message="Деякі файли з вашого збереженого вручну сеансу &quot;$STR_REPLACE$&quot; недоступні. Їх можна відкрити як заповнювачі –  порожні та доступні лише для читання документи.  Бажаєте створити ці заповнювачі?  ПРИМІТКА: якщо ви вирішите не створювати заповнювачі або закрити їх згодом, ваш збережений вручну сеанс НЕ буде змінено при виході."/>
 			<FileInaccessibleDefaultSessionXml title="Файл недоступний" message="Деякі файли з вашого минулого сеансу недоступні. Їх можна відкрити як заповнювачі – порожні та доступні лише для читання документи.  Бажаєте створити ці заповнювачі?  ПРИМІТКА: якщо ви вирішите не створювати заповнювачі або закрити їх згодом, ваш сеанс БУДЕ ЗМІНЕНО ПРИ ВИХОДІ! Пропонуємо вам створити резервну копію &quot;session.xml&quot; зараз."/>
 			<RTLvsDirectWrite title="Неможливо запустити RTL" message="RTL не сумісний з режимом DirectWrite. Вимкніть режим DirectWrite в розділі &quot;РІЗНЕ&quot; діалогового вікна налаштувань і перезапустіть Notepad++."/>
-			<FileMemoryAllocationFailed title="Виняток: помилка розподілення пам'яті файлу" message="There is probably not enough contiguous free memory for the file being loaded by Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
+			<FileMemoryAllocationFailed title="Виняток: помилка розподілення пам'яті файлу" message="Ймовірно, не вистачає суміжної вільної пам'яті для файлу, що завантажується Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Історія буфера"/>
@@ -1483,7 +1483,7 @@ Translation note:
 		</FunctionList>
 		<FolderAsWorkspace>
 			<PanelTitle name="Тека як робоча область"/>
-			<SelectFolderFromBrowserString name="Виберіть теку, щоб додати її в якості панелі робочої області"/>
+			<SelectFolderFromBrowserString name="Виберіть теку, щоб додати її до панелі теки як робочої області"/>
 			<ExpandAllFoldersTip name="Розгорнути все"/>
 			<CollapseAllFoldersTip name="Згорнути все"/>
 			<LocateCurrentFileTip name="Знайти поточний файл"/>
@@ -1591,7 +1591,7 @@ Translation note:
 			<find-status-replace-not-found value="Замінити: Жодного збігу не знайдено"/>
 			<find-status-replace-readonly value="Замінити: Неможливо замінити текст. Цей документ призначений тільки для читання"/>
 			<find-status-cannot-find value="Знайти: Неможливо знайти текст &quot;$STR_REPLACE$&quot;"/>
-			<find-status-cannot-find-pebkac-maybe value="The given occurrence cannot be found. You may have forgotten to check &quot;Wrap around&quot; (to ON), &quot;Match case&quot; (to OFF), or &quot;Match whole word only&quot; (to OFF)."/>
+			<find-status-cannot-find-pebkac-maybe value="Не вдається знайти заданий випадок. Можливо, ви забули змінити прапорець &quot;Перенесення&quot; (увімкнено), &quot;Враховувати регістр&quot; (вимкнено) або &quot;Лише цілі слова&quot; (вимкнено)."/>
 			<find-status-scope-selection value="в обраному тексті"/>
 			<find-status-scope-all value="в цілому файлі"/>
 			<find-status-scope-backward value="від початку файлу до каретки"/>
@@ -1645,11 +1645,11 @@ Translation note:
 			<find-result-title value="Пошук"/><!-- Must not begin with space or tab character -->
 			<find-result-title-info value="($INT_REPLACE1$ збігів у $INT_REPLACE2$ файлах для $INT_REPLACE3$ пошуків)"/>
 			<find-result-title-info-selections value="($INT_REPLACE1$ влучань в $INT_REPLACE2$ вибраних з $INT_REPLACE3$ шуканих)"/>
-			<find-result-title-info-options-searchmode-normal value="Normal"/>
-			<find-result-title-info-options-searchmode-extended value="Extended"/>
-			<find-result-title-info-options-searchmode-regexp value="RegEx"/>
-			<find-result-title-info-options-case value="Case"/>
-			<find-result-title-info-options-word value="Word"/>
+			<find-result-title-info-options-searchmode-normal value="Звичайний"/>
+			<find-result-title-info-options-searchmode-extended value="Розширений"/>
+			<find-result-title-info-options-searchmode-regexp value="Регулярний вираз"/>
+			<find-result-title-info-options-case value="Регістр"/>
+			<find-result-title-info-options-word value="Слово"/>
 			<find-result-title-info-extra value=" - Режим фільтру рядків: показувати лише фільтровані результати"/>
 			<find-result-hits value="($INT_REPLACE$ збігів)"/>
 			<find-result-line-prefix value="Рядок"/><!-- Must not begin with space or tab character -->
@@ -1665,7 +1665,7 @@ Translation note:
 			<contextMenu-styleAlloccurrencesOfToken value="Стилізувати всі входження токена"/>
 			<contextMenu-styleOneToken value="Стилізувати один токен"/>
 			<contextMenu-clearStyle value="Очистити стиль"/>
-			<contextMenu-PluginCommands value="Команди плагіну"/>
+			<contextMenu-PluginCommands value="Команди плагіна"/>
 			<largeFileRestriction-tip value="Деякі функції можуть сповільнити роботу з великими файлами. Ці функції можна автоматично вимикати після відкриття такого файлу. Ви можете налаштувати ці опції тут.  ПРИМІТКА: 1. Для застосування змін потрібно повторно відкрити великі файли.  2. Якщо позначено параметр &quot;Глобальне вимкнення перенесення слів&quot; під час відкриття великого файлу, &quot;Перенесення слів&quot; буде деактивовано для всіх файлів. Ви можете знову ввімкнути його в меню &quot;Подання-&gt;Перенесення слів&quot;."/>
 			<npcNote-tip value="Представлення вибраного &quot;не ASCII&quot; пропуску та не друкованих (контрольних) символів.  ПРИМІТКА: Використання представлення вимкне ефекти символів у тексті.  Для повного списку вибраних символів пропуску та не друкованих символів перегляньте настанови для користувачів.  Натисніть цю кнопку, щоб відкрити вебсайт із настановами користувача."/>
 			<npcAbbreviation-tip value="Абревіатура : назва NBSP : нерозривний пропуск ZWSP : пропуск із нульовою шириною ZWNBSP : нерозривний пропуск із нульовою  Для повного списку перегляньте настанови для користувачів. Натисніть кнопку &quot;?&quot; праворуч, щоб відкрити вебсайт із настановами для користувачів."/>
