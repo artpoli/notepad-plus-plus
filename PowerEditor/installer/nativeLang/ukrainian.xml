@@ -1151,11 +1151,11 @@ Translation note:
 					<Item id="6728" name="Верхній та нижній колонтитули"/>
 				</Print>
 
-				<Searching title="Триває пошук">
+				<Searching title="Пошук">
 					<Item id="6902" name="Моноширинний шрифт у вікні Знайти (Необхідно перезапустити Notepad++)"/>
 					<Item id="6903" name="Вікно пошуку залишається відкритим після виведення результатів"/>
 					<Item id="6904" name="Підтвердити заміну всього в усіх відкритих документах"/>
-					<Item id="6905" name="Замінити: Не переходити до наступного входження"/>
+					<Item id="6905" name="Замінити: не переходити до наступного входження"/>
 					<Item id="6906" name="Вікно результатів пошуку: показувати лише один запис на знайдений рядок, якщо можливо"/>
 					<Item id="6907" name="Коли викликано діалогове вікно &quot;Знайти&quot;"/>
 					<Item id="6908" name="Заповнити поле для пошуку вибраним текстом"/>
@@ -1193,7 +1193,7 @@ Translation note:
 				<AutoCompletion title="Автозавершення">
 					<Item id="6115" name="Автовідступ"/>
 					<Item id="6807" name="Автозавершення"/>
-					<Item id="6808" name="Увімкнути автозавершення для кожного введення"/>
+					<Item id="6808" name="Автозавершення для кожного введення"/>
 					<Item id="6809" name="Завершення функцій"/>
 					<Item id="6810" name="Завершення слів"/>
 					<Item id="6816" name="Завершення функцій і слів"/>
@@ -1207,8 +1207,8 @@ Translation note:
 					<Item id="6815" name="Підказка параметрів функції при введенні"/>
 					<Item id="6851" name="Автовставлення"/>
 					<Item id="6857" name=" закр. тег html/xml"/>
-					<Item id="6858" name="Відкрити"/>
-					<Item id="6859" name="Закрити"/>
+					<Item id="6858" name="Відкр."/>
+					<Item id="6859" name="Закр."/>
 					<Item id="6860" name="Пара збігів 1:"/>
 					<Item id="6863" name="Пара збігів 2:"/>
 					<Item id="6866" name="Пара збігів 3:"/>
@@ -1289,13 +1289,13 @@ Translation note:
 					<Item id="6308" name="Згортати в системний трей"/>
 					<Item id="6312" name="Автовизначення стану файла"/>
 					<Item id="6313" name="Оновлювати без запиту"/>
-					<Item id="6325" name="Після оновлення прокрутити до останнього рядка"/>
+					<Item id="6325" name="Прокрутити до ост. рядка після оновл."/>
 					<Item id="6322" name="Розширення файлу сеансу:"/>
 					<Item id="6323" name="Автоматичне оновлення Notepad++"/>
 					<Item id="6324" name="Перемикання документів (Ctrl+Tab)"/>
 					<Item id="6331" name="Показувати лише назву файлу в рядку заголовка"/>
 					<Item id="6334" name="Автовизначення кодування символів"/>
-					<Item id="6349" name="Використовувати DirectWrite (Може вдосконалити візуалізацію спеціальних символів, необхідний перезапуск Notepad++)"/>
+					<Item id="6349" name="Викор. DirectWrite (може покращити відображення спеціальних символів, потрібен перезапуск)"/>
 					<Item id="6337" name="Розш. файлу робочої області:"/>
 					<Item id="6114" name="Увімкнути"/>
 					<Item id="6117" name="Побудувати список в міру використання"/>
@@ -1413,15 +1413,15 @@ Translation note:
 			<LoadLangsFailedFinal title="Конфігуратор" message="Збій завантаження langs.xml!"/><!-- HowToReproduce: Close Notepad++. Use another editor to make "langs.xml" an invalid xml file then save it. Open Notepad++. -->
 			<FolderAsWorspaceSubfolderExists title="Проблема з додаванням теки як робочої області" message="Підтека, яку ви хочете додати, вже існує. Вилучіть її корінь з панелі перш, ніж додавати теку &quot;$STR_REPLACE$&quot;."/><!-- HowToReproduce: Add a folder like "c:\temp\aFolder\" into "Folder as Workspace" panel, then try to add "c:\temp\". -->
 
-			<ProjectPanelChanged title="$STR_REPLACE$" message="Робоча область була змінена. Хочете зберегти її?"/>
-			<ProjectPanelSaveError title="$STR_REPLACE$" message="Сталася помилка при записі в файл робочої області. Ваша робоча область не була збережена."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
-			<ProjectPanelOpenDoSaveDirtyWsOrNot title="Відкрити робочу область" message="Активна робоча область була змінена. Хочете зберегти цей проєкт?"/>
-			<ProjectPanelNewDoSaveDirtyWsOrNot title="Нова робоча область" message="Поточна робоча область була змінена. Хочете зберегти поточний проєкт?"/>
+			<ProjectPanelChanged title="$STR_REPLACE$" message="Робочу область було змінено. Хочете зберегти її?"/>
+			<ProjectPanelSaveError title="$STR_REPLACE$" message="Сталася помилка під час запису файлу робочої області. Вашу робочу область не було збережено."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
+			<ProjectPanelOpenDoSaveDirtyWsOrNot title="Відкрити робочу область" message="Поточну робочу область було змінено. Хочете зберегти поточний проєкт?"/>
+			<ProjectPanelNewDoSaveDirtyWsOrNot title="Нова робоча область" message="Поточну робочу область було змінено. Хочете зберегти поточний проєкт?"/>
 			<ProjectPanelOpenFailed title="Відкрити робочу область" message="Не вдалося відкрити робочу область. Схоже, цей файл не є дійсним файлом проєкту."/>
 			<ProjectPanelRemoveFolderFromProject title="Вилучити теку з проєкту" message="Всі вкладені елементи будуть вилучені. Ви впевнені, що хочете вилучити цю теку з проєкту?"/>
 			<ProjectPanelRemoveFileFromProject title="Вилучити файл з проєкту" message="Ви впевнені, що хочете вилучити цей файл з проєкту?"/>
 			<ProjectPanelReloadError title="Перезавантажити робочу область" message="Не вдається знайти файл для перезавантаження."/>
-			<ProjectPanelReloadDirty title="Перезавантажити робочу область" message="Поточна робоча область була змінена. Перезавантаження відхилить всі зміни. Хочете продовжити?"/>
+			<ProjectPanelReloadDirty title="Перезавантажити робочу область" message="Поточну робочу область було змінено. Перезавантаження відхилить всі зміни. Хочете продовжити?"/>
 			<UDLNewNameError title="Помилка UDL" message="Це ім'я використовується іншою мовою, будь ласка, виберіть інше."/>
 			<UDLRemoveCurrentLang title="Видалити поточну мову" message="Ви впевнені?"/>
 			<SCMapperDoDeleteOrNot title="Ви впевнені?" message="Ви дійсно бажаєте видалити цю комбінацію клавіш?"/>
@@ -1486,7 +1486,7 @@ Translation note:
 			<SelectFolderFromBrowserString name="Виберіть теку, щоб додати її до панелі теки як робочої області"/>
 			<ExpandAllFoldersTip name="Розгорнути все"/>
 			<CollapseAllFoldersTip name="Згорнути все"/>
-			<LocateCurrentFileTip name="Знайти поточний файл"/>
+			<LocateCurrentFileTip name="Відкрити розташування поточного файлу"/>
 			<Menu>
 				<Item id="3511" name="Вилучити"/>
 				<Item id="3512" name="Вилучити все"/>
@@ -1583,13 +1583,13 @@ Translation note:
 			<find-status-replaceall-1-replaced value="Замінити все: Замінено 1 випадок"/>
 			<find-status-replaceall-nb-replaced value="Замінити все: Замінено $INT_REPLACE$ випадків"/>
 			<find-status-replaceall-readonly value="Замінити все: Неможливо замінити текст. Цей документ призначений тільки для читання"/>
-			<find-status-replace-end-reached value="Замінити: Замінено 1-й збіг згори. Було досягнуто кінця документа"/>
-			<find-status-replace-top-reached value="Замінити: Замінено 1-й збіг знизу. Було досягнуто початку документа"/>
-			<find-status-replaced-next-found value="Замінити: Виконано 1 заміну. Знайдено наступний збіг."/>
-			<find-status-replaced-without-continuing value="Замінити: Замінено 1 входження."/>
-			<find-status-replaced-next-not-found value="Замінити: Виконано 1 заміну. Інших збігів не знайдено."/>
-			<find-status-replace-not-found value="Замінити: Жодного збігу не знайдено"/>
-			<find-status-replace-readonly value="Замінити: Неможливо замінити текст. Цей документ призначений тільки для читання"/>
+			<find-status-replace-end-reached value="Замінити: замінено 1-й збіг згори. Було досягнуто кінця документа"/>
+			<find-status-replace-top-reached value="Замінити: замінено 1-й збіг знизу. Було досягнуто початку документа"/>
+			<find-status-replaced-next-found value="Замінити: виконано 1 заміну. Знайдено наступний збіг."/>
+			<find-status-replaced-without-continuing value="Замінити: виконано 1 заміну."/>
+			<find-status-replaced-next-not-found value="Замінити: виконано 1 заміну. Інших збігів не знайдено."/>
+			<find-status-replace-not-found value="Замінити: жодного збігу не знайдено"/>
+			<find-status-replace-readonly value="Замінити: неможливо замінити текст. Документ доступний тільки для читання"/>
 			<find-status-cannot-find value="Знайти: Неможливо знайти текст &quot;$STR_REPLACE$&quot;"/>
 			<find-status-cannot-find-pebkac-maybe value="Не вдається знайти заданий випадок. Можливо, ви забули змінити прапорець &quot;Перенесення&quot; (увімкнено), &quot;Враховувати регістр&quot; (вимкнено) або &quot;Лише цілі слова&quot; (вимкнено)."/>
 			<find-status-scope-selection value="в обраному тексті"/>
