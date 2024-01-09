@@ -304,8 +304,8 @@ Translation note:
 					<Item id="44092" name="Вкладка 7"/>
 					<Item id="44093" name="Вкладка 8"/>
 					<Item id="44094" name="Вкладка 9"/>
-					<Item id="44116" name="First Tab"/>
-					<Item id="44117" name="Last Tab"/>
+					<Item id="44116" name="Перша вкладка"/>
+					<Item id="44117" name="Остання вкладка"/>
 					<Item id="44095" name="Наступна вкладка"/>
 					<Item id="44096" name="Попередня вкладка"/>
 					<Item id="44097" name="Моніторинг (tail -f)"/>
@@ -352,8 +352,8 @@ Translation note:
 					<Item id="10002" name="Клонувати до іншого подання"/>
 					<Item id="10003" name="Перемістити до нового екземпляра"/>
 					<Item id="10004" name="Відкрити в новому екземплярі"/>
-					<Item id="10005" name="Move to Start"/>
-					<Item id="10006" name="Move to End"/>
+					<Item id="10005" name="Перемістити на початок"/>
+					<Item id="10006" name="Перемістити в кінець"/>
 					<Item id="46001" name="Конфігуратор стилю..."/>
 					<Item id="46250" name="Визначити мову..."/>
 					<Item id="46300" name="Відкрити користувацьку теку мови..."/>
@@ -403,7 +403,7 @@ Translation note:
 					<Item id="48016" name="Змінити комб. клавіш/Видалити макрос..."/>
 					<Item id="48017" name="Змінити комб. клавіш/Видалити команду..."/>
 
-					<Item id="11001" name="&amp;Windows..."/>
+					<Item id="11001" name="&amp;Вікна..."/>
 					<Item id="11002" name="Назва від A до Z"/>
 					<Item id="11003" name="Назва від Z до A"/>
 					<Item id="11004" name="Шлях від A до Z"/>
@@ -439,8 +439,8 @@ Translation note:
 				<Item CMDID="42030" name="Копіювати назву файлу"/>
 				<Item CMDID="42031" name="Копіювати шлях до поточної теки"/>
 				<Item CMDID="3" name="Перемістити документ"/>
-				<Item CMDID="10005" name="Move to Start"/>
-				<Item CMDID="10006" name="Move to End"/>
+				<Item CMDID="10005" name="Перемістити на початок"/>
+				<Item CMDID="10006" name="Перемістити в кінець"/>
 				<Item CMDID="10001" name="Перемістити до іншого подання"/>
 				<Item CMDID="10002" name="Клонувати до іншого подання"/>
 				<Item CMDID="10003" name="Перемістити до нового екземпляра"/>
@@ -514,9 +514,9 @@ Translation note:
 			</Find>
 
 			<IncrementalFind title="">
-				<Item id="1681" name="Find:"/>
+				<Item id="1681" name="Знайти:"/>
 				<Item id="1685" name="Враховувати &amp;регістр"/>
-				<Item id="1690" name="&amp;Highlight all"/>
+				<Item id="1690" name="Підсвітити все"/>
 			</IncrementalFind>
 
 			<FindCharsInRange title="Знайти символи в діапазоні...">
@@ -1156,7 +1156,7 @@ Translation note:
 					<Item id="6903" name="Вікно пошуку залишається відкритим після виведення результатів"/>
 					<Item id="6904" name="Підтвердити заміну всього в усіх відкритих документах"/>
 					<Item id="6905" name="Замінити: Не переходити до наступного входження"/>
-					<Item id="6906" name="Search Result window: show only one entry per found line if possible"/>
+					<Item id="6906" name="Вікно результатів пошуку: показувати лише один запис на знайдений рядок, якщо можливо"/>
 					<Item id="6907" name="Коли викликано діалогове вікно &quot;Знайти&quot;"/>
 					<Item id="6908" name="Заповнити поле для пошуку вибраним текстом"/>
 					<Item id="6909" name="Вибрати слово під узгодженим, якщо нічого не вибрано"/>
@@ -1440,8 +1440,8 @@ Translation note:
 			<NotEnoughRoom4Saving title="Не вдалося зберегти" message="Не вдалося зберегти файл. Схоже, на диску недостатньо вільного місця."/>
 			<FileInaccessibleUserSession title="Файл недоступний" message="Деякі файли з вашого збереженого вручну сеансу &quot;$STR_REPLACE$&quot; недоступні. Їх можна відкрити як заповнювачі –  порожні та доступні лише для читання документи.  Бажаєте створити ці заповнювачі?  ПРИМІТКА: якщо ви вирішите не створювати заповнювачі або закрити їх згодом, ваш збережений вручну сеанс НЕ буде змінено при виході."/>
 			<FileInaccessibleDefaultSessionXml title="Файл недоступний" message="Деякі файли з вашого минулого сеансу недоступні. Їх можна відкрити як заповнювачі – порожні та доступні лише для читання документи.  Бажаєте створити ці заповнювачі?  ПРИМІТКА: якщо ви вирішите не створювати заповнювачі або закрити їх згодом, ваш сеанс БУДЕ ЗМІНЕНО ПРИ ВИХОДІ! Пропонуємо вам створити резервну копію &quot;session.xml&quot; зараз."/>
-			<RTLvsDirectWrite title="Cannot run RTL" message="RTL is not compatible with DirectWrite mode. Please disable DirectWrite mode in MISC. section of Preferences dialog, and restart Notepad++."/>
-			<FileMemoryAllocationFailed title="Exception: File memory allocation failed" message="There is probably not enough contiguous free memory for the file being loaded by Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
+			<RTLvsDirectWrite title="Неможливо запустити RTL" message="RTL не сумісний з режимом DirectWrite. Вимкніть режим DirectWrite в розділі &quot;РІЗНЕ&quot; діалогового вікна налаштувань і перезапустіть Notepad++."/>
+			<FileMemoryAllocationFailed title="Виняток: помилка розподілення пам'яті файлу" message="There is probably not enough contiguous free memory for the file being loaded by Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Історія буфера"/>
