@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.6">
+	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.6.3">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -970,7 +970,8 @@ Translation note:
 
 					<Item id="6123" name="Локалізація"/>
 				</Global>
-				<Scintillas title="Редагування">
+
+				<Scintillas title="Editing 1">
 					<Item id="6216" name="Налаштування вставки"/>
 					<Item id="6217" name="Ширина:"/>
 					<Item id="6219" name="Частота мерехтіння:"/>
@@ -986,21 +987,30 @@ Translation note:
 					<Item id="6236" name="Прокручування за межі останнього рядка"/>
 					<Item id="6239" name="Утримувати вибір при клацанні за межами вибору"/>
 					<Item id="6245" name="Увімкнути віртуальний простір"/>
+					<Item id="6214" name="Enable Copy/Cut Line without selection"/>
 					<Item id="6651" name="Індикатор поточного рядка"/>
 					<Item id="6652" name="Немає"/>
 					<Item id="6653" name="Підсвічувати задній план"/>
 					<Item id="6654" name="Рамка"/>
 					<Item id="6655" name="Ширина:"/>
+				</Scintillas>
+
+				<Scintillas2 title="Editing 2">
+					<Item id="6521" name="Multi-Editing"/>
+					<Item id="6522" name="Увімкнути мультиредагування (Ctrl+Клік миші/вибір)"/>
+					<Item id="6523" name="Enable Column Selection to Multi-Editing"/>
 					<Item id="6247" name="EOL (CRLF)"/><!-- Don't translate "(CRLF)" -->
 					<Item id="6248" name="Типово"/>
 					<Item id="6249" name="Звичайний текст"/>
 					<Item id="6250" name="Власний колір"/>
 					<Item id="6252" name="Символи, що не друкуються"/>
+					<Item id="6260" name="Appearance"/>
 					<Item id="6254" name="Абревіатура"/>
 					<Item id="6255" name="Точка коду"/>
 					<Item id="6256" name="Власний колір"/>
-					<Item id="6258" name="Застосувати до C0, C1 &amp;&amp; Unicode EOL"/>
-				</Scintillas>
+					<Item id="6258" name="Apply Appearance settings to C0, C1 &amp;&amp; Unicode EOL"/>
+					<Item id="6259" name="Prevent control character (C0 code) typing into document"/>
+				</Scintillas2>
 
 				<DarkMode title="Темний режим">
 					<Item id="7131" name="Світлий режим"/>
@@ -1083,6 +1093,7 @@ Translation note:
 					<Item id="4009" name="Підтримувані:"/>
 					<Item id="4010" name="Зареєстровані:"/>
 				</FileAssoc>
+
 				<Language title="Мова">
 					<Item id="6505" name="Доступні мови"/>
 					<Item id="6506" name="Вимкнені мови"/>
@@ -1565,7 +1576,6 @@ Translation note:
 			<default-open-save-select-folder value="Виберіть типову теку"/><!-- HowToReproduce: Settings > Preferences > Default Directory > [...] -->
 			<shift-change-direction-tip value="Використовуйте Shift+Enter для пошуку у зворотному напрямку"/>
 			<two-find-buttons-tip value="2-кнопковий режим пошуку"/>
-			<file-rename-title value="Перейменувати"/>
 			<find-in-files-filter-tip value="Знайти в cpp, cxx, h, hxx &amp;&amp; hpp: *.cpp *.cxx *.h *.hxx *.hpp  Знайти в усіх файлах, за винятком exe, obj &amp;&amp; log: *.* !*.exe !*.obj !*.log  Знайти в усіх файлах, але виключити теки tests, bin &amp;&amp; bin64: *.* !\tests !\bin*  Знайти в усіх файлах, але виключити всі теки log чи logs рекурсивно: *.* !+\log*"/><!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
 			<find-in-files-select-folder value="Виберіть початкову теку пошуку"/><!-- HowToReproduce: Search > Find in Files > [...] -->
 			<find-status-top-reached value="Знайти: Знайдено 1-й збіг знизу. Було досягнуто початку документа."/>
@@ -1601,9 +1611,7 @@ Translation note:
 			<finder-collapse-all value="Згорнути все"/>
 			<finder-uncollapse-all value="Розгорнути все"/>
 			<finder-copy value="Копіювати вибрані рядки"/>
-			<finder-copy-verbatim value="Копіювати"/>
 			<finder-copy-paths value="Копіювати назви шляхів"/>
-			<finder-select-all value="Вибрати все"/>
 			<finder-clear-all value="Очистити все"/>
 			<finder-open-all value="Відкрити все"/>
 			<finder-purge-for-every-search value="Очищати для кожного пошуку"/>
@@ -1630,7 +1638,6 @@ Translation note:
 			<summary-nbsel2 value=" байтів) в "/>
 			<summary-nbrange value=" діапазонах"/>
 			<progress-hits-title value="Входження:"/>
-			<progress-cancel-button value="Скасувати"/>
 			<progress-cancel-info value="Скасування операції, будь ласка, зачекайте..."/>
 			<find-in-files-progress-title value="Поступ пошуку в файлах..."/>
 			<replace-in-files-confirm-title value="Ви впевнені?"/>
