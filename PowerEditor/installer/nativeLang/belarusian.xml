@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Беларуская" filename="belarusian.xml" version="8.4.6">
+	<Native-Langue name="Беларуская" filename="belarusian.xml" version="8.6.3">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -970,7 +970,8 @@ Translation note:
 
 					<Item id="6123" name="Localization"/>
 				</Global>
-				<Scintillas title="Праўка">
+
+				<Scintillas title="Editing 1">
 					<Item id="6216" name="Налады пункту ўстаўкі"/>
 					<Item id="6217" name="Шырыня:"/>
 					<Item id="6219" name="Частата мігцення:"/>
@@ -986,21 +987,30 @@ Translation note:
 					<Item id="6236" name="Уключыць згладжванне шрыфту"/>
 					<Item id="6239" name="Прагортка за межы апошняга радка"/>
 					<Item id="6245" name="Утрымліваць выбар пры націску за межамі выбару"/>
-					<Item id="6651" name="Уключыць віртуальны прабел"/>
-					<Item id="6652" name="Індыкатар бягучага радка"/>
-					<Item id="6653" name="Няма"/>
-					<Item id="6654" name="Падсвятляць фон"/>
-					<Item id="6655" name="Рамка"/>
+					<Item id="6214" name="Enable Copy/Cut Line without selection"/>
+					<Item id="6651" name="Індыкатар бягучага радка"/>
+					<Item id="6652" name="Няма"/>
+					<Item id="6653" name="Падсвятляць фон"/>
+					<Item id="6654" name="Рамка"/>
+					<Item id="6655" name="Шырыня:"/>
+				</Scintillas>
+
+				<Scintillas2 title="Editing 2">
+					<Item id="6521" name="Multi-Editing"/>
+					<Item id="6522" name="Уключыць мульты-рэдагаванне (Ctrl+націск мышы/выбар)"/>
+					<Item id="6523" name="Enable Column Selection to Multi-Editing"/>
 					<Item id="6247" name="EOL (CRLF)"/><!-- Don't translate "(CRLF)" -->
-					<Item id="6248" name="Default"/>
+					<Item id="6248" name="Перанос радкоў"/>
 					<Item id="6249" name="Прадвызначана"/>
 					<Item id="6250" name="Звычайны тэкст"/>
 					<Item id="6252" name="Карыстальніцкі колер"/>
-					<Item id="6254" name="Abbreviation"/>
-					<Item id="6255" name="Codepoint"/>
-					<Item id="6256" name="Custom Color"/>
-					<Item id="6258" name="Apply to C0, C1 &amp;&amp; Unicode EOL"/>
-				</Scintillas>
+					<Item id="6260" name="Appearance"/>
+					<Item id="6254" name="Скарачэнне"/>
+					<Item id="6255" name="Пункт кода"/>
+					<Item id="6256" name="Звычайны тэкст"/>
+					<Item id="6258" name="Apply Appearance settings to C0, C1 &amp;&amp; Unicode EOL"/>
+					<Item id="6259" name="Prevent control character (C0 code) typing into document"/>
+				</Scintillas2>
 
 				<DarkMode title="Цёмны рэжым">
 					<Item id="7101" name="Уключыць цёмны рэжым"/>
@@ -1083,6 +1093,7 @@ Translation note:
 					<Item id="4009" name="Падтрымліваюцца:"/>
 					<Item id="4010" name="Зарэгістраваныя пашырэнні:"/>
 				</FileAssoc>
+
 				<Language title="Сінтаксіс">
 					<Item id="6505" name="Даступныя мовы"/>
 					<Item id="6506" name="Адключаныя мовы"/>
@@ -1565,7 +1576,6 @@ Translation note:
 			<default-open-save-select-folder value="Выбраць папку як прадвызначаны каталог"/><!-- HowToReproduce: Settings > Preferences > Default Directory > [...] -->
 			<shift-change-direction-tip value="Выкарыстоўвайце Shift+Enter для пошуку ў адваротным напрамку"/>
 			<two-find-buttons-tip value="2-клавішны рэжым пошуку"/>
-			<file-rename-title value="Перайменаваць"/>
 			<find-in-files-filter-tip value="Знайсці ў cpp, cxx, h, hxx &amp;&amp; hpp: *.cpp *.cxx *.h *.hxx *.hpp  Знайсці ва ўсіх файлах за выключэннем exe, obj &amp;&amp; log: *.* !*.exe !*.obj !*.log  Знайсці ва ўсіх файлах за выключэннем папак tests, bin &amp;&amp; bin64: *.* !\tests !\bin*  Знайсці ва ўсіх файлах за выключэннем усіх папак log або папак рэкурсіўным значэннем log: *.* !+\log*"/><!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
 			<find-in-files-select-folder value="Выбраць папку для пошуку з"/><!-- HowToReproduce: Search > Find in Files > [...] -->
 			<find-status-top-reached value="Знайсці: Знойдзена першае супадзенне знізу. Быў дасягнуты пачатак дакумента."/>
@@ -1601,9 +1611,7 @@ Translation note:
 			<finder-collapse-all value="Згарнуць усе"/>
 			<finder-uncollapse-all value="Разгарнуць усе"/>
 			<finder-copy value="Капіяваць выбраныя радкі"/>
-			<finder-copy-verbatim value="Капіяваць"/>
 			<finder-copy-paths value="Капіяваць назвы шляхоў"/>
-			<finder-select-all value="Выбраць усе"/>
 			<finder-clear-all value="Ачысціць усе"/>
 			<finder-open-all value="Адкрыць усе"/>
 			<finder-purge-for-every-search value="Ачышчаць для кожнага пошуку"/>
@@ -1630,7 +1638,6 @@ Translation note:
 			<summary-nbsel2 value=" байтаў) у "/>
 			<summary-nbrange value=" дыяпазоны"/>
 			<progress-hits-title value="Hits:"/>
-			<progress-cancel-button value="Cancel"/>
 			<progress-cancel-info value="Cancelling operation, please wait..."/>
 			<find-in-files-progress-title value="Выкананне пошуку ў файлах..."/>
 			<replace-in-files-confirm-title value="Вы ўпэўнены?"/>
