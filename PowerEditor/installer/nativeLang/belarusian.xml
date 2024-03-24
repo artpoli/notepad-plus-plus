@@ -1052,10 +1052,11 @@ Translation note:
 					<Item id="6292" name="Дынамічная шырыня"/>
 					<Item id="6293" name="Пастаянная шырыня"/>
 					<Item id="6207" name="Паказваць закладку"/>
-					<Item id="6223" name="Паказаць гісторыю змен"/>
+					<Item id="6295" name="Ачысціць стыль"/>
+					<Item id="6223" name="Show in the margin"/>
+					<Item id="6296" name="Show in the text"/>
 					<Item id="6211" name="Налады вертыкальнага краю"/>
 					<Item id="6213" name="Фонавы рэжым"/>
-					<Item id="6237" name="Дадайце сваю пазнаку слупка, азначыўшы яго размяшчэнне дзесятковым лікам.  Вы можаце вызначыць некалькі пазнак слупкоў скарыстаўшыся прабелам для раздзялення розных лічбаў."/>
 					<Item id="6231" name="Шырыня мяжы"/>
 					<Item id="6235" name="Без краёў"/>
 					<Item id="6208" name="Запаўненне"/>
@@ -1682,6 +1683,7 @@ Translation note:
 			<npcCustomColor-tip value="Go to Style Configurator to change the default custom color for selected whitespace and non-printing characters (&quot;Non-printing characters custom color&quot;)."/>
 			<npcIncludeCcUniEol-tip value="Apply non-printing characters appearance settings to C0, C1 control and Unicode EOL (next line, line separator and paragraph separator) characters."/>
 			<searchingInSelThresh-tip value="Number of selected characters in edit zone to automatically check the &quot;In selection&quot; checkbox when the Find dialog is activated. The maximum value is 1024. Set the value to 0 to disable auto-checking."/>
+			<verticalEdge-tip value="Дадайце сваю пазнаку слупка, азначыўшы яго размяшчэнне дзесятковым лікам.  Вы можаце вызначыць некалькі пазнак слупкоў скарыстаўшыся прабелам для раздзялення розных лічбаў."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
