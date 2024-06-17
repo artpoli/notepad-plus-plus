@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Беларуская" filename="belarusian.xml" version="8.6.3">
+	<Native-Langue name="Беларуская" filename="belarusian.xml" version="8.6.8">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -477,7 +477,7 @@ Translation note:
 				<Item id="1615" name="Пазначыць усе"/>
 				<Item id="1616" name="Закладка радка"/>
 				<Item id="1618" name="Ачышчаць для кожнага пошуку"/>
-				<Item id="1611" name="Замяніць на:"/>
+				<Item id="1611" name="Rep&amp;lace with:"/>
 				<Item id="1608" name="Замяніць"/>
 				<Item id="1609" name="Замяніць усе"/>
 				<Item id="1687" name="Калі не актыўна"/>
@@ -486,8 +486,8 @@ Translation note:
 				<Item id="1633" name="Ачысціць усе пазнакі"/>
 				<Item id="1635" name="Замяніць усе ў ва ўсіх адкрытых дакументах"/>
 				<Item id="1636" name="Знайсці ўсе ў ва ўсіх адкрытых дакументах"/>
-				<Item id="1654" name="Фільтры:"/>
-				<Item id="1655" name="Каталог:"/>
+				<Item id="1654" name="Filter&amp;s:"/>
+				<Item id="1655" name="Dir&amp;ectory:"/>
 				<Item id="1656" name="Знайсці ўсе"/>
 				<Item id="1658" name="Ва ўсіх падпапках"/>
 				<Item id="1659" name="У схаваных папках"/>
@@ -1076,7 +1076,7 @@ Translation note:
 					<Item id="6408" name="UTF-8 з BOM"/>
 					<Item id="6409" name="UCS-16 Big Endian з BOM"/>
 					<Item id="6410" name="UCS-16 Little Endian з BOM"/>
-					<Item id="6411" name="Сінтаксіс:"/>
+					<Item id="6411" name="Default language:"/>
 					<Item id="6419" name="Стварыць дакумент"/>
 					<Item id="6420" name="Ужыць пры адкрыцці файлаў ANSI"/>
 					<Item id="6432" name="Always open a new document in addition at startup"/>
@@ -1100,10 +1100,13 @@ Translation note:
 					<Item id="6506" name="Адключаныя мовы"/>
 					<Item id="6507" name="Кампактнае меню сінтаксісу"/>
 					<Item id="6508" name="Меню сінтаксісу"/>
-					<Item id="6301" name="Налады табуляцыі"/>
-					<Item id="6302" name="Замяніць прабелам"/>
-					<Item id="6303" name="Памер табуляцыі: "/>
+					<Item id="6301" name="Indent Settings"/>
+					<Item id="6302" name="Space character(s)"/>
+					<Item id="6303" name="Indent size:"/>
+					<Item id="6310" name="Indent using:"/>
+					<Item id="6311" name="Tab character"/>
 					<Item id="6510" name="Выкарыстоўваць прадвызначанае значэнне"/>
+					<Item id="6512" name="Backspace key unindents instead of removing single space"/>
 					<Item id="6335" name="Зваротны слэш як сімвал Escape для SQL"/>
 				</Language>
 
@@ -1199,7 +1202,7 @@ Translation note:
 					<Item id="6316" name="Пашыраная рэзервовая копія"/>
 					<Item id="6317" name="Карыстальніцкі каталог рэзервовай копіі"/>
 					<Item id="6804" name="Каталог:"/>
-					<Item id="6803" name="Directory :"/>
+					<Item id="6803" name="Directory:"/>
 				</Backup>
 
 				<AutoCompletion title="Аўтазавяршэнне">
@@ -1454,6 +1457,7 @@ Translation note:
 			<FileInaccessibleDefaultSessionXml title="File inaccessible" message="Some files from your past session are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your session WILL BE MODIFIED ON EXIT! We suggest you backup your &quot;session.xml&quot; now."/>
 			<RTLvsDirectWrite title="Cannot run RTL" message="RTL is not compatible with DirectWrite mode. Please disable DirectWrite mode in MISC. section of Preferences dialog, and restart Notepad++."/>
 			<FileMemoryAllocationFailed title="Exception: File memory allocation failed" message="There is probably not enough contiguous free memory for the file being loaded by Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
+			<FindRegexBackwardDisabled title="Regex backward search disabled" message="By default, backward regex searching is disabled due to potentially unexpected results. To perform a backward search, open the Find dialog and select either normal or extended search mode instead of regular expression. Press the OK button to open the Find dialog or set focus on it.     If you require the backward regex searching feature, consult the user manual for instructions on enabling it."/>
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Гісторыя буфера абмену"/>
@@ -1642,8 +1646,8 @@ Translation note:
 			<progress-cancel-info value="Cancelling operation, please wait..."/>
 			<find-in-files-progress-title value="Выкананне пошуку ў файлах..."/>
 			<replace-in-files-confirm-title value="Вы ўпэўнены?"/>
-			<replace-in-files-confirm-directory value="Вы ўпэўнены, што хочаце замяніць усе супадзенні для:"/>
-			<replace-in-files-confirm-filetype value="Для тыпу файла:"/>
+			<replace-in-files-confirm-directory value="Are you sure you want to replace all occurrences in:"/>
+			<replace-in-files-confirm-filetype value="For file type:"/>
 			<replace-in-files-progress-title value="Адбываецца замена ў файлах..."/>
 			<replace-in-projects-confirm-title value="Вы ўпэўнены?"/>
 			<replace-in-projects-confirm-message value="Ці хочаце вы замяніць усе супадзенні ва ўсіх дакументах у выбранай панэлі праектаў?"/>
