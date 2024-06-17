@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.6.3">
+	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.6.8">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -468,7 +468,7 @@ Translation note:
 				<Item id="1" name="Знайти далі"/>
 				<Item id="1722" name="Зворотній напрямок"/>
 				<Item id="2" name="Закрити"/>
-				<Item id="1620" name="Що шукати:"/>
+				<Item id="1620" name="Що знайти:"/>
 				<Item id="1603" name="Лише цілі слова"/>
 				<Item id="1604" name="Враховувати регістр"/>
 				<Item id="1605" name="Регулярний вираз"/>
@@ -477,7 +477,7 @@ Translation note:
 				<Item id="1615" name="Позначити все"/>
 				<Item id="1616" name="Закладка рядка"/>
 				<Item id="1618" name="Очищати для кожного пошуку"/>
-				<Item id="1611" name="Замінити на:"/>
+				<Item id="1611" name="Rep&amp;lace with:"/>
 				<Item id="1608" name="Замінити"/>
 				<Item id="1609" name="Замінити все"/>
 				<Item id="1687" name="Вимкнути"/>
@@ -486,8 +486,8 @@ Translation note:
 				<Item id="1633" name="Очистити всі позначки"/>
 				<Item id="1635" name="Замінити все в активних документах"/>
 				<Item id="1636" name="Знайти все у відкритих документах"/>
-				<Item id="1654" name="Фільтри:"/>
-				<Item id="1655" name="Шлях:"/>
+				<Item id="1654" name="Filter&amp;s:"/>
+				<Item id="1655" name="Dir&amp;ectory:"/>
 				<Item id="1656" name="Знайти все"/>
 				<Item id="1658" name="У всіх підтеках"/>
 				<Item id="1659" name="У прихованих теках"/>
@@ -1076,7 +1076,7 @@ Translation note:
 					<Item id="6408" name="UTF-8 з BOM"/>
 					<Item id="6409" name="UTF-16 Big Endian з BOM"/>
 					<Item id="6410" name="UTF-16 Little Endian з BOM"/>
-					<Item id="6411" name="Синтаксис:"/>
+					<Item id="6411" name="Default language:"/>
 					<Item id="6419" name="Створити документ"/>
 					<Item id="6420" name="Застосувати до відкритих файлів ANSI"/>
 					<Item id="6432" name="Завжди відкривати новий документ при запуску"/>
@@ -1100,10 +1100,13 @@ Translation note:
 					<Item id="6506" name="Вимкнені мови"/>
 					<Item id="6507" name="Компактне меню синтаксису"/>
 					<Item id="6508" name="Меню синтаксису"/>
-					<Item id="6301" name="Налаштування табуляції"/>
-					<Item id="6302" name="Замінити пробілом"/>
-					<Item id="6303" name="Розмір табуляції: "/>
+					<Item id="6301" name="Indent Settings"/>
+					<Item id="6302" name="Space character(s)"/>
+					<Item id="6303" name="Indent size:"/>
+					<Item id="6310" name="Indent using:"/>
+					<Item id="6311" name="Tab character"/>
 					<Item id="6510" name="Використовувати типове значення"/>
+					<Item id="6512" name="Backspace key unindents instead of removing single space"/>
 					<Item id="6335" name="Зворотній слеш як символ escape для SQL"/>
 				</Language>
 
@@ -1199,7 +1202,7 @@ Translation note:
 					<Item id="6316" name="Проста резервна копія"/>
 					<Item id="6317" name="Розширена резервна копія"/>
 					<Item id="6804" name="Власна тека резервної копії"/>
-					<Item id="6803" name="Тека:"/>
+					<Item id="6803" name="Directory:"/>
 				</Backup>
 
 				<AutoCompletion title="Автозавершення">
@@ -1454,6 +1457,7 @@ Translation note:
 			<FileInaccessibleDefaultSessionXml title="Файл недоступний" message="Деякі файли з вашого минулого сеансу недоступні. Їх можна відкрити як заповнювачі – порожні та доступні лише для читання документи.  Бажаєте створити ці заповнювачі?  ПРИМІТКА: якщо ви вирішите не створювати заповнювачі або закрити їх згодом, ваш сеанс БУДЕ ЗМІНЕНО ПРИ ВИХОДІ! Пропонуємо вам створити резервну копію &quot;session.xml&quot; зараз."/>
 			<RTLvsDirectWrite title="Неможливо запустити RTL" message="RTL не сумісний з режимом DirectWrite. Вимкніть режим DirectWrite в розділі &quot;РІЗНЕ&quot; діалогового вікна налаштувань і перезапустіть Notepad++."/>
 			<FileMemoryAllocationFailed title="Виняток: помилка розподілення пам'яті файлу" message="Ймовірно, не вистачає суміжної вільної пам'яті для файлу, що завантажується Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
+			<FindRegexBackwardDisabled title="Regex backward search disabled" message="By default, backward regex searching is disabled due to potentially unexpected results. To perform a backward search, open the Find dialog and select either normal or extended search mode instead of regular expression. Press the OK button to open the Find dialog or set focus on it.     If you require the backward regex searching feature, consult the user manual for instructions on enabling it."/>
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Історія буфера"/>
@@ -1642,8 +1646,8 @@ Translation note:
 			<progress-cancel-info value="Скасування операції, будь ласка, зачекайте..."/>
 			<find-in-files-progress-title value="Поступ пошуку в файлах..."/>
 			<replace-in-files-confirm-title value="Ви впевнені?"/>
-			<replace-in-files-confirm-directory value="Ви дійсно хочете замінити всі збіги для:"/>
-			<replace-in-files-confirm-filetype value="Для типу файлу:"/>
+			<replace-in-files-confirm-directory value="Are you sure you want to replace all occurrences in:"/>
+			<replace-in-files-confirm-filetype value="For file type:"/>
 			<replace-in-files-progress-title value="Поступ заміни в файлах..."/>
 			<replace-in-projects-confirm-title value="Ви впевнені?"/>
 			<replace-in-projects-confirm-message value="Хочете замінити усі входження в усіх документах вибраних панелей проєкту?"/>
