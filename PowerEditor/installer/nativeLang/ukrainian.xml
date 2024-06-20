@@ -477,7 +477,7 @@ Translation note:
 				<Item id="1615" name="Позначити все"/>
 				<Item id="1616" name="Закладка рядка"/>
 				<Item id="1618" name="Очищати для кожного пошуку"/>
-				<Item id="1611" name="Rep&amp;lace with:"/>
+				<Item id="1611" name="Замінити на:"/>
 				<Item id="1608" name="Замінити"/>
 				<Item id="1609" name="Замінити все"/>
 				<Item id="1687" name="Вимкнути"/>
@@ -486,8 +486,8 @@ Translation note:
 				<Item id="1633" name="Очистити всі позначки"/>
 				<Item id="1635" name="Замінити все в активних документах"/>
 				<Item id="1636" name="Знайти все у відкритих документах"/>
-				<Item id="1654" name="Filter&amp;s:"/>
-				<Item id="1655" name="Dir&amp;ectory:"/>
+				<Item id="1654" name="Фільтри:"/>
+				<Item id="1655" name="Шлях:"/>
 				<Item id="1656" name="Знайти все"/>
 				<Item id="1658" name="У всіх підтеках"/>
 				<Item id="1659" name="У прихованих теках"/>
@@ -971,7 +971,7 @@ Translation note:
 					<Item id="6123" name="Локалізація"/>
 				</Global>
 
-				<Scintillas title="Editing 1">
+				<Scintillas title="Редагування 1">
 					<Item id="6216" name="Налаштування вставки"/>
 					<Item id="6217" name="Ширина:"/>
 					<Item id="6219" name="Частота мерехтіння:"/>
@@ -987,7 +987,7 @@ Translation note:
 					<Item id="6236" name="Прокручування за межі останнього рядка"/>
 					<Item id="6239" name="Утримувати вибір при клацанні за межами вибору"/>
 					<Item id="6245" name="Увімкнути віртуальний простір"/>
-					<Item id="6214" name="Enable Copy/Cut Line without selection"/>
+					<Item id="6214" name="Увімкнути копіювання/вирізання рядків без вибору"/>
 					<Item id="6651" name="Індикатор поточного рядка"/>
 					<Item id="6652" name="Немає"/>
 					<Item id="6653" name="Підсвічувати задній план"/>
@@ -995,20 +995,20 @@ Translation note:
 					<Item id="6655" name="Ширина:"/>
 				</Scintillas>
 
-				<Scintillas2 title="Editing 2">
-					<Item id="6521" name="Multi-Editing"/>
+				<Scintillas2 title="Редагування 2">
+					<Item id="6521" name="Мультиредагування"/>
 					<Item id="6522" name="Увімкнути мультиредагування (Ctrl+Клік миші/вибір)"/>
-					<Item id="6523" name="Enable Column Selection to Multi-Editing"/>
+					<Item id="6523" name="Увімкнути вибір стовпця для мультиредагування"/>
 					<Item id="6247" name="EOL (CRLF)"/><!-- Don't translate "(CRLF)" -->
 					<Item id="6248" name="Типово"/>
 					<Item id="6249" name="Звичайний текст"/>
 					<Item id="6250" name="Власний колір"/>
 					<Item id="6252" name="Символи, що не друкуються"/>
-					<Item id="6260" name="Appearance"/>
+					<Item id="6260" name="Вигляд"/>
 					<Item id="6254" name="Абревіатура"/>
 					<Item id="6255" name="Точка коду"/>
 					<Item id="6256" name="Власний колір"/>
-					<Item id="6258" name="Apply Appearance settings to C0, C1 &amp;&amp; Unicode EOL"/>
+					<Item id="6258" name="Застосувати налаштування вигляду до C0, C1 і Unicode EOL"/>
 					<Item id="6259" name="Prevent control character (C0 code) typing into document"/>
 				</Scintillas2>
 
