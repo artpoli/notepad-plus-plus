@@ -155,7 +155,7 @@ Translation note:
 					<Item id="42073" name="Відкрити файл"/>
 					<Item id="42074" name="Відкрити теку в провіднику"/>
 					<Item id="42075" name="Пошук в Інтернеті"/>
-					<Item id="42076" name="Змінити пошуковий засіб..."/>
+					<Item id="42076" name="Змінити пошукову систему..."/>
 					<Item id="42090" name="Ігнорувати регістр і ціле слово"/>
 					<Item id="42091" name="Враховувати лише регістр"/>
 					<Item id="42092" name="Враховувати лише ціле слово"/>
@@ -1009,7 +1009,7 @@ Translation note:
 					<Item id="6255" name="Точка коду"/>
 					<Item id="6256" name="Власний колір"/>
 					<Item id="6258" name="Застосувати налаштування вигляду до C0, C1 і Unicode EOL"/>
-					<Item id="6259" name="Prevent control character (C0 code) typing into document"/>
+					<Item id="6259" name="Запобігати введенню контрольного символу (код C0) у документ"/>
 				</Scintillas2>
 
 				<DarkMode title="Темний режим">
@@ -1053,8 +1053,8 @@ Translation note:
 					<Item id="6293" name="Постійна ширина"/>
 					<Item id="6207" name="Показувати закладку"/>
 					<Item id="6295" name="Історія змін"/>
-					<Item id="6223" name="Show in the margin"/>
-					<Item id="6296" name="Show in the text"/>
+					<Item id="6223" name="Показати на межі"/>
+					<Item id="6296" name="Показати в тексті"/>
 					<Item id="6211" name="Налаштування вертикальної межі"/>
 					<Item id="6213" name="Фоновий режим"/>
 					<Item id="6231" name="Ширина меж"/>
@@ -1076,7 +1076,7 @@ Translation note:
 					<Item id="6408" name="UTF-8 з BOM"/>
 					<Item id="6409" name="UTF-16 Big Endian з BOM"/>
 					<Item id="6410" name="UTF-16 Little Endian з BOM"/>
-					<Item id="6411" name="Default language:"/>
+					<Item id="6411" name="Типова мова:"/>
 					<Item id="6419" name="Створити документ"/>
 					<Item id="6420" name="Застосувати до відкритих файлів ANSI"/>
 					<Item id="6432" name="Завжди відкривати новий документ при запуску"/>
@@ -1100,13 +1100,13 @@ Translation note:
 					<Item id="6506" name="Вимкнені мови"/>
 					<Item id="6507" name="Компактне меню синтаксису"/>
 					<Item id="6508" name="Меню синтаксису"/>
-					<Item id="6301" name="Indent Settings"/>
-					<Item id="6302" name="Space character(s)"/>
-					<Item id="6303" name="Indent size:"/>
-					<Item id="6310" name="Indent using:"/>
-					<Item id="6311" name="Tab character"/>
+					<Item id="6301" name="Налаштування відступу"/>
+					<Item id="6302" name="Символ(и) пробілу"/>
+					<Item id="6303" name="Розмір відступу:"/>
+					<Item id="6310" name="Відступ з використанням:"/>
+					<Item id="6311" name="Cимвол табуляції"/>
 					<Item id="6510" name="Використовувати типове значення"/>
-					<Item id="6512" name="Backspace key unindents instead of removing single space"/>
+					<Item id="6512" name="Клавіша Backspace для скасування відступу замість видалення окремого пробілу"/>
 					<Item id="6335" name="Зворотній слеш як символ escape для SQL"/>
 				</Language>
 
@@ -1202,7 +1202,7 @@ Translation note:
 					<Item id="6316" name="Проста резервна копія"/>
 					<Item id="6317" name="Розширена резервна копія"/>
 					<Item id="6804" name="Власна тека резервної копії"/>
-					<Item id="6803" name="Directory:"/>
+					<Item id="6803" name="Тека:"/>
 				</Backup>
 
 				<AutoCompletion title="Автозавершення">
@@ -1264,7 +1264,7 @@ Translation note:
 					<Item id="7141" name="Обмеження великих файлів"/>
 					<Item id="7143" name="Увімкнути обмеження великих файлів (без підсвічування синтаксису)"/>
 					<Item id="7144" name="Визначити розмір великого файлу:"/>
-					<Item id="7146" name="MB   (1 - 2046)"/>
+					<Item id="7146" name="МБ  (1 - 2046)"/>
 					<Item id="7147" name="Дозволити збіги дужок"/>
 					<Item id="7148" name="Дозволити автозавершення"/>
 					<Item id="7149" name="Дозволити розумне підсвічування"/>
@@ -1284,13 +1284,13 @@ Translation note:
 					<Item id="6264" name="Власні схеми URI:"/>
 				</Cloud>
 
-				<SearchEngine title="Пошуковий засіб">
-					<Item id="6271" name="Пошуковий засіб (для команди &quot;Пошук в Інтернеті&quot;)"/>
+				<SearchEngine title="Пошукова система">
+					<Item id="6271" name="Пошукова система (для команди &quot;Пошук в Інтернеті&quot;)"/>
 					<Item id="6272" name="DuckDuckGo"/>
 					<Item id="6273" name="Google"/>
 					<Item id="6274" name="Bing"/>
 					<Item id="6275" name="Yahoo!"/>
-					<Item id="6276" name="Встановіть пошуковий засіб тут:"/>
+					<Item id="6276" name="Встановіть пошукову систему тут:"/>
 					<!-- Don't change anything after Example: -->
 					<Item id="6278" name="Зразок: https://www.google.com/search?q=$(CURRENT_WORD)"/>
 				</SearchEngine>
@@ -1457,7 +1457,7 @@ Translation note:
 			<FileInaccessibleDefaultSessionXml title="Файл недоступний" message="Деякі файли з вашого минулого сеансу недоступні. Їх можна відкрити як заповнювачі – порожні та доступні лише для читання документи.  Бажаєте створити ці заповнювачі?  ПРИМІТКА: якщо ви вирішите не створювати заповнювачі або закрити їх згодом, ваш сеанс БУДЕ ЗМІНЕНО ПРИ ВИХОДІ! Пропонуємо вам створити резервну копію &quot;session.xml&quot; зараз."/>
 			<RTLvsDirectWrite title="Неможливо запустити RTL" message="RTL не сумісний з режимом DirectWrite. Вимкніть режим DirectWrite в розділі &quot;РІЗНЕ&quot; діалогового вікна налаштувань і перезапустіть Notepad++."/>
 			<FileMemoryAllocationFailed title="Виняток: помилка розподілення пам'яті файлу" message="Ймовірно, не вистачає суміжної вільної пам'яті для файлу, що завантажується Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
-			<FindRegexBackwardDisabled title="Regex backward search disabled" message="By default, backward regex searching is disabled due to potentially unexpected results. To perform a backward search, open the Find dialog and select either normal or extended search mode instead of regular expression. Press the OK button to open the Find dialog or set focus on it.     If you require the backward regex searching feature, consult the user manual for instructions on enabling it."/>
+			<FindRegexBackwardDisabled title="Зворотний пошук регулярних виразів вимкнено" message="Типово зворотний пошук регулярних виразів вимкнено через потенційно несподівані результати. Щоб виконати зворотний пошук, відкрийте діалогове вікно Знайти та виберіть звичайний або розширений режим пошуку замість регулярного виразу. Натисніть кнопку OK, щоб відкрити діалогове вікно пошуку або встановити фокус на ньому.     Якщо вам потрібна функція пошуку зворотного регулярного виразу, зверніться до посібника користувача для отримання інструкцій щодо її ввімкнення."/>
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Історія буфера"/>
@@ -1646,8 +1646,8 @@ Translation note:
 			<progress-cancel-info value="Скасування операції, будь ласка, зачекайте..."/>
 			<find-in-files-progress-title value="Поступ пошуку в файлах..."/>
 			<replace-in-files-confirm-title value="Ви впевнені?"/>
-			<replace-in-files-confirm-directory value="Are you sure you want to replace all occurrences in:"/>
-			<replace-in-files-confirm-filetype value="For file type:"/>
+			<replace-in-files-confirm-directory value="Ви дійсно хочете замінити всі збіги для:"/>
+			<replace-in-files-confirm-filetype value="Для типу файлу:"/>
 			<replace-in-files-progress-title value="Поступ заміни в файлах..."/>
 			<replace-in-projects-confirm-title value="Ви впевнені?"/>
 			<replace-in-projects-confirm-message value="Хочете замінити усі входження в усіх документах вибраних панелей проєкту?"/>
