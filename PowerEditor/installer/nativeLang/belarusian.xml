@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Беларуская" filename="belarusian.xml" version="8.6.8">
+	<Native-Langue name="Беларуская" filename="belarusian.xml" version="8.6.9">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -222,7 +222,7 @@ Translation note:
 					<Item id="43051" name="Ачысціць 1-ы стыль"/>
 					<Item id="43050" name="Выкарыстанне 2-га стылю"/>
 					<Item id="43052" name="Ачысціць 2-і стыль"/>
-					<Item id="43053" name="Выкарыстанне 3-га стылю"/>
+					<Item id="43053" name="Select All In-betw&amp;een {} [] or ()"/>
 					<Item id="43009" name="Ачысціць 3-і стыль"/>
 					<Item id="43010" name="Выкарыстанне 4-га стылю"/>
 					<Item id="43011" name="Ачысціць 4-ы стыль"/>
@@ -355,46 +355,47 @@ Translation note:
 					<Item id="10005" name="Карта спалучэнняў клавіш..."/>
 					<Item id="10006" name="Параметры..."/>
 					<Item id="46001" name="Адкрыць папку з убудовамі..."/>
-					<Item id="46250" name="Адміністраванне ўбудоў..."/>
-					<Item id="46300" name="Генерыраваць..."/>
-					<Item id="46301" name="Генерыраваць з файла..."/>
-					<Item id="46180" name="Генерыраваць з выбранага ў буфер абмену"/>
+					<Item id="46016" name="None (Normal Text)"/>
+					<Item id="46180" name="Адміністраванне ўбудоў..."/>
+					<Item id="47000" name="Open User Defined Language folder..."/>
+					<Item id="46301" name="Notepad++ User Defined Languages Collection"/>
+					<Item id="46180" name="User-Defined"/>
 					<Item id="47000" name="Генерыраваць..."/>
-					<Item id="47010" name="Генерыраваць з файла..."/>
+					<Item id="47003" name="Генерыраваць з файла..."/>
 					<Item id="47001" name="Генерыраваць з выбранага ў буфер абмену"/>
-					<Item id="47002" name="Выканаць..."/>
-					<Item id="47003" name="Завяршэнне функцый"/>
-					<Item id="47004" name="Завяршэнне слоў"/>
-					<Item id="47012" name="Падказка параметраў функцый"/>
-					<Item id="47005" name="Папярэдняя падказка параметраў функцый"/>
-					<Item id="47006" name="Наступная падказка параметраў функцый"/>
+					<Item id="47002" name="Notepad++ Project Page"/>
+					<Item id="47003" name="Notepad++ Online User Manual"/>
+					<Item id="47006" name="Завяршэнне слоў"/>
+					<Item id="47009" name="Падказка параметраў функцый"/>
+					<Item id="48005" name="Get More Plugins"/>
+					<Item id="47006" name="Update Notepad++"/>
 					<Item id="47009" name="Пераключыць запіс макраса"/>
-					<Item id="48005" name="Завяршэнне шляху"/>
+					<Item id="48009" name="Завяршэнне шляху"/>
 					<Item id="48006" name="Схаваць радкі"/>
-					<Item id="48018" name="Адкрыць усе нядаўнія файлы"/>
+					<Item id="48014" name="Edit Popup ContextMenu"/>
 					<Item id="48009" name="Ачысціць спіс нядаўніх файлаў"/>
-					<Item id="48011" name="Змяніць спалучэнні клавіш/выдаліць макрас..."/>
-					<Item id="48014" name="Змяніць спалучэнні клавіш/выдаліць каманду..."/>
-					<Item id="48015" name="Windows..."/>
-					<Item id="48501" name="Назва ад А да Я"/>
-					<Item id="48502" name="Назва ад Я да А"/>
-					<Item id="48503" name="Шлях ад А да Я"/>
-					<Item id="48504" name="Шлях ад Я да А"/>
-					<Item id="48505" name="Тып ад А да Я"/>
+					<Item id="48501" name="Preferences..."/>
+					<Item id="48014" name="Open Plugins Folder..."/>
+					<Item id="48503" name="Plugins Admin..."/>
+					<Item id="48501" name="Generate..."/>
+					<Item id="48502" name="Generate from files..."/>
 					<Item id="48506" name="Тып ад Я да А"/>
-					<Item id="48507" name="Па павелічэнні памеру"/>
+					<Item id="49000" name="Generate..."/>
+					<Item id="50000" name="Па змяншэнні памеру"/>
+					<Item id="48506" name="Generate from selection into clipboard"/>
+					<Item id="48507" name="Generate..."/>
 					<Item id="48508" name="Па змяншэнні памеру"/>
 					<Item id="48509" name="Generate from selection into clipboard"/>
 					<Item id="48510" name="Generate..."/>
 					<Item id="48511" name="Generate from files..."/>
-					<Item id="48512" name="Generate from selection into clipboard"/>
+					<Item id="48512" name="Тып ад Я да А"/>
 					<Item id="49000" name="&amp;Run..."/>
 
 					<Item id="50000" name="Function Completion"/>
-					<Item id="50001" name="Word Completion"/>
-					<Item id="50002" name="Function Parameters Hint"/>
-					<Item id="50010" name="Function Parameters Previous Hint"/>
-					<Item id="50011" name="Function Parameters Next Hint"/>
+					<Item id="50011" name="Word Completion"/>
+					<Item id="50002" name="Падказка параметраў функцый"/>
+					<Item id="50006" name="Function Parameters Previous Hint"/>
+					<Item id="50011" name="Наступная падказка параметраў функцый"/>
 					<Item id="50005" name="Toggle macro record"/>
 					<Item id="50006" name="Path Completion"/>
 					<Item id="44042" name="Hide Lines"/>
@@ -1095,20 +1096,28 @@ Translation note:
 					<Item id="4010" name="Зарэгістраваныя пашырэнні:"/>
 				</FileAssoc>
 
+
 				<Language title="Сінтаксіс">
 					<Item id="6505" name="Даступныя мовы"/>
 					<Item id="6506" name="Адключаныя мовы"/>
 					<Item id="6507" name="Кампактнае меню сінтаксісу"/>
 					<Item id="6508" name="Меню сінтаксісу"/>
+					<Item id="6335" name="Treat backslash as escape character for SQL"/>
+				</Language>
+
+				<Indentation title="Indentation">
+					<Item id="7161" name="Auto-indent"/>
+					<Item id="7162" name="None"/>
+					<Item id="7163" name="Basic"/>
+					<Item id="7164" name="Advanced"/>
 					<Item id="6301" name="Indent Settings"/>
 					<Item id="6302" name="Space character(s)"/>
 					<Item id="6303" name="Indent size:"/>
 					<Item id="6310" name="Indent using:"/>
 					<Item id="6311" name="Tab character"/>
-					<Item id="6510" name="Выкарыстоўваць прадвызначанае значэнне"/>
+					<Item id="6510" name="Use default value"/>
 					<Item id="6512" name="Backspace key unindents instead of removing single space"/>
-					<Item id="6335" name="Зваротны слэш як сімвал Escape для SQL"/>
-				</Language>
+				</Indentation>
 
 				<Highlighting title="Вылучэнне">
 					<Item id="6351" name="Стыль для ўсіх выпадкаў токена"/>
@@ -1192,7 +1201,7 @@ Translation note:
 				<Backup title="Рэзервовыя копіі">
 					<Item id="6817" name="Здымак сеансу і перыядычнае рэзервовае капіяванне"/>
 					<Item id="6818" name="Уключыць здымак сеансу і перыядычнае рэзервовае капіяванне"/>
-					<Item id="6819" name="Рэзервовая копія кожныя"/>
+					<Item id="6819" name="Trigger backup on modification in every"/>
 					<Item id="6821" name="секундаў"/>
 					<Item id="6822" name="Размяшчэнне рэзервовай копіі:"/>
 					<Item id="6309" name="Памятаць бягучы сеанс для наступнага запуску"/>
@@ -1297,7 +1306,7 @@ Translation note:
 
 				<MISC title="РОЗНАЕ">
 					<ComboBox id="6347">
-						<Element name="Уключыць"/>
+						<Element name="Enable for current file"/>
 						<Element name="Уключыць для ўсіх адкрытых файлаў"/>
 						<Element name="Адключыць"/>
 					</ComboBox>
@@ -1383,6 +1392,11 @@ Translation note:
 				<Item id="7" name="Не"/>
 				<Item id="4" name="Заўсёды так"/>
 			</DoSaveAll><!-- HowToReproduce: Check the "Enable Save All confirm dialog" checkbox in Preference->MISC, now click "Save all" -->
+
+			<DebugInfo title="Debug Info">
+				<Item id="1752" name="&amp;Copy debug info to clipboard"/>
+				<Item id="1" name="OK"/>
+			</DebugInfo>
 		</Dialog>
 		<MessageBox>
 			<!-- $INT_REPLACE$ and $STR_REPLACE$ are place holders, don't translate these place holders. -->
@@ -1401,7 +1415,7 @@ Translation note:
 			<SettingsOnCloudError title="Налады воблачнага сховішча" message="Відавочна, што налады шляху да воблака ўсталяваныя з пазнакай толькі на чытанне\rабо ў папку, якая патрабуе адпаведных правоў на запіс.\rВашы налады ў воблаку будуць скасаваныя. Калі ласка, скіньце адпаведнае значэнне праз дыялог Параметры."/>
 			<FilePathNotFoundWarning title="Адкрыццё файла" message="Файл, які вы спрабуеце адкрыць не існуе."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<SessionFileInvalidError title="Не атрымалася загрузіць сеанс" message="Файл сеансу пашкоджаны або з'яўляецца памылковым."/><!-- HowToReproduce: Save current session via menu "File -> Save Session...", use another editor to modify the session you saved to make it an invalid xml file. Then load this invalid session via menu "File -> Load Session...". -->
-			<DroppingFolderAsProjectModeWarning title="Памылковае дзеянне" message="Вы можаце выключыць толькі файлы або толькі папкі, але не ўсё адразу, паколькі вы знаходзіцеся ў рэжыме &quot;Папка як праект&quot;. Каб гэты параметр пачаў працаваць вам неабходна ўключыць &quot;Адкрыць усе файлы папкі, замест адкрыцця папкі ў якасці працоўнай вобласці&quot; ў меню &quot;Параметры - Прадвызначаны каталог&quot;."/>
+			<DroppingFolderAsProjectModeWarning title="Памылковае дзеянне" message="You can only drop files or folders but not both, because you're in dropping Folder as Project mode. You have to enable &quot;Open all files of folder instead of launching Folder as Workspace on folder dropping&quot; in &quot;Default Directory&quot; section of Preferences dialog to make this operation work."/>
 			<SortingError title="Памылка сартавання" message="Не атрымліваецца выканаць сартаванне па ліках з-за радка $INT_REPLACE$."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<ColumnModeTip title="Парада для рэжыму слупкоў" message="Калі ласка, выкарыстоўвайце &quot;ALT+выбар мышы&quot; або &quot;Alt+Shift+клавіша стрэлкі&quot;, каб пераключыць рэжым слупкоў."/>
 			<BufferInvalidWarning title="Збой захавання" message="Не атрымалася захаваць: Памылковы буфер."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
@@ -1458,6 +1472,7 @@ Translation note:
 			<RTLvsDirectWrite title="Cannot run RTL" message="RTL is not compatible with DirectWrite mode. Please disable DirectWrite mode in MISC. section of Preferences dialog, and restart Notepad++."/>
 			<FileMemoryAllocationFailed title="Exception: File memory allocation failed" message="There is probably not enough contiguous free memory for the file being loaded by Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
 			<FindRegexBackwardDisabled title="Regex backward search disabled" message="By default, backward regex searching is disabled due to potentially unexpected results. To perform a backward search, open the Find dialog and select either normal or extended search mode instead of regular expression. Press the OK button to open the Find dialog or set focus on it.     If you require the backward regex searching feature, consult the user manual for instructions on enabling it."/>
+			<PrintError title="0" message="Cannot start printer document."/><!-- Use title="0" to use Windows OS default translated "Error" title. -->
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Гісторыя буфера абмену"/>
@@ -1583,8 +1598,8 @@ Translation note:
 			<two-find-buttons-tip value="2-клавішны рэжым пошуку"/>
 			<find-in-files-filter-tip value="Знайсці ў cpp, cxx, h, hxx &amp;&amp; hpp: *.cpp *.cxx *.h *.hxx *.hpp  Знайсці ва ўсіх файлах за выключэннем exe, obj &amp;&amp; log: *.* !*.exe !*.obj !*.log  Знайсці ва ўсіх файлах за выключэннем папак tests, bin &amp;&amp; bin64: *.* !\tests !\bin*  Знайсці ва ўсіх файлах за выключэннем усіх папак log або папак рэкурсіўным значэннем log: *.* !+\log*"/><!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
 			<find-in-files-select-folder value="Выбраць папку для пошуку з"/><!-- HowToReproduce: Search > Find in Files > [...] -->
-			<find-status-top-reached value="Знайсці: Знойдзена першае супадзенне знізу. Быў дасягнуты пачатак дакумента."/>
-			<find-status-end-reached value="Знайсці: Знойдзена адно супадзенне зверху. Быў дасягнуты канец дакумента."/>
+			<find-status-top-reached value="Find: Found the last occurrence from the bottom. The beginning of the document has been reached."/>
+			<find-status-end-reached value="Find: Found the last occurrence from the top. The end of the document has been reached."/>
 			<find-status-replaceinfiles-1-replaced value="Замяніць у файлах: 1 супадзенне заменена"/>
 			<find-status-replaceinfiles-nb-replaced value="Замяніць у файлах: Выканана $INT_REPLACE$ замен"/>
 			<find-status-replaceinopenedfiles-1-replaced value="Замяніць у адкрытых файлах: Выканана 1 замена"/>
@@ -1598,8 +1613,8 @@ Translation note:
 			<find-status-replaceall-1-replaced value="Замяніць усе: 1 супадзенне заменена"/>
 			<find-status-replaceall-nb-replaced value="Замяніць усе: Заменена $INT_REPLACE$ супадзенняў"/>
 			<find-status-replaceall-readonly value="Замяніць усе: Немагчыма замяніць тэкст. Бягучы дакумент прызначаны толькі для чытання"/>
-			<find-status-replace-end-reached value="Замяніць: Заменена першае супадзенне зверху. Быў дасягнуты канец дакумента"/>
-			<find-status-replace-top-reached value="Замяніць: Заменена першае супадзенне знізу. Быў дасягнуты пачатак дакумента"/>
+			<find-status-replace-end-reached value="Replace: Replaced the last occurrence from the top. The end of document has been reached"/>
+			<find-status-replace-top-reached value="Replace: Replaced the last occurrence from the bottom. The begin of document has been reached"/>
 			<find-status-replaced-next-found value="Замяніць: Выканана 1 замена. Знойдзена наступнае супадзенне."/>
 			<find-status-replaced-without-continuing value="Замяніць: 1 супадзенне было заменена."/>
 			<find-status-replaced-next-not-found value="Замяніць: Выканана 1 замена. Іншых супадзенняў не знойдзена."/>
@@ -1688,6 +1703,9 @@ Translation note:
 			<npcIncludeCcUniEol-tip value="Apply non-printing characters appearance settings to C0, C1 control and Unicode EOL (next line, line separator and paragraph separator) characters."/>
 			<searchingInSelThresh-tip value="Number of selected characters in edit zone to automatically check the &quot;In selection&quot; checkbox when the Find dialog is activated. The maximum value is 1024. Set the value to 0 to disable auto-checking."/>
 			<verticalEdge-tip value="Дадайце сваю пазнаку слупка, азначыўшы яго размяшчэнне дзесятковым лікам.  Вы можаце вызначыць некалькі пазнак слупкоў скарыстаўшыся прабелам для раздзялення розных лічбаў."/>
+			<fileSaveAsCopySaveButton-tip value="Hold Shift while pressing Save to open the copy after saving."/>
+			<autoIndentBasic-tip value="Ensure that the indentation of the current line (i.e. the new line created by pressing the ENTER key) matches the indentation of the previous line."/>
+			<autoIndentAdvanced-tip value="Enable smart indentation for &quot;C-like&quot; languages and Python. The &quot;C-like&quot; languages include: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell and JSON.  If you select advanced mode but do not edit files in the aforementioned languages, the indentation will remain in basic mode."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
