@@ -411,8 +411,8 @@ Translation note:
 					<Item id="11005" name="Шлях Z до А"/>
 					<Item id="11006" name="Тип від A до Z"/>
 					<Item id="11007" name="Тип від Z до A"/>
-					<Item id="11008" name="За збільшенням розміру"/>
-					<Item id="11009" name="За зменшенням розміру"/>
+					<Item id="11008" name="Content Length Ascending"/>
+					<Item id="11009" name="Content Length Descending"/>
 				</Commands>
 			</Main>
 			<TabBar>
@@ -746,14 +746,14 @@ Translation note:
 					<Item id="44113" name="Застосувати колір 3 для вкладки"/>
 					<Item id="44114" name="Застосувати колір 4 для вкладки"/>
 					<Item id="44115" name="Застосувати колір 5 для вкладки"/>
-					<Item id="11002" name="Сортувати за назвою від A до Z"/>
-					<Item id="11003" name="Сортувати за назвою від Z до A"/>
-					<Item id="11004" name="Сортувати за шляхом від A до Z"/>
-					<Item id="11005" name="Сортувати за шляхом від Z до A"/>
-					<Item id="11006" name="Сортувати за типом від A до Z"/>
-					<Item id="11007" name="Сортувати за типом від Z до A"/>
-					<Item id="11008" name="Сортувати за збільшенням розміру"/>
-					<Item id="11009" name="Сортувати за зменшенням розміру"/>
+					<Item id="11002" name="Sort by Name A to Z"/>
+					<Item id="11003" name="Sort by Name Z to A"/>
+					<Item id="11004" name="Sort by Path A to Z"/>
+					<Item id="11005" name="Sort by Path Z to A"/>
+					<Item id="11006" name="Sort by Type A to Z"/>
+					<Item id="11007" name="Sort by Type Z to A"/>
+					<Item id="11008" name="Sort by Content Length Ascending"/>
+					<Item id="11009" name="Sort by Content Length Descending"/>
 				</MainCommandNames>
 			</ShortcutMapper>
 			<ShortcutMapperSubDialg title="Комбінація клавіш">
