@@ -411,8 +411,8 @@ Translation note:
 					<Item id="11008" name="Шлях ад Я да А"/>
 					<Item id="11009" name="Тып ад А да Я"/>
 					<Item id="11007" name="Тып ад Я да А"/>
-					<Item id="11008" name="Па павелічэнні памеру"/>
-					<Item id="11009" name="Па змяншэнні памеру"/>
+					<Item id="11008" name="Content Length Ascending"/>
+					<Item id="11009" name="Content Length Descending"/>
 				</Commands>
 			</Main>
 			<TabBar>
@@ -746,14 +746,14 @@ Translation note:
 					<Item id="44113" name="Ужыць колер укладкі 3"/>
 					<Item id="44114" name="Ужыць колер укладкі 4"/>
 					<Item id="44115" name="Ужыць колер укладкі 5"/>
-					<Item id="11002" name="Сартаваць па назве ад А да Я"/>
-					<Item id="11003" name="Сартаваць па назве ад Я да А"/>
-					<Item id="11004" name="Сартаваць па шляху ад А да Я"/>
-					<Item id="11005" name="Сартаваць па шляху ад Я да А"/>
-					<Item id="11006" name="Сартаваць па тыпу ад А да Я"/>
-					<Item id="11007" name="Сартаваць па тыпу ад Я да А"/>
-					<Item id="11008" name="Сартаваць па ўзрастанню памеру"/>
-					<Item id="11009" name="Сартаваць па ўбыванні памеру"/>
+					<Item id="11002" name="Sort by Name A to Z"/>
+					<Item id="11003" name="Sort by Name Z to A"/>
+					<Item id="11004" name="Sort by Path A to Z"/>
+					<Item id="11005" name="Sort by Path Z to A"/>
+					<Item id="11006" name="Sort by Type A to Z"/>
+					<Item id="11007" name="Sort by Type Z to A"/>
+					<Item id="11008" name="Sort by Content Length Ascending"/>
+					<Item id="11009" name="Sort by Content Length Descending"/>
 				</MainCommandNames>
 			</ShortcutMapper>
 			<ShortcutMapperSubDialg title="Спалучэнні клавіш">
