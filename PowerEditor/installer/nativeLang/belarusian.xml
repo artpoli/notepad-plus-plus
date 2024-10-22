@@ -630,14 +630,16 @@ Translation note:
 					<Item id="2219" name="Ключавыя словы праграмы"/>
 					<Item id="2221" name="Ключавыя словы карыстальніка"/>
 					<Item id="2225" name="Мова:"/>
-					<Item id="2226" name="Агульны колер пярэдняга плана"/>
-					<Item id="2227" name="Агульны колер фону"/>
-					<Item id="2228" name="Агульны шрыфт"/>
-					<Item id="2229" name="Агульны памер шрыфту"/>
-					<Item id="2230" name="Агульны тоўсты шрыфт"/>
-					<Item id="2231" name="Агульны шрыфт курсівам"/>
-					<Item id="2232" name="Агульны падкрэслены шрыфт"/>
+					<Item id="2226" name="Force foreground color for all styles"/>
+					<Item id="2227" name="Force background color for all styles"/>
+					<Item id="2228" name="Force font choice for all styles"/>
+					<Item id="2229" name="Force font size choice for all styles"/>
+					<Item id="2230" name="Force bold choice for all styles"/>
+					<Item id="2231" name="Force italic choice for all styles"/>
+					<Item id="2232" name="Force underline choice for all styles"/>
 					<Item id="2234" name="Перайсці ў налады"/>
+					<!-- Don't translate "&quot;Global override&quot; -->
+					<Item id="2235" name="What is Global override?"/>
 				</SubDialog>
 			</StyleConfig>
 
@@ -1310,7 +1312,12 @@ Translation note:
 						<Element name="Уключыць для ўсіх адкрытых файлаў"/>
 						<Element name="Адключыць"/>
 					</ComboBox>
-					<Item id="6308" name="Згортваць у сістэмны латок"/>
+					<ComboBox id="6307">
+						<Element name="No action to"/>
+						<Element name="Minimize to"/>
+						<Element name="Close to"/>
+					</ComboBox>
+					<Item id="6308" name="system tray"/>
 					<Item id="6312" name="Аўтавызначэнне стану файла"/>
 					<Item id="6313" name="Абнаўляць без апавяшчэння"/>
 					<Item id="6325" name="Пасля абнаўлення перайсці да апошняга радка"/>
@@ -1598,8 +1605,8 @@ Translation note:
 			<two-find-buttons-tip value="2-клавішны рэжым пошуку"/>
 			<find-in-files-filter-tip value="Знайсці ў cpp, cxx, h, hxx &amp;&amp; hpp: *.cpp *.cxx *.h *.hxx *.hpp  Знайсці ва ўсіх файлах за выключэннем exe, obj &amp;&amp; log: *.* !*.exe !*.obj !*.log  Знайсці ва ўсіх файлах за выключэннем папак tests, bin &amp;&amp; bin64: *.* !\tests !\bin*  Знайсці ва ўсіх файлах за выключэннем усіх папак log або папак рэкурсіўным значэннем log: *.* !+\log*"/><!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
 			<find-in-files-select-folder value="Выбраць папку для пошуку з"/><!-- HowToReproduce: Search > Find in Files > [...] -->
-			<find-status-top-reached value="Find: Found the last occurrence from the bottom. The beginning of the document has been reached."/>
-			<find-status-end-reached value="Find: Found the last occurrence from the top. The end of the document has been reached."/>
+			<find-status-top-reached value="Find: Reached document beginning, first occurrence from the bottom found."/>
+			<find-status-end-reached value="Find: Reached document end, first occurrence from the top found."/>
 			<find-status-replaceinfiles-1-replaced value="Замяніць у файлах: 1 супадзенне заменена"/>
 			<find-status-replaceinfiles-nb-replaced value="Замяніць у файлах: Выканана $INT_REPLACE$ замен"/>
 			<find-status-replaceinopenedfiles-1-replaced value="Замяніць у адкрытых файлах: Выканана 1 замена"/>
@@ -1613,8 +1620,8 @@ Translation note:
 			<find-status-replaceall-1-replaced value="Замяніць усе: 1 супадзенне заменена"/>
 			<find-status-replaceall-nb-replaced value="Замяніць усе: Заменена $INT_REPLACE$ супадзенняў"/>
 			<find-status-replaceall-readonly value="Замяніць усе: Немагчыма замяніць тэкст. Бягучы дакумент прызначаны толькі для чытання"/>
-			<find-status-replace-end-reached value="Replace: Replaced the last occurrence from the top. The end of document has been reached"/>
-			<find-status-replace-top-reached value="Replace: Replaced the last occurrence from the bottom. The begin of document has been reached"/>
+			<find-status-replace-end-reached value="Replace: Reached document end, started from top."/>
+			<find-status-replace-top-reached value="Replace: Reached document beginning, started from bottom."/>
 			<find-status-replaced-next-found value="Замяніць: Выканана 1 замена. Знойдзена наступнае супадзенне."/>
 			<find-status-replaced-without-continuing value="Замяніць: 1 супадзенне было заменена."/>
 			<find-status-replaced-next-not-found value="Замяніць: Выканана 1 замена. Іншых супадзенняў не знойдзена."/>
@@ -1706,6 +1713,8 @@ Translation note:
 			<fileSaveAsCopySaveButton-tip value="Hold Shift while pressing Save to open the copy after saving."/>
 			<autoIndentBasic-tip value="Ensure that the indentation of the current line (i.e. the new line created by pressing the ENTER key) matches the indentation of the previous line."/>
 			<autoIndentAdvanced-tip value="Enable smart indentation for &quot;C-like&quot; languages and Python. The &quot;C-like&quot; languages include: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell and JSON.  If you select advanced mode but do not edit files in the aforementioned languages, the indentation will remain in basic mode."/>
+			<!-- Don't translate "&quot;Global override&quot; and &quot;Default Style&quot; -->
+			<global-override-tip value="Enabling &quot;Global override&quot; here will override that parameter in all language styles. What you probably really want is to use the &quot;Default Style&quot; settings instead"/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
