@@ -411,8 +411,8 @@ Translation note:
 					<Item id="11005" name="Шлях Z до А"/>
 					<Item id="11006" name="Тип від A до Z"/>
 					<Item id="11007" name="Тип від Z до A"/>
-					<Item id="11008" name="Content Length Ascending"/>
-					<Item id="11009" name="Content Length Descending"/>
+					<Item id="11008" name="Довжина вмісту за зростанням"/>
+					<Item id="11009" name="Довжина вмісту за спаданням"/>
 				</Commands>
 			</Main>
 			<TabBar>
