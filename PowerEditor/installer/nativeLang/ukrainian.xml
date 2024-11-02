@@ -632,14 +632,14 @@ Translation note:
 					<Item id="2225" name="Мова:"/>
 					<Item id="2226" name="Примусовий колір переднього плану для всіх стилів"/>
 					<Item id="2227" name="Примусовий колір тла для всіх стилів"/>
-					<Item id="2228" name="Примусовий вибір шрифту для всіх стилів"/>
-					<Item id="2229" name="Примусовий вибір розміру шрифту для всіх стилів"/>
-					<Item id="2230" name="Примусовий вибір жирного шрифту для всіх стилів"/>
-					<Item id="2231" name="Примусовий вибір курсиву для всіх стилів"/>
-					<Item id="2232" name="Force underline choice for all styles"/>
+					<Item id="2228" name="Примусовий шрифт для всіх стилів"/>
+					<Item id="2229" name="Примусовий розмір шрифту для всіх стилів"/>
+					<Item id="2230" name="Примусовий жирний шрифт для всіх стилів"/>
+					<Item id="2231" name="Примусовий курсив для всіх стилів"/>
+					<Item id="2232" name="Примусове підкреслення для всіх стилів"/>
 					<Item id="2234" name="Перейти до налаштувань"/>
 					<!-- Don't translate "&quot;Global override&quot; -->
-					<Item id="2235" name="What is Global override?"/>
+					<Item id="2235" name="Що таке глобальне перевизначення?"/>
 				</SubDialog>
 			</StyleConfig>
 
@@ -748,14 +748,14 @@ Translation note:
 					<Item id="44113" name="Застосувати колір 3 для вкладки"/>
 					<Item id="44114" name="Застосувати колір 4 для вкладки"/>
 					<Item id="44115" name="Застосувати колір 5 для вкладки"/>
-					<Item id="11002" name="Sort by Name A to Z"/>
-					<Item id="11003" name="Sort by Name Z to A"/>
-					<Item id="11004" name="Sort by Path A to Z"/>
-					<Item id="11005" name="Sort by Path Z to A"/>
-					<Item id="11006" name="Sort by Type A to Z"/>
-					<Item id="11007" name="Sort by Type Z to A"/>
-					<Item id="11008" name="Sort by Content Length Ascending"/>
-					<Item id="11009" name="Sort by Content Length Descending"/>
+					<Item id="11002" name="Сортувати за назвою від A до Z"/>
+					<Item id="11003" name="Сортувати за назвою від Z до A"/>
+					<Item id="11004" name="Сортувати за шляхом від A до Z"/>
+					<Item id="11005" name="Сортувати за шляхом від Z до A"/>
+					<Item id="11006" name="Сортувати за типом від A до Z"/>
+					<Item id="11007" name="Сортувати за типом від Z до A"/>
+					<Item id="11008" name="Сортувати за довжиною вмісту за зростанням"/>
+					<Item id="11009" name="Сортувати за довжиною вмісту за спаданням"/>
 				</MainCommandNames>
 			</ShortcutMapper>
 			<ShortcutMapperSubDialg title="Комбінація клавіш">
@@ -1313,11 +1313,11 @@ Translation note:
 						<Element name="Вимкнути"/>
 					</ComboBox>
 					<ComboBox id="6307">
-						<Element name="No action to"/>
-						<Element name="Minimize to"/>
-						<Element name="Close to"/>
+						<Element name="Немає дій для"/>
+						<Element name="Згорнути до"/>
+						<Element name="Закрити до"/>
 					</ComboBox>
-					<Item id="6308" name="system tray"/>
+					<Item id="6308" name="системного лотка"/>
 					<Item id="6312" name="Автовизначення стану файла"/>
 					<Item id="6313" name="Оновлювати без запиту"/>
 					<Item id="6325" name="Прокрутити до ост. рядка після оновл."/>
@@ -1605,8 +1605,8 @@ Translation note:
 			<two-find-buttons-tip value="2-кнопковий режим пошуку"/>
 			<find-in-files-filter-tip value="Знайти в cpp, cxx, h, hxx &amp;&amp; hpp: *.cpp *.cxx *.h *.hxx *.hpp  Знайти в усіх файлах, за винятком exe, obj &amp;&amp; log: *.* !*.exe !*.obj !*.log  Знайти в усіх файлах, але виключити теки tests, bin &amp;&amp; bin64: *.* !\tests !\bin*  Знайти в усіх файлах, але виключити всі теки log чи logs рекурсивно: *.* !+\log*"/><!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
 			<find-in-files-select-folder value="Виберіть початкову теку пошуку"/><!-- HowToReproduce: Search > Find in Files > [...] -->
-			<find-status-top-reached value="Find: Reached document beginning, first occurrence from the bottom found."/>
-			<find-status-end-reached value="Find: Reached document end, first occurrence from the top found."/>
+			<find-status-top-reached value="Знайти: досягнуто початку документа, перший випадок знайдено знизу."/>
+			<find-status-end-reached value="Знайти: досягнуто кінця документа, перший випадок знайдено зверху."/>
 			<find-status-replaceinfiles-1-replaced value="Замінити у файлах: виконано 1 заміну"/>
 			<find-status-replaceinfiles-nb-replaced value="Замінити у файлах: виконано $INT_REPLACE$ замін"/>
 			<find-status-replaceinopenedfiles-1-replaced value="Замінити у відкритих файлах: виконано 1 заміну"/>
@@ -1620,8 +1620,8 @@ Translation note:
 			<find-status-replaceall-1-replaced value="Замінити все: виконано 1 заміну"/>
 			<find-status-replaceall-nb-replaced value="Замінити все: виконано $INT_REPLACE$ замін"/>
 			<find-status-replaceall-readonly value="Замінити все: неможливо замінити текст. Документ лише для читання"/>
-			<find-status-replace-end-reached value="Replace: Reached document end, started from top."/>
-			<find-status-replace-top-reached value="Replace: Reached document beginning, started from bottom."/>
+			<find-status-replace-end-reached value="Замінити: досягнуто кінця документа, починається зверху."/>
+			<find-status-replace-top-reached value="Замінити: досягнуто початку документа, починається знизу."/>
 			<find-status-replaced-next-found value="Замінити: виконано 1 заміну. Знайдено наступний збіг."/>
 			<find-status-replaced-without-continuing value="Замінити: виконано 1 заміну."/>
 			<find-status-replaced-next-not-found value="Замінити: виконано 1 заміну. Інших збігів не знайдено."/>
@@ -1714,7 +1714,7 @@ Translation note:
 			<autoIndentBasic-tip value="Переконайтеся, що відступ поточного рядка (тобто новий рядок, створений натисканням клавіші ENTER) збігається з відступом попереднього рядка."/>
 			<autoIndentAdvanced-tip value="Увімкнути інтелектуальний відступ для &quot;C-подібних&quot; мов і Python. &quot;C-подібні&quot; мови включають: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell і JSON.  Якщо вибрати розширений режим, але не редагувати файли вищезазначеними мовами, відступ залишиться в базовому режимі."/>
 			<!-- Don't translate "&quot;Global override&quot; and &quot;Default Style&quot; -->
-			<global-override-tip value="Enabling &quot;Global override&quot; here will override that parameter in all language styles. What you probably really want is to use the &quot;Default Style&quot; settings instead"/>
+			<global-override-tip value="Увімкнення &quot;Глобального перевизначення&quot; тут замінить цей параметр у всіх мовних стилях. Натомість ви, ймовірно, хочете використовувати &quot;Типовий стиль&quot;"/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
