@@ -318,7 +318,7 @@ Translation note:
 					<Item id="44114" name="Ужыць колер 4"/>
 					<Item id="44115" name="Ужыць колер 5"/>
 					<Item id="44130" name="Паказваць сімвалы, якія не друкуюцца"/>
-					<Item id="44131" name="Show Control Characters &amp;&amp; Unicode EOL"/>
+					<Item id="44131" name="Паказваць сімвалы кіравання Unicode EOL"/>
 					<Item id="44032" name="Пераўтварыць у ANSI"/>
 					<Item id="44033" name="Пераўтварыць у UTF-8"/>
 					<Item id="44034" name="Пераўтварыць у UTF-8 BOM"/>
@@ -451,16 +451,16 @@ Translation note:
 				<Item CMDID="44112" name="Капіяваць у буфер абмену"/>
 				<Item CMDID="44113" name="Перамясціць дакумент"/>
 				<Item CMDID="44114" name="Ужыць колер да ўкладкі"/>
-				<Item CMDID="44115" name="Apply Color 5"/>
-				<Item CMDID="44110" name="Remove Color"/>
+				<Item CMDID="44115" name="Ужыць колер 5"/>
+				<Item CMDID="44110" name="Выдаліць колер"/>
 			</TabBar>
 			<TrayIcon>
-				<Item id="43101" name="Activate"/>
-				<Item id="43102" name="New"/>
-				<Item id="43103" name="New and Paste"/>
-				<Item id="43104" name="Open..."/>
-				<Item id="43013" name="Find in Files..."/>
-				<Item id="43105" name="Close Tray Icon"/>
+				<Item id="43101" name="Актываваць"/>
+				<Item id="43102" name="Новы"/>
+				<Item id="43103" name="Новы і ўставіць"/>
+				<Item id="43104" name="Адкрыць..."/>
+				<Item id="43013" name="Знайсці ў файлах..."/>
+				<Item id="43105" name="Закрыць значок латка"/>
 			</TrayIcon>
 		</Menu>
 
@@ -508,9 +508,9 @@ Translation note:
 				<Item id="1723" name="▼ Знайсці далей"/>
 				<Item id="1725" name="Капіяваць пазначаны тэкст"/>
 				<Menu>
-					<Item id="1726" name="⇅ Swap Find with Replace"/>
-					<Item id="1727" name="⤵ Copy from Find to Replace"/>
-					<Item id="1728" name="⤴ Copy from Replace to Find"/>
+					<Item id="1726" name="⇅ Пераключыць пошук і замену"/>
+					<Item id="1727" name="⤵ Капіяваць з пошуку ў замену"/>
+					<Item id="1728" name="⤴ Капіяваць з замены ў пошук"/>
 				</Menu>
 			</Find>
 
@@ -573,21 +573,21 @@ Translation note:
 				<Item id="2" name="Закрыць"/>
 			</SHA256FromTextDlg>
 
-			<SHA1FromFilesDlg title="Generate SHA-1 digest from files">
-				<Item id="1922" name="Choose files to &amp;generate SHA-1..."/>
-				<Item id="1924" name="Co&amp;py to Clipboard"/>
-				<Item id="2" name="&amp;Close"/>
+			<SHA1FromFilesDlg title="Генерыраваць дайджэст SHA-1 з файлаў">
+				<Item id="1922" name="Выберыце файлы для генерацыі SHA-1..."/>
+				<Item id="1924" name="Капіяваць у буфер абмену"/>
+				<Item id="2" name="Закрыць"/>
 			</SHA1FromFilesDlg>
 
-			<SHA1FromTextDlg title="Generate SHA-1 digest">
-				<Item id="1932" name="Treat each line as a &amp;separate string"/>
-				<Item id="1934" name="Co&amp;py to Clipboard"/>
-				<Item id="2" name="&amp;Close"/>
+			<SHA1FromTextDlg title="Генерыраваць дайджэст SHA-1">
+				<Item id="1932" name="Апрацаваць кожны радок як асобны"/>
+				<Item id="1934" name="Капіяваць у буфер абмену"/>
+				<Item id="2" name="Закрыць"/>
 			</SHA1FromTextDlg>
 
-			<SHA512FromFilesDlg title="Generate SHA-512 digest from files">
-				<Item id="1922" name="Choose files to &amp;generate SHA-512..."/>
-				<Item id="1924" name="Co&amp;py to Clipboard"/>
+			<SHA512FromFilesDlg title="Генерыраваць дайджэст SHA-512 з файлаў">
+				<Item id="1922" name="Выберыце файлы для &amp;генерацыі SHA-512..."/>
+				<Item id="1924" name="Капіяваць у буфер абмену"/>
 				<Item id="2" name="&amp;Close"/>
 			</SHA512FromFilesDlg>
 
