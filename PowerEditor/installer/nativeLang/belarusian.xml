@@ -1007,7 +1007,7 @@ Translation note:
 					<Item id="6249" name="Прадвызначана"/>
 					<Item id="6250" name="Звычайны тэкст"/>
 					<Item id="6252" name="Карыстальніцкі колер"/>
-					<Item id="6260" name="Appearance"/>
+					<Item id="6260" name="Выгляд"/>
 					<Item id="6254" name="Скарачэнне"/>
 					<Item id="6255" name="Пункт кода"/>
 					<Item id="6256" name="Звычайны тэкст"/>
@@ -1111,7 +1111,7 @@ Translation note:
 					<Item id="7161" name="Аўтаводступ"/>
 					<Item id="7162" name="Простая рэзервовая копія"/>
 					<Item id="7163" name="Basic"/>
-					<Item id="7164" name="Advanced"/>
+					<Item id="7164" name="Пашыраныя"/>
 					<Item id="6301" name="Indent Settings"/>
 					<Item id="6302" name="Space character(s)"/>
 					<Item id="6303" name="Indent size:"/>
@@ -1401,7 +1401,7 @@ Translation note:
 			</DoSaveAll><!-- HowToReproduce: Check the "Enable Save All confirm dialog" checkbox in Preference->MISC, now click "Save all" -->
 
 			<DebugInfo title="Debug Info">
-				<Item id="1752" name="&amp;Copy debug info to clipboard"/>
+				<Item id="1752" name="Капіяваць адладачныя звесткі ў буфер абмену"/>
 				<Item id="1" name="Добра"/>
 			</DebugInfo>
 		</Dialog>
