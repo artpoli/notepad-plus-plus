@@ -73,14 +73,14 @@ Translation note:
 					<Item subMenuId="encoding-thai" name="В'етнамская"/>
 					<Item subMenuId="encoding-turkish" name="Мова карыстальніка"/>
 					<Item subMenuId="encoding-westernEuropean" name="Імпарт"/>
-					<Item subMenuId="encoding-vietnamese" name="Vietnamese"/>
-					<Item subMenuId="language-userDefinedLanguage" name="User Defined Language"/>
+					<Item subMenuId="encoding-vietnamese" name="В'етнамская"/>
+					<Item subMenuId="language-userDefinedLanguage" name="Мова карыстальніка"/>
 					<Item subMenuId="settings-import" name="Сартаваць па"/>
 					<Item subMenuId="tools-md5" name="MD5"/>
 					<Item subMenuId="tools-sha1" name="SHA-1"/>
 					<Item subMenuId="tools-sha256" name="SHA-256"/>
 					<Item subMenuId="tools-sha512" name="SHA-512"/>
-					<Item subMenuId="window-sortby" name="Sort By"/>
+					<Item subMenuId="window-sortby" name="Сартаваць па"/>
 				</SubEntries>
 
 				<!-- all menu item -->
@@ -311,13 +311,13 @@ Translation note:
 					<Item id="44097" name="Панэль праекта 1"/>
 					<Item id="44098" name="Панэль праекта 2"/>
 					<Item id="44099" name="Панэль праекта 3"/>
-					<Item id="44110" name="Remove Color"/>
-					<Item id="44111" name="Apply Color 1"/>
-					<Item id="44112" name="Apply Color 2"/>
-					<Item id="44113" name="Apply Color 3"/>
-					<Item id="44114" name="Apply Color 4"/>
-					<Item id="44115" name="Apply Color 5"/>
-					<Item id="44130" name="Show Non-Printing Characters"/>
+					<Item id="44110" name="Выдаліць колер"/>
+					<Item id="44111" name="Ужыць колер 1"/>
+					<Item id="44112" name="Ужыць колер 2"/>
+					<Item id="44113" name="Ужыць колер 3"/>
+					<Item id="44114" name="Ужыць колер 4"/>
+					<Item id="44115" name="Ужыць колер 5"/>
+					<Item id="44130" name="Паказваць сімвалы, якія не друкуюцца"/>
 					<Item id="44131" name="Show Control Characters &amp;&amp; Unicode EOL"/>
 					<Item id="44032" name="Пераўтварыць у ANSI"/>
 					<Item id="44033" name="Пераўтварыць у UTF-8"/>
@@ -411,8 +411,8 @@ Translation note:
 					<Item id="11008" name="Шлях ад Я да А"/>
 					<Item id="11009" name="Тып ад А да Я"/>
 					<Item id="11007" name="Тып ад Я да А"/>
-					<Item id="11008" name="Content Length Ascending"/>
-					<Item id="11009" name="Content Length Descending"/>
+					<Item id="11008" name="Даўжыня зместу па ўзрастанні"/>
+					<Item id="11009" name="Даўжыня зместу па змяншэнні"/>
 				</Commands>
 			</Main>
 			<TabBar>
@@ -1011,7 +1011,7 @@ Translation note:
 					<Item id="6254" name="Скарачэнне"/>
 					<Item id="6255" name="Пункт кода"/>
 					<Item id="6256" name="Звычайны тэкст"/>
-					<Item id="6258" name="Apply Appearance settings to C0, C1 &amp;&amp; Unicode EOL"/>
+					<Item id="6258" name="Ужыць налады выгляду да C0, C1 Unicode EOL"/>
 					<Item id="6259" name="Prevent control character (C0 code) typing into document"/>
 				</Scintillas2>
 
@@ -1110,7 +1110,7 @@ Translation note:
 				<Indentation title="Indentation">
 					<Item id="7161" name="Аўтаводступ"/>
 					<Item id="7162" name="Простая рэзервовая копія"/>
-					<Item id="7163" name="Basic"/>
+					<Item id="7163" name="Базавы"/>
 					<Item id="7164" name="Пашыраныя"/>
 					<Item id="6301" name="Indent Settings"/>
 					<Item id="6302" name="Space character(s)"/>
@@ -1118,7 +1118,7 @@ Translation note:
 					<Item id="6310" name="Indent using:"/>
 					<Item id="6311" name="Tab character"/>
 					<Item id="6510" name="Выкарыстоўваць прадвызначанае значэнне"/>
-					<Item id="6512" name="Backspace key unindents instead of removing single space"/>
+					<Item id="6512" name="Клавіша Backspace для скасавання водступу замест выдалення асобнага прабелу"/>
 				</Indentation>
 
 				<Highlighting title="Вылучэнне">
@@ -1315,7 +1315,7 @@ Translation note:
 					<ComboBox id="6307">
 						<Element name="No action to"/>
 						<Element name="Minimize to"/>
-						<Element name="Close to"/>
+						<Element name="Закрыць да"/>
 					</ComboBox>
 					<Item id="6308" name="system tray"/>
 					<Item id="6312" name="Аўтавызначэнне стану файла"/>
@@ -1400,7 +1400,7 @@ Translation note:
 				<Item id="4" name="Заўсёды так"/>
 			</DoSaveAll><!-- HowToReproduce: Check the "Enable Save All confirm dialog" checkbox in Preference->MISC, now click "Save all" -->
 
-			<DebugInfo title="Debug Info">
+			<DebugInfo title="Адладачная звесткі">
 				<Item id="1752" name="Капіяваць адладачныя звесткі ў буфер абмену"/>
 				<Item id="1" name="Добра"/>
 			</DebugInfo>
@@ -1476,10 +1476,10 @@ Translation note:
 			<NotEnoughRoom4Saving title="Save failed" message="Failed to save file. It seems there's not enough space on disk to save file. Your file is not saved."/>
 			<FileInaccessibleUserSession title="File inaccessible" message="Some files from your manually-saved session &quot;$STR_REPLACE$&quot; are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your manually-saved session will NOT be modified on exit."/>
 			<FileInaccessibleDefaultSessionXml title="File inaccessible" message="Some files from your past session are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your session WILL BE MODIFIED ON EXIT! We suggest you backup your &quot;session.xml&quot; now."/>
-			<RTLvsDirectWrite title="Cannot run RTL" message="RTL is not compatible with DirectWrite mode. Please disable DirectWrite mode in MISC. section of Preferences dialog, and restart Notepad++."/>
+			<RTLvsDirectWrite title="Немагчыма запусціць RTL" message="RTL is not compatible with DirectWrite mode. Please disable DirectWrite mode in MISC. section of Preferences dialog, and restart Notepad++."/>
 			<FileMemoryAllocationFailed title="Exception: File memory allocation failed" message="There is probably not enough contiguous free memory for the file being loaded by Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
-			<FindRegexBackwardDisabled title="Regex backward search disabled" message="By default, backward regex searching is disabled due to potentially unexpected results. To perform a backward search, open the Find dialog and select either normal or extended search mode instead of regular expression. Press the OK button to open the Find dialog or set focus on it.     If you require the backward regex searching feature, consult the user manual for instructions on enabling it."/>
-			<PrintError title="0" message="Cannot start printer document."/><!-- Use title="0" to use Windows OS default translated "Error" title. -->
+			<FindRegexBackwardDisabled title="Regex backward search disabled" message="Прадвызначана зваротны пошук рэгулярных выразаў уключаны з прычыны патэнцыйна неспадзяваных вынікаў. Для выканання зваротнага пошуку, адкрыйце дыялогавае акно &quot;Знайсці&quot; і выберыце звычайны або пашыраны рэжым пошуку замест рэгулярнага выразу. Націсніце кнопку &quot;OK&quot;, каб адкрыць дыялогавае акно пошуку або ўстанавіце фокус на яго.     Калі вам патрэбныя функцыя пошуку зваротнага рэгулярнага выразу, звярніце да даведкі карыстальніка для атрымання інструкцый, каб яе ўключыць."/>
+			<PrintError title="0" message="Немагчыма запусціць дакумент прынтара."/><!-- Use title="0" to use Windows OS default translated "Error" title. -->
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Гісторыя буфера абмену"/>
@@ -1668,7 +1668,7 @@ Translation note:
 			<progress-cancel-info value="Cancelling operation, please wait..."/>
 			<find-in-files-progress-title value="Выкананне пошуку ў файлах..."/>
 			<replace-in-files-confirm-title value="Вы ўпэўнены?"/>
-			<replace-in-files-confirm-directory value="Are you sure you want to replace all occurrences in:"/>
+			<replace-in-files-confirm-directory value="Вы сапраўды хочаце замяніць усе супадзенні для:"/>
 			<replace-in-files-confirm-filetype value="For file type:"/>
 			<replace-in-files-progress-title value="Адбываецца замена ў файлах..."/>
 			<replace-in-projects-confirm-title value="Вы ўпэўнены?"/>
@@ -1682,7 +1682,7 @@ Translation note:
 			<find-result-title-info-options-searchmode-normal value="Normal"/>
 			<find-result-title-info-options-searchmode-extended value="Extended"/>
 			<find-result-title-info-options-searchmode-regexp value="RegEx"/>
-			<find-result-title-info-options-case value="Case"/>
+			<find-result-title-info-options-case value="Рэгістр"/>
 			<find-result-title-info-options-word value="Word"/>
 			<find-result-title-info-extra value=" - Рэжым фільтра радкоў: паказваць толькі фільтраваныя вынікі"/>
 			<find-result-hits value="($INT_REPLACE$ супадзенняў)"/>
