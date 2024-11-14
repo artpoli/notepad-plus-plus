@@ -748,14 +748,14 @@ Translation note:
 					<Item id="44113" name="Ужыць колер укладкі 3"/>
 					<Item id="44114" name="Ужыць колер укладкі 4"/>
 					<Item id="44115" name="Ужыць колер укладкі 5"/>
-					<Item id="11002" name="Sort by Name A to Z"/>
-					<Item id="11003" name="Sort by Name Z to A"/>
-					<Item id="11004" name="Sort by Path A to Z"/>
-					<Item id="11005" name="Sort by Path Z to A"/>
-					<Item id="11006" name="Sort by Type A to Z"/>
-					<Item id="11007" name="Sort by Type Z to A"/>
-					<Item id="11008" name="Sort by Content Length Ascending"/>
-					<Item id="11009" name="Sort by Content Length Descending"/>
+					<Item id="11002" name="Сартаваць па назве ад А да Я"/>
+					<Item id="11003" name="Сартаваць па назве ад Я да А"/>
+					<Item id="11004" name="Сартаваць па шляху ад А да Я"/>
+					<Item id="11005" name="Сартаваць па шляху ад Я да А"/>
+					<Item id="11006" name="Сартаваць па тыпу ад А да Я"/>
+					<Item id="11007" name="Сартаваць па тыпу ад Я да А"/>
+					<Item id="11008" name="Сартаваць па даўжыні зместу (па ўзрастанні)"/>
+					<Item id="11009" name="Сартаваць па даўжыні зместу (па змяншэнні)"/>
 				</MainCommandNames>
 			</ShortcutMapper>
 			<ShortcutMapperSubDialg title="Спалучэнні клавіш">
@@ -974,7 +974,7 @@ Translation note:
 					<Item id="6123" name="Localization"/>
 				</Global>
 
-				<Scintillas title="Editing 1">
+				<Scintillas title="Рэдагаванне 1">
 					<Item id="6216" name="Налады пункту ўстаўкі"/>
 					<Item id="6217" name="Шырыня:"/>
 					<Item id="6219" name="Частата мігцення:"/>
@@ -990,7 +990,7 @@ Translation note:
 					<Item id="6236" name="Уключыць згладжванне шрыфту"/>
 					<Item id="6239" name="Прагортка за межы апошняга радка"/>
 					<Item id="6245" name="Утрымліваць выбар пры націску за межамі выбару"/>
-					<Item id="6214" name="Enable Copy/Cut Line without selection"/>
+					<Item id="6214" name="Уключыць капіяваць/выразаць радкоў без выбару"/>
 					<Item id="6651" name="Індыкатар бягучага радка"/>
 					<Item id="6652" name="Няма"/>
 					<Item id="6653" name="Падсвятляць фон"/>
@@ -998,10 +998,10 @@ Translation note:
 					<Item id="6655" name="Шырыня:"/>
 				</Scintillas>
 
-				<Scintillas2 title="Editing 2">
-					<Item id="6521" name="Multi-Editing"/>
+				<Scintillas2 title="Рэдагаванне 2">
+					<Item id="6521" name="Мультырэдагаванне"/>
 					<Item id="6522" name="Уключыць мульты-рэдагаванне (Ctrl+націск мышы/выбар)"/>
-					<Item id="6523" name="Enable Column Selection to Multi-Editing"/>
+					<Item id="6523" name="Уключыць выбар слупка для мультырэдагавання"/>
 					<Item id="6247" name="EOL (CRLF)"/><!-- Don't translate "(CRLF)" -->
 					<Item id="6248" name="Перанос радкоў"/>
 					<Item id="6249" name="Прадвызначана"/>
@@ -1012,7 +1012,7 @@ Translation note:
 					<Item id="6255" name="Пункт кода"/>
 					<Item id="6256" name="Звычайны тэкст"/>
 					<Item id="6258" name="Ужыць налады выгляду да C0, C1 Unicode EOL"/>
-					<Item id="6259" name="Prevent control character (C0 code) typing into document"/>
+					<Item id="6259" name="Прадухіляць увядзенне кантрольнага сімвала (код C0) у дакуменце"/>
 				</Scintillas2>
 
 				<DarkMode title="Цёмны рэжым">
@@ -1056,8 +1056,8 @@ Translation note:
 					<Item id="6293" name="Пастаянная шырыня"/>
 					<Item id="6207" name="Паказваць закладку"/>
 					<Item id="6295" name="Ачысціць стыль"/>
-					<Item id="6223" name="Show in the margin"/>
-					<Item id="6296" name="Show in the text"/>
+					<Item id="6223" name="Паказаць на мяжы"/>
+					<Item id="6296" name="Паказаць у тэксце"/>
 					<Item id="6211" name="Налады вертыкальнага краю"/>
 					<Item id="6213" name="Фонавы рэжым"/>
 					<Item id="6231" name="Шырыня мяжы"/>
@@ -1079,7 +1079,7 @@ Translation note:
 					<Item id="6408" name="UTF-8 з BOM"/>
 					<Item id="6409" name="UCS-16 Big Endian з BOM"/>
 					<Item id="6410" name="UCS-16 Little Endian з BOM"/>
-					<Item id="6411" name="Default language:"/>
+					<Item id="6411" name="Прадвызначаная мова:"/>
 					<Item id="6419" name="Стварыць дакумент"/>
 					<Item id="6420" name="Ужыць пры адкрыцці файлаў ANSI"/>
 					<Item id="6432" name="Always open a new document in addition at startup"/>
@@ -1107,16 +1107,16 @@ Translation note:
 					<Item id="6335" name="Зваротны слэш як сімвал Escape для SQL"/>
 				</Language>
 
-				<Indentation title="Indentation">
+				<Indentation title="Водступ">
 					<Item id="7161" name="Аўтаводступ"/>
 					<Item id="7162" name="Простая рэзервовая копія"/>
 					<Item id="7163" name="Базавы"/>
 					<Item id="7164" name="Пашыраныя"/>
-					<Item id="6301" name="Indent Settings"/>
-					<Item id="6302" name="Space character(s)"/>
-					<Item id="6303" name="Indent size:"/>
-					<Item id="6310" name="Indent using:"/>
-					<Item id="6311" name="Tab character"/>
+					<Item id="6301" name="Налады водступу"/>
+					<Item id="6302" name="Сімвал(ы) прабелу"/>
+					<Item id="6303" name="Памер водступу:"/>
+					<Item id="6310" name="Водступ з выкарыстаннем:"/>
+					<Item id="6311" name="Сімвал табуляцыі"/>
 					<Item id="6510" name="Выкарыстоўваць прадвызначанае значэнне"/>
 					<Item id="6512" name="Клавіша Backspace для скасавання водступу замест выдалення асобнага прабелу"/>
 				</Indentation>
@@ -1186,7 +1186,7 @@ Translation note:
 					<Item id="6907" name="Калі выклікана дыялогавае акно &quot;Знайсці&quot;"/>
 					<Item id="6908" name="Запоўніць поле для пошуку выбраным тэкстам"/>
 					<Item id="6909" name="Выбраць слова пад стрэшкай, калі нічога не выбрана"/>
-					<Item id="6910" name="Minimum Size for Auto-Checking &quot;In selection&quot;:"/>
+					<Item id="6910" name="Мінімальны памер для аўтаматычнай праверкі &quot;ў выбары&quot;:"/>
 				</Searching>
 
 				<RecentFilesHistory title="Гісторыя файлаў">
@@ -1203,7 +1203,7 @@ Translation note:
 				<Backup title="Рэзервовыя копіі">
 					<Item id="6817" name="Здымак сеансу і перыядычнае рэзервовае капіяванне"/>
 					<Item id="6818" name="Уключыць здымак сеансу і перыядычнае рэзервовае капіяванне"/>
-					<Item id="6819" name="Trigger backup on modification in every"/>
+					<Item id="6819" name="Выклікае рэзервовае капіяванне пасля змянення кожныя"/>
 					<Item id="6821" name="секундаў"/>
 					<Item id="6822" name="Размяшчэнне рэзервовай копіі:"/>
 					<Item id="6309" name="Памятаць бягучы сеанс для наступнага запуску"/>
@@ -1213,7 +1213,7 @@ Translation note:
 					<Item id="6316" name="Пашыраная рэзервовая копія"/>
 					<Item id="6317" name="Карыстальніцкі каталог рэзервовай копіі"/>
 					<Item id="6804" name="Каталог:"/>
-					<Item id="6803" name="Directory:"/>
+					<Item id="6803" name="Каталог:"/>
 				</Backup>
 
 				<AutoCompletion title="Аўтазавяршэнне">
@@ -1275,13 +1275,13 @@ Translation note:
 					<Item id="7141" name="Забараняць вялікія файлы"/>
 					<Item id="7143" name="Уключыць забарону вялікіх файлаў (без падсветкі сінтаксісу)"/>
 					<Item id="7144" name="Вызначыць памер вялікага файла:"/>
-					<Item id="7146" name="MB   (1 - 2046)"/>
+					<Item id="7146" name="МБ  (1 - 2046)"/>
 					<Item id="7147" name="Дазваляць парныя дужкі"/>
 					<Item id="7148" name="Дазваляць аўтазавяршэнне"/>
 					<Item id="7149" name="Дазваляць інтэлектуальнае падсветку"/>
 					<Item id="7150" name="Дэактываваць агульны перанос слоў"/>
 					<Item id="7151" name="Дазваляць націсканальныя спасылкі"/>
-					<Item id="7152" name="Suppress warning when opening ≥2GB files"/>
+					<Item id="7152" name="Не папярэджваць пры адкрыцці файлаў памерам больш за 2 ГБ"/>
 				</Performance>
 
 				<Cloud title="Воблачная  спасылка">
@@ -1308,16 +1308,16 @@ Translation note:
 
 				<MISC title="РОЗНАЕ">
 					<ComboBox id="6347">
-						<Element name="Enable for current file"/>
+						<Element name="Уключыць для бягучага файла"/>
 						<Element name="Уключыць для ўсіх адкрытых файлаў"/>
 						<Element name="Адключыць"/>
 					</ComboBox>
 					<ComboBox id="6307">
-						<Element name="No action to"/>
-						<Element name="Minimize to"/>
+						<Element name="Адсутнічае дзеянне для"/>
+						<Element name="Мінімізаваць у"/>
 						<Element name="Закрыць да"/>
 					</ComboBox>
-					<Item id="6308" name="system tray"/>
+					<Item id="6308" name="сістэмны латок"/>
 					<Item id="6312" name="Аўтавызначэнне стану файла"/>
 					<Item id="6313" name="Абнаўляць без апавяшчэння"/>
 					<Item id="6325" name="Пасля абнаўлення перайсці да апошняга радка"/>
@@ -1415,7 +1415,7 @@ Translation note:
 			<FileLockedWarning title="Збой захавання" message="Праверце, ці не адкрыты гэты файл у іншай праграме"/>
 			<FileAlreadyOpenedInNpp title="" message="Файл ужо адкрыты ў Notepad++."/><!-- HowToReproduce: Open a new document and open a file "c:/tmp/foo", save this new document by choosing "c:/tmp/foo" as file to save, reply the override popup "yes", then this message appears. -->
 			<RenameTabTemporaryNameAlreadyInUse title="Збой перайменавання" message="Азначаная назва ўжо выкарыстоўваецца на іншай укладцы."/><!-- HowToReproduce: Rename the tab of an untitled document and provide a name that is the same as an already-existing tab of an untitled document. -->
-			<RenameTabTemporaryNameIsEmpty title="Rename failed" message="The specified name cannot be empty, or it cannot contain only space(s) or TAB(s)."/><!-- HowToReproduce: Rename the tab of an untitled document and provide an empty string or only some white speces. -->
+			<RenameTabTemporaryNameIsEmpty title="Rename failed" message="Пазначаная назва не можа быць пустой, а таксама не можа змяшчаць сімвалы прабелу і табуляцыі."/><!-- HowToReproduce: Rename the tab of an untitled document and provide an empty string or only some white speces. -->
 			<DeleteFileFailed title="Выдаліць файл" message="Збой выдалення файла"/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 
 			<NbFileToOpenImportantWarning title="Надта вялікая колькасць файлаў для адкрыцця" message="$INT_REPLACE$ файлаў неўзабаве будзе адкрыта. Вы ўпэўнены, што хочаце адкрыць іх?"/><!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
@@ -1473,11 +1473,11 @@ Translation note:
 			<LanguageMenuCompactWarning title="Compact Language Menu" message="This option will be changed on the next launch."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
 			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Unsaved changes are about to be discarded! Do you want to save your changes before switching themes?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
 			<MacroAndRunCmdlWarning title="Macro and Run Commands Compatibility" message="Your Macro and Run commands saved in Notepad++ v.8.5.2 (or older) may not be compatible with the current version of Notepad++. Please test those commands and, if needed, re-edit them.  Alternatively, you can downgrade to Notepad++ v8.5.2 and restore your previous data. Notepad++ will backup your old &quot;shortcuts.xml&quot; and save it as &quot;shortcuts.xml.v8.5.2.backup&quot;. Renaming &quot;shortcuts.xml.v8.5.2.backup&quot; -&gt; &quot;shortcuts.xml&quot;, your commands should be restored and work properly."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
-			<NotEnoughRoom4Saving title="Save failed" message="Failed to save file. It seems there's not enough space on disk to save file. Your file is not saved."/>
-			<FileInaccessibleUserSession title="File inaccessible" message="Some files from your manually-saved session &quot;$STR_REPLACE$&quot; are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your manually-saved session will NOT be modified on exit."/>
+			<NotEnoughRoom4Saving title="Save failed" message="Не ўдалося захаваць файл. Верагодна, што недастаткова прасторы на дыску. Ваш файл не захаваны."/>
+			<FileInaccessibleUserSession title="Файл недаступны" message="Some files from your manually-saved session &quot;$STR_REPLACE$&quot; are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your manually-saved session will NOT be modified on exit."/>
 			<FileInaccessibleDefaultSessionXml title="File inaccessible" message="Some files from your past session are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your session WILL BE MODIFIED ON EXIT! We suggest you backup your &quot;session.xml&quot; now."/>
-			<RTLvsDirectWrite title="Немагчыма запусціць RTL" message="RTL is not compatible with DirectWrite mode. Please disable DirectWrite mode in MISC. section of Preferences dialog, and restart Notepad++."/>
-			<FileMemoryAllocationFailed title="Exception: File memory allocation failed" message="There is probably not enough contiguous free memory for the file being loaded by Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
+			<RTLvsDirectWrite title="Немагчыма запусціць RTL" message="RTL не сумяшчальны з рэжымам DirectWrite. Аключыце рэжым DirectWrite у раздзеле РОЗНАЕ ў дыялогавым акне з параметрамі і перазапусціце Notepad++."/>
+			<FileMemoryAllocationFailed title="Выключэнне: збой размеркавання памяці файла" message="Верагодна, што не недастаткова сумежнай вольнай памяці, які загружаецца Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
 			<FindRegexBackwardDisabled title="Regex backward search disabled" message="Прадвызначана зваротны пошук рэгулярных выразаў уключаны з прычыны патэнцыйна неспадзяваных вынікаў. Для выканання зваротнага пошуку, адкрыйце дыялогавае акно &quot;Знайсці&quot; і выберыце звычайны або пашыраны рэжым пошуку замест рэгулярнага выразу. Націсніце кнопку &quot;OK&quot;, каб адкрыць дыялогавае акно пошуку або ўстанавіце фокус на яго.     Калі вам патрэбныя функцыя пошуку зваротнага рэгулярнага выразу, звярніце да даведкі карыстальніка для атрымання інструкцый, каб яе ўключыць."/>
 			<PrintError title="0" message="Немагчыма запусціць дакумент прынтара."/><!-- Use title="0" to use Windows OS default translated "Error" title. -->
 		</MessageBox>
@@ -1681,9 +1681,9 @@ Translation note:
 			<find-result-title-info-selections value="($INT_REPLACE1$ супадзенняў у $INT_REPLACE2$ выбраных з $INT_REPLACE3$ шуканых)"/>
 			<find-result-title-info-options-searchmode-normal value="Normal"/>
 			<find-result-title-info-options-searchmode-extended value="Extended"/>
-			<find-result-title-info-options-searchmode-regexp value="RegEx"/>
+			<find-result-title-info-options-searchmode-regexp value="Рэгулярны выраз"/>
 			<find-result-title-info-options-case value="Рэгістр"/>
-			<find-result-title-info-options-word value="Word"/>
+			<find-result-title-info-options-word value="Слова"/>
 			<find-result-title-info-extra value=" - Рэжым фільтра радкоў: паказваць толькі фільтраваныя вынікі"/>
 			<find-result-hits value="($INT_REPLACE$ супадзенняў)"/>
 			<find-result-line-prefix value="Радок"/><!-- Must not begin with space or tab character -->
