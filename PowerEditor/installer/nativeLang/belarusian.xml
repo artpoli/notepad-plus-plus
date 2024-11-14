@@ -1475,10 +1475,10 @@ Translation note:
 			<MacroAndRunCmdlWarning title="Macro and Run Commands Compatibility" message="Your Macro and Run commands saved in Notepad++ v.8.5.2 (or older) may not be compatible with the current version of Notepad++. Please test those commands and, if needed, re-edit them.  Alternatively, you can downgrade to Notepad++ v8.5.2 and restore your previous data. Notepad++ will backup your old &quot;shortcuts.xml&quot; and save it as &quot;shortcuts.xml.v8.5.2.backup&quot;. Renaming &quot;shortcuts.xml.v8.5.2.backup&quot; -&gt; &quot;shortcuts.xml&quot;, your commands should be restored and work properly."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
 			<NotEnoughRoom4Saving title="Save failed" message="Не ўдалося захаваць файл. Верагодна, што недастаткова прасторы на дыску. Ваш файл не захаваны."/>
 			<FileInaccessibleUserSession title="Файл недаступны" message="Some files from your manually-saved session &quot;$STR_REPLACE$&quot; are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your manually-saved session will NOT be modified on exit."/>
-			<FileInaccessibleDefaultSessionXml title="File inaccessible" message="Some files from your past session are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your session WILL BE MODIFIED ON EXIT! We suggest you backup your &quot;session.xml&quot; now."/>
+			<FileInaccessibleDefaultSessionXml title="Файл недаступны" message="Some files from your past session are inaccessible. They can be opened as empty and read-only documents as placeholders.  Would you like to create those placeholders?  NOTE: Choosing not to create the placeholders or closing them later, your session WILL BE MODIFIED ON EXIT! We suggest you backup your &quot;session.xml&quot; now."/>
 			<RTLvsDirectWrite title="Немагчыма запусціць RTL" message="RTL не сумяшчальны з рэжымам DirectWrite. Аключыце рэжым DirectWrite у раздзеле РОЗНАЕ ў дыялогавым акне з параметрамі і перазапусціце Notepad++."/>
 			<FileMemoryAllocationFailed title="Выключэнне: збой размеркавання памяці файла" message="Верагодна, што не недастаткова сумежнай вольнай памяці, які загружаецца Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
-			<FindRegexBackwardDisabled title="Regex backward search disabled" message="Прадвызначана зваротны пошук рэгулярных выразаў уключаны з прычыны патэнцыйна неспадзяваных вынікаў. Для выканання зваротнага пошуку, адкрыйце дыялогавае акно &quot;Знайсці&quot; і выберыце звычайны або пашыраны рэжым пошуку замест рэгулярнага выразу. Націсніце кнопку &quot;OK&quot;, каб адкрыць дыялогавае акно пошуку або ўстанавіце фокус на яго.     Калі вам патрэбныя функцыя пошуку зваротнага рэгулярнага выразу, звярніце да даведкі карыстальніка для атрымання інструкцый, каб яе ўключыць."/>
+			<FindRegexBackwardDisabled title="Зваротны пошук рэгулярных выразаў адключаны" message="Прадвызначана зваротны пошук рэгулярных выразаў уключаны з прычыны патэнцыйна неспадзяваных вынікаў. Для выканання зваротнага пошуку, адкрыйце дыялогавае акно &quot;Знайсці&quot; і выберыце звычайны або пашыраны рэжым пошуку замест рэгулярнага выразу. Націсніце кнопку &quot;OK&quot;, каб адкрыць дыялогавае акно пошуку або ўстанавіце фокус на яго.     Калі вам патрэбныя функцыя пошуку зваротнага рэгулярнага выразу, звярніце да даведкі карыстальніка для атрымання інструкцый, каб яе ўключыць."/>
 			<PrintError title="0" message="Немагчыма запусціць дакумент прынтара."/><!-- Use title="0" to use Windows OS default translated "Error" title. -->
 		</MessageBox>
 		<ClipboardHistory>
@@ -1605,8 +1605,8 @@ Translation note:
 			<two-find-buttons-tip value="2-клавішны рэжым пошуку"/>
 			<find-in-files-filter-tip value="Знайсці ў cpp, cxx, h, hxx &amp;&amp; hpp: *.cpp *.cxx *.h *.hxx *.hpp  Знайсці ва ўсіх файлах за выключэннем exe, obj &amp;&amp; log: *.* !*.exe !*.obj !*.log  Знайсці ва ўсіх файлах за выключэннем папак tests, bin &amp;&amp; bin64: *.* !\tests !\bin*  Знайсці ва ўсіх файлах за выключэннем усіх папак log або папак рэкурсіўным значэннем log: *.* !+\log*"/><!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
 			<find-in-files-select-folder value="Выбраць папку для пошуку з"/><!-- HowToReproduce: Search > Find in Files > [...] -->
-			<find-status-top-reached value="Find: Reached document beginning, first occurrence from the bottom found."/>
-			<find-status-end-reached value="Find: Reached document end, first occurrence from the top found."/>
+			<find-status-top-reached value="Знайсці: дасягнуты пачатак дакумента, першае паўтарэнне знойдзенае знізу."/>
+			<find-status-end-reached value="Знайсці: дасягнуты канец дакумента, першае паўтарэнне знойдзенае зверху."/>
 			<find-status-replaceinfiles-1-replaced value="Замяніць у файлах: 1 супадзенне заменена"/>
 			<find-status-replaceinfiles-nb-replaced value="Замяніць у файлах: Выканана $INT_REPLACE$ замен"/>
 			<find-status-replaceinopenedfiles-1-replaced value="Замяніць у адкрытых файлах: Выканана 1 замена"/>
@@ -1620,8 +1620,8 @@ Translation note:
 			<find-status-replaceall-1-replaced value="Замяніць усе: 1 супадзенне заменена"/>
 			<find-status-replaceall-nb-replaced value="Замяніць усе: Заменена $INT_REPLACE$ супадзенняў"/>
 			<find-status-replaceall-readonly value="Замяніць усе: Немагчыма замяніць тэкст. Бягучы дакумент прызначаны толькі для чытання"/>
-			<find-status-replace-end-reached value="Replace: Reached document end, started from top."/>
-			<find-status-replace-top-reached value="Replace: Reached document beginning, started from bottom."/>
+			<find-status-replace-end-reached value="Замяніць: дасягнуты канец дакумента, пачынаецца зверху."/>
+			<find-status-replace-top-reached value="Замяніць: дасягнуты пачатак дакумента, пачынаецца знізу."/>
 			<find-status-replaced-next-found value="Замяніць: Выканана 1 замена. Знойдзена наступнае супадзенне."/>
 			<find-status-replaced-without-continuing value="Замяніць: 1 супадзенне было заменена."/>
 			<find-status-replaced-next-not-found value="Замяніць: Выканана 1 замена. Іншых супадзенняў не знойдзена."/>
@@ -1669,7 +1669,7 @@ Translation note:
 			<find-in-files-progress-title value="Выкананне пошуку ў файлах..."/>
 			<replace-in-files-confirm-title value="Вы ўпэўнены?"/>
 			<replace-in-files-confirm-directory value="Вы сапраўды хочаце замяніць усе супадзенні для:"/>
-			<replace-in-files-confirm-filetype value="For file type:"/>
+			<replace-in-files-confirm-filetype value="Для тыпу файла:"/>
 			<replace-in-files-progress-title value="Адбываецца замена ў файлах..."/>
 			<replace-in-projects-confirm-title value="Вы ўпэўнены?"/>
 			<replace-in-projects-confirm-message value="Ці хочаце вы замяніць усе супадзенні ва ўсіх дакументах у выбранай панэлі праектаў?"/>
@@ -1679,8 +1679,8 @@ Translation note:
 			<find-result-title value="Пошук"/><!-- Must not begin with space or tab character -->
 			<find-result-title-info value="($INT_REPLACE1$ супадзенняў у $INT_REPLACE2$ файлах для $INT_REPLACE3$ пошукаў)"/>
 			<find-result-title-info-selections value="($INT_REPLACE1$ супадзенняў у $INT_REPLACE2$ выбраных з $INT_REPLACE3$ шуканых)"/>
-			<find-result-title-info-options-searchmode-normal value="Normal"/>
-			<find-result-title-info-options-searchmode-extended value="Extended"/>
+			<find-result-title-info-options-searchmode-normal value="Звычайны"/>
+			<find-result-title-info-options-searchmode-extended value="Пашыраны"/>
 			<find-result-title-info-options-searchmode-regexp value="Рэгулярны выраз"/>
 			<find-result-title-info-options-case value="Рэгістр"/>
 			<find-result-title-info-options-word value="Слова"/>
