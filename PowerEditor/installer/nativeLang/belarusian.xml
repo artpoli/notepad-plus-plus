@@ -222,7 +222,7 @@ Translation note:
 					<Item id="43051" name="Ачысціць 1-ы стыль"/>
 					<Item id="43050" name="Выкарыстанне 2-га стылю"/>
 					<Item id="43052" name="Ачысціць 2-і стыль"/>
-					<Item id="43053" name="Select All In-betw&amp;een {} [] or ()"/>
+					<Item id="43053" name="Выбраць усе паміж {} [] або ()"/>
 					<Item id="43009" name="Ачысціць 3-і стыль"/>
 					<Item id="43010" name="Выкарыстанне 4-га стылю"/>
 					<Item id="43011" name="Ачысціць 4-ы стыль"/>
@@ -355,7 +355,7 @@ Translation note:
 					<Item id="10005" name="Карта спалучэнняў клавіш..."/>
 					<Item id="10006" name="Параметры..."/>
 					<Item id="46001" name="Адкрыць папку з убудовамі..."/>
-					<Item id="46016" name="None (Normal Text)"/>
+					<Item id="46016" name="Няма (звычайны тэкст)"/>
 					<Item id="46180" name="Адміністраванне ўбудоў..."/>
 					<Item id="47000" name="Генерыраваць..."/>
 					<Item id="47010" name="Генерыраваць з файла..."/>
@@ -478,7 +478,7 @@ Translation note:
 				<Item id="1615" name="Пазначыць усе"/>
 				<Item id="1616" name="Закладка радка"/>
 				<Item id="1618" name="Ачышчаць для кожнага пошуку"/>
-				<Item id="1611" name="Rep&amp;lace with:"/>
+				<Item id="1611" name="Замяніць на:"/>
 				<Item id="1608" name="Замяніць"/>
 				<Item id="1609" name="Замяніць усе"/>
 				<Item id="1687" name="Калі не актыўна"/>
@@ -487,8 +487,8 @@ Translation note:
 				<Item id="1633" name="Ачысціць усе пазнакі"/>
 				<Item id="1635" name="Замяніць усе ў ва ўсіх адкрытых дакументах"/>
 				<Item id="1636" name="Знайсці ўсе ў ва ўсіх адкрытых дакументах"/>
-				<Item id="1654" name="Filter&amp;s:"/>
-				<Item id="1655" name="Dir&amp;ectory:"/>
+				<Item id="1654" name="Фільтры:"/>
+				<Item id="1655" name="Каталог:"/>
 				<Item id="1656" name="Знайсці ўсе"/>
 				<Item id="1658" name="Ва ўсіх падпапках"/>
 				<Item id="1659" name="У схаваных папках"/>
@@ -630,16 +630,16 @@ Translation note:
 					<Item id="2219" name="Ключавыя словы праграмы"/>
 					<Item id="2221" name="Ключавыя словы карыстальніка"/>
 					<Item id="2225" name="Мова:"/>
-					<Item id="2226" name="Force foreground color for all styles"/>
-					<Item id="2227" name="Force background color for all styles"/>
-					<Item id="2228" name="Force font choice for all styles"/>
-					<Item id="2229" name="Force font size choice for all styles"/>
-					<Item id="2230" name="Force bold choice for all styles"/>
-					<Item id="2231" name="Force italic choice for all styles"/>
-					<Item id="2232" name="Force underline choice for all styles"/>
+					<Item id="2226" name="Прымусовы колер пярэдняга плана для ўсіх стыляў"/>
+					<Item id="2227" name="Прымусовы колер фону для ўсіх стыляў"/>
+					<Item id="2228" name="Прымусовы шрыфт для ўсіх стыляў"/>
+					<Item id="2229" name="Прымусовы памер шрыфту для ўсіх стыляў"/>
+					<Item id="2230" name="Прымусовы тлусты для ўсіх стыляў"/>
+					<Item id="2231" name="Прымусовы курсіў для ўсіх стыляў"/>
+					<Item id="2232" name="Прымусовы падкрэслены для ўсіх стыляў"/>
 					<Item id="2234" name="Перайсці ў налады"/>
 					<!-- Don't translate "&quot;Global override&quot; -->
-					<Item id="2235" name="What is Global override?"/>
+					<Item id="2235" name="Што такое глабальнае перавызначэнне?"/>
 				</SubDialog>
 			</StyleConfig>
 
