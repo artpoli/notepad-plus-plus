@@ -588,13 +588,13 @@ Translation note:
 			<SHA512FromFilesDlg title="Генерыраваць дайджэст SHA-512 з файлаў">
 				<Item id="1922" name="Выберыце файлы для &amp;генерацыі SHA-512..."/>
 				<Item id="1924" name="Капіяваць у буфер абмену"/>
-				<Item id="2" name="&amp;Close"/>
+				<Item id="2" name="Закрыць"/>
 			</SHA512FromFilesDlg>
 
-			<SHA512FromTextDlg title="Generate SHA-512 digest">
-				<Item id="1932" name="Treat each line as a &amp;separate string"/>
-				<Item id="1934" name="Co&amp;py to Clipboard"/>
-				<Item id="2" name="&amp;Close"/>
+			<SHA512FromTextDlg title="Генерыраваць дайджэст SHA-512">
+				<Item id="1932" name="Апрацаваць кожны радок як асобны"/>
+				<Item id="1934" name="Капіяваць у буфер абмену"/>
+				<Item id="2" name="Закрыць"/>
 			</SHA512FromTextDlg>
 			<PluginsAdminDlg title="Адміністраванне ўбудоў" titleAvailable="Даступна" titleUpdates="Абнаўленні" titleInstalled="Усталявана" titleIncompatible="Несумяшчальны">
 				<ColumnPlugin name="Убудова"/>
@@ -660,10 +660,10 @@ Translation note:
 				<ScintillaCommandsTab name="Каманды Scintilla"/>
 				<ConflictInfoOk name="Няма канфліктаў спалучэнняў клавіш для гэта элемента."/>
 				<ConflictInfoEditing name="Няма канфліктаў . . ."/>
-				<AboutCategory name="About"/>
-				<ModifyContextMenu name="Modify"/>
-				<DeleteContextMenu name="Delete"/>
-				<ClearContextMenu name="Clear"/>
+				<AboutCategory name="Аб праграме"/>
+				<ModifyContextMenu name="Змяніць"/>
+				<DeleteContextMenu name="Выдаліць"/>
+				<ClearContextMenu name="Ачысціць"/>
 				<MainCommandNames>
 					<Item id="41019" name="Адкрыць папку размяшчэння ў правадніку"/>
 					<Item id="41020" name="Адкрыць папку размяшчэння ў камандным радку"/>
@@ -780,7 +780,7 @@ Translation note:
 				<Item id="20011" name="Празрыстасць"/>
 				<Item id="20015" name="Імпарт..."/>
 				<Item id="20016" name="Экспарт..."/>
-				<Item id="20017" name="Undock"/>
+				<Item id="20017" name="Адстыкаваць"/>
 				<StylerDialog title="Стыль">
 					<Item id="25030" name="Параметры шрыфту:"/>
 					<Item id="25006" name="Асноўны колер"/>
@@ -971,7 +971,7 @@ Translation note:
 					<Item id="6122" name="Лакалізацыя"/>
 					<Item id="6132" name="Змяніць значкі"/>
 
-					<Item id="6123" name="Localization"/>
+					<Item id="6123" name="Лакалізацыя"/>
 				</Global>
 
 				<Scintillas title="Рэдагаванне 1">
@@ -1039,8 +1039,8 @@ Translation note:
 					<Item id="7125" name="Край выключаны"/>
 					<Item id="7126" name="Скінуць"/>
 					<Item id="7127" name="Тоны"/>
-					<Item id="7130" name="Reset"/>
-					<Item id="7135" name="Tones"/>
+					<Item id="7130" name="Скінуць"/>
+					<Item id="7135" name="Тоны"/>
 				</DarkMode>
 
 				<MarginsBorderEdge title="Палі/Межы/Краі">
@@ -1082,7 +1082,7 @@ Translation note:
 					<Item id="6411" name="Прадвызначаная мова:"/>
 					<Item id="6419" name="Стварыць дакумент"/>
 					<Item id="6420" name="Ужыць пры адкрыцці файлаў ANSI"/>
-					<Item id="6432" name="Always open a new document in addition at startup"/>
+					<Item id="6432" name="Заўсёды адкрываць новы дакумент пры запуску"/>
 				</NewDoc>
 
 				<DefaultDir title="Прадвызначаны каталог">
@@ -1249,16 +1249,16 @@ Translation note:
 					<Item id="6171" name="Дапасаванне ўстаўкі даты і часу"/>
 					<Item id="6175" name="Зваротны парадак прадвызначанай даты і часу (кароткі і доўгія фарматы)"/>
 					<Item id="6172" name="Карыстальніцкі фармат:"/>
-					<Item id="6181" name="Panel State and [-nosession] *"/>
-					<Item id="6182" name="Remember panel state (panel is open) in other instances (multi-instance mode) or when using command line parameter [-nosession]"/>
-					<Item id="6183" name="Clipboard History"/>
-					<Item id="6184" name="Document List"/>
-					<Item id="6185" name="Character Panel"/>
-					<Item id="6186" name="Folder as Workspace"/>
-					<Item id="6187" name="Project Panels"/>
-					<Item id="6188" name="Document Map"/>
-					<Item id="6189" name="Function List"/>
-					<Item id="6190" name="Plugin Panels"/>
+					<Item id="6181" name="Стан панэлі і [-nosession] *"/>
+					<Item id="6182" name="Памятаць стан панэлі (панэль адкрыта) у іншых экзэмплярах (шматэкзэмплярны рэжым) або пры выкарыстанні параметра каманднага радка [-nosession]"/>
+					<Item id="6183" name="Гісторыя буфера абмену"/>
+					<Item id="6184" name="Спіс дакументаў"/>
+					<Item id="6185" name="Панэль сімвалаў"/>
+					<Item id="6186" name="Папка як працоўная вобласць"/>
+					<Item id="6187" name="Панэлі праекта"/>
+					<Item id="6188" name="Карта дакумента"/>
+					<Item id="6189" name="Спіс функцый"/>
+					<Item id="6190" name="Панэлі ўбудоў"/>
 				</MultiInstance>
 
 				<Delimiter title="Раздзяляльнік">
@@ -1359,9 +1359,9 @@ Translation note:
 				<Item id="2031" name="Павялічыць на:"/>
 				<Item id="2035" name="Дадаць нуль злева"/>
 				<ComboBox id="2039">
-					<Element name="None"/>
-					<Element name="Zeros"/>
-					<Element name="Spaces"/>
+					<Element name="Няма"/>
+					<Element name="Нулі"/>
+					<Element name="Прабелы"/>
 				</ComboBox>
 				<Item id="2036" name="Паўтарыць:"/>
 				<Item id="2032" name="Фармат"/>
@@ -1415,7 +1415,7 @@ Translation note:
 			<FileLockedWarning title="Збой захавання" message="Праверце, ці не адкрыты гэты файл у іншай праграме"/>
 			<FileAlreadyOpenedInNpp title="" message="Файл ужо адкрыты ў Notepad++."/><!-- HowToReproduce: Open a new document and open a file "c:/tmp/foo", save this new document by choosing "c:/tmp/foo" as file to save, reply the override popup "yes", then this message appears. -->
 			<RenameTabTemporaryNameAlreadyInUse title="Збой перайменавання" message="Азначаная назва ўжо выкарыстоўваецца на іншай укладцы."/><!-- HowToReproduce: Rename the tab of an untitled document and provide a name that is the same as an already-existing tab of an untitled document. -->
-			<RenameTabTemporaryNameIsEmpty title="Rename failed" message="Пазначаная назва не можа быць пустой, а таксама не можа змяшчаць сімвалы прабелу і табуляцыі."/><!-- HowToReproduce: Rename the tab of an untitled document and provide an empty string or only some white speces. -->
+			<RenameTabTemporaryNameIsEmpty title="Збой перайменавання" message="Пазначаная назва не можа быць пустой, а таксама не можа змяшчаць сімвалы прабелу і табуляцыі."/><!-- HowToReproduce: Rename the tab of an untitled document and provide an empty string or only some white speces. -->
 			<DeleteFileFailed title="Выдаліць файл" message="Збой выдалення файла"/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 
 			<NbFileToOpenImportantWarning title="Надта вялікая колькасць файлаў для адкрыцця" message="$INT_REPLACE$ файлаў неўзабаве будзе адкрыта. Вы ўпэўнены, што хочаце адкрыць іх?"/><!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
@@ -1442,7 +1442,7 @@ Translation note:
 			<CreateNewFileOrNot title="Стварыць новы файл" message="&quot;$STR_REPLACE$&quot; не існуе. Стварыць яго?"/>
 			<CreateNewFileError title="Стварыць новы файл" message="Не атрымалася стварыць файл &quot;$STR_REPLACE$&quot;."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<OpenFileError title="ПАМЫЛКА" message="Не атрымалася адкрыць файл &quot;$STR_REPLACE$&quot;."/>
-			<OpenFileNoFolderError title="Cannot open file" message="&quot;$STR_REPLACE1$&quot; cannot be opened: Folder &quot;$STR_REPLACE2$&quot; doesn't exist."/>
+			<OpenFileNoFolderError title="Немагчыма адкрыць файл" message="Немагчыма адкрыць &quot;$STR_REPLACE1$&quot; Папка &quot;$STR_REPLACE2$&quot; не існуе."/>
 			<FileBackupFailed title="Збой рэзервовага капіявання файла" message="Папярэдняя версія файла не была захавана ў каталог для рэзервовага капіявання &quot;$STR_REPLACE$&quot;.   Усё яшчэ хочаце захаваць бягучы файл?"/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<LoadStylersFailed title="Збой загрузкі stylers.xml" message="Збой загрузкі &quot;$STR_REPLACE$&quot;!"/>
 			<LoadLangsFailed title="Канфігуратар" message="Збой загрузкі langs.xml! Хочаце аднавіць langs.xml?"/><!-- HowToReproduce: Close Notepad++. Use another editor to remove all content of "langs.xml" (0 length) then save it. Open Notepad++. -->
@@ -1469,11 +1469,11 @@ Translation note:
 			<ExitToUpdatePlugins title="Вы збіраецеся закрыць праграму" message="Калі вы націсніце ТАК, то вы выйдзеце з праграмы, каб працягнуць аперацыю.  Пасля таго, як усе аперацыі будуць завершаны праграма запусціцца зноў.  Працягнуць?"/>
 			<NeedToRestartToLoadPlugins title="Неабходна перазапусціць праграму" message="Неабходна перазапусціць праграму, каб убудовы пачалі працаваць."/><!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
 			<ChangeHistoryEnabledWarning title="Неабходна перазапусціць праграму" message="Неабходна перазапусціць праграму, каб гісторыя змен пачала працаваць."/><!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
-			<WindowsSessionExit title="Notepad++ - Windows session exit" message="Windows session is about to be terminated but you have some data unsaved. Do you want to exit Notepad++ now?"/>
-			<LanguageMenuCompactWarning title="Compact Language Menu" message="This option will be changed on the next launch."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
-			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Unsaved changes are about to be discarded! Do you want to save your changes before switching themes?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
-			<MacroAndRunCmdlWarning title="Macro and Run Commands Compatibility" message="Your Macro and Run commands saved in Notepad++ v.8.5.2 (or older) may not be compatible with the current version of Notepad++. Please test those commands and, if needed, re-edit them.  Alternatively, you can downgrade to Notepad++ v8.5.2 and restore your previous data. Notepad++ will backup your old &quot;shortcuts.xml&quot; and save it as &quot;shortcuts.xml.v8.5.2.backup&quot;. Renaming &quot;shortcuts.xml.v8.5.2.backup&quot; -&gt; &quot;shortcuts.xml&quot;, your commands should be restored and work properly."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
-			<NotEnoughRoom4Saving title="Save failed" message="Не ўдалося захаваць файл. Верагодна, што недастаткова прасторы на дыску. Ваш файл не захаваны."/>
+			<WindowsSessionExit title="Notepad++ - выхад з сеанса Windows" message="Сеанс Windows неўзабаве будзе завершаны, але ў вас ёсць незахаваныя даныя. Вы сапраўды хочаце выйсці з Notepad++ зараз?"/>
+			<LanguageMenuCompactWarning title="Кампактнае меню мовы" message="Гэты параметр будзе зменены падчас наступнага запуску."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
+			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незахаваныя змены будуць скасаваны! Вы сапраўды хочаце захаваць змены перад пераключэннем тэмы?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
+			<MacroAndRunCmdlWarning title="Сумяшчальнасць макрасаў і каманд выканання" message="Вашы макрасы і каманды выканання, якія захаваны ў Notepad++ v.8.5.2 (або больш позняй версіі), могуць быць несумяшчальнымі з бягучай версіяй Notepad++. Пратэсціруйце гэтыя каманды і пры неабходнасці адрэдагуйце іх. Таксама вы можаце панізіць версію да Notepad++ v8.5.2 і аднавіць свае папярэднія даныя. Notepad++ захоўвае старую рэзервовую копію вашага файла &quot;shortcuts.xml&quot; пад назвай  &quot;shortcuts.xml.v8.5.2.backup&quot;. Пры перайменаванні  &quot;shortcuts.xml.v8.5.2.backup&quot; на -&gt; &quot;shortcuts.xml&quot;, вашы каманды павінны аднавіцца і слушна працаваць у гэтай версіі."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
+			<NotEnoughRoom4Saving title="Збой захавання" message="Не ўдалося захаваць файл. Верагодна, што недастаткова прасторы на дыску. Ваш файл не захаваны."/>
 			<FileInaccessibleUserSession title="Файл недаступны" message="Некаторыя файлы з вашага сеанса захаваны ўручную &quot;$STR_REPLACE$&quot; недаступны. Іх можна адкрыць у якасці запаўняльнікаў, як пустыя і даступныя толькі для чытання. Вы сапраўды хочаце стварыць гэтыя запаўняльнікі?  НАТАТКА: калі вы вырашыце не ствараць запаўняльнікі або закрыць іх пазней, ваш сеанс захаваны ўручную НЕ будзе зменены пры выхадзе."/>
 			<FileInaccessibleDefaultSessionXml title="Файл недаступны" message="Некаторыя файлы з вашага папярэдняга сеанса недаступны. Іх можна адкрыць у якасці запаўняльнікаў, як пустыя і даступныя толькі для чытання. Вы сапраўды хочаце стварыць гэтыя запаўняльнікі?  НАТАТКА: калі вы вырашыце не ствараць запаўняльнікі або закрыць іх пазней, ваш сеанс БУДЗЕ ЗМЕНЕНЫ ПРЫ ВЫХАДЗЕ! Прапануем вам неадкладна стварыць рэзервовую копію &quot;session.xml&quot;."/>
 			<RTLvsDirectWrite title="Немагчыма запусціць RTL" message="RTL не сумяшчальны з рэжымам DirectWrite. Аключыце рэжым DirectWrite у раздзеле РОЗНАЕ ў дыялогавым акне з параметрамі і перазапусціце Notepad++."/>
@@ -1489,7 +1489,7 @@ Translation note:
 			<ColumnName name="Назва"/>
 			<ColumnExt name="Пашыр."/>
 			<ColumnPath name="Шлях"/>
-			<ListGroups name="Group by View"/>
+			<ListGroups name="Групаваць па выглядзе"/>
 		</DocList>
 		<WindowsDlg>
 			<ColumnName name="Назва"/>
@@ -1507,7 +1507,7 @@ Translation note:
 			<ColumnChar name="Сімвал"/>
 			<ColumnHtmlName name="Код HTML"/>
 			<ColumnHtmlNumber name="Нумар HTML"/>
-			<ColumnHtmlHexNb name="HTML Hexadecimal"/>
+			<ColumnHtmlHexNb name="Шаснаццатковыя сімвалы HTML"/>
 		</AsciiInsertion>
 		<DocumentMap>
 			<PanelTitle name="Карта дакумента"/>
@@ -1664,8 +1664,8 @@ Translation note:
 			<summary-nbsel1 value=" выбраныя сімвалы ("/>
 			<summary-nbsel2 value=" байтаў) у "/>
 			<summary-nbrange value=" дыяпазоны"/>
-			<progress-hits-title value="Hits:"/>
-			<progress-cancel-info value="Cancelling operation, please wait..."/>
+			<progress-hits-title value="Пападанні:"/>
+			<progress-cancel-info value="Скасаванне аперацыі. Пачакайце..."/>
 			<find-in-files-progress-title value="Выкананне пошуку ў файлах..."/>
 			<replace-in-files-confirm-title value="Вы ўпэўнены?"/>
 			<replace-in-files-confirm-directory value="Вы сапраўды хочаце замяніць усе супадзенні для:"/>
@@ -1701,20 +1701,20 @@ Translation note:
 			<contextMenu-clearStyle value="Ачысціць стыль"/>
 			<contextMenu-PluginCommands value="Каманды ўбудовы"/>
 			<largeFileRestriction-tip value="Некаторыя функцыі могуць запаволіць прадукцыйнасць у вялікіх файлах. Гэтыя функцыі можна аўтаматычна адключаць пры адкрыцці вялікага файла. Вы можаце дапасаваць іх тут:  НАТАТКА: 1. Параметры, якія будуць тут зменены запатрабуюць паўторнага адкрыцця бягучых файлаў з вялікім памерам для дасягнення карэктных паводзін.  2. Калі пазначана &quot;Дэактываваць агульны перанос слоў&quot; і вы адкрываеце вялікі файл, то &quot;Перанос слоў&quot; будзе адключаны для ўсіх файлаў. Вы зможаце паўторна ўключыць яго праз меню &quot;Выгляд&gt;Перанос слоў&quot;."/>
-			<npcNote-tip value="Representation of selected &quot;non-ASCII&quot; whitespace and non-printing (control) characters.  NOTE: Using representation will disable character effects on text.  For the full list of selected whitespace and non-printing characters check User Manual.  Click on this button to open website with User Manual."/>
-			<npcAbbreviation-tip value="Abbreviation : name NBSP : no-break space ZWSP : zero-width space ZWNBSP : zero-width no-break space  For the full list check User Manual. Click on &quot;?&quot; button on right to open website with User Manual."/>
-			<npcCodepoint-tip value="Codepoint : name U+00A0 : no-break space U+200B : zero-width space U+FEFF : zero-width no-break space  For the full list check User Manual. Click on &quot;?&quot; button on right to open website with User Manual."/>
+			<npcNote-tip value="Прадстаўленне выбранага&quot;не ASCII&quot; пропуску і сімвалаў, якія не друкуюцца (кантрольных). ЗАЎВАГА: Выкарыстанне прадстаўлення адключыць эфекты сімвалаў у тэксце. Для поўнага спісу выбраных пропускаў і сімвалаў, якія не друкуюцца звярніцеся да дапаможніка карыстальніка. Націсніце гэту кнопку, каб адкрыць вэб-сайт з дапаможнікам карыстальніка."/>
+			<npcAbbreviation-tip value="Скарачэнне : назва NBSP : неразрыўны прабел ZWSP : прабел з нулявой шырынёй ZWNBSP : неразрыўны прабел з нулявой шырынёй  Для поўнага спісу скарачэнняў звярніцеся да дапаможніка карыстальніка. Націсніце кнопку, &quot;?&quot; якая размяшчаецца справа, каб адкрыць сайт з дапаможнікам карыстальніка."/>
+			<npcCodepoint-tip value="Пункт кода : назва U+00A0 : неразрыўны прабел U+200B : прабел з нулявой шырынёй U+FEFF : неразрыўны прабел з нулявой шырынёй  Для поўнага спісу скарачэнняў звярніцеся да дапаможніка карыстальніка. Націсніце кнопку, &quot;?&quot; якая размяшчаецца справа, каб адкрыць сайт з дапаможнікам карыстальніка."/>
 
 			<!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
-			<npcCustomColor-tip value="Go to Style Configurator to change the default custom color for selected whitespace and non-printing characters (&quot;Non-printing characters custom color&quot;)."/>
-			<npcIncludeCcUniEol-tip value="Apply non-printing characters appearance settings to C0, C1 control and Unicode EOL (next line, line separator and paragraph separator) characters."/>
+			<npcCustomColor-tip value="Адкрыйце канфігуратар стылю, каб змяніць прадвызначаны карыстальніцкі колер для выбраных пропускаў і сімвалаў, якія не друкуюцца (&quot;Карыстальніцкі колер і сімвалы, якія не друкуюцца&quot;)."/>
+			<npcIncludeCcUniEol-tip value="Ужыць налады выгляду сімвалаў, якія не друкуюцца да C0, C1 control і Unicode EOL (наступны радок, раздзяляльнік радкоў і раздзяляльнік абзацаў)."/>
 			<searchingInSelThresh-tip value="Колькасць выбраных сімвалаў у зоне рэдагавання для аўтаматычнага пазначэння &quot;ў выбары&quot;, калі актывавана дыялогавае акно Знайсці. Максімальнае значэнне - 1024. Зададзена значэнне 0, каб адключыць аўтаматычную праверку."/>
 			<verticalEdge-tip value="Дадайце сваю пазнаку слупка, азначыўшы яго размяшчэнне дзесятковым лікам.  Вы можаце вызначыць некалькі пазнак слупкоў скарыстаўшыся прабелам для раздзялення розных лічбаў."/>
 			<fileSaveAsCopySaveButton-tip value="Утрымлівайце Shift, націскаючы Захаваць, каб адрыць копію пасля захавання."/>
-			<autoIndentBasic-tip value="Ensure that the indentation of the current line (i.e. the new line created by pressing the ENTER key) matches the indentation of the previous line."/>
-			<autoIndentAdvanced-tip value="Enable smart indentation for &quot;C-like&quot; languages and Python. The &quot;C-like&quot; languages include: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell and JSON.  If you select advanced mode but do not edit files in the aforementioned languages, the indentation will remain in basic mode."/>
+			<autoIndentBasic-tip value="Пераканайцеся, што водступ бягучага радка (г.зн. новы радок створаны націскам клавішы ENTER) супадае з водступам папярэдняга радка."/>
+			<autoIndentAdvanced-tip value="Уключыць інтэлектуальны водступ для моў праграмавання, якія &quot;падобныя на C&quot; і Python. Мовы праграмавання, якія &quot;падобныя на C&quot; уключаюць: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell і JSON.  Калі выбраць пашыраны рэжым, але не рэдагаваць файлы вышэй азначанымі мовамі, водступ застанецца ў базавым рэжыме."/>
 			<!-- Don't translate "&quot;Global override&quot; and &quot;Default Style&quot; -->
-			<global-override-tip value="Enabling &quot;Global override&quot; here will override that parameter in all language styles. What you probably really want is to use the &quot;Default Style&quot; settings instead"/>
+			<global-override-tip value="Уключэнне &quot;Глабальнага перавызначэння&quot; у гэтым месцы заменіць гэты параметр ва ўсіх моўных стылях. Магчыма, што замест гэтага, вы хочаце выкарыстоўваць &quot;Прадвызначаны стыль&quot;"/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
