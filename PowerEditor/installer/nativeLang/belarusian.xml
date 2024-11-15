@@ -11,11 +11,11 @@ Translation note:
 				<!-- Main Menu Entries -->
 				<Entries>
 					<Item menuId="file" name="Файл"/>
-					<Item menuId="edit" name="Праўка"/>
+					<Item menuId="edit" name="Рэдагаваць"/>
 					<Item menuId="search" name="Пошук"/>
 					<Item menuId="view" name="Выгляд"/>
-					<Item menuId="encoding" name="Кадаванне"/>
-					<Item menuId="language" name="Сінтаксіс"/>
+					<Item menuId="encoding" name="Кадзіраванне"/>
+					<Item menuId="language" name="Мова"/>
 					<Item menuId="settings" name="Налады"/>
 					<Item menuId="tools" name="Інструменты"/>
 					<Item menuId="macro" name="Макрас"/>
