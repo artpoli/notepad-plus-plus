@@ -32,7 +32,7 @@ Translation note:
 					<Item subMenuId="edit-copyToClipboard" name="Капіяваць у буфер абмену"/>
 					<Item subMenuId="edit-indent" name="Водступ"/>
 					<Item subMenuId="edit-convertCaseTo" name="Змяніць рэгістр"/>
-					<Item subMenuId="edit-lineOperations" name="Аперацыі з радкамі"/>
+					<Item subMenuId="edit-lineOperations" name="Аперацыі з радком"/>
 					<Item subMenuId="edit-comment" name="Закаментаваць/Раскаментаваць"/>
 					<Item subMenuId="edit-autoCompletion" name="Аўтазавяршэнне"/>
 					<Item subMenuId="edit-eolConversion" name="Пераўтварыць у сімвал канца радка"/>
@@ -45,7 +45,7 @@ Translation note:
 					<Item subMenuId="search-markAll" name="Уверх"/>
 					<Item subMenuId="search-markOne" name="Уніз"/>
 					<Item subMenuId="search-unmarkAll" name="Капіяваць стыль тэксту"/>
-					<Item subMenuId="search-jumpUp" name="Закладка"/>
+					<Item subMenuId="search-jumpUp" name="Уверх"/>
 					<Item subMenuId="search-jumpDown" name="Паглядзець бягучы файл у"/>
 					<Item subMenuId="search-copyStyledText" name="Капіяваць стыль тэксту"/>
 					<Item subMenuId="search-bookmark" name="Закладка"/>
@@ -58,7 +58,7 @@ Translation note:
 					<Item subMenuId="view-uncollapseLevel" name="Арабская"/>
 					<Item subMenuId="view-project" name="Балтыйская"/>
 					<Item subMenuId="encoding-characterSets" name="Кельцкая"/>
-					<Item subMenuId="encoding-arabic" name="Кірыліца"/>
+					<Item subMenuId="encoding-arabic" name="Арабская"/>
 					<Item subMenuId="encoding-baltic" name="Цэнтральная Еўропа"/>
 					<Item subMenuId="encoding-celtic" name="Кітайская"/>
 					<Item subMenuId="encoding-cyrillic" name="Усходняя Еўропа"/>
@@ -85,7 +85,7 @@ Translation note:
 
 				<!-- all menu item -->
 				<Commands>
-					<Item id="41001" name="Стварыць"/>
+					<Item id="41001" name="Новы"/>
 					<Item id="41002" name="Адкрыць..."/>
 					<Item id="41019" name="Праваднік"/>
 					<Item id="41020" name="cmd"/>
@@ -144,14 +144,14 @@ Translation note:
 					<Item id="42066" name="Адваротны парадак радкоў"/>
 					<Item id="42083" name="Выпадковы парадак радкоў"/>
 					<Item id="42078" name="ВЯЛІКІМІ"/>
-					<Item id="42016" name="маленькімі"/>
-					<Item id="42017" name="Першыя Літары Вялікія"/>
+					<Item id="42016" name="ВЯЛІКІМІ"/>
+					<Item id="42017" name="маленькімі"/>
 					<Item id="42067" name="Першыя Літары Вялікія (змешаны)"/>
 					<Item id="42068" name="Як у сказах"/>
-					<Item id="42069" name="Як у сказах (змешаны)"/>
+					<Item id="42069" name="Як у сказах"/>
 					<Item id="42070" name="зВАРОТНЫ пАРАДАК"/>
-					<Item id="42071" name="&amp;iNVERT cASE"/>
-					<Item id="42072" name="Адкрыць файл"/>
+					<Item id="42071" name="зВАРОТНЫ пАРАДАК"/>
+					<Item id="42072" name="выПАДковы ПарАдак"/>
 					<Item id="42073" name="Адкрыць папку размяшчэння ў правадніку"/>
 					<Item id="42074" name="Шукаць у інтэрнэце"/>
 					<Item id="42075" name="Змяніць сістэму пошуку..."/>
@@ -168,7 +168,7 @@ Translation note:
 					<Item id="42099" name="Выдаліць непатрэбныя прабелы і сімвалы канца радка"/>
 					<Item id="42018" name="Табуляцыю ў прабел"/>
 					<Item id="42019" name="Прабел у табуляцыю (усе)"/>
-					<Item id="42021" name="Прабел у табуляцыю (у пачатку)"/>
+					<Item id="42021" name="Узнаўленне"/>
 					<Item id="42022" name="Уставіць змесціва HTML"/>
 					<Item id="42023" name="Уставіць змесціва RTF"/>
 					<Item id="42047" name="Капіяваць двайковае змесціва"/>
@@ -190,16 +190,16 @@ Translation note:
 					<Item id="42034" name="Капіяваць усе шляхі да файлаў"/>
 					<Item id="42051" name="Шматразовае выкананне макраса..."/>
 					<Item id="42052" name="Зняць атрыбут толькі чытанне"/>
-					<Item id="42025" name="Закаментаваць радок"/>
+					<Item id="42025" name="Захаваць бягучы запіс макраса..."/>
 					<Item id="42026" name="Раскаментаваць радок"/>
 					<Item id="42027" name="Выдаліць пустыя радкі"/>
-					<Item id="42028" name="Выдаліць пустыя радкі (уключаючы пустыя сімвалы)"/>
+					<Item id="42028" name="Толькі чытанне"/>
 					<Item id="42029" name="Уставіць пустыя радкі над бягучым"/>
 					<Item id="42030" name="Уставіць пустыя радкі пад бягучым"/>
 					<Item id="42031" name="Знайсці..."/>
 					<Item id="42087" name="Знайсці наступны"/>
 					<Item id="42088" name="Замяніць..."/>
-					<Item id="42032" name="Перайсці да..."/>
+					<Item id="42032" name="Шматразовае выкананне макраса..."/>
 					<Item id="42033" name="Пераключыць закладку"/>
 					<Item id="42035" name="Наступная закладка"/>
 					<Item id="42036" name="Папярэдняя закладка"/>
@@ -209,7 +209,7 @@ Translation note:
 					<Item id="42058" name="Уставіць у (замяняючы) закладзеныя радкі"/>
 					<Item id="43001" name="Знайсці..."/>
 					<Item id="43002" name="Выдаліць непазначаныя радкі"/>
-					<Item id="43003" name="Інвертаваць закладкі"/>
+					<Item id="43003" name="Замяніць..."/>
 					<Item id="43004" name="Перайсці да..."/>
 					<Item id="43005" name="Выбраць усе паміж парнымі дужкамі"/>
 					<Item id="43006" name="Перайсці да парнай дужкі"/>
@@ -240,24 +240,24 @@ Translation note:
 					<Item id="43030" name="3-і стыль"/>
 					<Item id="43031" name="4-ы стыль"/>
 					<Item id="43032" name="5-ы стыль"/>
-					<Item id="43033" name="Знайсці стыль пазнак"/>
-					<Item id="43034" name="1-ы стыль"/>
-					<Item id="43035" name="2-і стыль"/>
-					<Item id="43036" name="3-і стыль"/>
-					<Item id="43037" name="4-ы стыль"/>
+					<Item id="43033" name="1-ы стыль"/>
+					<Item id="43034" name="2-і стыль"/>
+					<Item id="43035" name="3-і стыль"/>
+					<Item id="43036" name="4-ы стыль"/>
+					<Item id="43037" name="5-ы стыль"/>
 					<Item id="43038" name="5-ы стыль"/>
-					<Item id="43039" name="Усе стылі"/>
-					<Item id="43040" name="Знайсці стыль пазнак"/>
-					<Item id="43041" name="Выкарыстанне 1-га стылю"/>
-					<Item id="43042" name="Выкарыстанне 2-га стылю"/>
-					<Item id="43043" name="Выкарыстанне 3-га стылю"/>
+					<Item id="43039" name="1-ы стыль"/>
+					<Item id="43040" name="2-і стыль"/>
+					<Item id="43041" name="3-і стыль"/>
+					<Item id="43042" name="4-ы стыль"/>
+					<Item id="43043" name="5-ы стыль"/>
 					<Item id="43044" name="Выкарыстанне 4-га стылю"/>
-					<Item id="43055" name="Выкарыстанне 5-га стылю"/>
-					<Item id="43056" name="Акно вынікаў пошуку"/>
-					<Item id="43057" name="Наступны вынік пошуку"/>
-					<Item id="43058" name="Папярэдні вынік пошуку"/>
-					<Item id="43059" name="Выбраць і шукаць далей"/>
-					<Item id="43060" name="Выбраць і шукаць папярэдні"/>
+					<Item id="43055" name="1-ы стыль"/>
+					<Item id="43056" name="2-і стыль"/>
+					<Item id="43057" name="3-і стыль"/>
+					<Item id="43058" name="4-ы стыль"/>
+					<Item id="43059" name="5-ы стыль"/>
+					<Item id="43060" name="Усе стылі"/>
 					<Item id="43061" name="Пазнака..."/>
 					<Item id="43062" name="Закрыць выбраную"/>
 					<Item id="43063" name="Закрыць іншыя"/>
@@ -270,8 +270,8 @@ Translation note:
 					<Item id="43045" name="Значэнні водступаў"/>
 					<Item id="43046" name="Перанос па словах"/>
 					<Item id="43047" name="Павялічыць (Ctrl+колца мышкі ўверх)"/>
-					<Item id="43048" name="Паменшыць (Ctrl+колца мышкі ўніз)"/>
-					<Item id="43049" name="Паказваць прабелы і табуляцыю"/>
+					<Item id="43048" name="Выбраць і шукаць далей"/>
+					<Item id="43049" name="Выбраць і шукаць папярэдні"/>
 					<Item id="43054" name="Паказваць сімвал заканчэння радка"/>
 					<Item id="43501" name="Разгарнуць усе"/>
 					<Item id="43502" name="Згарнуць бягучы ўзровень"/>
@@ -295,15 +295,15 @@ Translation note:
 					<Item id="44070" name="Маніторынг (tail -f)"/>
 					<Item id="44084" name="Перамясціць укладку ўперад"/>
 					<Item id="44085" name="Перамясціць укладку назад"/>
-					<Item id="44086" name="Выдаліць колер"/>
-					<Item id="44087" name="Ужыць колер 1"/>
-					<Item id="44088" name="Ужыць колер 2"/>
-					<Item id="44089" name="Ужыць колер 3"/>
-					<Item id="44090" name="Ужыць колер 4"/>
-					<Item id="44091" name="Ужыць колер 5"/>
-					<Item id="44092" name="Поўнаэкранны рэжым"/>
-					<Item id="44093" name="Аднавіць маштаб"/>
-					<Item id="44094" name="Заўсёды зверху"/>
+					<Item id="44086" name="1-ая ўкладка"/>
+					<Item id="44087" name="2-ая ўкладка"/>
+					<Item id="44088" name="3-я ўкладка"/>
+					<Item id="44089" name="4-ая ўкладка"/>
+					<Item id="44090" name="5-ая ўкладка"/>
+					<Item id="44091" name="6-ая ўкладка"/>
+					<Item id="44092" name="7-ая ўкладка"/>
+					<Item id="44093" name="8-ая ўкладка"/>
+					<Item id="44094" name="9-ая ўкладка"/>
 					<Item id="44116" name="Сінхранізаваць вертыкальную прагортку"/>
 					<Item id="44117" name="Сінхранізаваць гарызантальную прагортку"/>
 					<Item id="44095" name="Паказваць сімвал пераносу радка"/>
@@ -321,7 +321,7 @@ Translation note:
 					<Item id="44131" name="Паказваць сімвалы кіравання Unicode EOL"/>
 					<Item id="44032" name="Пераўтварыць у ANSI"/>
 					<Item id="44033" name="Пераўтварыць у UTF-8"/>
-					<Item id="44034" name="Пераўтварыць у UTF-8 BOM"/>
+					<Item id="44034" name="Заўсёды зверху"/>
 					<Item id="44035" name="Пераўтварыць у UTF-16 BE BOM"/>
 					<Item id="44036" name="Пераўтварыць у UTF-16 LE BOM"/>
 					<Item id="44041" name="Big5 (традыцыйная)"/>
@@ -360,7 +360,7 @@ Translation note:
 					<Item id="47000" name="Генерыраваць..."/>
 					<Item id="47010" name="Генерыраваць з файла..."/>
 					<Item id="47001" name="Генерыраваць з выбранага ў буфер абмену"/>
-					<Item id="47002" name="Генерыраваць..."/>
+					<Item id="47002" name="Аб Notepad++"/>
 					<Item id="47003" name="Генерыраваць з файла..."/>
 					<Item id="47004" name="Генерыраваць з выбранага ў буфер абмену"/>
 					<Item id="47012" name="Выканаць..."/>
@@ -404,7 +404,7 @@ Translation note:
 					<Item id="11002" name="Змяніць спалучэнні клавіш/выдаліць макрас..."/>
 					<Item id="11003" name="Змяніць спалучэнні клавіш/выдаліць каманду..."/>
 
-					<Item id="11004" name="Windows..."/>
+					<Item id="11004" name="Вокны..."/>
 					<Item id="11005" name="Назва ад А да Я"/>
 					<Item id="11006" name="Назва ад Я да А"/>
 					<Item id="11007" name="Шлях ад А да Я"/>
@@ -446,11 +446,11 @@ Translation note:
 				<Item CMDID="10002" name="Ужыць колер 4"/>
 				<Item CMDID="10003" name="Ужыць колер 5"/>
 				<Item CMDID="10004" name="Выдаліць колер"/>
-				<Item CMDID="4" name="Закрыць некалькі ўкладак"/>
-				<Item CMDID="44111" name="Адкрыць у"/>
-				<Item CMDID="44112" name="Капіяваць у буфер абмену"/>
-				<Item CMDID="44113" name="Перамясціць дакумент"/>
-				<Item CMDID="44114" name="Ужыць колер да ўкладкі"/>
+				<Item CMDID="4" name="Ужыць колер ва ўкладцы"/>
+				<Item CMDID="44111" name="Ужыць колер 1"/>
+				<Item CMDID="44112" name="Ужыць колер 2"/>
+				<Item CMDID="44113" name="Ужыць колер 3"/>
+				<Item CMDID="44114" name="Ужыць колер 4"/>
 				<Item CMDID="44115" name="Ужыць колер 5"/>
 				<Item CMDID="44110" name="Выдаліць колер"/>
 			</TabBar>
@@ -522,7 +522,7 @@ Translation note:
 
 			<FindCharsInRange title="Знайсці сімвалы ў дыяпазоне...">
 				<Item id="2" name="Закрыць"/>
-				<Item id="2901" name="Не ASCII сімвалы (128-255)"/>
+				<Item id="2901" name="Не сімвалы ASCII (128-255)"/>
 				<Item id="2902" name="Сімвалы ASCII (0-127)"/>
 				<Item id="2903" name="Мой дыяпазон:"/>
 				<Item id="2906" name="Уверх"/>
@@ -843,7 +843,7 @@ Translation note:
 					<Item id="22201" name="2-ая група"/>
 					<Item id="22301" name="3-я група"/>
 					<Item id="22401" name="4-ая група"/>
-					<Item id="22451" name="5-ая група"/>
+					<Item id="22451" name=""/>
 					<Item id="22501" name="6-ая група"/>
 					<Item id="22551" name="7-ая група"/>
 					<Item id="22601" name="8-ая група"/>
@@ -962,7 +962,7 @@ Translation note:
 					<Item id="6119" name="Схаваць"/>
 					<Item id="6120" name="Каскадам"/>
 					<Item id="6121" name="Вертыкальная"/>
-					<Item id="6128" name="Выходзіць пры закрыцці апошняй укладкі"/>
+					<Item id="6128" name="Змяніць значкі"/>
 
 					<Item id="6133" name="Меню"/>
 					<Item id="6134" name="Схаваць панэль меню (Alt або F10)"/>
@@ -983,7 +983,7 @@ Translation note:
 					<Item id="6246" name="Пераключаць каманды згортвання/разгортвання бягучага ўзроўню"/>
 					<Item id="6227" name="Уключыць мульты-рэдагаванне (Ctrl+націск мышы/выбар)"/>
 					<Item id="6228" name="Перанос радкоў"/>
-					<Item id="6229" name="Прадвызначана"/>
+					<Item id="6229" name="Выраўнены"/>
 					<Item id="6230" name="Выраўнены"/>
 					<Item id="6234" name="З водступам"/>
 					<Item id="6215" name="Адключыць пашыраную прагортку, калі ёсць праблемы з тачпадам"/>
@@ -1029,7 +1029,7 @@ Translation note:
 					<Item id="7115" name="Гарачы трэк меню"/>
 					<Item id="7116" name="Актыўны"/>
 					<Item id="7117" name="Галоўны"/>
-					<Item id="7118" name="Памылка"/>
+					<Item id="7118" name="Актыўны"/>
 					<Item id="7119" name="Тэкст"/>
 					<Item id="7120" name="Цямнейшы тэкст"/>
 					<Item id="7121" name="Адключаны тэкст"/>
@@ -1073,7 +1073,7 @@ Translation note:
 					<Item id="6402" name="Windows (CR LF)"/>
 					<Item id="6403" name="Unix (LF)"/>
 					<Item id="6404" name="Macintosh (CR)"/>
-					<Item id="6405" name="Кадаванне"/>
+					<Item id="6405" name="Кадзіраванне"/>
 					<Item id="6406" name="ANSI"/>
 					<Item id="6407" name="UTF-8"/>
 					<Item id="6408" name="UTF-8 з BOM"/>
@@ -1268,7 +1268,7 @@ Translation note:
 					<Item id="6256" name="Дазволіць захоп некалькіх радкоў"/>
 					<Item id="6161" name="Спіс сімвалаў"/>
 					<Item id="6162" name="Выкарыстоўваць гэты спіс сімвалаў як прадвызначаны"/>
-					<Item id="6163" name="Дадаць свой сімвал як частку слова  (не выкарыстоўвайце, калі вы не ведаеце, як гэта працуе)"/>
+					<Item id="6163" name="Дадаць свой сімвал як частку слова (не выбірайце, калі вы не ведаеце, як гэта працуе)"/>
 				</Delimiter>
 
 				<Performance title="Прадукцыйнасць">
@@ -1280,7 +1280,7 @@ Translation note:
 					<Item id="7148" name="Дазваляць аўтазавяршэнне"/>
 					<Item id="7149" name="Дазваляць інтэлектуальнае падсветку"/>
 					<Item id="7150" name="Дэактываваць агульны перанос слоў"/>
-					<Item id="7151" name="Дазваляць націсканальныя спасылкі"/>
+					<Item id="7151" name="Дазваляць актыўныя спасылкі URL-адрасоў"/>
 					<Item id="7152" name="Не папярэджваць пры адкрыцці файлаў памерам больш за 2 ГБ"/>
 				</Performance>
 
@@ -1325,7 +1325,7 @@ Translation note:
 					<Item id="6323" name="Аўтаматычна абнаўляць праграму"/>
 					<Item id="6324" name="Пераключэнне дакументаў (Ctrl+TAB)"/>
 					<Item id="6331" name="Паказваць толькі назву файла ў радку загалоўка"/>
-					<Item id="6334" name="Аўтавызначэнне кадавання сімвалаў"/>
+					<Item id="6334" name="Аўтавызначэнне кадзіравання сімвалаў"/>
 					<Item id="6349" name="Выкарыстоўваць DirectWrite (можа палепшыць апрацоўку спецыяльных сімвалаў, неабходны перазапуск праграмы)"/>
 					<Item id="6337" name="Пашырэнне файла працоўнай вобласці:"/>
 					<Item id="6114" name="Уключыць"/>
@@ -1357,7 +1357,7 @@ Translation note:
 				<Item id="2033" name="Лічба для ўстаўкі"/>
 				<Item id="2030" name="Пачатковы нумар:"/>
 				<Item id="2031" name="Павялічыць на:"/>
-				<Item id="2035" name="Дадаць нуль злева"/>
+				<Item id="2035" name="&amp;Пачатковы:"/>
 				<ComboBox id="2039">
 					<Element name="Няма"/>
 					<Element name="Нулі"/>
@@ -1394,7 +1394,7 @@ Translation note:
 				<Item id="5" name="Не для ўсіх"/>
 			</DoSaveOrNot>
 			<DoSaveAll title="Пацвярджаць пры захаванні ўсяго">
-				<Item id="1766" name="Вы ўпэўнены, што хочаце захаваць усе змяненні дакумента?  Выберыце &quot;Заўсёды так&quot;, калі вы хочаце ўбачыць гэту прапанову яшчэ раз. Вы можаце паўторна актываваць гэты запыт у параметрах пазней."/>
+				<Item id="1766" name="Вы сапраўды хочаце захаваць усе змяненні дакумента?  Выберыце &quot;Заўсёды так&quot;, калі вы не хочаце бачыць гэту прапанову яшчэ раз. Вы можаце паўторна актываваць гэты запыт у параметрах пазней."/>
 				<Item id="6" name="Так"/>
 				<Item id="7" name="Не"/>
 				<Item id="4" name="Заўсёды так"/>
@@ -1411,14 +1411,14 @@ Translation note:
 			<SaveCurrentModifWarning title="Захаваць бягучую мадыфікацыю" message="Вы павінны захаваць бягучую мадыфікацыю. Аднавіць усе зробленыя вамі змяненні будзе немагчыма.  Працягнуць?"/><!-- HowToReproduce: when you openned file is modified but unsaved yet, and you are changing file encoding. -->
 			<LoseUndoAbilityWarning title="Папярэджанне немагчымасці адраблення" message="Вы павінны захаваць бягучую мадыфікацыю. Аднавіць усе зробленыя вамі змяненні будзе немагчыма.  Працягнуць?"/><!-- HowToReproduce: when you openned file is modified and saved, then you are changing file encoding. -->
 			<CannotMoveDoc title="Перамясціць у новы экзэмпляр Notepad++" message="Дакумент зменены. Захавайце яго і паспрабуйце зноў."/><!-- HowToReproduce: From your Notepad++ drag & drop a clean (not dirty) file to outside of Notepad++, another instance of Notepad++ will be created. Then from your first Notepad++ drag & drop an unsaved file to the new instance. -->
-			<DocReloadWarning title="Перазагрузіць" message="Вы ўпэўнены, што хочаце перазагрузіць бягучы файл і згубіць усе змены, якія былі зробленыя ў Notepad++?"/>
+			<DocReloadWarning title="Перазагрузіць" message="Вы сапраўды хочаце перазагрузіць бягучы файл і згубіць усе змены, якія былі зробленыя ў Notepad++?"/>
 			<FileLockedWarning title="Збой захавання" message="Праверце, ці не адкрыты гэты файл у іншай праграме"/>
 			<FileAlreadyOpenedInNpp title="" message="Файл ужо адкрыты ў Notepad++."/><!-- HowToReproduce: Open a new document and open a file "c:/tmp/foo", save this new document by choosing "c:/tmp/foo" as file to save, reply the override popup "yes", then this message appears. -->
 			<RenameTabTemporaryNameAlreadyInUse title="Збой перайменавання" message="Азначаная назва ўжо выкарыстоўваецца на іншай укладцы."/><!-- HowToReproduce: Rename the tab of an untitled document and provide a name that is the same as an already-existing tab of an untitled document. -->
 			<RenameTabTemporaryNameIsEmpty title="Збой перайменавання" message="Пазначаная назва не можа быць пустой, а таксама не можа змяшчаць сімвалы прабелу і табуляцыі."/><!-- HowToReproduce: Rename the tab of an untitled document and provide an empty string or only some white speces. -->
 			<DeleteFileFailed title="Выдаліць файл" message="Збой выдалення файла"/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 
-			<NbFileToOpenImportantWarning title="Надта вялікая колькасць файлаў для адкрыцця" message="$INT_REPLACE$ файлаў неўзабаве будзе адкрыта. Вы ўпэўнены, што хочаце адкрыць іх?"/><!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
+			<NbFileToOpenImportantWarning title="Занадта вялікая колькасць файлаў для адкрыцця" message="$INT_REPLACE$ файлаў неўзабаве будзе адкрыта. Вы сапраўды хочаце адкрыць іх?"/><!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
 			<SettingsOnCloudError title="Налады воблачнага сховішча" message="Відавочна, што налады шляху да воблака ўсталяваныя з пазнакай толькі на чытанне\rабо ў папку, якая патрабуе адпаведных правоў на запіс.\rВашы налады ў воблаку будуць скасаваныя. Калі ласка, скіньце адпаведнае значэнне праз дыялог Параметры."/>
 			<FilePathNotFoundWarning title="Адкрыццё файла" message="Файл, які вы спрабуеце адкрыць не існуе."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<SessionFileInvalidError title="Не атрымалася загрузіць сеанс" message="Файл сеансу пашкоджаны або з'яўляецца памылковым."/><!-- HowToReproduce: Save current session via menu "File -> Save Session...", use another editor to modify the session you saved to make it an invalid xml file. Then load this invalid session via menu "File -> Load Session...". -->
@@ -1429,8 +1429,8 @@ Translation note:
 			<DoCloseOrNot title="Пакінуць не існуючы файл" message="Файл &quot;$STR_REPLACE$&quot; больш не існуе. Пакінуць файл у рэдактары?"/>
 			<DoDeleteOrNot title="Выдаліць файл" message="Файл &quot;$STR_REPLACE$&quot; будзе адпраўлены ў сметніцу і гэты дакумент будзе закрыты. Працягнуць?"/>
 			<NoBackupDoSaveFile title="Захаваць" message="Ваш файл рэзервовай копіі не знойдзены (выдалена звонку) Калі вы не захаваеце яго, то ўсе вашы даныя будуць страчаныя Захаваць файл &quot;$STR_REPLACE$&quot; ?"/>
-			<DoReloadOrNot title="Перазагрузіць" message="&quot;$STR_REPLACE$&quot;  Файл быў мадыфікаваны іншай праграмай. Хочаце перазагрузіць яго?"/>
-			<DoReloadOrNotAndLooseChange title="Перазагрузіць" message="&quot;$STR_REPLACE$&quot;  Файл быў мадыфікаваны іншай праграмай. Хочаце перазагрузіць яго са стратай змен зробленых у Notepad++?"/>
+			<DoReloadOrNot title="Перазагрузіць" message="&quot;$STR_REPLACE$&quot;  Файл быў мадыфікаваны іншай праграмай. Вы сапраўды хочаце перазагрузіць яго?"/>
+			<DoReloadOrNotAndLooseChange title="Перазагрузіць" message="&quot;$STR_REPLACE$&quot;  Файл быў мадыфікаваны іншай праграмай. Вы сапраўды хочаце перазагрузіць яго са стратай змен зробленых у Notepad++?"/>
 			<PrehistoricSystemDetected title="Выяўлена састарэлая сістэма" message="Відавочна, што вы ўсё яшчэ выкарыстоўваеце састарэлую сістэму. Прабачце, але гэта функцыя працуе толькі ў сучаснай сістэме."/><!-- HowToReproduce: Launch "Document Map" under Windows XP. -->
 			<XpUpdaterProblem title="Сістэма абнаўлення Notepad++" message="Сістэма абнаўлення Notepad++ несумяшчальная з АС Windows XP з-за састарэлага ўзроўню бяспекі ў гэтай сістэме. Перайсці на старонку Notepad++ для таго, каб спампаваць апошнюю версію праграмы?"/><!-- HowToReproduce: Run menu "? -> Update Notepad++" under Windows XP. -->
 			<GUpProxyConfNeedAdminMode title="Налады проксі" message="Перазапусціце Notepad++ у рэжыме адміністратара, каб наладзіць проксі."/>
@@ -1442,25 +1442,25 @@ Translation note:
 			<CreateNewFileOrNot title="Стварыць новы файл" message="&quot;$STR_REPLACE$&quot; не існуе. Стварыць яго?"/>
 			<CreateNewFileError title="Стварыць новы файл" message="Не атрымалася стварыць файл &quot;$STR_REPLACE$&quot;."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<OpenFileError title="ПАМЫЛКА" message="Не атрымалася адкрыць файл &quot;$STR_REPLACE$&quot;."/>
-			<OpenFileNoFolderError title="Немагчыма адкрыць файл" message="Немагчыма адкрыць &quot;$STR_REPLACE1$&quot; Папка &quot;$STR_REPLACE2$&quot; не існуе."/>
+			<OpenFileNoFolderError title="Немагчыма адкрыць файл" message="Немагчыма адкрыць &quot;$STR_REPLACE1$&quot;. Папка &quot;$STR_REPLACE2$&quot; не існуе."/>
 			<FileBackupFailed title="Збой рэзервовага капіявання файла" message="Папярэдняя версія файла не была захавана ў каталог для рэзервовага капіявання &quot;$STR_REPLACE$&quot;.   Усё яшчэ хочаце захаваць бягучы файл?"/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<LoadStylersFailed title="Збой загрузкі stylers.xml" message="Збой загрузкі &quot;$STR_REPLACE$&quot;!"/>
 			<LoadLangsFailed title="Канфігуратар" message="Збой загрузкі langs.xml! Хочаце аднавіць langs.xml?"/><!-- HowToReproduce: Close Notepad++. Use another editor to remove all content of "langs.xml" (0 length) then save it. Open Notepad++. -->
 			<LoadLangsFailedFinal title="Канфігуратар" message="Збой загрузкі langs.xml!"/><!-- HowToReproduce: Close Notepad++. Use another editor to make "langs.xml" an invalid xml file then save it. Open Notepad++. -->
-			<FolderAsWorspaceSubfolderExists title="Праблема з дадаваннем папкі ў якасці працоўнай вобласці" message="Падпапка, якую вы спрабуеце дадаць ужо існуе. Калі ласка, выдаліце яе корань з панэлі перад тым, як дадаваць папку &quot;$STR_REPLACE$&quot;."/><!-- HowToReproduce: Add a folder like "c:\temp\aFolder\" into "Folder as Workspace" panel, then try to add "c:\temp\". -->
+			<FolderAsWorspaceSubfolderExists title="Праблема з дадаваннем папкі ў якасці працоўнай вобласці" message="Падпапка, якую вы спрабуеце дадаць ужо існуе. Выдаліце яе корань з панэлі перад тым, як дадаваць папку &quot;$STR_REPLACE$&quot;."/><!-- HowToReproduce: Add a folder like "c:\temp\aFolder\" into "Folder as Workspace" panel, then try to add "c:\temp\". -->
 
 			<ProjectPanelChanged title="$STR_REPLACE$" message="Працоўная вобласць была зменена. Хочаце захаваць яе?"/>
 			<ProjectPanelSaveError title="$STR_REPLACE$" message="Адбылася памылка падчас запісу ваша файла працоўнай вобласці. На жаль, ваша працоўная вобласць не была захавана."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<ProjectPanelOpenDoSaveDirtyWsOrNot title="Адкрыць працоўную вобласць" message="Бягучая працоўная вобласць была зменена. Хочаце захаваць бягучы праект?"/>
 			<ProjectPanelNewDoSaveDirtyWsOrNot title="Новая працоўная вобласць" message="Бягучая працоўная вобласць была зменена. Хочаце захаваць бягучы праект?"/>
 			<ProjectPanelOpenFailed title="Адкрыць працоўную вобласць" message="Не атрымалася адкрыць працоўную вобласць. Відавочна, што адкрыты файл не з'яўляецца дзейным файлам праекта."/>
-			<ProjectPanelRemoveFolderFromProject title="Выдаліць папку з праекта" message="Усе ўкладзеныя элементы будуць выдаленыя. Вы ўпэўнены, што хочаце выдаліць папку з праекта?"/>
-			<ProjectPanelRemoveFileFromProject title="Выдаліць файл з праекта" message="Вы ўпэўнены, што хочаце выдаліць файл з праекта?"/>
+			<ProjectPanelRemoveFolderFromProject title="Выдаліць папку з праекта" message="Усе ўкладзеныя элементы будуць выдалены. Вы сапраўды хочаце выдаліць папку з праекта?"/>
+			<ProjectPanelRemoveFileFromProject title="Выдаліць файл з праекта" message="Вы сапраўды хочаце выдаліць файл з праекта?"/>
 			<ProjectPanelReloadError title="Перазагрузіць працоўную вобласць" message="Не атрымліваецца знайсці файл для перазагрузкі."/>
 			<ProjectPanelReloadDirty title="Перазагрузіць працоўную вобласць" message="Бягучая працоўная вобласць была зменена. Перазагрузка скасуе ўсе змяненні. Хочаце працягнуць?"/>
 			<UDLNewNameError title="Памылка UDL" message="Гэта назва выкарыстоўваецца іншай мовай, калі ласка, выберыце іншую."/>
 			<UDLRemoveCurrentLang title="Выдаліць бягучую мову" message="Вы ўпэўнены?"/>
-			<SCMapperDoDeleteOrNot title="Вы ўпэўнены?" message="Вы ўпэўнены, што хочаце выдаліць гэту камбінацыю клавіш?"/>
+			<SCMapperDoDeleteOrNot title="Вы ўпэўнены?" message="Вы сапраўды хочаце выдаліць гэта спалучэнне клавіш?"/>
 			<FindCharRangeValueError title="Праблема ў дыяпазоне значэнняў" message="Увядзіце значэнне ад 0 да 255."/>
 			<OpenInAdminMode title="Збой захавання" message="Не атрымалася захаваць файл. Магчыма ён абаронены. Запусціць Notepad++ у рэжыме адміністратара?"/>
 			<OpenInAdminModeWithoutCloseCurrent title="Збой захавання" message="Не атрымалася захаваць файл. Магчыма ён абаронены. Запусціць Notepad++ у рэжыме адміністратара?"/>
@@ -1674,7 +1674,7 @@ Translation note:
 			<replace-in-projects-confirm-title value="Вы ўпэўнены?"/>
 			<replace-in-projects-confirm-message value="Ці хочаце вы замяніць усе супадзенні ва ўсіх дакументах у выбранай панэлі праектаў?"/>
 			<replace-in-open-docs-confirm-title value="Вы ўпэўнены?"/>
-			<replace-in-open-docs-confirm-message value="Вы ўпэўнены, што хочаце замяніць усе супадзенні ў ва ўсіх адкрытых дакументах?"/>
+			<replace-in-open-docs-confirm-message value="Вы сапраўды хочаце замяніць усе супадзенні ў ва ўсіх адкрытых дакументах?"/>
 			<find-result-caption value="Вынікі пошуку"/>
 			<find-result-title value="Пошук"/><!-- Must not begin with space or tab character -->
 			<find-result-title-info value="($INT_REPLACE1$ супадзенняў у $INT_REPLACE2$ файлах для $INT_REPLACE3$ пошукаў)"/>
@@ -1709,7 +1709,7 @@ Translation note:
 			<npcCustomColor-tip value="Адкрыйце канфігуратар стылю, каб змяніць прадвызначаны карыстальніцкі колер для выбраных пропускаў і сімвалаў, якія не друкуюцца (&quot;Карыстальніцкі колер і сімвалы, якія не друкуюцца&quot;)."/>
 			<npcIncludeCcUniEol-tip value="Ужыць налады выгляду сімвалаў, якія не друкуюцца да C0, C1 control і Unicode EOL (наступны радок, раздзяляльнік радкоў і раздзяляльнік абзацаў)."/>
 			<searchingInSelThresh-tip value="Колькасць выбраных сімвалаў у зоне рэдагавання для аўтаматычнага пазначэння &quot;ў выбары&quot;, калі актывавана дыялогавае акно Знайсці. Максімальнае значэнне - 1024. Зададзена значэнне 0, каб адключыць аўтаматычную праверку."/>
-			<verticalEdge-tip value="Дадайце сваю пазнаку слупка, азначыўшы яго размяшчэнне дзесятковым лікам.  Вы можаце вызначыць некалькі пазнак слупкоў скарыстаўшыся прабелам для раздзялення розных лічбаў."/>
+			<verticalEdge-tip value="Дадайце сваю пазнаку слупка, азначыўшы яго размяшчэнне дзесятковым лікам. Вы можаце вызначыць некалькі пазнак слупкоў скарыстаўшыся прабелам для раздзялення розных лічбаў."/>
 			<fileSaveAsCopySaveButton-tip value="Утрымлівайце Shift, націскаючы Захаваць, каб адрыць копію пасля захавання."/>
 			<autoIndentBasic-tip value="Пераканайцеся, што водступ бягучага радка (г.зн. новы радок створаны націскам клавішы ENTER) супадае з водступам папярэдняга радка."/>
 			<autoIndentAdvanced-tip value="Уключыць інтэлектуальны водступ для моў праграмавання, якія &quot;падобныя на C&quot; і Python. Мовы праграмавання, якія &quot;падобныя на C&quot; уключаюць: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell і JSON.  Калі выбраць пашыраны рэжым, але не рэдагаваць файлы вышэй азначанымі мовамі, водступ застанецца ў базавым рэжыме."/>
