@@ -41,10 +41,10 @@ Translation note:
 					<Item subMenuId="edit-onSelection" name="У выбраным"/>
 					<Item subMenuId="edit-multiSelectALL" name="Стыль для ўсіх выпадкаў токена"/>
 					<Item subMenuId="edit-multiSelectNext" name="Стыль для аднаго токена"/>
-					<Item subMenuId="search-changeHistory" name="Ачысціць стыль"/>
+					<Item subMenuId="search-changeHistory" name="Гісторыя змен"/>
 					<Item subMenuId="search-markAll" name="Уверх"/>
 					<Item subMenuId="search-markOne" name="Уніз"/>
-					<Item subMenuId="search-unmarkAll" name="Капіяваць стыль тэксту"/>
+					<Item subMenuId="search-unmarkAll" name="Ачысціць стыль"/>
 					<Item subMenuId="search-jumpUp" name="Уверх"/>
 					<Item subMenuId="search-jumpDown" name="Паглядзець бягучы файл у"/>
 					<Item subMenuId="search-copyStyledText" name="Капіяваць стыль тэксту"/>
@@ -57,13 +57,13 @@ Translation note:
 					<Item subMenuId="view-collapseLevel" name="Набор сімвалаў"/>
 					<Item subMenuId="view-uncollapseLevel" name="Арабская"/>
 					<Item subMenuId="view-project" name="Балтыйская"/>
-					<Item subMenuId="encoding-characterSets" name="Кельцкая"/>
+					<Item subMenuId="encoding-characterSets" name="Кадзіроўкі"/>
 					<Item subMenuId="encoding-arabic" name="Арабская"/>
 					<Item subMenuId="encoding-baltic" name="Балтыйская"/>
-					<Item subMenuId="encoding-celtic" name="Кітайская"/>
+					<Item subMenuId="encoding-celtic" name="Кельцкая"/>
 					<Item subMenuId="encoding-cyrillic" name="Усходняя Еўропа"/>
-					<Item subMenuId="encoding-centralEuropean" name="Грэчаская"/>
-					<Item subMenuId="encoding-chinese" name="Іўрыт"/>
+					<Item subMenuId="encoding-centralEuropean" name="Цэнтральная Еўропа"/>
+					<Item subMenuId="encoding-chinese" name="Кітайская"/>
 					<Item subMenuId="encoding-easternEuropean" name="Японская"/>
 					<Item subMenuId="encoding-greek" name="Карэйская"/>
 					<Item subMenuId="encoding-hebrew" name="Паўночная Еўропа"/>
@@ -155,7 +155,7 @@ Translation note:
 					<Item id="42073" name="Адкрыць папку размяшчэння ў правадніку"/>
 					<Item id="42074" name="Шукаць у інтэрнэце"/>
 					<Item id="42075" name="Змяніць сістэму пошуку..."/>
-					<Item id="42076" name="Пачаць запіс"/>
+					<Item id="42076" name="Змяніць сістэму пошуку..."/>
 					<Item id="42090" name="Спыніць запіс"/>
 					<Item id="42091" name="Прайграванне"/>
 					<Item id="42092" name="Пераключыць у каментарый аднаго радка"/>
@@ -188,8 +188,8 @@ Translation note:
 					<Item id="42082" name="Капіяваць шлях да бягучага каталога"/>
 					<Item id="42037" name="Капіяваць усе назвы файлаў"/>
 					<Item id="42034" name="Капіяваць усе шляхі да файлаў"/>
-					<Item id="42051" name="Шматразовае выкананне макраса..."/>
-					<Item id="42052" name="Зняць атрыбут толькі чытанне"/>
+					<Item id="42051" name="Панэль сімвалаў"/>
+					<Item id="42052" name="Гісторыя буфера абмену"/>
 					<Item id="42025" name="Захаваць бягучы запіс макраса..."/>
 					<Item id="42026" name="Раскаментаваць радок"/>
 					<Item id="42027" name="Выдаліць пустыя радкі"/>
@@ -200,7 +200,7 @@ Translation note:
 					<Item id="42087" name="Знайсці наступны"/>
 					<Item id="42088" name="Замяніць..."/>
 					<Item id="42032" name="Шматразовае выкананне макраса..."/>
-					<Item id="42033" name="Пераключыць закладку"/>
+					<Item id="42033" name="Ачысціць атрыбут «Толькі чытанне»"/>
 					<Item id="42035" name="Наступная закладка"/>
 					<Item id="42036" name="Папярэдняя закладка"/>
 					<Item id="42055" name="Ачысціць усе закладкі"/>
@@ -214,7 +214,7 @@ Translation note:
 					<Item id="43005" name="Выбраць усе паміж парнымі дужкамі"/>
 					<Item id="43006" name="Перайсці да парнай дужкі"/>
 					<Item id="43007" name="Знайсці папярэдні"/>
-					<Item id="43008" name="Пакрокавы пошук"/>
+					<Item id="43008" name="Ачысціць усе закладкі"/>
 					<Item id="43018" name="Знайсці ў файлах"/>
 					<Item id="43019" name="Знайсці далей (зменлівае)"/>
 					<Item id="43020" name="Знайсці папярэдняе (зменлівае)"/>
@@ -230,16 +230,16 @@ Translation note:
 					<Item id="43014" name="Ачысціць 5-ы стыль"/>
 					<Item id="43015" name="Ачысціць усе стылі"/>
 					<Item id="43022" name="1-ы стыль"/>
-					<Item id="43023" name="2-і стыль"/>
+					<Item id="43023" name="Ачысціць 1-ы стыль"/>
 					<Item id="43024" name="3-і стыль"/>
-					<Item id="43025" name="4-ы стыль"/>
+					<Item id="43025" name="Ачысціць 2-і стыль"/>
 					<Item id="43026" name="5-ы стыль"/>
-					<Item id="43027" name="Знайсці стыль пазнак"/>
+					<Item id="43027" name="Ачысціць 3-і стыль"/>
 					<Item id="43028" name="1-ы стыль"/>
-					<Item id="43029" name="2-і стыль"/>
+					<Item id="43029" name="Ачысціць 4-ы стыль"/>
 					<Item id="43030" name="3-і стыль"/>
-					<Item id="43031" name="4-ы стыль"/>
-					<Item id="43032" name="5-ы стыль"/>
+					<Item id="43031" name="Ачысціць 5-ы стыль"/>
+					<Item id="43032" name="Ачысціць усе стылі"/>
 					<Item id="43033" name="1-ы стыль"/>
 					<Item id="43034" name="2-і стыль"/>
 					<Item id="43035" name="3-і стыль"/>
@@ -266,7 +266,7 @@ Translation note:
 					<Item id="43066" name="Тэкст на ўсё акно"/>
 					<Item id="43067" name="Згарнуць усе"/>
 					<Item id="43068" name="Рэжым канцэнтрацыі"/>
-					<Item id="43069" name="Паказаць усе сімвалы"/>
+					<Item id="43069" name="Ачысціць гісторыю змен"/>
 					<Item id="43045" name="Значэнні водступаў"/>
 					<Item id="43046" name="Перанос па словах"/>
 					<Item id="43047" name="Павялічыць (Ctrl+колца мышкі ўверх)"/>
@@ -349,7 +349,7 @@ Translation note:
 					<Item id="45053" name="Атрымаць больш убудоў"/>
 					<Item id="45056" name="Абнавіць Notepad++"/>
 					<Item id="10001" name="Задаць проксі абнаўлення..."/>
-					<Item id="10002" name="Імпартаванне ўбудоў..."/>
+					<Item id="10002" name="Кланіраваць у іншы выгляд"/>
 					<Item id="10003" name="Імпартаванне тэм стыляў..."/>
 					<Item id="10004" name="Рэдагаваць кантэкстнае меню"/>
 					<Item id="10005" name="Карта спалучэнняў клавіш..."/>
@@ -434,7 +434,7 @@ Translation note:
 				<Item CMDID="41014" name="Адкрыць у новым экзэмпляры"/>
 				<Item CMDID="41010" name="Перазагрузіць"/>
 				<Item CMDID="42028" name="Закрыць усе злева"/>
-				<Item CMDID="42033" name="Закрыць усе справа"/>
+				<Item CMDID="42033" name="Ачысціць атрыбут «Толькі чытанне»"/>
 				<Item CMDID="2" name="Адкрыць папку размяшчэння ў правадніку"/>
 				<Item CMDID="42029" name="Адкрыць папку размяшчэння ў cmd"/>
 				<Item CMDID="42030" name="Адкрыць у прадвызначаным аглядальніку"/>
@@ -443,7 +443,7 @@ Translation note:
 				<Item CMDID="10005" name="Ужыць колер 1"/>
 				<Item CMDID="10006" name="Ужыць колер 2"/>
 				<Item CMDID="10001" name="Ужыць колер 3"/>
-				<Item CMDID="10002" name="Ужыць колер 4"/>
+				<Item CMDID="10002" name="Кланіраваць у іншы выгляд"/>
 				<Item CMDID="10003" name="Ужыць колер 5"/>
 				<Item CMDID="10004" name="Выдаліць колер"/>
 				<Item CMDID="4" name="Ужыць колер ва ўкладцы"/>
@@ -975,7 +975,7 @@ Translation note:
 				</Global>
 
 				<Scintillas title="Рэдагаванне 1">
-					<Item id="6216" name="Налады пункту ўстаўкі"/>
+					<Item id="6216" name="Налады стрэшкі"/>
 					<Item id="6217" name="Шырыня:"/>
 					<Item id="6219" name="Частата мігцення:"/>
 					<Item id="6221" name="+"/>
@@ -1047,7 +1047,7 @@ Translation note:
 					<Item id="6201" name="Стыль згортвання водступу"/>
 					<Item id="6202" name="Просты"/>
 					<Item id="6203" name="Стрэлкамі"/>
-					<Item id="6204" name="Кружкамі"/>
+					<Item id="6204" name="Кругамі"/>
 					<Item id="6205" name="Квадрацікамі"/>
 					<Item id="6226" name="Няма"/>
 					<Item id="6291" name="Нумар радка"/>
@@ -1055,7 +1055,7 @@ Translation note:
 					<Item id="6292" name="Дынамічная шырыня"/>
 					<Item id="6293" name="Пастаянная шырыня"/>
 					<Item id="6207" name="Паказваць закладку"/>
-					<Item id="6295" name="Ачысціць стыль"/>
+					<Item id="6295" name="Гісторыя змен"/>
 					<Item id="6223" name="Паказаць на мяжы"/>
 					<Item id="6296" name="Паказаць у тэксце"/>
 					<Item id="6211" name="Налады вертыкальнага краю"/>
@@ -1288,7 +1288,7 @@ Translation note:
 					<Item id="6262" name="Налады воблачнага сховішча"/>
 					<Item id="6263" name="Без воблачнага сховішча"/>
 					<Item id="6267" name="Шлях да вашага воблачнага сховішча:"/>
-					<Item id="6318" name="Налады спасылак"/>
+					<Item id="6318" name="Налады актыўных спасылак"/>
 					<Item id="6319" name="Уключыць"/>
 					<Item id="6320" name="Не падкрэсліваць"/>
 					<Item id="6350" name="Уключыць поўны рэжым"/>
@@ -1425,7 +1425,7 @@ Translation note:
 			<DroppingFolderAsProjectModeWarning title="Памылковае дзеянне" message="Вы можаце перацягваць толькі файлы або толькі папкі, але не ўсё адразу, паколькі вы знаходзіцеся ў рэжыме &quot;Папка як праект&quot;. Каб гэты параметр пачаў працаваць вам неабходна ўключыць &quot;Адкрыць усе файлы папкі, замест адкрыцця папкі ў якасці працоўнай вобласці&quot; ў меню &quot;Параметры - Прадвызначаны каталог&quot;."/>
 			<SortingError title="Памылка сартавання" message="Не атрымліваецца выканаць сартаванне па ліках з-за радка $INT_REPLACE$."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<ColumnModeTip title="Парада для рэжыму слупкоў" message=" Ёсць тры спосабы пераключэння на рэжым выбару слупкоў: 1. (Клавіятура і мыш)  Утрымлівайце Alt і адначасова перацягвайце левай кнопкай мышы 2. (Толькі клавіятура) Утрымлівайце Alt+Shift і адначасова выкарыстоўвайце клавішы стрэлак 3.(Клавіятура або мыш) Памясціце стрэшку ў пажаданы пачатак пазіцыі блока слупка, а потым выканайце каманду &quot;Выбраць пачатак/канец у рэжыме слупоў&quot;  Перамясціце стрэшку ў пажаданы канец слупка пазіцыі блока, а потым выканайце каманду яшчэ раз &quot;Выбраць пачатак/канец у рэжыме слупоў&quot;"/>
-			<BufferInvalidWarning title="Збой захавання" message="Не атрымалася захаваць: Памылковы буфер."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
+			<BufferInvalidWarning title="Збой захавання" message="Не атрымалася захаваць. Памылковы буфер."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<DoCloseOrNot title="Пакінуць не існуючы файл" message="Файл &quot;$STR_REPLACE$&quot; больш не існуе. Пакінуць файл у рэдактары?"/>
 			<DoDeleteOrNot title="Выдаліць файл" message="Файл &quot;$STR_REPLACE$&quot; будзе адпраўлены ў сметніцу і гэты дакумент будзе закрыты. Працягнуць?"/>
 			<NoBackupDoSaveFile title="Захаваць" message="Ваш файл рэзервовай копіі не знойдзены (выдалена звонку) Калі вы не захаваеце яго, то ўсе вашы даныя будуць страчаныя Захаваць файл &quot;$STR_REPLACE$&quot; ?"/>
