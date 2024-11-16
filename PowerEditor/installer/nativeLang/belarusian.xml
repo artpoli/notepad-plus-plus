@@ -59,7 +59,7 @@ Translation note:
 					<Item subMenuId="view-project" name="Балтыйская"/>
 					<Item subMenuId="encoding-characterSets" name="Кельцкая"/>
 					<Item subMenuId="encoding-arabic" name="Арабская"/>
-					<Item subMenuId="encoding-baltic" name="Цэнтральная Еўропа"/>
+					<Item subMenuId="encoding-baltic" name="Балтыйская"/>
 					<Item subMenuId="encoding-celtic" name="Кітайская"/>
 					<Item subMenuId="encoding-cyrillic" name="Усходняя Еўропа"/>
 					<Item subMenuId="encoding-centralEuropean" name="Грэчаская"/>
@@ -119,7 +119,7 @@ Translation note:
 					<Item id="42006" name="Выдаліць"/>
 					<Item id="42007" name="Выбраць усе"/>
 					<Item id="42020" name="Выбраць пачатак/канец"/>
-					<Item id="42089" name="Дата і час (кароткі)"/>
+					<Item id="42089" name="Выбраць пачатак/канец у рэжыме слупка"/>
 					<Item id="42084" name="Дата і час (доўгі)"/>
 					<Item id="42085" name="Дата і час (карыстальніцкі)"/>
 					<Item id="42086" name="Павялічыць водступ радка"/>
@@ -170,8 +170,8 @@ Translation note:
 					<Item id="42019" name="Прабел у табуляцыю (усе)"/>
 					<Item id="42021" name="Узнаўленне"/>
 					<Item id="42022" name="Уставіць змесціва HTML"/>
-					<Item id="42023" name="Уставіць змесціва RTF"/>
-					<Item id="42047" name="Капіяваць двайковае змесціва"/>
+					<Item id="42023" name="Закаментаваць блок"/>
+					<Item id="42047" name="Разкаментаваць блок"/>
 					<Item id="42024" name="Выразаць двайковае змесціва"/>
 					<Item id="42042" name="Уставіць двайковае змесціва"/>
 					<Item id="42043" name="Капіяваць спасылку"/>
@@ -342,7 +342,7 @@ Translation note:
 					<Item id="45011" name="Пра Notepad++"/>
 					<Item id="45012" name="Аргументы каманднага радка..."/>
 					<Item id="45013" name="Хатняя старонка Notepad++"/>
-					<Item id="45060" name="Старонка праекта Notepad++"/>
+					<Item id="45060" name="Big5 (традыцыйная)"/>
 					<Item id="45061" name="Дакументацыя па Notepad++"/>
 					<Item id="45054" name="Форум супольнасці Notepad++"/>
 					<Item id="45057" name="Адладачная інфармацыя..."/>
@@ -1019,7 +1019,7 @@ Translation note:
 					<Item id="7101" name="Уключыць цёмны рэжым"/>
 					<Item id="7132" name="Чорны"/>
 					<Item id="7133" name="Чырвоны"/>
-					<Item id="7102" name="Зялёны"/>
+					<Item id="7102" name="Чорны"/>
 					<Item id="7103" name="Блакітны"/>
 					<Item id="7104" name="Фіялетавы"/>
 					<Item id="7105" name="Блакiтны"/>
@@ -1208,7 +1208,7 @@ Translation note:
 					<Item id="6822" name="Размяшчэнне рэзервовай копіі:"/>
 					<Item id="6309" name="Памятаць бягучы сеанс для наступнага запуску"/>
 					<Item id="6825" name="Рэзервовая копія пры захаванні"/>
-					<Item id="6801" name="Няма"/>
+					<Item id="6801" name="Рэзервовая копія пры захаванні"/>
 					<Item id="6315" name="Простая рэзервовая копія"/>
 					<Item id="6316" name="Пашыраная рэзервовая копія"/>
 					<Item id="6317" name="Карыстальніцкі каталог рэзервовай копіі"/>
