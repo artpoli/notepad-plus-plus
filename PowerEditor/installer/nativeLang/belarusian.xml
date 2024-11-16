@@ -47,8 +47,8 @@ Translation note:
 					<Item subMenuId="search-unmarkAll" name="Капіяваць стыль тэксту"/>
 					<Item subMenuId="search-jumpUp" name="Закладка"/>
 					<Item subMenuId="search-jumpDown" name="Паглядзець бягучы файл у"/>
-					<Item subMenuId="search-copyStyledText" name="Паказаць сімвал"/>
-					<Item subMenuId="search-bookmark" name="Маштаб"/>
+					<Item subMenuId="search-copyStyledText" name="Капіяваць стыль тэксту"/>
+					<Item subMenuId="search-bookmark" name="Закладка"/>
 					<Item subMenuId="view-currentFileIn" name="Перамясціць/Кланіраваць бягучы дакумент"/>
 					<Item subMenuId="view-showSymbol" name="Укладка"/>
 					<Item subMenuId="view-zoom" name="Згарнуць узровень"/>
@@ -1245,7 +1245,7 @@ Translation note:
 					<Item id="6152" name="Адкрыць у новым экзэмпляры (і захоўваць сеанс аўтаматычна пры выхадзе)"/>
 					<Item id="6153" name="Заўсёды адкрываць у новым акне"/>
 					<Item id="6154" name="Усе ў адным акне (прадвызначана)"/>
-					<Item id="6155" name="* Змена гэтых наладаў патрабуе перазапуску праграмы"/>
+					<Item id="6155" name="* Змена гэтых налад патрабуе перазапуску праграмы"/>
 					<Item id="6171" name="Дапасаванне ўстаўкі даты і часу"/>
 					<Item id="6175" name="Зваротны парадак прадвызначанай даты і часу (кароткі і доўгія фарматы)"/>
 					<Item id="6172" name="Карыстальніцкі фармат:"/>
@@ -1424,7 +1424,7 @@ Translation note:
 			<SessionFileInvalidError title="Не атрымалася загрузіць сеанс" message="Файл сеансу пашкоджаны або з'яўляецца памылковым."/><!-- HowToReproduce: Save current session via menu "File -> Save Session...", use another editor to modify the session you saved to make it an invalid xml file. Then load this invalid session via menu "File -> Load Session...". -->
 			<DroppingFolderAsProjectModeWarning title="Памылковае дзеянне" message="Вы можаце перацягваць толькі файлы або толькі папкі, але не ўсё адразу, паколькі вы знаходзіцеся ў рэжыме &quot;Папка як праект&quot;. Каб гэты параметр пачаў працаваць вам неабходна ўключыць &quot;Адкрыць усе файлы папкі, замест адкрыцця папкі ў якасці працоўнай вобласці&quot; ў меню &quot;Параметры - Прадвызначаны каталог&quot;."/>
 			<SortingError title="Памылка сартавання" message="Не атрымліваецца выканаць сартаванне па ліках з-за радка $INT_REPLACE$."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
-			<ColumnModeTip title="Парада для рэжыму слупкоў" message=" There are 3 ways to switch to column-select mode:  1. (Keyboard and Mouse)  Hold Alt while left-click dragging  2. (Keyboard only)  Hold Alt+Shift while using arrow keys  3. (Keyboard or Mouse)       Put caret at desired start of column block position, then        execute &quot;Begin/End Select in Column Mode&quot; command;       Move caret to desired end of column block position, then        execute &quot;Begin/End Select in Column Mode&quot; command again"/>
+			<ColumnModeTip title="Парада для рэжыму слупкоў" message=" Ёсць тры спосабы пераключэння на рэжым выбару слупкоў: 1. (Клавіятура і мыш)  Утрымлівайце Alt і адначасова перацягвайце левай кнопкай мышы 2. (Толькі клавіятура) Утрымлівайце Alt+Shift і адначасова выкарыстоўвайце клавішы стрэлак 3.(Клавіятура або мыш) Памясціце стрэшку ў пажаданы пачатак пазіцыі блока слупка, а потым выканайце каманду &quot;Выбраць пачатак/канец у рэжыме слупоў&quot;  Перамясціце стрэшку ў пажаданы канец слупка пазіцыі блока, а потым выканайце каманду яшчэ раз &quot;Выбраць пачатак/канец у рэжыме слупоў&quot;"/>
 			<BufferInvalidWarning title="Збой захавання" message="Не атрымалася захаваць: Памылковы буфер."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<DoCloseOrNot title="Пакінуць не існуючы файл" message="Файл &quot;$STR_REPLACE$&quot; больш не існуе. Пакінуць файл у рэдактары?"/>
 			<DoDeleteOrNot title="Выдаліць файл" message="Файл &quot;$STR_REPLACE$&quot; будзе адпраўлены ў сметніцу і гэты дакумент будзе закрыты. Працягнуць?"/>
