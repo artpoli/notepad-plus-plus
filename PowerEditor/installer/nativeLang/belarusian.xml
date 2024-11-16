@@ -33,7 +33,7 @@ Translation note:
 					<Item subMenuId="edit-indent" name="Водступ"/>
 					<Item subMenuId="edit-convertCaseTo" name="Змяніць рэгістр"/>
 					<Item subMenuId="edit-lineOperations" name="Аперацыі з радком"/>
-					<Item subMenuId="edit-comment" name="Закаментаваць/Раскаментаваць"/>
+					<Item subMenuId="edit-comment" name="Закаментаваць/Разкаментаваць"/>
 					<Item subMenuId="edit-autoCompletion" name="Аўтазавяршэнне"/>
 					<Item subMenuId="edit-eolConversion" name="Пераўтварыць у сімвал канца радка"/>
 					<Item subMenuId="edit-blankOperations" name="Пустыя аперацыі"/>
@@ -273,8 +273,8 @@ Translation note:
 					<Item id="43048" name="Выбраць і шукаць далей"/>
 					<Item id="43049" name="Выбраць і шукаць папярэдні"/>
 					<Item id="43054" name="Паказваць сімвал заканчэння радка"/>
-					<Item id="43501" name="Разгарнуць усе"/>
-					<Item id="43502" name="Згарнуць бягучы ўзровень"/>
+					<Item id="43501" name="Закрыць выбраную"/>
+					<Item id="43502" name="Закрыць іншыя"/>
 					<Item id="43503" name="Разгарнуць бягучы ўзровень"/>
 					<Item id="43504" name="Зводка..."/>
 					<Item id="44009" name="Карта дакумента"/>
@@ -417,11 +417,11 @@ Translation note:
 			</Main>
 			<TabBar>
 				<Item CMDID="41003" name="Закрыць"/>
-				<Item CMDID="0" name="Закрыць усе, акрамя гэтай"/>
-				<Item CMDID="41005" name="Захаваць"/>
-				<Item CMDID="41009" name="Захаваць як..."/>
-				<Item CMDID="41018" name="Друк..."/>
-				<Item CMDID="41024" name="Перамясціць у іншы выгляд"/>
+				<Item CMDID="0" name="Закрыць некалькі ўкладак"/>
+				<Item CMDID="41005" name="Закрыць усе, акрамя гэтага"/>
+				<Item CMDID="41009" name="Закрыць усе злева"/>
+				<Item CMDID="41018" name="Закрыць усе справа"/>
+				<Item CMDID="41024" name="Закрыць усе не змененыя"/>
 				<Item CMDID="41006" name="Кланіраваць у іншы выгляд"/>
 				<Item CMDID="41008" name="Капіяваць поўны шлях да файла"/>
 				<Item CMDID="1" name="Капіяваць назву файла"/>
@@ -825,17 +825,17 @@ Translation note:
 					<Item id="21220" name="Кампактнае згортванне (з пустымі радкамі)"/>
 					<Item id="21224" name="Згортванне ў кодзе 1-га стылю:"/>
 					<Item id="21225" name="Адкрыць:"/>
-					<Item id="21226" name="Сярэдзіна:"/>
+					<Item id="21226" name="Закрыць:"/>
 					<Item id="21227" name="Закрыць:"/>
 					<Item id="21320" name="Стыль"/>
 					<Item id="21324" name="Згортванне ў кодзе 2-га стылю (патрэбныя раздзяляльнікі):"/>
 					<Item id="21325" name="Адкрыць:"/>
-					<Item id="21326" name="Сярэдзіна:"/>
+					<Item id="21326" name="Закрыць:"/>
 					<Item id="21327" name="Закрыць:"/>
 					<Item id="21420" name="Стыль"/>
 					<Item id="21424" name="Згортванне ў стылі каментарыя:"/>
 					<Item id="21425" name="Адкрыць:"/>
-					<Item id="21426" name="Сярэдзіна:"/>
+					<Item id="21426" name="Закрыць:"/>
 					<Item id="21427" name="Закрыць:"/>
 				</Folder>
 				<Keywords title="Спісы ключавых слоў">
