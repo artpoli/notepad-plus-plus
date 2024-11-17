@@ -961,7 +961,7 @@ Translation note:
 					<Item id="6118" name="Закрываць падвойным націскам"/>
 					<Item id="6119" name="Схаваць"/>
 					<Item id="6120" name="Каскадам"/>
-					<Item id="6121" name="Вертыкальная"/>
+					<Item id="6121" name="Выходзіць пры закрыцці апошняй укладкі"/>
 					<Item id="6128" name="Змяніць значкі"/>
 
 					<Item id="6133" name="Меню"/>
@@ -978,7 +978,7 @@ Translation note:
 					<Item id="6216" name="Налады стрэшкі"/>
 					<Item id="6217" name="Шырыня:"/>
 					<Item id="6219" name="Частата мігцення:"/>
-					<Item id="6221" name="+"/>
+					<Item id="6221" name="Ч"/>
 					<Item id="6222" name="-"/>
 					<Item id="6246" name="Пераключаць каманды згортвання/разгортвання бягучага ўзроўню"/>
 					<Item id="6227" name="Уключыць мульты-рэдагаванне (Ctrl+націск мышы/выбар)"/>
@@ -986,10 +986,10 @@ Translation note:
 					<Item id="6229" name="Выраўнены"/>
 					<Item id="6230" name="Выраўнены"/>
 					<Item id="6234" name="Адключыць пашыраную прагортку, калі ёсць праблемы з тачпадам"/>
-					<Item id="6215" name="Адключыць пашыраную прагортку, калі ёсць праблемы з тачпадам"/>
-					<Item id="6236" name="Уключыць згладжванне шрыфту"/>
+					<Item id="6215" name="Уключыць згладжванне шрыфту"/>
+					<Item id="6236" name="Прагортка за межы апошняга радка"/>
 					<Item id="6239" name="Прагортка за межы апошняга радка"/>
-					<Item id="6245" name="Утрымліваць выбар пры націску за межамі выбару"/>
+					<Item id="6245" name="Уключыць віртуальны прабел"/>
 					<Item id="6214" name="Уключыць капіяваць/выразаць радкоў без выбару"/>
 					<Item id="6651" name="Індыкатар бягучага радка"/>
 					<Item id="6652" name="Няма"/>
@@ -1031,7 +1031,7 @@ Translation note:
 					<Item id="7117" name="Галоўны"/>
 					<Item id="7118" name="Актыўны"/>
 					<Item id="7119" name="Тэкст"/>
-					<Item id="7120" name="Цямнейшы тэкст"/>
+					<Item id="7120" name="Памылка"/>
 					<Item id="7121" name="Адключаны тэкст"/>
 					<Item id="7122" name="Цямнейшы тэкст"/>
 					<Item id="7123" name="Адключаны тэкст"/>
@@ -1202,7 +1202,7 @@ Translation note:
 
 				<Backup title="Рэзервовыя копіі">
 					<Item id="6817" name="Здымак сеансу і перыядычнае рэзервовае капіяванне"/>
-					<Item id="6818" name="Уключыць здымак сеансу і перыядычнае рэзервовае капіяванне"/>
+					<Item id="6818" name="Уключыць здымак сеанса і перыядычнае рэзервовае капіяванне"/>
 					<Item id="6819" name="Выклікае рэзервовае капіяванне пасля змянення кожныя"/>
 					<Item id="6821" name="секундаў"/>
 					<Item id="6822" name="Размяшчэнне рэзервовай копіі:"/>
@@ -1436,7 +1436,7 @@ Translation note:
 			<GUpProxyConfNeedAdminMode title="Налады проксі" message="Перазапусціце Notepad++ у рэжыме адміністратара, каб наладзіць проксі."/>
 			<DocTooDirtyToMonitor title="Праблема маніторынгу" message="Дакументы зменены. Калі ласка, захавайце змяненні перад пачаткам яго маніторынгу."/>
 			<DocNoExistToMonitor title="Праблема маніторынгу" message="Файл павінен існаваць для яго маніторынгу."/>
-			<FileTooBigToOpen title="Праблема памеру файла" message="Надта вялікі файл для адкрыцця ў Notepad++"/><!-- HowToReproduce: Try to open a 4GB file (it's not easy to reproduce, it depends on your system). -->
+			<FileTooBigToOpen title="Праблема памеру файла" message="Занадта вялікі файл для адкрыцця ў Notepad++"/><!-- HowToReproduce: Try to open a 4GB file (it's not easy to reproduce, it depends on your system). -->
 			<FileLoadingException title="Код выключэння: $STR_REPLACE$" message="Падчас загрузкі файла ўзнікла памылка!"/>
 			<WantToOpenHugeFile title="Папярэджанне аб адкрыцці вялікага файла" message="Адкрыццё вялікага файла (больш за 2 ГБ) можа заняць некалькі хвілін. Вы хочаце яго адкрыць?"/>
 			<CreateNewFileOrNot title="Стварыць новы файл" message="&quot;$STR_REPLACE$&quot; не існуе. Стварыць яго?"/>
@@ -1714,7 +1714,7 @@ Translation note:
 			<autoIndentBasic-tip value="Пераканайцеся, што водступ бягучага радка (г.зн. новы радок створаны націскам клавішы ENTER) супадае з водступам папярэдняга радка."/>
 			<autoIndentAdvanced-tip value="Уключыць інтэлектуальны водступ для моў праграмавання, якія &quot;падобныя на C&quot; і Python. Мовы праграмавання, якія &quot;падобныя на C&quot; уключаюць: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell і JSON.  Калі выбраць пашыраны рэжым, але не рэдагаваць файлы вышэй азначанымі мовамі, водступ застанецца ў базавым рэжыме."/>
 			<!-- Don't translate "&quot;Global override&quot; and &quot;Default Style&quot; -->
-			<global-override-tip value="Уключэнне &quot;Глабальнага перавызначэння&quot; у гэтым месцы заменіць гэты параметр ва ўсіх моўных стылях. Магчыма, што замест гэтага, вы хочаце выкарыстоўваць &quot;Прадвызначаны стыль&quot;"/>
+			<global-override-tip value="Уключэнне &quot;Глабальнага перавызначэння&quot; у гэтым месцы перавызначыць гэты параметр ва ўсіх моўных стылях. Магчыма, што замест гэтага, вы хочаце выкарыстоўваць &quot;Прадвызначаны стыль&quot;"/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
