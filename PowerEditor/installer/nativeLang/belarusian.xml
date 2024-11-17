@@ -64,7 +64,7 @@ Translation note:
 					<Item subMenuId="encoding-cyrillic" name="Кірыліца"/>
 					<Item subMenuId="encoding-centralEuropean" name="Цэнтральная Еўропа"/>
 					<Item subMenuId="encoding-chinese" name="Кітайская"/>
-					<Item subMenuId="encoding-easternEuropean" name="Японская"/>
+					<Item subMenuId="encoding-easternEuropean" name="Усходняя Еўропа"/>
 					<Item subMenuId="encoding-greek" name="Карэйская"/>
 					<Item subMenuId="encoding-hebrew" name="Паўночная Еўропа"/>
 					<Item subMenuId="encoding-japanese" name="Тайская"/>
@@ -125,7 +125,7 @@ Translation note:
 					<Item id="42086" name="Дата і час (карыстальніцкі)"/>
 					<Item id="42008" name="Паменшыць водступ радка"/>
 					<Item id="42009" name="Паменшыць водступ радка"/>
-					<Item id="42010" name="Выдаліць дублікаты радкоў"/>
+					<Item id="42010" name="Дубліраваць бягучы радок"/>
 					<Item id="42079" name="Выдаліць паслядоўныя дублікаты радкоў"/>
 					<Item id="42077" name="Раздзяліць радкі"/>
 					<Item id="42012" name="Аб'яднаць радкі"/>
@@ -279,7 +279,7 @@ Translation note:
 					<Item id="43504" name="Скапіяваць назвы выбраных шляхоў"/>
 					<Item id="44009" name="Карта дакумента"/>
 					<Item id="44010" name="Спіс дакументаў"/>
-					<Item id="44011" name="Спіс функцый"/>
+					<Item id="44011" name="Рэжым канцэнтрацыі"/>
 					<Item id="44019" name="Папка як працоўная вобласць"/>
 					<Item id="44020" name="1-ая ўкладка"/>
 					<Item id="44022" name="2-ая ўкладка"/>
@@ -291,8 +291,8 @@ Translation note:
 					<Item id="44030" name="8-ая ўкладка"/>
 					<Item id="44031" name="9-ая ўкладка"/>
 					<Item id="44049" name="Наступная ўкладка"/>
-					<Item id="44080" name="Папярэдняя ўкладка"/>
-					<Item id="44070" name="Маніторынг (tail -f)"/>
+					<Item id="44080" name="Карта дакумента"/>
+					<Item id="44070" name="Спіс дакументаў"/>
 					<Item id="44084" name="Перамясціць укладку ўперад"/>
 					<Item id="44085" name="Перамясціць укладку назад"/>
 					<Item id="44086" name="1-ая ўкладка"/>
@@ -372,7 +372,7 @@ Translation note:
 					<Item id="48018" name="Пераключыць запіс макраса"/>
 					<Item id="48009" name="Завяршэнне шляху"/>
 					<Item id="48011" name="Схаваць радкі"/>
-					<Item id="48014" name="Адкрыць усе нядаўнія файлы"/>
+					<Item id="48014" name="Рэдагаваць кантэкстнае меню"/>
 					<Item id="48015" name="Ачысціць спіс нядаўніх файлаў"/>
 					<Item id="48501" name="Змяніць спалучэнні клавіш/выдаліць макрас..."/>
 					<Item id="48502" name="Змяніць спалучэнні клавіш/выдаліць каманду..."/>
@@ -798,7 +798,7 @@ Translation note:
 					<Item id="25012" name="Раздзяляльнік 5"/>
 					<Item id="25013" name="Раздзяляльнік 6"/>
 					<Item id="25014" name="Раздзяляльнік 7"/>
-					<Item id="25015" name="8-ы раздзяляльнік"/>
+					<Item id="25015" name="Раздзяляльнік 8"/>
 					<Item id="25018" name="Ключавое слова 1"/>
 					<Item id="25019" name="Ключавое слова 2"/>
 					<Item id="25020" name="Ключавое слова 3"/>
@@ -820,7 +820,7 @@ Translation note:
 				<Folder title="Стандартны">
 					<Item id="21101" name="Прадвызначаны стыль"/>
 					<Item id="21102" name="Стыль"/>
-					<Item id="21105" name="Дакументацыя:"/>
+					<Item id="21105" name="Дакументацыя"/>
 					<Item id="21106" name="Часовы сайт дакументацыі:"/>
 					<Item id="21220" name="Кампактнае згортванне (з пустымі радкамі)"/>
 					<Item id="21224" name="Згортванне ў кодзе 1-га стылю:"/>
@@ -933,7 +933,7 @@ Translation note:
 					<Item id="24621" name="Экранаванне:"/>
 					<Item id="24622" name="Закрыць:"/>
 					<Item id="24623" name="Стыль"/>
-					<Item id="24651" name="Стыль 8-га раздзяляльніка"/>
+					<Item id="24651" name="Стыль раздзяляльніка 8"/>
 					<Item id="24670" name="Адкрыць:"/>
 					<Item id="24671" name="Экранаванне:"/>
 					<Item id="24672" name="Закрыць:"/>
@@ -957,7 +957,7 @@ Translation note:
 					<Item id="6109" name="Зацемненыя неактыўныя ўкладкі"/>
 					<Item id="6110" name="Каляровая панэль актыўнай укладкі"/>
 					<Item id="6112" name="Радок стану"/>
-					<Item id="6113" name="Клавіша закрыцця на кожнай укладцы"/>
+					<Item id="6113" name="Закрываць падвойным націскам"/>
 					<Item id="6118" name="Закрываць падвойным націскам"/>
 					<Item id="6119" name="Схаваць"/>
 					<Item id="6120" name="Каскадам"/>
@@ -985,7 +985,7 @@ Translation note:
 					<Item id="6228" name="Прадвызначана"/>
 					<Item id="6229" name="Выраўнены"/>
 					<Item id="6230" name="Выраўнены"/>
-					<Item id="6234" name="З водступам"/>
+					<Item id="6234" name="Адключыць пашыраную прагортку, калі ёсць праблемы з тачпадам"/>
 					<Item id="6215" name="Адключыць пашыраную прагортку, калі ёсць праблемы з тачпадам"/>
 					<Item id="6236" name="Уключыць згладжванне шрыфту"/>
 					<Item id="6239" name="Прагортка за межы апошняга радка"/>
@@ -1000,7 +1000,7 @@ Translation note:
 
 				<Scintillas2 title="Рэдагаванне 2">
 					<Item id="6521" name="Мультырэдагаванне"/>
-					<Item id="6522" name="Уключыць мульты-рэдагаванне (Ctrl+націск мышы/выбар)"/>
+					<Item id="6522" name="Уключыць мультырэдагаванне (Ctrl+націск мышы/выбар)"/>
 					<Item id="6523" name="Уключыць выбар слупка для мультырэдагавання"/>
 					<Item id="6247" name="EOL (CRLF)"/><!-- Don't translate "(CRLF)" -->
 					<Item id="6248" name="Прадвызначана"/>
@@ -1034,11 +1034,11 @@ Translation note:
 					<Item id="7120" name="Цямнейшы тэкст"/>
 					<Item id="7121" name="Адключаны тэкст"/>
 					<Item id="7122" name="Цямнейшы тэкст"/>
-					<Item id="7123" name="Спасылка"/>
-					<Item id="7124" name="Падсветка краёў"/>
+					<Item id="7123" name="Адключаны тэкст"/>
+					<Item id="7124" name="Край"/>
 					<Item id="7125" name="Край выключаны"/>
-					<Item id="7126" name="Скінуць"/>
-					<Item id="7127" name="Тоны"/>
+					<Item id="7126" name="Падсвечванне краёў"/>
+					<Item id="7127" name="Край адключаны"/>
 					<Item id="7130" name="Скінуць"/>
 					<Item id="7135" name="Тоны"/>
 				</DarkMode>
@@ -1407,7 +1407,7 @@ Translation note:
 		</Dialog>
 		<MessageBox>
 			<!-- $INT_REPLACE$ and $STR_REPLACE$ are place holders, don't translate these place holders. -->
-			<ContextMenuXmlEditWarning title="Праўка contextMenu" message="Праўка contextMenu.xml дазволіць вам змяніць усплывальнае меню Notepad++. Пасля змянення contextMenu.xml неабходна перазапусціць Notepad++, каб адбыліся змены."/>
+			<ContextMenuXmlEditWarning title="Рэдагаванне contextMenu" message="Рэдагаванне contextMenu.xml дазволіць вам змяніць усплывальнае меню Notepad++. Пасля змянення contextMenu.xml неабходна перазапусціць Notepad++, каб адбыліся змены."/>
 			<SaveCurrentModifWarning title="Захаваць бягучую мадыфікацыю" message="Вы павінны захаваць бягучую мадыфікацыю. Аднавіць усе зробленыя вамі змяненні будзе немагчыма.  Працягнуць?"/><!-- HowToReproduce: when you openned file is modified but unsaved yet, and you are changing file encoding. -->
 			<LoseUndoAbilityWarning title="Папярэджанне немагчымасці адраблення" message="Вы павінны захаваць бягучую мадыфікацыю. Аднавіць усе зробленыя вамі змяненні будзе немагчыма.  Працягнуць?"/><!-- HowToReproduce: when you openned file is modified and saved, then you are changing file encoding. -->
 			<CannotMoveDoc title="Перамясціць у новы экзэмпляр Notepad++" message="Дакумент зменены. Захавайце яго і паспрабуйце зноў."/><!-- HowToReproduce: From your Notepad++ drag & drop a clean (not dirty) file to outside of Notepad++, another instance of Notepad++ will be created. Then from your first Notepad++ drag & drop an unsaved file to the new instance. -->
@@ -1546,7 +1546,7 @@ Translation note:
 			<Menus>
 				<Entries>
 					<Item id="0" name="Працоўная вобласць"/>
-					<Item id="1" name="Правіць"/>
+					<Item id="1" name="Рэдагаваць"/>
 				</Entries>
 				<WorkspaceMenu>
 					<Item id="3122" name="Новая працоўная вобласць"/>
@@ -1672,7 +1672,7 @@ Translation note:
 			<replace-in-files-confirm-filetype value="Для тыпу файла:"/>
 			<replace-in-files-progress-title value="Адбываецца замена ў файлах..."/>
 			<replace-in-projects-confirm-title value="Вы ўпэўнены?"/>
-			<replace-in-projects-confirm-message value="Ці хочаце вы замяніць усе супадзенні ва ўсіх дакументах у выбранай панэлі праектаў?"/>
+			<replace-in-projects-confirm-message value="Вы сапраўды хочаце замяніць усе супадзенні ў ва ўсіх дакументах у выбранай панэлі праектаў?"/>
 			<replace-in-open-docs-confirm-title value="Вы ўпэўнены?"/>
 			<replace-in-open-docs-confirm-message value="Вы сапраўды хочаце замяніць усе супадзенні ў ва ўсіх адкрытых дакументах?"/>
 			<find-result-caption value="Вынікі пошуку"/>
