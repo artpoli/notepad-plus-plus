@@ -54,7 +54,7 @@ Translation note:
 					<Item subMenuId="view-zoom" name="Згарнуць узровень"/>
 					<Item subMenuId="view-moveCloneDocument" name="Разгарнуць узровень"/>
 					<Item subMenuId="view-tab" name="Праект"/>
-					<Item subMenuId="view-collapseLevel" name="Набор сімвалаў"/>
+					<Item subMenuId="view-collapseLevel" name="Згарнуць узровень"/>
 					<Item subMenuId="view-uncollapseLevel" name="Арабская"/>
 					<Item subMenuId="view-project" name="Балтыйская"/>
 					<Item subMenuId="encoding-characterSets" name="Кадзіроўкі"/>
@@ -278,7 +278,7 @@ Translation note:
 					<Item id="43503" name="Скапіяваць выбраныя назвы"/>
 					<Item id="43504" name="Скапіяваць назвы выбраных шляхоў"/>
 					<Item id="44009" name="Карта дакумента"/>
-					<Item id="44010" name="Спіс дакументаў"/>
+					<Item id="44010" name="Згарнуць усе"/>
 					<Item id="44011" name="Рэжым канцэнтрацыі"/>
 					<Item id="44019" name="Папка як працоўная вобласць"/>
 					<Item id="44020" name="1-ая ўкладка"/>
@@ -288,7 +288,7 @@ Translation note:
 					<Item id="44025" name="5-ая ўкладка"/>
 					<Item id="44026" name="6-ая ўкладка"/>
 					<Item id="44029" name="7-ая ўкладка"/>
-					<Item id="44030" name="8-ая ўкладка"/>
+					<Item id="44030" name="Згарнуць бягучы ўзровень"/>
 					<Item id="44031" name="9-ая ўкладка"/>
 					<Item id="44049" name="Наступная ўкладка"/>
 					<Item id="44080" name="Карта дакумента"/>
@@ -1044,7 +1044,7 @@ Translation note:
 				</DarkMode>
 
 				<MarginsBorderEdge title="Палі/Межы/Краі">
-					<Item id="6201" name="Стыль згортвання водступу"/>
+					<Item id="6201" name="Стыль згортвання палёў"/>
 					<Item id="6202" name="Просты"/>
 					<Item id="6203" name="Стрэлкамі"/>
 					<Item id="6204" name="Кругамі"/>
