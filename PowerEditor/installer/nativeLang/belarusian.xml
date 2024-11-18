@@ -65,8 +65,8 @@ Translation note:
 					<Item subMenuId="encoding-centralEuropean" name="Цэнтральная Еўропа"/>
 					<Item subMenuId="encoding-chinese" name="Кітайская"/>
 					<Item subMenuId="encoding-easternEuropean" name="Усходняя Еўропа"/>
-					<Item subMenuId="encoding-greek" name="Карэйская"/>
-					<Item subMenuId="encoding-hebrew" name="Паўночная Еўропа"/>
+					<Item subMenuId="encoding-greek" name="Грэчаская"/>
+					<Item subMenuId="encoding-hebrew" name="Іўрыт"/>
 					<Item subMenuId="encoding-japanese" name="Тайская"/>
 					<Item subMenuId="encoding-korean" name="Турэцкая"/>
 					<Item subMenuId="encoding-northEuropean" name="Заходняя Еўропа"/>
@@ -75,7 +75,7 @@ Translation note:
 					<Item subMenuId="encoding-westernEuropean" name="Імпарт"/>
 					<Item subMenuId="encoding-vietnamese" name="В'етнамская"/>
 					<Item subMenuId="language-userDefinedLanguage" name="Мова карыстальніка"/>
-					<Item subMenuId="settings-import" name="Сартаваць па"/>
+					<Item subMenuId="settings-import" name="Імпартаваць"/>
 					<Item subMenuId="tools-md5" name="MD5"/>
 					<Item subMenuId="tools-sha1" name="SHA-1"/>
 					<Item subMenuId="tools-sha256" name="SHA-256"/>
@@ -156,11 +156,11 @@ Translation note:
 					<Item id="42074" name="Шукаць у інтэрнэце"/>
 					<Item id="42075" name="Змяніць сістэму пошуку..."/>
 					<Item id="42076" name="Змяніць сістэму пошуку..."/>
-					<Item id="42090" name="Спыніць запіс"/>
+					<Item id="42090" name="Ігнараваць рэгістр і цэлае слова"/>
 					<Item id="42091" name="Прайграванне"/>
 					<Item id="42092" name="Пераключыць у каментарый аднаго радка"/>
 					<Item id="42093" name="Закаментаваць блок"/>
-					<Item id="42094" name="Раскаментаваць блок"/>
+					<Item id="42094" name="Ігнараваць рэгістр і цэлае слова"/>
 					<Item id="42095" name="Прыбраць прабелы"/>
 					<Item id="42096" name="Прыбраць прабелы"/>
 					<Item id="42097" name="Прыбраць прабелы з пачатку і ў канцы"/>
@@ -223,7 +223,7 @@ Translation note:
 					<Item id="43050" name="Выкарыстанне 2-га стылю"/>
 					<Item id="43052" name="Знайсці сімвалы ў дыяпазоне..."/>
 					<Item id="43053" name="Выбраць усе паміж {} [] або ()"/>
-					<Item id="43009" name="Ачысціць 3-і стыль"/>
+					<Item id="43009" name="Перайсці да парнай дужкі"/>
 					<Item id="43010" name="Знайсці папярэдні"/>
 					<Item id="43011" name="Пакрокавы пошук"/>
 					<Item id="43013" name="Знайсці ў файлах"/>
@@ -264,8 +264,8 @@ Translation note:
 					<Item id="43064" name="Капіяваць назвы выбраных"/>
 					<Item id="43065" name="Капіяваць назвы выбраных шляхоў"/>
 					<Item id="43066" name="Тэкст на ўсё акно"/>
-					<Item id="43067" name="Згарнуць усе"/>
-					<Item id="43068" name="Рэжым канцэнтрацыі"/>
+					<Item id="43067" name="Перайсці да наступнай змены"/>
+					<Item id="43068" name="Перайсці да папярэдняй змены"/>
 					<Item id="43069" name="Ачысціць гісторыю змен"/>
 					<Item id="43045" name="Значэнні водступаў"/>
 					<Item id="43046" name="Перанос па словах"/>
@@ -293,8 +293,8 @@ Translation note:
 					<Item id="44049" name="Наступная ўкладка"/>
 					<Item id="44080" name="Карта дакумента"/>
 					<Item id="44070" name="Спіс дакументаў"/>
-					<Item id="44084" name="Перамясціць укладку ўперад"/>
-					<Item id="44085" name="Перамясціць укладку назад"/>
+					<Item id="44084" name="Спіс функцый"/>
+					<Item id="44085" name="Папка як працоўная вобласць"/>
 					<Item id="44086" name="1-ая ўкладка"/>
 					<Item id="44087" name="2-ая ўкладка"/>
 					<Item id="44088" name="3-я ўкладка"/>
@@ -343,7 +343,7 @@ Translation note:
 					<Item id="45012" name="Пераўтварыць у UTF-16 BE BOM"/>
 					<Item id="45013" name="Пераўтварыць у UTF-16 LE BOM"/>
 					<Item id="45060" name="Big5 (традыцыйная)"/>
-					<Item id="45061" name="Дакументацыя па Notepad++"/>
+					<Item id="45061" name="GB2312 (спрошчаная)"/>
 					<Item id="45054" name="Форум супольнасці Notepad++"/>
 					<Item id="45057" name="Адладачная інфармацыя..."/>
 					<Item id="45053" name="Атрымаць больш убудоў"/>
@@ -367,28 +367,28 @@ Translation note:
 					<Item id="47005" name="Завяршэнне функцый"/>
 					<Item id="47006" name="Завяршэнне слоў"/>
 					<Item id="47009" name="Адладачная звесткі..."/>
-					<Item id="48005" name="Папярэдняя падказка параметраў функцый"/>
+					<Item id="48005" name="Атрымаць больш убудоў"/>
 					<Item id="48006" name="Наступная падказка параметраў функцый"/>
 					<Item id="48018" name="Пераключыць запіс макраса"/>
-					<Item id="48009" name="Завяршэнне шляху"/>
-					<Item id="48011" name="Схаваць радкі"/>
+					<Item id="48009" name="Імпартаванне ўбудоў..."/>
+					<Item id="48011" name="Імпартаванне тэм стыляў..."/>
 					<Item id="48014" name="Рэдагаваць кантэкстнае меню"/>
 					<Item id="48015" name="Ачысціць спіс нядаўніх файлаў"/>
 					<Item id="48501" name="Змяніць спалучэнні клавіш/выдаліць макрас..."/>
 					<Item id="48502" name="Змяніць спалучэнні клавіш/выдаліць каманду..."/>
 					<Item id="48503" name="Windows..."/>
-					<Item id="48504" name="Па павелічэнні памеру"/>
-					<Item id="48505" name="Па змяншэнні памеру"/>
-					<Item id="48506" name="Тып ад Я да А"/>
-					<Item id="49000" name="Па павелічэнні памеру"/>
-					<Item id="50000" name="Па змяншэнні памеру"/>
-					<Item id="50001" name="Тып ад Я да А"/>
-					<Item id="48507" name="Па павелічэнні памеру"/>
-					<Item id="48508" name="Па змяншэнні памеру"/>
-					<Item id="48509" name="Тып ад Я да А"/>
-					<Item id="48510" name="Па павелічэнні памеру"/>
-					<Item id="48511" name="Па змяншэнні памеру"/>
-					<Item id="48512" name="Тып ад Я да А"/>
+					<Item id="48504" name="Генерыраваць..."/>
+					<Item id="48505" name="Генерыраваць з файлаў..."/>
+					<Item id="48506" name="Генерыраваць з выбранага ў буфер абмену"/>
+					<Item id="49000" name="Генерыраваць..."/>
+					<Item id="50000" name="Генерыраваць з файлаў..."/>
+					<Item id="50001" name="Генерыраваць з выбранага ў буфер абмену"/>
+					<Item id="48507" name="Генерыраваць..."/>
+					<Item id="48508" name="Генерыраваць з файлаў..."/>
+					<Item id="48509" name="Генерыраваць з выбранага ў буфер абмену"/>
+					<Item id="48510" name="Генерыраваць..."/>
+					<Item id="48511" name="Генерыраваць з файлаў..."/>
+					<Item id="48512" name="Генерыраваць з выбранага ў буфер абмену"/>
 					<Item id="50002" name="Выканаць..."/>
 
 					<Item id="50010" name="Завяршэнне функцый"/>
@@ -497,7 +497,7 @@ Translation note:
 				<Item id="1626" name="Пашыраны (\n, \r, \t, \0, \x...)"/>
 				<Item id="1660" name="Замяніць у файлах"/>
 				<Item id="1665" name="Замяніць у праектах"/>
-				<Item id="1661" name="У папцы бягучага файла"/>
+				<Item id="1661" name="У папцы бягучага дакумента"/>
 				<Item id="1662" name="Панэль праекта 1"/>
 				<Item id="1663" name="Панэль праекта 2"/>
 				<Item id="1664" name="Панэль праекта 3"/>
@@ -549,25 +549,25 @@ Translation note:
 				<Item id="1904" name="Захаваць..."/>
 			</Run>
 
-			<MD5FromFilesDlg title="Генерыраваць MD5 з файлаў">
+			<MD5FromFilesDlg title="Генерыраваць дайджэст MD5 з файлаў">
 				<Item id="1922" name="Выберыце файлы для генерацыі MD5..."/>
 				<Item id="1924" name="Скапіяваць у буфер абмену"/>
 				<Item id="2" name="Закрыць"/>
 			</MD5FromFilesDlg>
 
-			<MD5FromTextDlg title="Генерыраваць MD5">
+			<MD5FromTextDlg title="Генерыраваць дайджэст MD5">
 				<Item id="1932" name="Апрацаваць кожны радок як асобны"/>
 				<Item id="1934" name="Скапіяваць у буфер абмену"/>
 				<Item id="2" name="Закрыць"/>
 			</MD5FromTextDlg>
 
-			<SHA256FromFilesDlg title="Генерыраваць SHA-256 з файлаў">
+			<SHA256FromFilesDlg title="Генерыраваць дайджэст SHA-256 з файлаў">
 				<Item id="1922" name="Выберыце файлы для генерацыі SHA-256..."/>
 				<Item id="1924" name="Скапіяваць у буфер абмену"/>
 				<Item id="2" name="Закрыць"/>
 			</SHA256FromFilesDlg>
 
-			<SHA256FromTextDlg title="Генерыраваць SHA-256">
+			<SHA256FromTextDlg title="Генерыраваць дайджэст SHA-256">
 				<Item id="1932" name="Апрацаваць кожны радок як асобны"/>
 				<Item id="1934" name="Скапіяваць у буфер абмену"/>
 				<Item id="2" name="Закрыць"/>
@@ -617,7 +617,7 @@ Translation note:
 				<SubDialog>
 					<Item id="2204" name="Тоўсты"/>
 					<Item id="2205" name="Курсіў"/>
-					<Item id="2206" name="Асноўны колер"/>
+					<Item id="2206" name="Колер пярэдняга плана"/>
 					<Item id="2207" name="Колер фону"/>
 					<Item id="2208" name="Назва шрыфту:"/>
 					<Item id="2209" name="Памер шрыфту:"/>
@@ -778,12 +778,12 @@ Translation note:
 				<Item id="20009" name="Пашырэнні:"/>
 				<Item id="20012" name="Любы рэгістр"/>
 				<Item id="20011" name="Празрыстасць"/>
-				<Item id="20015" name="Імпарт..."/>
+				<Item id="20015" name="Імпартаванне..."/>
 				<Item id="20016" name="Экспарт..."/>
 				<Item id="20017" name="Адстыкаваць"/>
 				<StylerDialog title="Стыль">
 					<Item id="25030" name="Параметры шрыфту:"/>
-					<Item id="25006" name="Асноўны колер"/>
+					<Item id="25006" name="Колер пярэдняга плана"/>
 					<Item id="25007" name="Колер фону"/>
 					<Item id="25031" name="Назва:"/>
 					<Item id="25032" name="Памер:"/>
@@ -817,22 +817,22 @@ Translation note:
 					<Item id="1" name="Добра"/>
 					<Item id="2" name="Скасаваць"/>
 				</StylerDialog>
-				<Folder title="Стандартны">
+				<Folder title="Прадвызначаная папка">
 					<Item id="21101" name="Прадвызначаны стыль"/>
 					<Item id="21102" name="Стыль"/>
 					<Item id="21105" name="Дакументацыя"/>
 					<Item id="21106" name="Кампактнае згортванне (з пустымі радкамі)"/>
-					<Item id="21220" name="Кампактнае згортванне (з пустымі радкамі)"/>
+					<Item id="21220" name="Згортванне ў кодзе стылю 1"/>
 					<Item id="21224" name="Згортванне ў кодзе 1-га стылю:"/>
 					<Item id="21225" name="Адкрыць:"/>
 					<Item id="21226" name="Закрыць:"/>
 					<Item id="21227" name="Закрыць:"/>
-					<Item id="21320" name="Стыль"/>
+					<Item id="21320" name="Згортванне ў кодзе стылю 2 (патрэбныя раздзяляльнікі)"/>
 					<Item id="21324" name="Згортванне ў кодзе 2-га стылю (патрэбныя раздзяляльнікі):"/>
 					<Item id="21325" name="Адкрыць:"/>
 					<Item id="21326" name="Закрыць:"/>
 					<Item id="21327" name="Закрыць:"/>
-					<Item id="21420" name="Стыль"/>
+					<Item id="21420" name="Згортванне ў стылі каментарыя"/>
 					<Item id="21424" name="Згортванне ў стылі каментарыя:"/>
 					<Item id="21425" name="Адкрыць:"/>
 					<Item id="21426" name="Закрыць:"/>
@@ -958,18 +958,18 @@ Translation note:
 					<Item id="6110" name="Каляровая панэль актыўнай укладкі"/>
 					<Item id="6112" name="Радок стану"/>
 					<Item id="6113" name="Закрываць падвойным націскам"/>
-					<Item id="6118" name="Закрываць падвойным націскам"/>
+					<Item id="6118" name="Схаваць"/>
 					<Item id="6119" name="Схаваць"/>
 					<Item id="6120" name="Каскадам"/>
 					<Item id="6121" name="Выходзіць пры закрыцці апошняй укладкі"/>
 					<Item id="6128" name="Змяніць значкі"/>
 
 					<Item id="6133" name="Меню"/>
-					<Item id="6134" name="Схаваць панэль меню (Alt або F10)"/>
+					<Item id="6134" name="Схаваць"/>
 
 					<Item id="6131" name="Хаваць ярлыкі + ▼ ✕ у правай частцы радка меню (неабходны перазапуск праграмы)"/>
-					<Item id="6122" name="Лакалізацыя"/>
-					<Item id="6132" name="Змяніць значкі"/>
+					<Item id="6122" name="Схаваць панэль меню (Alt або F10)"/>
+					<Item id="6132" name="Хаваць ярлыкі + ▼ ✕ у правай частцы радка меню (неабходны перазапуск праграмы)"/>
 
 					<Item id="6123" name="Лакалізацыя"/>
 				</Global>
@@ -993,7 +993,7 @@ Translation note:
 					<Item id="6214" name="Уключыць капіяваць/выразаць радкоў без выбару"/>
 					<Item id="6651" name="Індыкатар бягучага радка"/>
 					<Item id="6652" name="Няма"/>
-					<Item id="6653" name="Падсвятляць фон"/>
+					<Item id="6653" name="Падсвечваць фон"/>
 					<Item id="6654" name="Рамка"/>
 					<Item id="6655" name="Шырыня:"/>
 				</Scintillas>
@@ -1018,10 +1018,10 @@ Translation note:
 				<DarkMode title="Цёмны рэжым">
 					<Item id="7101" name="Уключыць цёмны рэжым"/>
 					<Item id="7132" name="Цёмны рэжым"/>
-					<Item id="7133" name="Чырвоны"/>
+					<Item id="7133" name="Згодна сістэме"/>
 					<Item id="7102" name="Чорны"/>
 					<Item id="7103" name="Блакітны"/>
-					<Item id="7104" name="Фіялетавы"/>
+					<Item id="7104" name="Зялёны"/>
 					<Item id="7105" name="Блакiтны"/>
 					<Item id="7107" name="Аліўкавы"/>
 					<Item id="7108" name="Блакітны"/>
@@ -1056,7 +1056,7 @@ Translation note:
 					<Item id="6293" name="Пастаянная шырыня"/>
 					<Item id="6207" name="Паказваць закладку"/>
 					<Item id="6295" name="Гісторыя змен"/>
-					<Item id="6223" name="Паказаць на мяжы"/>
+					<Item id="6223" name="Паказаць на палях"/>
 					<Item id="6296" name="Паказаць у тэксце"/>
 					<Item id="6211" name="Налады вертыкальнага краю"/>
 					<Item id="6213" name="Фонавы рэжым"/>
@@ -1087,7 +1087,7 @@ Translation note:
 
 				<DefaultDir title="Прадвызначаны каталог">
 					<Item id="6413" name="Прадвызначаны каталог адкрыцця/захавання"/>
-					<Item id="6414" name="Перайсці за бягучым дакументам"/>
+					<Item id="6414" name="У папцы бягучага дакумента"/>
 					<Item id="6415" name="Памятаць апошні каталог"/>
 					<Item id="6431" name="Адкрываць усе файлы папкі, замест адкрыцця папкі ў якасці працоўнай вобласці"/>
 				</DefaultDir>
@@ -1121,7 +1121,7 @@ Translation note:
 					<Item id="6512" name="Клавіша Backspace для скасавання водступу замест выдалення асобнага прабелу"/>
 				</Indentation>
 
-				<Highlighting title="Вылучэнне">
+				<Highlighting title="Падсвечванне">
 					<Item id="6351" name="Стыль для ўсіх выпадкаў токена"/>
 					<Item id="6352" name="Улічваць рэгістр"/>
 					<Item id="6353" name="Толькі цэлае слова"/>
@@ -1131,11 +1131,11 @@ Translation note:
 					<Item id="6332" name="Улічваць рэгістр"/>
 					<Item id="6338" name="Толькі цэлае слова"/>
 					<Item id="6339" name="Выкар. наладаў акна Пошук"/>
-					<Item id="6340" name="Вылучаць іншы выгляд"/>
-					<Item id="6329" name="Вылучаць парныя тэгі"/>
+					<Item id="6340" name="Падсвечваць іншы выгляд"/>
+					<Item id="6329" name="Падсвечваць парныя тэгі"/>
 					<Item id="6327" name="Уключыць"/>
-					<Item id="6328" name="Вылучэнне атрыбута тэга"/>
-					<Item id="6330" name="Вылучаць зоны каментарыя/php/asp"/>
+					<Item id="6328" name="Падсвечваць атрыбуты тэга"/>
+					<Item id="6330" name="Падсвечваць зоны каментарыя/php/asp"/>
 				</Highlighting>
 
 				<Print title="Друк">
@@ -1145,7 +1145,7 @@ Translation note:
 					<Item id="6604" name="Інвертаваць"/>
 					<Item id="6605" name="Чорным па белым"/>
 					<Item id="6606" name="Без колеру фону"/>
-					<Item id="6607" name="Налады водступаў (у мм)"/>
+					<Item id="6607" name="Налады палёў (у мм)"/>
 					<Item id="6612" name="Злева"/>
 					<Item id="6613" name="Уверсе"/>
 					<Item id="6614" name="Справа"/>
@@ -1164,7 +1164,7 @@ Translation note:
 					<Item id="6722" name="Правая частка"/>
 					<Item id="6723" name="Дадаць"/>
 					<ComboBox id="6724">
-						<Element name="Поўны шлях файла"/>
+						<Element name="Поўны шлях да назвы файла"/>
 						<Element name="Назва файла"/>
 						<Element name="Каталог файла"/>
 						<Element name="Старонка"/>
@@ -1196,7 +1196,7 @@ Translation note:
 					<Item id="6429" name="Адлюстраванне"/>
 					<Item id="6424" name="У падменю"/>
 					<Item id="6425" name="Толькі назва файла"/>
-					<Item id="6426" name="Поўны шлях файла"/>
+					<Item id="6426" name="Поўны шлях да назвы файла"/>
 					<Item id="6427" name="Дапасаваць даўжыню:"/>
 				</RecentFilesHistory>
 
@@ -1227,10 +1227,10 @@ Translation note:
 					<Item id="6870" name="TAB"/><!-- TAB key on the keyboard, it's not necessary to translate it normally -->
 					<Item id="6871" name="ENTER"/><!-- ENTER key on the keyboard, it's not necessary to translate it normally -->
 					<Item id="6824" name="Ігнараваць лічбы"/>
-					<Item id="6811" name="З"/>
+					<Item id="6811" name="Пачынаючы з"/>
 					<Item id="6813" name="-га сімвала"/>
 					<Item id="6814" name="Дазволеныя значэнні: 1 - 9"/>
-					<Item id="6815" name="Падказка параметраў функцыі пры ўвядзенні"/>
+					<Item id="6815" name="Падказка параметраў функцый пры ўвядзенні"/>
 					<Item id="6851" name="Аўтаўстаўка"/>
 					<Item id="6857" name=" закр. тэг html/xml"/>
 					<Item id="6858" name="Адкрыць"/>
@@ -1505,8 +1505,8 @@ Translation note:
 			<ColumnVal name="Значэнне"/>
 			<ColumnHex name="Hex"/>
 			<ColumnChar name="Сімвал"/>
-			<ColumnHtmlName name="Код HTML"/>
-			<ColumnHtmlNumber name="Нумар HTML"/>
+			<ColumnHtmlName name="Назва HTML"/>
+			<ColumnHtmlNumber name="Дзесятковыя сімвалы HTML"/>
 			<ColumnHtmlHexNb name="Шаснаццатковыя сімвалы HTML"/>
 		</AsciiInsertion>
 		<DocumentMap>
@@ -1590,7 +1590,7 @@ Translation note:
 			<word-chars-list-tip value="Гэта дазваляе вам уключаць дадатковы сімвал у бягучыя сімвалы слова пры падвоеным націску для выбару або пошуку з дапамогай параметра &quot;Толькі цэлае слова&quot;."/><!-- HowToReproduce: In "Delimiter" section of Preferences dialog, hover your mouse on the "?" button. -->
 
 			<!-- Don't translate "(&quot;EOL custom color&quot;)" -->
-			<eol-custom-color-tip value="Перайсці да канфігуратара стылю для змены карыстальніцкага колеру прадвызначанага сімвалам канца радка (&quot;карыстальніцкі колер EOL&quot;).."/>
+			<eol-custom-color-tip value="Перайсці да канфігуратара стылю для змены карыстальніцкага колеру прадвызначанага сімвала канца радка (&quot;карыстальніцкі колер прадвызначанага сімвала канца радка&quot;).."/>
 
 			<word-chars-list-warning-begin value="Майце на ўвазе: "/>
 			<word-chars-list-space-warning value="$INT_REPLACE$ прабел(-ы)"/>
@@ -1631,8 +1631,8 @@ Translation note:
 			<find-status-cannot-find-pebkac-maybe value="Не ўдаецца знайсці зададзенае супадзенне. Магчыма, што вы забылі пазначыць &quot;Абцяканне тэкстам&quot; (уключана), &quot;Улічваць рэгістр&quot; (выключана) або &quot;Улічваць толькі цэлыя словы&quot; (выключана)."/>
 			<find-status-scope-selection value="у выбраным тэксце"/>
 			<find-status-scope-all value="у ва ўсім файле"/>
-			<find-status-scope-backward value="ад пачатку файла да пункту ўстаўкі"/>
-			<find-status-scope-forward value="ад пункту ўстаўкі да канца файла"/>
+			<find-status-scope-backward value="ад пачатку файла да стрэшкі"/>
+			<find-status-scope-forward value="ад стрэшкі да канца файла"/>
 			<finder-find-in-finder value="Знайсці ў гэтых выніках пошуку..."/>
 			<finder-close-this value="Закрыць гэтыя вынікі пошуку"/>
 			<finder-collapse-all value="Згарнуць усе"/>
