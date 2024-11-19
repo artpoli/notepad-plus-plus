@@ -152,7 +152,7 @@ Translation note:
 					<Item id="42070" name="зВАРОТНЫ пАРАДАК"/>
 					<Item id="42071" name="зВАРОТНЫ пАРАДАК"/>
 					<Item id="42072" name="выПАДковы ПарАдак"/>
-					<Item id="42073" name="Адкрыць папку размяшчэння ў правадніку"/>
+					<Item id="42073" name="Адкрыць файл"/>
 					<Item id="42074" name="Шукаць у інтэрнэце"/>
 					<Item id="42075" name="Змяніць сістэму пошуку..."/>
 					<Item id="42076" name="Змяніць сістэму пошуку..."/>
@@ -344,10 +344,10 @@ Translation note:
 					<Item id="45013" name="Пераўтварыць у UTF-16 LE BOM"/>
 					<Item id="45060" name="Big5 (традыцыйная)"/>
 					<Item id="45061" name="GB2312 (спрошчаная)"/>
-					<Item id="45054" name="Форум супольнасці Notepad++"/>
-					<Item id="45057" name="Адладачная інфармацыя..."/>
-					<Item id="45053" name="Атрымаць больш убудоў"/>
-					<Item id="45056" name="Абнавіць Notepad++"/>
+					<Item id="45054" name="OEM 861: ісландская"/>
+					<Item id="45057" name="OEM 865: скандынаўская"/>
+					<Item id="45053" name="ОЕМ 860: партугальская"/>
+					<Item id="45056" name="ОЕМ 863: французская"/>
 					<Item id="10001" name="Перамясціць у іншы выгляд"/>
 					<Item id="10002" name="Кланіраваць у іншы выгляд"/>
 					<Item id="10003" name="Перамясціць у новы экзэмпляр"/>
@@ -425,9 +425,9 @@ Translation note:
 				<Item CMDID="41006" name="Кланіраваць у іншы выгляд"/>
 				<Item CMDID="41008" name="Капіяваць поўны шлях да файла"/>
 				<Item CMDID="1" name="Капіяваць назву файла"/>
-				<Item CMDID="41019" name="Капіяваць шлях да бягучага каталога"/>
-				<Item CMDID="41020" name="Перайменаваць..."/>
-				<Item CMDID="41025" name="Перамясціць у сметніцу"/>
+				<Item CMDID="41019" name="Адкрыць папку размяшчэння ў правадніку"/>
+				<Item CMDID="41020" name="Адкрыць папку размяшчэння ў камандным радку"/>
+				<Item CMDID="41025" name="Адкрыць папку размяшчэння ў якасці працоўнай вобласці"/>
 				<Item CMDID="41023" name="Толькі чытанне"/>
 				<Item CMDID="41017" name="Зняць атрыбут толькі чытанне"/>
 				<Item CMDID="41016" name="Перамясціць у сметніцу"/>
@@ -759,7 +759,7 @@ Translation note:
 				</MainCommandNames>
 			</ShortcutMapper>
 			<ShortcutMapperSubDialg title="Спалучэнні клавіш">
-				<Item id="1" name="Добра"/>
+				<Item id="1" name="OK"/>
 				<Item id="2" name="Скасаваць"/>
 				<Item id="5006" name="Назва"/>
 				<Item id="5008" name="Дадаць"/>
@@ -814,7 +814,7 @@ Translation note:
 					<Item id="25028" name="Лічбы"/>
 					<Item id="25033" name="Празрысты"/>
 					<Item id="25034" name="Празрысты"/>
-					<Item id="1" name="Добра"/>
+					<Item id="1" name="OK"/>
 					<Item id="2" name="Скасаваць"/>
 				</StylerDialog>
 				<Folder title="Прадвызначаная папка">
@@ -879,7 +879,7 @@ Translation note:
 					<Item id="23122" name="Адкрыць"/>
 					<Item id="23123" name="Закрыць"/>
 					<Item id="23101" name="Стыль каментарыя"/>
-					<Item id="23201" name="Стыль лічбаў"/>
+					<Item id="23201" name="Стыль лічбы"/>
 					<Item id="23220" name="Стыль"/>
 					<Item id="23230" name="Прэфікс 1"/>
 					<Item id="23232" name="Прэфікс 2"/>
@@ -1025,7 +1025,7 @@ Translation note:
 					<Item id="7105" name="Блакiтны"/>
 					<Item id="7107" name="Аліўкавы"/>
 					<Item id="7108" name="Блакітны"/>
-					<Item id="7109" name="Уверсе"/>
+					<Item id="7109" name="Аліўкавы"/>
 					<Item id="7115" name="Дапасавана"/>
 					<Item id="7116" name="Актыўны"/>
 					<Item id="7117" name="Гарачы трэк меню"/>
@@ -1369,7 +1369,7 @@ Translation note:
 				<Item id="2025" name="Васьмярковы"/>
 				<Item id="2026" name="Шаснаццатковы"/>
 				<Item id="2027" name="Двайковы"/>
-				<Item id="1" name="Добра"/>
+				<Item id="1" name="OK"/>
 				<Item id="2" name="Скасаваць"/>
 			</ColumnEditor>
 			<FindInFinder title="Знайсці ў выніках пошуку">
@@ -1402,7 +1402,7 @@ Translation note:
 
 			<DebugInfo title="Адладачная звесткі">
 				<Item id="1752" name="Капіяваць адладачныя звесткі ў буфер абмену"/>
-				<Item id="1" name="Добра"/>
+				<Item id="1" name="OK"/>
 			</DebugInfo>
 		</Dialog>
 		<MessageBox>
@@ -1643,7 +1643,7 @@ Translation note:
 			<finder-open-all value="Адкрыць усе"/>
 			<finder-purge-for-every-search value="Ачышчаць для кожнага пошуку"/>
 			<finder-wrap-long-lines value="Пераносіць словы ў доўгіх радках"/>
-			<common-ok value="Добра"/>
+			<common-ok value="OK"/>
 			<common-cancel value="Скасаваць"/>
 			<common-name value="Назва: "/>
 			<tabrename-title value="Перайменаваць бягучую ўкладку"/>
