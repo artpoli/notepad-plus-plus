@@ -42,7 +42,7 @@ Translation note:
 					<Item subMenuId="edit-multiSelectALL" name="Мультывыбар УСІХ"/>
 					<Item subMenuId="edit-multiSelectNext" name="Мультывыбар Далей"/>
 					<Item subMenuId="search-changeHistory" name="Гісторыя змен"/>
-					<Item subMenuId="search-markAll" name="Уверх"/>
+					<Item subMenuId="search-markAll" name="Стыль для ўсіх выпадкаў токена"/>
 					<Item subMenuId="search-markOne" name="Уніз"/>
 					<Item subMenuId="search-unmarkAll" name="Ачысціць стыль"/>
 					<Item subMenuId="search-jumpUp" name="Уверх"/>
@@ -1607,25 +1607,25 @@ Translation note:
 			<find-in-files-select-folder value="Выбраць папку для пошуку з"/><!-- HowToReproduce: Search > Find in Files > [...] -->
 			<find-status-top-reached value="Знайсці: дасягнуты пачатак дакумента, першае паўтарэнне знойдзенае знізу."/>
 			<find-status-end-reached value="Знайсці: дасягнуты канец дакумента, першае паўтарэнне знойдзенае зверху."/>
-			<find-status-replaceinfiles-1-replaced value="Замяніць у файлах: 1 супадзенне заменена"/>
-			<find-status-replaceinfiles-nb-replaced value="Замяніць у файлах: Выканана $INT_REPLACE$ замен"/>
-			<find-status-replaceinopenedfiles-1-replaced value="Замяніць у адкрытых файлах: Выканана 1 замена"/>
-			<find-status-replaceinopenedfiles-nb-replaced value="Замяніць у адкрытых файлах: Выканана $INT_REPLACE$ замен"/>
+			<find-status-replaceinfiles-1-replaced value="Замяніць у файлах. Заменена 1 супадзенне"/>
+			<find-status-replaceinfiles-nb-replaced value="Замяніць у файлах. Выканана замен: $INT_REPLACE$"/>
+			<find-status-replaceinopenedfiles-1-replaced value="Замяніць у адкрытых файлах. Заменена 1 супадзенне"/>
+			<find-status-replaceinopenedfiles-nb-replaced value="Замяніць у адкрытых файлах. Выканана замен: $INT_REPLACE$"/>
 			<find-status-invalid-re value="Знайсці: памылковы рэгулярны выраз"/>
 			<find-status-search-failed value="Знайсці: збой пошуку"/>
 			<find-status-mark-1-match value="Пазнака: 1 супадзенне"/>
 			<find-status-mark-nb-matches value="Пазнака: $INT_REPLACE$ супадзенняў"/>
 			<find-status-count-1-match value="Падлічыць: 1 супадзенне"/>
 			<find-status-count-nb-matches value="Падлічыць: $INT_REPLACE$ супадзенняў"/>
-			<find-status-replaceall-1-replaced value="Замяніць усе. 1 супадзенне заменена"/>
+			<find-status-replaceall-1-replaced value="Замяніць усе. Заменена 1 супадзенне"/>
 			<find-status-replaceall-nb-replaced value="Замяніць усе. Зроблена замен: $INT_REPLACE$"/>
 			<find-status-replaceall-readonly value="Замяніць усе. Немагчыма замяніць тэкст. Бягучы дакумент прызначаны толькі для чытання"/>
-			<find-status-replace-end-reached value="Замяніць: дасягнуты канец дакумента, пачынаецца зверху."/>
-			<find-status-replace-top-reached value="Замяніць: дасягнуты пачатак дакумента, пачынаецца знізу."/>
-			<find-status-replaced-next-found value="Замяніць: Выканана 1 замена. Знойдзена наступнае супадзенне."/>
-			<find-status-replaced-without-continuing value="Замяніць: 1 супадзенне было заменена."/>
-			<find-status-replaced-next-not-found value="Замяніць: Выканана 1 замена. Іншых супадзенняў не знойдзена."/>
-			<find-status-replace-not-found value="Замяніць: Ніводнага супадзення не знойдзена"/>
+			<find-status-replace-end-reached value="Замяніць. Дасягнуты канец дакумента, пачынаецца зверху."/>
+			<find-status-replace-top-reached value="Замяніць. Дасягнуты пачатак дакумента, пачынаецца знізу."/>
+			<find-status-replaced-next-found value="Замяніць. Заменена 1 супадзенне. Знойдзена наступнае супадзенне."/>
+			<find-status-replaced-without-continuing value="Замяніць. Заменена 1 супадзенне."/>
+			<find-status-replaced-next-not-found value="Замяніць. Заменена 1 супадзенне. Іншых супадзенняў не знойдзена."/>
+			<find-status-replace-not-found value="Замяніць. Ніводнага супадзення не знойдзена"/>
 			<find-status-replace-readonly value="Замяніць: Немагчыма замяніць тэкст. Бягучы дакумент прызначаны толькі для чытання"/>
 			<find-status-cannot-find value="Знайсці: немагчыма знайсці тэкст &quot;$STR_REPLACE$&quot;"/>
 			<find-status-cannot-find-pebkac-maybe value="Не ўдаецца знайсці зададзенае супадзенне. Магчыма, што вы забылі пазначыць &quot;Абцяканне тэкстам&quot; (уключана), &quot;Улічваць рэгістр&quot; (выключана) або &quot;Улічваць толькі цэлыя словы&quot; (выключана)."/>
