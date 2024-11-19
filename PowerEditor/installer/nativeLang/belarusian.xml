@@ -56,7 +56,7 @@ Translation note:
 					<Item subMenuId="view-tab" name="Праект"/>
 					<Item subMenuId="view-collapseLevel" name="Згарнуць узровень"/>
 					<Item subMenuId="view-uncollapseLevel" name="Арабская"/>
-					<Item subMenuId="view-project" name="Балтыйская"/>
+					<Item subMenuId="view-project" name="Праект"/>
 					<Item subMenuId="encoding-characterSets" name="Кадзіроўкі"/>
 					<Item subMenuId="encoding-arabic" name="Арабская"/>
 					<Item subMenuId="encoding-baltic" name="Балтыйская"/>
@@ -147,7 +147,7 @@ Translation note:
 					<Item id="42016" name="ВЯЛІКІМІ"/>
 					<Item id="42017" name="маленькімі"/>
 					<Item id="42067" name="Першыя Літары Вялікія (змешаны)"/>
-					<Item id="42068" name="Як у сказах"/>
+					<Item id="42068" name="Першыя Літары Вялікія (змешаны)"/>
 					<Item id="42069" name="Як у сказах"/>
 					<Item id="42070" name="зВАРОТНЫ пАРАДАК"/>
 					<Item id="42071" name="зВАРОТНЫ пАРАДАК"/>
@@ -180,11 +180,11 @@ Translation note:
 					<Item id="42046" name="Панэль сімвалаў"/>
 					<Item id="42054" name="Гісторыя буфера абмену"/>
 					<Item id="42053" name="Захаваць бягучы запіс макраса..."/>
-					<Item id="42038" name="Тэкст справа налева"/>
-					<Item id="42039" name="Тэкст злева направа"/>
+					<Item id="42038" name="Уставіць змесціва HTML"/>
+					<Item id="42039" name="Уставіць змесціва RTF"/>
 					<Item id="42048" name="Скапіяваць двайковае змесціва"/>
 					<Item id="42049" name="Выразаць двайковае змесціва"/>
-					<Item id="42050" name="Капіяваць бягучую назву файла"/>
+					<Item id="42050" name="Уставіць двайковае змесціва"/>
 					<Item id="42082" name="Скапіяваць спасылку"/>
 					<Item id="42037" name="Рэжым слупкоў..."/>
 					<Item id="42034" name="Рэдактар слупкоў..."/>
@@ -213,11 +213,11 @@ Translation note:
 					<Item id="43004" name="Перайсці да..."/>
 					<Item id="43005" name="Выбраць усе паміж парнымі дужкамі"/>
 					<Item id="43006" name="Наступная закладка"/>
-					<Item id="43007" name="Знайсці папярэдні"/>
+					<Item id="43007" name="Папярэдняя закладка"/>
 					<Item id="43008" name="Ачысціць усе закладкі"/>
 					<Item id="43018" name="Выразаць закладзеныя радкі"/>
 					<Item id="43019" name="Скапіяваць закладзеныя радкі"/>
-					<Item id="43020" name="Знайсці папярэдняе (зменлівае)"/>
+					<Item id="43020" name="Уставіць у (замяняючы) закладзеныя радкі"/>
 					<Item id="43021" name="Выкарыстанне 1-га стылю"/>
 					<Item id="43051" name="Ачысціць 1-ы стыль"/>
 					<Item id="43050" name="Інвертаваць закладкі"/>
@@ -269,7 +269,7 @@ Translation note:
 					<Item id="43069" name="Ачысціць гісторыю змен"/>
 					<Item id="43045" name="Значэнні водступаў"/>
 					<Item id="43046" name="Наступны вынік пошуку"/>
-					<Item id="43047" name="Павялічыць (Ctrl+колца мышкі ўверх)"/>
+					<Item id="43047" name="Папярэдні вынік пошуку"/>
 					<Item id="43048" name="Выбраць і шукаць далей"/>
 					<Item id="43049" name="Выбраць і шукаць папярэдні"/>
 					<Item id="43054" name="Паказваць сімвал заканчэння радка"/>
@@ -277,7 +277,7 @@ Translation note:
 					<Item id="43502" name="Закрыць іншыя"/>
 					<Item id="43503" name="Скапіяваць выбраныя назвы"/>
 					<Item id="43504" name="Скапіяваць назвы выбраных шляхоў"/>
-					<Item id="44009" name="Карта дакумента"/>
+					<Item id="44009" name="Тэкст на ўсё акно"/>
 					<Item id="44010" name="Згарнуць усе"/>
 					<Item id="44011" name="Рэжым канцэнтрацыі"/>
 					<Item id="44019" name="Папка як працоўная вобласць"/>
@@ -307,7 +307,7 @@ Translation note:
 					<Item id="44116" name="Першая ўкладка"/>
 					<Item id="44117" name="Апошняя ўкладка"/>
 					<Item id="44095" name="Наступная ўкладка"/>
-					<Item id="44096" name="Факусіравацца на іншым выглядзе"/>
+					<Item id="44096" name="Папярэдняя ўкладка"/>
 					<Item id="44097" name="Маніторынг (tail -f)"/>
 					<Item id="44098" name="Перамясціць укладку ўперад"/>
 					<Item id="44099" name="Перамясціць укладку назад"/>
@@ -326,9 +326,9 @@ Translation note:
 					<Item id="44036" name="Пераўтварыць у UTF-16 LE BOM"/>
 					<Item id="44041" name="Big5 (традыцыйная)"/>
 					<Item id="44072" name="Факусіравацца на іншым выглядзе"/>
-					<Item id="44081" name="OEM 861: ісландская"/>
-					<Item id="44082" name="OEM 865: скандынаўская"/>
-					<Item id="44083" name="ОЕМ 860: партугальская"/>
+					<Item id="44081" name="Панэль праекта 1"/>
+					<Item id="44082" name="Панэль праекта 2"/>
+					<Item id="44083" name="Панэль праекта 3"/>
 					<Item id="45001" name="Windows (CR LF)"/>
 					<Item id="45002" name="Unix (LF)"/>
 					<Item id="45003" name="Macintosh (CR)"/>
@@ -351,13 +351,13 @@ Translation note:
 					<Item id="10001" name="Перамясціць у іншы выгляд"/>
 					<Item id="10002" name="Кланіраваць у іншы выгляд"/>
 					<Item id="10003" name="Перамясціць у новы экзэмпляр"/>
-					<Item id="10004" name="Рэдагаваць кантэкстнае меню"/>
+					<Item id="10004" name="Адкрыць у новым экзэмпляры"/>
 					<Item id="10005" name="Перамясціць у пачатак"/>
 					<Item id="10006" name="Перамясціць у канец"/>
 					<Item id="46001" name="Адкрыць папку з убудовамі..."/>
 					<Item id="46016" name="Няма (звычайны тэкст)"/>
 					<Item id="46180" name="Вызначыць мову..."/>
-					<Item id="47000" name="Генерыраваць..."/>
+					<Item id="47000" name="Адкрыць карыстальніцкую папку мовы..."/>
 					<Item id="47010" name="Калекцыя моў вызначаных карыстальнікамі Notepad++"/>
 					<Item id="47001" name="Генерыраваць з выбранага ў буфер абмену"/>
 					<Item id="47002" name="Аб Notepad++"/>
@@ -368,15 +368,15 @@ Translation note:
 					<Item id="47006" name="Форум супольнасці Notepad++"/>
 					<Item id="47009" name="Адладачная звесткі..."/>
 					<Item id="48005" name="Атрымаць больш убудоў"/>
-					<Item id="48006" name="Наступная падказка параметраў функцый"/>
+					<Item id="48006" name="Абнавіць Notepad++"/>
 					<Item id="48018" name="Пераключыць запіс макраса"/>
 					<Item id="48009" name="Імпартаванне ўбудоў..."/>
 					<Item id="48011" name="Імпартаванне тэм стыляў..."/>
 					<Item id="48014" name="Рэдагаваць кантэкстнае меню"/>
 					<Item id="48015" name="Ачысціць спіс нядаўніх файлаў"/>
-					<Item id="48501" name="Змяніць спалучэнні клавіш/выдаліць макрас..."/>
-					<Item id="48502" name="Змяніць спалучэнні клавіш/выдаліць каманду..."/>
-					<Item id="48503" name="Windows..."/>
+					<Item id="48501" name="Параметры..."/>
+					<Item id="48502" name="Адкрыць папку з убудовамі..."/>
+					<Item id="48503" name="Адміністраванне ўбудоў..."/>
 					<Item id="48504" name="Генерыраваць..."/>
 					<Item id="48505" name="Генерыраваць з файлаў..."/>
 					<Item id="48506" name="Генерыраваць з выбранага ў буфер абмену"/>
@@ -424,15 +424,15 @@ Translation note:
 				<Item CMDID="41024" name="Закрыць усе не змененыя"/>
 				<Item CMDID="41006" name="Кланіраваць у іншы выгляд"/>
 				<Item CMDID="41008" name="Капіяваць поўны шлях да файла"/>
-				<Item CMDID="1" name="Капіяваць назву файла"/>
+				<Item CMDID="1" name="Адкрыць у"/>
 				<Item CMDID="41019" name="Адкрыць папку размяшчэння ў правадніку"/>
 				<Item CMDID="41020" name="Адкрыць папку размяшчэння ў камандным радку"/>
-				<Item CMDID="41025" name="Адкрыць папку размяшчэння ў якасці працоўнай вобласці"/>
-				<Item CMDID="41023" name="Толькі чытанне"/>
+				<Item CMDID="41025" name="Адкрыць папку размяшчэння як працоўную вобласць"/>
+				<Item CMDID="41023" name="Адкрыць у прадвызначаным аглядальніку"/>
 				<Item CMDID="41017" name="Зняць атрыбут толькі чытанне"/>
 				<Item CMDID="41016" name="Перамясціць у сметніцу"/>
 				<Item CMDID="41014" name="Адкрыць у новым экзэмпляры"/>
-				<Item CMDID="41010" name="Перазагрузіць"/>
+				<Item CMDID="41010" name="Друк..."/>
 				<Item CMDID="42028" name="Закрыць усе злева"/>
 				<Item CMDID="42033" name="Ачысціць атрыбут «Толькі чытанне»"/>
 				<Item CMDID="2" name="Скапіяваць у буфер абмену"/>
@@ -445,7 +445,7 @@ Translation note:
 				<Item CMDID="10001" name="Перамясціць у іншы выгляд"/>
 				<Item CMDID="10002" name="Кланіраваць у іншы выгляд"/>
 				<Item CMDID="10003" name="Перамясціць у новы экзэмпляр"/>
-				<Item CMDID="10004" name="Выдаліць колер"/>
+				<Item CMDID="10004" name="Адкрыць у новым экзэмпляры"/>
 				<Item CMDID="4" name="Ужыць колер ва ўкладцы"/>
 				<Item CMDID="44111" name="Ужыць колер 1"/>
 				<Item CMDID="44112" name="Ужыць колер 2"/>
@@ -604,8 +604,8 @@ Translation note:
 				<Item id="5504" name="Абнавіць"/>
 				<Item id="5505" name="Выдаліць"/>
 				<Item id="5508" name="Далей"/>
-				<Item id="5509" name="Версія спісу ўбудовы: "/>
-				<Item id="5511" name="Рэпазіторый спісу ўбудовы"/>
+				<Item id="5509" name="Версія спіса ўбудовы:"/>
+				<Item id="5511" name="Рэпазіторый спіса ўбудовы"/>
 				<Item id="2" name="Закрыць"/>
 			</PluginsAdminDlg>
 
@@ -823,17 +823,17 @@ Translation note:
 					<Item id="21105" name="Дакументацыя"/>
 					<Item id="21106" name="Кампактнае згортванне (з пустымі радкамі)"/>
 					<Item id="21220" name="Згортванне ў кодзе стылю 1"/>
-					<Item id="21224" name="Згортванне ў кодзе 1-га стылю:"/>
+					<Item id="21224" name="Адкрыць:"/>
 					<Item id="21225" name="Сярэдзіна:"/>
 					<Item id="21226" name="Закрыць:"/>
 					<Item id="21227" name="Закрыць:"/>
 					<Item id="21320" name="Згортванне ў кодзе стылю 2 (патрэбныя раздзяляльнікі)"/>
-					<Item id="21324" name="Згортванне ў кодзе 2-га стылю (патрэбныя раздзяляльнікі):"/>
+					<Item id="21324" name="Адкрыць:"/>
 					<Item id="21325" name="Сярэдзіна:"/>
 					<Item id="21326" name="Закрыць:"/>
 					<Item id="21327" name="Закрыць:"/>
 					<Item id="21420" name="Згортванне ў стылі каментарыя"/>
-					<Item id="21424" name="Згортванне ў стылі каментарыя:"/>
+					<Item id="21424" name="Адкрыць:"/>
 					<Item id="21425" name="Сярэдзіна:"/>
 					<Item id="21426" name="Закрыць:"/>
 					<Item id="21427" name="Закрыць:"/>
@@ -969,7 +969,7 @@ Translation note:
 
 					<Item id="6131" name="Меню"/>
 					<Item id="6122" name="Схаваць панэль меню (Alt або F10)"/>
-					<Item id="6132" name="Хаваць ярлыкі + ▼ ✕ у правай частцы радка меню (неабходны перазапуск праграмы)"/>
+					<Item id="6132" name="Хаваць ярлыкі + ▼ ✕ у правай частцы радка меню (неабходны перазапуск Notepad++)"/>
 
 					<Item id="6123" name="Лакалізацыя"/>
 				</Global>
@@ -1004,7 +1004,7 @@ Translation note:
 					<Item id="6523" name="Уключыць выбар слупка для мультырэдагавання"/>
 					<Item id="6247" name="EOL (CRLF)"/><!-- Don't translate "(CRLF)" -->
 					<Item id="6248" name="Прадвызначана"/>
-					<Item id="6249" name="Прадвызначана"/>
+					<Item id="6249" name="Звычайны тэкст"/>
 					<Item id="6250" name="Карыстальніцкі колер"/>
 					<Item id="6252" name="Сімвалы, якія не друкуюцца"/>
 					<Item id="6260" name="Выгляд"/>
@@ -1012,7 +1012,7 @@ Translation note:
 					<Item id="6255" name="Пункт кода"/>
 					<Item id="6256" name="Карыстальніцкі колер"/>
 					<Item id="6258" name="Ужыць налады выгляду да C0, C1 Unicode EOL"/>
-					<Item id="6259" name="Прадухіляць увядзенне кантрольнага сімвала (код C0) у дакуменце"/>
+					<Item id="6259" name="Прадухіляць увядзенне кантрольнага сімвала (код C0) у дакумент"/>
 				</Scintillas2>
 
 				<DarkMode title="Цёмны рэжым">
@@ -1089,11 +1089,11 @@ Translation note:
 					<Item id="6413" name="Прадвызначаны каталог адкрыцця/захавання"/>
 					<Item id="6414" name="У папцы бягучага дакумента"/>
 					<Item id="6415" name="Памятаць апошні каталог"/>
-					<Item id="6431" name="Адкрываць усе файлы папкі, замест адкрыцця папкі ў якасці працоўнай вобласці"/>
+					<Item id="6431" name="Адкрываць усе файлы папкі, замест адкрыцця папкі як працоўнай вобласці"/>
 				</DefaultDir>
 
 				<FileAssoc title="Асацыяцыі файлаў">
-					<Item id="4008" name="Для таго, каб скарыстацца гэтай функцыяй, вам неабходна перазапусціць праграму ў рэжыме адміністратара."/>
+					<Item id="4008" name="Для таго, каб скарыстацца гэтай функцыяй, вам неабходна перазапусціць Notepad++ у рэжыме адміністратара."/>
 					<Item id="4009" name="Падтрымліваюцца:"/>
 					<Item id="4010" name="Зарэгістраваныя пашырэнні:"/>
 				</FileAssoc>
@@ -1178,7 +1178,7 @@ Translation note:
 				</Print>
 
 				<Searching title="Адбываецца пошук">
-					<Item id="6902" name="Выкарыстоўваць шрыфт з аднолькавай шырынёй у акне &quot;Пошук&quot; (патрабуецца перазапуск праграмы)"/>
+					<Item id="6902" name="Выкарыстоўваць шрыфт з аднолькавай шырынёй у акне Пошук (патрабуецца перазапуск Notepad++)"/>
 					<Item id="6903" name="Дыялогавае акно пошуку застаецца адкрытым пасля ўвядзення вынікаў"/>
 					<Item id="6904" name="Пацвердзіць замену ўсяго ва ўсіх адкрытых дакументах"/>
 					<Item id="6905" name="Замяніць: Не пераходзіць да наступнага паўтарэння"/>
@@ -1245,7 +1245,7 @@ Translation note:
 					<Item id="6152" name="Адкрыць у новым экзэмпляры (і захоўваць сеанс аўтаматычна пры выхадзе)"/>
 					<Item id="6153" name="Заўсёды адкрываць у новым акне"/>
 					<Item id="6154" name="Усе ў адным акне (прадвызначана)"/>
-					<Item id="6155" name="* Змена гэтых налад патрабуе перазапуску праграмы"/>
+					<Item id="6155" name="* Змена гэтых налад патрабуе перазапуску Notepad++"/>
 					<Item id="6171" name="Дапасаванне ўстаўкі даты і часу"/>
 					<Item id="6175" name="Зваротны парадак прадвызначанай даты і часу (кароткі і доўгія фарматы)"/>
 					<Item id="6172" name="Карыстальніцкі фармат:"/>
@@ -1258,7 +1258,7 @@ Translation note:
 					<Item id="6187" name="Панэлі праекта"/>
 					<Item id="6188" name="Карта дакумента"/>
 					<Item id="6189" name="Спіс функцый"/>
-					<Item id="6190" name="Панэлі ўбудоў"/>
+					<Item id="6190" name="Панэлі ўбудовы"/>
 				</MultiInstance>
 
 				<Delimiter title="Раздзяляльнік">
@@ -1322,17 +1322,17 @@ Translation note:
 					<Item id="6313" name="Абнаўляць без апавяшчэння"/>
 					<Item id="6325" name="Пасля абнаўлення перайсці да апошняга радка"/>
 					<Item id="6322" name="Пашырэнне файла сеансу:"/>
-					<Item id="6323" name="Аўтаматычна абнаўляць праграму"/>
+					<Item id="6323" name="Аўтаматычна абнаўляць Notepad++"/>
 					<Item id="6324" name="Пераключэнне дакументаў (Ctrl+TAB)"/>
 					<Item id="6331" name="Паказваць толькі назву файла ў радку загалоўка"/>
 					<Item id="6334" name="Аўтавызначэнне кадзіравання сімвалаў"/>
-					<Item id="6349" name="Выкарыстоўваць DirectWrite (можа палепшыць апрацоўку спецыяльных сімвалаў, неабходны перазапуск праграмы)"/>
+					<Item id="6349" name="Выкарыстоўваць DirectWrite (можа палепшыць апрацоўку спецыяльных сімвалаў, неабходны перазапуск Notepad++)"/>
 					<Item id="6337" name="Пашырэнне файла працоўнай вобласці:"/>
 					<Item id="6114" name="Уключыць"/>
 					<Item id="6117" name="Будаваць спіс па меры выкарыстання"/>
 					<Item id="6344" name="Выбар дакумента"/>
 					<Item id="6345" name="Выбраць ва ўкладцы"/>
-					<Item id="6346" name="Выбраць у схеме дакумента"/>
+					<Item id="6346" name="Выбраць у карце дакумента"/>
 					<Item id="6360" name="Адключыць усе гукі"/>
 					<Item id="6361" name="Уключыць пацвярджэнне пры захаванні ўсяго"/>
 				</MISC>
@@ -1422,7 +1422,7 @@ Translation note:
 			<SettingsOnCloudError title="Налады воблачнага сховішча" message="Відавочна, што налады шляху да воблака ўсталяваны з пазнакай толькі на чытанне\rабо ў папку, якая патрабуе адпаведных правоў на запіс.\rВашы налады ў воблаку будуць скасаваны. Cкіньце адпаведнае значэнне праз дыялогавае акно Параметры."/>
 			<FilePathNotFoundWarning title="Адкрыццё файла" message="Файл, які вы спрабуеце адкрыць не існуе."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<SessionFileInvalidError title="Не атрымалася загрузіць сеанс" message="Файл сеансу пашкоджаны або з'яўляецца памылковым."/><!-- HowToReproduce: Save current session via menu "File -> Save Session...", use another editor to modify the session you saved to make it an invalid xml file. Then load this invalid session via menu "File -> Load Session...". -->
-			<DroppingFolderAsProjectModeWarning title="Памылковае дзеянне" message="Вы можаце перацягваць толькі файлы або толькі папкі, але не ўсё адразу, паколькі вы знаходзіцеся ў рэжыме &quot;Папка як праект&quot;. Каб гэты параметр пачаў працаваць вам неабходна ўключыць &quot;Адкрыць усе файлы папкі, замест адкрыцця папкі ў якасці працоўнай вобласці&quot; ў меню &quot;Параметры - Прадвызначаны каталог&quot;."/>
+			<DroppingFolderAsProjectModeWarning title="Памылковае дзеянне" message="Вы можаце перацягваць толькі файлы або толькі папкі, але не ўсё адразу, паколькі вы знаходзіцеся ў рэжыме &quot;Папка як праект&quot;. Каб гэты параметр пачаў працаваць вам неабходна ўключыць &quot;Адкрыць усе файлы папкі, замест адкрыцця папкі як працоўнай вобласці&quot; ў меню &quot;Параметры - Прадвызначаны каталог&quot;."/>
 			<SortingError title="Памылка сартавання" message="Не атрымліваецца выканаць сартаванне па ліках з-за радка $INT_REPLACE$."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<ColumnModeTip title="Парада для рэжыму слупкоў" message=" Ёсць тры спосабы пераключэння на рэжым выбару слупкоў: 1. (Клавіятура і мыш)  Утрымлівайце Alt і адначасова перацягвайце левай кнопкай мышы 2. (Толькі клавіятура) Утрымлівайце Alt+Shift і адначасова выкарыстоўвайце клавішы стрэлак 3.(Клавіятура або мыш) Памясціце стрэшку ў пажаданы пачатак пазіцыі блока слупка, а потым выканайце каманду &quot;Выбраць пачатак/канец у рэжыме слупоў&quot;  Перамясціце стрэшку ў пажаданы канец слупка пазіцыі блока, а потым выканайце каманду яшчэ раз &quot;Выбраць пачатак/канец у рэжыме слупоў&quot;"/>
 			<BufferInvalidWarning title="Збой захавання" message="Не атрымалася захаваць. Памылковы буфер."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
@@ -1438,7 +1438,7 @@ Translation note:
 			<DocNoExistToMonitor title="Праблема маніторынгу" message="Файл павінен існаваць для яго маніторынгу."/>
 			<FileTooBigToOpen title="Праблема памеру файла" message="Занадта вялікі файл для адкрыцця ў Notepad++"/><!-- HowToReproduce: Try to open a 4GB file (it's not easy to reproduce, it depends on your system). -->
 			<FileLoadingException title="Код выключэння: $STR_REPLACE$" message="Падчас загрузкі файла ўзнікла памылка!"/>
-			<WantToOpenHugeFile title="Папярэджанне аб адкрыцці вялікага файла" message="Адкрыццё вялікага файла (больш за 2 ГБ) можа заняць некалькі хвілін. Вы хочаце яго адкрыць?"/>
+			<WantToOpenHugeFile title="Папярэджанне аб адкрыцці вялікага файла" message="Адкрыццё вялікага файла (больш за 2 ГБ) можа заняць некалькі хвілін. Вы сапраўды хочаце яго адкрыць?"/>
 			<CreateNewFileOrNot title="Стварыць новы файл" message="&quot;$STR_REPLACE$&quot; не існуе. Стварыць яго?"/>
 			<CreateNewFileError title="Стварыць новы файл" message="Не атрымалася стварыць файл &quot;$STR_REPLACE$&quot;."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<OpenFileError title="ПАМЫЛКА" message="Не атрымалася адкрыць файл &quot;$STR_REPLACE$&quot;."/>
@@ -1447,7 +1447,7 @@ Translation note:
 			<LoadStylersFailed title="Збой загрузкі stylers.xml" message="Збой загрузкі &quot;$STR_REPLACE$&quot;!"/>
 			<LoadLangsFailed title="Канфігуратар" message="Збой загрузкі langs.xml! Вы сапраўды хочаце аднавіць langs.xml?"/><!-- HowToReproduce: Close Notepad++. Use another editor to remove all content of "langs.xml" (0 length) then save it. Open Notepad++. -->
 			<LoadLangsFailedFinal title="Канфігуратар" message="Збой загрузкі langs.xml!"/><!-- HowToReproduce: Close Notepad++. Use another editor to make "langs.xml" an invalid xml file then save it. Open Notepad++. -->
-			<FolderAsWorspaceSubfolderExists title="Праблема з дадаваннем папкі ў якасці працоўнай вобласці" message="Падпапка, якую вы спрабуеце дадаць ужо існуе. Выдаліце яе корань з панэлі перад тым, як дадаваць папку &quot;$STR_REPLACE$&quot;."/><!-- HowToReproduce: Add a folder like "c:\temp\aFolder\" into "Folder as Workspace" panel, then try to add "c:\temp\". -->
+			<FolderAsWorspaceSubfolderExists title="Праблема з дадаваннем папкі як працоўнай вобласці" message="Падпапка, якую вы спрабуеце дадаць ужо існуе. Выдаліце яе корань з панэлі перад тым, як дадаваць папку &quot;$STR_REPLACE$&quot;."/><!-- HowToReproduce: Add a folder like "c:\temp\aFolder\" into "Folder as Workspace" panel, then try to add "c:\temp\". -->
 
 			<ProjectPanelChanged title="$STR_REPLACE$" message="Працоўная вобласць была зменена. Хочаце захаваць яе?"/>
 			<ProjectPanelSaveError title="$STR_REPLACE$" message="Адбылася памылка падчас запісу ваша файла працоўнай вобласці. На жаль, ваша працоўная вобласць не была захавана."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
@@ -1466,10 +1466,10 @@ Translation note:
 			<OpenInAdminModeWithoutCloseCurrent title="Збой захавання" message="Не атрымалася захаваць файл. Магчыма ён абаронены. Запусціць Notepad++ у рэжыме адміністратара?"/>
 			<OpenInAdminModeFailed title="Збой запуску ў рэжыме адміністратара" message="Notepad++ не можа быць адкрыты ў рэжыме адміністратара."/><!-- HowToReproduce: When you have no Admin privilege and you try to save a modified file in a protected location (for example: any file in sub-folder of "C:\Program Files\". This message will appear after replying "Yes" to "Open in Admin mode" dialog. -->
 			<ViewInBrowser title="Паглядзець бягучы файл у браўзеры" message="У вашай сістэме не атрымалася знайсці праграму."/>
-			<ExitToUpdatePlugins title="Вы збіраецеся закрыць праграму" message="Калі вы націсніце ТАК, то вы выйдзеце з праграмы, каб працягнуць аперацыю.  Пасля таго, як усе аперацыі будуць завершаны праграма запусціцца зноў.  Працягнуць?"/>
-			<NeedToRestartToLoadPlugins title="Неабходна перазапусціць праграму" message="Неабходна перазапусціць праграму, каб убудовы пачалі працаваць."/><!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
-			<ChangeHistoryEnabledWarning title="Неабходна перазапусціць праграму" message="Неабходна перазапусціць праграму, каб гісторыя змен пачала працаваць."/><!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
-			<WindowsSessionExit title="Notepad++ - выхад з сеанса Windows" message="Сеанс Windows неўзабаве будзе завершаны, але ў вас ёсць незахаваныя даныя. Вы сапраўды хочаце выйсці з Notepad++ зараз?"/>
+			<ExitToUpdatePlugins title="Вы збіраецеся закрыць Notepad++" message="Калі вы націсніце ТАК, то вы выйдзеце з Notepad++, каб працягнуць аперацыю.  Пасля таго, як усе аперацыі будуць завершаны праграма запусціцца зноў.  Працягнуць?"/>
+			<NeedToRestartToLoadPlugins title="Неабходна перазапусціць Notepad++" message="Неабходна перазапусціць Notepad++, каб убудовы пачалі працаваць."/><!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
+			<ChangeHistoryEnabledWarning title="Неабходна перазапусціць Notepad++" message="Неабходна перазапусціць Notepad++, каб гісторыя змен пачала працаваць."/><!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
+			<WindowsSessionExit title="Notepad++ - выхад з сеанса Windows" message="Сеанс Windows неўзабаве будзе завершаны, але ў вас ёсць незахаваныя даныя. Вы сапраўды хочаце выйсці з Notepad++?"/>
 			<LanguageMenuCompactWarning title="Кампактнае меню мовы" message="Гэты параметр будзе зменены падчас наступнага запуску."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
 			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незахаваныя змены будуць скасаваны! Вы сапраўды хочаце захаваць змены перад пераключэннем тэмы?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
 			<MacroAndRunCmdlWarning title="Сумяшчальнасць макрасаў і каманд выканання" message="Вашы макрасы і каманды выканання, якія захаваны ў Notepad++ v.8.5.2 (або больш позняй версіі), могуць быць несумяшчальнымі з бягучай версіяй Notepad++. Пратэсціруйце гэтыя каманды і пры неабходнасці адрэдагуйце іх. Таксама вы можаце панізіць версію да Notepad++ v8.5.2 і аднавіць свае папярэднія даныя. Notepad++ захоўвае старую рэзервовую копію вашага файла &quot;shortcuts.xml&quot; пад назвай  &quot;shortcuts.xml.v8.5.2.backup&quot;. Пры перайменаванні  &quot;shortcuts.xml.v8.5.2.backup&quot; на -&gt; &quot;shortcuts.xml&quot;, вашы каманды павінны аднавіцца і слушна працаваць у гэтай версіі."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
@@ -1477,7 +1477,7 @@ Translation note:
 			<FileInaccessibleUserSession title="Файл недаступны" message="Некаторыя файлы з вашага сеанса захаваны ўручную &quot;$STR_REPLACE$&quot; недаступны. Іх можна адкрыць у якасці запаўняльнікаў, як пустыя і даступныя толькі для чытання. Вы сапраўды хочаце стварыць гэтыя запаўняльнікі?  НАТАТКА: калі вы вырашыце не ствараць запаўняльнікі або закрыць іх пазней, ваш сеанс захаваны ўручную НЕ будзе зменены пры выхадзе."/>
 			<FileInaccessibleDefaultSessionXml title="Файл недаступны" message="Некаторыя файлы з вашага папярэдняга сеанса недаступны. Іх можна адкрыць у якасці запаўняльнікаў, як пустыя і даступныя толькі для чытання. Вы сапраўды хочаце стварыць гэтыя запаўняльнікі?  НАТАТКА: калі вы вырашыце не ствараць запаўняльнікі або закрыць іх пазней, ваш сеанс БУДЗЕ ЗМЕНЕНЫ ПРЫ ВЫХАДЗЕ! Прапануем вам неадкладна стварыць рэзервовую копію &quot;session.xml&quot;."/>
 			<RTLvsDirectWrite title="Немагчыма запусціць RTL" message="RTL не сумяшчальны з рэжымам DirectWrite. Аключыце рэжым DirectWrite у раздзеле РОЗНАЕ ў дыялогавым акне з параметрамі і перазапусціце Notepad++."/>
-			<FileMemoryAllocationFailed title="Выключэнне: збой размеркавання памяці файла" message="Верагодна, што не недастаткова сумежнай вольнай памяці, які загружаецца Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
+			<FileMemoryAllocationFailed title="Выключэнне: збой размеркавання памяці файла" message="Верагодна, што недастаткова сумежнай вольнай памяці для файла, які загружае Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
 			<FindRegexBackwardDisabled title="Зваротны пошук рэгулярных выразаў адключаны" message="Прадвызначана зваротны пошук рэгулярных выразаў уключаны з прычыны патэнцыйна неспадзяваных вынікаў. Для выканання зваротнага пошуку, адкрыйце дыялогавае акно Знайсці і выберыце звычайны або пашыраны рэжым пошуку замест рэгулярнага выразу. Націсніце кнопку Добра, каб адкрыць дыялогавае акно пошуку або ўстанавіце фокус на яго.     Калі вам патрэбныя функцыя пошуку зваротнага рэгулярнага выразу, звярніце да даведкі карыстальніка для атрымання інструкцый, каб яе ўключыць."/>
 			<PrintError title="0" message="Немагчыма запусціць дакумент прынтара."/><!-- Use title="0" to use Windows OS default translated "Error" title. -->
 		</MessageBox>
@@ -1521,7 +1521,7 @@ Translation note:
 		</FunctionList>
 		<FolderAsWorkspace>
 			<PanelTitle name="Папка як працоўная вобласць"/>
-			<SelectFolderFromBrowserString name="Выберыце папку, каб дадаць яе ў якасці панэлі працоўнай вобласці"/>
+			<SelectFolderFromBrowserString name="Выберыце папку, каб дадаць яе як панэль працоўнай вобласці"/>
 			<ExpandAllFoldersTip name="Разгарнуць усе"/>
 			<CollapseAllFoldersTip name="Згарнуць усе"/>
 			<LocateCurrentFileTip name="Знайсці бягучы файл"/>
@@ -1701,9 +1701,9 @@ Translation note:
 			<contextMenu-clearStyle value="Ачысціць стыль"/>
 			<contextMenu-PluginCommands value="Каманды ўбудовы"/>
 			<largeFileRestriction-tip value="Некаторыя функцыі могуць запаволіць прадукцыйнасць у вялікіх файлах. Гэтыя функцыі можна аўтаматычна адключаць пры адкрыцці вялікага файла. Вы можаце дапасаваць іх тут:  НАТАТКА: 1. Параметры, якія будуць тут зменены запатрабуюць паўторнага адкрыцця бягучых файлаў з вялікім памерам для дасягнення карэктных паводзін.  2. Калі пазначана &quot;Дэактываваць агульны перанос слоў&quot; і вы адкрываеце вялікі файл, то &quot;Перанос слоў&quot; будзе адключаны для ўсіх файлаў. Вы зможаце паўторна ўключыць яго праз меню &quot;Выгляд&gt;Перанос слоў&quot;."/>
-			<npcNote-tip value="Прадстаўленне выбранага&quot;не ASCII&quot; пропуску і сімвалаў, якія не друкуюцца (кантрольных). ЗАЎВАГА: Выкарыстанне прадстаўлення адключыць эфекты сімвалаў у тэксце. Для поўнага спісу выбраных пропускаў і сімвалаў, якія не друкуюцца звярніцеся да дапаможніка карыстальніка. Націсніце гэту кнопку, каб адкрыць вэб-сайт з дапаможнікам карыстальніка."/>
-			<npcAbbreviation-tip value="Скарачэнне : назва NBSP : неразрыўны прабел ZWSP : прабел з нулявой шырынёй ZWNBSP : неразрыўны прабел з нулявой шырынёй  Для поўнага спісу скарачэнняў звярніцеся да дапаможніка карыстальніка. Націсніце кнопку, &quot;?&quot; якая размяшчаецца справа, каб адкрыць сайт з дапаможнікам карыстальніка."/>
-			<npcCodepoint-tip value="Пункт кода : назва U+00A0 : неразрыўны прабел U+200B : прабел з нулявой шырынёй U+FEFF : неразрыўны прабел з нулявой шырынёй  Для поўнага спісу скарачэнняў звярніцеся да дапаможніка карыстальніка. Націсніце кнопку &quot;?&quot; справа, каб адкрыць сайт з дапаможнікам карыстальніка."/>
+			<npcNote-tip value="Прадстаўленне выбранага&quot;не ASCII&quot; пропуску і сімвалаў, якія не друкуюцца (кантрольных). ЗАЎВАГА: Выкарыстанне прадстаўлення адключыць эфекты сімвалаў у тэксце. Для поўнага спіса выбраных пропускаў і сімвалаў, якія не друкуюцца звярніцеся да дапаможніка карыстальніка. Націсніце гэту кнопку, каб адкрыць вэб-сайт з дапаможнікам карыстальніка."/>
+			<npcAbbreviation-tip value="Скарачэнне : назва NBSP : неразрыўны прабел ZWSP : прабел з нулявой шырынёй ZWNBSP : неразрыўны прабел з нулявой шырынёй  Для поўнага спіса скарачэнняў звярніцеся да дапаможніка карыстальніка. Націсніце кнопку, &quot;?&quot; якая размяшчаецца справа, каб адкрыць сайт з дапаможнікам карыстальніка."/>
+			<npcCodepoint-tip value="Пункт кода : назва U+00A0 : неразрыўны прабел U+200B : прабел з нулявой шырынёй U+FEFF : неразрыўны прабел з нулявой шырынёй  Для поўнага спіса скарачэнняў звярніцеся да дапаможніка карыстальніка. Націсніце кнопку &quot;?&quot; справа, каб адкрыць сайт з дапаможнікам карыстальніка."/>
 
 			<!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
 			<npcCustomColor-tip value="Адкрыйце канфігуратар стылю, каб змяніць прадвызначаны карыстальніцкі колер для выбраных пропускаў і сімвалаў, якія не друкуюцца (&quot;Карыстальніцкі колер і сімвалы, якія не друкуюцца&quot;)."/>
