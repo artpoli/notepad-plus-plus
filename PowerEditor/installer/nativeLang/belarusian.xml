@@ -638,7 +638,7 @@ Translation note:
 					<Item id="2231" name="Прымусовы курсіў для ўсіх стыляў"/>
 					<Item id="2232" name="Прымусовы падкрэслены для ўсіх стыляў"/>
 					<Item id="2234" name="Перайсці ў налады"/>
-					<!-- Don't translate "&quot;Global override&quot; -->
+					<!-- Don't translate "Global override" -->
 					<Item id="2235" name="Што такое глабальнае перавызначэнне?"/>
 				</SubDialog>
 			</StyleConfig>
@@ -958,20 +958,21 @@ Translation note:
 					<Item id="6110" name="Каляровая панэль актыўнай укладкі"/>
 					<Item id="6112" name="Клавіша закрыцця на кожнай укладцы"/>
 					<Item id="6113" name="Закрываць падвойным націскам"/>
-					<Item id="6118" name="Схаваць"/>
-					<Item id="6119" name="Каскадам"/>
-					<Item id="6120" name="Вертыкальная"/>
+					<Item id="6115" name="Enable pin tab feature"/>
+					<Item id="6113" name="Схаваць панэль меню (Alt або F10)"/>
+					<Item id="6118" name="Каскадам"/>
+					<Item id="6119" name="Вертыкальная"/>
+					<Item id="6120" name="Выходзіць пры закрыцці апошняй укладкі"/>
 					<Item id="6121" name="Выходзіць пры закрыцці апошняй укладкі"/>
-					<Item id="6128" name="Змяніць значкі"/>
 
-					<Item id="6133" name="Панэль стану"/>
-					<Item id="6134" name="Схаваць"/>
-
-					<Item id="6131" name="Меню"/>
+					<Item id="6131" name="Панэль стану"/>
 					<Item id="6122" name="Схаваць панэль меню (Alt або F10)"/>
-					<Item id="6132" name="Хаваць ярлыкі + ▼ ✕ у правай частцы радка меню (неабходны перазапуск Notepad++)"/>
 
+					<Item id="6132" name="Хаваць ярлыкі + ▼ ✕ у правай частцы радка меню (неабходны перазапуск праграмы)"/>
 					<Item id="6123" name="Лакалізацыя"/>
+					<Item id="6128" name="Хаваць ярлыкі + ▼ ✕ у правай частцы радка меню (неабходны перазапуск Notepad++)"/>
+
+					<Item id="6123" name="Localization"/>
 				</Global>
 
 				<Scintillas title="Рэдагаванне 1">
@@ -1217,10 +1218,9 @@ Translation note:
 				</Backup>
 
 				<AutoCompletion title="Аўтазавяршэнне">
-					<Item id="6115" name="Аўтаводступ"/>
 					<Item id="6807" name="Аўтазавяршэнне"/>
 					<Item id="6808" name="Уключыць аўтазавяршэнне для кожнага ўвядзення"/>
-					<Item id="6809" name="Завяршэнне функцый"/>
+					<Item id="6809" name="Function completion"/>
 					<Item id="6810" name="Завяршэнне слоў"/>
 					<Item id="6816" name="Завяршэнне функцый і слоў"/>
 					<Item id="6869" name="Уставіць выбранае"/>
@@ -1232,11 +1232,11 @@ Translation note:
 					<Item id="6814" name="Зрабіць кароткі спіс аўтазавяршэння"/>
 					<Item id="6815" name="Падказка параметраў функцый пры ўвядзенні"/>
 					<Item id="6851" name="Аўтаўстаўка"/>
-					<Item id="6857" name=" закр. тэг html/xml"/>
-					<Item id="6858" name="Адкрыць"/>
+					<Item id="6857" name=" html/xml close tag"/>
+					<Item id="6858" name="Open"/>
 					<Item id="6859" name="Закрыць"/>
-					<Item id="6860" name="Суаднесеная пара 1:"/>
-					<Item id="6863" name="Суаднесеная пара 2:"/>
+					<Item id="6860" name="Matched pair 1:"/>
+					<Item id="6863" name="Matched pair 2:"/>
 					<Item id="6866" name="Суаднесеная пара 3:"/>
 				</AutoCompletion>
 
@@ -1316,6 +1316,7 @@ Translation note:
 						<Element name="Адсутнічае дзеянне для"/>
 						<Element name="Мінімізаваць у"/>
 						<Element name="Закрыць да"/>
+						<Element name="Minimize / Close to"/>
 					</ComboBox>
 					<Item id="6308" name="сістэмны латок"/>
 					<Item id="6312" name="Аўтавызначэнне стану файла"/>
@@ -1480,6 +1481,7 @@ Translation note:
 			<FileMemoryAllocationFailed title="Выключэнне: збой размеркавання памяці файла" message="Верагодна, што недастаткова сумежнай вольнай памяці для файла, які загружае Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
 			<FindRegexBackwardDisabled title="Зваротны пошук рэгулярных выразаў адключаны" message="Прадвызначана зваротны пошук рэгулярных выразаў уключаны з прычыны патэнцыйна неспадзяваных вынікаў. Для выканання зваротнага пошуку, адкрыйце дыялогавае акно Знайсці і выберыце звычайны або пашыраны рэжым пошуку замест рэгулярнага выразу. Націсніце кнопку OK, каб адкрыць дыялогавае акно пошуку або ўстанавіце фокус на яго.     Калі вам патрэбныя функцыя пошуку зваротнага рэгулярнага выразу, звярніце да даведкі карыстальніка для атрымання інструкцый, каб яе ўключыць."/>
 			<PrintError title="0" message="Немагчыма запусціць дакумент прынтара."/><!-- Use title="0" to use Windows OS default translated "Error" title. -->
+			<FileToLoadSizeCheckFailed title="File to load size-check failed" message="Cannot obtain the file size before loading!"/>
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Гісторыя буфера абмену"/>
@@ -1638,9 +1640,9 @@ Translation note:
 			<finder-collapse-all value="Згарнуць усе"/>
 			<finder-uncollapse-all value="Разгарнуць усе"/>
 			<finder-copy value="Скапіяваць выбраныя радкі"/>
-			<finder-copy-paths value="Скапіяваць назвы шляхоў"/>
+			<finder-copy-selected-paths value="Copy Selected Pathname(s)"/>
 			<finder-clear-all value="Ачысціць усе"/>
-			<finder-open-all value="Адкрыць усе"/>
+			<finder-open-selected-paths value="Open Selected Pathname(s)"/>
 			<finder-purge-for-every-search value="Ачышчаць для кожнага пошуку"/>
 			<finder-wrap-long-lines value="Пераносіць словы ў доўгіх радках"/>
 			<common-ok value="OK"/>
@@ -1713,7 +1715,7 @@ Translation note:
 			<fileSaveAsCopySaveButton-tip value="Утрымлівайце Shift, націскаючы Захаваць, каб адрыць копію пасля захавання."/>
 			<autoIndentBasic-tip value="Пераканайцеся, што водступ бягучага радка (г.зн. новы радок створаны націскам клавішы ENTER) супадае з водступам папярэдняга радка."/>
 			<autoIndentAdvanced-tip value="Уключыць інтэлектуальны водступ для моў праграмавання, якія &quot;падобныя на C&quot; і Python. Мовы праграмавання, якія &quot;падобныя на C&quot; уключаюць: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell і JSON.  Калі выбраць пашыраны рэжым, але не рэдагаваць файлы вышэй азначанымі мовамі, водступ застанецца ў базавым рэжыме."/>
-			<!-- Don't translate "&quot;Global override&quot; and &quot;Default Style&quot; -->
+			<!-- Don't translate "Global override" and "Default Style" -->
 			<global-override-tip value="Уключэнне &quot;Глабальнага перавызначэння&quot; у гэтым месцы перавызначыць гэты параметр ва ўсіх моўных стылях. Магчыма, што замест гэтага, вы хочаце выкарыстоўваць &quot;Прадвызначаны стыль&quot;"/>
 		</MiscStrings>
 	</Native-Langue>
