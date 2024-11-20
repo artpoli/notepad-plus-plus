@@ -47,7 +47,7 @@ Translation note:
 					<Item subMenuId="search-unmarkAll" name="Ачысціць стыль"/>
 					<Item subMenuId="search-jumpUp" name="Уверх"/>
 					<Item subMenuId="search-jumpDown" name="Уніз"/>
-					<Item subMenuId="search-copyStyledText" name="Капіяваць стыль тэксту"/>
+					<Item subMenuId="search-copyStyledText" name="Скапіяваць стыль тэксту"/>
 					<Item subMenuId="search-bookmark" name="Закладка"/>
 					<Item subMenuId="view-currentFileIn" name="Паглядзець бягучы файл у"/>
 					<Item subMenuId="view-showSymbol" name="Паказаць сімвал"/>
@@ -112,7 +112,7 @@ Translation note:
 					<Item id="41022" name="Адкрыць папку як працоўную вобласць..."/>
 					<Item id="41023" name="Адкрыць у прадвызначаным аглядальніку"/>
 					<Item id="42001" name="Выразаць"/>
-					<Item id="42002" name="Капіяваць"/>
+					<Item id="42002" name="Скапіяваць"/>
 					<Item id="42003" name="Адрабіць"/>
 					<Item id="42004" name="Вярнуць"/>
 					<Item id="42005" name="Уставіць"/>
@@ -1347,7 +1347,7 @@ Translation note:
 			</MultiMacro>
 			<Window title="Вокны">
 				<Item id="1" name="Актываваць"/>
-				<Item id="2" name="Добра"/>
+				<Item id="2" name="OK"/>
 				<Item id="7002" name="Захаваць"/>
 				<Item id="7003" name="Закрыць акно/вокны"/>
 				<Item id="7004" name="Сартаваць укладкі"/>
@@ -1401,7 +1401,7 @@ Translation note:
 			</DoSaveAll><!-- HowToReproduce: Check the "Enable Save All confirm dialog" checkbox in Preference->MISC, now click "Save all" -->
 
 			<DebugInfo title="Адладачная звесткі">
-				<Item id="1752" name="Капіяваць адладачныя звесткі ў буфер абмену"/>
+				<Item id="1752" name="Скапіяваць адладачныя звесткі ў буфер абмену"/>
 				<Item id="1" name="OK"/>
 			</DebugInfo>
 		</Dialog>
@@ -1429,8 +1429,8 @@ Translation note:
 			<DoCloseOrNot title="Пакінуць не існуючы файл" message="Файл &quot;$STR_REPLACE$&quot; больш не існуе. Пакінуць файл у рэдактары?"/>
 			<DoDeleteOrNot title="Выдаліць файл" message="Файл &quot;$STR_REPLACE$&quot; будзе перамешчаны ў сметніцу і гэты дакумент будзе закрыты. Працягнуць?"/>
 			<NoBackupDoSaveFile title="Захаваць" message="Ваш файл рэзервовай копіі не знойдзены (выдалена звонку) Калі вы не захаваеце яго, то ўсе вашы даныя будуць страчаны Захаваць файл &quot;$STR_REPLACE$&quot; ?"/>
-			<DoReloadOrNot title="Перазагрузіць" message="&quot;$STR_REPLACE$&quot;  Файл быў мадыфікаваны іншай праграмай. Вы сапраўды хочаце перазагрузіць яго?"/>
-			<DoReloadOrNotAndLooseChange title="Перазагрузіць" message="&quot;$STR_REPLACE$&quot;  Файл быў мадыфікаваны іншай праграмай. Вы сапраўды хочаце перазагрузіць яго са стратай змен зробленых у Notepad++?"/>
+			<DoReloadOrNot title="Перазагрузіць" message="&quot;$STR_REPLACE$&quot;  Файл быў зменены ў іншай праграме. Вы сапраўды хочаце перазагрузіць яго?"/>
+			<DoReloadOrNotAndLooseChange title="Перазагрузіць" message="&quot;$STR_REPLACE$&quot;  Файл быў зменены ў іншай праграме. Вы сапраўды хочаце перазагрузіць яго са стратай змен зробленых у Notepad++?"/>
 			<PrehistoricSystemDetected title="Выяўлена састарэлая сістэма" message="Відавочна, што вы ўсё яшчэ выкарыстоўваеце састарэлую сістэму. Прабачце, але гэта функцыя працуе толькі ў сучаснай сістэме."/><!-- HowToReproduce: Launch "Document Map" under Windows XP. -->
 			<XpUpdaterProblem title="Сістэма абнаўлення Notepad++" message="Сістэма абнаўлення Notepad++ несумяшчальная з АС Windows XP з-за састарэлага ўзроўню бяспекі ў гэтай сістэме. Перайсці на старонку Notepad++ для таго, каб спампаваць апошнюю версію праграмы?"/><!-- HowToReproduce: Run menu "? -> Update Notepad++" under Windows XP. -->
 			<GUpProxyConfNeedAdminMode title="Налады проксі" message="Перазапусціце Notepad++ у рэжыме адміністратара, каб наладзіць проксі."/>
@@ -1478,7 +1478,7 @@ Translation note:
 			<FileInaccessibleDefaultSessionXml title="Файл недаступны" message="Некаторыя файлы з вашага папярэдняга сеанса недаступны. Іх можна адкрыць у якасці запаўняльнікаў, як пустыя файлы і даступныя толькі для чытання. Вы сапраўды хочаце стварыць гэтыя запаўняльнікі?  НАТАТКА: калі вы вырашыце не ствараць запаўняльнікі або закрыць іх пазней, ваш сеанс БУДЗЕ ЗМЕНЕНЫ ПРЫ ВЫХАДЗЕ! Прапануем вам неадкладна стварыць рэзервовую копію &quot;session.xml&quot;."/>
 			<RTLvsDirectWrite title="Немагчыма запусціць RTL" message="RTL не сумяшчальны з рэжымам DirectWrite. Аключыце рэжым DirectWrite у раздзеле РОЗНАЕ ў дыялогавым акне з параметрамі і перазапусціце Notepad++."/>
 			<FileMemoryAllocationFailed title="Выключэнне: збой размеркавання памяці файла" message="Верагодна, што недастаткова сумежнай вольнай памяці для файла, які загружае Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
-			<FindRegexBackwardDisabled title="Зваротны пошук рэгулярных выразаў адключаны" message="Прадвызначана зваротны пошук рэгулярных выразаў уключаны з прычыны патэнцыйна неспадзяваных вынікаў. Для выканання зваротнага пошуку, адкрыйце дыялогавае акно Знайсці і выберыце звычайны або пашыраны рэжым пошуку замест рэгулярнага выразу. Націсніце кнопку Добра, каб адкрыць дыялогавае акно пошуку або ўстанавіце фокус на яго.     Калі вам патрэбныя функцыя пошуку зваротнага рэгулярнага выразу, звярніце да даведкі карыстальніка для атрымання інструкцый, каб яе ўключыць."/>
+			<FindRegexBackwardDisabled title="Зваротны пошук рэгулярных выразаў адключаны" message="Прадвызначана зваротны пошук рэгулярных выразаў уключаны з прычыны патэнцыйна неспадзяваных вынікаў. Для выканання зваротнага пошуку, адкрыйце дыялогавае акно Знайсці і выберыце звычайны або пашыраны рэжым пошуку замест рэгулярнага выразу. Націсніце кнопку OK, каб адкрыць дыялогавае акно пошуку або ўстанавіце фокус на яго.     Калі вам патрэбныя функцыя пошуку зваротнага рэгулярнага выразу, звярніце да даведкі карыстальніка для атрымання інструкцый, каб яе ўключыць."/>
 			<PrintError title="0" message="Немагчыма запусціць дакумент прынтара."/><!-- Use title="0" to use Windows OS default translated "Error" title. -->
 		</MessageBox>
 		<ClipboardHistory>
