@@ -70,7 +70,7 @@ Translation note:
 					<Item subMenuId="encoding-japanese" name="Японская"/>
 					<Item subMenuId="encoding-korean" name="Карэйская"/>
 					<Item subMenuId="encoding-northEuropean" name="Паўночная Еўропа"/>
-					<Item subMenuId="encoding-thai" name="В'етнамская"/>
+					<Item subMenuId="encoding-thai" name="Тайская"/>
 					<Item subMenuId="encoding-turkish" name="Мова карыстальніка"/>
 					<Item subMenuId="encoding-westernEuropean" name="Імпарт"/>
 					<Item subMenuId="encoding-vietnamese" name="В'етнамская"/>
@@ -169,7 +169,7 @@ Translation note:
 					<Item id="42018" name="Пачаць запіс"/>
 					<Item id="42019" name="Спыніць запіс"/>
 					<Item id="42021" name="Узнаўленне"/>
-					<Item id="42022" name="Уставіць змесціва HTML"/>
+					<Item id="42022" name="Пераключыць у каментарый аднаго радка"/>
 					<Item id="42023" name="Закаментаваць блок"/>
 					<Item id="42047" name="Разкаментаваць блок"/>
 					<Item id="42024" name="Выразаць двайковае змесціва"/>
@@ -177,7 +177,7 @@ Translation note:
 					<Item id="42043" name="Капіяваць спасылку"/>
 					<Item id="42044" name="Сімвал канца радка ў прабел"/>
 					<Item id="42045" name="Прыбраць лішнія прабелы і сімвал канца радка ў прабел"/>
-					<Item id="42046" name="Панэль сімвалаў"/>
+					<Item id="42046" name="Табуляцыю ў прабел"/>
 					<Item id="42054" name="Прабел у табуляцыю (усе)"/>
 					<Item id="42053" name="Прабел у табуляцыю (у пачатку)"/>
 					<Item id="42038" name="Уставіць змесціва HTML"/>
@@ -192,7 +192,7 @@ Translation note:
 					<Item id="42052" name="Гісторыя буфера абмену"/>
 					<Item id="42025" name="Захаваць бягучы запіс макраса..."/>
 					<Item id="42026" name="Раскаментаваць радок"/>
-					<Item id="42027" name="Выдаліць пустыя радкі"/>
+					<Item id="42027" name="Тэкст злева направа"/>
 					<Item id="42028" name="Толькі чытанне"/>
 					<Item id="42029" name="Скапіяваць бягучы шлях файла"/>
 					<Item id="42030" name="Скапіяваць бягучую назву файла"/>
@@ -211,7 +211,7 @@ Translation note:
 					<Item id="43002" name="Знайсці наступны"/>
 					<Item id="43003" name="Замяніць..."/>
 					<Item id="43004" name="Перайсці да..."/>
-					<Item id="43005" name="Выбраць усе паміж парнымі дужкамі"/>
+					<Item id="43005" name="Пераключыць закладку"/>
 					<Item id="43006" name="Наступная закладка"/>
 					<Item id="43007" name="Папярэдняя закладка"/>
 					<Item id="43008" name="Ачысціць усе закладкі"/>
@@ -319,11 +319,11 @@ Translation note:
 					<Item id="44115" name="Ужыць колер 5"/>
 					<Item id="44130" name="Паказваць сімвалы, якія не друкуюцца"/>
 					<Item id="44131" name="Паказваць сімвалы кіравання Unicode EOL"/>
-					<Item id="44032" name="Пераўтварыць у ANSI"/>
+					<Item id="44032" name="Перайсці на поўны экран"/>
 					<Item id="44033" name="Аднавіць маштаб"/>
 					<Item id="44034" name="Заўсёды зверху"/>
-					<Item id="44035" name="Пераўтварыць у UTF-16 BE BOM"/>
-					<Item id="44036" name="Пераўтварыць у UTF-16 LE BOM"/>
+					<Item id="44035" name="Сінхранізаваць вертыкальную прагортку"/>
+					<Item id="44036" name="Сінхранізаваць гарызантальную прагортку"/>
 					<Item id="44041" name="Паказваць сімвал пераносу радка"/>
 					<Item id="44072" name="Факусіравацца на іншым выглядзе"/>
 					<Item id="44081" name="Панэль праекта 1"/>
@@ -728,17 +728,17 @@ Translation note:
 					<Item id="44066" name="Разгарнуць узровень 6"/>
 					<Item id="44067" name="Разгарнуць узровень 7"/>
 					<Item id="44068" name="Разгарнуць узровень 8"/>
-					<Item id="44081" name="Панэль 1-га праекта"/>
-					<Item id="44082" name="Панэль 2-га праекта"/>
-					<Item id="44083" name="Панэль 3-га праекта"/>
-					<Item id="44085" name="Папка як працоўная вобласць"/>
+					<Item id="44081" name="Панэль праекта 1"/>
+					<Item id="44082" name="Панэль праекта 2"/>
+					<Item id="44083" name="Панэль праекта 3"/>
+					<Item id="44085" name="Пераключыць папку як працоўную вобласць"/>
 					<Item id="44080" name="Пераключыць карту дакумента"/>
 					<Item id="44070" name="Пераключыць спіс дакументаў"/>
 					<Item id="44084" name="Пераключыць спіс функцый"/>
 					<Item id="50005" name="Запіс макраса"/>
-					<Item id="44104" name="Пераключыцца на панэль 1-га праекта"/>
-					<Item id="44105" name="Пераключыцца на панэль 2-га праекта"/>
-					<Item id="44106" name="Пераключыцца на панэль 3-га праекта"/>
+					<Item id="44104" name="Пераключыцца на панэль праекта 1"/>
+					<Item id="44105" name="Пераключыцца на панэль праекта 2"/>
+					<Item id="44106" name="Пераключыцца на панэль праекта 3"/>
 					<Item id="44107" name="Пераключыць папку як працоўную вобласць"/>
 					<Item id="44109" name="Пераключыцца на спіс дакументаў"/>
 					<Item id="44108" name="Пераключыцца на спіс функцый"/>
@@ -1032,7 +1032,7 @@ Translation note:
 					<Item id="7118" name="Актыўны"/>
 					<Item id="7119" name="Галоўны"/>
 					<Item id="7120" name="Памылка"/>
-					<Item id="7121" name="Адключаны тэкст"/>
+					<Item id="7121" name="Тэкст"/>
 					<Item id="7122" name="Цямнейшы тэкст"/>
 					<Item id="7123" name="Адключаны тэкст"/>
 					<Item id="7124" name="Край"/>
@@ -1427,14 +1427,14 @@ Translation note:
 			<ColumnModeTip title="Парада для рэжыму слупкоў" message=" Ёсць тры спосабы пераключэння на рэжым выбару слупкоў: 1. (Клавіятура і мыш)  Утрымлівайце Alt і адначасова перацягвайце левай кнопкай мышы 2. (Толькі клавіятура) Утрымлівайце Alt+Shift і адначасова выкарыстоўвайце клавішы стрэлак 3.(Клавіятура або мыш) Памясціце стрэшку ў пажаданы пачатак пазіцыі блока слупка, а потым выканайце каманду &quot;Выбраць пачатак/канец у рэжыме слупоў&quot;  Перамясціце стрэшку ў пажаданы канец слупка пазіцыі блока, а потым выканайце каманду яшчэ раз &quot;Выбраць пачатак/канец у рэжыме слупоў&quot;"/>
 			<BufferInvalidWarning title="Збой захавання" message="Не атрымалася захаваць. Памылковы буфер."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<DoCloseOrNot title="Пакінуць не існуючы файл" message="Файл &quot;$STR_REPLACE$&quot; больш не існуе. Пакінуць файл у рэдактары?"/>
-			<DoDeleteOrNot title="Выдаліць файл" message="Файл &quot;$STR_REPLACE$&quot; будзе адпраўлены ў сметніцу і гэты дакумент будзе закрыты. Працягнуць?"/>
+			<DoDeleteOrNot title="Выдаліць файл" message="Файл &quot;$STR_REPLACE$&quot; будзе перамешчаны ў сметніцу і гэты дакумент будзе закрыты. Працягнуць?"/>
 			<NoBackupDoSaveFile title="Захаваць" message="Ваш файл рэзервовай копіі не знойдзены (выдалена звонку) Калі вы не захаваеце яго, то ўсе вашы даныя будуць страчаныя Захаваць файл &quot;$STR_REPLACE$&quot; ?"/>
 			<DoReloadOrNot title="Перазагрузіць" message="&quot;$STR_REPLACE$&quot;  Файл быў мадыфікаваны іншай праграмай. Вы сапраўды хочаце перазагрузіць яго?"/>
 			<DoReloadOrNotAndLooseChange title="Перазагрузіць" message="&quot;$STR_REPLACE$&quot;  Файл быў мадыфікаваны іншай праграмай. Вы сапраўды хочаце перазагрузіць яго са стратай змен зробленых у Notepad++?"/>
 			<PrehistoricSystemDetected title="Выяўлена састарэлая сістэма" message="Відавочна, што вы ўсё яшчэ выкарыстоўваеце састарэлую сістэму. Прабачце, але гэта функцыя працуе толькі ў сучаснай сістэме."/><!-- HowToReproduce: Launch "Document Map" under Windows XP. -->
 			<XpUpdaterProblem title="Сістэма абнаўлення Notepad++" message="Сістэма абнаўлення Notepad++ несумяшчальная з АС Windows XP з-за састарэлага ўзроўню бяспекі ў гэтай сістэме. Перайсці на старонку Notepad++ для таго, каб спампаваць апошнюю версію праграмы?"/><!-- HowToReproduce: Run menu "? -> Update Notepad++" under Windows XP. -->
 			<GUpProxyConfNeedAdminMode title="Налады проксі" message="Перазапусціце Notepad++ у рэжыме адміністратара, каб наладзіць проксі."/>
-			<DocTooDirtyToMonitor title="Праблема маніторынгу" message="Дакументы зменены. Калі ласка, захавайце змяненні перад пачаткам яго маніторынгу."/>
+			<DocTooDirtyToMonitor title="Праблема маніторынгу" message="Дакумент зменены. Захавайце змяненні перад пачаткам яго маніторынгу."/>
 			<DocNoExistToMonitor title="Праблема маніторынгу" message="Файл павінен існаваць для яго маніторынгу."/>
 			<FileTooBigToOpen title="Праблема памеру файла" message="Занадта вялікі файл для адкрыцця ў Notepad++"/><!-- HowToReproduce: Try to open a 4GB file (it's not easy to reproduce, it depends on your system). -->
 			<FileLoadingException title="Код выключэння: $STR_REPLACE$" message="Падчас загрузкі файла ўзнікла памылка!"/>
@@ -1449,16 +1449,16 @@ Translation note:
 			<LoadLangsFailedFinal title="Канфігуратар" message="Збой загрузкі langs.xml!"/><!-- HowToReproduce: Close Notepad++. Use another editor to make "langs.xml" an invalid xml file then save it. Open Notepad++. -->
 			<FolderAsWorspaceSubfolderExists title="Праблема з дадаваннем папкі як працоўнай вобласці" message="Падпапка, якую вы спрабуеце дадаць ужо існуе. Выдаліце яе корань з панэлі перад тым, як дадаваць папку &quot;$STR_REPLACE$&quot;."/><!-- HowToReproduce: Add a folder like "c:\temp\aFolder\" into "Folder as Workspace" panel, then try to add "c:\temp\". -->
 
-			<ProjectPanelChanged title="$STR_REPLACE$" message="Працоўная вобласць была зменена. Хочаце захаваць яе?"/>
+			<ProjectPanelChanged title="$STR_REPLACE$" message="Працоўная вобласць была зменена. Вы сапраўды хочаце захаваць яе?"/>
 			<ProjectPanelSaveError title="$STR_REPLACE$" message="Адбылася памылка падчас запісу ваша файла працоўнай вобласці. На жаль, ваша працоўная вобласць не была захавана."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
-			<ProjectPanelOpenDoSaveDirtyWsOrNot title="Адкрыць працоўную вобласць" message="Бягучая працоўная вобласць была зменена. Хочаце захаваць бягучы праект?"/>
-			<ProjectPanelNewDoSaveDirtyWsOrNot title="Новая працоўная вобласць" message="Бягучая працоўная вобласць была зменена. Хочаце захаваць бягучы праект?"/>
+			<ProjectPanelOpenDoSaveDirtyWsOrNot title="Адкрыць працоўную вобласць" message="Бягучая працоўная вобласць была зменена. Вы сапраўды хочаце захаваць бягучы праект?"/>
+			<ProjectPanelNewDoSaveDirtyWsOrNot title="Новая працоўная вобласць" message="Бягучая працоўная вобласць была зменена. Вы сапраўды хочаце захаваць бягучы праект?"/>
 			<ProjectPanelOpenFailed title="Адкрыць працоўную вобласць" message="Не атрымалася адкрыць працоўную вобласць. Відавочна, што адкрыты файл не з'яўляецца дзейным файлам праекта."/>
 			<ProjectPanelRemoveFolderFromProject title="Выдаліць папку з праекта" message="Усе ўкладзеныя элементы будуць выдалены. Вы сапраўды хочаце выдаліць папку з праекта?"/>
 			<ProjectPanelRemoveFileFromProject title="Выдаліць файл з праекта" message="Вы сапраўды хочаце выдаліць файл з праекта?"/>
 			<ProjectPanelReloadError title="Перазагрузіць працоўную вобласць" message="Не атрымліваецца знайсці файл для перазагрузкі."/>
-			<ProjectPanelReloadDirty title="Перазагрузіць працоўную вобласць" message="Бягучая працоўная вобласць была зменена. Перазагрузка скасуе ўсе змяненні. Хочаце працягнуць?"/>
-			<UDLNewNameError title="Памылка UDL" message="Гэта назва выкарыстоўваецца іншай мовай. Выберыце іншую."/>
+			<ProjectPanelReloadDirty title="Перазагрузіць працоўную вобласць" message="Бягучая працоўная вобласць была зменена. Перазагрузка адхіліць усе змяненні. Вы сапраўды хочаце працягнуць?"/>
+			<UDLNewNameError title="Памылка UDL" message="Гэта назва выкарыстоўваецца іншай мовай. Выберыце іншую назву."/>
 			<UDLRemoveCurrentLang title="Выдаліць бягучую мову" message="Вы ўпэўнены?"/>
 			<SCMapperDoDeleteOrNot title="Вы ўпэўнены?" message="Вы сапраўды хочаце выдаліць гэта спалучэнне клавіш?"/>
 			<FindCharRangeValueError title="Праблема ў дыяпазоне значэнняў" message="Увядзіце значэнне ад 0 да 255."/>
