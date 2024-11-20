@@ -49,13 +49,13 @@ Translation note:
 					<Item subMenuId="search-jumpDown" name="Уніз"/>
 					<Item subMenuId="search-copyStyledText" name="Капіяваць стыль тэксту"/>
 					<Item subMenuId="search-bookmark" name="Закладка"/>
-					<Item subMenuId="view-currentFileIn" name="Перамясціць/Кланіраваць бягучы дакумент"/>
+					<Item subMenuId="view-currentFileIn" name="Паглядзець бягучы файл у"/>
 					<Item subMenuId="view-showSymbol" name="Паказаць сімвал"/>
-					<Item subMenuId="view-zoom" name="Згарнуць узровень"/>
+					<Item subMenuId="view-zoom" name="Маштаб"/>
 					<Item subMenuId="view-moveCloneDocument" name="Перамясціць/Кланіраваць бягучы дакумент"/>
 					<Item subMenuId="view-tab" name="Праект"/>
 					<Item subMenuId="view-collapseLevel" name="Згарнуць узровень"/>
-					<Item subMenuId="view-uncollapseLevel" name="Арабская"/>
+					<Item subMenuId="view-uncollapseLevel" name="Разгарнуць узровень"/>
 					<Item subMenuId="view-project" name="Праект"/>
 					<Item subMenuId="encoding-characterSets" name="Кадзіроўкі"/>
 					<Item subMenuId="encoding-arabic" name="Арабская"/>
@@ -72,7 +72,7 @@ Translation note:
 					<Item subMenuId="encoding-northEuropean" name="Паўночная Еўропа"/>
 					<Item subMenuId="encoding-thai" name="Тайская"/>
 					<Item subMenuId="encoding-turkish" name="Мова карыстальніка"/>
-					<Item subMenuId="encoding-westernEuropean" name="Імпарт"/>
+					<Item subMenuId="encoding-westernEuropean" name="Заходняя Еўропа"/>
 					<Item subMenuId="encoding-vietnamese" name="В'етнамская"/>
 					<Item subMenuId="language-userDefinedLanguage" name="Мова вызначаная карыстальнікам"/>
 					<Item subMenuId="settings-import" name="Імпартаваць"/>
@@ -172,9 +172,9 @@ Translation note:
 					<Item id="42022" name="Пераключыць у каментарый аднаго радка"/>
 					<Item id="42023" name="Закаментаваць блок"/>
 					<Item id="42047" name="Разкаментаваць блок"/>
-					<Item id="42024" name="Выразаць двайковае змесціва"/>
-					<Item id="42042" name="Уставіць двайковае змесціва"/>
-					<Item id="42043" name="Капіяваць спасылку"/>
+					<Item id="42024" name="Прыбраць прабелы ў канцы"/>
+					<Item id="42042" name="Прыбраць прабелы спачатку"/>
+					<Item id="42043" name="Прыбраць прабелы спачатку і ў канцы"/>
 					<Item id="42044" name="Сімвал канца радка ў прабел"/>
 					<Item id="42045" name="Прыбраць лішнія прабелы і сімвал канца радка ў прабел"/>
 					<Item id="42046" name="Табуляцыю ў прабел"/>
@@ -229,15 +229,15 @@ Translation note:
 					<Item id="43013" name="Знайсці ў файлах"/>
 					<Item id="43014" name="Знайсці далей (зменлівае)"/>
 					<Item id="43015" name="Знайсці папярэдняе (зменлівае)"/>
-					<Item id="43022" name="1-ы стыль"/>
+					<Item id="43022" name="Выкарыстанне 1-га стылю"/>
 					<Item id="43023" name="Ачысціць 1-ы стыль"/>
-					<Item id="43024" name="3-і стыль"/>
+					<Item id="43024" name="Выкарыстанне 2-га стылю"/>
 					<Item id="43025" name="Ачысціць 2-і стыль"/>
-					<Item id="43026" name="5-ы стыль"/>
+					<Item id="43026" name="Выкарыстанне 3-га стылю"/>
 					<Item id="43027" name="Ачысціць 3-і стыль"/>
-					<Item id="43028" name="1-ы стыль"/>
+					<Item id="43028" name="Выкарыстанне 4-га стылю"/>
 					<Item id="43029" name="Ачысціць 4-ы стыль"/>
-					<Item id="43030" name="3-і стыль"/>
+					<Item id="43030" name="Выкарыстанне 5-га стылю"/>
 					<Item id="43031" name="Ачысціць 5-ы стыль"/>
 					<Item id="43032" name="Ачысціць усе стылі"/>
 					<Item id="43033" name="1-ы стыль"/>
@@ -259,11 +259,11 @@ Translation note:
 					<Item id="43059" name="5-ы стыль"/>
 					<Item id="43060" name="Усе стылі"/>
 					<Item id="43061" name="Знайсці стыль пазнак"/>
-					<Item id="43062" name="Закрыць выбраную"/>
-					<Item id="43063" name="Закрыць іншыя"/>
-					<Item id="43064" name="Капіяваць назвы выбраных"/>
-					<Item id="43065" name="Капіяваць назвы выбраных шляхоў"/>
-					<Item id="43066" name="Тэкст на ўсё акно"/>
+					<Item id="43062" name="Выкарыстанне 1-га стылю"/>
+					<Item id="43063" name="Выкарыстанне 2-га стылю"/>
+					<Item id="43064" name="Выкарыстанне 3-га стылю"/>
+					<Item id="43065" name="Выкарыстанне 4-га стылю"/>
+					<Item id="43066" name="Выкарыстанне 5-га стылю"/>
 					<Item id="43067" name="Перайсці да наступнай змены"/>
 					<Item id="43068" name="Перайсці да папярэдняй змены"/>
 					<Item id="43069" name="Ачысціць гісторыю змен"/>
@@ -282,14 +282,14 @@ Translation note:
 					<Item id="44011" name="Рэжым канцэнтрацыі"/>
 					<Item id="44019" name="Паказаць усе сімвалы"/>
 					<Item id="44020" name="Значэнні водступаў"/>
-					<Item id="44022" name="2-ая ўкладка"/>
-					<Item id="44023" name="3-я ўкладка"/>
-					<Item id="44024" name="4-ая ўкладка"/>
+					<Item id="44022" name="Перанос па словах"/>
+					<Item id="44023" name="Павялічыць (Ctrl+колца мышкі ўверх)"/>
+					<Item id="44024" name="Паменшыць (Ctrl+колца мышкі ўніз)"/>
 					<Item id="44025" name="Паказваць прабелы і табуляцыю"/>
 					<Item id="44026" name="Паказваць сімвал заканчэння радка"/>
-					<Item id="44029" name="7-ая ўкладка"/>
+					<Item id="44029" name="Разгарнуць усе"/>
 					<Item id="44030" name="Згарнуць бягучы ўзровень"/>
-					<Item id="44031" name="9-ая ўкладка"/>
+					<Item id="44031" name="Разгарнуць бягучы ўзровень"/>
 					<Item id="44049" name="Зводка..."/>
 					<Item id="44080" name="Карта дакумента"/>
 					<Item id="44070" name="Спіс дакументаў"/>
@@ -359,7 +359,7 @@ Translation note:
 					<Item id="46180" name="Вызначыць мову..."/>
 					<Item id="47000" name="Адкрыць карыстальніцкую папку мовы..."/>
 					<Item id="47010" name="Калекцыя моў Notepad++, якія вызначаныў карыстальнік"/>
-					<Item id="47001" name="Генерыраваць з выбранага ў буфер абмену"/>
+					<Item id="47001" name="Вызначана карыстальнікам"/>
 					<Item id="47002" name="Аб Notepad++"/>
 					<Item id="47003" name="Аргументы каманднага радка..."/>
 					<Item id="47004" name="Хатняя старонка Notepad++"/>
@@ -960,7 +960,7 @@ Translation note:
 					<Item id="6113" name="Закрываць падвойным націскам"/>
 					<Item id="6118" name="Схаваць"/>
 					<Item id="6119" name="Каскадам"/>
-					<Item id="6120" name="Каскадам"/>
+					<Item id="6120" name="Вертыкальная"/>
 					<Item id="6121" name="Выходзіць пры закрыцці апошняй укладкі"/>
 					<Item id="6128" name="Змяніць значкі"/>
 
@@ -979,7 +979,7 @@ Translation note:
 					<Item id="6217" name="Шырыня:"/>
 					<Item id="6219" name="Частата мігцення:"/>
 					<Item id="6221" name="Ч"/>
-					<Item id="6222" name="-"/>
+					<Item id="6222" name="Р"/>
 					<Item id="6246" name="Пераключаць каманды згортвання/разгортвання бягучага ўзроўню"/>
 					<Item id="6227" name="Перанос радкоў"/>
 					<Item id="6228" name="Прадвызначана"/>
@@ -1027,7 +1027,7 @@ Translation note:
 					<Item id="7108" name="Блакітны"/>
 					<Item id="7109" name="Аліўкавы"/>
 					<Item id="7115" name="Дапасавана"/>
-					<Item id="7116" name="Актыўны"/>
+					<Item id="7116" name="Уверсе"/>
 					<Item id="7117" name="Гарачы трэк меню"/>
 					<Item id="7118" name="Актыўны"/>
 					<Item id="7119" name="Галоўны"/>
@@ -1130,7 +1130,7 @@ Translation note:
 					<Item id="6354" name="Адпаведнасць"/>
 					<Item id="6332" name="Улічваць рэгістр"/>
 					<Item id="6338" name="Улічваць толькі цэлае слова"/>
-					<Item id="6339" name="Выкар. наладаў акна Пошук"/>
+					<Item id="6339" name="Выкар. налады акна Пошук"/>
 					<Item id="6340" name="Падсвечваць іншы выгляд"/>
 					<Item id="6329" name="Падсвечваць парныя тэгі"/>
 					<Item id="6327" name="Уключыць"/>
@@ -1211,7 +1211,7 @@ Translation note:
 					<Item id="6801" name="Рэзервовая копія пры захаванні"/>
 					<Item id="6315" name="Няма"/>
 					<Item id="6316" name="Простая рэзервовая копія"/>
-					<Item id="6317" name="Карыстальніцкі каталог рэзервовай копіі"/>
+					<Item id="6317" name="Пашыраная рэзервовая копія"/>
 					<Item id="6804" name="Карыстальніцкі каталог рэзервовай копіі"/>
 					<Item id="6803" name="Каталог:"/>
 				</Backup>
@@ -1326,8 +1326,8 @@ Translation note:
 					<Item id="6324" name="Пераключэнне дакументаў (Ctrl+TAB)"/>
 					<Item id="6331" name="Паказваць толькі назву файла ў радку загалоўка"/>
 					<Item id="6334" name="Аўтавызначэнне кадзіравання сімвалаў"/>
-					<Item id="6349" name="Выкарыстоўваць DirectWrite (можа палепшыць апрацоўку спецыяльных сімвалаў, неабходны перазапуск Notepad++)"/>
-					<Item id="6337" name="Пашырэнне файла працоўнай вобласці:"/>
+					<Item id="6349" name="Выкарыстоўваць DirectWrite (можа палепшыць адлюстраванне спецыяльных сімвалаў, неабходны перазапуск Notepad++)"/>
+					<Item id="6337" name="Пашыр. файла працоўнай вобласці:"/>
 					<Item id="6114" name="Уключыць"/>
 					<Item id="6117" name="Будаваць спіс па меры выкарыстання"/>
 					<Item id="6344" name="Выбар дакумента"/>
@@ -1408,8 +1408,8 @@ Translation note:
 		<MessageBox>
 			<!-- $INT_REPLACE$ and $STR_REPLACE$ are place holders, don't translate these place holders. -->
 			<ContextMenuXmlEditWarning title="Рэдагаванне contextMenu" message="Рэдагаванне contextMenu.xml дазволіць вам змяніць усплывальнае меню Notepad++. Пасля змянення contextMenu.xml неабходна перазапусціць Notepad++, каб адбыліся змены."/>
-			<SaveCurrentModifWarning title="Захаваць бягучую мадыфікацыю" message="Вы павінны захаваць бягучую мадыфікацыю. Аднавіць усе зробленыя вамі змяненні будзе немагчыма.  Працягнуць?"/><!-- HowToReproduce: when you openned file is modified but unsaved yet, and you are changing file encoding. -->
-			<LoseUndoAbilityWarning title="Папярэджанне немагчымасці адраблення" message="Вы павінны захаваць бягучую мадыфікацыю. Аднавіць усе зробленыя вамі змяненні будзе немагчыма.  Працягнуць?"/><!-- HowToReproduce: when you openned file is modified and saved, then you are changing file encoding. -->
+			<SaveCurrentModifWarning title="Захаваць бягучую мадыфікацыю" message="Вы павінны захаваць бягуыя змяненні. Аднавіць усе зробленыя вамі змяненні будзе немагчыма.  Працягнуць?"/><!-- HowToReproduce: when you openned file is modified but unsaved yet, and you are changing file encoding. -->
+			<LoseUndoAbilityWarning title="Папярэджанне немагчымасці адраблення" message="Вы павінны захаваць бягучыя змяненні. Аднавіць усе зробленыя вамі змяненні будзе немагчыма.  Працягнуць?"/><!-- HowToReproduce: when you openned file is modified and saved, then you are changing file encoding. -->
 			<CannotMoveDoc title="Перамясціць у новы экзэмпляр Notepad++" message="Дакумент зменены. Захавайце яго і паспрабуйце зноў."/><!-- HowToReproduce: From your Notepad++ drag & drop a clean (not dirty) file to outside of Notepad++, another instance of Notepad++ will be created. Then from your first Notepad++ drag & drop an unsaved file to the new instance. -->
 			<DocReloadWarning title="Перазагрузіць" message="Вы сапраўды хочаце перазагрузіць бягучы файл і згубіць усе змены, якія былі зробленыя ў Notepad++?"/>
 			<FileLockedWarning title="Збой захавання" message="Праверце, ці не адкрыты гэты файл у іншай праграме"/>
@@ -1428,7 +1428,7 @@ Translation note:
 			<BufferInvalidWarning title="Збой захавання" message="Не атрымалася захаваць. Памылковы буфер."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<DoCloseOrNot title="Пакінуць не існуючы файл" message="Файл &quot;$STR_REPLACE$&quot; больш не існуе. Пакінуць файл у рэдактары?"/>
 			<DoDeleteOrNot title="Выдаліць файл" message="Файл &quot;$STR_REPLACE$&quot; будзе перамешчаны ў сметніцу і гэты дакумент будзе закрыты. Працягнуць?"/>
-			<NoBackupDoSaveFile title="Захаваць" message="Ваш файл рэзервовай копіі не знойдзены (выдалена звонку) Калі вы не захаваеце яго, то ўсе вашы даныя будуць страчаныя Захаваць файл &quot;$STR_REPLACE$&quot; ?"/>
+			<NoBackupDoSaveFile title="Захаваць" message="Ваш файл рэзервовай копіі не знойдзены (выдалена звонку) Калі вы не захаваеце яго, то ўсе вашы даныя будуць страчаны Захаваць файл &quot;$STR_REPLACE$&quot; ?"/>
 			<DoReloadOrNot title="Перазагрузіць" message="&quot;$STR_REPLACE$&quot;  Файл быў мадыфікаваны іншай праграмай. Вы сапраўды хочаце перазагрузіць яго?"/>
 			<DoReloadOrNotAndLooseChange title="Перазагрузіць" message="&quot;$STR_REPLACE$&quot;  Файл быў мадыфікаваны іншай праграмай. Вы сапраўды хочаце перазагрузіць яго са стратай змен зробленых у Notepad++?"/>
 			<PrehistoricSystemDetected title="Выяўлена састарэлая сістэма" message="Відавочна, што вы ўсё яшчэ выкарыстоўваеце састарэлую сістэму. Прабачце, але гэта функцыя працуе толькі ў сучаснай сістэме."/><!-- HowToReproduce: Launch "Document Map" under Windows XP. -->
@@ -1471,8 +1471,8 @@ Translation note:
 			<ChangeHistoryEnabledWarning title="Неабходна перазапусціць Notepad++" message="Неабходна перазапусціць Notepad++, каб гісторыя змен пачала працаваць."/><!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
 			<WindowsSessionExit title="Notepad++ - выхад з сеанса Windows" message="Сеанс Windows неўзабаве будзе завершаны, але ў вас ёсць незахаваныя даныя. Вы сапраўды хочаце выйсці з Notepad++?"/>
 			<LanguageMenuCompactWarning title="Кампактнае меню мовы" message="Гэты параметр будзе зменены падчас наступнага запуску."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
-			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незахаваныя змены будуць скасаваны! Вы сапраўды хочаце захаваць змены перад пераключэннем тэмы?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
-			<MacroAndRunCmdlWarning title="Сумяшчальнасць макрасаў і каманд выканання" message="Вашы макрасы і каманды выканання, якія захаваны ў Notepad++ v.8.5.2 (або больш позняй версіі), могуць быць несумяшчальнымі з бягучай версіяй Notepad++. Пратэсціруйце гэтыя каманды і пры неабходнасці адрэдагуйце іх. Таксама вы можаце панізіць версію да Notepad++ v8.5.2 і аднавіць свае папярэднія даныя. Notepad++ захоўвае старую рэзервовую копію вашага файла &quot;shortcuts.xml&quot; пад назвай  &quot;shortcuts.xml.v8.5.2.backup&quot;. Пры перайменаванні  &quot;shortcuts.xml.v8.5.2.backup&quot; на -&gt; &quot;shortcuts.xml&quot;, вашы каманды павінны аднавіцца і слушна працаваць у гэтай версіі."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
+			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незахаваныя змены будуць адхілены! Вы сапраўды хочаце захаваць змены перад пераключэннем тэмы?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
+			<MacroAndRunCmdlWarning title="Сумяшчальнасць макрасаў і каманд выканання" message="Вашы макрасы і каманды выканання, якія захаваны ў Notepad++ v.8.5.2 (або больш позняй версіі), могуць быць несумяшчальнымі з бягучай версіяй Notepad++. Пратэсціруйце гэтыя каманды і пры неабходнасці адрэдагуйце іх. Таксама вы можаце панізіць версію да Notepad++ v8.5.2 і аднавіць свае папярэднія даныя. Notepad++ захоўвае старую рэзервовую копію вашага файла &quot;shortcuts.xml&quot; пад назвай  &quot;shortcuts.xml.v8.5.2.backup&quot;. Пры перайменаванні  &quot;shortcuts.xml.v8.5.2.backup&quot; на &gt; &quot;shortcuts.xml&quot;, вашы каманды павінны аднавіцца і слушна працаваць у гэтай версіі."/><!-- HowToReproduce: Close Notepad++, remove shortcuts.xml.v8.5.2.backup & v852ShortcutsCompatibilityWarning.xml if present, relaunch Notepad++, delete or modify a shortcuts via Shortcut Mapper, close Notepad++, then the message will show up -->
 			<NotEnoughRoom4Saving title="Збой захавання" message="Не ўдалося захаваць файл. Верагодна, што недастаткова прасторы на дыску. Ваш файл не захаваны."/>
 			<FileInaccessibleUserSession title="Файл недаступны" message="Некаторыя файлы з вашага сеанса захаваны ўручную &quot;$STR_REPLACE$&quot; недаступны. Іх можна адкрыць у якасці запаўняльнікаў, як пустыя файлы і даступныя толькі для чытання. Вы сапраўды хочаце стварыць гэтыя запаўняльнікі?  НАТАТКА: калі вы вырашыце не ствараць запаўняльнікі або закрыць іх пазней, ваш сеанс захаваны ўручную НЕ будзе зменены пры выхадзе."/>
 			<FileInaccessibleDefaultSessionXml title="Файл недаступны" message="Некаторыя файлы з вашага папярэдняга сеанса недаступны. Іх можна адкрыць у якасці запаўняльнікаў, як пустыя файлы і даступныя толькі для чытання. Вы сапраўды хочаце стварыць гэтыя запаўняльнікі?  НАТАТКА: калі вы вырашыце не ствараць запаўняльнікі або закрыць іх пазней, ваш сеанс БУДЗЕ ЗМЕНЕНЫ ПРЫ ВЫХАДЗЕ! Прапануем вам неадкладна стварыць рэзервовую копію &quot;session.xml&quot;."/>
