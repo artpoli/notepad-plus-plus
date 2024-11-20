@@ -972,7 +972,7 @@ Translation note:
 					<Item id="6123" name="Лакалізацыя"/>
 					<Item id="6128" name="Хаваць ярлыкі + ▼ ✕ у правай частцы радка меню (неабходны перазапуск Notepad++)"/>
 
-					<Item id="6123" name="Localization"/>
+					<Item id="6123" name="Лакалізацыя"/>
 				</Global>
 
 				<Scintillas title="Рэдагаванне 1">
@@ -1220,7 +1220,7 @@ Translation note:
 				<AutoCompletion title="Аўтазавяршэнне">
 					<Item id="6807" name="Аўтазавяршэнне"/>
 					<Item id="6808" name="Уключыць аўтазавяршэнне для кожнага ўвядзення"/>
-					<Item id="6809" name="Function completion"/>
+					<Item id="6809" name="Завяршэнне функцый"/>
 					<Item id="6810" name="Завяршэнне слоў"/>
 					<Item id="6816" name="Завяршэнне функцый і слоў"/>
 					<Item id="6869" name="Уставіць выбранае"/>
@@ -1232,11 +1232,11 @@ Translation note:
 					<Item id="6814" name="Зрабіць кароткі спіс аўтазавяршэння"/>
 					<Item id="6815" name="Падказка параметраў функцый пры ўвядзенні"/>
 					<Item id="6851" name="Аўтаўстаўка"/>
-					<Item id="6857" name=" html/xml close tag"/>
-					<Item id="6858" name="Open"/>
+					<Item id="6857" name=" закр. тэг html/xml"/>
+					<Item id="6858" name="Адкрыць"/>
 					<Item id="6859" name="Закрыць"/>
-					<Item id="6860" name="Matched pair 1:"/>
-					<Item id="6863" name="Matched pair 2:"/>
+					<Item id="6860" name="Суаднесеная пара 1:"/>
+					<Item id="6863" name="Суаднесеная пара 2:"/>
 					<Item id="6866" name="Суаднесеная пара 3:"/>
 				</AutoCompletion>
 
