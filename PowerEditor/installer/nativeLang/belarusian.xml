@@ -959,17 +959,17 @@ Translation note:
 					<Item id="6112" name="Клавіша закрыцця на кожнай укладцы"/>
 					<Item id="6113" name="Закрываць падвойным націскам"/>
 					<Item id="6115" name="Enable pin tab feature"/>
-					<Item id="6113" name="Схаваць панэль меню (Alt або F10)"/>
+					<Item id="6113" name="Схаваць"/>
 					<Item id="6118" name="Каскадам"/>
 					<Item id="6119" name="Вертыкальная"/>
 					<Item id="6120" name="Выходзіць пры закрыцці апошняй укладкі"/>
 					<Item id="6121" name="Змяніць значкі"/>
 
 					<Item id="6131" name="Панэль стану"/>
-					<Item id="6122" name="Схаваць панэль меню (Alt або F10)"/>
+					<Item id="6122" name="Схаваць"/>
 
 					<Item id="6132" name="Хаваць ярлыкі + ▼ ✕ у правай частцы радка меню (неабходны перазапуск праграмы)"/>
-					<Item id="6123" name="Лакалізацыя"/>
+					<Item id="6123" name="Схаваць панэль меню (Alt або F10)"/>
 					<Item id="6128" name="Хаваць ярлыкі + ▼ ✕ у правай частцы радка меню (неабходны перазапуск Notepad++)"/>
 
 					<Item id="6123" name="Лакалізацыя"/>
@@ -1420,7 +1420,7 @@ Translation note:
 			<DeleteFileFailed title="Выдаліць файл" message="Збой выдалення файла"/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 
 			<NbFileToOpenImportantWarning title="Занадта вялікая колькасць файлаў для адкрыцця" message="$INT_REPLACE$ файлаў неўзабаве будзе адкрыта. Вы сапраўды хочаце адкрыць іх?"/><!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
-			<SettingsOnCloudError title="Налады воблачнага сховішча" message="Відавочна, што налады шляху да воблака ўсталяваны з пазнакай толькі на чытанне\rабо ў папку, якая патрабуе адпаведных правоў на запіс.\rВашы налады ў воблаку будуць скасаваны. Cкіньце адпаведнае значэнне праз дыялогавае акно Параметры."/>
+			<SettingsOnCloudError title="Налады воблачнага сховішча" message="Відавочна, што налады шляху да воблака ўсталяваны з пазнакай толькі на чытанне\rабо ў папку, якая патрабуе адпаведных правоў на запіс.\rВашы налады ў воблаку будуць скасаваны. Скіньце адпаведнае значэнне праз дыялогавае акно Параметры."/>
 			<FilePathNotFoundWarning title="Адкрыццё файла" message="Файл, які вы спрабуеце адкрыць не існуе."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<SessionFileInvalidError title="Не атрымалася загрузіць сеанс" message="Файл сеанса пашкоджаны або з'яўляецца памылковым."/><!-- HowToReproduce: Save current session via menu "File -> Save Session...", use another editor to modify the session you saved to make it an invalid xml file. Then load this invalid session via menu "File -> Load Session...". -->
 			<DroppingFolderAsProjectModeWarning title="Памылковае дзеянне" message="Вы можаце перацягваць толькі файлы або толькі папкі, але не ўсё адразу, паколькі вы знаходзіцеся ў рэжыме &quot;Папка як праект&quot;. Каб гэты параметр пачаў працаваць вам неабходна ўключыць &quot;Адкрыць усе файлы папкі, замест адкрыцця папкі як працоўнай вобласці&quot; ў меню &quot;Параметры - Прадвызначаны каталог&quot;."/>
@@ -1467,7 +1467,7 @@ Translation note:
 			<OpenInAdminModeWithoutCloseCurrent title="Збой захавання" message="Не атрымалася захаваць файл. Магчыма ён абаронены. Запусціць Notepad++ у рэжыме адміністратара?"/>
 			<OpenInAdminModeFailed title="Збой запуску ў рэжыме адміністратара" message="Notepad++ не можа быць адкрыты ў рэжыме адміністратара."/><!-- HowToReproduce: When you have no Admin privilege and you try to save a modified file in a protected location (for example: any file in sub-folder of "C:\Program Files\". This message will appear after replying "Yes" to "Open in Admin mode" dialog. -->
 			<ViewInBrowser title="Паглядзець бягучы файл у браўзеры" message="У вашай сістэме не атрымалася знайсці праграму."/>
-			<ExitToUpdatePlugins title="Вы збіраецеся закрыць Notepad++" message="Калі вы націсніце ТАК, то вы выйдзеце з Notepad++, каб працягнуць аперацыю.  Пасля таго, як усе аперацыі будуць завершаны праграма запусціцца зноў.  Працягнуць?"/>
+			<ExitToUpdatePlugins title="Вы збіраецеся закрыць Notepad++" message="Калі вы націсніце ТАК, то вы выйдзеце з Notepad++, каб працягнуць аперацыю. Пасля таго, як усе аперацыі будуць завершаны праграма запусціцца зноў. Працягнуць?"/>
 			<NeedToRestartToLoadPlugins title="Неабходна перазапусціць Notepad++" message="Неабходна перазапусціць Notepad++, каб убудовы пачалі працаваць."/><!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
 			<ChangeHistoryEnabledWarning title="Неабходна перазапусціць Notepad++" message="Неабходна перазапусціць Notepad++, каб гісторыя змен пачала працаваць."/><!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
 			<WindowsSessionExit title="Notepad++ - выхад з сеанса Windows" message="Сеанс Windows неўзабаве будзе завершаны, але ў вас ёсць незахаваныя даныя. Вы сапраўды хочаце выйсці з Notepad++?"/>
@@ -1632,7 +1632,7 @@ Translation note:
 			<find-status-cannot-find value="Знайсці: немагчыма знайсці тэкст &quot;$STR_REPLACE$&quot;"/>
 			<find-status-cannot-find-pebkac-maybe value="Не ўдаецца знайсці зададзенае супадзенне. Магчыма, што вы забылі пазначыць &quot;Абцяканне тэкстам&quot; (уключана), &quot;Улічваць рэгістр&quot; (выключана) або &quot;Улічваць толькі цэлыя словы&quot; (выключана)."/>
 			<find-status-scope-selection value="у выбраным тэксце"/>
-			<find-status-scope-all value="у ва ўсім файле"/>
+			<find-status-scope-all value="ва ўсім файле"/>
 			<find-status-scope-backward value="ад пачатку файла да стрэшкі"/>
 			<find-status-scope-forward value="ад стрэшкі да канца файла"/>
 			<finder-find-in-finder value="Знайсці ў гэтых выніках пошуку..."/>
@@ -1708,11 +1708,11 @@ Translation note:
 			<npcCodepoint-tip value="Пункт кода : назва U+00A0 : неразрыўны прабел U+200B : прабел з нулявой шырынёй U+FEFF : неразрыўны прабел з нулявой шырынёй  Для поўнага спіса скарачэнняў звярніцеся да дапаможніка карыстальніка. Націсніце кнопку &quot;?&quot; справа, каб адкрыць сайт з дапаможнікам карыстальніка."/>
 
 			<!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
-			<npcCustomColor-tip value="Адкрыйце канфігуратар стылю, каб змяніць прадвызначаны карыстальніцкі колер для выбраных пропускаў і сімвалаў, якія не друкуюцца (&quot;Карыстальніцкі колер і сімвалы, якія не друкуюцца&quot;)."/>
+			<npcCustomColor-tip value="Перайсці да канфігуратара стылю, каб змяніць прадвызначаны карыстальніцкі колер для выбраных пропускаў і сімвалаў, якія не друкуюцца (&quot;Карыстальніцкі колер і сімвалы, якія не друкуюцца&quot;)."/>
 			<npcIncludeCcUniEol-tip value="Ужыць налады выгляду сімвалаў, якія не друкуюцца да C0, C1 control і Unicode EOL (наступны радок, раздзяляльнік радкоў і раздзяляльнік абзацаў)."/>
 			<searchingInSelThresh-tip value="Колькасць выбраных сімвалаў у зоне рэдагавання для аўтаматычнага пазначэння &quot;ў выбары&quot;, калі актывавана дыялогавае акно Знайсці. Максімальнае значэнне - 1024. Зададзена значэнне 0, каб адключыць аўтаматычную праверку."/>
 			<verticalEdge-tip value="Дадайце сваю пазнаку слупка, азначыўшы яго размяшчэнне дзесятковым лікам. Вы можаце вызначыць некалькі пазнак слупкоў скарыстаўшыся прабелам для раздзялення розных лічбаў."/>
-			<fileSaveAsCopySaveButton-tip value="Утрымлівайце Shift, націскаючы Захаваць, каб адрыць копію пасля захавання."/>
+			<fileSaveAsCopySaveButton-tip value="Утрымлівайце Shift, націскаючы Захаваць, каб адкрыць копію пасля захавання."/>
 			<autoIndentBasic-tip value="Пераканайцеся, што водступ бягучага радка (г.зн. новы радок створаны націскам клавішы ENTER) супадае з водступам папярэдняга радка."/>
 			<autoIndentAdvanced-tip value="Уключыць інтэлектуальны водступ для моў праграмавання, якія &quot;падобныя на C&quot; і Python. Мовы праграмавання, якія &quot;падобныя на C&quot; уключаюць: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell і JSON.  Калі выбраць пашыраны рэжым, але не рэдагаваць файлы вышэй азначанымі мовамі, водступ застанецца ў базавым рэжыме."/>
 			<!-- Don't translate "Global override" and "Default Style" -->
