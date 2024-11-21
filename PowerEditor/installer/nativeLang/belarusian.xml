@@ -92,7 +92,7 @@ Translation note:
 					<Item id="41025" name="Папка як працоўная вобласць"/>
 					<Item id="41003" name="Закрыць"/>
 					<Item id="41004" name="Закрыць усе"/>
-					<Item id="41005" name="Закрыць усе, акрамя актыўнага"/>
+					<Item id="41005" name="Закрыць усе дакументы, акрамя актыўнага"/>
 					<Item id="41009" name="Закрыць усе злева"/>
 					<Item id="41018" name="Закрыць усе справа"/>
 					<Item id="41024" name="Закрыць усе не змененыя"/>
@@ -194,8 +194,8 @@ Translation note:
 					<Item id="42026" name="Раскаментаваць радок"/>
 					<Item id="42027" name="Тэкст злева направа"/>
 					<Item id="42028" name="Толькі чытанне"/>
-					<Item id="42029" name="Скапіяваць бягучы шлях файла"/>
-					<Item id="42030" name="Скапіяваць бягучую назву файла"/>
+					<Item id="42029" name="Скапіяваць шлях да бягучага файла"/>
+					<Item id="42030" name="Скапіяваць назву бягучага файла"/>
 					<Item id="42031" name="Скапіяваць шлях да бягучага каталога"/>
 					<Item id="42087" name="Скапіяваць усе назвы файлаў"/>
 					<Item id="42088" name="Скапіяваць усе шляхі да файлаў"/>
@@ -586,7 +586,7 @@ Translation note:
 			</SHA1FromTextDlg>
 
 			<SHA512FromFilesDlg title="Генерыраваць дайджэст SHA-512 з файлаў">
-				<Item id="1922" name="Выберыце файлы для &amp;генерацыі SHA-512..."/>
+				<Item id="1922" name="Выберыце файлы для генерацыі SHA-512..."/>
 				<Item id="1924" name="Скапіяваць у буфер абмену"/>
 				<Item id="2" name="Закрыць"/>
 			</SHA512FromFilesDlg>
@@ -1201,7 +1201,7 @@ Translation note:
 					<Item id="6427" name="Дапасаваць даўжыню:"/>
 				</RecentFilesHistory>
 
-				<Backup title="Рэзервовыя копіі">
+				<Backup title="Рэзервовая копія">
 					<Item id="6817" name="Здымак сеанса і перыядычнае рэзервовае капіяванне"/>
 					<Item id="6818" name="Уключыць здымак сеанса і перыядычнае рэзервовае капіяванне"/>
 					<Item id="6819" name="Выклікае рэзервовае капіяванне пасля змянення кожныя"/>
@@ -1412,7 +1412,7 @@ Translation note:
 			<SaveCurrentModifWarning title="Захаваць бягучую мадыфікацыю" message="Вы павінны захаваць бягуыя змяненні. Аднавіць усе зробленыя вамі змяненні будзе немагчыма.  Працягнуць?"/><!-- HowToReproduce: when you openned file is modified but unsaved yet, and you are changing file encoding. -->
 			<LoseUndoAbilityWarning title="Папярэджанне немагчымасці адраблення" message="Вы павінны захаваць бягучыя змяненні. Аднавіць усе зробленыя вамі змяненні будзе немагчыма.  Працягнуць?"/><!-- HowToReproduce: when you openned file is modified and saved, then you are changing file encoding. -->
 			<CannotMoveDoc title="Перамясціць у новы экзэмпляр Notepad++" message="Дакумент зменены. Захавайце яго і паспрабуйце зноў."/><!-- HowToReproduce: From your Notepad++ drag & drop a clean (not dirty) file to outside of Notepad++, another instance of Notepad++ will be created. Then from your first Notepad++ drag & drop an unsaved file to the new instance. -->
-			<DocReloadWarning title="Перазагрузіць" message="Вы сапраўды хочаце перазагрузіць бягучы файл і згубіць усе змены, якія былі зробленыя ў Notepad++?"/>
+			<DocReloadWarning title="Перазагрузіць" message="Вы сапраўды хочаце перазагрузіць бягучы файл і згубіць усе змены, якія былі зроблены ў Notepad++?"/>
 			<FileLockedWarning title="Збой захавання" message="Праверце, ці не адкрыты гэты файл у іншай праграме"/>
 			<FileAlreadyOpenedInNpp title="" message="Файл ужо адкрыты ў Notepad++."/><!-- HowToReproduce: Open a new document and open a file "c:/tmp/foo", save this new document by choosing "c:/tmp/foo" as file to save, reply the override popup "yes", then this message appears. -->
 			<RenameTabTemporaryNameAlreadyInUse title="Збой перайменавання" message="Азначаная назва ўжо выкарыстоўваецца на іншай укладцы."/><!-- HowToReproduce: Rename the tab of an untitled document and provide a name that is the same as an already-existing tab of an untitled document. -->
@@ -1676,7 +1676,7 @@ Translation note:
 			<replace-in-projects-confirm-title value="Вы ўпэўнены?"/>
 			<replace-in-projects-confirm-message value="Вы сапраўды хочаце замяніць усе супадзенні ў ва ўсіх дакументах у выбранай панэлі праектаў?"/>
 			<replace-in-open-docs-confirm-title value="Вы ўпэўнены?"/>
-			<replace-in-open-docs-confirm-message value="Вы сапраўды хочаце замяніць усе супадзенні ў ва ўсіх адкрытых дакументах?"/>
+			<replace-in-open-docs-confirm-message value="Вы сапраўды хочаце замяніць усе супадзенні ва ўсіх адкрытых дакументах?"/>
 			<find-result-caption value="Вынікі пошуку"/>
 			<find-result-title value="Пошук"/><!-- Must not begin with space or tab character -->
 			<find-result-title-info value="($INT_REPLACE1$ супадзенняў у $INT_REPLACE2$ файлах для $INT_REPLACE3$ пошукаў)"/>
