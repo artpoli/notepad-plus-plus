@@ -292,7 +292,7 @@ Translation note:
 					<Item id="44031" name="Разгарнуць бягучы ўзровень"/>
 					<Item id="44049" name="Зводка..."/>
 					<Item id="44080" name="Карта дакумента"/>
-					<Item id="44070" name="Спіс дакументаў"/>
+					<Item id="44070" name="Спіс дакумента"/>
 					<Item id="44084" name="Спіс функцый"/>
 					<Item id="44085" name="Папка як працоўная вобласць"/>
 					<Item id="44086" name="1-ая ўкладка"/>
@@ -624,10 +624,10 @@ Translation note:
 					<Item id="2211" name="Стыль:"/>
 					<Item id="2212" name="Стыль колеру"/>
 					<Item id="2213" name="Стыль шрыфту"/>
-					<Item id="2214" name="Пашырэнні праграмы:"/>
+					<Item id="2214" name="Пашырэнні:"/>
 					<Item id="2216" name="Пашырэнні карыстальніка:"/>
 					<Item id="2218" name="Падкрэслены"/>
-					<Item id="2219" name="Ключавыя словы праграмы"/>
+					<Item id="2219" name="Ключавыя словы"/>
 					<Item id="2221" name="Ключавыя словы карыстальніка"/>
 					<Item id="2225" name="Мова:"/>
 					<Item id="2226" name="Прымусовы колер пярэдняга плана для ўсіх стыляў"/>
@@ -775,7 +775,7 @@ Translation note:
 				<Item id="20004" name="Выдаліць"/>
 				<Item id="20005" name="Захаваць як..."/>
 				<Item id="20007" name="Мова карыстальніка"/>
-				<Item id="20009" name="Пашырэнні:"/>
+				<Item id="20009" name="Пашыр.:"/>
 				<Item id="20012" name="Любы рэгістр"/>
 				<Item id="20011" name="Празрыстасць"/>
 				<Item id="20015" name="Імпартаванне..."/>
@@ -1252,7 +1252,7 @@ Translation note:
 					<Item id="6181" name="Стан панэлі і [-nosession] *"/>
 					<Item id="6182" name="Памятаць стан панэлі (панэль адкрыта) у іншых экзэмплярах (шматэкзэмплярны рэжым) або пры выкарыстанні параметра каманднага радка [-nosession]"/>
 					<Item id="6183" name="Гісторыя буфера абмену"/>
-					<Item id="6184" name="Спіс дакументаў"/>
+					<Item id="6184" name="Спіс дакумента"/>
 					<Item id="6185" name="Панэль сімвалаў"/>
 					<Item id="6186" name="Папка як працоўная вобласць"/>
 					<Item id="6187" name="Панэлі праекта"/>
@@ -1303,7 +1303,7 @@ Translation note:
 					<Item id="6275" name="Yahoo!"/>
 					<Item id="6276" name="Задаць сваю пошукавую сістэму:"/>
 					<!-- Don't change anything after Example: -->
-					<Item id="6278" name="Узор: https://www.google.com/search?q=$(CURRENT_WORD)"/>
+					<Item id="6278" name="Прыклад: https://www.google.com/search?q=$(CURRENT_WORD)"/>
 				</SearchEngine>
 
 				<MISC title="РОЗНАЕ">
@@ -1324,7 +1324,7 @@ Translation note:
 					<Item id="6325" name="Прагарт. да апошн. радка пасля абнаўл."/>
 					<Item id="6322" name="Пашырэнне файла сеанса:"/>
 					<Item id="6323" name="Аўтаматычна абнаўляць Notepad++"/>
-					<Item id="6324" name="Пераключэнне дакументаў (Ctrl+TAB)"/>
+					<Item id="6324" name="Пераключэнне дакумента (Ctrl+TAB)"/>
 					<Item id="6331" name="Паказваць толькі назву файла ў радку загалоўка"/>
 					<Item id="6334" name="Аўтавызначэнне кадзіравання сімвалаў"/>
 					<Item id="6349" name="Выкарыстоўваць DirectWrite (можа палепшыць адлюстраванне спецыяльных сімвалаў, неабходны перазапуск Notepad++)"/>
@@ -1487,7 +1487,7 @@ Translation note:
 			<PanelTitle name="Гісторыя буфера абмену"/>
 		</ClipboardHistory>
 		<DocList>
-			<PanelTitle name="Спіс дакументаў"/>
+			<PanelTitle name="Спіс дакумента"/>
 			<ColumnName name="Назва"/>
 			<ColumnExt name="Пашыр."/>
 			<ColumnPath name="Шлях"/>
@@ -1674,7 +1674,7 @@ Translation note:
 			<replace-in-files-confirm-filetype value="Для тыпу файла:"/>
 			<replace-in-files-progress-title value="Адбываецца замена ў файлах..."/>
 			<replace-in-projects-confirm-title value="Вы ўпэўнены?"/>
-			<replace-in-projects-confirm-message value="Вы сапраўды хочаце замяніць усе супадзенні ў ва ўсіх дакументах у выбранай панэлі праектаў?"/>
+			<replace-in-projects-confirm-message value="Вы сапраўды хочаце замяніць усе супадзенні ва ўсіх дакументах у выбранай панэлі праектаў?"/>
 			<replace-in-open-docs-confirm-title value="Вы ўпэўнены?"/>
 			<replace-in-open-docs-confirm-message value="Вы сапраўды хочаце замяніць усе супадзенні ва ўсіх адкрытых дакументах?"/>
 			<find-result-caption value="Вынікі пошуку"/>
@@ -1716,7 +1716,7 @@ Translation note:
 			<autoIndentBasic-tip value="Пераканайцеся, што водступ бягучага радка (г.зн. новы радок створаны націскам клавішы ENTER) супадае з водступам папярэдняга радка."/>
 			<autoIndentAdvanced-tip value="Уключыць інтэлектуальны водступ для моў праграмавання, якія &quot;падобныя на C&quot; і Python. Мовы праграмавання, якія &quot;падобныя на C&quot; уключаюць: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell і JSON.  Калі выбраць пашыраны рэжым, але не рэдагаваць файлы вышэй азначанымі мовамі, водступ застанецца ў базавым рэжыме."/>
 			<!-- Don't translate "Global override" and "Default Style" -->
-			<global-override-tip value="Уключэнне &quot;Глабальнага перавызначэння&quot; у гэтым месцы перавызначыць гэты параметр ва ўсіх моўных стылях. Магчыма, што замест гэтага, вы хочаце выкарыстоўваць &quot;Прадвызначаны стыль&quot;"/>
+			<global-override-tip value="Уключэнне &quot;Глабальнага перавызначэння&quot; у гэтым месцы перавызначыць гэты параметр ва ўсіх моўных стылях. Магчыма, што замест гэтага, вы захочаце выкарыстаць &quot;Прадвызначаны стыль&quot;"/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
