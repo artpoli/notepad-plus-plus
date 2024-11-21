@@ -843,7 +843,7 @@ Translation note:
 					<Item id="22201" name="2-ая група"/>
 					<Item id="22301" name="3-я група"/>
 					<Item id="22401" name="4-ая група"/>
-					<Item id="22451" name=""/>
+					<Item id="22451" name="5-ая група"/>
 					<Item id="22501" name="6-ая група"/>
 					<Item id="22551" name="7-ая група"/>
 					<Item id="22601" name="8-ая група"/>
@@ -963,7 +963,7 @@ Translation note:
 					<Item id="6118" name="Каскадам"/>
 					<Item id="6119" name="Вертыкальная"/>
 					<Item id="6120" name="Выходзіць пры закрыцці апошняй укладкі"/>
-					<Item id="6121" name="Выходзіць пры закрыцці апошняй укладкі"/>
+					<Item id="6121" name="Змяніць значкі"/>
 
 					<Item id="6131" name="Панэль стану"/>
 					<Item id="6122" name="Схаваць панэль меню (Alt або F10)"/>
@@ -1278,7 +1278,7 @@ Translation note:
 					<Item id="7146" name="МБ  (1 - 2046)"/>
 					<Item id="7147" name="Дазваляць парныя дужкі"/>
 					<Item id="7148" name="Дазваляць аўтазавяршэнне"/>
-					<Item id="7149" name="Дазваляць інтэлектуальнае падсветку"/>
+					<Item id="7149" name="Дазваляць інтэлектуальную падсветку"/>
 					<Item id="7150" name="Дэактываваць глабальны перанос слоў"/>
 					<Item id="7151" name="Дазваляць актыўныя спасылкі URL-адрасоў"/>
 					<Item id="7152" name="Не папярэджваць пры адкрыцці файлаў памерам больш за 2 ГБ"/>
@@ -1451,7 +1451,7 @@ Translation note:
 			<FolderAsWorspaceSubfolderExists title="Праблема з дадаваннем папкі як працоўнай вобласці" message="Падпапка, якую вы спрабуеце дадаць ужо існуе. Выдаліце яе корань з панэлі перад тым, як дадаваць папку &quot;$STR_REPLACE$&quot;."/><!-- HowToReproduce: Add a folder like "c:\temp\aFolder\" into "Folder as Workspace" panel, then try to add "c:\temp\". -->
 
 			<ProjectPanelChanged title="$STR_REPLACE$" message="Працоўная вобласць была зменена. Вы сапраўды хочаце захаваць яе?"/>
-			<ProjectPanelSaveError title="$STR_REPLACE$" message="Адбылася памылка падчас запісу ваша файла працоўнай вобласці. На жаль, ваша працоўная вобласць не была захавана."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
+			<ProjectPanelSaveError title="$STR_REPLACE$" message="Адбылася памылка падчас запісу ваша файла працоўнай вобласці. Ваша працоўная вобласць не была захавана."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<ProjectPanelOpenDoSaveDirtyWsOrNot title="Адкрыць працоўную вобласць" message="Бягучая працоўная вобласць была зменена. Вы сапраўды хочаце захаваць бягучы праект?"/>
 			<ProjectPanelNewDoSaveDirtyWsOrNot title="Новая працоўная вобласць" message="Бягучая працоўная вобласць была зменена. Вы сапраўды хочаце захаваць бягучы праект?"/>
 			<ProjectPanelOpenFailed title="Адкрыць працоўную вобласць" message="Не атрымалася адкрыць працоўную вобласць. Відавочна, што адкрыты файл не з'яўляецца дзейным файлам праекта."/>
