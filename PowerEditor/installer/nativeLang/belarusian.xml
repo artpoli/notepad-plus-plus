@@ -53,7 +53,7 @@ Translation note:
 					<Item subMenuId="view-showSymbol" name="Паказаць сімвал"/>
 					<Item subMenuId="view-zoom" name="Маштаб"/>
 					<Item subMenuId="view-moveCloneDocument" name="Перамясціць/Кланіраваць бягучы дакумент"/>
-					<Item subMenuId="view-tab" name="Праект"/>
+					<Item subMenuId="view-tab" name="Укладка"/>
 					<Item subMenuId="view-collapseLevel" name="Згарнуць узровень"/>
 					<Item subMenuId="view-uncollapseLevel" name="Разгарнуць узровень"/>
 					<Item subMenuId="view-project" name="Праект"/>
@@ -139,7 +139,7 @@ Translation note:
 					<Item id="42061" name="Сартаваць радкі як цэлыя па ўзрастанні"/>
 					<Item id="42062" name="Сартаваць радкі як цэлыя па змяншэнні"/>
 					<Item id="42063" name="Сартаваць радкі як дзесятковыя (коска) па ўзрастанні"/>
-					<Item id="42064" name="Сартаваць радкі як дзесятковыя (кропка) па змяншэнні"/>
+					<Item id="42064" name="Сартаваць радкі як дзесятковыя (коска) па змяншэнні"/>
 					<Item id="42065" name="Сартаваць радкі як дзесятковыя (кропка) па ўзрастанні"/>
 					<Item id="42066" name="Сартаваць радкі як дзесятковыя (кропка) па змяншэнні"/>
 					<Item id="42083" name="Выпадковы парадак радкоў"/>
@@ -191,7 +191,7 @@ Translation note:
 					<Item id="42051" name="Панэль сімвалаў"/>
 					<Item id="42052" name="Гісторыя буфера абмену"/>
 					<Item id="42025" name="Захаваць бягучы запіс макраса..."/>
-					<Item id="42026" name="Раскаментаваць радок"/>
+					<Item id="42026" name="Тэкст справа налева"/>
 					<Item id="42027" name="Тэкст злева направа"/>
 					<Item id="42028" name="Толькі чытанне"/>
 					<Item id="42029" name="Скапіяваць шлях да бягучага файла"/>
@@ -1182,7 +1182,7 @@ Translation note:
 					<Item id="6902" name="Выкарыстоўваць шрыфт з аднолькавай шырынёй у акне Пошук (патрабуецца перазапуск Notepad++)"/>
 					<Item id="6903" name="Дыялогавае акно пошуку застаецца адкрытым пасля ўвядзення вынікаў"/>
 					<Item id="6904" name="Пацвердзіць замену ўсяго ва ўсіх адкрытых дакументах"/>
-					<Item id="6905" name="Замяніць: Не пераходзіць да наступнага паўтарэння"/>
+					<Item id="6905" name="Замяніць. Не пераходзіць да наступнага паўтарэння"/>
 					<Item id="6906" name="Акно вынікаў пошуку: калі магчыма, то паказваць толькі адзін запіс на знойдзены радок"/>
 					<Item id="6907" name="Калі выклікана дыялогавае акно &quot;Знайсці&quot;"/>
 					<Item id="6908" name="Запоўніць поле для пошуку выбраным тэкстам"/>
@@ -1419,7 +1419,7 @@ Translation note:
 			<RenameTabTemporaryNameIsEmpty title="Збой перайменавання" message="Пазначаная назва не можа быць пустой, а таксама не можа змяшчаць сімвалы прабелу і табуляцыі."/><!-- HowToReproduce: Rename the tab of an untitled document and provide an empty string or only some white speces. -->
 			<DeleteFileFailed title="Выдаліць файл" message="Збой выдалення файла"/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 
-			<NbFileToOpenImportantWarning title="Занадта вялікая колькасць файлаў для адкрыцця" message="$INT_REPLACE$ файлаў неўзабаве будзе адкрыта. Вы сапраўды хочаце адкрыць іх?"/><!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
+			<NbFileToOpenImportantWarning title="Занадта вялікая колькасць файлаў для адкрыцця" message="Неўзабаве будзе адкрыта наступная колькасць файлаў: $INT_REPLACE$. Вы сапраўды хочаце адкрыць іх?"/><!-- HowToReproduce: Check "Open all files of folder instead of launching Folder as Workspace on folder dropping" in "Default Directory" of Preferences dialog, then drop a folder which contains more then 200 files into Notepad++. -->
 			<SettingsOnCloudError title="Налады воблачнага сховішча" message="Відавочна, што налады шляху да воблака ўсталяваны з пазнакай толькі на чытанне\rабо ў папку, якая патрабуе адпаведных правоў на запіс.\rВашы налады ў воблаку будуць скасаваны. Скіньце адпаведнае значэнне праз дыялогавае акно Параметры."/>
 			<FilePathNotFoundWarning title="Адкрыццё файла" message="Файл, які вы спрабуеце адкрыць не існуе."/><!-- HowToReproduce: this message prevents from system failure. It's hard to reproduce. -->
 			<SessionFileInvalidError title="Не атрымалася загрузіць сеанс" message="Файл сеанса пашкоджаны або з'яўляецца памылковым."/><!-- HowToReproduce: Save current session via menu "File -> Save Session...", use another editor to modify the session you saved to make it an invalid xml file. Then load this invalid session via menu "File -> Load Session...". -->
@@ -1477,7 +1477,7 @@ Translation note:
 			<NotEnoughRoom4Saving title="Збой захавання" message="Не ўдалося захаваць файл. Верагодна, што недастаткова прасторы на дыску. Ваш файл не захаваны."/>
 			<FileInaccessibleUserSession title="Файл недаступны" message="Некаторыя файлы з вашага сеанса захаваны ўручную &quot;$STR_REPLACE$&quot; недаступны. Іх можна адкрыць у якасці запаўняльнікаў, як пустыя файлы і даступныя толькі для чытання. Вы сапраўды хочаце стварыць гэтыя запаўняльнікі?  НАТАТКА: калі вы вырашыце не ствараць запаўняльнікі або закрыць іх пазней, ваш сеанс захаваны ўручную НЕ будзе зменены пры выхадзе."/>
 			<FileInaccessibleDefaultSessionXml title="Файл недаступны" message="Некаторыя файлы з вашага папярэдняга сеанса недаступны. Іх можна адкрыць у якасці запаўняльнікаў, як пустыя файлы і даступныя толькі для чытання. Вы сапраўды хочаце стварыць гэтыя запаўняльнікі?  НАТАТКА: калі вы вырашыце не ствараць запаўняльнікі або закрыць іх пазней, ваш сеанс БУДЗЕ ЗМЕНЕНЫ ПРЫ ВЫХАДЗЕ! Прапануем вам неадкладна стварыць рэзервовую копію &quot;session.xml&quot;."/>
-			<RTLvsDirectWrite title="Немагчыма запусціць RTL" message="RTL не сумяшчальны з рэжымам DirectWrite. Аключыце рэжым DirectWrite у раздзеле РОЗНАЕ ў дыялогавым акне з параметрамі і перазапусціце Notepad++."/>
+			<RTLvsDirectWrite title="Немагчыма запусціць RTL" message="RTL несумяшчальны з рэжымам DirectWrite. Адключыце рэжым DirectWrite у раздзеле РОЗНАЕ ў дыялогавым акне з параметрамі і перазапусціце Notepad++."/>
 			<FileMemoryAllocationFailed title="Выключэнне: збой размеркавання памяці файла" message="Верагодна, што недастаткова сумежнай вольнай памяці для файла, які загружае Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
 			<FindRegexBackwardDisabled title="Зваротны пошук рэгулярных выразаў адключаны" message="Прадвызначана зваротны пошук рэгулярных выразаў уключаны з прычыны патэнцыйна неспадзяваных вынікаў. Для выканання зваротнага пошуку, адкрыйце дыялогавае акно Знайсці і выберыце звычайны або пашыраны рэжым пошуку замест рэгулярнага выразу. Націсніце кнопку OK, каб адкрыць дыялогавае акно пошуку або ўстанавіце фокус на яго.     Калі вам патрэбныя функцыя пошуку зваротнага рэгулярнага выразу, звярніце да даведкі карыстальніка для атрымання інструкцый, каб яе ўключыць."/>
 			<PrintError title="0" message="Немагчыма запусціць дакумент прынтара."/><!-- Use title="0" to use Windows OS default translated "Error" title. -->
@@ -1595,8 +1595,8 @@ Translation note:
 			<eol-custom-color-tip value="Перайсці да канфігуратара стылю для змены карыстальніцкага колеру прадвызначанага сімвала канца радка (&quot;карыстальніцкі колер прадвызначанага сімвала канца радка&quot;).."/>
 
 			<word-chars-list-warning-begin value="Майце на ўвазе: "/>
-			<word-chars-list-space-warning value="$INT_REPLACE$ прабел(-ы)"/>
-			<word-chars-list-tab-warning value="$INT_REPLACE$ TAB"/>
+			<word-chars-list-space-warning value="Прабелаў: $INT_REPLACE$"/>
+			<word-chars-list-tab-warning value="Табуляцый: $INT_REPLACE$"/>
 			<word-chars-list-warning-end value="  у вашым спісе сімвалаў."/><!-- HowToReproduce: In "Delimiter" section of Preferences dialog, check "Add your character as part of word\r(don't choose it unless you know what you're doing)", then type a white-space in the text field. -->
 			<backup-select-folder value="Выбраць папку для рэзервовай копіі"/><!-- HowToReproduce: Settings > Preferences > Backup > [...] -->
 			<cloud-invalid-warning value="Памылковы шлях."/>
@@ -1616,9 +1616,9 @@ Translation note:
 			<find-status-invalid-re value="Знайсці: памылковы рэгулярны выраз"/>
 			<find-status-search-failed value="Знайсці: збой пошуку"/>
 			<find-status-mark-1-match value="Пазнака: 1 супадзенне"/>
-			<find-status-mark-nb-matches value="Пазнака: $INT_REPLACE$ супадзенняў"/>
+			<find-status-mark-nb-matches value="Пазнака. Супадзенняў: $INT_REPLACE$"/>
 			<find-status-count-1-match value="Падлічыць: 1 супадзенне"/>
-			<find-status-count-nb-matches value="Падлічыць: $INT_REPLACE$ супадзенняў"/>
+			<find-status-count-nb-matches value="Падлічыць. Супадзенняў: $INT_REPLACE$"/>
 			<find-status-replaceall-1-replaced value="Замяніць усе. Заменена 1 супадзенне"/>
 			<find-status-replaceall-nb-replaced value="Замяніць усе. Зроблена замен: $INT_REPLACE$"/>
 			<find-status-replaceall-readonly value="Замяніць усе. Немагчыма замяніць тэкст. Бягучы дакумент прызначаны толькі для чытання"/>
@@ -1628,7 +1628,7 @@ Translation note:
 			<find-status-replaced-without-continuing value="Замяніць. Заменена 1 супадзенне."/>
 			<find-status-replaced-next-not-found value="Замяніць. Заменена 1 супадзенне. Іншых супадзенняў не знойдзена."/>
 			<find-status-replace-not-found value="Замяніць. Ніводнага супадзення не знойдзена"/>
-			<find-status-replace-readonly value="Замяніць: Немагчыма замяніць тэкст. Бягучы дакумент прызначаны толькі для чытання"/>
+			<find-status-replace-readonly value="Замяніць. Немагчыма замяніць тэкст. Бягучы дакумент прызначаны толькі для чытання"/>
 			<find-status-cannot-find value="Знайсці: немагчыма знайсці тэкст &quot;$STR_REPLACE$&quot;"/>
 			<find-status-cannot-find-pebkac-maybe value="Не ўдаецца знайсці зададзенае супадзенне. Магчыма, што вы забылі пазначыць &quot;Абцяканне тэкстам&quot; (уключана), &quot;Улічваць рэгістр&quot; (выключана) або &quot;Улічваць толькі цэлыя словы&quot; (выключана)."/>
 			<find-status-scope-selection value="у выбраным тэксце"/>
@@ -1687,14 +1687,14 @@ Translation note:
 			<find-result-title-info-options-case value="Рэгістр"/>
 			<find-result-title-info-options-word value="Слова"/>
 			<find-result-title-info-extra value=" - Рэжым фільтра радкоў: паказваць толькі фільтраваныя вынікі"/>
-			<find-result-hits value="($INT_REPLACE$ супадзенняў)"/>
+			<find-result-hits value="(супадзенняў: $INT_REPLACE$)"/>
 			<find-result-line-prefix value="Радок"/><!-- Must not begin with space or tab character -->
 			<find-regex-zero-length-match value="нулявая даўжыня супадзення"/>
 			<session-save-folder-as-workspace value="Захаваць папку як працоўную вобласць"/>
 			<tab-untitled-string value="новы "/>
 			<file-save-assign-type value="Дадаць пашырэнне"/>
 			<close-panel-tip value="Закрыць"/>
-			<IncrementalFind-FSFound value="$INT_REPLACE$ супадзенняў"/>
+			<IncrementalFind-FSFound value="Супадзенняў: $INT_REPLACE$"/>
 			<IncrementalFind-FSNotFound value="Фраза не знойдзена"/>
 			<IncrementalFind-FSTopReached value="Дасягнуты пачатак старонкі, працягнута з канца"/>
 			<IncrementalFind-FSEndReached value="Дасягнуты канец старонкі, працягнута спачатку"/>
@@ -1703,7 +1703,7 @@ Translation note:
 			<contextMenu-clearStyle value="Ачысціць стыль"/>
 			<contextMenu-PluginCommands value="Каманды ўбудовы"/>
 			<largeFileRestriction-tip value="Некаторыя функцыі могуць запаволіць прадукцыйнасць у вялікіх файлах. Гэтыя функцыі можна аўтаматычна адключаць пры адкрыцці вялікага файла. Вы можаце дапасаваць іх тут.  НАТАТКА: 1. Параметры, якія будуць тут зменены запатрабуюць паўторнага адкрыцця бягучых файлаў з вялікім памерам для дасягнення карэктных паводзін.  2. Калі пазначана &quot;Дэактываваць агульны перанос слоў&quot; і вы адкрываеце вялікі файл, то &quot;Перанос слоў&quot; будзе адключаны для ўсіх файлаў. Вы зможаце паўторна ўключыць яго праз меню &quot;Выгляд&gt;Перанос слоў&quot;."/>
-			<npcNote-tip value="Прадстаўленне выбранага&quot;не ASCII&quot; пропуску і сімвалаў, якія не друкуюцца (кантрольных). ЗАЎВАГА: выкарыстанне прадстаўлення адключыць эфекты сімвалаў у тэксце. Для поўнага спіса выбраных пропускаў і сімвалаў, якія не друкуюцца звярніцеся да дапаможніка карыстальніка. Націсніце гэту кнопку, каб адкрыць вэб-сайт з дапаможнікам карыстальніка."/>
+			<npcNote-tip value="Прадстаўленне выбранага &quot;не ASCII&quot; пропуску і сімвалаў, якія не друкуюцца (кантрольных). ЗАЎВАГА: выкарыстанне прадстаўлення адключыць эфекты сімвалаў у тэксце. Для поўнага спіса выбраных пропускаў і сімвалаў, якія не друкуюцца звярніцеся да дапаможніка карыстальніка. Націсніце гэту кнопку, каб адкрыць вэб-сайт з дапаможнікам карыстальніка."/>
 			<npcAbbreviation-tip value="Скарачэнне : назва NBSP : неразрыўны прабел ZWSP : прабел з нулявой шырынёй ZWNBSP : неразрыўны прабел з нулявой шырынёй  Для поўнага спіса скарачэнняў звярніцеся да дапаможніка карыстальніка. Націсніце кнопку, &quot;?&quot; якая размяшчаецца справа, каб адкрыць сайт з дапаможнікам карыстальніка."/>
 			<npcCodepoint-tip value="Пункт кода : назва U+00A0 : неразрыўны прабел U+200B : прабел з нулявой шырынёй U+FEFF : неразрыўны прабел з нулявой шырынёй  Для поўнага спіса скарачэнняў звярніцеся да дапаможніка карыстальніка. Націсніце кнопку &quot;?&quot; справа, каб адкрыць сайт з дапаможнікам карыстальніка."/>
 
