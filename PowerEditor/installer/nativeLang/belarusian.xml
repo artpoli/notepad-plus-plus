@@ -71,7 +71,7 @@ Translation note:
 					<Item subMenuId="encoding-korean" name="Карэйская"/>
 					<Item subMenuId="encoding-northEuropean" name="Паўночная Еўропа"/>
 					<Item subMenuId="encoding-thai" name="Тайская"/>
-					<Item subMenuId="encoding-turkish" name="Мова карыстальніка"/>
+					<Item subMenuId="encoding-turkish" name="Турэцкая"/>
 					<Item subMenuId="encoding-westernEuropean" name="Заходняя Еўропа"/>
 					<Item subMenuId="encoding-vietnamese" name="В'етнамская"/>
 					<Item subMenuId="language-userDefinedLanguage" name="Мова вызначаная карыстальнікам"/>
@@ -1105,7 +1105,7 @@ Translation note:
 					<Item id="6506" name="Адключаныя мовы"/>
 					<Item id="6507" name="Кампактнае меню мовы"/>
 					<Item id="6508" name="Меню мовы"/>
-					<Item id="6335" name="Зваротны слэш як сімвал Escape для SQL"/>
+					<Item id="6335" name="Адваротная косая рыса як сімвал Escape для SQL"/>
 				</Language>
 
 				<Indentation title="Водступ">
