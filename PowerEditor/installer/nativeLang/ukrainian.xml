@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.6.9">
+	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.7.2">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -1481,7 +1481,6 @@ Translation note:
 			<FileMemoryAllocationFailed title="Виняток: помилка розподілення пам'яті файлу" message="Ймовірно, не вистачає суміжної вільної пам'яті для файлу, що завантажується Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
 			<FindRegexBackwardDisabled title="Зворотний пошук регулярних виразів вимкнено" message="Типово зворотний пошук регулярних виразів вимкнено через потенційно несподівані результати. Щоб виконати зворотний пошук, відкрийте діалогове вікно Знайти та виберіть звичайний або розширений режим пошуку замість регулярного виразу. Натисніть кнопку OK, щоб відкрити діалогове вікно пошуку або встановити фокус на ньому.     Якщо вам потрібна функція пошуку зворотного регулярного виразу, зверніться до посібника користувача для отримання інструкцій щодо її ввімкнення."/>
 			<PrintError title="0" message="Не вдається запустити документ принтера."/><!-- Use title="0" to use Windows OS default translated "Error" title. -->
-			<FileToLoadSizeCheckFailed title="File to load size-check failed" message="Cannot obtain the file size before loading!"/>
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Історія буфера"/>
