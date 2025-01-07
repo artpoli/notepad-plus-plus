@@ -500,13 +500,12 @@ Translation note:
 				<Item id="1626" name="Пашыраны (\n, \r, \t, \0, \x...)"/>
 				<Item id="1660" name="Замяніць у файлах"/>
 				<Item id="1665" name="Замяніць у праектах"/>
-				<Item id="1661" name="У папцы бягучага дакумента"/>
-				<Item id="1662" name="Панэль праекта 1"/>
-				<Item id="1663" name="Панэль праекта 2"/>
-				<Item id="1664" name="Панэль праекта 3"/>
+				<Item id="1662" name="OEM 861: ісландская"/>
+				<Item id="1663" name="OEM 865: скандынаўская"/>
+				<Item id="1664" name="ОЕМ 860: партугальская"/>
 				<Item id="1641" name="Знайсці ўсе ў бягучым дакуменце"/>
-				<Item id="1686" name="Празрыстасць"/>
-				<Item id="1703" name=". адпавядае новаму радку"/>
+				<Item id="1686" name="Transparenc&amp;y"/>
+				<Item id="1703" name="&amp;. matches newline"/>
 				<Item id="1721" name="▲"/>
 				<Item id="1723" name="▼ Знайсці далей"/>
 				<Item id="1725" name="Скапіяваць пазначаны тэкст"/>
@@ -1191,6 +1190,7 @@ Translation note:
 					<Item id="6908" name="Запоўніць поле для пошуку выбраным тэкстам"/>
 					<Item id="6909" name="Выбраць слова пад стрэшкай, калі нічога не выбрана"/>
 					<Item id="6910" name="Мінімальны памер для аўтаматычнай праверкі &quot;ў выбары&quot;:"/>
+					<Item id="6913" name="Fill Find in Files Directory Field Based On Active Document"/>
 				</Searching>
 
 				<RecentFilesHistory title="Гісторыя нядаўніх файлаў">
@@ -1609,6 +1609,7 @@ Translation note:
 			<two-find-buttons-tip value="2-клавішны рэжым пошуку"/>
 			<find-in-files-filter-tip value="Знайсці ў cpp, cxx, h, hxx &amp;&amp; hpp: *.cpp *.cxx *.h *.hxx *.hpp  Знайсці ва ўсіх файлах за выключэннем exe, obj &amp;&amp; log: *.* !*.exe !*.obj !*.log  Знайсці ва ўсіх файлах за выключэннем папак tests, bin &amp;&amp; bin64: *.* !\tests !\bin*  Знайсці ва ўсіх файлах за выключэннем усіх папак log або папак рэкурсіўным значэннем log: *.* !+\log*"/><!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
 			<find-in-files-select-folder value="Выбраць папку для пошуку з"/><!-- HowToReproduce: Search > Find in Files > [...] -->
+			<find-in-files-dir-from-active-doc-tip value="Fill Directory field based on active document"/><!-- HowToReproduce: Search > Find in Files > [<<] -->
 			<find-status-top-reached value="Знайсці: дасягнуты пачатак дакумента, першае паўтарэнне знойдзенае знізу."/>
 			<find-status-end-reached value="Знайсці: дасягнуты канец дакумента, першае паўтарэнне знойдзенае зверху."/>
 			<find-status-replaceinfiles-1-replaced value="Замяніць у файлах. Заменена 1 супадзенне"/>
