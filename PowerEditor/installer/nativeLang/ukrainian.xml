@@ -500,13 +500,12 @@ Translation note:
 				<Item id="1626" name="Розширений (\n \r, \t, \0, \x...)"/>
 				<Item id="1660" name="Замінити у файлах"/>
 				<Item id="1665" name="Замінити в проєктах"/>
-				<Item id="1661" name="У теці поточного файлу"/>
 				<Item id="1662" name="Панель проєкту 1"/>
 				<Item id="1663" name="Панель проєкту 2"/>
 				<Item id="1664" name="Панель проєкту 3"/>
 				<Item id="1641" name="Знайти все в поточному документі"/>
-				<Item id="1686" name="Прозорість"/>
-				<Item id="1703" name="&amp;. відповідає новому рядку"/>
+				<Item id="1686" name="Transparenc&amp;y"/>
+				<Item id="1703" name="&amp;. matches newline"/>
 				<Item id="1721" name="▲"/>
 				<Item id="1723" name="▼ Знайти далі"/>
 				<Item id="1725" name="Копіювати позначене"/>
@@ -1191,6 +1190,7 @@ Translation note:
 					<Item id="6908" name="Заповнити поле для пошуку вибраним текстом"/>
 					<Item id="6909" name="Вибрати слово під узгодженим, якщо нічого не вибрано"/>
 					<Item id="6910" name="Мінімальний розмір для автоматичної перевірки &quot;у виборі&quot;:"/>
+					<Item id="6913" name="Fill Find in Files Directory Field Based On Active Document"/>
 				</Searching>
 
 				<RecentFilesHistory title="Історія файлів">
@@ -1609,6 +1609,7 @@ Translation note:
 			<two-find-buttons-tip value="2-кнопковий режим пошуку"/>
 			<find-in-files-filter-tip value="Знайти в cpp, cxx, h, hxx &amp;&amp; hpp: *.cpp *.cxx *.h *.hxx *.hpp  Знайти в усіх файлах, за винятком exe, obj &amp;&amp; log: *.* !*.exe !*.obj !*.log  Знайти в усіх файлах, але виключити теки tests, bin &amp;&amp; bin64: *.* !\tests !\bin*  Знайти в усіх файлах, але виключити всі теки log чи logs рекурсивно: *.* !+\log*"/><!-- HowToReproduce: Tip of mouse hovered on "Filters" label in "Find in Files" section of Find dialog. -->
 			<find-in-files-select-folder value="Виберіть початкову теку пошуку"/><!-- HowToReproduce: Search > Find in Files > [...] -->
+			<find-in-files-dir-from-active-doc-tip value="Fill Directory field based on active document"/><!-- HowToReproduce: Search > Find in Files > [<<] -->
 			<find-status-top-reached value="Знайти: досягнуто початку документа, перший випадок знайдено знизу."/>
 			<find-status-end-reached value="Знайти: досягнуто кінця документа, перший випадок знайдено зверху."/>
 			<find-status-replaceinfiles-1-replaced value="Замінити у файлах: виконано 1 заміну"/>
