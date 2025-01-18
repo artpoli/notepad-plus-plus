@@ -958,21 +958,22 @@ Translation note:
 					<Item id="6108" name="Заборонити перетягування"/>
 					<Item id="6109" name="Change inactive tab color"/>
 					<Item id="6110" name="Кольорова панель активної вкладки"/>
+					<Item id="6111" name="Show buttons on inactive tabs"/>
 					<Item id="6112" name="Show close button"/>
 					<Item id="6113" name="Закривати подвійним клацанням"/>
 					<Item id="6115" name="Enable pin tab feature"/>
 					<Item id="6118" name="Приховати"/>
 					<Item id="6119" name="Каскадом"/>
-					<Item id="6120" name="Вертикальна"/>
-					<Item id="6121" name="Вихід при закритті останньої вкладки"/>
+					<Item id="6120" name="Вертикально"/>
+					<Item id="6121" name="Виходити після закриття останньої вкладки"/>
 					<Item id="6128" name="Змінювати піктограми"/>
 
 					<Item id="6133" name="Рядок стану"/>
 					<Item id="6134" name="Приховати"/>
 
 					<Item id="6131" name="Меню"/>
-					<Item id="6122" name="Приховати панель меню (Alt чи F10)"/>
-					<Item id="6132" name="Приховати ярлики ＋ ▼ ✕ у правій частині панелі меню (Необхідно перезапустити Notepad++)"/>
+					<Item id="6122" name="Hide (use Alt or F10 key to toggle)"/>
+					<Item id="6132" name="Hide right shortcuts ＋ ▼ ✕"/>
 
 					<Item id="6123" name="Локалізація"/>
 				</Global>
@@ -1465,14 +1466,14 @@ Translation note:
 			<UDLNewNameError title="Помилка UDL" message="Це ім'я використовується іншою мовою, будь ласка, виберіть інше."/>
 			<UDLRemoveCurrentLang title="Видалити поточну мову" message="Ви впевнені?"/>
 			<SCMapperDoDeleteOrNot title="Ви впевнені?" message="Ви дійсно бажаєте видалити цю комбінацію клавіш?"/>
-			<FindCharRangeValueError title="Проблема з діапазоном значень" message="Необхідно ввести значення від 0 до 255."/>
+			<FindCharRangeValueError title="Проблема з діапазоном значень" message="Необхідно ввести значення від 0 до 255."/> <!-- HowToReproduce: Search menu, then Find characters in range, select Custom range, enter 999 in either edit box, press Find. -->
 			<OpenInAdminMode title="Не вдалося зберегти" message="Не вдається зберегти файл, він може бути захищеним. Хочете запустити Notepad++ в режимі адміністратора?"/>
 			<OpenInAdminModeWithoutCloseCurrent title="Не вдалося зберегти" message="Не вдається зберегти файл, він може бути захищеним. Хочете запустити Notepad++ в режимі адміністратора?"/>
 			<OpenInAdminModeFailed title="Не вдалося запустити в режимі адміністратора" message="Notepad++ не може бути відкритий в режимі адміністратора."/><!-- HowToReproduce: When you have no Admin privilege and you try to save a modified file in a protected location (for example: any file in sub-folder of "C:\Program Files\". This message will appear after replying "Yes" to "Open in Admin mode" dialog. -->
 			<ViewInBrowser title="Переглянути поточний файл у браузері" message="У вашій системі не вдалося знайти програму."/>
 			<ExitToUpdatePlugins title="Ви збираєтеся закрити Notepad++" message="Якщо ви оберете ТАК, ви вийдете з Notepad++ для продовження операцій. Notepad++ перезапуститься після завершення всіх операцій. Продовжити?"/>
-			<NeedToRestartToLoadPlugins title="Необхідно перезапустити Notepad++" message="Необхідно перезапустити Notepad++ для завантаження встановлених плагінів."/><!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
-			<ChangeHistoryEnabledWarning title="Необхідно перезапустити Notepad++" message="Для увімкнення історії змін потрібно перезапустити Notepad++."/><!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
+			<NeedToRestartToLoadPlugins title="Notepad++ needs to be relaunched" message="Необхідно перезапустити Notepad++ для завантаження встановлених плагінів."/><!-- HowToReproduce: Import a plugin via menu "Settings->Import->Import Plugin(s)...". -->
+			<ChangeHistoryEnabledWarning title="Notepad++ needs to be relaunched" message="Для увімкнення історії змін потрібно перезапустити Notepad++."/><!-- HowToReproduce: uncheck "Display Change History" via Preferences dialog "Marges/Border/Edge. -->
 			<WindowsSessionExit title="Notepad++ - вихід із сеансу Windows" message="Сеанс Windows невдовзі буде завершено, але у вас є незбережені дані. Хочете вийти з Notepad++ зараз?"/>
 			<LanguageMenuCompactWarning title="Компактне меню мови" message="Цей параметр буде змінено під час наступного запуску."/><!-- HowToReproduce: toggle "Make language menu compact" via Preferences dialog "Language/Language Menu. -->
 			<SwitchUnsavedThemeWarning title="$STR_REPLACE$" message="Незбережені зміни будуть скасовані! Ви хочете зберегти зміни перед зміною теми?"/><!-- HowToReproduce: In the Style Configurator dialog change some theme and switch to other theme without saving. -->
@@ -1484,6 +1485,8 @@ Translation note:
 			<FileMemoryAllocationFailed title="Виняток: помилка розподілення пам'яті файлу" message="Ймовірно, не вистачає суміжної вільної пам'яті для файлу, що завантажується Notepad++."/><!-- HowToReproduce: Try to open multiple files with total size > ~700MB in the x86 Notepad++ (it will depend on the PC memory configuration and the current system memory usage...). -->
 			<FindRegexBackwardDisabled title="Зворотний пошук регулярних виразів вимкнено" message="Типово зворотний пошук регулярних виразів вимкнено через потенційно несподівані результати. Щоб виконати зворотний пошук, відкрийте діалогове вікно Знайти та виберіть звичайний або розширений режим пошуку замість регулярного виразу. Натисніть кнопку OK, щоб відкрити діалогове вікно пошуку або встановити фокус на ньому.     Якщо вам потрібна функція пошуку зворотного регулярного виразу, зверніться до посібника користувача для отримання інструкцій щодо її ввімкнення."/>
 			<PrintError title="0" message="Не вдається запустити документ принтера."/><!-- Use title="0" to use Windows OS default translated "Error" title. -->
+			<FindAutoChangeOfInSelectionWarning title="Search warning" message="The &quot;In selection&quot; checkbox state has been automatically modified. Please verify the search condition before performing the action."/> <!-- HowToReproduce: https://github.com/notepad-plus-plus/notepad-plus-plus/issues/14897#issuecomment-2564316224 -->
+			<Need2Restart2ShowMenuShortcuts title="Notepad++ needs to be restarted" message="Notepad++ needs to be restarted to show right menu shorcuts."/>
 		</MessageBox>
 		<ClipboardHistory>
 			<PanelTitle name="Історія буфера"/>
