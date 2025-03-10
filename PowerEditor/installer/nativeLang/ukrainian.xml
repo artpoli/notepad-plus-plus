@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.7.3">
+	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.7.8">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -822,12 +822,13 @@ Translation note:
 				<Folder title="Стандартний">
 					<Item id="21101" name="Типовий стиль"/>
 					<Item id="21102" name="Налаштувати"/>
+					<Item id="21103" name="User Defined Languages online help"/>
 					<Item id="21105" name="Документація"/>
 					<Item id="21106" name="Компактне згорт. (пусті рядки також)"/>
 					<Item id="21220" name="Згортання в коді стилю 1"/>
-					<Item id="21224" name="Відкриття:"/>
+					<Item id="21224" name="Відкривати:"/>
 					<Item id="21225" name="Середина:"/>
-					<Item id="21226" name="Закриття:"/>
+					<Item id="21226" name="Закривати:"/>
 					<Item id="21227" name="Стиль"/>
 					<Item id="21320" name="Згортання в коді стилю 2 (потрібні розділювачі)"/>
 					<Item id="21324" name="Відкриття:"/>
@@ -1317,12 +1318,19 @@ Translation note:
 						<Element name="Вимкнути"/>
 					</ComboBox>
 					<ComboBox id="6307">
-						<Element name="Немає дій для"/>
+						<Element name="No action on"/>
 						<Element name="Згорнути до"/>
 						<Element name="Закрити до"/>
 						<Element name="Minimize / Close to"/>
 					</ComboBox>
+					<ComboBox id="6362">
+						<Element name="GDI (most compatible)"/>
+						<Element name="DirectWrite (default)"/>
+						<Element name="DirectWrite (retain frames)"/>
+						<Element name="DirectWrite (draw to GDI DC)"/>
+					</ComboBox>
 					<Item id="6308" name="системного лотка"/>
+					<Item id="6363" name="rendering mode"/>
 					<Item id="6312" name="Автовизначення стану файла"/>
 					<Item id="6313" name="Оновлювати без запиту"/>
 					<Item id="6325" name="Прокрутити до ост. рядка після оновл."/>
@@ -1331,7 +1339,6 @@ Translation note:
 					<Item id="6324" name="Перемикання документів (Ctrl+Tab)"/>
 					<Item id="6331" name="Показувати лише назву файлу в рядку заголовка"/>
 					<Item id="6334" name="Автовизначення кодування символів"/>
-					<Item id="6349" name="Викор. DirectWrite (може покращити відображення спеціальних символів, потрібен перезапуск)"/>
 					<Item id="6337" name="Розш. файлу робочої області:"/>
 					<Item id="6114" name="Увімкнути"/>
 					<Item id="6117" name="Побудувати список в міру використання"/>
@@ -1723,6 +1730,7 @@ Translation note:
 			<autoIndentAdvanced-tip value="Увімкнути інтелектуальний відступ для &quot;C-подібних&quot; мов і Python. &quot;C-подібні&quot; мови включають: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell і JSON.  Якщо вибрати розширений режим, але не редагувати файли вищезазначеними мовами, відступ залишиться в базовому режимі."/>
 			<!-- Don't translate "Global override" and "Default Style" -->
 			<global-override-tip value="Увімкнення &quot;Глобального перевизначення&quot; тут замінить цей параметр у всіх мовних стилях. Натомість ви, ймовірно, хочете використовувати &quot;Типовий стиль&quot;"/>
+			<scintillaRenderingTechnology-tip value="May improve rendering of special characters or resolve some graphics issues, restart Notepad++ to apply the changes."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
