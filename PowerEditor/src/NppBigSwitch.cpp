@@ -3792,6 +3792,16 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			return fileName.length();
 		}
 
+		case NPPM_ADDSCNMODIFIEDFLAGS:
+		{
+			nppParam.addScintillaModEventMask(static_cast<unsigned long>(lParam));
+
+			auto newModEventMask = nppParam.getScintillaModEventMask();
+			_mainEditView.execute(SCI_SETMODEVENTMASK, newModEventMask);
+			_subEditView.execute(SCI_SETMODEVENTMASK, newModEventMask);
+			return TRUE;
+		}
+
 		case NPPM_INTERNAL_HILITECURRENTLINE:
 		{
 			const ScintillaViewParams& svp = nppParam.getSVP();
@@ -4121,6 +4131,15 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 				}
 				if (nbRemoved > 0)
 					::DrawMenuBar(hwnd);
+			}
+			return TRUE;
+		}
+
+		case NPPM_INTERNAL_RELOADFUNCTIONLIST:
+		{
+			if (_pFuncList && (!_pFuncList->isClosed()) && _pFuncList->isVisible())
+			{
+				_pFuncList->reload();
 			}
 			return TRUE;
 		}

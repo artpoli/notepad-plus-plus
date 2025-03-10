@@ -16,19 +16,20 @@
 
 #pragma once
 
-//
-// Notepad++ version: begin
-//
-#define NOTEPAD_PLUS_VERSION L"Notepad++ v8.7.5"
+
+//************ Notepad++ version **************************
+
+#define NOTEPAD_PLUS_VERSION L"Notepad++ v8.7.8"
 
 // should be X.Y : ie. if VERSION_DIGITALVALUE == 4, 7, 1, 0 , then X = 4, Y = 71
 // ex : #define VERSION_VALUE L"5.63\0"
-#define VERSION_INTERNAL_VALUE L"8.75\0"
+#define VERSION_INTERNAL_VALUE L"8.78\0"
 
-#define VERSION_PRODUCT_VALUE L"8.7.5\0"
-#define VERSION_DIGITALVALUE 8, 7, 5, 0
+#define VERSION_PRODUCT_VALUE L"8.7.8\0"
+#define VERSION_DIGITALVALUE 8, 7, 8, 0
 
-// Notepad++ version: end
+//**********************************************************
+
 
 
 #ifndef IDC_STATIC
@@ -42,8 +43,9 @@
 //#define IDI_JESUISCHARLIE        102
 //#define IDI_GILETJAUNE           102
 //#define IDI_SAMESEXMARRIAGE      102
-#define IDI_TAIWANSSOVEREIGNTY     105
-#define IDI_TAIWANSSOVEREIGNTY_DM  106
+//#define IDI_TAIWANSSOVEREIGNTY     105
+//#define IDI_TAIWANSSOVEREIGNTY_DM  106
+#define IDI_WITHUKRAINE            105
 #define IDR_RT_MANIFEST            103
 #define IDI_ICONABSENT             104
 
@@ -743,7 +745,8 @@
 	#define NPPM_INTERNAL_LWALIGN                       (NOTEPADPLUS_USER_INTERNAL + 104)
 	#define NPPM_INTERNAL_LWINDENT                      (NOTEPADPLUS_USER_INTERNAL + 105)
 	#define NPPM_INTERNAL_CHECKDOCSTATUS                (NOTEPADPLUS_USER_INTERNAL + 106)
-	#define NPPM_INTERNAL_HIDEMENURIGHTSHORTCUTS        (NOTEPADPLUS_USER_INTERNAL + 187)
+	#define NPPM_INTERNAL_HIDEMENURIGHTSHORTCUTS        (NOTEPADPLUS_USER_INTERNAL + 107)
+	#define NPPM_INTERNAL_RELOADFUNCTIONLIST            (NOTEPADPLUS_USER_INTERNAL + 108)
 
 
 

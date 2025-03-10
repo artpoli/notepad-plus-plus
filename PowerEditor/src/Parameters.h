@@ -117,7 +117,8 @@ enum ChangeDetect { cdDisabled = 0x0, cdEnabledOld = 0x01, cdEnabledNew = 0x02, 
 enum BackupFeature {bak_none = 0, bak_simple = 1, bak_verbose = 2};
 enum OpenSaveDirSetting {dir_followCurrent = 0, dir_last = 1, dir_userDef = 2};
 enum MultiInstSetting {monoInst = 0, multiInstOnSession = 1, multiInst = 2};
-enum writeTechnologyEngine {defaultTechnology = 0, directWriteTechnology = 1};
+enum writeTechnologyEngine { defaultTechnology = 0, directWriteTechnology = 1, directWriteRetainTechnology = 2,
+	directWriteDcTechnology = 3, directWriteDX11Technology = 4, directWriteTechnologyUnavailable = 5 };
 enum urlMode {urlDisable = 0, urlNoUnderLineFg, urlUnderLineFg, urlNoUnderLineBg, urlUnderLineBg,
               urlMin = urlDisable,
               urlMax = urlUnderLineBg};
@@ -1629,7 +1630,8 @@ public:
 
 	TiXmlDocumentA * getNativeLangA() const {return _pXmlNativeLangDocA;};
 
-	TiXmlDocument * getCustomizedToolIcons() const {return _pXmlToolIconsDoc;};
+	TiXmlDocument* getCustomizedToolIcons() const {return _pXmlToolIconsDoc;};
+	TiXmlDocument* getCustomizedToolButtons() const {return _pXmlToolButtonsConfDoc;};
 
 	bool isTransparentAvailable() const {
 		return (_winVersion >= WV_VISTA);
@@ -1852,6 +1854,8 @@ public:
 	bool isStylerDocLoaded() const { return _pXmlUserStylerDoc != nullptr; };
 
 	ColumnEditorParam _columnEditParam;
+	unsigned long getScintillaModEventMask() const { return _sintillaModEventMask; };
+	void addScintillaModEventMask(unsigned long mask2Add) { _sintillaModEventMask |= mask2Add; };
 
 private:
 	NppParameters();
@@ -1872,6 +1876,7 @@ private:
 	TiXmlDocument *_pXmlUserLangDoc = nullptr; // userDefineLang.xml
 	std::vector<UdlXmlFileState> _pXmlUserLangsDoc; // userDefineLang customized XMLs
 	TiXmlDocument *_pXmlToolIconsDoc = nullptr; // toolbarIcons.xml
+	TiXmlDocument * _pXmlToolButtonsConfDoc = nullptr; // toolbarButtonsConf.xml
 
 	TiXmlDocumentA *_pXmlShortcutDocA = nullptr; // shortcuts.xml
 
@@ -2100,5 +2105,5 @@ private:
 	int getCmdIdFromMenuEntryItemName(HMENU mainMenuHadle, const std::wstring& menuEntryName, const std::wstring& menuItemName); // return -1 if not found
 	int getPluginCmdIdFromMenuEntryItemName(HMENU pluginsMenu, const std::wstring& pluginName, const std::wstring& pluginCmdName); // return -1 if not found
 	winVer getWindowsVersion();
-
+	unsigned long _sintillaModEventMask = SC_MOD_DELETETEXT | SC_MOD_INSERTTEXT | SC_PERFORMED_UNDO | SC_PERFORMED_REDO | SC_MOD_CHANGEINDICATOR;
 };
