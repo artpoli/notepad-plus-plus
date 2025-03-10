@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Беларуская" filename="belarusian.xml" version="8.7.3">
+	<Native-Langue name="Беларуская" filename="belarusian.xml" version="8.7.8">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -822,22 +822,23 @@ Translation note:
 				<Folder title="Прадвызначаная папка">
 					<Item id="21101" name="Прадвызначаны стыль"/>
 					<Item id="21102" name="Стыль"/>
+					<Item id="21103" name="User Defined Languages online help"/>
 					<Item id="21105" name="Дакументацыя"/>
 					<Item id="21106" name="Кампактнае згортванне (з пустымі радкамі)"/>
-					<Item id="21220" name="Згортванне ў кодзе стылю 1"/>
+					<Item id="21220" name="Згортванне ў кодзе 1-га стылю"/>
 					<Item id="21224" name="Адкрыць:"/>
 					<Item id="21225" name="Сярэдзіна:"/>
 					<Item id="21226" name="Закрыць:"/>
 					<Item id="21227" name="Стыль"/>
-					<Item id="21320" name="Згортванне ў кодзе стылю 2 (патрэбныя раздзяляльнікі)"/>
-					<Item id="21324" name="Адкрыць:"/>
-					<Item id="21325" name="Сярэдзіна:"/>
-					<Item id="21326" name="Закрыць:"/>
+					<Item id="21320" name="Згортванне ў кодзе 2-га стылю (патрэбныя раздзяляльнікі)"/>
+					<Item id="21324" name="Згортванне ў стылі каментарыя:"/>
+					<Item id="21325" name="Адкрыць:"/>
+					<Item id="21326" name="Сярэдзіна:"/>
 					<Item id="21327" name="Стыль"/>
 					<Item id="21420" name="Згортванне ў стылі каментарыя"/>
-					<Item id="21424" name="Адкрыць:"/>
-					<Item id="21425" name="Сярэдзіна:"/>
-					<Item id="21426" name="Закрыць:"/>
+					<Item id="21424" name="Згортванне ў стылі каментарыя:"/>
+					<Item id="21425" name="Адкрыць:"/>
+					<Item id="21426" name="Сярэдзіна:"/>
 					<Item id="21427" name="Стыль"/>
 				</Folder>
 				<Keywords title="Спісы ключавых слоў">
@@ -1317,12 +1318,19 @@ Translation note:
 						<Element name="Адключыць"/>
 					</ComboBox>
 					<ComboBox id="6307">
-						<Element name="Адсутнічае дзеянне для"/>
+						<Element name="No action on"/>
 						<Element name="Мінімізаваць у"/>
 						<Element name="Закрыць да"/>
 						<Element name="Minimize / Close to"/>
 					</ComboBox>
+					<ComboBox id="6362">
+						<Element name="GDI (most compatible)"/>
+						<Element name="DirectWrite (default)"/>
+						<Element name="DirectWrite (retain frames)"/>
+						<Element name="DirectWrite (draw to GDI DC)"/>
+					</ComboBox>
 					<Item id="6308" name="сістэмны латок"/>
+					<Item id="6363" name="rendering mode"/>
 					<Item id="6312" name="Аўтавызначэнне стану файла"/>
 					<Item id="6313" name="Абнаўляць без апавяшчэння"/>
 					<Item id="6325" name="Прагарт. да апошн. радка пасля абнаўл."/>
@@ -1331,7 +1339,6 @@ Translation note:
 					<Item id="6324" name="Пераключэнне дакумента (Ctrl+TAB)"/>
 					<Item id="6331" name="Паказваць толькі назву файла ў радку загалоўка"/>
 					<Item id="6334" name="Аўтавызначэнне кадзіравання сімвалаў"/>
-					<Item id="6349" name="Выкарыстоўваць DirectWrite (можа палепшыць адлюстраванне спецыяльных сімвалаў, неабходны перазапуск Notepad++)"/>
 					<Item id="6337" name="Пашыр. файла працоўнай вобласці:"/>
 					<Item id="6114" name="Уключыць"/>
 					<Item id="6117" name="Будаваць спіс па меры выкарыстання"/>
@@ -1723,6 +1730,7 @@ Translation note:
 			<autoIndentAdvanced-tip value="Уключыць інтэлектуальны водступ для моў праграмавання, якія &quot;падобныя на C&quot; і Python. Мовы праграмавання, якія &quot;падобныя на C&quot; уключаюць: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell і JSON.  Калі выбраць пашыраны рэжым, але не рэдагаваць файлы вышэй азначанымі мовамі, водступ застанецца ў базавым рэжыме."/>
 			<!-- Don't translate "Global override" and "Default Style" -->
 			<global-override-tip value="Уключэнне &quot;Глабальнага перавызначэння&quot; у гэтым месцы перавызначыць гэты параметр ва ўсіх моўных стылях. Магчыма, што замест гэтага, вы захочаце выкарыстаць &quot;Прадвызначаны стыль&quot;"/>
+			<scintillaRenderingTechnology-tip value="May improve rendering of special characters or resolve some graphics issues, restart Notepad++ to apply the changes."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
