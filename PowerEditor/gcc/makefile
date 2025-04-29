@@ -26,7 +26,7 @@ BIN_DIRECTORY := ../bin
 INSTALLER_DIRECTORY := ../installer
 
 TARGET_BINARY := notepad++.exe
-SRC_DATA := contextMenu.xml langs.model.xml shortcuts.xml stylers.model.xml tabContextMenu_example.xml toolbarButtonsConf_example.xml toolbarIcons.xml
+SRC_DATA := contextMenu.xml langs.model.xml shortcuts.xml stylers.model.xml tabContextMenu_example.xml toolbarButtonsConf_example.xml
 BIN_DATA := change.log doLocalConf.xml nppLogNulContentCorruptionIssue.xml readme.txt userDefineLangs/
 INSTALLER_DATA := autoCompletion/ functionList/ localization/ themes/
 
@@ -44,7 +44,7 @@ endif
 
 CXXFLAGS := -include $(GCC_DIRECTORY)/gcc-fixes.h -std=c++20
 RC := $(CROSS_COMPILE)windres
-RCFLAGS :=
+RCFLAGS := --codepage=65001
 CPP_PATH := $(SCINTILLA_DIRECTORY)/include $(LEXILLA_DIRECTORY)/include
 CPP_DEFINE := UNICODE _UNICODE OEMRESOURCE NOMINMAX _WIN32_WINNT=_WIN32_WINNT_WIN7 NTDDI_VERSION=NTDDI_WIN7 TIXML_USE_STL TIXMLA_USE_STL
 LD := $(CXX)
@@ -184,6 +184,7 @@ CPDIR := cp -r
 RMDIR := rm -rf
 CP := cp
 RM := rm -f
+PREBUILD_EVENT_CMD := cmd //C "cd PowerEditor/src && NppLibsVersionH-generator.bat"
 normalize-path = $1
 else ifneq "$(wildcard $(dir $(SHELL))ls.exe)" ""
 # a Windows system with a proper shell
@@ -195,6 +196,7 @@ CPDIR := $(SHELL_DIRECTORY)cp.exe -r
 RMDIR := $(SHELL_DIRECTORY)rm.exe -rf
 CP := $(SHELL_DIRECTORY)cp.exe
 RM := $(SHELL_DIRECTORY)rm.exe -f
+PREBUILD_EVENT_CMD := cmd //C "cd PowerEditor/src && NppLibsVersionH-generator.bat"
 normalize-path = $1
 else
 # a standard Windows system
@@ -203,6 +205,7 @@ CPDIR := xcopy /q /e /i /y
 RMDIR := rmdir /q /s
 CP := copy /y
 RM := del /q
+PREBUILD_EVENT_CMD := cd ..\src && NppLibsVersionH-generator.bat
 normalize-path = $(subst /,\,$1)
 endif
 
@@ -230,8 +233,12 @@ RC_TARGETS := $(patsubst %.rc,$(BUILD_DIRECTORY)/%.res,$(sort $(filter %.rc,$(GC
 
 SUBMAKEFLAGS += $(if $(NUMBER_OF_PROCESSORS),-j$(NUMBER_OF_PROCESSORS),)
 
-all: $(SCINTILLA_TARGET) $(LEXILLA_TARGET)
+all: pre-build-event $(SCINTILLA_TARGET) $(LEXILLA_TARGET)
 	$(AT)$(MAKE) -f $(firstword $(MAKEFILE_LIST)) $(SUBMAKEFLAGS) binary
+
+pre-build-event:
+	@echo Executing pre-build events...
+	$(AT)$(PREBUILD_EVENT_CMD)
 
 $(BUILD_DIRECTORY):
 	@echo + creating BUILD_DIRECTORY $@

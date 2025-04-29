@@ -297,9 +297,9 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		{
 			if (NppDarkMode::isEnabled())
 			{
-				RECT rc = {};
+				RECT rc{};
 				GetClientRect(hwnd, &rc);
-				::FillRect(reinterpret_cast<HDC>(wParam), &rc, NppDarkMode::getDarkerBackgroundBrush());
+				::FillRect(reinterpret_cast<HDC>(wParam), &rc, NppDarkMode::getDlgBackgroundBrush());
 				return 0;
 			}
 			else
@@ -322,9 +322,10 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 				nppGUI._darkmode._isEnabled = enableDarkMode;
 				if (!_preference.isCreated())
 				{
-					const int iconState = NppDarkMode::getToolBarIconSet(NppDarkMode::isEnabled());
-					toolBarStatusType state = (iconState == -1) ? _toolBar.getState() : static_cast<toolBarStatusType>(iconState);
-					switch (state)
+					auto& nppGUITbInfo = nppGUI._tbIconInfo;
+					nppGUITbInfo = NppDarkMode::getToolbarIconInfo();
+
+					switch (nppGUITbInfo._tbIconSet)
 					{
 						case TB_SMALL:
 							_toolBar.reduce();
@@ -896,7 +897,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 		case NPPM_INTERNAL_SAVEBACKUP:
 		{
-			if (NppParameters::getInstance().getNppGUI().isSnapshotMode())
+			if (nppParam.getNppGUI().isSnapshotMode())
 			{
 				MainFileManager.backupCurrentBuffer();
 			}
@@ -1209,7 +1210,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 				return TRUE;
 			}
 
-			if (NppParameters::getInstance().getNppGUI()._styleMRU)
+			if (nppParam.getNppGUI()._styleMRU)
 			{
 				tli->_currentIndex = 0;
 				std::sort(tli->_tlfsLst.begin(),tli->_tlfsLst.end(),SortTaskListPred(_mainDocTab,_subDocTab));
@@ -1841,6 +1842,46 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			return TRUE;
 		}
 
+		case NPPM_INTERNAL_CHANGESELECTTEXTFORGROUND:
+		{
+			StyleArray& stylers = nppParam.getMiscStylerArray();
+
+			COLORREF selectColorFore = black;
+			const Style* pStyle = stylers.findByName(L"Selected text colour");
+			if (pStyle)
+			{
+				selectColorFore = pStyle->_fgColor;
+			}
+
+			if ((nppParam.getSVP())._selectedTextForegroundSingleColor)
+			{
+				_mainEditView.setElementColour(SC_ELEMENT_SELECTION_TEXT, selectColorFore);
+				_mainEditView.setElementColour(SC_ELEMENT_SELECTION_INACTIVE_TEXT, selectColorFore);
+				_mainEditView.setElementColour(SC_ELEMENT_SELECTION_ADDITIONAL_TEXT, selectColorFore);
+
+				_subEditView.setElementColour(SC_ELEMENT_SELECTION_TEXT, selectColorFore);
+				_subEditView.setElementColour(SC_ELEMENT_SELECTION_INACTIVE_TEXT, selectColorFore);
+				_subEditView.setElementColour(SC_ELEMENT_SELECTION_ADDITIONAL_TEXT, selectColorFore);
+			}
+			else
+			{
+				_mainEditView.execute(SCI_RESETELEMENTCOLOUR, SC_ELEMENT_SELECTION_TEXT);
+				_mainEditView.execute(SCI_RESETELEMENTCOLOUR, SC_ELEMENT_SELECTION_INACTIVE_TEXT);
+				_mainEditView.execute(SCI_RESETELEMENTCOLOUR, SC_ELEMENT_SELECTION_ADDITIONAL_TEXT);
+
+				_subEditView.execute(SCI_RESETELEMENTCOLOUR, SC_ELEMENT_SELECTION_TEXT);
+				_subEditView.execute(SCI_RESETELEMENTCOLOUR, SC_ELEMENT_SELECTION_INACTIVE_TEXT);
+				_subEditView.execute(SCI_RESETELEMENTCOLOUR, SC_ELEMENT_SELECTION_ADDITIONAL_TEXT);
+			}
+
+			if (_configStyleDlg.isCreated())
+			{
+				_configStyleDlg.syncWithSelFgSingleColorCtrl();
+			}
+
+			return TRUE;
+		}
+
 		case NPPM_INTERNAL_SETWORDCHARS:
 		{
 			_mainEditView.setWordChars();
@@ -1888,7 +1929,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 		case NPPM_INTERNAL_ISTABBARREDUCED:
 		{
-			return TabBarPlus::isReduced() ? TRUE : FALSE;
+			return nppParam.getNppGUI()._tabStatus & TAB_REDUCE ? TRUE : FALSE;
 		}
 
 		// ADD: success->hwnd; failure->NULL
@@ -1992,7 +2033,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 										roundCornerValue = 5;
 									}
 
-									::FillRect(nmtbcd->nmcd.hdc, &nmtbcd->nmcd.rc, NppDarkMode::getDarkerBackgroundBrush());
+									::FillRect(nmtbcd->nmcd.hdc, &nmtbcd->nmcd.rc, NppDarkMode::getDlgBackgroundBrush());
 									lr |= CDRF_NOTIFYITEMDRAW;
 								}
 
@@ -2007,7 +2048,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 								nmtbcd->clrText = NppDarkMode::getTextColor();
 								nmtbcd->clrTextHighlight = NppDarkMode::getTextColor();
 								nmtbcd->clrBtnFace = NppDarkMode::getBackgroundColor();
-								nmtbcd->clrBtnHighlight = NppDarkMode::getSofterBackgroundColor();
+								nmtbcd->clrBtnHighlight = NppDarkMode::getCtrlBackgroundColor();
 								nmtbcd->clrHighlightHotTrack = NppDarkMode::getHotBackgroundColor();
 								nmtbcd->nStringBkMode = TRANSPARENT;
 								nmtbcd->nHLStringBkMode = TRANSPARENT;
@@ -2047,7 +2088,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 								}
 								else if ((nmtbcd->nmcd.uItemState & CDIS_CHECKED) == CDIS_CHECKED)
 								{
-									auto holdBrush = ::SelectObject(nmtbcd->nmcd.hdc, NppDarkMode::getSofterBackgroundBrush());
+									auto holdBrush = ::SelectObject(nmtbcd->nmcd.hdc, NppDarkMode::getCtrlBackgroundBrush());
 									auto holdPen = ::SelectObject(nmtbcd->nmcd.hdc, NppDarkMode::getEdgePen());
 
 									::RoundRect(nmtbcd->nmcd.hdc, rcItem.left, rcItem.top, rcItem.right, rcItem.bottom, roundCornerValue, roundCornerValue);
@@ -2148,6 +2189,76 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 						return FALSE;
 				}
 			}
+			else if (lpnmhdr->hwndFrom == _rebarTop.getHSelf()
+				|| lpnmhdr->hwndFrom == _rebarBottom.getHSelf())
+			{
+				switch (lpnmhdr->code)
+				{
+					case NM_CUSTOMDRAW:
+					{
+						auto lpnmcd = reinterpret_cast<LPNMCUSTOMDRAW>(lParam);
+
+						switch (lpnmcd->dwDrawStage)
+						{
+							case CDDS_PREPAINT:
+							{
+								if (!NppDarkMode::isEnabled())
+								{
+									return CDRF_DODEFAULT;
+								}
+
+								::FillRect(lpnmcd->hdc, &lpnmcd->rc, NppDarkMode::getDlgBackgroundBrush());
+								REBARBANDINFO rbBand{};
+								rbBand.cbSize = sizeof(REBARBANDINFO);
+								rbBand.fMask = RBBIM_STYLE | RBBIM_CHEVRONLOCATION | RBBIM_CHEVRONSTATE;
+								::SendMessage(lpnmcd->hdr.hwndFrom, RB_GETBANDINFO, 0, reinterpret_cast<LPARAM>(&rbBand));
+
+								LRESULT lr = CDRF_DODEFAULT;
+
+								if ((rbBand.fStyle & RBBS_USECHEVRON) == RBBS_USECHEVRON
+									&& (rbBand.rcChevronLocation.right - rbBand.rcChevronLocation.left) > 0)
+								{
+									static int roundCornerValue = 0;
+									if (NppDarkMode::isWindows11())
+									{
+										roundCornerValue = 5;
+									}
+
+									const bool isHot = (rbBand.uChevronState & STATE_SYSTEM_HOTTRACKED) == STATE_SYSTEM_HOTTRACKED;
+									const bool isPressed = (rbBand.uChevronState & STATE_SYSTEM_PRESSED) == STATE_SYSTEM_PRESSED;
+
+									if (isHot)
+									{
+										NppDarkMode::paintRoundRect(lpnmcd->hdc, rbBand.rcChevronLocation, NppDarkMode::getHotEdgePen(), NppDarkMode::getHotBackgroundBrush(), roundCornerValue, roundCornerValue);
+									}
+									else if (isPressed)
+									{
+										NppDarkMode::paintRoundRect(lpnmcd->hdc, rbBand.rcChevronLocation, NppDarkMode::getEdgePen(), NppDarkMode::getCtrlBackgroundBrush(), roundCornerValue, roundCornerValue);
+									}
+
+									::SetTextColor(lpnmcd->hdc, isHot ? NppDarkMode::getTextColor() : NppDarkMode::getDarkerTextColor());
+									::SetBkMode(lpnmcd->hdc, TRANSPARENT);
+
+									constexpr auto dtFlags = DT_NOPREFIX | DT_CENTER | DT_TOP | DT_SINGLELINE | DT_NOCLIP;
+									::DrawText(lpnmcd->hdc, L"»", -1, &rbBand.rcChevronLocation, dtFlags);
+
+									lr = CDRF_SKIPDEFAULT;
+								}
+
+								return lr;
+							}
+
+							default:
+								break;
+						}
+
+						return CDRF_DODEFAULT;
+					}
+
+					default:
+						break;
+				}
+}
 
 			SCNotification *notification = reinterpret_cast<SCNotification *>(lParam);
 
@@ -2299,11 +2410,11 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			drawDocumentMapColoursFromStylerArray();
 
 			// Update default fg/bg colors in Parameters for both internal/plugins docking dialog
-			const Style* pStyle = NppParameters::getInstance().getGlobalStylers().findByID(STYLE_DEFAULT);
+			const Style* pStyle = nppParam.getGlobalStylers().findByID(STYLE_DEFAULT);
 			if (pStyle)
 			{
-				NppParameters::getInstance().setCurrentDefaultFgColor(pStyle->_fgColor);
-				NppParameters::getInstance().setCurrentDefaultBgColor(pStyle->_bgColor);
+				nppParam.setCurrentDefaultFgColor(pStyle->_fgColor);
+				nppParam.setCurrentDefaultBgColor(pStyle->_bgColor);
 				drawAutocompleteColoursFromTheme(pStyle->_fgColor, pStyle->_bgColor);
 			}
 
@@ -3005,7 +3116,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 		case NPPM_GETWINDOWSVERSION:
 		{
-			return (NppParameters::getInstance()).getWinVersion();
+			return nppParam.getWinVersion();
 		}
 
 		case NPPM_MAKECURRENTBUFFERDIRTY:
@@ -3151,24 +3262,25 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		case NPPM_HIDETABBAR:
 		{
 			bool hide = (lParam != 0);
-			bool oldVal = DocTabView::getHideTabBarStatus();
+
+			NppGUI& nppGUI = nppParam.getNppGUI();
+			bool oldVal = (nppGUI._tabStatus & TAB_HIDE);
 			if (hide == oldVal) return oldVal;
 
-			DocTabView::setHideTabBarStatus(hide);
-			::SendMessage(hwnd, WM_SIZE, 0, 0);
-
-			NppGUI & nppGUI = (NppParameters::getInstance()).getNppGUI();
 			if (hide)
 				nppGUI._tabStatus |= TAB_HIDE;
 			else
 				nppGUI._tabStatus &= ~TAB_HIDE;
+
+			::SendMessage(hwnd, WM_SIZE, 0, 0);
 
 			return oldVal;
 		}
 
 		case NPPM_ISTABBARHIDDEN:
 		{
-			return _mainDocTab.getHideTabBarStatus();
+			NppGUI& nppGUI = nppParam.getNppGUI();
+			return nppGUI._tabStatus & TAB_HIDE;
 		}
 
 		case NPPM_HIDETOOLBAR:
@@ -3297,7 +3409,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			_mainEditView.setNpcAndCcUniEOL();
 			_subEditView.setNpcAndCcUniEOL();
 
-			const auto& svp = NppParameters::getInstance().getSVP();
+			const auto& svp = nppParam.getSVP();
 			if (svp._npcShow)
 			{
 				_findReplaceDlg.updateFinderScintillaForNpc(true);
@@ -3460,9 +3572,9 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			if (currentColors != NULL)
 			{
 				currentColors->background = NppDarkMode::getBackgroundColor();
-				currentColors->softerBackground = NppDarkMode::getSofterBackgroundColor();
+				currentColors->softerBackground = NppDarkMode::getCtrlBackgroundColor();
 				currentColors->hotBackground = NppDarkMode::getHotBackgroundColor();
-				currentColors->pureBackground = NppDarkMode::getDarkerBackgroundColor();
+				currentColors->pureBackground = NppDarkMode::getDlgBackgroundColor();
 				currentColors->errorBackground = NppDarkMode::getErrorBackgroundColor();
 				currentColors->text = NppDarkMode::getTextColor();
 				currentColors->darkerText = NppDarkMode::getDarkerTextColor();
@@ -3506,8 +3618,8 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		case NPPM_GETEDITORDEFAULTBACKGROUNDCOLOR:
 		{
 			return (message == NPPM_GETEDITORDEFAULTFOREGROUNDCOLOR
-					?(NppParameters::getInstance()).getCurrentDefaultFgColor()
-					:(NppParameters::getInstance()).getCurrentDefaultBgColor());
+					? nppParam.getCurrentDefaultFgColor()
+					: nppParam.getCurrentDefaultBgColor());
 		}
 
 		case NPPM_SHOWDOCLIST:
@@ -3573,7 +3685,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			ScintillaViewParams &svp = const_cast<ScintillaViewParams &>(nppParam.getSVP());
 
 			COLORREF multiEdgeColor = liteGrey;
-			const Style * pStyle = NppParameters::getInstance().getMiscStylerArray().findByName(L"Edge colour");
+			const Style * pStyle = nppParam.getMiscStylerArray().findByName(L"Edge colour");
 			if (pStyle)
 			{
 				multiEdgeColor = pStyle->_fgColor;
@@ -3879,7 +3991,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		{
 			toolBarStatusType state = _toolBar.getState();
 
-			if (state != TB_SMALL)
+			if (state != TB_SMALL || static_cast<BOOL>(wParam))
 			{
 				_toolBar.reduce();
 			}
@@ -3890,7 +4002,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		{
 			toolBarStatusType state = _toolBar.getState();
 
-			if (state != TB_LARGE)
+			if (state != TB_LARGE || static_cast<BOOL>(wParam))
 			{
 				_toolBar.enlarge();
 			}
@@ -3901,7 +4013,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		{
 			toolBarStatusType state = _toolBar.getState();
 
-			if (state != TB_SMALL2)
+			if (state != TB_SMALL2 || static_cast<BOOL>(wParam))
 			{
 				_toolBar.reduceToSet2();
 			}
@@ -3912,7 +4024,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		{
 			toolBarStatusType state = _toolBar.getState();
 
-			if (state != TB_LARGE2)
+			if (state != TB_LARGE2 || static_cast<BOOL>(wParam))
 			{
 				_toolBar.enlargeToSet2();
 			}
@@ -3930,52 +4042,38 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		}
 		break;
 
-		case NPPM_INTERNAL_LOCKTABBAR:
-		{
-			bool isDrag = TabBarPlus::doDragNDropOrNot();
-			TabBarPlus::doDragNDrop(!isDrag);
-			break;
-		}
-
-
 		case NPPM_INTERNAL_DRAWINACIVETAB:
-		{
-			TabBarPlus::setDrawInactiveTab(!TabBarPlus::drawInactiveTab(), &_mainDocTab);
-			break;
-		}
 		case NPPM_INTERNAL_DRAWTABTOPBAR:
 		{
-			TabBarPlus::setDrawTopBar(!TabBarPlus::drawTopBar(), &_mainDocTab);
-			break;
-		}
-
-		case NPPM_INTERNAL_TABDBCLK2CLOSE:
-		{
-			TabBarPlus::setDbClk2Close(!TabBarPlus::isDbClk2Close());
+			TabBarPlus::triggerOwnerDrawTabbar(&(_mainDocTab.dpiManager()));
 			break;
 		}
 
 		case NPPM_INTERNAL_VERTICALTABBAR:
 		{
-			TabBarPlus::setVertical(!TabBarPlus::isVertical());
+			TabBarPlus::doVertical();
 			::SendMessage(_pPublicInterface->getHSelf(), WM_SIZE, 0, 0);
 			break;
 		}
 
 		case NPPM_INTERNAL_MULTILINETABBAR:
 		{
-			TabBarPlus::setMultiLine(!TabBarPlus::isMultiLine());
+			TabBarPlus::doMultiLine();
 			::SendMessage(_pPublicInterface->getHSelf(), WM_SIZE, 0, 0);
 			break;
 		}
 
 		case NPPM_INTERNAL_REDUCETABBAR:
 		{
-			TabBarPlus::setReduced(!TabBarPlus::isReduced(), &_mainDocTab);
-			bool isReduceed = TabBarPlus::isReduced();
+			TabBarPlus::triggerOwnerDrawTabbar(&(_mainDocTab.dpiManager()));
+			bool isReduceed = nppParam.getNppGUI()._tabStatus & TAB_REDUCE;
 
 			//Resize the tab height
-			int tabDpiDynamicalWidth = _mainDocTab.dpiManager().scale((TabBarPlus::drawTabCloseButton() || TabBarPlus::drawTabPinButton()) ? g_TabWidthButton : g_TabWidth);
+			NppGUI& nppGUI = NppParameters::getInstance().getNppGUI();
+			bool drawTabCloseButton = nppGUI._tabStatus & TAB_CLOSEBUTTON;
+			bool drawTabPinButton = nppGUI._tabStatus & TAB_PINBUTTON;
+
+			int tabDpiDynamicalWidth = _mainDocTab.dpiManager().scale((drawTabCloseButton || drawTabPinButton) ? g_TabWidthButton : g_TabWidth);
 			int tabDpiDynamicalHeight = _mainDocTab.dpiManager().scale(isReduceed ? g_TabHeight : g_TabHeightLarge);
 
 			TabCtrl_SetItemSize(_mainDocTab.getHSelf(), tabDpiDynamicalWidth, tabDpiDynamicalHeight);
@@ -3998,10 +4096,11 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 		case NPPM_INTERNAL_DRAWTABBARCLOSEBUTTON:
 		{
-			TabBarPlus::setDrawTabCloseButton(!TabBarPlus::drawTabCloseButton(), &_mainDocTab);
+			TabBarPlus::triggerOwnerDrawTabbar(&(_mainDocTab.dpiManager()));
 
-			bool drawTabPinButton = TabBarPlus::drawTabPinButton();
-			bool drawTabCloseButton = TabBarPlus::drawTabCloseButton();
+			NppGUI& nppGUI = NppParameters::getInstance().getNppGUI();
+			bool drawTabCloseButton = nppGUI._tabStatus & TAB_CLOSEBUTTON;
+			bool drawTabPinButton = nppGUI._tabStatus & TAB_PINBUTTON;
 
 			if (drawTabCloseButton && drawTabPinButton)
 			{
@@ -4033,8 +4132,8 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			}
 
 			// This part is just for updating (redraw) the tabs
-			int tabDpiDynamicalHeight = _mainDocTab.dpiManager().scale(TabBarPlus::isReduced() ? g_TabHeight : g_TabHeightLarge);
-			int tabDpiDynamicalWidth = _mainDocTab.dpiManager().scale(TabBarPlus::drawTabCloseButton() ? g_TabWidthButton : g_TabWidth);
+			int tabDpiDynamicalHeight = _mainDocTab.dpiManager().scale(nppParam.getNppGUI()._tabStatus & TAB_REDUCE ? g_TabHeight : g_TabHeightLarge);
+			int tabDpiDynamicalWidth = _mainDocTab.dpiManager().scale(drawTabCloseButton ? g_TabWidthButton : g_TabWidth);
 			TabCtrl_SetItemSize(_mainDocTab.getHSelf(), tabDpiDynamicalWidth, tabDpiDynamicalHeight);
 			TabCtrl_SetItemSize(_subDocTab.getHSelf(), tabDpiDynamicalWidth, tabDpiDynamicalHeight);
 
@@ -4047,10 +4146,11 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 		case NPPM_INTERNAL_DRAWTABBARPINBUTTON:
 		{
-			TabBarPlus::setDrawTabPinButton(!TabBarPlus::drawTabPinButton(), &_mainDocTab);
+			TabBarPlus::triggerOwnerDrawTabbar(&(_mainDocTab.dpiManager()));
 
-			bool drawTabPinButton = TabBarPlus::drawTabPinButton();
-			bool drawTabCloseButton = TabBarPlus::drawTabCloseButton();
+			NppGUI& nppGUI = NppParameters::getInstance().getNppGUI();
+			bool drawTabCloseButton = nppGUI._tabStatus & TAB_CLOSEBUTTON;
+			bool drawTabPinButton = nppGUI._tabStatus & TAB_PINBUTTON;
 
 			if (!drawTabPinButton)
 			{
@@ -4087,8 +4187,8 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			}
 
 			// This part is just for updating (redraw) the tabs
-			int tabDpiDynamicalHeight = _mainDocTab.dpiManager().scale(TabBarPlus::isReduced() ? g_TabHeight : g_TabHeightLarge);
-			int tabDpiDynamicalWidth = _mainDocTab.dpiManager().scale(TabBarPlus::drawTabPinButton() ? g_TabWidthButton : g_TabWidth);
+			int tabDpiDynamicalHeight = _mainDocTab.dpiManager().scale(nppParam.getNppGUI()._tabStatus & TAB_REDUCE ? g_TabHeight : g_TabHeightLarge);
+			int tabDpiDynamicalWidth = _mainDocTab.dpiManager().scale(drawTabPinButton ? g_TabWidthButton : g_TabWidth);
 			TabCtrl_SetItemSize(_mainDocTab.getHSelf(), tabDpiDynamicalWidth, tabDpiDynamicalHeight);
 			TabCtrl_SetItemSize(_subDocTab.getHSelf(), tabDpiDynamicalWidth, tabDpiDynamicalHeight);
 
@@ -4098,7 +4198,7 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			return TRUE;
 		}
 
-		case NPPM_INTERNAL_DRAWINACTIVETABBARBUTTON:
+		case NPPM_INTERNAL_REFRESHTABBAR:
 		{
 			::SendMessage(_mainDocTab.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
 			::SendMessage(_subDocTab.getHSelf(), NPPM_INTERNAL_REFRESHDARKMODE, 0, 0);
@@ -4135,21 +4235,12 @@ LRESULT Notepad_plus::process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			return TRUE;
 		}
 
-		case NPPM_INTERNAL_RELOADFUNCTIONLIST:
-		{
-			if (_pFuncList && (!_pFuncList->isClosed()) && _pFuncList->isVisible())
-			{
-				_pFuncList->reload();
-			}
-			return TRUE;
-		}
-
 		case NPPM_INTERNAL_SQLBACKSLASHESCAPE:
 		{
 			// Go through all open files, and if there are any SQL files open, make sure the sql.backslash.escapes propery
 			//	is updated for each of the SQL buffers' Scintilla wrapper.
 			//	This message will only be called on the rare circumstance when the backslash-is-escape-for-sql preference is toggled, so this loop won't be run very often.
-			const bool kbBackSlash = NppParameters::getInstance().getNppGUI()._backSlashIsEscapeCharacterForSql;
+			const bool kbBackSlash = nppParam.getNppGUI()._backSlashIsEscapeCharacterForSql;
 			Document oldDoc = _invisibleEditView.execute(SCI_GETDOCPOINTER);
 			Buffer* oldBuf = _invisibleEditView.getCurrentBuffer();
 

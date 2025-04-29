@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Svenska" filename="swedish.xml" version="8.7.8">
+	<Native-Langue name="Svenska" filename="swedish.xml" version="8.7.9">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -947,7 +947,6 @@ Translation note:
 			<Preference title="Inställningar">
 				<Item id="6001" name="Stäng"/>
 				<Global title="Allmänt">
-					<Item id="6101" name="Verktygsfält"/>
 					<Item id="6102" name="Dölj"/>
 					<Item id="6103" name="Fluent: Små"/>
 					<Item id="6104" name="Fluent: Stora"/>
@@ -955,7 +954,6 @@ Translation note:
 					<Item id="6130" name="Fluent (ifyllda): Stora"/>
 					<Item id="6105" name="Standardikoner: Små"/>
 
-					<Item id="6106" name="Flikfält"/>
 					<Item id="6107" name="Förminska"/>
 					<Item id="6108" name="Lås flikar (inget drag-och-släpp)"/>
 					<Item id="6109" name="Gör inaktiva flikar mörkare"/>
@@ -1330,6 +1328,7 @@ Translation note:
 						<Element name="DirectWrite (standard)"/>
 						<Element name="DirectWrite (behåll bildrutor)"/>
 						<Element name="DirectWrite (rita till GDI DC)"/>
+						<Element name="DirectWrite (DirectX 11)"/>
 					</ComboBox>
 					<Item id="6308" name="systemfältet"/>
 					<Item id="6363" name="renderingsläge"/>

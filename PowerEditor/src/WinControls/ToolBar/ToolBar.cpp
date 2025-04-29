@@ -87,29 +87,30 @@ void ToolBar::initHideButtonsConf(TiXmlDocument* toolButtonsDocRoot, ToolBarButt
 				{
 					for (int i = 0; i < arraySize; ++i)
 						_toolbarStdButtonsConfArray[i] = false;
-					return;
 				}
-				
-				for (int i = 0; i < arraySize; ++i)
-					_toolbarStdButtonsConfArray[i] = true;
-
-				for (TiXmlNode* childNode = standardToolButtons->FirstChildElement(L"Button");
-					childNode;
-					childNode = childNode->NextSibling(L"Button"))
+				else
 				{
-					TiXmlElement* element = childNode->ToElement();
-					int cmdID =0;
-					const wchar_t* cmdIDStr = element->Attribute(L"id", &cmdID);
+					for (int i = 0; i < arraySize; ++i)
+						_toolbarStdButtonsConfArray[i] = true;
 
-					int index = 0;
-					const wchar_t* orderStr = element->Attribute(L"index", &index);
-
-					const wchar_t* isHide = element->Attribute(L"hide");
-
-					if (cmdIDStr && orderStr && isHide && (lstrcmp(isHide, L"yes") == 0))
+					for (TiXmlNode* childNode = standardToolButtons->FirstChildElement(L"Button");
+						childNode;
+						childNode = childNode->NextSibling(L"Button"))
 					{
-						if (index < arraySize && buttonUnitArray[index]._cmdID == cmdID)
-							_toolbarStdButtonsConfArray[index] = false;
+						TiXmlElement* element = childNode->ToElement();
+						int cmdID = 0;
+						const wchar_t* cmdIDStr = element->Attribute(L"id", &cmdID);
+
+						int index = 0;
+						const wchar_t* orderStr = element->Attribute(L"index", &index);
+
+						const wchar_t* isHide = element->Attribute(L"hide");
+
+						if (cmdIDStr && orderStr && isHide && (lstrcmp(isHide, L"yes") == 0))
+						{
+							if (index < arraySize && buttonUnitArray[index]._cmdID == cmdID)
+								_toolbarStdButtonsConfArray[index] = false;
+						}
 					}
 				}
 			}
@@ -610,7 +611,7 @@ void ToolBar::resizeIconsDpi(UINT dpi)
 	reset(true);
 }
 
-void ToolBar::addToRebar(ReBar * rebar) 
+void ToolBar::addToRebar(ReBar* rebar)
 {
 	if (_pRebar)
 		return;
@@ -635,42 +636,6 @@ void ToolBar::addToRebar(ReBar * rebar)
 	_rbBand.fMask   = RBBIM_CHILD | RBBIM_CHILDSIZE | RBBIM_IDEALSIZE | RBBIM_SIZE;
 }
 
-constexpr UINT_PTR g_rebarSubclassID = 42;
-
-LRESULT CALLBACK RebarSubclass(
-	HWND hWnd,
-	UINT uMsg,
-	WPARAM wParam,
-	LPARAM lParam,
-	UINT_PTR uIdSubclass,
-	DWORD_PTR dwRefData
-)
-{
-	UNREFERENCED_PARAMETER(dwRefData);
-	UNREFERENCED_PARAMETER(uIdSubclass);
-
-	switch (uMsg)
-	{
-		case WM_ERASEBKGND:
-			if (NppDarkMode::isEnabled())
-			{
-				RECT rc{};
-				GetClientRect(hWnd, &rc);
-				FillRect((HDC)wParam, &rc, NppDarkMode::getDarkerBackgroundBrush());
-				return TRUE;
-			}
-			else
-			{
-				break;
-			}
-
-		case WM_NCDESTROY:
-			RemoveWindowSubclass(hWnd, RebarSubclass, g_rebarSubclassID);
-			break;
-	}
-	return DefSubclassProc(hWnd, uMsg, wParam, lParam);
-}
-
 void ReBar::init(HINSTANCE hInst, HWND hPere)
 {
 	Window::init(hInst, hPere);
@@ -680,7 +645,7 @@ void ReBar::init(HINSTANCE hInst, HWND hPere)
 							WS_CHILD|WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | RBS_VARHEIGHT | CCS_NODIVIDER | CCS_NOPARENTALIGN,
 							0,0,0,0, _hParent, NULL, _hInst, NULL);
 
-	SetWindowSubclass(_hSelf, RebarSubclass, g_rebarSubclassID, 0);
+	NppDarkMode::autoSubclassCtlColor(_hSelf);
 
 	REBARINFO rbi{};
 	ZeroMemory(&rbi, sizeof(REBARINFO));

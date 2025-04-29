@@ -149,16 +149,11 @@ Notepad_plus::Notepad_plus()
 
 	nppParam.setNativeLangSpeaker(&_nativeLangSpeaker);
 
-	TiXmlDocument *toolIconsDocRoot = nppParam.getCustomizedToolIcons();
 	TiXmlDocument *toolButtonsDocRoot = nppParam.getCustomizedToolButtons();
-
-	if (toolIconsDocRoot)
-	{
-		_toolBar.initTheme(toolIconsDocRoot);
-	}
 
 	if (toolButtonsDocRoot)
 	{
+		_toolBar.initTheme(toolButtonsDocRoot);
 		_toolBar.initHideButtonsConf(toolButtonsDocRoot, toolBarIcons, sizeof(toolBarIcons) / sizeof(ToolBarButtonUnit));
 	}
 
@@ -242,7 +237,6 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	const ScintillaViewParams & svp = nppParam.getSVP();
 
 	int tabBarStatus = nppGUI._tabStatus;
-	TabBarPlus::setReduced((tabBarStatus & TAB_REDUCE) != 0, &_mainDocTab);
 
 	const int tabIconSet = NppDarkMode::getTabIconSet(NppDarkMode::isEnabled());
 	unsigned char indexDocTabIcon = 0;
@@ -392,32 +386,27 @@ LRESULT Notepad_plus::init(HWND hwnd)
 	_mainEditView.execute(SCI_STYLESETCHECKMONOSPACED, STYLE_DEFAULT, true);
 	_subEditView.execute(SCI_STYLESETCHECKMONOSPACED, STYLE_DEFAULT, true);
 
-	TabBarPlus::doDragNDrop(true);
-
-	const auto& hf = _mainDocTab.getFont(TabBarPlus::isReduced());
+	const auto& hf = _mainDocTab.getFont(nppGUI._tabStatus & TAB_REDUCE);
 	if (hf)
 	{
 		::SendMessage(_mainDocTab.getHSelf(), WM_SETFONT, reinterpret_cast<WPARAM>(hf), MAKELPARAM(TRUE, 0));
 		::SendMessage(_subDocTab.getHSelf(), WM_SETFONT, reinterpret_cast<WPARAM>(hf), MAKELPARAM(TRUE, 0));
 	}
 
-	int tabDpiDynamicalHeight = _mainDocTab.dpiManager().scale(TabBarPlus::isReduced() ? g_TabHeight : g_TabHeightLarge);
-	int tabDpiDynamicalWidth = _mainDocTab.dpiManager().scale(TabBarPlus::drawTabCloseButton() ? g_TabWidthButton : g_TabWidth);
+	int tabDpiDynamicalHeight = _mainDocTab.dpiManager().scale(nppGUI._tabStatus & TAB_REDUCE ? g_TabHeight : g_TabHeightLarge);
+	int tabDpiDynamicalWidth = _mainDocTab.dpiManager().scale(nppGUI._tabStatus & TAB_PINBUTTON ? g_TabWidthButton : g_TabWidth);
 
 	TabCtrl_SetItemSize(_mainDocTab.getHSelf(), tabDpiDynamicalWidth, tabDpiDynamicalHeight);
 	TabCtrl_SetItemSize(_subDocTab.getHSelf(), tabDpiDynamicalWidth, tabDpiDynamicalHeight);
 
 	_mainDocTab.display();
 
+	if (nppGUI._tabStatus & TAB_VERTICAL)
+		TabBarPlus::doVertical();
 
-	TabBarPlus::doDragNDrop((tabBarStatus & TAB_DRAGNDROP) != 0);
-	TabBarPlus::setDrawTopBar((tabBarStatus & TAB_DRAWTOPBAR) != 0, &_mainDocTab);
-	TabBarPlus::setDrawInactiveTab((tabBarStatus & TAB_DRAWINACTIVETAB) != 0, &_mainDocTab);
-	TabBarPlus::setDrawTabCloseButton((tabBarStatus & TAB_CLOSEBUTTON) != 0, &_mainDocTab);
-	TabBarPlus::setDrawTabPinButton((tabBarStatus & TAB_PINBUTTON) != 0, &_mainDocTab);
-	TabBarPlus::setDbClk2Close((tabBarStatus & TAB_DBCLK2CLOSE) != 0);
-	TabBarPlus::setVertical((tabBarStatus & TAB_VERTICAL) != 0);
+	TabBarPlus::triggerOwnerDrawTabbar(&(_mainDocTab.dpiManager()));
 	drawTabbarColoursFromStylerArray();
+
 
 	//
 	// Initialize the default foreground & background color
@@ -699,13 +688,9 @@ LRESULT Notepad_plus::init(HWND hwnd)
 
 
 	//-- Tool Bar Section --//
-	
-	const int toolbarState = NppDarkMode::getToolBarIconSet(NppDarkMode::isEnabled());
-	if (toolbarState != -1)
-	{
-		nppGUI._toolBarStatus = static_cast<toolBarStatusType>(toolbarState);
-	}
-	toolBarStatusType tbStatus = nppGUI._toolBarStatus;
+
+	nppGUI._tbIconInfo = NppDarkMode::getToolbarIconInfo();
+	toolBarStatusType tbStatus = nppGUI._tbIconInfo._tbIconSet;
 	willBeShown = nppGUI._toolbarShow;
 
 	// To notify plugins that toolbar icons can be registered
@@ -905,21 +890,7 @@ bool Notepad_plus::saveGUIParams()
 	NppParameters& nppParams = NppParameters::getInstance();
 	NppGUI & nppGUI = nppParams.getNppGUI();
 	nppGUI._toolbarShow = _rebarTop.getIDVisible(REBAR_BAR_TOOLBAR);
-	nppGUI._toolBarStatus = _toolBar.getState();
-
-	nppGUI._tabStatus = (TabBarPlus::doDragNDropOrNot() ? TAB_DRAWTOPBAR : 0) | \
-						(TabBarPlus::drawTopBar() ? TAB_DRAGNDROP : 0) | \
-						(TabBarPlus::drawInactiveTab() ? TAB_DRAWINACTIVETAB : 0) | \
-						(TabBarPlus::isReduced() ? TAB_REDUCE : 0) | \
-						(TabBarPlus::drawTabCloseButton() ? TAB_CLOSEBUTTON : 0) | \
-						(TabBarPlus::drawTabPinButton() ? TAB_PINBUTTON : 0) | \
-						(TabBarPlus::isDbClk2Close() ? TAB_DBCLK2CLOSE : 0) | \
-						(TabBarPlus::isVertical() ? TAB_VERTICAL : 0) | \
-						(TabBarPlus::isMultiLine() ? TAB_MULTILINE : 0) |\
-						(nppGUI._tabStatus & TAB_INACTIVETABSHOWBUTTON) | \
-						(nppGUI._tabStatus & TAB_HIDE) | \
-						(nppGUI._tabStatus & TAB_QUITONEMPTY) | \
-						(nppGUI._tabStatus & TAB_ALTICONS);
+	nppGUI._tbIconInfo._tbIconSet = _toolBar.getState();
 
 	nppGUI._splitterPos = _subSplitter.isVertical()?POS_VERTICAL:POS_HORIZOTAL;
 	UserDefineDialog *udd = _pEditView->getUserDefineDlg();
@@ -3892,7 +3863,7 @@ void Notepad_plus::setLanguage(LangType langType)
 		_subEditView.execute(SCI_SETDOCPOINTER, 0, 0);
 		_subEditView.execute(SCI_SETMODEVENTMASK, MODEVENTMASK_ON);
 
-		_mainEditView.setLanguage(langType);
+		(_mainEditView.getCurrentBuffer())->setLangType(langType);
 
 		_subEditView.execute(SCI_SETMODEVENTMASK, MODEVENTMASK_OFF);
 		_subEditView.execute(SCI_SETDOCPOINTER, 0, subPrev);
@@ -3903,7 +3874,7 @@ void Notepad_plus::setLanguage(LangType langType)
 	}
 	else
 	{
-		_pEditView->setLanguage(langType);
+		(_pEditView->getCurrentBuffer())->setLangType(langType);
 	}
 }
 
@@ -4351,15 +4322,20 @@ void Notepad_plus::updateStatusBar()
 	// these sections of status bar NOT updated by this function:
 	// STATUSBAR_DOC_TYPE , STATUSBAR_EOF_FORMAT , STATUSBAR_UNICODE_TYPE
 
-	wchar_t strDocLen[256];
 	size_t docLen = _pEditView->getCurrentDocLen();
 	intptr_t nbLine = _pEditView->execute(SCI_GETLINECOUNT);
-	wsprintf(strDocLen, L"length : %s    lines : %s",
-		commafyInt(docLen).c_str(),
-		commafyInt(nbLine).c_str());
-	_statusBar.setText(strDocLen, STATUSBAR_DOC_SIZE);
 
-	wchar_t strSel[64];
+	wstring docLenStr = commafyInt(docLen);
+	wstring nbLineStr = commafyInt(nbLine);
+
+	NativeLangSpeaker* pNativeSpeaker = (NppParameters::getInstance()).getNativeLangSpeaker();
+	wstring statusbarLengthLinesStr = pNativeSpeaker->getLocalizedStrFromID("statusbar-length-lines", L"length: $STR_REPLACE1$    lines: $STR_REPLACE2$");
+	statusbarLengthLinesStr = stringReplace(statusbarLengthLinesStr, L"$STR_REPLACE1$", docLenStr);
+	statusbarLengthLinesStr = stringReplace(statusbarLengthLinesStr, L"$STR_REPLACE2$", nbLineStr);
+
+	_statusBar.setText(statusbarLengthLinesStr.c_str(), STATUSBAR_DOC_SIZE);
+
+	wstring statusbarSelStr;
 
 	size_t nbSelections = _pEditView->execute(SCI_GETSELECTIONS);
 	if (nbSelections == 1)
@@ -4367,14 +4343,14 @@ void Notepad_plus::updateStatusBar()
 		if (_pEditView->execute(SCI_GETSELECTIONEMPTY))
 		{
 			size_t currPos = _pEditView->execute(SCI_GETCURRENTPOS);
-			wsprintf(strSel, L"Pos : %s", commafyInt(currPos + 1).c_str());
+			statusbarSelStr = pNativeSpeaker->getLocalizedStrFromID("statusbar-Pos", L"Pos: ");
+			statusbarSelStr += commafyInt(currPos + 1);
 		}
 		else
 		{
 			const std::pair<size_t, size_t> oneSelCharsAndLines = _pEditView->getSelectedCharsAndLinesCount();
-			wsprintf(strSel, L"Sel : %s | %s",
-				commafyInt(oneSelCharsAndLines.first).c_str(),
-				commafyInt(oneSelCharsAndLines.second).c_str());
+			statusbarSelStr = pNativeSpeaker->getLocalizedStrFromID("statusbar-Sel", L"Sel: ");
+			statusbarSelStr += commafyInt(oneSelCharsAndLines.first) + L" | " + commafyInt(oneSelCharsAndLines.second);
 		}
 	}
 	else if (_pEditView->execute(SCI_SELECTIONISRECTANGLE))
@@ -4407,33 +4383,35 @@ void Notepad_plus::updateStatusBar()
 			}
 		}
 
-		wsprintf(strSel, L"Sel : %sx%s %s %s",
-			commafyInt(nbSelections).c_str(),  // lines (rows) in rectangular selection
-			commafyInt(maxLineCharCount).c_str(),  // show maximum width for columns
-			sameCharCountOnEveryLine ? L"=" : L"->",
-			commafyInt(rectSelCharsAndLines.first).c_str());
+		wstring nbSelectionsStr = commafyInt(nbSelections);  // lines (rows) in rectangular selection
+		wstring	maxLineCharCountStr = commafyInt(maxLineCharCount);  // show maximum width for columns
+		wstring opStr = sameCharCountOnEveryLine ? L" = " : L" -> ";
+		wstring rectSelCharsStr = commafyInt(rectSelCharsAndLines.first);
+
+		statusbarSelStr = pNativeSpeaker->getLocalizedStrFromID("statusbar-Sel", L"Sel: ");
+		statusbarSelStr += nbSelectionsStr + L"x" + maxLineCharCountStr + opStr + rectSelCharsStr;
 	}
 	else  // multiple stream selections
 	{
 		const int maxSelsToProcessLineCount = 99;  // limit the number of selections to process, for performance reasons
 		const std::pair<size_t, size_t> multipleSelCharsAndLines = _pEditView->getSelectedCharsAndLinesCount(maxSelsToProcessLineCount);
 
-		wsprintf(strSel, L"Sel %s : %s | %s",
-			commafyInt(nbSelections).c_str(),
-			commafyInt(multipleSelCharsAndLines.first).c_str(),
-			nbSelections <= maxSelsToProcessLineCount ?
-				commafyInt(multipleSelCharsAndLines.second).c_str() :
-				L"...");  // show ellipsis for line count if too many selections are active
+		wstring nbSelectionsStr = commafyInt(nbSelections);
+		wstring multipleSelChars = commafyInt(multipleSelCharsAndLines.first);
+		wstring multipleSelLines = (nbSelections <= maxSelsToProcessLineCount) ? commafyInt(multipleSelCharsAndLines.second) :	L"...";  // show ellipsis for line count if too many selections are active
+
+		statusbarSelStr = pNativeSpeaker->getLocalizedStrFromID("statusbar-Sel-number", L"Sel");
+		statusbarSelStr += L" " + nbSelectionsStr + L" : " + multipleSelChars + L" | " + multipleSelLines;
 	}
 
-	wchar_t strLnColSel[128];
-	intptr_t curLN = _pEditView->getCurrentLineNumber();
-	intptr_t curCN = _pEditView->getCurrentColumnNumber();
-	wsprintf(strLnColSel, L"Ln : %s    Col : %s    %s",
-		commafyInt(curLN + 1).c_str(),
-		commafyInt(curCN + 1).c_str(),
-		strSel);
-	_statusBar.setText(strLnColSel, STATUSBAR_CUR_POS);
+	wstring lnStr = commafyInt(_pEditView->getCurrentLineNumber() + 1);
+	wstring colStr = commafyInt(_pEditView->getCurrentColumnNumber() + 1);
+	wstring statusbarLnColStr = pNativeSpeaker->getLocalizedStrFromID("statusbar-Ln-Col", L"Ln: $STR_REPLACE1$    Col: $STR_REPLACE2$");
+	statusbarLnColStr = stringReplace(statusbarLnColStr, L"$STR_REPLACE1$", lnStr);
+	statusbarLnColStr = stringReplace(statusbarLnColStr, L"$STR_REPLACE2$", colStr);
+	wstring statusbarLnColSelStr = statusbarLnColStr + L"    " + statusbarSelStr;
+
+	_statusBar.setText(statusbarLnColSelStr.c_str(), STATUSBAR_CUR_POS);
 
 	_statusBar.setText(_pEditView->execute(SCI_GETOVERTYPE) ? L"OVR" : L"INS", STATUSBAR_TYPING_MODE);
 	
@@ -4675,10 +4653,6 @@ void Notepad_plus::loadBufferIntoView(BufferID id, int whichOne, bool dontClose)
 		if (buf->isDirty() || !buf->isUntitled())
 		{
 			idToClose = BUFFER_INVALID;
-		}
-		else
-		{
-			buf->setLastLangType(-1); // When replacing the "new" tab with an opened file, the last used language should be reset to its initial value so that the language can be reloaded later in the activateBuffer() function.
 		}
 	}
 
@@ -6452,21 +6426,21 @@ void Notepad_plus::drawTabbarColoursFromStylerArray()
 {
 	Style *stActText = getStyleFromName(TABBAR_ACTIVETEXT);
 	if (stActText && static_cast<long>(stActText->_fgColor) != -1)
-		TabBarPlus::setColour(stActText->_fgColor, TabBarPlus::activeText, &_mainDocTab);
+		TabBarPlus::setColour(stActText->_fgColor, TabBarPlus::activeText, &(_mainDocTab.dpiManager()));
 
 	Style *stActfocusTop = getStyleFromName(TABBAR_ACTIVEFOCUSEDINDCATOR);
 	if (stActfocusTop && static_cast<long>(stActfocusTop->_fgColor) != -1)
-		TabBarPlus::setColour(stActfocusTop->_fgColor, TabBarPlus::activeFocusedTop, &_mainDocTab);
+		TabBarPlus::setColour(stActfocusTop->_fgColor, TabBarPlus::activeFocusedTop, &(_mainDocTab.dpiManager()));
 
 	Style *stActunfocusTop = getStyleFromName(TABBAR_ACTIVEUNFOCUSEDINDCATOR);
 	if (stActunfocusTop && static_cast<long>(stActunfocusTop->_fgColor) != -1)
-		TabBarPlus::setColour(stActunfocusTop->_fgColor, TabBarPlus::activeUnfocusedTop, &_mainDocTab);
+		TabBarPlus::setColour(stActunfocusTop->_fgColor, TabBarPlus::activeUnfocusedTop, &(_mainDocTab.dpiManager()));
 
 	Style *stInact = getStyleFromName(TABBAR_INACTIVETEXT);
 	if (stInact && static_cast<long>(stInact->_fgColor) != -1)
-		TabBarPlus::setColour(stInact->_fgColor, TabBarPlus::inactiveText, &_mainDocTab);
+		TabBarPlus::setColour(stInact->_fgColor, TabBarPlus::inactiveText, &(_mainDocTab.dpiManager()));
 	if (stInact && static_cast<long>(stInact->_bgColor) != -1)
-		TabBarPlus::setColour(stInact->_bgColor, TabBarPlus::inactiveBg, &_mainDocTab);
+		TabBarPlus::setColour(stInact->_bgColor, TabBarPlus::inactiveBg, &(_mainDocTab.dpiManager()));
 }
 
 void Notepad_plus::drawAutocompleteColoursFromTheme(COLORREF fgColor, COLORREF bgColor)
@@ -7313,11 +7287,11 @@ void Notepad_plus::launchClipboardHistoryPanel()
 		// define the default docking behaviour
 		data.uMask = DWS_DF_CONT_RIGHT | DWS_ICONTAB | DWS_USEOWNDARKMODE;
 
-		int icoID = IDR_CLIPBOARDPANEL_ICO;
-		if (NppDarkMode::isEnabled())
+		int icoID = IDR_CLIPBOARDPANEL_ICO2;
+		if (nppParams.getNppGUI()._tbIconInfo._tbIconSet == TB_STANDARD)
+			icoID = IDR_CLIPBOARDPANEL_ICO;
+		else if (NppDarkMode::isEnabled())
 			icoID = IDR_CLIPBOARDPANEL_ICO_DM;
-		else if (nppParams.getNppGUI()._toolBarStatus != TB_STANDARD)
-			icoID = IDR_CLIPBOARDPANEL_ICO2;
 
 		const int iconSize = DPIManagerV2::scale(g_dockingContTabIconSize, _pClipboardHistoryPanel->getHSelf());
 		DPIManagerV2::loadIcon(_pPublicInterface->getHinst(), MAKEINTRESOURCE(icoID), iconSize, iconSize, &data.hIconTab, LR_LOADMAP3DCOLORS | LR_LOADTRANSPARENT);
@@ -7377,11 +7351,11 @@ void Notepad_plus::launchDocumentListPanel(bool changeFromBtnCmd)
 		// define the default docking behaviour
 		data.uMask = DWS_DF_CONT_LEFT | DWS_ICONTAB | DWS_USEOWNDARKMODE;
 
-		int icoID = IDR_DOCLIST_ICO;
-		if (NppDarkMode::isEnabled())
+		int icoID = IDR_DOCLIST_ICO2;
+		if (nppParams.getNppGUI()._tbIconInfo._tbIconSet == TB_STANDARD)
+			icoID = IDR_DOCLIST_ICO;
+		else if (NppDarkMode::isEnabled())
 			icoID = IDR_DOCLIST_ICO_DM;
-		else if (nppParams.getNppGUI()._toolBarStatus != TB_STANDARD)
-			icoID = IDR_DOCLIST_ICO2;
 
 		const int iconSize = DPIManagerV2::scale(g_dockingContTabIconSize, _pDocumentListPanel->getHSelf());
 		DPIManagerV2::loadIcon(_pPublicInterface->getHinst(), MAKEINTRESOURCE(icoID), iconSize, iconSize, &data.hIconTab, LR_LOADMAP3DCOLORS | LR_LOADTRANSPARENT);
@@ -7465,11 +7439,11 @@ void Notepad_plus::launchAnsiCharPanel()
 		// define the default docking behaviour
 		data.uMask = DWS_DF_CONT_RIGHT | DWS_ICONTAB | DWS_USEOWNDARKMODE;
 
-		int icoID = IDR_ASCIIPANEL_ICO;
-		if (NppDarkMode::isEnabled())
+		int icoID = IDR_ASCIIPANEL_ICO2;
+		if (nppParams.getNppGUI()._tbIconInfo._tbIconSet == TB_STANDARD)
+			icoID = IDR_ASCIIPANEL_ICO;
+		else if (NppDarkMode::isEnabled())
 			icoID = IDR_ASCIIPANEL_ICO_DM;
-		else if (nppParams.getNppGUI()._toolBarStatus != TB_STANDARD)
-			icoID = IDR_ASCIIPANEL_ICO2;
 
 		const int iconSize = DPIManagerV2::scale(g_dockingContTabIconSize, _pAnsiCharPanel->getHSelf());
 		DPIManagerV2::loadIcon(_pPublicInterface->getHinst(), MAKEINTRESOURCE(icoID), iconSize, iconSize, &data.hIconTab, LR_LOADMAP3DCOLORS | LR_LOADTRANSPARENT);
@@ -7517,11 +7491,11 @@ void Notepad_plus::launchFileBrowser(const vector<wstring> & folders, const wstr
 		// define the default docking behaviour
 		data.uMask = DWS_DF_CONT_LEFT | DWS_ICONTAB | DWS_USEOWNDARKMODE;
 		
-		int icoID = IDR_FILEBROWSER_ICO;
-		if (NppDarkMode::isEnabled())
+		int icoID = IDR_FILEBROWSER_ICO2;
+		if (nppParams.getNppGUI()._tbIconInfo._tbIconSet == TB_STANDARD)
+			icoID = IDR_FILEBROWSER_ICO;
+		else if (NppDarkMode::isEnabled())
 			icoID = IDR_FILEBROWSER_ICO_DM;
-		else if (nppParams.getNppGUI()._toolBarStatus != TB_STANDARD)
-			icoID = IDR_FILEBROWSER_ICO2;
 
 		const int iconSize = DPIManagerV2::scale(g_dockingContTabIconSize, _pFileBrowser->getHSelf());
 		DPIManagerV2::loadIcon(_pPublicInterface->getHinst(), MAKEINTRESOURCE(icoID), iconSize, iconSize, &data.hIconTab, LR_LOADMAP3DCOLORS | LR_LOADTRANSPARENT);
@@ -7627,11 +7601,11 @@ void Notepad_plus::launchProjectPanel(int cmdID, ProjectPanel ** pProjPanel, int
 		// define the default docking behaviour
 		data.uMask = DWS_DF_CONT_LEFT | DWS_ICONTAB | DWS_USEOWNDARKMODE;
 
-		int icoID = IDR_PROJECTPANEL_ICO;
-		if (NppDarkMode::isEnabled())
+		int icoID = IDR_PROJECTPANEL_ICO2;
+		if (nppParam.getNppGUI()._tbIconInfo._tbIconSet == TB_STANDARD)
+			icoID = IDR_PROJECTPANEL_ICO;
+		else if (NppDarkMode::isEnabled())
 			icoID = IDR_PROJECTPANEL_ICO_DM;
-		else if (nppParam.getNppGUI()._toolBarStatus != TB_STANDARD)
-			icoID = IDR_PROJECTPANEL_ICO2;
 
 		const int iconSize = DPIManagerV2::scale(g_dockingContTabIconSize, (*pProjPanel)->getHSelf());
 		DPIManagerV2::loadIcon(_pPublicInterface->getHinst(), MAKEINTRESOURCE(icoID), iconSize, iconSize, &data.hIconTab, LR_LOADMAP3DCOLORS | LR_LOADTRANSPARENT);
@@ -7693,11 +7667,11 @@ void Notepad_plus::launchDocMap()
 		// define the default docking behaviour
 		data.uMask = DWS_DF_CONT_RIGHT | DWS_ICONTAB | DWS_USEOWNDARKMODE;
 
-		int icoID = IDR_DOCMAP_ICO;
-		if (NppDarkMode::isEnabled())
+		int icoID = IDR_DOCMAP_ICO2;
+		if (nppParam.getNppGUI()._tbIconInfo._tbIconSet == TB_STANDARD)
+			icoID = IDR_DOCMAP_ICO;
+		else if (NppDarkMode::isEnabled())
 			icoID = IDR_DOCMAP_ICO_DM;
-		else if (nppParam.getNppGUI()._toolBarStatus != TB_STANDARD)
-			icoID = IDR_DOCMAP_ICO2;
 
 		const int iconSize = DPIManagerV2::scale(g_dockingContTabIconSize, _pDocMap->getHSelf());
 		DPIManagerV2::loadIcon(_pPublicInterface->getHinst(), MAKEINTRESOURCE(icoID), iconSize, iconSize, &data.hIconTab, LR_LOADMAP3DCOLORS | LR_LOADTRANSPARENT);
@@ -7744,11 +7718,11 @@ void Notepad_plus::launchFunctionList()
 		
 		NppParameters& nppParam = NppParameters::getInstance();
 
-		int icoID = IDR_FUNC_LIST_ICO;
-		if (NppDarkMode::isEnabled())
+		int icoID = IDR_FUNC_LIST_ICO2;
+		if (nppParam.getNppGUI()._tbIconInfo._tbIconSet == TB_STANDARD)
+			icoID = IDR_FUNC_LIST_ICO;
+		else if (NppDarkMode::isEnabled())
 			icoID = IDR_FUNC_LIST_ICO_DM;
-		else if (nppParam.getNppGUI()._toolBarStatus != TB_STANDARD)
-			icoID = IDR_FUNC_LIST_ICO2;
 
 		const int iconSize = DPIManagerV2::scale(g_dockingContTabIconSize, _pFuncList->getHSelf());
 		DPIManagerV2::loadIcon(_pPublicInterface->getHinst(), MAKEINTRESOURCE(icoID), iconSize, iconSize, &data.hIconTab, LR_LOADMAP3DCOLORS | LR_LOADTRANSPARENT);
@@ -8532,7 +8506,7 @@ void Notepad_plus::refreshDarkMode(bool resetStyle)
 		const int tabIconSet = NppDarkMode::getTabIconSet(NppDarkMode::isEnabled());
 		if (tabIconSet != -1)
 		{
-			_preference._generalSubDlg.setTabbarAlternateIcons(tabIconSet == 1);
+			_preference._tabbarSubDlg.setTabbarAlternateIcons(tabIconSet == 1);
 			::SendMessage(_pPublicInterface->getHSelf(), NPPM_INTERNAL_CHANGETABBARICONSET, static_cast<WPARAM>(false), tabIconSet);
 		}
 		else
@@ -8544,9 +8518,10 @@ void Notepad_plus::refreshDarkMode(bool resetStyle)
 			}
 		}
 
-		const int iconState = NppDarkMode::getToolBarIconSet(NppDarkMode::isEnabled());
-		toolBarStatusType state = (iconState == -1) ? _toolBar.getState() : static_cast<toolBarStatusType>(iconState);
-		switch (state)
+		auto& nppGUITbInfo = nppParams.getNppGUI()._tbIconInfo;
+		nppGUITbInfo = NppDarkMode::getToolbarIconInfo();
+
+		switch (nppGUITbInfo._tbIconSet)
 		{
 			case TB_SMALL:
 				_toolBar.reduce();
