@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Беларуская" filename="belarusian.xml" version="8.7.8">
+	<Native-Langue name="Беларуская" filename="belarusian.xml" version="8.8">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -946,38 +946,53 @@ Translation note:
 			<Preference title="Параметры">
 				<Item id="6001" name="Закрыць"/>
 				<Global title="Агульныя">
-					<Item id="6101" name="Панэль інструментаў"/>
-					<Item id="6102" name="Схаваць"/>
+					<Item id="6123" name="Лакалізацыя"/>
+					<Item id="6132" name="Хаваць ярлыкі + ▼ ✕ у правай частцы радка меню (неабходны перазапуск праграмы)"/>
+					<Item id="6123" name="Hide (use Alt or F10 key to toggle)"/>
+					<Item id="6128" name="Hide right shortcuts ＋ ▼ ✕"/>
+					<Item id="6131" name="Панэль стану"/>
+					<Item id="6122" name="Схаваць панэль меню (Alt або F10)"/>
+				</Global>
+
+				<Toolbar title="Панэль інструментаў">
+					<Item id="6102" name="Схаваць панэль меню (Alt або F10)"/>
 					<Item id="6103" name="Fluent UI: маленькі"/>
 					<Item id="6104" name="Fluent UI: вялікі"/>
 					<Item id="6129" name="Filled Fluent UI: маленькі"/>
 					<Item id="6130" name="Filled Fluent UI: вялікі"/>
 					<Item id="6105" name="Стандартныя значкі: маленькія"/>
+					<Item id="6011" name="Colorization"/>
+					<Item id="6012" name="Complete"/>
+					<Item id="6013" name="Partial"/>
+					<Item id="6014" name="Color choice"/>
+					<Item id="6015" name="Перанос радкоў"/>
+					<Item id="6016" name="Чырвоны"/>
+					<Item id="6017" name="Зялёны"/>
+					<Item id="6018" name="Блакiтны"/>
+					<Item id="6019" name="Аліўкавы"/>
+					<Item id="6020" name="Блакітны"/>
+					<Item id="6021" name="Аліўкавы"/>
+					<Item id="6022" name="Yellow"/>
+					<Item id="6023" name="System Accent"/>
+					<Item id="6024" name="Custom"/>
+				</Toolbar>
 
-					<Item id="6106" name="Панэль укладак"/>
+				<Tabbar title="Панэль укладак">
 					<Item id="6107" name="Паменшыць"/>
 					<Item id="6108" name="Забараніць перацягванне"/>
 					<Item id="6109" name="Change inactive tab color"/>
 					<Item id="6110" name="Каляровая панэль актыўнай укладкі"/>
 					<Item id="6111" name="Show buttons on inactive tabs"/>
 					<Item id="6111" name="Show close button"/>
-					<Item id="6112" name="Закрываць падвойным націскам"/>
+					<Item id="6112" name="Клавіша закрыцця на кожнай укладцы"/>
 					<Item id="6115" name="Enable pin tab feature"/>
+					<Item id="6135" name="Show only pinned button"/>
 					<Item id="6113" name="Схаваць панэль меню (Alt або F10)"/>
 					<Item id="6118" name="Схаваць"/>
 					<Item id="6119" name="Каскадам"/>
 					<Item id="6120" name="Вертыкальная"/>
 					<Item id="6121" name="Выходзіць пры закрыцці апошняй укладкі"/>
-
-					<Item id="6131" name="Панэль стану"/>
-					<Item id="6122" name="Схаваць панэль меню (Alt або F10)"/>
-
-					<Item id="6132" name="Хаваць ярлыкі + ▼ ✕ у правай частцы радка меню (неабходны перазапуск праграмы)"/>
-					<Item id="6123" name="Hide (use Alt or F10 key to toggle)"/>
-					<Item id="6128" name="Hide right shortcuts ＋ ▼ ✕"/>
-
-					<Item id="6123" name="Лакалізацыя"/>
-				</Global>
+				</Tabbar>
 
 				<Scintillas title="Рэдагаванне 1">
 					<Item id="6216" name="Налады стрэшкі"/>
@@ -996,8 +1011,9 @@ Translation note:
 					<Item id="6239" name="Утрымліваць выбар пры націску за межамі выбару"/>
 					<Item id="6245" name="Уключыць віртуальны прабел"/>
 					<Item id="6214" name="Уключыць капіяваць/выразаць радкоў без выбару"/>
+					<Item id="6225" name="Apply custom color to selected text foreground"/>
 					<Item id="6651" name="Індыкатар бягучага радка"/>
-					<Item id="6652" name="Няма"/>
+					<Item id="6652" name="Простая рэзервовая копія"/>
 					<Item id="6653" name="Падсвечваць фон"/>
 					<Item id="6654" name="Рамка"/>
 					<Item id="6655" name="Шырыня:"/>
@@ -1032,10 +1048,10 @@ Translation note:
 					<Item id="7108" name="Блакітны"/>
 					<Item id="7109" name="Аліўкавы"/>
 					<Item id="7115" name="Дапасавана"/>
-					<Item id="7116" name="Уверсе"/>
-					<Item id="7117" name="Гарачы трэк меню"/>
-					<Item id="7118" name="Актыўны"/>
-					<Item id="7119" name="Галоўны"/>
+					<Item id="7116" name="Content background"/>
+					<Item id="7117" name="Hot track item"/>
+					<Item id="7118" name="Control background"/>
+					<Item id="7119" name="Dialog background"/>
 					<Item id="7120" name="Памылка"/>
 					<Item id="7121" name="Тэкст"/>
 					<Item id="7122" name="Цямнейшы тэкст"/>
@@ -1328,6 +1344,7 @@ Translation note:
 						<Element name="DirectWrite (default)"/>
 						<Element name="DirectWrite (retain frames)"/>
 						<Element name="DirectWrite (draw to GDI DC)"/>
+						<Element name="DirectWrite (DirectX 11)"/>
 					</ComboBox>
 					<Item id="6308" name="сістэмны латок"/>
 					<Item id="6363" name="rendering mode"/>
@@ -1472,6 +1489,11 @@ Translation note:
 			<ProjectPanelReloadDirty title="Перазагрузіць працоўную вобласць" message="Бягучая працоўная вобласць была зменена. Перазагрузка адхіліць усе змяненні. Вы сапраўды хочаце працягнуць?"/>
 			<UDLNewNameError title="Памылка UDL" message="Гэта назва выкарыстоўваецца іншай мовай. Выберыце іншую назву."/>
 			<UDLRemoveCurrentLang title="Выдаліць бягучую мову" message="Вы ўпэўнены?"/>
+			<UDL_importSuccessful title="Мова вызначаная карыстальнікам" message="Import successful."/>
+			<UDL_importFails title="Мова вызначаная карыстальнікам" message="Failed to import."/>
+			<UDL_saveBeforeImport title="Мова вызначаная карыстальнікам" message="Before exporting, save your language definition by clicking &quot;Save As...&quot; button."/> <!-- HowToReproduce: Choose "User Defined Language" in User Language combobox, then click on "Export... button". -->
+			<UDL_exportSuccessful title="Мова вызначаная карыстальнікам" message="Export successful."/>
+			<UDL_exportFails title="Мова вызначаная карыстальнікам" message="Failed to export."/>
 			<SCMapperDoDeleteOrNot title="Вы ўпэўнены?" message="Вы сапраўды хочаце выдаліць гэта спалучэнне клавіш?"/>
 			<FindCharRangeValueError title="Праблема ў дыяпазоне значэнняў" message="Увядзіце значэнне ад 0 да 255."/> <!-- HowToReproduce: Search menu, then Find characters in range, select Custom range, enter 999 in either edit box, press Find. -->
 			<OpenInAdminMode title="Збой захавання" message="Не атрымалася захаваць файл. Магчыма ён абаронены. Запусціць Notepad++ у рэжыме адміністратара?"/>
@@ -1728,9 +1750,22 @@ Translation note:
 			<fileSaveAsCopySaveButton-tip value="Утрымлівайце Shift, націскаючы Захаваць, каб адкрыць копію пасля захавання."/>
 			<autoIndentBasic-tip value="Пераканайцеся, што водступ бягучага радка (г.зн. новы радок створаны націскам клавішы ENTER) супадае з водступам папярэдняга радка."/>
 			<autoIndentAdvanced-tip value="Уключыць інтэлектуальны водступ для моў праграмавання, якія &quot;падобныя на C&quot; і Python. Мовы праграмавання, якія &quot;падобныя на C&quot; уключаюць: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell і JSON.  Калі выбраць пашыраны рэжым, але не рэдагаваць файлы вышэй азначанымі мовамі, водступ застанецца ў базавым рэжыме."/>
+
 			<!-- Don't translate "Global override" and "Default Style" -->
 			<global-override-tip value="Уключэнне &quot;Глабальнага перавызначэння&quot; у гэтым месцы перавызначыць гэты параметр ва ўсіх моўных стылях. Магчыма, што замест гэтага, вы захочаце выкарыстаць &quot;Прадвызначаны стыль&quot;"/>
 			<scintillaRenderingTechnology-tip value="May improve rendering of special characters or resolve some graphics issues, restart Notepad++ to apply the changes."/>
+
+			<!-- Due to the limited space on the status bar, if the translations for 'length' & 'lines' are much longer than the English words, please leave them in English instead of translating them. -->
+			<statusbar-length-lines value="length: $STR_REPLACE1$    lines: $STR_REPLACE2$"/>
+
+			<!-- Due to the limited space on the status bar, if the translations for 'Ln' & 'Col' are longer than the English words, please leave them in English instead of translating them. -->
+			<statusbar-Ln-Col value="Ln: $STR_REPLACE1$    Col: $STR_REPLACE2$"/>
+
+			<!-- Due to the limited space on the status bar, if the translations for 'Pos' & 'Sel' are longer than the English words, please leave them in English instead of translating them. -->
+			<statusbar-Pos value="Pos: "/>
+			<statusbar-Sel value="Sel: "/>
+			<statusbar-Sel-number value="Sel"/>
+			<toolbar-accent-tip value="This option makes your toolbar icons follow Windows system accent color. Accent color is the highlight color used in buttons, borders, and Start menu tiles in Windows. To change it, go to Settings &gt; Personalization &gt; Colors, then select your preferred accent color."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
