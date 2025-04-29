@@ -5,7 +5,7 @@ Translation note:
 2. All the comments are for explanation, they are not for translation.
 -->
 <NotepadPlus>
-	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.7.8">
+	<Native-Langue name="Українська" filename="ukrainian.xml" version="8.8">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -946,15 +946,38 @@ Translation note:
 			<Preference title="Налаштування">
 				<Item id="6001" name="Закрити"/>
 				<Global title="Загальні">
-					<Item id="6101" name="Панель інструментів"/>
+					<Item id="6123" name="Локалізація"/>
+					<Item id="6131" name="Меню"/>
+					<Item id="6122" name="Hide (use Alt or F10 key to toggle)"/>
+					<Item id="6132" name="Hide right shortcuts ＋ ▼ ✕"/>
+					<Item id="6133" name="Рядок стану"/>
+					<Item id="6134" name="Приховати"/>
+				</Global>
+
+				<Toolbar title="Панель інструментів">
 					<Item id="6102" name="Приховати"/>
 					<Item id="6103" name="Fluent UI: маленький"/>
 					<Item id="6104" name="Fluent UI: великий"/>
 					<Item id="6129" name="Filled Fluent UI: маленький"/>
 					<Item id="6130" name="Filled Fluent UI: великий"/>
 					<Item id="6105" name="Стандартні піктограми: маленькі"/>
+					<Item id="6011" name="Colorization"/>
+					<Item id="6012" name="Complete"/>
+					<Item id="6013" name="Partial"/>
+					<Item id="6014" name="Color choice"/>
+					<Item id="6015" name="Типово"/>
+					<Item id="6016" name="Червоний"/>
+					<Item id="6017" name="Зелений"/>
+					<Item id="6018" name="Блакитний"/>
+					<Item id="6019" name="Бузковий"/>
+					<Item id="6020" name="Бірюзовий"/>
+					<Item id="6021" name="Оливковий"/>
+					<Item id="6022" name="Yellow"/>
+					<Item id="6023" name="System Accent"/>
+					<Item id="6024" name="Custom"/>
+				</Toolbar>
 
-					<Item id="6106" name="Панель вкладок"/>
+				<Tabbar title="Панель вкладок">
 					<Item id="6107" name="Зменшити"/>
 					<Item id="6108" name="Заборонити перетягування"/>
 					<Item id="6109" name="Change inactive tab color"/>
@@ -963,21 +986,13 @@ Translation note:
 					<Item id="6112" name="Show close button"/>
 					<Item id="6113" name="Закривати подвійним клацанням"/>
 					<Item id="6115" name="Enable pin tab feature"/>
+					<Item id="6135" name="Show only pinned button"/>
 					<Item id="6118" name="Приховати"/>
 					<Item id="6119" name="Каскадом"/>
 					<Item id="6120" name="Вертикально"/>
 					<Item id="6121" name="Виходити після закриття останньої вкладки"/>
 					<Item id="6128" name="Змінювати піктограми"/>
-
-					<Item id="6133" name="Рядок стану"/>
-					<Item id="6134" name="Приховати"/>
-
-					<Item id="6131" name="Меню"/>
-					<Item id="6122" name="Hide (use Alt or F10 key to toggle)"/>
-					<Item id="6132" name="Hide right shortcuts ＋ ▼ ✕"/>
-
-					<Item id="6123" name="Локалізація"/>
-				</Global>
+				</Tabbar>
 
 				<Scintillas title="Редагування 1">
 					<Item id="6216" name="Налаштування вставки"/>
@@ -996,6 +1011,7 @@ Translation note:
 					<Item id="6239" name="Утримувати вибір при клацанні за межами вибору"/>
 					<Item id="6245" name="Увімкнути віртуальний простір"/>
 					<Item id="6214" name="Увімкнути копіювання/вирізання рядків без вибору"/>
+					<Item id="6225" name="Apply custom color to selected text foreground"/>
 					<Item id="6651" name="Індикатор поточного рядка"/>
 					<Item id="6652" name="Немає"/>
 					<Item id="6653" name="Підсвічувати задній план"/>
@@ -1032,10 +1048,10 @@ Translation note:
 					<Item id="7108" name="Бірюзовий"/>
 					<Item id="7109" name="Оливковий"/>
 					<Item id="7115" name="Налаштований"/>
-					<Item id="7116" name="Вгорі"/>
-					<Item id="7117" name="Гарячий трек меню"/>
-					<Item id="7118" name="Активний"/>
-					<Item id="7119" name="Основний"/>
+					<Item id="7116" name="Content background"/>
+					<Item id="7117" name="Hot track item"/>
+					<Item id="7118" name="Control background"/>
+					<Item id="7119" name="Dialog background"/>
 					<Item id="7120" name="Помилка"/>
 					<Item id="7121" name="Текст"/>
 					<Item id="7122" name="Темніший текст"/>
@@ -1328,6 +1344,7 @@ Translation note:
 						<Element name="DirectWrite (default)"/>
 						<Element name="DirectWrite (retain frames)"/>
 						<Element name="DirectWrite (draw to GDI DC)"/>
+						<Element name="DirectWrite (DirectX 11)"/>
 					</ComboBox>
 					<Item id="6308" name="системного лотка"/>
 					<Item id="6363" name="rendering mode"/>
@@ -1472,6 +1489,11 @@ Translation note:
 			<ProjectPanelReloadDirty title="Перезавантажити робочу область" message="Поточну робочу область було змінено. Перезавантаження відхилить всі зміни. Хочете продовжити?"/>
 			<UDLNewNameError title="Помилка UDL" message="Це ім'я використовується іншою мовою, будь ласка, виберіть інше."/>
 			<UDLRemoveCurrentLang title="Видалити поточну мову" message="Ви впевнені?"/>
+			<UDL_importSuccessful title="Користувацька мова" message="Import successful."/>
+			<UDL_importFails title="Користувацька мова" message="Failed to import."/>
+			<UDL_saveBeforeImport title="Користувацька мова" message="Before exporting, save your language definition by clicking &quot;Save As...&quot; button."/> <!-- HowToReproduce: Choose "User Defined Language" in User Language combobox, then click on "Export... button". -->
+			<UDL_exportSuccessful title="Користувацька мова" message="Export successful."/>
+			<UDL_exportFails title="Користувацька мова" message="Failed to export."/>
 			<SCMapperDoDeleteOrNot title="Ви впевнені?" message="Ви дійсно бажаєте видалити цю комбінацію клавіш?"/>
 			<FindCharRangeValueError title="Проблема з діапазоном значень" message="Необхідно ввести значення від 0 до 255."/> <!-- HowToReproduce: Search menu, then Find characters in range, select Custom range, enter 999 in either edit box, press Find. -->
 			<OpenInAdminMode title="Не вдалося зберегти" message="Не вдається зберегти файл, він може бути захищеним. Хочете запустити Notepad++ в режимі адміністратора?"/>
@@ -1728,9 +1750,22 @@ Translation note:
 			<fileSaveAsCopySaveButton-tip value="Утримуйте Shift, натискаючи Зберегти, щоб відкрити копію після збереження."/>
 			<autoIndentBasic-tip value="Переконайтеся, що відступ поточного рядка (тобто новий рядок, створений натисканням клавіші ENTER) збігається з відступом попереднього рядка."/>
 			<autoIndentAdvanced-tip value="Увімкнути інтелектуальний відступ для &quot;C-подібних&quot; мов і Python. &quot;C-подібні&quot; мови включають: C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell і JSON.  Якщо вибрати розширений режим, але не редагувати файли вищезазначеними мовами, відступ залишиться в базовому режимі."/>
+
 			<!-- Don't translate "Global override" and "Default Style" -->
 			<global-override-tip value="Увімкнення &quot;Глобального перевизначення&quot; тут замінить цей параметр у всіх мовних стилях. Натомість ви, ймовірно, хочете використовувати &quot;Типовий стиль&quot;"/>
 			<scintillaRenderingTechnology-tip value="May improve rendering of special characters or resolve some graphics issues, restart Notepad++ to apply the changes."/>
+
+			<!-- Due to the limited space on the status bar, if the translations for 'length' & 'lines' are much longer than the English words, please leave them in English instead of translating them. -->
+			<statusbar-length-lines value="length: $STR_REPLACE1$    lines: $STR_REPLACE2$"/>
+
+			<!-- Due to the limited space on the status bar, if the translations for 'Ln' & 'Col' are longer than the English words, please leave them in English instead of translating them. -->
+			<statusbar-Ln-Col value="Ln: $STR_REPLACE1$    Col: $STR_REPLACE2$"/>
+
+			<!-- Due to the limited space on the status bar, if the translations for 'Pos' & 'Sel' are longer than the English words, please leave them in English instead of translating them. -->
+			<statusbar-Pos value="Pos: "/>
+			<statusbar-Sel value="Sel: "/>
+			<statusbar-Sel-number value="Sel"/>
+			<toolbar-accent-tip value="This option makes your toolbar icons follow Windows system accent color. Accent color is the highlight color used in buttons, borders, and Start menu tiles in Windows. To change it, go to Settings &gt; Personalization &gt; Colors, then select your preferred accent color."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>
