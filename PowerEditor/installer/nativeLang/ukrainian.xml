@@ -93,7 +93,7 @@ Translation note:
 					<Item id="41003" name="Закрити"/>
 					<Item id="41004" name="Закрити все"/>
 					<Item id="41005" name="Закрити все, окрім активного"/>
-					<Item id="41026" name="Close All BUT Pinned Documents"/>
+					<Item id="41026" name="Закрити всі документи, крім закріплених"/>
 					<Item id="41009" name="Закрити все зліва"/>
 					<Item id="41018" name="Закрити все справа"/>
 					<Item id="41024" name="Закрити всі незмінені"/>
@@ -135,17 +135,17 @@ Translation note:
 					<Item id="42015" name="Опустити поточний рядок"/>
 					<Item id="42059" name="Сортувати рядки за зростанням"/>
 					<Item id="42060" name="Сортувати рядки за спаданням"/>
-					<Item id="42080" name="Сортувати рядки Lex. за зростанням ігноруючи регістр"/>
-					<Item id="42081" name="Сортувати рядки Lex. за спаданням ігноруючи регістр"/>
-					<Item id="42100" name="Sort Lines In Locale Order Ascending"/>
-					<Item id="42101" name="Sort Lines In Locale Order Descending"/>
-					<Item id="42061" name="Сортувати рядки як ціле за зростанням"/>
-					<Item id="42062" name="Сортувати рядки як ціле за спаданням"/>
-					<Item id="42063" name="Сортувати рядки як десяткове (кома) за зростанням"/>
-					<Item id="42064" name="Сортувати рядки як десяткове (кома) за спаданням"/>
-					<Item id="42065" name="Сортувати рядки як десяткове (крапка) за зростанням"/>
-					<Item id="42066" name="Сортувати рядки як десяткове (крапка) за спаданням"/>
-					<Item id="42083" name="Обернений порядок рядків"/>
+					<Item id="42080" name="Сортувати рядки Lex. за зростанням, ігноруючи регістр"/>
+					<Item id="42081" name="Сортувати рядки Lex. за спаданням, ігноруючи регістр"/>
+					<Item id="42100" name="Сортувати рядки в порядку локалі за зростанням"/>
+					<Item id="42101" name="Сортувати рядки в порядку локалі за спаданням"/>
+					<Item id="42061" name="Сортувати рядки як цілі числа за зростанням"/>
+					<Item id="42062" name="Сортувати рядки як цілі числа за спаданням"/>
+					<Item id="42063" name="Сортувати рядки як десяткові (кома) за зростанням"/>
+					<Item id="42064" name="Сортувати рядки як десяткові (кома) за спаданням"/>
+					<Item id="42065" name="Сортувати рядки як десяткові (крапка) за зростанням"/>
+					<Item id="42066" name="Сортувати рядки як десяткові (крапка) за спаданням"/>
+					<Item id="42083" name="Зворотний порядок рядків"/>
 					<Item id="42078" name="Випадковий порядок рядків"/>
 					<Item id="42016" name="ВЕЛИКИМИ"/>
 					<Item id="42017" name="маленькими"/>
@@ -153,7 +153,7 @@ Translation note:
 					<Item id="42068" name="Перші Літери Великі (змішані)"/>
 					<Item id="42069" name="Як у реченнях"/>
 					<Item id="42070" name="Як у реченнях (змішані)"/>
-					<Item id="42071" name="зВОРОТНІЙ пОРЯДОК"/>
+					<Item id="42071" name="зВОРОТНИЙ пОРЯДОК"/>
 					<Item id="42072" name="виПАдковиЙ ПорЯдок"/>
 					<Item id="42073" name="Відкрити файл"/>
 					<Item id="42074" name="Відкрити теку в провіднику"/>
@@ -196,14 +196,14 @@ Translation note:
 					<Item id="42025" name="Зберегти записаний макрос..."/>
 					<Item id="42026" name="Текст справа наліво"/>
 					<Item id="42027" name="Текст зліва направо"/>
-					<Item id="42028" name="Read-Only in Notepad++"/>
+					<Item id="42028" name="Тільки для читання у Notepad++"/>
 					<Item id="42029" name="Копіювати шлях до поточного файлу"/>
 					<Item id="42030" name="Копіювати назву поточного файлу"/>
 					<Item id="42031" name="Копіювати шлях до поточної теки"/>
 					<Item id="42087" name="Копіювати всі назви файлів"/>
 					<Item id="42088" name="Копіювати всі шляхи до файлів"/>
 					<Item id="42032" name="Багаторазовий запуск макросу..."/>
-					<Item id="42033" name="Read-Only Attribute in Windows"/>
+					<Item id="42033" name="Атрибут тільки для читання у Windows"/>
 					<Item id="42035" name="Коментувати рядок"/>
 					<Item id="42036" name="Розкоментувати рядок"/>
 					<Item id="42055" name="Вилучити порожні рядки"/>
@@ -422,11 +422,11 @@ Translation note:
 				<Item CMDID="41003" name="Закрити"/>
 				<Item CMDID="0" name="Закрити декілька вкладок"/>
 				<Item CMDID="41005" name="Закрити всі, окрім цієї"/>
-				<Item CMDID="41026" name="Close All BUT Pinned"/>
+				<Item CMDID="41026" name="Закрити всі, крім закріплених"/>
 				<Item CMDID="41009" name="Закрити все зліва"/>
 				<Item CMDID="41018" name="Закрити все справа"/>
 				<Item CMDID="41024" name="Закрити всі незмінені"/>
-				<Item CMDID="44048" name="Pin Tab" alternativeName="Unpin Tab"/>
+				<Item CMDID="44048" name="Закріпити вкладку" alternativeName="Відкріпити вкладку"/>
 				<Item CMDID="41006" name="Зберегти"/>
 				<Item CMDID="41008" name="Зберегти як..."/>
 				<Item CMDID="1" name="Відкрити в"/>
@@ -438,8 +438,8 @@ Translation note:
 				<Item CMDID="41016" name="Перемістити до смітника"/>
 				<Item CMDID="41014" name="Перезавантажити"/>
 				<Item CMDID="41010" name="Друкувати..."/>
-				<Item CMDID="42028" name="Read-Only in Notepad++"/>
-				<Item CMDID="42033" name="Read-Only Attribute in Windows"/>
+				<Item CMDID="42028" name="Тільки для читання у Notepad++"/>
+				<Item CMDID="42033" name="Атрибут тільки для читання у Windows"/>
 				<Item CMDID="2" name="Копіювати в буфер обміну"/>
 				<Item CMDID="42029" name="Копіювати повний шлях до файлу"/>
 				<Item CMDID="42030" name="Копіювати назву файлу"/>
@@ -824,7 +824,7 @@ Translation note:
 				<Folder title="Стандартний">
 					<Item id="21101" name="Типовий стиль"/>
 					<Item id="21102" name="Налаштувати"/>
-					<Item id="21103" name="User Defined Languages online help"/>
+					<Item id="21103" name="Онлайн-довідка про мови, визначені користувачем"/>
 					<Item id="21105" name="Документація"/>
 					<Item id="21106" name="Компактне згорт. (пусті рядки також)"/>
 					<Item id="21220" name="Згортання в коді стилю 1"/>
@@ -950,8 +950,8 @@ Translation note:
 				<Global title="Загальні">
 					<Item id="6123" name="Локалізація"/>
 					<Item id="6131" name="Меню"/>
-					<Item id="6122" name="Hide (use Alt or F10 key to toggle)"/>
-					<Item id="6132" name="Hide right shortcuts ＋ ▼ ✕"/>
+					<Item id="6122" name="Приховати (Alt чи F10 для перемикання)"/>
+					<Item id="6132" name="Приховати праві ярлики ＋ ▼ ✕"/>
 					<Item id="6133" name="Рядок стану"/>
 					<Item id="6134" name="Приховати"/>
 				</Global>
@@ -987,8 +987,8 @@ Translation note:
 					<Item id="6111" name="Show buttons on inactive tabs"/>
 					<Item id="6112" name="Show close button"/>
 					<Item id="6113" name="Закривати подвійним клацанням"/>
-					<Item id="6115" name="Enable pin tab feature"/>
-					<Item id="6135" name="Show only pinned button"/>
+					<Item id="6115" name="Увімкнути функцію закріплення вкладок"/>
+					<Item id="6135" name="Кнопка показу лише закріплених"/>
 					<Item id="6118" name="Приховати"/>
 					<Item id="6119" name="Каскадом"/>
 					<Item id="6120" name="Вертикально"/>
