@@ -397,8 +397,8 @@ Translation note:
 					<Item id="50000" name="Завершення функцій"/>
 					<Item id="50001" name="Завершення слів"/>
 					<Item id="50002" name="Підказка параметрів функцій"/>
-					<Item id="50010" name="Попередня підказка параметрів функції"/>
-					<Item id="50011" name="Наступна підказка параметрів функції"/>
+					<Item id="50010" name="Наступна підказка параметрів функцій"/>
+					<Item id="50011" name="Попередня підказка параметрів функцій"/>
 					<Item id="50005" name="Перемкнути запис макросу"/>
 					<Item id="50006" name="Завершення шляху"/>
 					<Item id="44042" name="Приховати рядки"/>
@@ -828,9 +828,9 @@ Translation note:
 					<Item id="21105" name="Документація"/>
 					<Item id="21106" name="Компактне згорт. (пусті рядки також)"/>
 					<Item id="21220" name="Згортання в коді стилю 1"/>
-					<Item id="21224" name="Відкривати:"/>
+					<Item id="21224" name="Відкриття:"/>
 					<Item id="21225" name="Середина:"/>
-					<Item id="21226" name="Закривати:"/>
+					<Item id="21226" name="Закриття:"/>
 					<Item id="21227" name="Стиль"/>
 					<Item id="21320" name="Згортання в коді стилю 2 (потрібні розділювачі)"/>
 					<Item id="21324" name="Відкриття:"/>
@@ -964,9 +964,9 @@ Translation note:
 					<Item id="6130" name="Filled Fluent UI: великий"/>
 					<Item id="6105" name="Стандартні піктограми: маленькі"/>
 					<Item id="6011" name="Колоризація"/>
-					<Item id="6012" name="Complete"/>
-					<Item id="6013" name="Partial"/>
-					<Item id="6014" name="Color choice"/>
+					<Item id="6012" name="Повна"/>
+					<Item id="6013" name="Часткова"/>
+					<Item id="6014" name="Вибір кольору"/>
 					<Item id="6015" name="Типово"/>
 					<Item id="6016" name="Червоний"/>
 					<Item id="6017" name="Зелений"/>
@@ -974,18 +974,18 @@ Translation note:
 					<Item id="6019" name="Бузковий"/>
 					<Item id="6020" name="Бірюзовий"/>
 					<Item id="6021" name="Оливковий"/>
-					<Item id="6022" name="Yellow"/>
-					<Item id="6023" name="System Accent"/>
-					<Item id="6024" name="Custom"/>
+					<Item id="6022" name="Жовтий"/>
+					<Item id="6023" name="Системний акцент"/>
+					<Item id="6024" name="Власний"/>
 				</Toolbar>
 
 				<Tabbar title="Панель вкладок">
 					<Item id="6107" name="Зменшити"/>
 					<Item id="6108" name="Заборонити перетягування"/>
-					<Item id="6109" name="Change inactive tab color"/>
+					<Item id="6109" name="Змінити колір неактивної вкладки"/>
 					<Item id="6110" name="Кольорова панель активної вкладки"/>
-					<Item id="6111" name="Show buttons on inactive tabs"/>
-					<Item id="6112" name="Show close button"/>
+					<Item id="6111" name="Показувати кнопки на неактивних вкладках"/>
+					<Item id="6112" name="Показувати кнопку закриття"/>
 					<Item id="6113" name="Закривати подвійним клацанням"/>
 					<Item id="6115" name="Увімкнути функцію закріплення вкладок"/>
 					<Item id="6135" name="Кнопка показу лише закріплених"/>
@@ -994,8 +994,8 @@ Translation note:
 					<Item id="6120" name="Вертикально"/>
 					<Item id="6121" name="Виходити після закриття останньої вкладки"/>
 					<Item id="6128" name="Змінювати піктограми"/>
-					<Item id="6125" name="Behavior"/>
-					<Item id="6126" name="Look &amp;&amp; feel"/>
+					<Item id="6125" name="Поведінка"/>
+					<Item id="6126" name="Вигляд і сприйняття"/>
 				</Tabbar>
 
 				<Scintillas title="Редагування 1">
@@ -1015,7 +1015,7 @@ Translation note:
 					<Item id="6239" name="Утримувати вибір при клацанні за межами вибору"/>
 					<Item id="6245" name="Увімкнути віртуальний простір"/>
 					<Item id="6214" name="Увімкнути копіювання/вирізання рядків без вибору"/>
-					<Item id="6225" name="Apply custom color to selected text foreground"/>
+					<Item id="6225" name="Застосувати власний колір до переднього плану вибраного тексту"/>
 					<Item id="6651" name="Індикатор поточного рядка"/>
 					<Item id="6652" name="Немає"/>
 					<Item id="6653" name="Підсвічувати задній план"/>
@@ -1052,10 +1052,10 @@ Translation note:
 					<Item id="7108" name="Бірюзовий"/>
 					<Item id="7109" name="Оливковий"/>
 					<Item id="7115" name="Налаштований"/>
-					<Item id="7116" name="Content background"/>
-					<Item id="7117" name="Hot track item"/>
-					<Item id="7118" name="Control background"/>
-					<Item id="7119" name="Dialog background"/>
+					<Item id="7116" name="Задній план вмісту"/>
+					<Item id="7117" name="Відстеження елемента"/>
+					<Item id="7118" name="Керування заднім планом"/>
+					<Item id="7119" name="Тло діалогу"/>
 					<Item id="7120" name="Помилка"/>
 					<Item id="7121" name="Текст"/>
 					<Item id="7122" name="Темніший текст"/>
@@ -1108,7 +1108,7 @@ Translation note:
 					<Item id="6419" name="Створити документ"/>
 					<Item id="6420" name="Застосувати до відкритих файлів ANSI"/>
 					<Item id="6432" name="Завжди відкривати новий документ при запуску"/>
-					<Item id="6433" name="Use the first line of document as untitled tab name"/>
+					<Item id="6433" name="Використовувати перший рядок документа як назву вкладки"/>
 				</NewDoc>
 
 				<DefaultDir title="Типова тека">
@@ -1213,7 +1213,7 @@ Translation note:
 					<Item id="6908" name="Заповнити поле для пошуку вибраним текстом"/>
 					<Item id="6909" name="Вибрати слово під узгодженим, якщо нічого не вибрано"/>
 					<Item id="6910" name="Мінімальний розмір для автоматичної перевірки &quot;у виборі&quot;:"/>
-					<Item id="6913" name="Fill Find in Files Directory Field Based On Active Document"/>
+					<Item id="6913" name="Заповнити поле пошуку в каталозі файлів на основі активного документа"/>
 				</Searching>
 
 				<RecentFilesHistory title="Історія файлів">
