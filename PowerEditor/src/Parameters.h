@@ -848,6 +848,7 @@ struct NppGUI final
 	bool _menuBarShow = true;
 
 	int _tabStatus = (TAB_DRAWTOPBAR | TAB_DRAWINACTIVETAB | TAB_DRAGNDROP | TAB_REDUCE | TAB_CLOSEBUTTON | TAB_PINBUTTON);
+	bool _forceTabbarVisible = false;
 
 	bool _splitterPos = POS_VERTICAL;
 	int _userDefineDlgStatus = UDD_DOCKED;
@@ -1506,6 +1507,8 @@ private:
 	std::wstring _lastCmdLabel;
 };
 
+struct LanguageNameInfo;
+
 class NppParameters final
 {
 private:
@@ -1909,6 +1912,9 @@ public:
 	ColumnEditorParam _columnEditParam;
 	unsigned long getScintillaModEventMask() const { return _sintillaModEventMask; };
 	void addScintillaModEventMask(unsigned long mask2Add) { _sintillaModEventMask |= mask2Add; };
+	bool isAsNotepadStyle() const { return _asNotepadStyle; }
+
+	LanguageNameInfo getLangNameInfoFromNameID(const std::wstring& langNameID);
 
 private:
 	NppParameters();

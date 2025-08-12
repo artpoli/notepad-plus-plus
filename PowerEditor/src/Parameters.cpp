@@ -623,6 +623,7 @@ int hexStrVal(const wchar_t *str)
 
 int getKwClassFromName(const wchar_t *str)
 {
+	if(!str) return -1;
 	if (!lstrcmp(L"instre1", str)) return LANG_INDEX_INSTR;
 	if (!lstrcmp(L"instre2", str)) return LANG_INDEX_INSTR2;
 	if (!lstrcmp(L"type1", str)) return LANG_INDEX_TYPE;
@@ -1077,9 +1078,12 @@ bool NppParameters::reloadStylers(const wchar_t* stylePath)
 	getUserStylersFromXmlTree();
 
 	//  Reload plugin styles.
-	for ( size_t i = 0; i < getExternalLexerDoc()->size(); ++i)
+	for (size_t i = 0; i < getExternalLexerDoc()->size(); ++i)
 	{
-		getExternalLexerFromXmlTree( getExternalLexerDoc()->at(i) );
+		TiXmlDocument* externalLexerDoc = getExternalLexerDoc()->at(i);
+		TiXmlNode* root = externalLexerDoc->FirstChild(L"NotepadPlus");
+		if (root)
+			feedStylerArray(root);
 	}
 	return true;
 }
@@ -1929,7 +1933,7 @@ int NppParameters::addExternalLangToEnd(ExternalLangContainer * externalLang)
 bool NppParameters::getUserStylersFromXmlTree()
 {
 	TiXmlNode *root = _pXmlUserStylerDoc->FirstChild(L"NotepadPlus");
-		if (!root) return false;
+	if (!root) return false;
 	return feedStylerArray(root);
 }
 
@@ -7361,7 +7365,14 @@ void NppParameters::createXmlTreeFromGUIParams()
 		pStr = (_nppGUI._tabStatus & TAB_MULTILINE) ? L"yes" : L"no";
 		GUIConfigElement->SetAttribute(L"multiLine", pStr);
 
-		pStr = (_nppGUI._tabStatus & TAB_HIDE) ? L"yes" : L"no";
+		if (_nppGUI._forceTabbarVisible)
+		{
+			pStr = L"no";
+		}
+		else
+		{
+			pStr = (_nppGUI._tabStatus & TAB_HIDE) ? L"yes" : L"no";
+		}
 		GUIConfigElement->SetAttribute(L"hide", pStr);
 
 		pStr = (_nppGUI._tabStatus & TAB_QUITONEMPTY) ? L"yes" : L"no";
@@ -8191,7 +8202,7 @@ int NppParameters::langTypeToCommandID(LangType lt) const
 			id = IDM_LANG_HTML;	break;
 		case L_XML :
 			id = IDM_LANG_XML; break;
-		case L_JS :
+		case L_JS_EMBEDDED :
 		case L_JAVASCRIPT:
 			id = IDM_LANG_JS; break;
 		case L_JSON:
@@ -9136,4 +9147,15 @@ COLORREF NppParameters::getFindDlgStatusMsgColor(int colourIndex)
 	if (colourIndex < 0 || colourIndex > 2) return black;
 
 	return findDlgStatusMessageColor[colourIndex];
+}
+
+LanguageNameInfo NppParameters::getLangNameInfoFromNameID(const wstring& langNameID)
+{
+	LanguageNameInfo res;
+	for (LanguageNameInfo lnf : ScintillaEditView::_langNameInfoArray)
+	{
+		if (lnf._langName == langNameID)
+			return lnf;
+	}
+	return res;
 }

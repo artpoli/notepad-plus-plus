@@ -1022,7 +1022,9 @@ void WordStyleDlg::setStyleListFromLexer(int index)
 		const wchar_t *langName = _lsArray.getLexerNameFromIndex(index - 1);
 		const wchar_t *ext = NppParameters::getInstance().getLangExtFromName(langName);
 		const wchar_t *userExt = (_lsArray.getLexerStylerByName(langName))->getLexerUserExt();
-		::SendDlgItemMessage(_hSelf, IDC_DEF_EXT_EDIT, WM_SETTEXT, 0, reinterpret_cast<LPARAM>(ext));
+
+		if (ext)
+			::SendDlgItemMessage(_hSelf, IDC_DEF_EXT_EDIT, WM_SETTEXT, 0, reinterpret_cast<LPARAM>(ext));
 
 		// WM_SETTEXT cause sending WM_COMMAND message with EN_CHANGE.
 		// That makes status dirty, even it shouldn't in this case.
@@ -1101,10 +1103,15 @@ std::pair<intptr_t, intptr_t> WordStyleDlg::goToPreferencesSettings()
 		result.first = edit1;
 		result.second = IDC_RADIO_CLM_HILITE;
 	}
+	else if (style._styleDesc == L"Multi-edit carets color" || style._styleDesc == L"Multi-selected text color")
+	{
+		result.first = edit2;
+		result.second = IDC_CHECK_MULTISELECTION;
+	}
 	else if (style._styleDesc == L"Caret colour")
 	{
 		result.first = edit1;
-		result.second = IDC_WIDTH_COMBO;
+		result.second = IDC_CARETSETTING_STATIC;
 	}
 	else if (style._styleDesc == L"Edge colour")
 	{
@@ -1126,12 +1133,12 @@ std::pair<intptr_t, intptr_t> WordStyleDlg::goToPreferencesSettings()
 		|| style._styleDesc == L"Change History saved")
 	{
 		result.first = margins;
-		result.second = IDC_CHECK_CHANGHISTORYMARGIN;
+		result.second = IDC_GB_CHANGHISTORY;
 	}
 	else if (style._styleDesc == L"Fold" || style._styleDesc == L"Fold active" || style._styleDesc == L"Fold margin")
 	{
 		result.first = margins;
-		result.second = IDC_RADIO_BOX;
+		result.second = IDC_FMS_GB_STATIC;
 	}
 	else if (style._styleDesc == L"Smart Highlighting")
 	{
@@ -1152,7 +1159,7 @@ std::pair<intptr_t, intptr_t> WordStyleDlg::goToPreferencesSettings()
 		|| style._styleDesc == L"Mark Style 4" || style._styleDesc == L"Mark Style 5")
 	{
 		result.first = highlighting;
-		result.second = IDC_CHECK_MARKALLCASESENSITIVE;
+		result.second = IDC_MARKALL_STATIC;
 	}
 	else if (style._styleDesc == L"URL hovered")
 	{
@@ -1163,6 +1170,11 @@ std::pair<intptr_t, intptr_t> WordStyleDlg::goToPreferencesSettings()
 	{
 		result.first = edit2;
 		result.second = IDC_CHECK_WITHCUSTOMCOLOR_CRLF;
+	}
+	else if (style._styleDesc == L"Active tab focused indicator" || style._styleDesc == L"Active tab unfocused indicator")
+	{
+		result.first = tabbar;
+		result.second = IDC_CHECK_ORANGE;
 	}
 	else if (style._styleDesc == L"Inactive tabs")
 	{
