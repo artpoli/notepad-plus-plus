@@ -1214,6 +1214,7 @@ Translation note:
 					<Item id="6909" name="Вибрати слово під узгодженим, якщо нічого не вибрано"/>
 					<Item id="6910" name="Мінімальний розмір для автоматичної перевірки &quot;у виборі&quot;:"/>
 					<Item id="6913" name="Заповнити поле пошуку в каталозі файлів на основі активного документа"/>
+					<Item id="6916" name=": Max Characters to Auto-Fill Find Field from Selection"/>
 				</Searching>
 
 				<RecentFilesHistory title="Історія файлів">
@@ -1759,7 +1760,8 @@ Translation note:
 			<!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
 			<npcCustomColor-tip value="Відкрийте конфігуратор стилю, щоб змінити типовий власний колір для вибраних пропусків та не друкованих символів (&quot;Власний колір символів, що не друкуються&quot;)."/>
 			<npcIncludeCcUniEol-tip value="Застосувати налаштування вигляду символів, що не друкуються, до символів C0, C1 control і Unicode EOL (наступний рядок, роздільник рядків та роздільник абзаців)."/>
-			<searchingInSelThresh-tip value="Кількість вибраних символів у зоні редагування для автоматичного встановлення прапорця &quot;у виборі&quot;, коли активовано діалогове вікно Знайти. Максимальне значення – 1024. Встановіть значення 0, щоб вимкнути автоматичну перевірку."/>
+			<searchingInSelThresh-tip value="Minimum number of selected characters in edit zone to automatically check the &quot;In selection&quot; checkbox when the Find dialog is activated. The maximum value is $INT_REPLACE$. Set the value to 0 to disable auto-checking."/>
+			<searchingFillFindWhat-tip value="Maximum number of selected characters in edit zone to fill automatically the &quot;Find what&quot; field when the Ctrl-F is triggered. The maximum value is $INT_REPLACE$, which is the maximum size of &quot;Find what&quot; field, limited by the system."/>
 			<verticalEdge-tip value="Додайте свою позначку рядка, вказавши його позицію десятковим числом. Ви можете визначити декілька позначок рядків, використавши пробіл для відокремлення різних чисел."/>
 			<fileSaveAsCopySaveButton-tip value="Утримуйте Shift, натискаючи Зберегти, щоб відкрити копію після збереження."/>
 			<autoIndentBasic-tip value="Переконайтеся, що відступ поточного рядка (тобто новий рядок, створений натисканням клавіші ENTER) збігається з відступом попереднього рядка."/>
@@ -1780,8 +1782,9 @@ Translation note:
 			<statusbar-Sel value="Виб: "/>
 			<statusbar-Sel-number value="Виб"/>
 			<toolbar-accent-tip value="Цей параметр робить застосовує до піктограм панелі інструментів системний колір акценту Windows. Колір акценту – це колір підсвічення кнопок, меж і плиток меню &quot;Пуск&quot; у Windows. Щоб змінити його, перейдіть до Налаштувань &gt; Персоналізація &gt; Кольори, а потім виберіть бажаний колір підсвічення."/>
-			<max-len-on-search-tip value="Довжина тексту для пошуку/заміни може містити лише символи $INT_REPLACE$ – ваш ввід може бути скорочено, і він не збережеться для наступного сеансу."/>
-			<max-len-on-save-tip value="Цей пошуковий рядок (&gt; $INT_REPLACE$ символів) не збережеться для наступного сеансу."/>
+			<len-limit-exceeded-tip value="Length limit exceeded: Your input may exceed the limit allowed and could have been truncated, and it won't be saved for the next session."/>
+			<max-len-on-search-tip value="Your input may exceed the limit allowed and could have been truncated, and it won't be saved for the next session."/>
+			<max-len-on-save-tip value="The length of your input is very long and may not be saved for your next session."/>
 			<goto-setting-tip value="Знайдіть свій параметр тут"/>
 		</MiscStrings>
 	</Native-Langue>
