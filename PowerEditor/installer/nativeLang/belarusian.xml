@@ -1214,6 +1214,7 @@ Translation note:
 					<Item id="6909" name="Выбраць слова пад стрэшкай, калі нічога не выбрана"/>
 					<Item id="6910" name="Мінімальны памер для аўтаматычнай праверкі &quot;ў выбары&quot;:"/>
 					<Item id="6913" name="Fill Find in Files Directory Field Based On Active Document"/>
+					<Item id="6916" name=": Max Characters to Auto-Fill Find Field from Selection"/>
 				</Searching>
 
 				<RecentFilesHistory title="Гісторыя нядаўніх файлаў">
@@ -1759,7 +1760,8 @@ Translation note:
 			<!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
 			<npcCustomColor-tip value="Перайсці да канфігуратара стылю, каб змяніць прадвызначаны карыстальніцкі колер для выбраных пропускаў і сімвалаў, якія не друкуюцца (&quot;Карыстальніцкі колер і сімвалы, якія не друкуюцца&quot;)."/>
 			<npcIncludeCcUniEol-tip value="Ужыць налады выгляду сімвалаў, якія не друкуюцца да C0, C1 control і Unicode EOL (наступны радок, раздзяляльнік радкоў і раздзяляльнік абзацаў)."/>
-			<searchingInSelThresh-tip value="Колькасць выбраных сімвалаў у зоне рэдагавання для аўтаматычнага пазначэння &quot;ў выбары&quot;, калі актывавана дыялогавае акно Знайсці. Максімальнае значэнне - 1024. Зададзена значэнне 0, каб адключыць аўтаматычную праверку."/>
+			<searchingInSelThresh-tip value="Minimum number of selected characters in edit zone to automatically check the &quot;In selection&quot; checkbox when the Find dialog is activated. The maximum value is $INT_REPLACE$. Set the value to 0 to disable auto-checking."/>
+			<searchingFillFindWhat-tip value="Maximum number of selected characters in edit zone to fill automatically the &quot;Find what&quot; field when the Ctrl-F is triggered. The maximum value is $INT_REPLACE$, which is the maximum size of &quot;Find what&quot; field, limited by the system."/>
 			<verticalEdge-tip value="Дадайце сваю пазнаку слупка, азначыўшы яго размяшчэнне дзесятковым лікам. Вы можаце вызначыць некалькі пазнак слупкоў скарыстаўшыся прабелам для раздзялення розных лічбаў."/>
 			<fileSaveAsCopySaveButton-tip value="Утрымлівайце Shift, націскаючы Захаваць, каб адкрыць копію пасля захавання."/>
 			<autoIndentBasic-tip value="Пераканайцеся, што водступ бягучага радка (г.зн. новы радок створаны націскам клавішы ENTER) супадае з водступам папярэдняга радка."/>
@@ -1780,8 +1782,9 @@ Translation note:
 			<statusbar-Sel value="Sel: "/>
 			<statusbar-Sel-number value="Sel"/>
 			<toolbar-accent-tip value="This option makes your toolbar icons follow Windows system accent color. Accent color is the highlight color used in buttons, borders, and Start menu tiles in Windows. To change it, go to Settings &gt; Personalization &gt; Colors, then select your preferred accent color."/>
-			<max-len-on-search-tip value="Only $INT_REPLACE$ characters are allowed for the find/replace text length - your input could be truncated, and it won't be saved for the next session."/>
-			<max-len-on-save-tip value="This search input (&gt; $INT_REPLACE$ characters) won't be saved for the next session."/>
+			<len-limit-exceeded-tip value="Length limit exceeded: Your input may exceed the limit allowed and could have been truncated, and it won't be saved for the next session."/>
+			<max-len-on-search-tip value="Your input may exceed the limit allowed and could have been truncated, and it won't be saved for the next session."/>
+			<max-len-on-save-tip value="The length of your input is very long and may not be saved for your next session."/>
 			<goto-setting-tip value="Find your setting here"/>
 		</MiscStrings>
 	</Native-Langue>
