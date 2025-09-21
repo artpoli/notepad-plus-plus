@@ -1214,7 +1214,7 @@ Translation note:
 					<Item id="6909" name="Вибрати слово під узгодженим, якщо нічого не вибрано"/>
 					<Item id="6910" name="Мінімальний розмір для автоматичної перевірки &quot;у виборі&quot;:"/>
 					<Item id="6913" name="Заповнити поле пошуку в каталозі файлів на основі активного документа"/>
-					<Item id="6916" name=": Max Characters to Auto-Fill Find Field from Selection"/>
+					<Item id="6916" name=": максимум символів для автозаповнення поля пошуку з вибраного"/>
 				</Searching>
 
 				<RecentFilesHistory title="Історія файлів">
@@ -1760,8 +1760,8 @@ Translation note:
 			<!-- Don't translate "(&quot;Non-printing characters custom color&quot;)" -->
 			<npcCustomColor-tip value="Відкрийте конфігуратор стилю, щоб змінити типовий власний колір для вибраних пропусків та не друкованих символів (&quot;Власний колір символів, що не друкуються&quot;)."/>
 			<npcIncludeCcUniEol-tip value="Застосувати налаштування вигляду символів, що не друкуються, до символів C0, C1 control і Unicode EOL (наступний рядок, роздільник рядків та роздільник абзаців)."/>
-			<searchingInSelThresh-tip value="Minimum number of selected characters in edit zone to automatically check the &quot;In selection&quot; checkbox when the Find dialog is activated. The maximum value is $INT_REPLACE$. Set the value to 0 to disable auto-checking."/>
-			<searchingFillFindWhat-tip value="Maximum number of selected characters in edit zone to fill automatically the &quot;Find what&quot; field when the Ctrl-F is triggered. The maximum value is $INT_REPLACE$, which is the maximum size of &quot;Find what&quot; field, limited by the system."/>
+			<searchingInSelThresh-tip value="Мінімальна кількість вибраних символів у зоні редагування для автоматичного встановлення прапорця &quot;У вибраному&quot; при активації діалогового вікна Пошук. Максимальне значення – $INT_REPLACE$. Встановіть значення 0, щоб вимкнути автоматичну перевірку."/>
+			<searchingFillFindWhat-tip value="Максимальна кількість вибраних символів у зоні редагування для автоматичного заповнення поля &quot;Що знайти&quot; при натисканні Ctrl-F. Максимальне значення – $INT_REPLACE$, що є максимальним розміром поля &quot;Що знайти&quot;, обмеженим системою."/>
 			<verticalEdge-tip value="Додайте свою позначку рядка, вказавши його позицію десятковим числом. Ви можете визначити декілька позначок рядків, використавши пробіл для відокремлення різних чисел."/>
 			<fileSaveAsCopySaveButton-tip value="Утримуйте Shift, натискаючи Зберегти, щоб відкрити копію після збереження."/>
 			<autoIndentBasic-tip value="Переконайтеся, що відступ поточного рядка (тобто новий рядок, створений натисканням клавіші ENTER) збігається з відступом попереднього рядка."/>
