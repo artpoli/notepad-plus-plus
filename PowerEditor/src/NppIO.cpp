@@ -15,12 +15,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#include <time.h>
+#include <ctime>
 #include <shlwapi.h>
 #include <shlobj.h>
 #include "Notepad_plus_Window.h"
 #include "CustomFileDialog.h"
-#include "EncodingMapper.h"
 #include "VerticalFileSwitcher.h"
 #include "functionListPanel.h"
 #include "ReadDirectoryChanges.h"
@@ -28,6 +27,7 @@
 #include "fileBrowser.h"
 #include <unordered_set>
 #include "Common.h"
+#include "NppConstants.h"
 
 using namespace std;
 
@@ -609,15 +609,21 @@ bool Notepad_plus::doReload(BufferID id, bool alert)
 		_subEditView.restoreCurrentPosPreStep();
 	}
 
+	auto svp = NppParameters::getInstance().getSVP();
+
 	// Once reload is complete, activate buffer which will take care of
 	// many settings such as update status bar, clickable link etc.
 	if ( ((currentView() == MAIN_VIEW) && mainVisible) || ((currentView() == SUB_VIEW) && subVisible))
 	{
 		activateBuffer(id, currentView(), true);
+
+		if (svp._isChangeHistoryMarginEnabled || svp._isChangeHistoryIndicatorEnabled)
+			clearChangesHistory(currentView());
 	}
 	else
 	{
 		// handle also the less usual case when the reloaded buffer is not in the current active view
+
 		int originalActiveView = currentView();
 		BufferID originalActiveBufferID = nullptr;
 		if (mainVisible)
@@ -631,11 +637,10 @@ bool Notepad_plus::doReload(BufferID id, bool alert)
 			activateBuffer(id, SUB_VIEW, true);
 		}
 		activateBuffer(originalActiveBufferID, originalActiveView, true); // set back the original
-	}
 
-	auto svp = NppParameters::getInstance().getSVP();
-	if (svp._isChangeHistoryMarginEnabled || svp._isChangeHistoryIndicatorEnabled)
-		clearChangesHistory();
+		if (svp._isChangeHistoryMarginEnabled || svp._isChangeHistoryIndicatorEnabled)
+			clearChangesHistory(otherView());
+	}
 
 	return res;
 }
@@ -1056,17 +1061,16 @@ int Notepad_plus::setFileOpenSaveDlgFilters(CustomFileDialog & fDlg, bool showAl
 		l = (NppParameters::getInstance()).getLangFromIndex(i++);
 	}
 	
-	LangType lt = (LangType)langType;
+	const auto lt = static_cast<LangType>(langType);
 	wstring fileUdlString(getLangDesc(lt, true));
 
-	for (size_t u=0; u<(size_t)nppParam.getNbUserLang(); u++)
+	for (size_t u = 0; u < static_cast<size_t>(nppParam.getNbUserLang()); ++u)
 	{
-		UserLangContainer& ulc = nppParam.getULCFromIndex(u);
-		const wchar_t *extList = ulc.getExtention();
-		const wchar_t *lName = ulc.getName();
+		const UserLangContainer* ulc = nppParam.getULCFromIndex(u);
+		const wchar_t* extList = ulc->getExtention();
+		const wchar_t* lName = ulc->getName();
 
-		wstring list(L"");
-		list += extList;
+		std::wstring list = extList;
 
 		wstring stringFilters = exts2Filters(list, showAllExt ? -1 : 40);
 		const wchar_t *filters = stringFilters.c_str();
@@ -2405,7 +2409,7 @@ bool Notepad_plus::isFileSession(const wchar_t * filename)
 		}
 		usrSessionExt += definedSessionExt;
 
-		if (!wcsicmp(pExt, usrSessionExt.c_str()))
+		if (!_wcsicmp(pExt, usrSessionExt.c_str()))
 		{
 			return true;
 		}
@@ -2429,7 +2433,7 @@ bool Notepad_plus::isFileWorkspace(const wchar_t * filename)
 		}
 		usrWorkspaceExt += definedWorkspaceExt;
 
-		if (!wcsicmp(pExt, usrWorkspaceExt.c_str()))
+		if (!_wcsicmp(pExt, usrWorkspaceExt.c_str()))
 		{
 			return true;
 		}
@@ -2878,7 +2882,7 @@ const wchar_t * Notepad_plus::fileSaveSession(size_t nbFile, wchar_t ** fileName
 			for (size_t i = 0 ; i < nbFile ; ++i)
 			{
 				if (doesFileExist(fileNames[i]))
-					currentSession._mainViewFiles.push_back(wstring(fileNames[i]));
+					currentSession._mainViewFiles.push_back(sessionFileInfo(fileNames[i]));
 			}
 		}
 		else

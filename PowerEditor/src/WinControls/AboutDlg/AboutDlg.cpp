@@ -19,6 +19,7 @@
 #include "AboutDlg.h"
 #include "Parameters.h"
 #include "localization.h"
+#include "json.hpp"
 #if defined __has_include
 #if __has_include ("NppLibsVersion.h")
 #include "NppLibsVersion.h"
@@ -288,6 +289,18 @@ intptr_t CALLBACK DebugInfoDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM 
 			_debugInfoStr += wmc.char2wchar(NPP_BOOST_REGEX_VERSION, CP_ACP);
 			_debugInfoStr += L"\r\n";
 
+#if defined(PUGIXML_VERSION)
+			// pugixml version
+			_debugInfoStr += L"pugixml included: ";
+			_debugInfoStr += std::to_wstring(PUGIXML_VERSION / 1000) + L"." + std::to_wstring((PUGIXML_VERSION % 1000) / 10);
+			_debugInfoStr += L"\r\n";
+#endif
+
+			// JSON version
+			_debugInfoStr += L"nlohmann JSON included: ";
+			_debugInfoStr += to_wstring(NLOHMANN_JSON_VERSION_MAJOR) + L"." + to_wstring(NLOHMANN_JSON_VERSION_MINOR) + L"." + to_wstring(NLOHMANN_JSON_VERSION_PATCH);
+			_debugInfoStr += L"\r\n";
+
 			// Binary path
 			_debugInfoStr += L"Path: ";
 			wchar_t nppFullPath[MAX_PATH]{};
@@ -316,6 +329,25 @@ intptr_t CALLBACK DebugInfoDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM 
 			_debugInfoStr += L"Cloud Config: ";
 			const wstring& cloudPath = nppParam.getNppGUI()._cloudPath;
 			_debugInfoStr += cloudPath.empty() ? L"OFF" : cloudPath;
+			_debugInfoStr += L"\r\n";
+
+			//  Auto-Update:
+			// 
+			//  WinGUp  | disableNppAutoUpdate.xml || Auto-Update status
+			//  ========================================================
+			//  present |         present          ||      OFF
+			//  --------------------------------------------------------
+			//  absent  |         present          ||      OFF
+			//  --------------------------------------------------------
+			//  present |         absent           ||      ON
+			//  --------------------------------------------------------
+			//  absent  |         absent           ||      OFF
+			//
+			_debugInfoStr += L"WinGUp: ";
+			_debugInfoStr += nppGui._doesExistUpdater ? L"present" : L"absent";
+			_debugInfoStr += L"\r\n";
+			_debugInfoStr += L"disableNppAutoUpdate.xml: ";
+			_debugInfoStr += nppParam.isNppAutoUpdateDisabled() ? L"present" : L"absent";
 			_debugInfoStr += L"\r\n";
 
 			// Periodic Backup
@@ -516,7 +548,7 @@ intptr_t CALLBACK DebugInfoDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM 
 			{
 				constexpr size_t bufSizeACP = 32;
 				wchar_t szACP[bufSizeACP] = { '\0' };
-				swprintf(szACP, bufSizeACP, L"%u", ::GetACP());
+				swprintf(szACP, bufSizeACP, L"%u", nppParam.currentSystemCodepage());
 				_debugInfoStr += L"Current ANSI codepage: ";
  				_debugInfoStr += szACP;
 				_debugInfoStr += L"\r\n";
@@ -648,11 +680,13 @@ void DebugInfoDlg::refreshDebugInfo()
 
 const wchar_t COMMAND_ARG_HELP[] = L"Usage:\r\n\
 \r\n\
-notepad++ [--help] [-multiInst] [-noPlugin] [-lLanguage] [-udl=\"My UDL Name\"] [-LlangCode] [-nLineNumber]\r\n\
-[-cColumnNumber] [-pPosition] [-xLeftPos] [-yTopPos] [-monitor] [-nosession] [-notabbar] [-systemtray]\r\n\
-[-loadingTime] [-ro] [-fullReadOnly] [-fullReadOnlySavingForbidden] [-alwaysOnTop] [-openSession] [-r]\r\n\
-[-qn=\"Easter egg name\" | -qt=\"a text to display.\" | -qf=\"D:\\my quote.txt\"] [-qSpeed1|2|3] [-quickPrint]\r\n\
-[-settingsDir=\"d:\\your settings dir\\\"] [-openFoldersAsWorkspace]  [-titleAdd=\"additional title bar text\"]\r\n\
+notepad++ [--help] [-multiInst] [-noPlugin] [-lLanguage] [-udl=\"My UDL Name\"]\r\n\
+[-LlangCode] [-nLineNumber] [-cColumnNumber] [-pPosition] [-xLeftPos] [-yTopPos]\r\n\
+[-monitor] [-nosession] [-notabbar] [-systemtray] [-loadingTime] [-alwaysOnTop]\r\n\
+[-ro] [-fullReadOnly] [-fullReadOnlySavingForbidden] [-openSession] [-r]\r\n\
+[-qn=\"Easter egg name\" | -qt=\"a text to display.\" | -qf=\"D:\\my quote.txt\"]\r\n\
+[-qSpeed1|2|3] [-quickPrint] [-settingsDir=\"d:\\your settings dir\\\"]\r\n\
+[-openFoldersAsWorkspace]  [-titleAdd=\"additional title bar text\"]\r\n\
 [filePath]\r\n\
 \r\n\
 --help: This help message\r\n\
@@ -694,6 +728,22 @@ void CmdLineArgsDlg::doDialog()
 		create(IDD_COMMANDLINEARGSBOX);
 
 	::SetDlgItemText(_hSelf, IDC_COMMANDLINEARGS_EDIT, COMMAND_ARG_HELP);
+
+	// Create DPI-aware monospace font
+	NONCLIENTMETRICS ncm{};
+	ncm.cbSize = sizeof(NONCLIENTMETRICS);
+	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(NONCLIENTMETRICS), &ncm, 0);
+
+	// Use the system font height but change to monospace
+	hCmdLineEditFont = CreateFont(
+		ncm.lfMessageFont.lfHeight,  // DPI-aware height from system
+		0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
+		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY, FIXED_PITCH | FF_MODERN,
+		L"Lucida Console");
+
+	if (hCmdLineEditFont)
+		SendDlgItemMessage(_hSelf, IDC_COMMANDLINEARGS_EDIT, WM_SETFONT, (WPARAM)hCmdLineEditFont, TRUE);
 
 	moveForDpiChange();
 	goToCenter(SWP_SHOWWINDOW | SWP_NOSIZE);
@@ -756,6 +806,11 @@ intptr_t CALLBACK CmdLineArgsDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 
 		case WM_DESTROY:
 		{
+			if (hCmdLineEditFont)
+			{
+				DeleteObject(hCmdLineEditFont);
+				hCmdLineEditFont = nullptr;
+			}
 			return TRUE;
 		}
 	}
@@ -764,16 +819,7 @@ intptr_t CALLBACK CmdLineArgsDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 
 void DoSaveOrNotBox::doDialog(bool isRTL)
 {
-
-	if (isRTL)
-	{
-		DLGTEMPLATE *pMyDlgTemplate = NULL;
-		HGLOBAL hMyDlgTemplate = makeRTLResource(IDD_DOSAVEORNOTBOX, &pMyDlgTemplate);
-		::DialogBoxIndirectParam(_hInst, pMyDlgTemplate, _hParent, dlgProc, reinterpret_cast<LPARAM>(this));
-		::GlobalFree(hMyDlgTemplate);
-	}
-	else
-		::DialogBoxParam(_hInst, MAKEINTRESOURCE(IDD_DOSAVEORNOTBOX), _hParent, dlgProc, reinterpret_cast<LPARAM>(this));
+	StaticDialog::myCreateDialogBoxIndirectParam(IDD_DOSAVEORNOTBOX, isRTL);
 }
 
 void DoSaveOrNotBox::changeLang()
@@ -885,16 +931,7 @@ intptr_t CALLBACK DoSaveOrNotBox::run_dlgProc(UINT message, WPARAM wParam, LPARA
 
 void DoSaveAllBox::doDialog(bool isRTL)
 {
-
-	if (isRTL)
-	{
-		DLGTEMPLATE* pMyDlgTemplate = NULL;
-		HGLOBAL hMyDlgTemplate = makeRTLResource(IDD_DOSAVEALLBOX, &pMyDlgTemplate);
-		::DialogBoxIndirectParam(_hInst, pMyDlgTemplate, _hParent, dlgProc, reinterpret_cast<LPARAM>(this));
-		::GlobalFree(hMyDlgTemplate);
-	}
-	else
-		::DialogBoxParam(_hInst, MAKEINTRESOURCE(IDD_DOSAVEALLBOX), _hParent, dlgProc, reinterpret_cast<LPARAM>(this));
+	StaticDialog::myCreateDialogBoxIndirectParam(IDD_DOSAVEALLBOX, isRTL);
 }
 
 void DoSaveAllBox::changeLang()

@@ -6,7 +6,7 @@
 		- Radoš Milićev (https://github.com/rammba)
 -->
 <NotepadPlus>
-	<Native-Langue name="Српски" filename="serbianCyrillic.xml"  version="8.8.5">
+	<Native-Langue name="Српски" filename="serbianCyrillic.xml"  version="8.9.1">
 		<Menu>
 			<Main>
 				<!-- Main Menu Entries -->
@@ -141,6 +141,8 @@
 					<Item id="42081" name="Поређај лекс. опадајуће без обзира на величину слова"/>
 					<Item id="42100" name="Поређај линије растуће по локалном језику"/>
 					<Item id="42101" name="Поређај линије опадајуће по локалном језику"/>
+					<Item id="42104" name="Поређај линије растуће по дужини"/>
+					<Item id="42105" name="Поређај линије опадајуће по дужини"/>
 					<Item id="42061" name="Поређај линије као целе бројеве растуће"/>
 					<Item id="42062" name="Поређај линије као целе бројеве опадајуће"/>
 					<Item id="42063" name="Поређај линије као дец. бројеве (зарез) растуће"/>
@@ -159,6 +161,7 @@
 					<Item id="42072" name="&amp;нАСУМичнА ВЕлИЧина"/>
 					<Item id="42073" name="Отвори датотеку"/>
 					<Item id="42074" name="Отвори тренутни фолдер у explorer-у"/>
+					<Item id="42106" name="Цензуриши (Redact) одабир █ (Shift: ●)"/>
 					<Item id="42075" name="Претражи на интернету"/>
 					<Item id="42076" name="Промени претраживач..."/>
 					<Item id="42090" name="Небитна величина слова и целе речи"/>
@@ -1002,6 +1005,7 @@
 					<Item id="6128" name="Обрни иконице"/>
 					<Item id="6125" name="Понашање"/>
 					<Item id="6126" name="Изглед и осећај"/>
+					<Item id="6136" name="Макс. дужина имена tab-а:"/>
 				</Tabbar>
 
 				<Scintillas title="Уређивање 1">
@@ -1776,6 +1780,9 @@ Notepad++ ће backup-овати старији &quot;shortcuts.xml&quot; и с�
 			<find-status-scope-all value="у целој датотеци"/>
 			<find-status-scope-backward value="од старта датотеке то показивача"/>
 			<find-status-scope-forward value="од показивача до краја датотеке"/>
+			<find-status-invisible-chars-findWhat value="Невидљиви карактери у садржају налепљеном на &quot;Пронађи&quot; или &quot;Замени са&quot;"/>
+			<find-status-invisible-chars-findWhat-tip value="Упозорење: Невидљиви карактери у пољима за претрагу (или замену).
+Текст налепљен у ово поље садржи невидљиве карактере (можда крај линије). Ако наставите, ти карактери ће бити садржани у претрази (или тексту за замену)."/>
 			<finder-find-in-finder value="Пронађи у овим резултатима претраге..."/>
 			<finder-close-this value="Затвори ове резултате претраге"/>
 			<finder-collapse-all value="Склопи све"/>
@@ -1904,6 +1911,7 @@ C, C++, Java, C#, Objective-C, PHP, JavaScript, JSP, CSS, Perl, Rust, PowerShell
 			<max-len-on-search-tip value="Ваш унос премашује дозвољено ограничење и може бити скраћен, а и неће бити сачуван за наредну сесију."/>
 			<max-len-on-save-tip value="Ваш унос је веома дугачак и можда неће бити сачуван за наредну сесију."/>
 			<goto-setting-tip value="Пронађи подешавање овде"/>
+			<tabbar-tabcompactlabellen-tip value="Ограничава видљиву дужину имена tab-ова. Притисните Enter да примените. Дозвољен унос: 1-257 карактера (0 онемогућава скраћење)."/>
 		</MiscStrings>
 	</Native-Langue>
 </NotepadPlus>

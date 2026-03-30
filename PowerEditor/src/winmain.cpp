@@ -387,17 +387,8 @@ bool launchUpdater(const std::wstring& updaterFullPath, const std::wstring& upda
 	if (today < nppGui._autoUpdateOpt._nextUpdateDate)
 		return false;
 
-	std::wstring updaterParams = L"-v";
-	updaterParams += VERSION_INTERNAL_VALUE;
-
-	if (nppParameters.archType() == IMAGE_FILE_MACHINE_AMD64)
-	{
-		updaterParams += L" -px64";
-	}
-	else if (nppParameters.archType() == IMAGE_FILE_MACHINE_ARM64)
-	{
-		updaterParams += L" -parm64";
-	}
+	std::wstring updaterParams;
+	nppParameters.buildGupParams(updaterParams);
 
 	Process updater(updaterFullPath.c_str(), updaterParams.c_str(), updaterDir.c_str());
 	updater.run();
@@ -797,7 +788,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE /*hPrevInstance
 	SecurityGuard securityGuard;
 	bool isSignatureOK = securityGuard.checkModule(updaterFullPath, nm_gup);
 
-	if (TheFirstOne && isUpExist && isGtXP && isSignatureOK && doUpdateNpp && !updateAtExit)
+	if (TheFirstOne && isUpExist && isGtXP && isSignatureOK && doUpdateNpp && !updateAtExit && !nppParameters.isNppAutoUpdateDisabled())
 	{
 		launchUpdater(updaterFullPath, updaterDir);
 	}

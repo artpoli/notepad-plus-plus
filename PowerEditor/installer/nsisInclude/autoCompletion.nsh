@@ -16,7 +16,7 @@
 
 
 SectionGroup "Auto-completion Files" autoCompletionComponent
-	SetOverwrite off
+	SetOverwrite on
 
 	${MementoSection} "C" C
 		SetOutPath "$INSTDIR\autoCompletion"
@@ -178,6 +178,16 @@ SectionGroup "Auto-completion Files" autoCompletionComponent
 		File ".\APIs\sas.xml"
 	${MementoSectionEnd}
 
+	${MementoSection} "Rust" Rust
+		SetOutPath "$INSTDIR\autoCompletion"
+		File ".\APIs\rust.xml"
+	${MementoSectionEnd}
+
+	${MementoSection} "D" D
+		SetOutPath "$INSTDIR\autoCompletion"
+		File ".\APIs\d.xml"
+	${MementoSectionEnd}
+
 SectionGroupEnd
 
 
@@ -309,6 +319,14 @@ SectionGroup un.autoCompletionComponent
 
 	Section un.SAS
 		Delete "$INSTDIR\autoCompletion\sas.xml"
+	SectionEnd
+	
+	Section un.Rust
+		Delete "$INSTDIR\autoCompletion\rust.xml"
+	SectionEnd
+
+	Section un.D
+		Delete "$INSTDIR\autoCompletion\d.xml"
 	SectionEnd
 
 SectionGroupEnd
