@@ -1,7 +1,7 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
 
-	<Package	Name="Notepad++"
-				Manufacturer="Notepad++ team"
+	<Package	Name="Notepad++ (x64)"
+				Manufacturer="Notepad++ team (MSI installer)"
 				Version="$(var.Version)"
 				UpgradeCode="{CDB13460-04DF-4708-A7FD-4CB4A0684605}">
 
@@ -17,6 +17,16 @@
 		No reboot after the installation by default
 		-->
 		<Property Id="REBOOT" Value="Suppress" />
+
+		<!--
+		Write version information to Details' Comments field in Property of MSI file
+		-->
+		<SummaryInformation Comments="Notepad++ v$(var.Version) (x64)" />
+
+		<!--
+		Consider the 4th digit of version number for the updating, with AllowSameVersionUpgrades="yes"
+		-->
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." AllowSameVersionUpgrades="yes" />
 
 		<!--
 		Installation directory structure
@@ -90,10 +100,16 @@
 			Register sparse MSIX package after user next login for Windows 11 modern context menu
 			-->
 			<Component Id="cmp_RegSparsePackage" Guid="{02E790D5-3018-48E5-9B04-2C75925767AD}">
+				<RegistryKey Root="HKLM" Key="SOFTWARE\Notepad++">
+					<RegistryValue Name="ContextMenuFolder"
+						Type="string"
+						Value="[ContextMenuFolder]"
+						KeyPath="no" />
+				</RegistryKey>
 				<RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce">
-				<RegistryValue Name="RegisterNppShell"
-							   Value="&quot;[System64Folder]WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -Command &quot;$p = '[ContextMenuFolder]'.TrimEnd('\'); Add-AppxPackage -Path \&quot;$p\NppShell.msix\&quot; -ExternalLocation \&quot;$p\&quot;&quot;"
-							   Type="string" />
+					<RegistryValue Name="RegisterNppShell"
+						Type="string"
+						Value="&quot;[System64Folder]WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -Command &quot;$p = (Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Notepad++' -Name ContextMenuFolder).ContextMenuFolder.TrimEnd('\'); Add-AppxPackage -Path (Join-Path $p 'NppShell.msix') -ExternalLocation $p; Remove-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Notepad++' -Name ContextMenuFolder -ErrorAction SilentlyContinue&quot;" />
 				</RegistryKey>
 			</Component>
 		</ComponentGroup>

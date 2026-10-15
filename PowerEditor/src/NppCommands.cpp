@@ -15,35 +15,66 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#include <algorithm>
-#include <memory>
-#include <string>
-#include <vector>
-#include <shlwapi.h>
-#include <shlobj.h>
-#include <filesystem>
-#include "Notepad_plus_Window.h"
-#include "EncodingMapper.h"
-#include "ShortcutMapper.h"
-#include "TaskListDlg.h"
-#include "clipboardFormats.h"
-#include "VerticalFileSwitcher.h"
-#include "documentMap.h"
-#include "functionListPanel.h"
-#include "ProjectPanel.h"
-#include "fileBrowser.h"
-#include "clipboardHistoryPanel.h"
-#include "ansiCharPanel.h"
-#include "Sorters.h"
-#include "verifySignedfile.h"
-#include "md5.h"
-#include "sha-256.h"
-#include "calc_sha1.h"
-#include "sha512.h"
-#include "SortLocale.h"
-#include "dpiManagerV2.h"
+#include <windows.h>
 
+#include <algorithm>
+#include <cctype>
+#include <cstdint>
+#include <cwctype>
+#include <filesystem>
+#include <memory>
+#include <mutex>
+#include <string>
+#include <string.h>
+#include <utility>
+#include <vector>
+
+#include <SciLexer.h>
+#include <Scintilla.h>
+
+#include "Common.h"
+#include "DocTabView.h"
+#include "EncodingMapper.h"
+#include "FindReplaceDlg.h"
+#include "Notepad_plus.h"
+#include "Notepad_plus_Window.h"
+#include "Notepad_plus_msgs.h"
 #include "NppConstants.h"
+#include "NppDarkMode.h"
+#include "Parameters.h"
+#include "Processus.h"
+#include "ProjectPanel.h"
+#include "RunDlg.h"
+#include "ScintillaEditView.h"
+#include "ShortcutMapper.h"
+#include "SortLocale.h"
+#include "Sorters.h"
+#include "SplitterContainer.h"
+#include "TabBar.h"
+#include "TaskListDlg.h"
+#include "UserDefineDialog.h"
+#include "VerticalFileSwitcher.h"
+#include "Window.h"
+#include "WindowsDlg.h"
+#include "ansiCharPanel.h"
+#include "calc_sha1.h"
+#include "clipboardFormats.h"
+#include "clipboardHistoryPanel.h"
+#include "documentMap.h"
+#include "dpiManagerV2.h"
+#include "fileBrowser.h"
+#include "functionListPanel.h"
+#include "hmac.h"
+#include "localization.h"
+#include "md5.h"
+#include "md5Dlgs.h"
+#include "menuCmdID.h"
+#include "resource.h"
+#include "sha-256.h"
+#include "sha512.h"
+#include "shortcut.h"
+#include "trayIconControler.h"
+#include "verifySignedfile.h"
 
 using namespace std;
 
@@ -196,37 +227,46 @@ void Notepad_plus::command(int id)
 
 		case IDM_FILE_OPEN_FOLDER:
 		{
-			HRESULT hr = HRESULT_FROM_WIN32(ERROR_FILE_NOT_FOUND);
-
-			ScopedCOMInit com;
-			if (com.isInitialized())
-			{
-				ITEMIDLIST* pidl = nullptr;
-				hr = ::SHParseDisplayName(_pEditView->getCurrentBuffer()->getFullPathName(), nullptr, &pidl, 0, nullptr);
-				if (SUCCEEDED(hr))
-				{
-					hr = ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
-					::CoTaskMemFree(pidl);
-				}
-			}
-
+			const wchar_t* fullPath = _pEditView->getCurrentBuffer()->getFullPathName();
+			HRESULT hr = openInExplorerAndSelect(fullPath);
 			if (hr == HRESULT_FROM_WIN32(ERROR_FILE_NOT_FOUND))
 			{
 				// fallback (but without selecting the current file)
-				// - either the COM cannot be used or the above shell APIs mysteriously fail on some systems
-				//   with the "file not found" even though the file is there
-				// - do not use this fallback for any other possible error (like E_INVALIDARG, etc.)
 				::ShellExecuteW(_pPublicInterface->getHSelf(), L"explore",
-					std::filesystem::path(_pEditView->getCurrentBuffer()->getFullPathName()).parent_path().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+					std::filesystem::path(fullPath).parent_path().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
 			}
-
 			break;
 		}
 
 		case IDM_FILE_OPEN_CMD:
 		{
-			Command cmd(NppParameters::getInstance().getNppGUI()._commandLineInterpreter.c_str());
+			Command cmd(L"%COMSPEC%");
 			cmd.run(_pPublicInterface->getHSelf(), L"$(CURRENT_DIRECTORY)");
+		}
+		break;
+
+		case IDM_FILE_OPEN_POWERSHELL:
+		{
+			static wchar_t psPath[512] = {L'\0'};
+			if (psPath[0] == L'\0')
+			{
+				const wchar_t* subkey = L"SOFTWARE\\Microsoft\\PowerShell\\1\\ShellIds\\Microsoft.PowerShell";
+				const wchar_t* valueName = L"Path";
+				HKEY hKey = nullptr;
+
+				LONG status = ::RegOpenKeyExW(HKEY_LOCAL_MACHINE, subkey, 0, KEY_READ, &hKey);
+
+				if (status != ERROR_SUCCESS) return; // key not found
+
+				DWORD bufSize = sizeof(psPath);
+
+				status = ::RegGetValueW(hKey, nullptr, valueName, RRF_RT_REG_SZ, nullptr, psPath, &bufSize);
+				::RegCloseKey(hKey);
+
+				if (status != ERROR_SUCCESS) return; // value not found
+			}
+			Command powerShell(psPath);
+			powerShell.run(_pPublicInterface->getHSelf(), L"$(CURRENT_DIRECTORY)");
 		}
 		break;
 
@@ -277,7 +317,7 @@ void Notepad_plus::command(int id)
 				errorMsg += intToString(retResult);
 				errorMsg += L"\n----------------------------------------------------------";
 				
-				::MessageBox(_pPublicInterface->getHSelf(), errorMsg.c_str(), L"ShellExecute - ERROR", MB_ICONINFORMATION | MB_APPLMODAL);
+				NppDarkMode::darkMessageBoxW(_pPublicInterface->getHSelf(), errorMsg.c_str(), L"ShellExecute - ERROR", MB_ICONINFORMATION | MB_APPLMODAL);
 			}
 		}
 		break;
@@ -471,7 +511,6 @@ void Notepad_plus::command(int id)
 			{
 				::SendMessage(focusedHwnd, WM_CUT, 0, 0);
 			}
-			checkClipboard(); // for enabling possible Paste command
 			break;
 		}
 
@@ -497,7 +536,6 @@ void Notepad_plus::command(int id)
 				else
 					::SendMessage(focusedHwnd, WM_COPY, 0, 0);
 			}
-			checkClipboard(); // for enabling possible Paste command
 			break;
 		}
 
@@ -595,9 +633,8 @@ void Notepad_plus::command(int id)
 			if (id == IDM_EDIT_CUT_BINARY)
 				_pEditView->execute(SCI_REPLACESEL, 0, reinterpret_cast<LPARAM>(""));
 
-			checkClipboard(); // for enabling possible Paste command
+			break;
 		}
-		break;
 
 		case IDM_EDIT_PASTE:
 		{
@@ -718,8 +755,8 @@ void Notepad_plus::command(int id)
 		}
 		break;
 
-		case IDM_EDIT_OPENINFOLDER:
-		case IDM_EDIT_OPENASFILE:
+		case IDM_EDIT_OPENSELECTEDFILEFOLDERINEXPLORER:
+		case IDM_EDIT_OPENSELECTEDFILETOEDIT:
 		{
 			if (_pEditView->execute(SCI_GETSELECTIONS) != 1) // Multi-Selection || Column mode || no selection
 				return;
@@ -731,65 +768,76 @@ void Notepad_plus::command(int id)
 			std::fill_n(currentWord.get(), strSize, L'\0');
 
 			::SendMessage(hwnd, NPPM_GETFILENAMEATCURSOR, CURRENTWORD_MAXLENGTH, reinterpret_cast<LPARAM>(currentWord.get()));
-			
-			wchar_t cmd2Exec[CURRENTWORD_MAXLENGTH] = { '\0' };
-			if (id == IDM_EDIT_OPENINFOLDER)
+
+			std::wstring fullTargetPath;
+			DWORD dwRequiredSize = ::ExpandEnvironmentStringsW(currentWord.get(), nullptr, 0);
+			if (dwRequiredSize > 0)
 			{
-				if (!::GetWindowsDirectoryW(cmd2Exec, MAX_PATH))
-					return;
-
-				PathAppend(cmd2Exec, L"explorer.exe");
-
-				if (!doesFileExist(cmd2Exec))
-					return;
+				// Try to expand environment strings, nevertheless currentWord is copied with or without expansion
+				auto targetPath = std::make_unique<wchar_t[]>(dwRequiredSize);
+				::ExpandEnvironmentStringsW(currentWord.get(), targetPath.get(), dwRequiredSize);
+				fullTargetPath = targetPath.get();
 			}
 			else
 			{
-				::SendMessage(hwnd, NPPM_GETNPPFULLFILEPATH, CURRENTWORD_MAXLENGTH, reinterpret_cast<LPARAM>(cmd2Exec));
+				// Fallback: Copy currentWord
+				fullTargetPath = currentWord.get();
 			}
 
-			// Full file path: could be a folder or a file
-			if (doesPathExist(currentWord.get()))
+			if (!doesPathExist(fullTargetPath.c_str()))
 			{
-				wstring fullFilePath = id == IDM_EDIT_OPENINFOLDER ? L"/select," : L"";
-				fullFilePath += L"\"";
-				fullFilePath += currentWord.get();
-				fullFilePath += L"\"";
-
-				if (id == IDM_EDIT_OPENINFOLDER ||
-					(id == IDM_EDIT_OPENASFILE && !doesDirectoryExist(currentWord.get())))
-					::ShellExecute(hwnd, L"open", cmd2Exec, fullFilePath.c_str(), L".", SW_SHOW);
-			}
-			else // Relative file path - need concatenate with current full file path
-			{
+				// Concatenate relative path
 				auto currentDir = std::make_unique<wchar_t[]>(strSize);
 				std::fill_n(currentDir.get(), strSize, L'\0');
-
 				::SendMessage(hwnd, NPPM_GETCURRENTDIRECTORY, CURRENTWORD_MAXLENGTH, reinterpret_cast<LPARAM>(currentDir.get()));
 
-				wstring fullFilePath = id == IDM_EDIT_OPENINFOLDER ? L"/select," : L"";
-				fullFilePath += L"\"";
-				fullFilePath += currentDir.get();
-				fullFilePath += L"\\";
-				fullFilePath += currentWord.get();
+				fullTargetPath = currentDir.get();
+				fullTargetPath += L"\\";
+				fullTargetPath += currentWord.get();
+			}
 
-				if ((id == IDM_EDIT_OPENASFILE && 
-					(!doesFileExist(fullFilePath.c_str() + 1)))) // + 1 for skipping the 1st char '"'
+			if (id == IDM_EDIT_OPENSELECTEDFILEFOLDERINEXPLORER)
+			{
+				if (!doesPathExist(fullTargetPath.c_str()))
 				{
 					_nativeLangSpeaker.messageBox("FilePathNotFoundWarning",
 						_pPublicInterface->getHSelf(),
-						L"The file you're trying to open doesn't exist.",
-						L"File Open",
+						L"The path you're trying to open doesn't exist.",
+						L"Open Path",
 						MB_OK | MB_APPLMODAL);
 					return;
 				}
-				// else id == IDM_EDIT_OPENINFOLDER - do it anyway. (even the last part does not exist, it doesn't matter)
 
-				fullFilePath += L"\"";
-				::ShellExecute(hwnd, L"open", cmd2Exec, fullFilePath.c_str(), L".", SW_SHOW);
+				std::filesystem::path canonicalPath(fullTargetPath.c_str());
+				canonicalPath = canonicalPath.lexically_normal();
+
+				HRESULT hr = openInExplorerAndSelect(canonicalPath.c_str());
+				if (hr == HRESULT_FROM_WIN32(ERROR_FILE_NOT_FOUND))
+				{
+					// Fallback: open parent folder
+					::ShellExecuteW(hwnd, L"explore", canonicalPath.parent_path().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+				}
 			}
+			else // IDM_EDIT_OPENSELECTEDFILETOEDIT
+			{
+				if (!doesFileExist(fullTargetPath.c_str()))
+				{
+					_nativeLangSpeaker.messageBox("FilePathNotFoundWarning",
+						_pPublicInterface->getHSelf(),
+						L"The path you're trying to open doesn't exist.",
+						L"Open Path",
+						MB_OK | MB_APPLMODAL);
+					return;
+				}
+
+				wchar_t npp2Exec[CURRENTWORD_MAXLENGTH] = { '\0' };
+				::SendMessage(hwnd, NPPM_GETNPPFULLFILEPATH, CURRENTWORD_MAXLENGTH, reinterpret_cast<LPARAM>(npp2Exec));
+
+				fullTargetPath = L"\"" + fullTargetPath + L"\"";
+				::ShellExecute(hwnd, L"open", npp2Exec, fullTargetPath.c_str(), L".", SW_SHOW);
+			}
+			break;
 		}
-		break;
 
 		case IDM_EDIT_SEARCHONINTERNET:
 		{
@@ -801,7 +849,7 @@ void Notepad_plus::command(int id)
 			if (nppGui._searchEngineChoice == nppGui.se_custom)
 			{
 				url = nppGui._searchEngineCustom;
-				url.erase(std::remove_if(url.begin(), url.end(), [](_TUCHAR x) {return _istspace(x); }),
+				url.erase(std::remove_if(url.begin(), url.end(), [](wchar_t x) {return std::iswspace(x); }),
 					url.end());
 
 				auto httpPos = url.find(L"http://");
@@ -988,8 +1036,7 @@ void Notepad_plus::command(int id)
 			{
 				pSorter = std::make_unique<RandomSorter>(isDescending, fromColumn, toColumn);
 			}
-			try
-			{
+			try {
 				_pEditView->sortLines(fromLine, toLine, pSorter.get());
 			}
 			catch (size_t& failedLineIndex)
@@ -1163,8 +1210,10 @@ void Notepad_plus::command(int id)
 		{
 			if (_pFileBrowser == nullptr) // first launch, check in params to open folders
 			{
-				const NppParameters& nppParam = NppParameters::getInstance();
-				launchFileBrowser(nppParam.getFileBrowserRoots(), nppParam.getFileBrowserSelectedItemPath());
+				std::vector<std::wstring> dummy; // use nppParam.getFileBrowserRoots() instead
+				NppParameters& nppParam = NppParameters::getInstance();
+
+				launchFileBrowser(dummy, nppParam.getFileBrowserSelectedItemPath(), true, &(nppParam.getFileBrowserRoots()));
 				if (_pFileBrowser != nullptr)
 				{
 					checkMenuItem(IDM_VIEW_FILEBROWSER, true);
@@ -2258,7 +2307,7 @@ void Notepad_plus::command(int id)
 			{
 				if (_isAdministrator)
 				{
-					MessageBox(_pPublicInterface->getHSelf(), GetLastErrorAsString(GetLastError()).c_str(),	L"Changing file read-only attribute failed", MB_OK | MB_ICONWARNING);
+					NppDarkMode::darkMessageBoxW(_pPublicInterface->getHSelf(), GetLastErrorAsString(GetLastError()).c_str(), L"Changing file read-only attribute failed", MB_OK | MB_ICONWARNING);
 				}
 				else
 				{
@@ -2595,10 +2644,16 @@ void Notepad_plus::command(int id)
 			for (auto pView : pViews)
 			{
 				Buffer* pBuf = pView->getCurrentBuffer();
+				// ErrorList and EscapeSequence both need to set visiblity of ANSI control sequences based on View setting
 				if (pBuf->getLangType() == L_ERRORLIST)
 				{
 					pView->execute(SCI_STYLESETVISIBLE, static_cast<WPARAM>(SCE_ERR_ESCSEQ), static_cast<LPARAM>(isChecked));
 					pView->execute(SCI_STYLESETVISIBLE, static_cast<WPARAM>(SCE_ERR_ESCSEQ_UNKNOWN), static_cast<LPARAM>(isChecked));
+				}
+				else if (pBuf->getLangType() == L_ESCSEQ)
+				{
+					pView->execute(SCI_STYLESETVISIBLE, static_cast<WPARAM>(SCE_ESCSEQ_IDENTIFIER), static_cast<LPARAM>(isChecked));
+					pView->execute(SCI_STYLESETVISIBLE, static_cast<WPARAM>(SCE_ESCSEQ_UNKNOWN), static_cast<LPARAM>(isChecked));
 				}
 			}
 
@@ -2632,10 +2687,16 @@ void Notepad_plus::command(int id)
 			for (auto pView : pViews)
 			{
 				Buffer* pBuf = pView->getCurrentBuffer();
+				// ErrorList and EscapeSequence both need to set visiblity of ANSI control sequences based on View setting
 				if (pBuf->getLangType() == L_ERRORLIST)
 				{
 					pView->execute(SCI_STYLESETVISIBLE, static_cast<WPARAM>(SCE_ERR_ESCSEQ), static_cast<LPARAM>(isChecked));
 					pView->execute(SCI_STYLESETVISIBLE, static_cast<WPARAM>(SCE_ERR_ESCSEQ_UNKNOWN), static_cast<LPARAM>(isChecked));
+				}
+				else if (pBuf->getLangType() == L_ESCSEQ)
+				{
+					pView->execute(SCI_STYLESETVISIBLE, static_cast<WPARAM>(SCE_ESCSEQ_IDENTIFIER), static_cast<LPARAM>(isChecked));
+					pView->execute(SCI_STYLESETVISIBLE, static_cast<WPARAM>(SCE_ESCSEQ_UNKNOWN), static_cast<LPARAM>(isChecked));
 				}
 			}
 
@@ -2700,16 +2761,30 @@ void Notepad_plus::command(int id)
 		case IDM_VIEW_ZOOMIN:
 		{
 			_pEditView->execute(SCI_ZOOMIN);
+			syncZoom();
 			break;
 		}
 		case IDM_VIEW_ZOOMOUT:
 			_pEditView->execute(SCI_ZOOMOUT);
+			syncZoom();
 			break;
 
 		case IDM_VIEW_ZOOMRESTORE:
 			//Zoom factor of 0 points means default view
 			_pEditView->execute(SCI_SETZOOM, 0);//_zoomOriginalValue);
+			syncZoom();
 			break;
+
+		case IDM_VIEW_ZOOM_SYNC:
+		{
+			NppParameters& nppParam = NppParameters::getInstance();
+			ScintillaViewParams& svp = (ScintillaViewParams&)nppParam.getSVP();
+			svp._zoomSync = !svp._zoomSync;
+			checkMenuItem(IDM_VIEW_ZOOM_SYNC, svp._zoomSync);
+			if (svp._zoomSync)
+				syncZoom();
+			break;
+		}
 
 		case IDM_VIEW_SYNSCROLLV:
 		{
@@ -2822,7 +2897,7 @@ void Notepad_plus::command(int id)
 
 				wstring summaryLabel = pNativeSpeaker->getLocalizedStrFromID("summary", L"Summary");
 
-				::MessageBox(_pPublicInterface->getHSelf(), characterNumber.c_str(), summaryLabel.c_str(), MB_OK|MB_APPLMODAL);
+				NppDarkMode::darkMessageBoxW(_pPublicInterface->getHSelf(), characterNumber.c_str(), summaryLabel.c_str(), MB_OK | MB_APPLMODAL);
 			}
 		}
 		break;
@@ -2874,6 +2949,22 @@ void Notepad_plus::command(int id)
 			if (isFirstTime)
 				_nativeLangSpeaker.changeDlgLang(_runDlg.getHSelf(), "Run");
 
+			break;
+		}
+
+		case IDM_EXECUTE_VALIDATE_SHORTCUTSXML:
+		{
+			NppParameters& nppParams = NppParameters::getInstance();
+
+			// Read back the file content as bytes
+			std::string fileContent = getFileContent(nppParams.getShortcutsPath().c_str());
+
+			// Compute HMAC
+			std::string machineGUID = getMachineGUID();
+			std::string hmac = computeHMAC(machineGUID, fileContent);
+
+			// Store in config.xml
+			nppParams.getNppGUI()._shortcutsXmlHmacInConfig = hmac;
 			break;
 		}
 
@@ -3230,17 +3321,17 @@ void Notepad_plus::command(int id)
 
 			if (idEncoding != -1)
 			{
-				// try to save the current clipboard CF_TEXT content 1st
+				// try to save the current clipboard text content 1st
 				HGLOBAL hglbClipboardCopy = NULL;
 				if (::OpenClipboard(_pPublicInterface->getHSelf()))
 				{
-					HANDLE hClipboardData = ::GetClipboardData(CF_TEXT);
-					if (hClipboardData) // NULL if there is no previous CF_TEXT data in
+					HANDLE hClipboardData = ::GetClipboardData(CF_UNICODETEXT); // system itself ensures possible CF_TEXT or CF_OEMTEXT conversion
+					if (hClipboardData) // NULL if there is no previous text data in
 					{
 						LPVOID pClipboardData = ::GlobalLock(hClipboardData);
 						if (pClipboardData)
 						{
-							size_t clipboardDataSize = ::GlobalSize(pClipboardData);
+							size_t clipboardDataSize = ::GlobalSize(hClipboardData);
 							hglbClipboardCopy = ::GlobalAlloc(GMEM_MOVEABLE, clipboardDataSize);
 							if (hglbClipboardCopy)
 							{
@@ -3295,8 +3386,11 @@ void Notepad_plus::command(int id)
 						{
 							if (::EmptyClipboard())
 							{
-								if (::SetClipboardData(CF_TEXT, pClipboardCopy))
+								if (::SetClipboardData(CF_UNICODETEXT, pClipboardCopy))
+								{
+									// system takes ownership of our new HGLOBAL heap memory
 									bAllOk = true;
+								}
 							}
 							::GlobalUnlock(hglbClipboardCopy);
 						}
@@ -3754,28 +3848,21 @@ void Notepad_plus::command(int id)
 				if (isCertifVerified)
 				{
 					wstring param;
+					bool isElevationRequired = false;
+
 					if (id == IDM_CONFUPDATERPROXY)
 					{
-						if (!_isAdministrator)
-						{
-							_nativeLangSpeaker.messageBox("GUpProxyConfNeedAdminMode",
-								_pPublicInterface->getHSelf(),
-								L"Please relaunch Notepad++ in Admin mode to configure proxy.",
-								L"Proxy Settings",
-								MB_OK | MB_APPLMODAL);
-							return;
-						}
 						param = L"-options";
+						isElevationRequired = needsElevation4Access(updaterDir, true); // proxy settings storage is ".\updater\gupOptions.xml"
 					}
 					else
-					{	
+					{
 						nppParams.buildGupParams(param);
-
 						param += L" -verbose";
 					}
-					Process updater(updaterFullPath.c_str(), param.c_str(), updaterDir.c_str());
 
-					updater.run();
+					Process updater(updaterFullPath.c_str(), param.c_str(), updaterDir.c_str());
+					updater.run(isElevationRequired);
 				}
 			}
 			break;
@@ -3913,6 +4000,8 @@ void Notepad_plus::command(int id)
 		case IDM_LANG_TOML:
 		case IDM_LANG_SAS:
 		case IDM_LANG_ERRORLIST:
+		case IDM_LANG_ESCSEQ:
+		case IDM_LANG_STTXT:
 		case IDM_LANG_USER :
 		{
 			LangType lang = menuID2LangType(id);
@@ -4235,20 +4324,72 @@ void Notepad_plus::command(int id)
 					_pDocMap->setSyntaxHiliting();
 				}
 			}
-			else if ((id >= ID_MACRO) && (id < ID_MACRO_LIMIT))
+			else if (((id >= ID_MACRO) && (id < ID_MACRO_LIMIT)) || ((id >= ID_USER_CMD) && (id < ID_USER_CMD_LIMIT))) // shortcuts.xml commands
 			{
-				int i = id - ID_MACRO;
-				vector<MacroShortcut> & theMacros = (NppParameters::getInstance()).getMacroList();
-				macroPlayback(theMacros[i].getMacro());
-			}
-			else if ((id >= ID_USER_CMD) && (id < ID_USER_CMD_LIMIT))
-			{
-				int i = id - ID_USER_CMD;
-				const vector<UserCommand> & theUserCommands = (NppParameters::getInstance()).getUserCommandList();
-				UserCommand ucmd = theUserCommands[i];
+				//-- shortcuts.xml security validation --//
 
-				Command cmd(string2wstring(ucmd.getCmd(), CP_UTF8));
-				cmd.run(_pPublicInterface->getHSelf());
+				NppParameters& nppParams = NppParameters::getInstance();
+				NppGUI& nppGUI = nppParams.getNppGUI();
+
+				// If HMAC is absent from config.xml, force user enable security validation, and generate and save HMAC in config.xml
+				if (nppGUI._shortcutsXmlHmacInConfig.empty())
+				{
+					// Open shortcuts.xml in read-only for user to review
+					BufferID shortcutsBufId = doOpen(nppParams.getShortcutsPath(), false, true);
+					if (shortcutsBufId != BUFFER_INVALID)
+					{
+						switchToFile(shortcutsBufId);
+
+						nppParams.getNativeLangSpeaker()->messageBox("ShortcutsXmlHMACMissing",
+							NULL,
+							L"The security information for shortcuts.xml is missing in config.xml.\r\rFor security reasons, the integrity of shortcuts.xml will be checked. To run your customized command, please review the opened shortcuts.xml. If the file content is OK, use \"Validate shortcuts.xml\" from the \"Run\" menu to confirm it.",
+							L"Security Warning",
+							MB_OK);
+					}
+					return;
+				}
+
+				// If HMAC is present, calculate shortcuts.xml HMAC and compare with the one from config.xml
+				else
+				{
+					if (nppGUI._shortcutsOnDiskHmac != nppGUI._shortcutsXmlHmacInConfig)
+					{
+						// if they don't match, it means shortcuts.xml could be tampered with, so show warning message and calculate shortcuts.xml HMAC
+
+						// Open shortcuts.xml in read-only for user to review
+						BufferID shortcutsBufId = doOpen(nppParams.getShortcutsPath(), false, true);
+						if (shortcutsBufId != BUFFER_INVALID)
+						{
+							switchToFile(shortcutsBufId);
+
+							nppParams.getNativeLangSpeaker()->messageBox("ShortcutsXmlTampered",
+								NULL,
+								L"The shortcuts.xml file appears to have been modified manually.\r\rFor security reasons, please review the opened shortcuts.xml. If the file content is OK, use \"Validate shortcuts.xml\" from the \"Run\" menu to confirm it.",
+								L"Security Warning",
+								MB_OK);
+						}
+						return;
+					}
+					// else if they match, it means shortcuts.xml is safe
+				}
+
+				//-- End shortcuts.xml security validation --//
+
+				if ((id >= ID_MACRO) && (id < ID_MACRO_LIMIT))
+				{
+					int i = id - ID_MACRO;
+					vector<MacroShortcut>& theMacros = nppParams.getMacroList();
+					macroPlayback(theMacros[i].getMacro());
+				}
+				else if ((id >= ID_USER_CMD) && (id < ID_USER_CMD_LIMIT))
+				{
+					int i = id - ID_USER_CMD;
+					const vector<UserCommand>& theUserCommands = nppParams.getUserCommandList();
+					UserCommand ucmd = theUserCommands[i];
+
+					Command cmd(string2wstring(ucmd.getCmd(), CP_UTF8));
+					cmd.run(_pPublicInterface->getHSelf());
+				}
 			}
 			else if ((id >= ID_PLUGINS_CMD) && (id < ID_PLUGINS_CMD_LIMIT))
 			{

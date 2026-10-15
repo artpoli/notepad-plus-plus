@@ -49,7 +49,7 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 		{
 			if (!notifyView) return FALSE;
 
-			if (notification->modificationType & (SC_MOD_DELETETEXT | SC_MOD_INSERTTEXT))
+			if (notification->modificationType & (SC_MOD_DELETETEXT | SC_MOD_INSERTTEXT))  // SC_PERFORMED_UNDO | SC_PERFORMED_REDO are also included in SC_MOD_DELETETEXT and SC_MOD_INSERTTEXT
 			{
 				// Make temporary tab name automatically by using the 1st line of content for untitled documents
 				Buffer* buffer = notifyView->getCurrentBuffer();
@@ -66,12 +66,16 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 				// While the text modification, we make sure the link beblow the modification will be reprocessed
 				_linkTriggered = true;
 				::InvalidateRect(notifyView->getHSelf(), NULL, TRUE);
-			}
 
-			if (notification->modificationType & (SC_MOD_DELETETEXT | SC_MOD_INSERTTEXT | SC_PERFORMED_UNDO | SC_PERFORMED_REDO))
-			{
 				// for the backup system
 				_pEditView->getCurrentBuffer()->setModifiedStatus(true);
+
+				// check if possible IncrementalSearch does not need reset
+				if (_incrementFindDlg.isCreated() && _incrementFindDlg.isVisible())
+				{
+					if (_incrementFindDlg.getAssociatedScintillaView() == notifyView)
+						_incrementFindDlg.reInitCount();
+				}
 			}
 
 			if (notification->modificationType & SC_MOD_CHANGEINDICATOR)
@@ -220,10 +224,11 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 		{
 			if (!notifyView) return FALSE;
 
+			NppParameters& nppParam = NppParameters::getInstance();
+			NppGUI& nppGUI = nppParam.getNppGUI();
+
 			if (notification->modifiers == SCMOD_CTRL)
 			{
-				const NppGUI& nppGUI = NppParameters::getInstance().getNppGUI();
-
 				std::string bufstring;
 
 				size_t position_of_click;
@@ -368,7 +373,8 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 				}
 			}
 			else
-			{ // Double click with no modifiers
+			{
+				// Double click with no modifiers
 				// Check whether cursor is within URL
 				auto indicMsk = notifyView->execute(SCI_INDICATORALLONFOR, notification->position);
 				if (!(indicMsk & (1 << URL_INDIC)))
@@ -389,6 +395,36 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 
 				// Open URL
 				wstring url = notifyView->getGenericTextAsString(static_cast<size_t>(startPos), static_cast<size_t>(endPos));
+
+				if (isUncFileUrl(url))
+				{
+					const std::string urlUTF8 = wstring2string(url, CP_UTF8);
+					if (!nppParam.isServerAllowed(urlUTF8.c_str())) // is in the serverWhiteList.xml ?
+					{
+						if (nppParam.networkPathAlwaysAction() == NppParameters::networkPathAlwaysAsk)
+						{
+							NetworkPathWarningBox networkPathWarningBox;
+							networkPathWarningBox.init(_pPublicInterface->getHinst(), _pPublicInterface->getHSelf(), url, "title2");
+							networkPathWarningBox.doDialog(_nativeLangSpeaker.isRTL());
+							int buttonID = networkPathWarningBox.getClickedButtonId();
+
+							networkPathWarningBox.destroy();
+
+							if (buttonID == IDCANCEL || buttonID == IDNO) // Skip once or Always skip
+							{
+								return FALSE;
+							}
+						}
+						else if (nppParam.networkPathAlwaysAction() == NppParameters::networkPathAlwaysSkip)
+						{
+							return FALSE;
+						}
+						else if (nppParam.networkPathAlwaysAction() == NppParameters::networkPathAlwaysLoad)
+						{
+							// do nothing, continue to load the file
+						}
+					}
+				}
 				::ShellExecute(_pPublicInterface->getHSelf(), L"open", url.c_str(), NULL, NULL, SW_SHOW);
 			}
 			break;
@@ -469,6 +505,18 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 
 			ScintillaEditView* unfocusView = isFromPrimary ? &_subEditView : &_mainEditView;
 			_smartHighlighter.highlightView(notifyView, unfocusView);
+
+			if (!_isSyncingZoom)
+			{
+				_isSyncingZoom = true;
+				const ScintillaViewParams& svp = NppParameters::getInstance().getSVP();
+				if (svp._zoomSync && viewVisible(MAIN_VIEW) && viewVisible(SUB_VIEW))
+				{
+					intptr_t zoom = notifyView->execute(SCI_GETZOOM);
+					unfocusView->execute(SCI_SETZOOM, zoom);
+				}
+				_isSyncingZoom = false;
+			}
 			break;
 		}
 
@@ -744,7 +792,7 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 				{
 					docGotoAnotherEditView(isInCtrlStat?TransferClone:TransferMove);
 				}
-				else
+				else // Drop outside of current Notepad++
 				{
 					RECT nppZone{};
 					::GetWindowRect(_pPublicInterface->getHSelf(), &nppZone);
@@ -783,7 +831,7 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 						else
 						{
 							::SendMessage(hWinParent, NPPM_INTERNAL_SWITCHVIEWFROMHWND, 0, reinterpret_cast<LPARAM>(hWin));
-							::SendMessage(hWinParent, WM_COPYDATA, reinterpret_cast<WPARAM>(_pPublicInterface->getHinst()), reinterpret_cast<LPARAM>(&fileNamesData));
+							::SendMessage(hWinParent, WM_COPYDATA, reinterpret_cast<WPARAM>(_pPublicInterface->getHSelf()), reinterpret_cast<LPARAM>(&fileNamesData));
 							if (!isInCtrlStat)
 							{
 								fileClose(bufferToClose, iView);
@@ -798,7 +846,7 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 					}
 				}
 			}
-			//break;
+
 			sender->resetDraggingPoint();
 			return TRUE;
 		}
@@ -1068,6 +1116,7 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 					itemUnitArray.push_back(MenuItemUnit(IDM_FILE_SAVEAS, L"Save As..."));
 					itemUnitArray.push_back(MenuItemUnit(IDM_FILE_OPEN_FOLDER, L"Open Containing Folder in Explorer", L"Open into"));
 					itemUnitArray.push_back(MenuItemUnit(IDM_FILE_OPEN_CMD, L"Open Containing Folder in cmd", L"Open into"));
+					itemUnitArray.push_back(MenuItemUnit(IDM_FILE_OPEN_POWERSHELL, L"Open Containing Folder in PowerShell", L"Open into"));
 					itemUnitArray.push_back(MenuItemUnit(IDM_FILE_CONTAININGFOLDERASWORKSPACE, L"Open Containing Folder as Workspace", L"Open into"));
 					itemUnitArray.push_back(MenuItemUnit(0, NULL, L"Open into"));
 					itemUnitArray.push_back(MenuItemUnit(IDM_FILE_OPEN_DEFAULT_VIEWER, L"Open in Default Viewer", L"Open into"));
@@ -1103,11 +1152,23 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 			}
 
 			// Adds colour icons
-			for (int i = 0; i < 5; ++i)
+			for (int i = 0; i < TAB_COLORS_COUNT; ++i)
 			{
 				COLORREF colour = nppParam.getIndividualTabColor(i, NppDarkMode::isEnabled(), true);
 				HBITMAP hBitmap = generateSolidColourMenuItemIcon(colour);
-				SetMenuItemBitmaps(_tabPopupMenu.getMenuHandle(), IDM_VIEW_TAB_COLOUR_1 + i, MF_BYCOMMAND, hBitmap, hBitmap);
+				if (hBitmap)
+				{
+					if (!::SetMenuItemBitmaps(_tabPopupMenu.getMenuHandle(), IDM_VIEW_TAB_COLOUR_1 + i, MF_BYCOMMAND, hBitmap, hBitmap))
+					{
+						::DeleteObject(hBitmap);
+					}
+					else
+					{
+						if (_tabPopupMenu._tabColorBitmaps[i])
+							::DeleteObject(_tabPopupMenu._tabColorBitmaps[i]);
+						_tabPopupMenu._tabColorBitmaps[i] = hBitmap;
+					}
+				}
 			}
 
 			bool isEnable = ((::GetMenuState(_mainMenuHandle, IDM_FILE_SAVE, MF_BYCOMMAND)&MF_DISABLED) == 0);
@@ -1138,6 +1199,7 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 			_tabPopupMenu.enableItem(IDM_FILE_RELOAD, isFileExisting);
 			_tabPopupMenu.enableItem(IDM_FILE_OPEN_FOLDER, isFileExisting);
 			_tabPopupMenu.enableItem(IDM_FILE_OPEN_CMD, isFileExisting);
+			_tabPopupMenu.enableItem(IDM_FILE_OPEN_POWERSHELL, isFileExisting);
 			_tabPopupMenu.enableItem(IDM_FILE_CONTAININGFOLDERASWORKSPACE, isFileExisting);
 
 			_tabPopupMenu.enableItem(IDM_FILE_OPEN_DEFAULT_VIEWER, isAssoCommandExisting(buf->getFullPathName()));
@@ -1185,8 +1247,7 @@ BOOL Notepad_plus::notify(SCNotification *notification)
 
 		case TTN_GETDISPINFO:
 		{
-			try
-			{
+			try {
 				LPTOOLTIPTEXT lpttt = (LPTOOLTIPTEXT)notification;
 				lpttt->hinst = NULL;
 

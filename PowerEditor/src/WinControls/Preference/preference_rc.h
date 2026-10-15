@@ -287,12 +287,11 @@
 #define IDC_SMARTHILITEMATCHING_STATIC                 6354
 #define IDC_CHECK_MUTE_SOUNDS                          6360
 #define IDC_CHECK_SAVEALLCONFIRM                       6361
-
 #define IDC_COMBO_SC_TECHNOLOGY_CHOICE                 6362
 #define IDC_SC_TECHNOLOGY_STATIC                       6363
-
 #define IDC_COMBO_AUTOUPDATE                           6364
 #define IDC_AUTOUPDATE_STATIC                          6365
+#define IDC_CHECK_ALOOWSIMLINKFAW                      6366
 
 #define IDD_PREFERENCE_SUB_NEWDOCUMENT                 6400
 #define IDC_FORMAT_GB_STATIC                           6401
@@ -373,6 +372,7 @@
 #define IDC_MT_STATIC                                  6613
 #define IDC_MR_STATIC                                  6614
 #define IDC_MB_STATIC                                  6615
+#define IDC_CHECK_PRINTFORMFEED                        6616
 
 #define IDC_CURRENTLINEMARK_STATIC                     6651
 #define IDC_RADIO_CLM_NONE                             6652
@@ -543,3 +543,9 @@
 #define IDC_RADIO_AUTOINDENT_NONE                      7162
 #define IDC_RADIO_AUTOINDENT_BASIC                     7163
 #define IDC_RADIO_AUTOINDENT_ADVANCED                  7164
+
+#define IDC_DIALOG_FONT_GB_STATIC                      7165
+#define IDC_STATIC_DIALOG_FONT_SIZE                    7166
+#define IDC_COMBO_DIALOG_FONT_SIZE                     7167
+#define IDC_STATIC_DIALOG_FONT_NAME                    7168
+#define IDC_COMBO_DIALOG_FONT_NAME                     7169

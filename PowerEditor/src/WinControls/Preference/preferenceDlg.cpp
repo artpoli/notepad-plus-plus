@@ -45,6 +45,7 @@
 #include "NppXml.h"
 #include "Parameters.h"
 #include "ScintillaEditView.h"
+#include "StaticDialog.h"
 #include "ToolBar.h"
 #include "dpiManagerV2.h"
 #include "localization.h"
@@ -762,7 +763,7 @@ void ToolbarSubDlg::enableIconColorPicker(bool enable, bool useDark)
 	_pIconColorPicker->redraw();
 }
 
-intptr_t CALLBACK GeneralSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM /*lParam*/)
+intptr_t CALLBACK GeneralSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
 	NppParameters& nppParam = NppParameters::getInstance();
 	NppGUI& nppGUI = nppParam.getNppGUI();
@@ -795,9 +796,51 @@ intptr_t CALLBACK GeneralSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM
 			}
 			auto index = ::SendDlgItemMessage(_hSelf, IDC_COMBO_LOCALIZATION, CB_FINDSTRINGEXACT, static_cast<WPARAM>(-1), reinterpret_cast<LPARAM>(lang.c_str()));
 			if (index != CB_ERR)
-                ::SendDlgItemMessage(_hSelf, IDC_COMBO_LOCALIZATION, CB_SETCURSEL, index, 0);
+				::SendDlgItemMessage(_hSelf, IDC_COMBO_LOCALIZATION, CB_SETCURSEL, index, 0);
+
+			static constexpr const wchar_t* fontSizes[]{ L"8", L"9", L"10", L"11", L"12", L"14", L"16", L"18", L"20", L"22", L"24" };
+
+			HWND hFontSizeCombo = ::GetDlgItem(_hSelf, IDC_COMBO_DIALOG_FONT_SIZE);
+			for (const auto& fontSize : fontSizes)
+			{
+				::SendMessage(hFontSizeCombo, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>(fontSize));
+			}
+
+			const std::wstring currentFontSize = std::to_wstring(NppParameters::getInstance().getDlgFontSize());
+
+			const auto cbFontSzIdx = ::SendMessage(hFontSizeCombo, CB_FINDSTRINGEXACT, static_cast<WPARAM>(-1), reinterpret_cast<LPARAM>(currentFontSize.c_str()));
+			if (cbFontSzIdx != CB_ERR)
+			{
+				::SendMessage(hFontSizeCombo, CB_SETCURSEL, cbFontSzIdx, 0);
+			}
+
+			NppParameters& nppParamInst = NppParameters::getInstance();
+			const std::vector<wstring>& fontlist = nppParamInst.getFontList();
+
+			HWND hFontNameCombo = ::GetDlgItem(_hSelf, IDC_COMBO_DIALOG_FONT_NAME);
+			for (size_t i = 0, len = fontlist.size(); i < len; ++i)
+			{
+				auto j = ::SendMessage(hFontNameCombo, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>(fontlist[i].c_str()));
+				::SendMessage(hFontNameCombo, CB_SETITEMDATA, j, reinterpret_cast<LPARAM>(fontlist[i].c_str()));
+			}
+
+			LRESULT iFontName = 0;
+			iFontName = ::SendMessage(hFontNameCombo, CB_FINDSTRING, 1, reinterpret_cast<LPARAM>(nppParamInst.getNppGUI()._fontDlgName.c_str()));
+
+			if (iFontName == CB_ERR)
+			{
+				nppParamInst.getNppGUI()._fontDlgName = DEFAULT_DLG_FONT;
+				iFontName = ::SendMessage(hFontNameCombo, CB_FINDSTRING, 1, reinterpret_cast<LPARAM>(nppParamInst.getNppGUI()._fontDlgName.c_str()));
+			}
+
+			::SendMessage(hFontNameCombo, CB_SETCURSEL, iFontName, 0);
 
 			return TRUE;
+		}
+
+		case WM_CTLCOLOREDIT:
+		{
+			return NppDarkMode::onCtlColorCtrl(reinterpret_cast<HDC>(wParam));
 		}
 
 		case WM_CTLCOLORLISTBOX:
@@ -900,6 +943,41 @@ intptr_t CALLBACK GeneralSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM
 									}
 									return TRUE;
 								}
+
+								case IDC_COMBO_DIALOG_FONT_SIZE:
+								{
+									auto* hCombo = reinterpret_cast<HWND>(lParam);
+
+									const LRESULT idx = ::SendMessage(hCombo, CB_GETCURSEL, 0, 0);
+									if (idx == CB_ERR)
+									{
+										return TRUE;
+									}
+
+									wchar_t buffer[8]{};
+									if (const LRESULT length = ::SendMessage(hCombo, CB_GETLBTEXT, static_cast<WPARAM>(idx), reinterpret_cast<LPARAM>(buffer));
+										length == CB_ERR)
+									{
+										return TRUE;
+									}
+
+									if (const int fontSize = std::wcstol(buffer, nullptr, 10);
+										fontSize > 0)
+									{
+										NppParameters::getInstance().getNppGUI()._fontDlgSize = static_cast<WORD>(fontSize);
+									}
+									return TRUE;
+								}
+
+								case IDC_COMBO_DIALOG_FONT_NAME:
+								{
+									HWND hFontNameCombo = ::GetDlgItem(_hSelf, IDC_COMBO_DIALOG_FONT_NAME);
+									auto iFontSel = ::SendMessage(hFontNameCombo, CB_GETCURSEL, 0, 0);
+									auto* fnStr = reinterpret_cast<wchar_t*>(::SendMessage(hFontNameCombo, CB_GETITEMDATA, iFontSel, 0));
+									NppParameters::getInstance().getNppGUI()._fontDlgName = fnStr;
+
+									return TRUE;
+								}
 							}
 						}
 						return TRUE;
@@ -983,7 +1061,7 @@ intptr_t CALLBACK ToolbarSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM
 
 			NativeLangSpeaker* pNativeSpeaker = nppParam.getNativeLangSpeaker();
 			wstring findInFilesFilterTip = pNativeSpeaker->getLocalizedStrFromID("toolbar-accent-tip", L"This option makes your toolbar icons follow Windows system accent color. Accent color is the highlight color used in buttons, borders, and Start menu tiles in Windows. To change it, go to Settings > Personalization > Colors, then select your preferred accent color.");
-			_accentTip = CreateToolTip(IDD_ACCENT_TIP_STATIC, _hSelf, _hInst, findInFilesFilterTip.data(), pNativeSpeaker->isRTL());
+			_accentTip = createToolTip(IDD_ACCENT_TIP_STATIC, _hSelf, _hInst, findInFilesFilterTip.data(), pNativeSpeaker->isRTL());
 
 			::SendDlgItemMessage(_hSelf, nppGUITbInfo._tbUseMono ? IDC_RADIO_COMPLETE : IDC_RADIO_PARTIAL, BM_SETCHECK, BST_CHECKED, 0);
 
@@ -1358,7 +1436,7 @@ intptr_t CALLBACK TabbarSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM 
 			NativeLangSpeaker* pNativeSpeaker = nppParam.getNativeLangSpeaker();
 			wstring tabCompactLabelLenTip = pNativeSpeaker->getLocalizedStrFromID("tabbar-tabcompactlabellen-tip",
 				L"Limits the visible length of long tab names. Enter to apply the given value. Value range: 1-257 characters (0 disables the truncation).");
-			_tabCompactLabelLenTip = CreateToolTip(IDC_TABCOMPACTLABELLEN_TIP_STATIC, _hSelf, _hInst, tabCompactLabelLenTip.data(), pNativeSpeaker->isRTL());
+			_tabCompactLabelLenTip = createToolTip(IDC_TABCOMPACTLABELLEN_TIP_STATIC, _hSelf, _hInst, tabCompactLabelLenTip.data(), pNativeSpeaker->isRTL());
 
 			HWND hEdit = ::GetDlgItem(_hSelf, IDC_EDIT_TABCOMPACTLABELLEN);
 			subclassEditToAcceptEnterKey(hEdit, WM_COMMAND, MAKEWPARAM(IDC_EDIT_TABCOMPACTLABELLEN, EN_KILLFOCUS), reinterpret_cast<LPARAM>(hEdit));
@@ -1432,8 +1510,7 @@ intptr_t CALLBACK TabbarSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM 
 							// not using the GetDlgItemInt for obtaining the edit-ctrl value as it fails for negative numbers inside
 							// (it can be inserted even into such a ES_NUMBER edit-ctrl via paste-cmd)
 							int iSize = 0;
-							try
-							{
+							try {
 								iSize = stoi(str);
 							}
 							catch ([[maybe_unused]] invalid_argument const& ex)
@@ -2111,7 +2188,7 @@ intptr_t CALLBACK Editing2SubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 			NativeLangSpeaker* pNativeSpeaker = nppParam.getNativeLangSpeaker();
 			wstring tip2show = pNativeSpeaker->getLocalizedStrFromID("eol-custom-color-tip", L"Go to Style Configurator to change the default EOL custom color (\"EOL custom color\").");
 
-			_tip = CreateToolTip(IDC_BUTTON_LAUNCHSTYLECONF_CRLF, _hSelf, _hInst, tip2show.data(), pNativeSpeaker->isRTL());
+			_tip = createToolTip(IDC_BUTTON_LAUNCHSTYLECONF_CRLF, _hSelf, _hInst, tip2show.data(), pNativeSpeaker->isRTL());
 
 			const bool isNpcModeAbbrv = svp._npcMode == svp.abbreviation;
 			setChecked(IDC_RADIO_NPC_ABBREVIATION, isNpcModeAbbrv);
@@ -2150,11 +2227,11 @@ intptr_t CALLBACK Editing2SubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 			wstring tipNpcInc2show = pNativeSpeaker->getLocalizedStrFromID("npcIncludeCcUniEol-tip",
 				L"Apply non-printing characters appearance settings to C0, C1 control and Unicode EOL (next line, line separator and paragraph separator) characters.");
 
-			_tipNote = CreateToolTip(IDC_BUTTON_NPC_NOTE, _hSelf, _hInst, tipNote2Show.data(), pNativeSpeaker->isRTL());
-			_tipAbb = CreateToolTip(IDC_RADIO_NPC_ABBREVIATION, _hSelf, _hInst, tipAb2Show.data(), pNativeSpeaker->isRTL());
-			_tipCodepoint = CreateToolTip(IDC_RADIO_NPC_CODEPOINT, _hSelf, _hInst, tipCp2Show.data(), pNativeSpeaker->isRTL());
-			_tipNpcColor = CreateToolTip(IDC_BUTTON_NPC_LAUNCHSTYLECONF, _hSelf, _hInst, tipNpcCol2show.data(), pNativeSpeaker->isRTL());
-			_tipNpcInclude = CreateToolTip(IDC_CHECK_NPC_INCLUDECCUNIEOL, _hSelf, _hInst, tipNpcInc2show.data(), pNativeSpeaker->isRTL());
+			_tipNote = createToolTip(IDC_BUTTON_NPC_NOTE, _hSelf, _hInst, tipNote2Show.data(), pNativeSpeaker->isRTL());
+			_tipAbb = createToolTip(IDC_RADIO_NPC_ABBREVIATION, _hSelf, _hInst, tipAb2Show.data(), pNativeSpeaker->isRTL());
+			_tipCodepoint = createToolTip(IDC_RADIO_NPC_CODEPOINT, _hSelf, _hInst, tipCp2Show.data(), pNativeSpeaker->isRTL());
+			_tipNpcColor = createToolTip(IDC_BUTTON_NPC_LAUNCHSTYLECONF, _hSelf, _hInst, tipNpcCol2show.data(), pNativeSpeaker->isRTL());
+			_tipNpcInclude = createToolTip(IDC_CHECK_NPC_INCLUDECCUNIEOL, _hSelf, _hInst, tipNpcInc2show.data(), pNativeSpeaker->isRTL());
 
 			_tips.push_back(_tipNote);
 			_tips.push_back(_tipAbb);
@@ -2168,12 +2245,6 @@ intptr_t CALLBACK Editing2SubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 				{
 					::SendMessage(tip, TTM_SETMAXTIPWIDTH, 0, 260);
 				}
-			}
-
-			if (_tipNote != nullptr)
-			{
-				// Make tip stay 30 seconds
-				::SendMessage(_tipNote, TTM_SETDELAYTIME, TTDT_AUTOPOP, MAKELPARAM((30000), (0)));
 			}
 		}
 		return TRUE;
@@ -3036,12 +3107,8 @@ intptr_t CALLBACK MarginsBorderEdgeSubDlg::run_dlgProc(UINT message, WPARAM wPar
 			NativeLangSpeaker* pNativeSpeaker = (NppParameters::getInstance()).getNativeLangSpeaker();
 			wstring tipNote2Show = pNativeSpeaker->getLocalizedStrFromID("verticalEdge-tip",	L"Add your column marker by indicating its position with a decimal number. You can define several column markers by using white space to separate the different numbers.");
 
-			_verticalEdgeTip = CreateToolTip(IDC_BUTTON_VES_TIP, _hSelf, _hInst, tipNote2Show.data(), pNativeSpeaker->isRTL());
-			if (_verticalEdgeTip != nullptr)
-			{
-				// Make tip stay 30 seconds
-				::SendMessage(_verticalEdgeTip, TTM_SETDELAYTIME, TTDT_AUTOPOP, MAKELPARAM((30000), (0)));
-			}
+			_verticalEdgeTip = createToolTip(IDC_BUTTON_VES_TIP, _hSelf, _hInst, tipNote2Show.data(), pNativeSpeaker->isRTL());
+
 			initScintParam();
 
 			NppDarkMode::autoSubclassAndThemeWindowNotify(_hSelf);
@@ -3289,11 +3356,11 @@ intptr_t CALLBACK MiscSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM)
 
 			int selIndex = -1;
 			
-			if (nppGUI._fileAutoDetection & cdEnabledOld)
+			if (nppGUI._fileAutoDetection & cdEnabled4AllFiles)
 			{
 				selIndex = fileUpdateChoiceEnable4All;
 			}
-			else if (nppGUI._fileAutoDetection & cdEnabledNew)
+			else if (nppGUI._fileAutoDetection & cdEnabled4CurrentFile)
 			{				
 				selIndex = fileUpdateChoiceEnable;
 			}
@@ -3345,13 +3412,12 @@ intptr_t CALLBACK MiscSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM)
 			NativeLangSpeaker* pNativeSpeaker = nppParam.getNativeLangSpeaker();
 			wstring tipScintillaRenderingTechnology2Show = pNativeSpeaker->getLocalizedStrFromID("scintillaRenderingTechnology-tip",
 				L"May improve rendering of special characters or resolve some graphics issues, restart Notepad++ to apply the changes.");
-			_tipScintillaRenderingTechnology = CreateToolTip(IDC_COMBO_SC_TECHNOLOGY_CHOICE, _hSelf, _hInst,
+			_tipScintillaRenderingTechnology = createToolTip(IDC_COMBO_SC_TECHNOLOGY_CHOICE, _hSelf, _hInst,
 				tipScintillaRenderingTechnology2Show.data(), pNativeSpeaker->isRTL());
-			if (_tipScintillaRenderingTechnology)
-				::SendMessage(_tipScintillaRenderingTechnology, TTM_SETDELAYTIME, TTDT_AUTOPOP, MAKELPARAM((20000), (0))); // stay 20 secs
 
 			::SendDlgItemMessage(_hSelf, IDC_CHECK_DETECTENCODING, BM_SETCHECK, nppGUI._detectEncoding, 0);
 			::SendDlgItemMessage(_hSelf, IDC_CHECK_SAVEALLCONFIRM, BM_SETCHECK, nppGUI._saveAllConfirm, 0);
+			::SendDlgItemMessage(_hSelf, IDC_CHECK_ALOOWSIMLINKFAW, BM_SETCHECK, nppGUI._isFawSymlinkAllowed, 0);
 
 			::SendDlgItemMessage(_hSelf, IDC_COMBO_AUTOUPDATE, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>(L"Disable"));
 			::SendDlgItemMessage(_hSelf, IDC_COMBO_AUTOUPDATE, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>(L"Enable on Notepad++ startup"));
@@ -3439,9 +3505,9 @@ intptr_t CALLBACK MiscSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM)
 					if (index == fileUpdateChoiceEnable || index == fileUpdateChoiceEnable4All)
 					{
 						if (index == fileUpdateChoiceEnable4All)
-							cd |= cdEnabledOld;
+							cd |= cdEnabled4AllFiles;
 						else
-							cd |= cdEnabledNew;
+							cd |= cdEnabled4CurrentFile;
 
 						if (isSilent)
 							cd |= cdAutoUpdate;
@@ -3511,6 +3577,23 @@ intptr_t CALLBACK MiscSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM)
 					return TRUE;
 				}
 
+				case IDC_CHECK_ALOOWSIMLINKFAW:
+				{
+					static bool isFirstTime = true;
+					nppGUI._isFawSymlinkAllowed = isCheckedOrNot(IDC_CHECK_ALOOWSIMLINKFAW);
+					if (nppGUI._isFawSymlinkAllowed && isFirstTime)
+					{
+						NativeLangSpeaker* pNativeSpeaker = nppParam.getNativeLangSpeaker();
+						pNativeSpeaker->messageBox("SymlinkLoadingWarning",
+							_hSelf,
+							L"Enabling symlink loading in Folder as Workspace may cause Notepad++ to enter an infinite loop and freeze.\rThis can happen when directory symlinks resolve to parent folders or form circular references.\rProceed only if you understand the risks.",
+							L"Warning: Symlink Loading May Cause Freeze",
+							MB_OK | MB_ICONWARNING | MB_APPLMODAL);
+						isFirstTime = false;
+					}
+					return TRUE;
+				}
+
 				default:
 				{
 					if (HIWORD(wParam) == CBN_SELCHANGE)
@@ -3527,9 +3610,9 @@ intptr_t CALLBACK MiscSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM)
 								int cd = cdDisabled;
 
 								if (index == fileUpdateChoiceEnable4All)
-									cd |= cdEnabledOld;
+									cd |= cdEnabled4AllFiles;
 								else
-									cd |= cdEnabledNew;
+									cd |= cdEnabled4CurrentFile;
 
 								if (isSilent)
 									cd |= cdAutoUpdate;
@@ -4263,8 +4346,8 @@ intptr_t CALLBACK IndentationSubDlg::run_dlgProc(UINT message, WPARAM wParam, LP
 				L"\n"\
 				L"If you select advanced mode but do not edit files in the aforementioned languages, the indentation will remain in basic mode.");
 
-			_tipAutoIndentBasic = CreateToolTip(IDC_RADIO_AUTOINDENT_BASIC, _hSelf, _hInst, tipAutoIndentBasic2Show.data(), pNativeSpeaker->isRTL());
-			_tipAutoIndentAdvanced = CreateToolTip(IDC_RADIO_AUTOINDENT_ADVANCED, _hSelf, _hInst, tipAutoIndentAdvanced2show.data(), pNativeSpeaker->isRTL());
+			_tipAutoIndentBasic = createToolTip(IDC_RADIO_AUTOINDENT_BASIC, _hSelf, _hInst, tipAutoIndentBasic2Show.data(), pNativeSpeaker->isRTL());
+			_tipAutoIndentAdvanced = createToolTip(IDC_RADIO_AUTOINDENT_ADVANCED, _hSelf, _hInst, tipAutoIndentAdvanced2show.data(), pNativeSpeaker->isRTL());
 
 			return TRUE;
 		}
@@ -4830,26 +4913,40 @@ intptr_t CALLBACK LanguageSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 					}
 
 					HWND grandParent = ::GetParent(_hParent);
+					HMENU mainMenu = reinterpret_cast<HMENU>(::SendMessage(grandParent, NPPM_INTERNAL_GETMENU, 0, 0));
+					HMENU subLangMenu = ::GetSubMenu(mainMenu, MENUINDEX_LANGUAGE);
+					int nbLangItems = ::GetMenuItemCount(subLangMenu);
 
 					if (LOWORD(wParam)==IDC_BUTTON_REMOVE)
 					{
-						HMENU menu2remove = reinterpret_cast<HMENU>(::SendMessage(grandParent, NPPM_INTERNAL_GETMENU, 0, 0));
-						::DeleteMenu(menu2remove, lmi._cmdID, MF_BYCOMMAND);
-					}
-					else
-					{
-						auto menu = reinterpret_cast<HMENU>(::SendMessage(grandParent, NPPM_INTERNAL_GETMENU, 0, 0));
-						HMENU subMenu = ::GetSubMenu(menu, MENUINDEX_LANGUAGE);
+						::DeleteMenu(mainMenu, lmi._cmdID, MF_BYCOMMAND);
 
+						// If using compact language menu, walk through the first letter sub-menu
+						// and remove the sub-menu if it is empty after removing the language.
+						if (nppGUI._isLangMenuCompact)
+						{
+							for (int i = nbLangItems - 1; i >= 0; --i)
+							{
+								HMENU hSubMenu = ::GetSubMenu(subLangMenu, i);
+								if (hSubMenu && ::GetMenuItemCount(hSubMenu) == 0)
+								{
+									::RemoveMenu(subLangMenu, i, MF_BYPOSITION);
+									::DestroyMenu(hSubMenu);
+									break;
+								}
+							}
+						}
+					}
+					else // IDC_BUTTON_RESTORE
+					{
 						// Find the first separator which is between IDM_LANG_TEXT and languages
-						int nbItem = ::GetMenuItemCount(subMenu);
 						int x = 0;
 						MENUITEMINFO menuItemInfo{};
 						menuItemInfo.cbSize = sizeof(MENUITEMINFO);
 						menuItemInfo.fMask = MIIM_FTYPE;
-						for (; x < nbItem; ++x)
+						for (; x < nbLangItems; ++x)
 						{
-							::GetMenuItemInfo(subMenu, x, TRUE, &menuItemInfo);
+							::GetMenuItemInfo(subLangMenu, x, TRUE, &menuItemInfo);
 							if (menuItemInfo.fType & MFT_SEPARATOR)
 							{
 								break;
@@ -4859,28 +4956,45 @@ intptr_t CALLBACK LanguageSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARA
 						// Find the location in existing language menu to insert to. This includes submenu if using compact language menu.
 						wchar_t firstLetter = lmi._langName.empty() ? L'\0' : towupper(lmi._langName[0]);
 						wchar_t buffer[MAX_EXTERNAL_LEXER_NAME_LEN]{ L'\0' };
-						menuItemInfo.fMask = MIIM_SUBMENU;
-						for (++x; x < nbItem; ++x)
+						menuItemInfo.fMask = MIIM_FTYPE | MIIM_SUBMENU;
+
+						bool enteredLetterSubMenu = false;
+						HMENU subMenu2InsertIn = subLangMenu;
+						for (++x; x < nbLangItems; ++x)
 						{
-							::GetMenuItemInfo(subMenu, x, TRUE, &menuItemInfo);
-							::GetMenuString(subMenu, x, buffer, MAX_EXTERNAL_LEXER_NAME_LEN, MF_BYPOSITION);
+							::GetMenuItemInfo(subLangMenu, x, TRUE, &menuItemInfo);
+							::GetMenuString(subLangMenu, x, buffer, MAX_EXTERNAL_LEXER_NAME_LEN, MF_BYPOSITION);
 
 							// Check if using compact language menu.
 							if (menuItemInfo.hSubMenu && buffer[0] == firstLetter)
 							{
 								// Found the submenu for the language's first letter. Search in it instead.
-								subMenu = menuItemInfo.hSubMenu;
-								nbItem = ::GetMenuItemCount(subMenu);
+								nbLangItems = ::GetMenuItemCount(menuItemInfo.hSubMenu);
 								x = -1;
+								enteredLetterSubMenu = true;
+								subMenu2InsertIn = menuItemInfo.hSubMenu;
 							}
-							else if (lstrcmp(lmi._langName.c_str(), buffer) < 0)
+							else if ((menuItemInfo.fType & MFT_SEPARATOR) || (lstrcmp(lmi._langName.c_str(), buffer) < 0))
 							{
 								break;
 							}
 						}
 
-						::InsertMenu(subMenu, x, MF_BYPOSITION, lmi._cmdID, lmi._langName.c_str());
+						if (nppGUI._isLangMenuCompact && !enteredLetterSubMenu)
+						{
+							// The letter submenu was removed because it became empty; recreate it at the alphabetically correct position (x, computed above),
+							// then insert the language as its first (and only) entry.
+							HMENU newLetterSubMenu = ::CreatePopupMenu();
+							wchar_t letterLabel[2] = { firstLetter, L'\0' };
+							::InsertMenu(subLangMenu, x, MF_BYPOSITION | MF_POPUP, reinterpret_cast<UINT_PTR>(newLetterSubMenu), letterLabel);
+							::InsertMenu(newLetterSubMenu, 0, MF_BYPOSITION, lmi._cmdID, lmi._langName.c_str());
+						}
+						else
+						{
+							::InsertMenu(subMenu2InsertIn, x, MF_BYPOSITION, lmi._cmdID, lmi._langName.c_str());
+						}
 					}
+
 					::DrawMenuBar(grandParent);
 					return TRUE;
 				}
@@ -5093,6 +5207,9 @@ intptr_t CALLBACK PrintSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 		{
 			bool printLN = nppGUI._printSettings._printLineNumber;
 			::SendDlgItemMessage(_hSelf, IDC_CHECK_PRINTLINENUM, BM_SETCHECK, printLN, 0);
+
+			bool printFF = nppGUI._printSettings._printFormFeedPageBreak;
+			::SendDlgItemMessage(_hSelf, IDC_CHECK_PRINTFORMFEED, BM_SETCHECK, printFF, 0);
 
 			int ID2Check = 0;
 			switch (nppGUI._printSettings._printOption)
@@ -5369,6 +5486,10 @@ intptr_t CALLBACK PrintSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 			{
 				case IDC_CHECK_PRINTLINENUM:
 					nppGUI._printSettings._printLineNumber = isCheckedOrNot(IDC_CHECK_PRINTLINENUM);
+					break;
+
+				case  IDC_CHECK_PRINTFORMFEED:
+					nppGUI._printSettings._printFormFeedPageBreak = isCheckedOrNot(IDC_CHECK_PRINTFORMFEED);
 					break;
 
 				case  IDC_RADIO_WYSIWYG:
@@ -6414,12 +6535,7 @@ intptr_t CALLBACK DelimiterSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 			NativeLangSpeaker *pNativeSpeaker = (NppParameters::getInstance()).getNativeLangSpeaker();
 			wstring tip2show = pNativeSpeaker->getLocalizedStrFromID("word-chars-list-tip", L"This allows you to include additional character into current word characters while double clicking for selection or searching with \"Match whole word only\" option checked.");
 
-			_tip = CreateToolTip(IDD_WORDCHAR_QUESTION_BUTTON, _hSelf, _hInst, tip2show.data(), pNativeSpeaker->isRTL());
-			if (_tip)
-			{
-				// Make tip stay 30 seconds
-				SendMessage(_tip, TTM_SETDELAYTIME, TTDT_AUTOPOP, MAKELPARAM((30000), (0)));
-			}
+			_tip = createToolTip(IDD_WORDCHAR_QUESTION_BUTTON, _hSelf, _hInst, tip2show.data(), pNativeSpeaker->isRTL());
 			return TRUE;
 		}
 
@@ -6804,7 +6920,7 @@ intptr_t CALLBACK PerformanceSubDlg::run_dlgProc(UINT message , WPARAM wParam, L
 
 			NativeLangSpeaker* pNativeSpeaker = (NppParameters::getInstance()).getNativeLangSpeaker();
 			wstring enablePerfTip = pNativeSpeaker->getLocalizedStrFromID("largeFileRestriction-tip", L"Some features may slow performance in large files. These features can be auto-disabled on opening a large file. You can customize them here.\n\nNOTE:\n1. Modifying options here requires re-open currently opened large files to get proper behavior.\n\n2. If \"Deactivate Word Wrap globally\" is checked and you open a large file, \"Word Wrap\" will be disabled for all files. You can re-enable it via menu \"View->Word Wrap\"");
-			_largeFileRestrictionTip = CreateToolTip(IDD_PERFORMANCE_TIP_QUESTION_BUTTON, _hSelf, _hInst, enablePerfTip.data(), false);
+			_largeFileRestrictionTip = createToolTip(IDD_PERFORMANCE_TIP_QUESTION_BUTTON, _hSelf, _hInst, enablePerfTip.data(), false);
 
 			return TRUE;
 		}
@@ -7119,26 +7235,20 @@ intptr_t CALLBACK SearchingSubDlg::run_dlgProc(UINT message, WPARAM wParam, LPAR
 			
 			tipInSelectionText = stringReplace(tipInSelectionText, L"$INT_REPLACE$", std::to_wstring(FINDREPLACE_INSELECTION_THRESHOLD_DEFAULT));
 
-			_tipInSelThresh = CreateToolTip(IDC_INSELECTION_THRESH_QUESTION_BUTTON, _hSelf, _hInst, tipInSelectionText.data(), pNativeSpeaker->isRTL());
+			_tipInSelThresh = createToolTip(IDC_INSELECTION_THRESH_QUESTION_BUTTON, _hSelf, _hInst, tipInSelectionText.data(), pNativeSpeaker->isRTL());
 			if (_tipInSelThresh != nullptr)
 			{
 				::SendMessage(_tipInSelThresh, TTM_SETMAXTIPWIDTH, 0, 260);
-
-				// Make tip stay 30 seconds
-				::SendMessage(_tipInSelThresh, TTM_SETDELAYTIME, TTDT_AUTOPOP, MAKELPARAM((30000), (0)));
 			}
 
 			wstring tipFillFindWhatText = pNativeSpeaker->getLocalizedStrFromID("searchingFillFindWhat-tip", L"Maximum number of selected characters in edit zone to fill automatically the \"Find what\" field when the Ctrl-F is triggered. The maximum value is $INT_REPLACE$, which is the maximum size of \"Find what\" field, limited by the system.");
 
 			tipFillFindWhatText = stringReplace(tipFillFindWhatText, L"$INT_REPLACE$", std::to_wstring(FINDREPLACE_MAXLENGTH - 1));
 
-			_tipFillFindWhatThresh = CreateToolTip(IDC_FILLFINDWHAT_THRESH_QUESTION_BUTTON, _hSelf, _hInst, tipFillFindWhatText.data(), pNativeSpeaker->isRTL());
+			_tipFillFindWhatThresh = createToolTip(IDC_FILLFINDWHAT_THRESH_QUESTION_BUTTON, _hSelf, _hInst, tipFillFindWhatText.data(), pNativeSpeaker->isRTL());
 			if (_tipFillFindWhatThresh != nullptr)
 			{
 				::SendMessage(_tipFillFindWhatThresh, TTM_SETMAXTIPWIDTH, 0, 260);
-
-				// Make tip stay 30 seconds
-				::SendMessage(_tipFillFindWhatThresh, TTM_SETDELAYTIME, TTDT_AUTOPOP, MAKELPARAM((30000), (0)));
 			}
 			return TRUE;
 		}

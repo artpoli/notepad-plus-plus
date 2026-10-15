@@ -450,6 +450,7 @@ BEGIN
         BEGIN
             MENUITEM "Explorer",       IDM_FILE_OPEN_FOLDER
             MENUITEM "cmd",            IDM_FILE_OPEN_CMD
+            MENUITEM "PowerShell",     IDM_FILE_OPEN_POWERSHELL
             MENUITEM SEPARATOR
             MENUITEM "Folder as Workspace", IDM_FILE_CONTAININGFOLDERASWORKSPACE
         END
@@ -604,8 +605,8 @@ BEGIN
         END
         POPUP "&On Selection"
         BEGIN
-            MENUITEM "Open File", IDM_EDIT_OPENASFILE
-            MENUITEM "Open Containing Folder in Explorer", IDM_EDIT_OPENINFOLDER
+            MENUITEM "Open File", IDM_EDIT_OPENSELECTEDFILETOEDIT
+            MENUITEM "Open Containing Folder in Explorer", IDM_EDIT_OPENSELECTEDFILEFOLDERINEXPLORER
             MENUITEM SEPARATOR
             MENUITEM "&Redact Selection █ (Shift: ●)", IDM_EDIT_REDACT_SELECTION
             MENUITEM SEPARATOR
@@ -774,6 +775,8 @@ BEGIN
             MENUITEM "Zoom &In (Ctrl+Mouse Wheel Up)",       IDM_VIEW_ZOOMIN
             MENUITEM "Zoom &Out (Ctrl+Mouse Wheel Down)",    IDM_VIEW_ZOOMOUT
             MENUITEM "&Restore Default Zoom",                IDM_VIEW_ZOOMRESTORE
+            MENUITEM SEPARATOR
+            MENUITEM "&Synchronize Across Views",            IDM_VIEW_ZOOM_SYNC
         END
         POPUP "&Move/Clone Current Document"
         BEGIN
@@ -975,7 +978,7 @@ BEGIN
                 MENUITEM "OEM 858",             IDM_FORMAT_DOS_858
                 MENUITEM "OEM 860 : Portuguese",  IDM_FORMAT_DOS_860
                 MENUITEM "OEM 863 : French",      IDM_FORMAT_DOS_863
-                MENUITEM "OEM-US",              IDM_FORMAT_DOS_437
+                MENUITEM "OEM-US : CP437",      IDM_FORMAT_DOS_437
                 MENUITEM "Windows-1252",        IDM_FORMAT_WIN_1252
             END
 
@@ -1019,6 +1022,7 @@ BEGIN
         MENUITEM "Diff",                    IDM_LANG_DIFF
         MENUITEM "Erlang",                  IDM_LANG_ERLANG
         MENUITEM "ErrorList",               IDM_LANG_ERRORLIST
+        MENUITEM "Escape Sequence (ANSI)",  IDM_LANG_ESCSEQ
         MENUITEM "ESCRIPT",                 IDM_LANG_ESCRIPT
         MENUITEM "Forth",                   IDM_LANG_FORTH
         MENUITEM "Fortran (free form)",     IDM_LANG_FORTRAN
@@ -1073,6 +1077,7 @@ BEGIN
         MENUITEM "Smalltalk",               IDM_LANG_SMALLTALK
         MENUITEM "Spice",                   IDM_LANG_SPICE
         MENUITEM "SQL",                     IDM_LANG_SQL
+        MENUITEM "Structured Text",         IDM_LANG_STTXT
         MENUITEM "Swift",                  IDM_LANG_SWIFT
         MENUITEM "S-Record",                IDM_LANG_SREC
         MENUITEM "TCL",                     IDM_LANG_TCL
@@ -1133,9 +1138,10 @@ BEGIN
     END
     POPUP "E"
     BEGIN
-        MENUITEM "Erlang",                IDM_LANG_ERLANG
-        MENUITEM "ErrorList",             IDM_LANG_ERRORLIST
-        MENUITEM "ESCRIPT",               IDM_LANG_ESCRIPT
+        MENUITEM "Erlang",                    IDM_LANG_ERLANG
+        MENUITEM "ErrorList",                 IDM_LANG_ERRORLIST
+        MENUITEM "Escape Sequence (ANSI)",    IDM_LANG_ESCSEQ
+        MENUITEM "ESCRIPT",                   IDM_LANG_ESCRIPT
     END
     POPUP "F"
     BEGIN
@@ -1225,6 +1231,7 @@ BEGIN
         MENUITEM "Smalltalk",             IDM_LANG_SMALLTALK
         MENUITEM "Spice",                 IDM_LANG_SPICE
         MENUITEM "SQL",                   IDM_LANG_SQL
+        MENUITEM "Structured Text",       IDM_LANG_STTXT
         MENUITEM "Swift",                IDM_LANG_SWIFT
         MENUITEM "S-Record",              IDM_LANG_SREC
     END
@@ -1311,6 +1318,8 @@ BEGIN
     POPUP "&Run"
     BEGIN
         MENUITEM "&Run...",    IDM_EXECUTE
+		MENUITEM SEPARATOR
+		MENUITEM "Validate shortcuts.xml",    IDM_EXECUTE_VALIDATE_SHORTCUTSXML
     END
 
     POPUP "&Plugins"
@@ -1402,8 +1411,10 @@ BEGIN
 	//LTEXT           "支持台灣獨立", IDC_AUTHOR_NAME, 85, 38, 120, 10
 	//LTEXT           "Support Taiwan's return to the UN", IDC_AUTHOR_NAME, 85, 38, 130, 10
 	//LTEXT           "We are with Ukraine", IDC_AUTHOR_NAME, 85, 38, 130, 10
-    LTEXT           "Home:",IDC_STATIC,21,58,47,8
-    LTEXT           "https://notepad-plus-plus.org/",IDC_HOME_ADDR,50,56,126,10
+	//LTEXT           "Tiananmen Massacre Commemoration", IDC_AUTHOR_NAME, 85, 38, 150, 10
+    //LTEXT           "Slava Ukraini", IDC_AUTHOR_NAME, 85, 38, 150, 10
+    LTEXT            "Home:",IDC_STATIC,21,58,47,8
+    LTEXT            "https://notepad-plus-plus.org/",IDC_HOME_ADDR,50,57,126,10
     GROUPBOX        "GNU General Public Licence",IDC_STATIC,20,75,230,138,BS_CENTER
     DEFPUSHBUTTON   "OK",IDOK,110,220,50,14
     // IDC_LICENCE_EDIT should be the last line, don't know why
@@ -1422,14 +1433,14 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,125,175,50,14
 END
 
-IDD_COMMANDLINEARGSBOX DIALOGEX 0, 0, 435, 385
+IDD_COMMANDLINEARGSBOX DIALOGEX 0, 0, 520, 398
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_DLGMODALFRAME | WS_EX_WINDOWEDGE
 CAPTION "Command Line Arguments"
 FONT 8, L"MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    EDITTEXT        IDC_COMMANDLINEARGS_EDIT,10,10,420,345,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | NOT WS_BORDER | WS_VSCROLL
-    DEFPUSHBUTTON   "OK",IDOK,185,360,50,14
+    EDITTEXT        IDC_COMMANDLINEARGS_EDIT,10,10,505,350,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | NOT WS_BORDER | WS_VSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,238,373,45,14
 END
 
 IDD_DOSAVEORNOTBOX DIALOGEX 0, 0, 312, 80
@@ -1485,3 +1496,18 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     PUSHBUTTON      "+",IDC_RESTORE_BUTTON,0,0,12,10
 END
+
+IDD_NETWORKPATHWARNINGBOX DIALOGEX 0, 0, 390, 150
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_DLGMODALFRAME | WS_EX_WINDOWEDGE
+CAPTION "Notepad++ session loading"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "",IDC_NETWORKPATHWARNINGTEXT,9,8,372,95,SS_EDITCONTROL
+    DEFPUSHBUTTON   "&Skip",IDCANCEL,9,112,170,14
+    PUSHBUTTON      "Always &load from this server",IDYES,9,130,170,14
+    PUSHBUTTON      "?",IDC_BUTTON_SERVERWHITELIST_NOTE,181,130,16,14,NOT WS_TABSTOP
+    PUSHBUTTON      "&Always skip network paths",IDNO,213,112,170,14
+    PUSHBUTTON      "Always load &network paths",IDRETRY,213,130,170,14
+END
+

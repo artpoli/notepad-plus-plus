@@ -20,19 +20,30 @@
 #include "DarkMode/DarkMode.h"
 #include "DarkMode/UAHMenuBar.h"
 
+#include <windows.h>
+
 #include <dwmapi.h>
 #include <shlwapi.h>
 #include <uxtheme.h>
+#include <vsstyle.h>
 #include <vssym32.h>
 
+#include <algorithm>
+#include <array>
+#include <cassert>
+#include <cmath>
+#include <cstdlib>
+#include <cwchar>
 #include <memory>
+#include <string>
 
+#include "NppConstants.h"
 #include "Parameters.h"
+#include "ToolBar.h"
 #include "dpiManagerV2.h"
 #include "resource.h"
 
 #ifdef __GNUC__
-#include <cmath>
 #define WINAPI_LAMBDA WINAPI
 #ifndef DWMWA_USE_IMMERSIVE_DARK_MODE
 #define DWMWA_USE_IMMERSIVE_DARK_MODE 20
@@ -102,6 +113,8 @@ namespace NppDarkMode
 		HBRUSH hotEdgeBrush = nullptr;
 		HBRUSH disabledEdgeBrush = nullptr;
 
+		HBRUSH darkerTextBrush = nullptr;
+
 		Brushes(const Colors& colors)
 			: background(::CreateSolidBrush(colors.background))
 			, ctrlBackground(::CreateSolidBrush(colors.softerBackground))
@@ -112,6 +125,8 @@ namespace NppDarkMode
 			, edgeBrush(::CreateSolidBrush(colors.edge))
 			, hotEdgeBrush(::CreateSolidBrush(colors.hotEdge))
 			, disabledEdgeBrush(::CreateSolidBrush(colors.disabledEdge))
+
+			, darkerTextBrush(::CreateSolidBrush(colors.darkerText))
 		{}
 
 		~Brushes()
@@ -125,6 +140,8 @@ namespace NppDarkMode
 			::DeleteObject(edgeBrush);			edgeBrush = nullptr;
 			::DeleteObject(hotEdgeBrush);		hotEdgeBrush = nullptr;
 			::DeleteObject(disabledEdgeBrush);	disabledEdgeBrush = nullptr;
+
+			::DeleteObject(darkerTextBrush);    darkerTextBrush = nullptr;
 		}
 
 		void change(const Colors& colors)
@@ -139,6 +156,8 @@ namespace NppDarkMode
 			::DeleteObject(hotEdgeBrush);
 			::DeleteObject(disabledEdgeBrush);
 
+			::DeleteObject(darkerTextBrush);
+
 			background = ::CreateSolidBrush(colors.background);
 			ctrlBackground = ::CreateSolidBrush(colors.softerBackground);
 			hotBackground = ::CreateSolidBrush(colors.hotBackground);
@@ -148,6 +167,8 @@ namespace NppDarkMode
 			edgeBrush = ::CreateSolidBrush(colors.edge);
 			hotEdgeBrush = ::CreateSolidBrush(colors.hotEdge);
 			disabledEdgeBrush = ::CreateSolidBrush(colors.disabledEdge);
+
+			darkerTextBrush = ::CreateSolidBrush(colors.darkerText);
 		}
 	};
 
@@ -738,6 +759,8 @@ namespace NppDarkMode
 	HBRUSH getEdgeBrush()                 { return getTheme()._brushes.edgeBrush; }
 	HBRUSH getHotEdgeBrush()              { return getTheme()._brushes.hotEdgeBrush; }
 	HBRUSH getDisabledEdgeBrush()         { return getTheme()._brushes.disabledEdgeBrush; }
+
+	HBRUSH getDarkerTextBrush()           { return getTheme()._brushes.darkerTextBrush; }
 
 	HPEN getDarkerTextPen()               { return getTheme()._pens.darkerTextPen; }
 	HPEN getEdgePen()                     { return getTheme()._pens.edgePen; }
@@ -2851,16 +2874,24 @@ namespace NppDarkMode
 		}
 	}
 
+	static void enableSysLinkCtrlCtlColor(HWND hWnd)
+	{
+		LITEM lItem{};
+		lItem.iLink = 0;
+		lItem.mask = LIF_ITEMINDEX | LIF_STATE;
+		lItem.state = NppDarkMode::isEnabled() ? LIS_DEFAULTCOLORS : 0;
+		lItem.stateMask = LIS_DEFAULTCOLORS;
+		while (::SendMessage(hWnd, LM_SETITEM, 0, reinterpret_cast<LPARAM>(&lItem)) == TRUE)
+		{
+			++lItem.iLink;
+		}
+	}
+
 	static void setUrlLinkControlColor(HWND hWnd, NppDarkModeParams p)
 	{
 		if (p._theme)
 		{
-			LITEM item{};
-			item.iLink = 0; // for now colorize only 1st item
-			item.mask = LIF_ITEMINDEX | LIF_STATE;
-			item.state = NppDarkMode::isEnabled() ? LIS_DEFAULTCOLORS : 0;
-			item.stateMask = LIS_DEFAULTCOLORS;
-			::SendMessage(hWnd, LM_SETITEM, 0, reinterpret_cast<LPARAM>(&item));
+			enableSysLinkCtrlCtlColor(hWnd);
 		}
 	}
 
@@ -4538,5 +4569,472 @@ namespace NppDarkMode
 			return NppDarkMode::onCtlColorDlg(hdc);
 		}
 		return NppDarkMode::onCtlColor(hdc);
+	}
+
+	class TaskDlgData
+	{
+	public:
+		TaskDlgData() noexcept
+		{
+			if (m_themeData.ensureTheme(nullptr))
+			{
+				COLORREF clrTmp = 0;
+				if (SUCCEEDED(::GetThemeColor(m_themeData._hTheme, TDLG_PRIMARYPANEL, 0, TMT_TEXTCOLOR, &clrTmp)))
+				{
+					m_clrText = clrTmp;
+				}
+
+				if (SUCCEEDED(::GetThemeColor(m_themeData._hTheme, TDLG_PRIMARYPANEL, 0, TMT_FILLCOLOR, &clrTmp)))
+				{
+					m_clrBg = clrTmp;
+				}
+			}
+
+			m_hBrushBg = ::CreateSolidBrush(m_clrBg);
+		}
+
+		TaskDlgData(const TaskDlgData&) = delete;
+		TaskDlgData& operator=(const TaskDlgData&) = delete;
+
+		TaskDlgData(TaskDlgData&&) = delete;
+		TaskDlgData& operator=(TaskDlgData&&) = delete;
+
+		~TaskDlgData()
+		{
+			::DeleteObject(m_hBrushBg);
+		}
+
+		[[nodiscard]] COLORREF getTextColor() const noexcept
+		{
+			return m_clrText;
+		}
+
+		[[nodiscard]] COLORREF getBgColor() const noexcept
+		{
+			return m_clrBg;
+		}
+
+		[[nodiscard]] const HBRUSH& getBgBrush() const noexcept
+		{
+			return m_hBrushBg;
+		}
+
+		[[nodiscard]] bool shouldErase() const noexcept
+		{
+			return m_needErase;
+		}
+
+		void stopErase() noexcept
+		{
+			m_needErase = false;
+		}
+
+	private:
+		ThemeData m_themeData{ L"DarkMode_Explorer::TaskDialog" };
+		COLORREF m_clrText = RGB(255, 255, 255);
+		COLORREF m_clrBg = RGB(44, 44, 44);
+		HBRUSH m_hBrushBg = nullptr;
+		bool m_needErase = true;
+	};
+
+	static LRESULT CALLBACK DarkTaskDlgSubclass(
+		HWND hWnd,
+		UINT uMsg,
+		WPARAM wParam,
+		LPARAM lParam,
+		UINT_PTR uIdSubclass,
+		DWORD_PTR dwRefData
+	)
+	{
+		auto* pTaskDlgData = reinterpret_cast<TaskDlgData*>(dwRefData);
+
+		switch (uMsg)
+		{
+			case WM_NCDESTROY:
+			{
+				::RemoveWindowSubclass(hWnd, DarkTaskDlgSubclass, uIdSubclass);
+				const std::unique_ptr<TaskDlgData> ptrData(pTaskDlgData);
+				break;
+			}
+
+			case WM_ERASEBKGND:
+			{
+				const std::wstring className = getWndClassName(hWnd);
+
+				if (className == L"CtrlNotifySink")
+				{
+					break;
+				}
+
+				if ((className == L"DirectUIHWND") && pTaskDlgData->shouldErase())
+				{
+					RECT rcClient{};
+					::GetClientRect(hWnd, &rcClient);
+					::FillRect(reinterpret_cast<HDC>(wParam), &rcClient, pTaskDlgData->getBgBrush());
+					pTaskDlgData->stopErase();
+				}
+				return TRUE;
+			}
+
+			case WM_CTLCOLORDLG:
+			case WM_CTLCOLORSTATIC:
+			{
+				auto hdc = reinterpret_cast<HDC>(wParam);
+				::SetTextColor(hdc, pTaskDlgData->getTextColor());
+				::SetBkColor(hdc, pTaskDlgData->getBgColor());
+				return reinterpret_cast<LRESULT>(pTaskDlgData->getBgBrush());
+			}
+
+			case WM_PRINTCLIENT:
+			{
+				return TRUE;
+			}
+
+			default:
+			{
+				break;
+			}
+		}
+		return ::DefSubclassProc(hWnd, uMsg, wParam, lParam);
+	}
+
+	static void setDarkTaskDlgSubclass(HWND hWnd)
+	{
+		if (::GetWindowSubclass(hWnd, DarkTaskDlgSubclass, static_cast<UINT_PTR>(SubclassID::darkMode), nullptr) == FALSE)
+		{
+			auto pTaskDlgData = std::make_unique<TaskDlgData>();
+			if (::SetWindowSubclass(hWnd, DarkTaskDlgSubclass, static_cast<UINT_PTR>(SubclassID::darkMode), reinterpret_cast<DWORD_PTR>(pTaskDlgData.get())) == TRUE)
+			{
+				static_cast<void>(pTaskDlgData.release());
+			}
+		}
+	}
+
+	static BOOL CALLBACK DarkTaskEnumChildProc(HWND hWnd, [[maybe_unused]] LPARAM lParam)
+	{
+		const std::wstring className = getWndClassName(hWnd);
+
+		if (className == L"CtrlNotifySink")
+		{
+			setDarkTaskDlgSubclass(hWnd);
+			return TRUE;
+		}
+
+		if (className == WC_BUTTON)
+		{
+			switch (::GetWindowLongPtr(hWnd, GWL_STYLE) & BS_TYPEMASK) // button style
+			{
+				case BS_RADIOBUTTON:
+				case BS_AUTORADIOBUTTON:
+				{
+					NppDarkMode::subclassButtonControl(hWnd);
+					break;
+				}
+
+				default:
+				{
+					break;
+				}
+			}
+
+			NppDarkMode::setDarkExplorerTheme(hWnd);
+
+			return TRUE;
+		}
+
+		if (className == WC_LINK)
+		{
+			enableSysLinkCtrlCtlColor(hWnd);
+			setDarkTaskDlgSubclass(hWnd);
+			return TRUE;
+		}
+
+		if (className == WC_SCROLLBAR)
+		{
+			NppDarkMode::setDarkScrollBar(hWnd);
+			return TRUE;
+		}
+
+		if (className == PROGRESS_CLASS)
+		{
+			NppDarkMode::setProgressBarClassicTheme(hWnd);
+			return TRUE;
+		}
+
+		if (className == L"DirectUIHWND")
+		{
+			::EnumChildWindows(hWnd, DarkTaskEnumChildProc, 0);
+			setDarkTaskDlgSubclass(hWnd);
+			NppDarkMode::setDarkExplorerTheme(hWnd);
+			return TRUE;
+		}
+
+		return TRUE;
+	}
+
+	static void setTaskDlgChildCtrlsSubclassAndTheme(HWND hWnd)
+	{
+		setDarkTaskDlgSubclass(hWnd);
+		::EnumChildWindows(hWnd, DarkTaskEnumChildProc, 0);
+	}
+
+	static void setDarkTaskDlg(HWND hWnd)
+	{
+		if (NppDarkMode::isExperimentalActive())
+		{
+			NppDarkMode::setDarkTitleBar(hWnd);
+			NppDarkMode::setDarkExplorerTheme(hWnd);
+			setTaskDlgChildCtrlsSubclassAndTheme(hWnd);
+		}
+	}
+
+	static HRESULT darkTaskDialogIndirect(
+		const TASKDIALOGCONFIG* pTaskConfig,
+		int* pnButton,
+		int* pnRadioButton,
+		BOOL* pfVerificationFlagChecked
+	)
+	{
+		::HookThemeColor();
+		const HRESULT retVal = ::TaskDialogIndirect(pTaskConfig, pnButton, pnRadioButton, pfVerificationFlagChecked);
+		::UnhookThemeColor();
+		return retVal;
+	}
+
+	static HRESULT CALLBACK DarkTaskDlgMsgBoxCallback(
+		HWND hWnd,
+		UINT uMsg,
+		[[maybe_unused]] WPARAM wParam,
+		[[maybe_unused]] LPARAM lParam,
+		[[maybe_unused]] LONG_PTR lpRefData
+	) noexcept
+	{
+		const auto uType = static_cast<UINT>(lpRefData);
+
+		if (uMsg == TDN_DIALOG_CONSTRUCTED)
+		{
+			setDarkTaskDlg(hWnd);
+			if ((uType & (MB_SYSTEMMODAL | MB_TOPMOST)) != 0)
+			{
+				::SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+			}
+
+			if ((uType & MB_SETFOREGROUND) == MB_SETFOREGROUND)
+			{
+				::SetForegroundWindow(hWnd);
+			}
+		}
+		return S_OK;
+	}
+
+	static TASKDIALOGCONFIG msgBoxParamToTaskDlgConfig(
+		HWND hWnd,
+		LPCWSTR lpText,
+		LPCWSTR lpCaption,
+		UINT uType
+	) noexcept
+	{
+		// base config
+
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 26476) // Expression/symbol 'name' uses a naked union 'union' with multiple type pointers: Use variant instead (type.7)
+#endif
+		TASKDIALOGCONFIG tdc{};
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+		tdc.cbSize = sizeof(TASKDIALOGCONFIG);
+		tdc.hwndParent = hWnd;
+		tdc.hInstance = nullptr;
+		tdc.dwFlags = TDF_ALLOW_DIALOG_CANCELLATION | TDF_SIZE_TO_CONTENT;
+		// Unlike message box localized "Error" string, task dialog uses filename if title is nullptr.
+		// Maintainer will need to provide localization themself.
+		tdc.pszWindowTitle = lpCaption != nullptr ? lpCaption : L"Error";
+		tdc.pszContent = lpText;
+		tdc.pfCallback = DarkTaskDlgMsgBoxCallback;
+		tdc.lpCallbackData = static_cast<LONG_PTR>(uType);
+
+		InitMB_GetString();
+
+		// buttons
+
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 26446) // Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+#pragma warning(disable: 26482) // Only index into arrays using constant expressions.
+#endif
+
+	// NOLINTBEGIN(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
+
+		const UINT btnDefMask = uType & MB_DEFMASK;
+		static constexpr UINT maxBtns = 3;
+		auto getDefBtn = [&btnDefMask](std::array<int, maxBtns> btnIDs) noexcept
+		{
+			if (btnDefMask == MB_DEFBUTTON2)
+			{
+				return btnIDs[1];
+			}
+			if (btnDefMask == MB_DEFBUTTON3)
+			{
+				return btnIDs[2];
+			}
+			return btnIDs[0];
+		};
+
+		switch (uType & MB_TYPEMASK)
+		{
+			case MB_OK:
+			{
+				tdc.dwCommonButtons = TDCBF_OK_BUTTON;
+				break;
+			}
+
+			case MB_OKCANCEL:
+			{
+				tdc.dwCommonButtons = TDCBF_OK_BUTTON | TDCBF_CANCEL_BUTTON;
+				tdc.nDefaultButton = (btnDefMask == MB_DEFBUTTON2) ? IDCANCEL : IDOK;
+				break;
+			}
+
+			case MB_ABORTRETRYIGNORE:
+			{
+				static const std::array<TASKDIALOG_BUTTON, maxBtns> buttons{ {
+					{ IDABORT, MyMB_GetString(IDABORT) },
+					{ IDRETRY, MyMB_GetString(IDRETRY) },
+					{ IDIGNORE, MyMB_GetString(IDIGNORE) }
+				} };
+
+				tdc.cButtons = static_cast<UINT>(buttons.size());
+				tdc.pButtons = buttons.data();
+				tdc.nDefaultButton = getDefBtn({ { buttons[0].nButtonID, buttons[1].nButtonID, buttons[2].nButtonID } });
+
+				break;
+			}
+
+			case MB_YESNOCANCEL:
+			{
+				tdc.dwCommonButtons = TDCBF_YES_BUTTON | TDCBF_NO_BUTTON | TDCBF_CANCEL_BUTTON;
+				tdc.nDefaultButton = getDefBtn({ { IDYES, IDNO, IDCANCEL } });
+				break;
+			}
+
+			case MB_YESNO:
+			{
+				tdc.dwCommonButtons = TDCBF_YES_BUTTON | TDCBF_NO_BUTTON;
+				tdc.nDefaultButton = (btnDefMask == MB_DEFBUTTON2) ? IDNO : IDYES;
+				break;
+			}
+
+			case MB_RETRYCANCEL:
+			{
+				tdc.dwCommonButtons = TDCBF_RETRY_BUTTON | TDCBF_CANCEL_BUTTON;
+				tdc.nDefaultButton = (btnDefMask == MB_DEFBUTTON2) ? IDCANCEL : IDRETRY;
+				break;
+			}
+
+			case MB_CANCELTRYCONTINUE:
+			{
+				static const std::array<TASKDIALOG_BUTTON, maxBtns> buttons{ {
+					{ IDCANCEL, MyMB_GetString(IDCANCEL) },
+					{ IDTRYAGAIN, MyMB_GetString(IDTRYAGAIN) },
+					{ IDCONTINUE, MyMB_GetString(IDCONTINUE) }
+				} };
+
+				tdc.cButtons = static_cast<UINT>(buttons.size());
+				tdc.pButtons = buttons.data();
+				tdc.nDefaultButton = getDefBtn({ { buttons[0].nButtonID, buttons[1].nButtonID, buttons[2].nButtonID } });
+
+				break;
+			}
+
+			default:
+			{
+				tdc.dwCommonButtons = TDCBF_OK_BUTTON;
+				break;
+			}
+		}
+
+		// NOLINTEND(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+
+	// icons
+
+		switch (uType & MB_ICONMASK)
+		{
+			case MB_ICONERROR:
+			{
+				tdc.pszMainIcon = TD_ERROR_ICON;
+				break;
+			}
+
+			case MB_ICONQUESTION:
+			{
+				tdc.pszMainIcon = IDI_QUESTION;
+				break;
+			}
+
+			case MB_ICONWARNING:
+			{
+				tdc.pszMainIcon = TD_WARNING_ICON;
+				break;
+			}
+
+			case MB_ICONINFORMATION:
+			{
+				tdc.pszMainIcon = TD_INFORMATION_ICON;
+				break;
+			}
+
+			default:
+				break;
+		}
+
+		// other
+
+		if ((uType & MB_RTLREADING) == MB_RTLREADING)
+		{
+			tdc.dwFlags |= TDF_RTL_LAYOUT;
+		}
+
+		return tdc;
+	}
+
+	// code adapted from https://github.com/ozone10/win32-darkmodelib
+	int darkMessageBoxW(
+		HWND hWnd,
+		LPCWSTR lpText,
+		LPCWSTR lpCaption,
+		UINT uType
+	)
+	{
+		if (!NppDarkMode::isEnabled())
+		{
+			return ::MessageBoxW(hWnd, lpText, lpCaption, uType);
+		}
+
+		const TASKDIALOGCONFIG tdc = msgBoxParamToTaskDlgConfig(hWnd, lpText, lpCaption, uType);
+
+		int btnPressed = 0;
+		if (darkTaskDialogIndirect(&tdc, &btnPressed, nullptr, nullptr) != S_OK)
+		{
+			return ::MessageBoxW(hWnd, lpText, lpCaption, uType);
+		}
+		return btnPressed;
+	}
+
+	// for luminosity slider control
+	BOOL darkChooseColorW(LPCHOOSECOLORW cc)
+	{
+		if (NppDarkMode::isExperimentalActive() && ::HookClrGetSysColorBrush())
+		{
+			const auto retVal = ::ChooseColorW(cc);
+			::UnhookClrGetSysColorBrush();
+			return retVal;
+		}
+		return ::ChooseColorW(cc);
 	}
 }

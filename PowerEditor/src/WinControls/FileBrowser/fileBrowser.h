@@ -20,6 +20,7 @@
 #include <windows.h>
 
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 #include "DockingDlgInterface.h"
@@ -35,6 +36,7 @@
 #define FB_FINDINFILES        L"Find in Files..."
 #define FB_EXPLORERHERE       L"Explorer here"
 #define FB_CMDHERE            L"CMD here"
+#define FB_POWERSHELLHERE     L"PowerShell here"
 #define FB_OPENINNPP          L"Open"
 #define FB_SHELLEXECUTE       L"Run by system"
 
@@ -136,7 +138,10 @@ public:
 
 	std::wstring getNodePath(HTREEITEM node) const;
 	std::wstring getNodeName(HTREEITEM node) const;
-	void addRootFolder(std::wstring rootFolderPath);
+	void addRootFolder(std::wstring rootFolderPath, std::unordered_set<std::wstring>* pExpandedPaths = nullptr);
+
+	void applyExpandState(HTREEITEM rootHItem, std::unordered_set<std::wstring>* pExpandedPaths);
+	std::vector<std::wstring> getExpandedPathsFromFaW() const;
 
 	HTREEITEM getRootFromFullPath(const std::wstring & rootPath) const;
 	HTREEITEM findChildNodeFromName(HTREEITEM parent, const std::wstring& label) const;
@@ -159,6 +164,7 @@ protected:
 	std::vector<HIMAGELIST> _iconListVector;
 
 	TreeView _treeView;
+
 	HIMAGELIST _hImaLst = nullptr;
 
 	HMENU _hGlobalMenu = NULL;
@@ -169,7 +175,7 @@ protected:
 
 	std::wstring _selectedNodeFullPath; // this member is used only for PostMessage call
 
-	std::vector<SortingData4lParam*> sortingDataArray;
+	std::vector<SortingData4lParam*> _sortingDataArray;
 
 	std::wstring _expandAllFolders = L"Unfold all";
 	std::wstring _collapseAllFolders = L"Fold all";

@@ -17,12 +17,30 @@
 
 #pragma once
 
+#include <windows.h>
+
 #include <map>
-#include "FindReplaceDlg_rc.h"
-#include "ScintillaEditView.h"
+#include <stdexcept>
+#include <string>
+#include <utility>
+#include <vector>
+
+#include <BoostRegexSearch.h>
+#include <Scintilla.h>
+
+#include "Common.h"
+#include "ContextMenu.h"
 #include "DockingDlgInterface.h"
-#include "BoostRegexSearch.h"
+#include "FindReplaceDlg_rc.h"
+#include "Notepad_plus_msgs.h"
+#include "Parameters.h"
+#include "ScintillaEditView.h"
+#include "StaticDialog.h"
 #include "StatusBar.h"
+#include "TabBar.h"
+#include "ToolBar.h"
+#include "Window.h"
+#include "dpiManagerV2.h"
 
 #define FIND_RECURSIVE 1
 #define FIND_INHIDDENDIR 2
@@ -62,10 +80,11 @@ struct TargetRange {
 
 enum SearchIncrementalType { NotIncremental, FirstIncremental, NextIncremental };
 enum SearchType { FindNormal, FindExtended, FindRegex };
-enum ProcessOperation { ProcessFindAll, ProcessReplaceAll, ProcessCountAll, ProcessMarkAll, ProcessMarkAll_2, ProcessMarkAll_IncSearch, ProcessMarkAllExt, ProcessFindInFinder };
+enum ProcessOperation { ProcessFindAll, ProcessReplaceAll, ProcessCountAll, ProcessMarkAll, ProcessHighLightAll, ProcessMarkAll_IncSearch, ProcessMarkAllExt, ProcessFindInFinder };
 
 struct FindOption
 {
+	// In
 	bool _isWholeWord = true;
 	bool _isMatchCase = true;
 	bool _isWrapAround = true;
@@ -86,6 +105,15 @@ struct FindOption
 	bool _isProjectPanel_3 = false;
 	bool _dotMatchesNewline = false;
 	bool _isMatchLineNumber = false; // always false for main search
+
+	// Out
+	bool _regexEmptyStringFound = false; // used only for status bar tooltip display on countAll & markAll operations
+};
+
+struct MatchPosition
+{
+	intptr_t start = -1;
+	intptr_t end = -1;
 };
 
 //This class contains generic search functions as static functions for easy access
@@ -99,7 +127,7 @@ public:
 				(option->_searchType == FindRegex ? SCFIND_REGEXP|SCFIND_POSIX : 0) |
 				((option->_searchType == FindRegex && option->_dotMatchesNewline) ? SCFIND_REGEXP_DOTMATCHESNL : 0);
 	}
-	static void displaySectionCentered(size_t posStart, size_t posEnd, ScintillaEditView * pEditView, bool isDownwards = true);
+	static void displaySectionCentered(size_t posStart, size_t posEnd, ScintillaEditView* pEditView, bool isDownwards = true);
 
 private:
 	static bool readBase(const wchar_t * str, int * value, int base, int size);
@@ -119,7 +147,7 @@ public:
 		_scintView.destroy();
 	}
 
-	void init(HINSTANCE hInst, HWND hPere, ScintillaEditView **ppEditView) {
+	void init(HINSTANCE hInst, HWND hPere, ScintillaEditView** ppEditView) {
 		DockingDlgInterface::init(hInst, hPere);
 		_ppEditView = ppEditView;
 	}
@@ -128,7 +156,7 @@ public:
 	void addFileNameTitle(const wchar_t * fileName);
 	void addFileHitCount(int count);
 	void addSearchResultInfo(int count, int countSearched, bool searchedEntireNotSelection, const FindOption *pFindOpt);
-	std::string foundLine(FoundInfo fi, SearchResultMarkingLine mi, const wchar_t* foundline, size_t foundLineLen, size_t totalLineNumber);
+	std::string foundLine(FoundInfo fi, SearchResultMarkingLine miLine, const wchar_t* foundline, size_t foundLineLen, size_t totalLineNumber);
 	void setFinderStyle();
 	void setFinderStyleForNpc(bool onlyColor = false);
 	void removeAll();
@@ -165,7 +193,7 @@ private:
 		intptr_t auxiliaryInfo = -1; // according the status - see getCurrentPosInLineInfo member function definition's above comment
 	};
 
-	ScintillaEditView **_ppEditView = nullptr;
+	ScintillaEditView** _ppEditView = nullptr;
 	std::vector<FoundInfo> _foundInfos1;
 	std::vector<FoundInfo> _foundInfos2;
 	std::vector<FoundInfo>* _pMainFoundInfos = &_foundInfos1;
@@ -193,7 +221,7 @@ private:
 		_scintView.execute(SCI_SETREADONLY, isReadOnly);
 	}
 
-	bool isLineActualSearchResult(const std::wstring & s) const;
+	static bool isLineActualSearchResult(const std::wstring& s);
 	std::wstring & prepareStringForClipboard(std::wstring & s) const;
 
 	static FoundInfo EmptyFoundInfo;
@@ -204,7 +232,7 @@ private:
 };
 
 
-enum FindStatus { FSFound, FSNotFound, FSTopReached, FSEndReached, FSMessage, FSNoMessage, FSWarning };
+enum FindStatus { FSFound, FSNotFound, FSTopReached, FSEndReached, FSMessage, FSNoMessage, FSWarning, FSResetCount };
 
 enum FindNextType {
 	FINDNEXTTYPE_FINDNEXT,
@@ -263,7 +291,7 @@ public :
 
 	~FindReplaceDlg() override;
 
-	void init(HINSTANCE hInst, HWND hPere, ScintillaEditView **ppEditView) {
+	void init(HINSTANCE hInst, HWND hPere, ScintillaEditView** ppEditView) {
 		Window::init(hInst, hPere);
 		if (!ppEditView)
 			throw std::runtime_error("FindIncrementDlg::init : ppEditView is null.");
@@ -275,15 +303,17 @@ public :
 	void initOptionsFromDlg();
 
 	void doDialog(DIALOG_TYPE whichType, bool isRTL = false, bool toShow = true);
-	bool processFindNext(const wchar_t *txt2find, const FindOption *options = NULL, FindStatus *oFindStatus = NULL, FindNextType findNextType = FINDNEXTTYPE_FINDNEXT);
-	bool processReplace(const wchar_t *txt2find, const wchar_t *txt2replace, const FindOption *options = NULL);
+	bool processFindNext(const wchar_t* txt2find,
+		const FindOption* options = nullptr, FindStatus* oFindStatus = nullptr, FindNextType findNextType = FINDNEXTTYPE_FINDNEXT, MatchPosition* pMatch = nullptr);
+	bool processReplace(const wchar_t* txt2find, const wchar_t* txt2replace, const FindOption* options = nullptr);
 
-	int markAll(const wchar_t *txt2find, int styleID);
-	int markAllInc(const FindOption *opt);
-	
+	int markAll(const wchar_t* txt2find, int styleID);
+	int markAllInc(FindOption* opt);
 
-	int processAll(ProcessOperation op, const FindOption *opt, bool isEntire = false, const FindersInfo *pFindersInfo = nullptr, int colourStyleID = -1);
-	int processRange(ProcessOperation op, FindReplaceInfo & findReplaceInfo, const FindersInfo *pFindersInfo, const FindOption *opt = nullptr, int colourStyleID = -1, ScintillaEditView *view2Process = nullptr);
+	int processAll(ProcessOperation op, FindOption* opt,
+		bool isEntire = false, const FindersInfo *pFindersInfo = nullptr, int colourStyleID = -1, std::vector<MatchPosition>* pMatches = nullptr);
+	int processRange(ProcessOperation op, FindReplaceInfo& findReplaceInfo, const FindersInfo* pFindersInfo,
+		FindOption* opt = nullptr, int colourStyleID = -1, ScintillaEditView* view2Process = nullptr, std::vector<MatchPosition>* pMatches = nullptr);
 
 	void replaceAllInOpenedDocs();
 	void findAllIn(InWhat op);
@@ -302,7 +332,7 @@ public :
 	void getAndValidatePatterns(std::vector<std::wstring> & patternVect);
 
 	void setFindInFilesDirFilter(const wchar_t *dir, const wchar_t *filters);
-	void setProjectCheckmarks(FindHistory *findHistory, int Msk);
+	void setProjectCheckmarks(FindHistory* findHistory, int msk);
 	void enableProjectCheckmarks();
 
 	const std::wstring& getText2search() const {
@@ -414,7 +444,7 @@ public :
 	std::wstring getScopeInfoForStatusBar(FindOption const *pFindOpt) const;
 	Finder * createFinder();
 	bool removeFinder(Finder *finder2remove);
-	DIALOG_TYPE getCurrentStatus() { return _currentStatus; }
+	DIALOG_TYPE getCurrentStatus() const { return _currentStatus; }
 	Finder* getFinderFrom(HWND hwnd);
 	int regexBackwardMsgBox();
 	std::wstring setSearchText();
@@ -422,6 +452,11 @@ public :
 
 protected :
 	void resizeDialogElements();
+	void setMinHeightAndBordersMetrics() noexcept;
+
+	void setMonospaceFont();
+	void setFont();
+
 	intptr_t CALLBACK run_dlgProc(UINT message, WPARAM wParam, LPARAM lParam) override;
 
 	static LRESULT CALLBACK ComboEditProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData);
@@ -505,7 +540,7 @@ private:
 			_tab.activateAt(_currentStatus);
 	}
 	
-	FindStatus getFindStatus() {
+	FindStatus getFindStatus() const {
 		return _statusbarFindStatus;
 	}
 
@@ -546,13 +581,27 @@ public :
 		::SendDlgItemMessage(_hSelf, IDC_INCFINDTEXT, WM_SETTEXT, 0, reinterpret_cast<LPARAM>(txt2find));
 	}
 
-	void setFindStatus(FindStatus iStatus, int nbCounted);
-	
-	FindStatus getFindStatus() {
-		return _findStatus;
-	}
+	void setFindStatus(FindStatus iStatus, size_t nbCounted, int nth);
+
+	FindStatus getFindStatus() const { return _findStatus; }
 
 	void addToRebar(ReBar* rebar);
+
+	void reInitCount() {
+		if (_matches.size() > 0)
+		{
+			_matches.clear();
+			setFindStatus(FindStatus::FSResetCount, 0, 0);
+		}
+	}
+
+	ScintillaEditView* getAssociatedScintillaView() const {
+		if (_pFRDlg)
+			return *(_pFRDlg->_ppEditView);
+		else
+			return nullptr;
+	}
+
 private :
 	bool _isRTL = false;
 	FindReplaceDlg *_pFRDlg = nullptr;
@@ -560,6 +609,8 @@ private :
 
 	ReBar* _pRebar = nullptr;
 	REBARBANDINFO _rbBand{};
+
+	std::vector<MatchPosition> _matches;
 
 	using Window::init;
 

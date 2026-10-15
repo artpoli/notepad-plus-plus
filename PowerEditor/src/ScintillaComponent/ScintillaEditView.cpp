@@ -197,7 +197,9 @@ LanguageNameInfo ScintillaEditView::_langNameInfoArray[L_EXTERNAL + 1] = {
 	{L"raku",             L"Raku",                   L"Raku source file",                                  L_RAKU,            "raku"},
 	{L"toml",             L"TOML",                   L"Tom's Obvious Minimal Language file",               L_TOML,            "toml"},
 	{L"sas",              L"SAS",                    L"SAS file",                                          L_SAS,             "sas"},
-	{L"errorlist",        L"ErrorList",              L"ErrorList",                                         L_ERRORLIST,       "errorlist"},
+	{L"errorlist",        L"ErrorList",              L"ErrorList file",                                    L_ERRORLIST,       "errorlist"},
+	{L"escseq",           L"EscapeSequence (ANSI)",  L"Escape Sequence (ANSI) file",                       L_ESCSEQ,          "escseq"},
+	{L"fcST",             L"Structured Text",         L"IEC 61131-3 Structured Text file",                  L_STTXT,           "fcST"},
 	{L"ext",              L"External",               L"External",                                          L_EXTERNAL,        "null"}
 };
 
@@ -2133,6 +2135,12 @@ void ScintillaEditView::defineDocType(LangType typeDoc)
 		case L_ERRORLIST:
 			setErrorListLexer(); break;
 
+		case L_ESCSEQ:
+			setEscSeqLexer(); break;
+
+		case L_STTXT:
+			setSTTXTLexer(); break;
+
 		case L_TEXT :
 		default :
 			if (typeDoc >= L_EXTERNAL && typeDoc < NppParameters::getInstance().L_END)
@@ -4028,22 +4036,24 @@ void ScintillaEditView::columnReplace(ColumnModeInfos& cmi, size_t initial, size
 
 			variedFormatNumber2String<char>(str, stringSize, numbers.at(i), base, useUppercase, kib, lead);
 
-			const bool hasVirtualSpc = cmi[i]._nbVirtualAnchorSpc > 0;
+			auto va = (cmi[i]._nbVirtualAnchorSpc > cmi[i]._nbVirtualCaretSpc) ? cmi[i]._nbVirtualCaretSpc : cmi[i]._nbVirtualAnchorSpc;
+			auto vc = (cmi[i]._nbVirtualAnchorSpc > cmi[i]._nbVirtualCaretSpc) ? cmi[i]._nbVirtualAnchorSpc : cmi[i]._nbVirtualCaretSpc;
+			const bool hasVirtualSpc = va > 0;
 			if (hasVirtualSpc) // if virtual space is present, then insert space
 			{
-				for (intptr_t j = 0, k = cmi[i]._selLpos; j < cmi[i]._nbVirtualCaretSpc ; ++j, ++k)
+				for (intptr_t j = 0, k = cmi[i]._selLpos; j < vc ; ++j, ++k)
 				{
 					execute(SCI_INSERTTEXT, k, reinterpret_cast<LPARAM>(" "));
 				}
-				cmi[i]._selLpos += cmi[i]._nbVirtualAnchorSpc;
-				cmi[i]._selRpos += cmi[i]._nbVirtualCaretSpc;
+				cmi[i]._selLpos += va;
+				cmi[i]._selRpos += vc;
 			}
 			execute(SCI_SETTARGETRANGE, cmi[i]._selLpos, cmi[i]._selRpos);
 			execute(SCI_REPLACETARGET, static_cast<WPARAM>(-1), reinterpret_cast<LPARAM>(str));
 
 			if (hasVirtualSpc)
 			{
-				totalDiff += cmi[i]._nbVirtualAnchorSpc + strlen(str);
+				totalDiff += va + strlen(str);
 				// Now there's no more virtual space
 				cmi[i]._nbVirtualAnchorSpc = 0;
 				cmi[i]._nbVirtualCaretSpc = 0;
@@ -4910,8 +4920,7 @@ bool ScintillaEditView::pasteToMultiSelection() const
 		{
 			LRESULT posStart = execute(SCI_GETSELECTIONNSTART, i);
 			LRESULT posEnd = execute(SCI_GETSELECTIONNEND, i);
-			replaceTarget(clipboardStrings[i].c_str(), posStart, posEnd);
-			posStart += clipboardStrings[i].length();
+			posStart += replaceTarget(clipboardStrings[i].c_str(), posStart, posEnd);
 			execute(SCI_SETSELECTIONNSTART, i, posStart);
 			execute(SCI_SETSELECTIONNEND, i, posStart);
 		}
@@ -4940,8 +4949,7 @@ bool ScintillaEditView::pasteToMultiSelection() const
 			// remove the latest added EOL
 			severalStr.erase(severalStr.length() - eolStr.length());
 
-			replaceTarget(severalStr.c_str(), posStart, posEnd);
-			posStart += severalStr.length();
+			posStart += replaceTarget(severalStr.c_str(), posStart, posEnd);
 			execute(SCI_SETSELECTIONNSTART, i, posStart);
 			execute(SCI_SETSELECTIONNEND, i, posStart);
 		}

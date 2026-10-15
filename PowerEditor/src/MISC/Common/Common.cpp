@@ -21,12 +21,15 @@
 
 #include <commctrl.h>
 #include <excpt.h>
+#include <filesystem>
+#include <shellapi.h>
+#include <shlobj.h>
 #include <shlwapi.h>
 
 #include <algorithm>
 #include <cassert>
 #include <cerrno>
-#include <climits>
+#include <cstdint>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -45,6 +48,7 @@
 #include "FileInterface.h"
 #include "NppConstants.h"
 #include "NppDarkMode.h"
+#include "Parameters.h"
 #include "Utf8.h"
 #include "dpiManagerV2.h"
 
@@ -95,8 +99,7 @@ std::string getFileContent(const wchar_t* file2read, bool* pbFailed)
 	char data[blockSize];
 	std::string wholeFileContent;
 	size_t lenFile = 0;
-	try
-	{
+	try {
 		do
 		{
 			lenFile = fread(data, 1, blockSize, fp);
@@ -595,8 +598,9 @@ std::wstring string2wstring(const std::string& rString, UINT codepage)
 	const int len = ::MultiByteToWideChar(codepage, 0, rString.c_str(), -1, nullptr, 0);
 	if (len > 0)
 	{
-		std::wstring str(len - 1, L'\0');
+		auto str = std::wstring(len, L'\0');
 		::MultiByteToWideChar(codepage, 0, rString.c_str(), -1, str.data(), len);
+		str.resize(static_cast<size_t>(len) - 1); // remove extra null terminator
 		return str;
 	}
 	return L"";
@@ -608,8 +612,9 @@ std::string wstring2string(const std::wstring& rwString, UINT codepage)
 	const int len = ::WideCharToMultiByte(codepage, 0, rwString.c_str(), -1, nullptr, 0, nullptr, nullptr);
 	if (len > 0)
 	{
-		std::string str(len - 1, '\0');
+		auto str = std::string(len, '\0');
 		::WideCharToMultiByte(codepage, 0, rwString.c_str(), -1, str.data(), len, nullptr, nullptr);
+		str.resize(static_cast<size_t>(len) - 1); // remove extra null terminator
 		return str;
 	}
 	return "";
@@ -957,8 +962,7 @@ const std::locale& getSysLocale()
 {
 	static const auto systemLocale = []()
 	{
-		try
-		{
+		try {
 			return std::locale("");
 		}
 		catch (const std::runtime_error&)
@@ -1186,7 +1190,69 @@ wstring GetLastErrorAsString(DWORD errorCode)
 	return errorMsg;
 }
 
-HWND CreateToolTip(int toolID, HWND hDlg, HINSTANCE hInst, const PWSTR pszText, bool isRTL)
+static bool isHelpTipStaticTextCtrl(HWND hWnd)
+{
+	static constexpr int strLen = 8; // 8 is enough, WC_STATIC length is 7
+	auto className = std::wstring(strLen, L'\0');
+	className.resize(static_cast<size_t>(::GetClassNameW(hWnd, className.data(), strLen)));
+	if (className != WC_STATIC)
+	{
+		return false;
+	}
+
+	const int ctrlStrLen = ::GetWindowTextLengthW(hWnd);
+	if (ctrlStrLen == 0)
+	{
+		return false;
+	}
+
+	auto ctrlText = std::wstring(ctrlStrLen + 1, L'\0');
+	ctrlText.resize(static_cast<size_t>(::GetWindowTextW(hWnd, ctrlText.data(), ctrlStrLen + 1)));
+	if (ctrlText != L"(?)")
+	{
+		return false;
+	}
+	return true;
+}
+
+static LRESULT CALLBACK helpTipStaticTextCtrlParentClickProc(
+	HWND hwnd,
+	UINT Message,
+	WPARAM wParam,
+	LPARAM lParam,
+	UINT_PTR uIdSubclass,
+	DWORD_PTR dwRefData
+)
+{
+	auto hTip = reinterpret_cast<HWND>(dwRefData);
+
+	switch (Message)
+	{
+		case WM_NCDESTROY:
+		{
+			::RemoveWindowSubclass(hwnd, helpTipStaticTextCtrlParentClickProc, uIdSubclass);
+			break;
+		}
+
+		case WM_COMMAND:
+		{
+			if (HIWORD(wParam) == STN_CLICKED
+				&& lParam != 0
+				&& uIdSubclass == static_cast<UINT_PTR>(lParam))
+			{
+				::SendMessage(hTip, TTM_POPUP, 0, 0);
+			}
+			break;
+		}
+
+		default:
+			break;
+	}
+
+	return ::DefSubclassProc(hwnd, Message, wParam, lParam);
+}
+
+HWND createToolTip(int toolID, HWND hDlg, HINSTANCE hInst, wchar_t* pszText, bool isRTL)
 {
 	if (!toolID || !hDlg || !pszText)
 	{
@@ -1230,13 +1296,27 @@ HWND CreateToolTip(int toolID, HWND hDlg, HINSTANCE hInst, const PWSTR pszText, 
 
 	SendMessage(hwndTip, TTM_ACTIVATE, TRUE, 0);
 	SendMessage(hwndTip, TTM_SETMAXTIPWIDTH, 0, 200);
-	// Make tip stay 15 seconds
-	SendMessage(hwndTip, TTM_SETDELAYTIME, TTDT_AUTOPOP, MAKELPARAM((15000), (0)));
+	// Make tip stay 32 seconds (INT16_MAX - 1 is max allowed value)
+	::SendMessage(hwndTip, TTM_SETDELAYTIME, TTDT_AUTOPOP, MAKELPARAM(INT16_MAX - 1, 0));
+
+	if (isHelpTipStaticTextCtrl(hwndTool))
+	{
+		// Make tip for static text with "(?)" to appear almost immediately,
+		// instead of default 500 ms delay.
+		// "200" is used to avoid some "visual glitch" when moving mouse fast.
+		::SendMessage(hwndTip, TTM_SETDELAYTIME, TTDT_INITIAL, MAKELPARAM(200, 0));
+
+		// Subclass to make tooltip appear if user click on static text
+		if (::GetWindowSubclass(hDlg, helpTipStaticTextCtrlParentClickProc, toolInfo.uId, nullptr) == FALSE)
+		{
+			::SetWindowSubclass(hDlg, helpTipStaticTextCtrlParentClickProc, toolInfo.uId, reinterpret_cast<DWORD_PTR>(hwndTip));
+		}
+	}
 
 	return hwndTip;
 }
 
-HWND CreateToolTipRect(int toolID, HWND hWnd, HINSTANCE hInst, const PWSTR pszText, const RECT rc)
+HWND createToolTipRect(int toolID, HWND hWnd, HINSTANCE hInst, wchar_t* pszText, const RECT rc)
 {
 	if (!toolID || !hWnd || !pszText)
 	{
@@ -1272,8 +1352,9 @@ HWND CreateToolTipRect(int toolID, HWND hWnd, HINSTANCE hInst, const PWSTR pszTe
 
 	SendMessage(hwndTip, TTM_ACTIVATE, TRUE, 0);
 	SendMessage(hwndTip, TTM_SETMAXTIPWIDTH, 0, 200);
-	// Make tip stay 15 seconds
-	SendMessage(hwndTip, TTM_SETDELAYTIME, TTDT_AUTOPOP, MAKELPARAM((15000), (0)));
+	// Make tip stay 32 seconds and appear faster
+	::SendMessage(hwndTip, TTM_SETDELAYTIME, TTDT_AUTOPOP, MAKELPARAM(INT16_MAX - 1, 0));
+	::SendMessage(hwndTip, TTM_SETDELAYTIME, TTDT_INITIAL, MAKELPARAM(100, 0));
 
 	return hwndTip;
 }
@@ -1621,8 +1702,14 @@ wstring getDateTimeStrFrom(const wstring& dateTimeFormat, const SYSTEMTIME& st)
 // Don't forget to use DeleteObject(createdFont) before leaving the program
 HFONT createFont(const wchar_t* fontName, int fontSize, bool isBold, HWND hDestParent)
 {
+	auto dlgFontSize = static_cast<WORD>(fontSize);
+	if (dlgFontSize == 0)
+	{
+		dlgFontSize = NppParameters::getInstance().getDlgFontSize();
+	}
+
 	LOGFONT logFont{};
-	const int fontSizeScaled = DPIManagerV2::scaleFontForFactor(fontSize);
+	const int fontSizeScaled = DPIManagerV2::scaleFontForFactor(dlgFontSize);
 	logFont.lfHeight = DPIManagerV2::scaleFont(fontSizeScaled, hDestParent);
 	if (isBold)
 		logFont.lfWeight = FW_BOLD;
@@ -1796,10 +1883,79 @@ bool isUnsupportedFileName(const wstring& fileName)
 
 bool isUnsupportedFileName(const wchar_t* szFileName)
 {
-	const wstring fileName = szFileName;
+	const std::wstring fileName = szFileName;
 	return isUnsupportedFileName(fileName);
 }
 
+bool isUncPath(const std::wstring& path)
+{
+	// Extended-length UNC: \\?\UNC\server\share\... or //?/UNC/server/share/...
+	if (isWin32NamespacePrefixedFileName(path))
+	{
+		std::wstring rest = path.substr(4); // strip \\?\ or //?/
+		return (_wcsnicmp(rest.c_str(), L"UNC\\", 4) == 0) || (_wcsnicmp(rest.c_str(), L"UNC/", 4) == 0);
+	}
+
+	// Plain UNC: GetFullPathNameW (and CreateFileW/FindFirstFileW's internal normalization)
+	// treats ANY pair of leading path separators - \\, //, \/, or /\ - as the start of a UNC path, not just matching pairs.
+	// Match that behavior exactly rather than re-deriving it.
+	auto isPathSep = [](wchar_t c) { return c == L'\\' || c == L'/'; };
+	return path.size() >= 2 && isPathSep(path[0]) && isPathSep(path[1]);
+}
+
+bool isUncFileUrl(const std::wstring& url)
+{
+	// file://server/share/... -> leaks NTLM. file:///C:/... or file://localhost/... does not.
+	// Scheme match must be case-insensitive
+	if (url.size() < 7 || _wcsnicmp(url.c_str(), L"file://", 7) != 0)
+		return false;
+
+	size_t hostStart = 7; // after "file://"
+
+	// Use the first separator of EITHER kind: ShellExecuteW/URL resolution accept
+	// backslashes here too (e.g. file://server\share\file.txt)
+	size_t hostEnd = url.find_first_of(L"/\\", hostStart);
+	std::wstring host = (hostEnd == std::wstring::npos) ? url.substr(hostStart) : url.substr(hostStart, hostEnd - hostStart);
+ 
+	if (host.empty())
+	{
+		// it could be file:////host/sample.txt or file:///C:/sample.txt, which are both valid UNC paths.
+		if (url.length() <= MAX_PATH)
+		{
+			wchar_t path[MAX_PATH]{};
+			DWORD pathLen = MAX_PATH;
+			return SUCCEEDED(::PathCreateFromUrlW(url.c_str(), path, &pathLen, 0)) && isUncPath(path);
+		}
+		else // very long path
+		{
+			if (_wcsnicmp(url.c_str(), L"file:////", 9) != 0) // not a UNC path, just a very long local file path
+			{
+				return false;
+			}
+			else
+			{
+				hostStart = 9; // after "file:////"
+				size_t hostEnd = url.find_first_of(L"/\\", hostStart);
+				host = (hostEnd == std::wstring::npos) ? url.substr(hostStart) : url.substr(hostStart, hostEnd - hostStart);
+			}
+		}
+	}
+
+	if (host == L".")
+		return false;
+
+	if (_wcsicmp(host.c_str(), L"localhost") == 0)
+		return false;
+
+	if (host == L"127.0.0.1" || host == L"::1" || host == L"[::1]")
+		return false;
+
+	// host like "C:" or "C|" (drive letter, sometimes seen w/o triple slash)
+	if (host.size() == 2 && iswalpha(host[0]) && (host[1] == L':' || host[1] == L'|'))
+		return false;
+
+	return true;
+}
 
 Version::Version(const wstring& versionStr)
 {
@@ -2318,7 +2474,7 @@ void ControlInfoTip::hide()
 
 DWORD invokeNppUacOp(const std::wstring& strCmdLineParams)
 {
-	if ((strCmdLineParams.length() == 0) || (strCmdLineParams.length() > (USHRT_MAX / sizeof(WCHAR))))
+	if ((strCmdLineParams.length() == 0) || (strCmdLineParams.length() > (UINT16_MAX / sizeof(WCHAR))))
 	{
 		// no cmdline or it exceeds the current max WinOS 32767 WCHARs
 		return ERROR_INVALID_PARAMETER;
@@ -2389,4 +2545,112 @@ void expandEnv(wstring& path2Expand)
 			path2Expand = buffer2.data();
 		}
 	}
+}
+
+HRESULT openInExplorerAndSelect(const wchar_t* path)
+{
+	if (!doesPathExist(path))
+		return HRESULT_FROM_WIN32(ERROR_FILE_NOT_FOUND);
+
+	ScopedCOMInit com;
+	if (!com.isInitialized())
+		return E_FAIL;
+
+	ITEMIDLIST* pidl = nullptr;
+	HRESULT hr = ::SHParseDisplayName(path, nullptr, &pidl, 0, nullptr);
+	if (SUCCEEDED(hr))
+	{
+		hr = ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
+		::CoTaskMemFree(pidl);
+	}
+	return hr;
+}
+
+bool needsElevation4Access(const std::wstring& path2check, bool bWriteAccess)
+{
+	namespace fs = std::filesystem;
+
+	WIN32_FILE_ATTRIBUTE_DATA attribs{};
+	attribs.dwFileAttributes = INVALID_FILE_ATTRIBUTES;
+	BOOL bGetAttribs = getFileAttributesExWithTimeout(path2check.c_str(), &attribs);
+	if (!bGetAttribs || (attribs.dwFileAttributes == INVALID_FILE_ATTRIBUTES))
+	{
+		// either the getFileAttributesExWithTimeout failed or the path2check (file or dir) does not exist
+		return false;
+	}
+
+	fs::path testFile;
+	bool fileExists = false;
+
+	if (attribs.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+	{
+		// path2check is an existing dir
+		fs::path targetDir(path2check);
+		bool foundDirFile = false;
+
+		try {
+			for (const auto& entry : fs::directory_iterator(targetDir))
+			{
+				if (entry.is_regular_file())
+				{
+					// found a file there to test on
+					testFile = entry.path();
+					fileExists = true;
+					foundDirFile = true;
+					break;
+				}
+			}
+		}
+		catch (const fs::filesystem_error& e)
+		{
+			if (e.code() == std::errc::permission_denied || e.code().value() == ERROR_ACCESS_DENIED)
+			{
+				if (!bWriteAccess)
+					return true; // lack the READ permissions here for sure, needs elevation
+
+				// for bWriteAccess == true, do nothing here (proceed directly to the tempfile write test below)
+			}
+			else
+			{
+				return false; // no meaning to continue checking (network drop, etc.)
+			}
+		}
+		catch (...)
+		{
+			return false; // no meaning to continue checking (std::bad_alloc & others)
+		}
+
+		// fallback for an empty dir
+		if (!foundDirFile)
+		{
+			if (!bWriteAccess)
+				return false; // no elevation required (no exception case, we only want to check READ access and can read it - it's empty)
+
+			// generate a pseudorandom tempfile to test WRITE access
+			std::wstring tempFileName = L"test-" + std::to_wstring(::GetTickCount64()) + L".tmp";
+			testFile = targetDir / tempFileName;
+			fileExists = false;
+		}
+	}
+	else
+	{
+		// path2check is an existing file
+		testFile = path2check;
+		fileExists = true;
+	}
+
+	// test the desired access rights
+	HANDLE hFile = ::CreateFileW(testFile.c_str(), bWriteAccess ? GENERIC_WRITE : GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE,
+		nullptr, fileExists ? OPEN_EXISTING : CREATE_NEW, fileExists ? FILE_ATTRIBUTE_NORMAL : FILE_FLAG_DELETE_ON_CLOSE, nullptr);
+	if (hFile != INVALID_HANDLE_VALUE)
+	{
+		::CloseHandle(hFile);
+		return false; // can open, no elevation required
+	}
+
+	if (::GetLastError() == ERROR_ACCESS_DENIED)
+		return true; // elevation required
+
+	// an elevation will not help us here (HW R/O, file-in-use locks, complex restrictive ACLs, etc.)
+	return false;
 }

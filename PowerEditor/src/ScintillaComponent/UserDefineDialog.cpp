@@ -40,6 +40,7 @@
 #include "NppXml.h"
 #include "Parameters.h"
 #include "ScintillaEditView.h"
+#include "StaticDialog.h"
 #include "UserDefineResource.h"
 #include "colors.h"
 #include "dpiManagerV2.h"
@@ -260,16 +261,16 @@ void FolderStyleDialog::updateDlg()
 	::SendDlgItemMessage(_hSelf, IDC_FOLDER_IN_COMMENT_CLOSE_EDIT, WM_SETTEXT, 0, reinterpret_cast<LPARAM>(string2wstring(_pUserLang->_keywordLists[SCE_USER_KWLIST_FOLDERS_IN_COMMENT_CLOSE]).c_str()));
 }
 
-void FolderStyleDialog::retrieve(wchar_t* dest, const wchar_t* toRetrieve, const wchar_t* prefix)
+void FolderStyleDialog::retrieve(wchar_t* dest, size_t destMaxLen, const wchar_t* toRetrieve, const wchar_t* prefix)
 {
-    int j = 0;
+    size_t j = 0;
     bool begin2Copy = false;
 
 	for (size_t i = 0, len = std::wcslen(toRetrieve); i < len; ++i)
     {
         if ((i == 0 || (toRetrieve[i-1] == ' ')) && (toRetrieve[i] == prefix[0] && toRetrieve[i+1] == prefix[1]))
         {
-            if (j > 0)
+            if (j > 0 && j < destMaxLen)
                 dest[j++] = ' ';
 
             begin2Copy = true;
@@ -281,10 +282,12 @@ void FolderStyleDialog::retrieve(wchar_t* dest, const wchar_t* toRetrieve, const
             begin2Copy = false;
         }
 
-        if (begin2Copy)
+        if (begin2Copy && j < destMaxLen)
             dest[j++] = toRetrieve[i];
     }
-    dest[j++] = '\0';
+
+    if (j < destMaxLen)
+        dest[j++] = '\0';
 }
 
 intptr_t CALLBACK KeyWordsStyleDialog::run_dlgProc(UINT Message, WPARAM wParam, LPARAM lParam)
@@ -569,40 +572,45 @@ void CommentStyleDialog::setKeywords2List(int id)
     }
 }
 
-void CommentStyleDialog::retrieve(wchar_t* dest, const wchar_t* toRetrieve, const wchar_t* prefix)
+void CommentStyleDialog::retrieve(wchar_t* dest, size_t destMaxLen, const wchar_t* toRetrieve, const wchar_t* prefix)
 {
-    int j = 0;
+    size_t j = 0;
     bool begin2Copy = false;
     bool inGroup = false;
 
-	for (size_t i = 0, len = std::wcslen(toRetrieve); i < len; ++i)
+    for (size_t i = 0, len = std::wcslen(toRetrieve); i < len; ++i)
     {
-        if ((i == 0 || (toRetrieve[i-1] == ' ')) && (toRetrieve[i] == prefix[0] && toRetrieve[i+1] == prefix[1]))
+        if ((i == 0 || (toRetrieve[i - 1] == ' ')) && (toRetrieve[i] == prefix[0] && toRetrieve[i + 1] == prefix[1]))
         {
-            if (j > 0)
+            if (j > 0 && j < destMaxLen)
                 dest[j++] = ' ';
 
             begin2Copy = true;
             ++i;
             continue;
         }
-		if (toRetrieve[i] == '(' && toRetrieve[i + 1] == '(' && !inGroup && begin2Copy)
+
+        if (toRetrieve[i] == '(' && toRetrieve[i + 1] == '(' && !inGroup && begin2Copy)
         {
             inGroup = true;
         }
-		if (toRetrieve[i] != ')' && toRetrieve[i - 1] == ')' && toRetrieve[i - 2] == ')' && inGroup)
+
+        if (toRetrieve[i] != ')' && toRetrieve[i - 1] == ')' && toRetrieve[i - 2] == ')' && inGroup)
         {
             inGroup = false;
         }
-		if (toRetrieve[i] == ' ' && begin2Copy)
+
+        if (toRetrieve[i] == ' ' && begin2Copy)
         {
             begin2Copy = false;
         }
 
-        if (begin2Copy || inGroup)
+        if (j < destMaxLen && (begin2Copy || inGroup))
             dest[j++] = toRetrieve[i];
     }
-    dest[j++] = '\0';
+
+    if (j < destMaxLen)
+        dest[j++] = '\0';
 }
 
 void CommentStyleDialog::updateDlg()
@@ -619,7 +627,7 @@ void CommentStyleDialog::updateDlg()
     for (int i = 0; static_cast<size_t>(i) < sizeof(list) / sizeof(int); ++i)
     {
         _itow(i, intBuffer + 1, 10);
-		retrieve(_kwlBuffer.data(), string2wstring(_pUserLang->_keywordLists[SCE_USER_KWLIST_COMMENTS]).c_str(), intBuffer);
+		retrieve(_kwlBuffer.data(), _kwlBuffer.capacity(), string2wstring(_pUserLang->_keywordLists[SCE_USER_KWLIST_COMMENTS]).c_str(), intBuffer);
 		::SendDlgItemMessage(_hSelf, list[i], WM_SETTEXT, 0, reinterpret_cast<LPARAM>(_kwlBuffer.c_str()));
     }
 
@@ -679,7 +687,7 @@ void SymbolsStyleDialog::updateDlg()
         else
             _itow(i, intBuffer, 10);
 
-		retrieve(_kwlBuffer.data(), string2wstring(_pUserLang->_keywordLists[SCE_USER_KWLIST_DELIMITERS]).c_str(), intBuffer);
+		retrieve(_kwlBuffer.data(), _kwlBuffer.capacity(), string2wstring(_pUserLang->_keywordLists[SCE_USER_KWLIST_DELIMITERS]).c_str(), intBuffer);
 		::SendDlgItemMessage(_hSelf, list[i], WM_SETTEXT, 0, reinterpret_cast<LPARAM>(_kwlBuffer.c_str()));
     }
 
@@ -759,9 +767,9 @@ intptr_t CALLBACK SymbolsStyleDialog::run_dlgProc(UINT Message, WPARAM wParam, L
 }
 
 
-void SymbolsStyleDialog::retrieve(wchar_t* dest, const wchar_t* toRetrieve, const wchar_t* prefix)
+void SymbolsStyleDialog::retrieve(wchar_t* dest, size_t destMaxLen, const wchar_t* toRetrieve, const wchar_t* prefix)
 {
-    int j = 0;
+    size_t j = 0;
     bool begin2Copy = false;
     bool inGroup = false;
 
@@ -769,30 +777,34 @@ void SymbolsStyleDialog::retrieve(wchar_t* dest, const wchar_t* toRetrieve, cons
     {
         if ((i == 0 || (toRetrieve[i-1] == ' ')) && (toRetrieve[i] == prefix[0] && toRetrieve[i+1] == prefix[1]))
         {
-            if (j > 0)
+            if (j > 0 && j < destMaxLen)
                 dest[j++] = ' ';
 
             begin2Copy = true;
             ++i;
             continue;
         }
+
 		if (toRetrieve[i] == '(' && toRetrieve[i + 1] == '(' && !inGroup && begin2Copy)
         {
             inGroup = true;
         }
+
 		if (toRetrieve[i] != ')' && toRetrieve[i - 1] == ')' && toRetrieve[i - 2] == ')' && inGroup)
         {
             inGroup = false;
         }
+
 		if (toRetrieve[i] == ' ' && begin2Copy)
         {
             begin2Copy = false;
         }
 
-        if (begin2Copy || inGroup)
+        if (j < destMaxLen && (begin2Copy || inGroup))
             dest[j++] = toRetrieve[i];
     }
-    dest[j++] = '\0';
+    if (j < destMaxLen)
+        dest[j++] = '\0';
 }
 
 void SymbolsStyleDialog::setKeywords2List(int id)
@@ -963,7 +975,7 @@ void UserDefineDialog::changeStyle()
 
     auto style = ::GetWindowLongPtr(_hSelf, GWL_STYLE);
     if (!style)
-        ::MessageBox(NULL, L"GetWindowLongPtr failed in UserDefineDialog::changeStyle()", L"", MB_OK);
+		NppDarkMode::darkMessageBoxW(nullptr, L"GetWindowLongPtr failed in UserDefineDialog::changeStyle()", L"", MB_OK);
 
     style = (_status == DOCK)?
         ((style & ~WS_POPUP) & ~DS_MODALFRAME & ~WS_CAPTION) | WS_CHILD :
@@ -971,7 +983,7 @@ void UserDefineDialog::changeStyle()
 
     auto result = ::SetWindowLongPtr(_hSelf, GWL_STYLE, style);
     if (!result)
-        ::MessageBox(NULL, L"SetWindowLongPtr failed in UserDefineDialog::changeStyle()", L"", MB_OK);
+		NppDarkMode::darkMessageBoxW(nullptr, L"SetWindowLongPtr failed in UserDefineDialog::changeStyle()", L"", MB_OK);
 
     if (_status == DOCK)
         getActualPosSize();
@@ -1039,32 +1051,24 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
             _symbolsStyleDlg.create(IDD_SYMBOL_STYLE_DLG);
             _symbolsStyleDlg.display(false);
 
-            _wVector.push_back(DlgInfo(&_folderStyleDlg,    L"Folder && Default"));
-            _wVector.push_back(DlgInfo(&_keyWordsStyleDlg,  L"Keywords Lists"));
-            _wVector.push_back(DlgInfo(&_commentStyleDlg,   L"Comment && Number"));
-            _wVector.push_back(DlgInfo(&_symbolsStyleDlg,   L"Operators && Delimiters"));
+			_wVector.emplace_back(&_folderStyleDlg, L"Folder && Default");
+			_wVector.emplace_back(&_keyWordsStyleDlg, L"Keywords Lists");
+			_wVector.emplace_back(&_commentStyleDlg, L"Comment && Number");
+			_wVector.emplace_back(&_symbolsStyleDlg, L"Operators && Delimiters");
 
-            _ctrlTab.createTabs(_wVector);
-            _ctrlTab.display();
+			_ctrlTab.createTabs(_wVector);
+			_ctrlTab.display();
 
-            RECT arc{};
-            ::GetWindowRect(::GetDlgItem(_hSelf, IDC_IMPORT_BUTTON), &arc);
+			RECT rcOffset{};
+			StaticDialog::getMappedChildRect(IDC_IMPORT_BUTTON, rcOffset);
 
-            POINT p{};
-            p.x = arc.left;
-            p.y = arc.bottom;
-            ::ScreenToClient(_hSelf, &p);
+			RECT rc{};
+			getClientRect(rc);
+			const LONG padding = _dpiManager.scale(6);
+			::InflateRect(&rc, -padding, -padding);
+			rc.top += rcOffset.bottom;
 
-            RECT rc{};
-            getClientRect(rc);
-            rc.top = p.y + 10;
-            rc.bottom -= 20;
-            _ctrlTab.reSizeTo(rc);
-
-            _folderStyleDlg.reSizeTo(rc);
-            _keyWordsStyleDlg.reSizeTo(rc);
-            _commentStyleDlg.reSizeTo(rc);
-            _symbolsStyleDlg.reSizeTo(rc);
+			_ctrlTab.reSizeToWH(rc);
 
             reloadLangCombo();
             ::SendDlgItemMessage(_hSelf, IDC_LANGNAME_COMBO, CB_SETCURSEL, 0, 0);
@@ -1159,7 +1163,7 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
             if (reinterpret_cast<HWND>(lParam) == ::GetDlgItem(_hSelf, IDC_UD_PERCENTAGE_SLIDER))
             {
 				const auto percent = static_cast<int>(::SendDlgItemMessage(_hSelf, IDC_UD_PERCENTAGE_SLIDER, TBM_GETPOS, 0, 0));
-                nppParam.SetTransparent(_hSelf, percent);
+                nppParam.setTransparent(_hSelf, percent);
             }
             return TRUE;
         }
@@ -1237,7 +1241,7 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
                                 if (isChecked)
                                 {
 									const auto percent = static_cast<int>(::SendDlgItemMessage(_hSelf, IDC_UD_PERCENTAGE_SLIDER, TBM_GETPOS, 0, 0));
-                                    nppParam.SetTransparent(_hSelf, percent);
+                                    nppParam.setTransparent(_hSelf, percent);
                                 }
                                 ::ShowWindow(::GetDlgItem(_hSelf, IDC_UD_TRANSPARENT_CHECK), SW_SHOW);
                                 ::ShowWindow(::GetDlgItem(_hSelf, IDC_UD_PERCENTAGE_SLIDER), SW_SHOW);
@@ -1400,6 +1404,7 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
 
                         return TRUE;
                     }
+
                     case IDC_IMPORT_BUTTON :
                     {
                         CustomFileDialog fDlg(_hSelf);
@@ -1407,8 +1412,8 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
                         wstring sourceFile = fDlg.doOpenSingleFileDlg();
                         if (sourceFile.empty()) break;
 
-                        bool isSuccessful = nppParam.importUDLFromFile(sourceFile);
-                        if (isSuccessful)
+                        auto udlNumbersBeforeAfter = nppParam.importUDLFromFile(sourceFile);
+                        if (udlNumbersBeforeAfter.second - udlNumbersBeforeAfter.first != 0)
                         {
                             auto i = ::SendDlgItemMessage(_hSelf, IDC_LANGNAME_COMBO, CB_GETCURSEL, 0, 0);
                             reloadLangCombo();
@@ -1420,6 +1425,17 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
                                 L"User Defined Language",
                                 MB_OK | MB_APPLMODAL,
                                 0);
+
+                            // Update language menu
+                            HWND hNpp = ::GetParent(_hSelf);
+                            HMENU hLangMenu = ::GetSubMenu(reinterpret_cast<HMENU>(::SendMessage(hNpp, NPPM_INTERNAL_GETMENU, 0, 0)), MENUINDEX_LANGUAGE);
+
+                            for (auto j = udlNumbersBeforeAfter.first + 1; j <= udlNumbersBeforeAfter.second; ++j)
+                            {
+                                const wchar_t* newName = nppParam.getULCFromIndex(j - 1)->getName();
+                                ::InsertMenu(hLangMenu, IDM_LANG_USER + udlNumbersBeforeAfter.first, MF_BYCOMMAND, IDM_LANG_USER + j, newName);
+                            }
+                            ::DrawMenuBar(hNpp);
                         }
                         else
                         {
@@ -1485,7 +1501,7 @@ intptr_t CALLBACK UserDefineDialog::run_dlgProc(UINT message, WPARAM wParam, LPA
                         if (isChecked)
                         {
 							const auto percent = static_cast<int>(::SendDlgItemMessage(_hSelf, IDC_UD_PERCENTAGE_SLIDER, TBM_GETPOS, 0, 0));
-                            nppParam.SetTransparent(_hSelf, percent);
+                            nppParam.setTransparent(_hSelf, percent);
                         }
                         else
                             nppParam.removeTransparent(_hSelf);
@@ -1818,9 +1834,19 @@ intptr_t CALLBACK StylerDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM lPa
             dlg = static_cast<StylerDlg*>(::GetProp(_hSelf, L"Styler dialog prop"));
             Style & style = SharedParametersDialog::_pUserLang->_styles.getStyler(dlg->_stylerIndex);
 
-            ::SendDlgItemMessage(_hSelf, IDC_STYLER_CHECK_UNDERLINE, BM_SETCHECK, style._fontStyle & FONTSTYLE_UNDERLINE, 0);
-            ::SendDlgItemMessage(_hSelf, IDC_STYLER_CHECK_ITALIC,    BM_SETCHECK, style._fontStyle & FONTSTYLE_ITALIC, 0);
-            ::SendDlgItemMessage(_hSelf, IDC_STYLER_CHECK_BOLD,      BM_SETCHECK, style._fontStyle & FONTSTYLE_BOLD, 0);
+            // if it's a new styler (not yet any styles set), use the theme's default fg colors and transparent background
+            if (SharedParametersDialog::_pUserLang->_isUnset)
+            {
+                SharedParametersDialog::_pUserLang->startAtTheme();
+
+                // also needs to update dlg->_initialStyle, which was set wrong, above
+                dlg->_initialStyle = SharedParametersDialog::_pUserLang->_styles.getStyler(dlg->_stylerIndex);
+            }
+
+            int sfs = (style._fontStyle == STYLE_NOT_USED) ? FONTSTYLE_NONE : style._fontStyle; // STYLE_NOT_USED=1, so STYLE_NOT_USED & FONTSTYLE_UNDERLINE is 1 (etc); we don't want underline/italic/bold for STYLE_NOT_USED
+            ::SendDlgItemMessage(_hSelf, IDC_STYLER_CHECK_UNDERLINE, BM_SETCHECK, sfs & FONTSTYLE_UNDERLINE, 0);
+            ::SendDlgItemMessage(_hSelf, IDC_STYLER_CHECK_ITALIC,    BM_SETCHECK, sfs & FONTSTYLE_ITALIC, 0);
+            ::SendDlgItemMessage(_hSelf, IDC_STYLER_CHECK_BOLD,      BM_SETCHECK, sfs & FONTSTYLE_BOLD, 0);
 
             // for the font size combo
             HWND hFontSizeCombo = ::GetDlgItem(_hSelf, IDC_STYLER_COMBO_FONT_SIZE);

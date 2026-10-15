@@ -17,9 +17,15 @@
 
 #include "TaskListDlg.h"
 
+#include <windows.h>
+
 #include "Notepad_plus_msgs.h"
+#include "NppConstants.h"
+#include "NppDarkMode.h"
 #include "Parameters.h"
+#include "StaticDialog.h"
 #include "TaskListDlg_rc.h"
+#include "colors.h"
 
 int TaskListDlg::_instanceCount = 0;
 
@@ -73,7 +79,7 @@ intptr_t CALLBACK TaskListDlg::run_dlgProc(UINT Message, WPARAM wParam, LPARAM l
 				i2set = 0;
 
 			_taskList.init(_hInst, _hSelf, _hImalist, nbTotal, i2set);
-			_taskList.setFont(10);
+			_taskList.setFont(NppParameters::getInstance().getDlgFontSize() + 2);
 			_rc = _taskList.adjustSize();
 
 			reSizeTo(_rc);
@@ -111,6 +117,15 @@ intptr_t CALLBACK TaskListDlg::run_dlgProc(UINT Message, WPARAM wParam, LPARAM l
 			return TRUE;
 		}
 
+		case WM_ACTIVATE:
+		{
+			if (LOWORD(wParam) == WA_INACTIVE)
+			{
+				::EndDialog(_hSelf, -1);
+				return TRUE;
+			}
+			break;
+		}
 
 		case WM_RBUTTONUP:
 		{

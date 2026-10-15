@@ -174,6 +174,10 @@ void Notepad_plus_Window::init(HINSTANCE hInst, HWND parent, const wchar_t *cmdL
 		}
 	}
 
+	if (cmdLineParams->_monitoringMode)
+		nppParams.setMonitoringModeOn();
+
+
 	if (cmdLineParams->_alwaysOnTop)
 		::SendMessage(_hSelf, WM_COMMAND, IDM_VIEW_ALWAYSONTOP, 0);
 
@@ -305,8 +309,14 @@ void Notepad_plus_Window::init(HINSTANCE hInst, HWND parent, const wchar_t *cmdL
 	}
 
 	// Restore all dockable panels from the last session
-	for (size_t i = 0, len = _notepad_plus_plus_core._internalFuncIDs.size() ; i < len ; ++i)
-		::SendMessage(_hSelf, WM_COMMAND, _notepad_plus_plus_core._internalFuncIDs[i], 0);
+	for (size_t i = 0, len = _notepad_plus_plus_core._internalFuncIDs.size(); i < len; ++i)
+	{
+		int id = _notepad_plus_plus_core._internalFuncIDs[i];
+		if (_notepad_plus_plus_core.isInternalPanel(id))
+		{
+			::SendMessage(_hSelf, WM_COMMAND, id, 0);
+		}
+	}
 
 	std::chrono::steady_clock::duration cmdlineParamsLoadingTime{};
 	std::vector<std::wstring> fns;
@@ -415,7 +425,7 @@ void Notepad_plus_Window::init(HINSTANCE hInst, HWND parent, const wchar_t *cmdL
 		wss << L"Last session loading: " << std::chrono::hh_mm_ss{ std::chrono::duration_cast<std::chrono::milliseconds>(sessionLoadingTime) } << std::endl;
 		wss << L"Command line params handling: " << std::chrono::hh_mm_ss{ std::chrono::duration_cast<std::chrono::milliseconds>(cmdlineParamsLoadingTime) } << std::endl;
 		wss << L"Total loading time: " << std::chrono::hh_mm_ss{ std::chrono::duration_cast<std::chrono::milliseconds>(nppInitTime + g_pluginsLoadingTime + sessionLoadingTime + cmdlineParamsLoadingTime) };
-		::MessageBoxW(NULL, wss.str().c_str(), L"Notepad++ loading time (hh:mm:ss.ms)", MB_OK);
+		NppDarkMode::darkMessageBoxW(nullptr, wss.str().c_str(), L"Notepad++ loading time (hh:mm:ss.ms)", MB_OK);
 	}
 
 	if (cmdLineParams->_displayCmdLineArgs)

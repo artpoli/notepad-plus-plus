@@ -19,11 +19,12 @@
 
 #include <windows.h>
 
+#include <ios>
 #include <sstream>
 #include <string>
 #include <string_view>
-#include <vector>
 #include <utility>
+#include <vector>
 
 #include <SciLexer.h>
 #include <Sci_Position.h>
@@ -32,6 +33,7 @@
 #include "Buffer.h"
 #include "Notepad_plus_msgs.h"
 #include "NppConstants.h"
+#include "NppDarkMode.h"
 #include "UserDefineDialog.h"
 #include "Window.h"
 #include "colors.h"
@@ -605,7 +607,7 @@ public:
 		if ((NppParameters::getInstance()).isTransparentAvailable())
 			convertSelectedTextTo(caseToConvert);
 		else
-			::MessageBox(_hSelf, L"This function needs a newer OS version.", L"Change Case Error", MB_OK | MB_ICONHAND);
+			NppDarkMode::darkMessageBoxW(_hSelf, L"This function needs a newer OS version.", L"Change Case Error", MB_OK | MB_ICONHAND);
 	}
 
 	void getCurrentFoldStates(std::vector<size_t> & lineStateVector);
@@ -1072,6 +1074,14 @@ protected:
 		setLexer(L_SAS, LIST_0 | LIST_1 | LIST_2 | LIST_3);
 	}
 
+	void setSTTXTLexer() {
+		setLexer(L_STTXT, LIST_0 | LIST_1 | LIST_2 | LIST_3 | LIST_4 | LIST_5);
+		execute(SCI_SETPROPERTY, reinterpret_cast<WPARAM>("fold"), reinterpret_cast<LPARAM>("1"));
+		execute(SCI_SETPROPERTY, reinterpret_cast<WPARAM>("fold.compact"), reinterpret_cast<LPARAM>("0"));
+		execute(SCI_SETPROPERTY, reinterpret_cast<WPARAM>("fold.comment"), reinterpret_cast<LPARAM>("1"));
+		execute(SCI_SETPROPERTY, reinterpret_cast<WPARAM>("fold.preprocessor"), reinterpret_cast<LPARAM>("1"));
+	}
+
 	void setErrorListLexer() {
 		setLexer(L_ERRORLIST, LIST_NONE);
 		bool doShowEscapeChars = isShownCcUniEol();	// decide based on the ControlCharacter+UnicodeEOL flag
@@ -1079,6 +1089,14 @@ protected:
 		execute(SCI_STYLESETVISIBLE, static_cast<WPARAM>(SCE_ERR_ESCSEQ_UNKNOWN), static_cast<LPARAM>(doShowEscapeChars));
 		execute(SCI_SETPROPERTY, reinterpret_cast<WPARAM>("lexer.errorlist.value.separate"), reinterpret_cast<LPARAM>("0"));
 		execute(SCI_SETPROPERTY, reinterpret_cast<WPARAM>("lexer.errorlist.escape.sequences"), reinterpret_cast<LPARAM>("1"));
+	}
+
+	void setEscSeqLexer() {
+		setLexer(L_ESCSEQ, LIST_NONE);
+		bool doShowEscapeChars = isShownCcUniEol();	// decide based on the ControlCharacter+UnicodeEOL flag
+		execute(SCI_STYLESETVISIBLE, static_cast<WPARAM>(SCE_ESCSEQ_IDENTIFIER), static_cast<LPARAM>(doShowEscapeChars));
+		execute(SCI_STYLESETVISIBLE, static_cast<WPARAM>(SCE_ESCSEQ_UNKNOWN), static_cast<LPARAM>(doShowEscapeChars));
+		execute(SCI_SETPROPERTY, reinterpret_cast<WPARAM>("lexer.escseq.colour.text"), reinterpret_cast<LPARAM>("1"));
 	}
 
 	//--------------------

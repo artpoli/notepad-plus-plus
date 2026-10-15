@@ -15,15 +15,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#include <stdexcept>
 #include "ColourPopup.h"
-#include "ColourPopupResource.h"
-#include "NppDarkMode.h"
-#include "dpiManagerV2.h"
+
+#include <windows.h>
 
 #include <commdlg.h>
 
 #include <array>
+#include <stdexcept>
+
+#include "ColourPopupResource.h"
+#include "NppDarkMode.h"
+#include "Parameters.h"
+#include "StaticDialog.h"
+#include "Window.h"
+#include "dpiManagerV2.h"
+#include "localization.h"
 
 static constexpr std::array<COLORREF, 48> colorItems{ {
 	RGB(  0,   0,   0), RGB( 64,   0,   0), RGB(128,   0,   0), RGB(128,  64,  64), RGB(255,   0,   0), RGB(255, 128, 128),
@@ -38,7 +45,7 @@ static constexpr std::array<COLORREF, 48> colorItems{ {
 
 void ColourPopup::createColorPopup()
 {
-	_hSelf = StaticDialog::myCreateDialogIndirectParam(IDD_COLOUR_POPUP, false, 8, ColourPopup::dlgClrPopupProc);
+	_hSelf = StaticDialog::myCreateDialogIndirectParam(IDD_COLOUR_POPUP, false, 0, ColourPopup::dlgClrPopupProc);
 
 	if (!_hSelf)
 	{
@@ -106,6 +113,9 @@ intptr_t CALLBACK ColourPopup::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 				if (i != LB_ERR)
 					::SendDlgItemMessage(_hSelf, IDC_COLOUR_LIST, LB_SETITEMDATA, i, static_cast<LPARAM>(color));
 			}
+
+			const NativeLangSpeaker* pNativeSpeaker = NppParameters::getInstance().getNativeLangSpeaker();
+			pNativeSpeaker->changeDlgLang(_hSelf, "ColorPopup");
 			return TRUE;
 		}
 		
@@ -139,7 +149,7 @@ intptr_t CALLBACK ColourPopup::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 			COLORREF	cr;
 			HBRUSH		hbrush;
 	
-			DRAWITEMSTRUCT *pdis = (DRAWITEMSTRUCT *)lParam;
+			auto* pdis = reinterpret_cast<DRAWITEMSTRUCT*>(lParam);
 			hdc = pdis->hDC;
 			RECT rc = pdis->rcItem;
 	
@@ -147,7 +157,7 @@ intptr_t CALLBACK ColourPopup::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 			SetBkMode(hdc,TRANSPARENT);
 	
 			// NULL object
-			if (pdis->itemID == UINT(-1)) return 0; 
+			if (pdis->itemID == static_cast<UINT>(-1)) return 0;
 
 			switch (pdis->itemAction)
 			{
@@ -156,9 +166,9 @@ intptr_t CALLBACK ColourPopup::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 					{
 						case IDC_COLOUR_LIST:
 							rc = pdis->rcItem;
-							cr = (COLORREF) pdis->itemData;
+							cr = static_cast<COLORREF>(pdis->itemData);
 							InflateRect(&rc, -3, -3);
-							hbrush = CreateSolidBrush((COLORREF)cr);
+							hbrush = ::CreateSolidBrush(cr);
 							FillRect(hdc, &rc, hbrush);
 							DeleteObject(hbrush);
 							hbrush = CreateSolidBrush(NppDarkMode::isEnabled() ? NppDarkMode::getEdgeColor() : RGB(0, 0, 0));
@@ -176,7 +186,7 @@ intptr_t CALLBACK ColourPopup::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 						rc.right --;
 						// Draw the lighted side.
 						HPEN hpen = CreatePen(PS_SOLID, 1, NppDarkMode::isEnabled() ? NppDarkMode::getEdgeColor() : GetSysColor(COLOR_BTNSHADOW));
-						HPEN holdPen = (HPEN)SelectObject(hdc, hpen);
+						auto holdPen = static_cast<HPEN>(::SelectObject(hdc, hpen));
 						MoveToEx(hdc, rc.left, rc.bottom, NULL);
 						LineTo(hdc, rc.left, rc.top);
 						LineTo(hdc, rc.right, rc.top);
@@ -184,7 +194,7 @@ intptr_t CALLBACK ColourPopup::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 						DeleteObject(hpen);
 						// Draw the darkened side.
 						hpen = CreatePen(PS_SOLID, 1, NppDarkMode::isEnabled() ? NppDarkMode::getEdgeColor() : GetSysColor(COLOR_BTNHIGHLIGHT));
-						holdPen = (HPEN)SelectObject(hdc, hpen);
+						holdPen = static_cast<HPEN>(::SelectObject(hdc, hpen));
 						LineTo(hdc, rc.right, rc.bottom);
 						LineTo(hdc, rc.left, rc.bottom);
 						SelectObject(hdc, holdPen);
@@ -213,11 +223,10 @@ intptr_t CALLBACK ColourPopup::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 			{
 				case IDOK:
 				{
-					static constexpr COLORREF white = RGB(0xFF, 0xFF, 0xFF);
-					static constinit std::array<COLORREF, 16> customColors{ {
-						white, white, white, white, white, white, white, white,
-						white, white, white, white, white, white, white, white,
-					} };
+					// The 16 custom color slots are persisted across restarts (issue #4782):
+					// ChooseColorW reads/writes this array in place, and it is saved to
+					// config.xml on exit.
+					auto& customColors = NppParameters::getInstance().getNppGUI()._colorPickerCustomColors;
 
 					CHOOSECOLOR cc{};
 					cc.lStructSize = sizeof(CHOOSECOLOR);
@@ -225,13 +234,13 @@ intptr_t CALLBACK ColourPopup::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 
 					cc.lpCustColors = customColors.data();
 					cc.rgbResult = _colour;
-					cc.lpfnHook = static_cast<LPCCHOOKPROC>(chooseColorDlgProc);
+					cc.lpfnHook = chooseColorDlgProc;
 					cc.Flags = CC_FULLOPEN | CC_RGBINIT | CC_ENABLEHOOK;
 
 					Window::display(false);
 
 					const auto dpiContext = DPIManagerV2::setThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED);
-					ChooseColorW(&cc);
+					NppDarkMode::darkChooseColorW(&cc);
 					DPIManagerV2::setThreadDpiAwarenessContext(dpiContext);
 
 					::SendMessage(_hParent, WM_PICKUP_COLOR, cc.rgbResult, 0);
@@ -245,6 +254,7 @@ intptr_t CALLBACK ColourPopup::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 					{
 						const auto i = ::SendMessage(reinterpret_cast<HWND>(lParam), LB_GETCURSEL, 0, 0);
 						_colour = static_cast<COLORREF>(::SendMessage(reinterpret_cast<HWND>(lParam), LB_GETITEMDATA, i, 0));
+						Window::display(false);
 						::SendMessage(_hParent, WM_PICKUP_COLOR, _colour, 0);
 						return TRUE;
 					}
@@ -260,6 +270,7 @@ intptr_t CALLBACK ColourPopup::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 			if (LOWORD(wParam) == WA_INACTIVE && ::IsWindowVisible(_hSelf))
 			{
 				Window::display(false);
+				destroy();
 				return TRUE;
 			}
 			break;
@@ -268,7 +279,7 @@ intptr_t CALLBACK ColourPopup::run_dlgProc(UINT message, WPARAM wParam, LPARAM l
 	return FALSE;
 }
 
-uintptr_t CALLBACK ColourPopup::chooseColorDlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM)
+UINT_PTR CALLBACK ColourPopup::chooseColorDlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM)
 {
 	switch (message)
 	{

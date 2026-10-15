@@ -32,6 +32,7 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <unordered_set>
 #include <utility>
 #include <vector>
 
@@ -40,6 +41,7 @@
 #include <SciLexer.h>
 #include <Scintilla.h>
 
+#include "Common.h"
 #include "ContextMenu.h"
 #include "DockingCont.h"
 #include "Notepad_plus_msgs.h"
@@ -63,7 +65,7 @@
 
 #endif
 
-#define CMD_INTERPRETER L"%COMSPEC%"
+#define DEFAULT_DLG_FONT L"MS Shell Dlg"
 
 class NativeLangSpeaker;
 
@@ -74,9 +76,9 @@ class NativeLangSpeaker;
 */
 EolType convertIntToFormatType(int value, EolType defvalue = EolType::osdefault);
 
-#define PURE_LC_NONE	0
-#define PURE_LC_BOL	 1
-#define PURE_LC_WSP	 2
+#define PURE_LC_NONE 0
+#define PURE_LC_BOL  1
+#define PURE_LC_WSP  2
 
 void cutString(const wchar_t* str2cut, std::vector<std::wstring>& patternVect);
 void cutStringBy(const wchar_t* str2cut, std::vector<std::wstring>& patternVect, wchar_t byChar, bool allowEmptyStr);
@@ -146,6 +148,13 @@ struct sessionFileInfo : public Position
 	MapPosition _mapPos;
 };
 
+struct FileBrowserRootsInfo
+{
+	std::wstring _root;
+	std::unordered_set<std::wstring> _expandedPaths;
+
+	FileBrowserRootsInfo(const std::wstring& root) : _root(root) {}
+};
 
 struct Session
 {
@@ -158,7 +167,7 @@ struct Session
 	std::wstring _fileBrowserSelectedItem;
 	std::vector<sessionFileInfo> _mainViewFiles;
 	std::vector<sessionFileInfo> _subViewFiles;
-	std::vector<std::wstring> _fileBrowserRoots;
+	std::vector<FileBrowserRootsInfo> _fileBrowserRoots;
 };
 
 
@@ -186,6 +195,7 @@ struct CmdLineParams
 	bool _isRecursive = false;
 	bool _openFoldersAsWorkspace = false;
 	bool _monitorFiles = false;
+	bool _monitoringMode = false;
 
 	LangType _langType = L_EXTERNAL;
 	std::wstring _localizationPath;
@@ -516,6 +526,7 @@ struct LangMenuItem final
 
 struct PrintSettings final {
 	bool _printLineNumber = true;
+	bool _printFormFeedPageBreak = false;
 	int _printOption = SC_PRINT_COLOURONWHITE;
 
 	std::wstring _headerLeft;
@@ -710,6 +721,12 @@ struct NppGUI final
 	bool _statusBarShow = true;
 	bool _menuBarShow = true;
 
+	// The 16 custom color slots of the Windows color picker (ChooseColor), persisted
+	// across restarts (issue #4782). ChooseColorW reads/writes this array in place.
+	std::array<COLORREF, 16> _colorPickerCustomColors{ {
+		white, white, white, white, white, white, white, white,
+		white, white, white, white, white, white, white, white } };
+
 	int _tabStatus = (TAB_DRAWTOPBAR | TAB_DRAWINACTIVETAB | TAB_DRAGNDROP | TAB_REDUCE | TAB_CLOSEBUTTON | TAB_PINBUTTON);
 	bool _forceTabbarVisible = false;
 	UINT _tabCompactLabelLen = 0; // 0 ... no compacting
@@ -726,7 +743,7 @@ struct NppGUI final
 	bool _finderShowOnlyOneEntryPerFoundLine = true;
 	bool _fif_ignoreunsavedChangesInOpenedFiles = false;
 
-	int _fileAutoDetection = cdEnabledNew;
+	int _fileAutoDetection = cdEnabled4CurrentFile;
 
 	bool _checkHistoryFiles = false;
 
@@ -812,9 +829,6 @@ struct NppGUI final
 	std::wstring _definedSessionExt;
 	std::wstring _definedWorkspaceExt;
 
-	// items with no Notepad++ GUI to set
-	std::wstring _commandLineInterpreter = CMD_INTERPRETER;
-
 	enum AutoUpdateMode { autoupdate_disabled, autoupdate_on_startup, autoupdate_on_exit };
 	struct AutoUpdateOptions
 	{
@@ -873,6 +887,14 @@ struct NppGUI final
 	DarkModeConf _darkmode;
 
 	LargeFileRestriction _largeFileRestriction;
+
+	std::string _shortcutsXmlHmacInConfig;
+	std::string _shortcutsOnDiskHmac;
+
+	bool _isFawSymlinkAllowed = false; // allow to open symlink files in FaW (Folder as Workspace) panel.
+
+	WORD _fontDlgSize = 8;
+	std::wstring _fontDlgName = DEFAULT_DLG_FONT;
 };
 
 
@@ -899,6 +921,7 @@ struct ScintillaViewParams
 	std::vector<size_t> _edgeMultiColumnPos;
 	intptr_t _zoom = 0;
 	intptr_t _zoom2 = 0;
+	bool _zoomSync = false;
 	bool _whiteSpaceShow = false;
 	bool _eolShow = false;
 	enum crlfMode {plainText = 0, roundedRectangleText = 1, plainTextCustomColor = 2, roundedRectangleTextCustomColor = 3};
@@ -1010,7 +1033,7 @@ public:
 	UserLangContainer() noexcept :_name(L"new user define"), _ext(L""), _udlVersion(""), _isDarkModeTheme(false) {}
 
 	explicit UserLangContainer(const wchar_t* name, const wchar_t* ext, const char* udlVer, bool isDarkModeTheme) noexcept
-		: _name(name), _ext(ext), _udlVersion(udlVer), _isDarkModeTheme(isDarkModeTheme) {}
+		: _name(name), _ext(ext), _udlVersion(udlVer), _isDarkModeTheme(isDarkModeTheme), _isUnset(true) {}
 
 	UserLangContainer(const UserLangContainer& ulc) noexcept
 		: _styles(ulc._styles),
@@ -1022,13 +1045,14 @@ public:
 		_isCaseIgnored(ulc._isCaseIgnored),
 		_allowFoldOfComments(ulc._allowFoldOfComments),
 		_foldCompact(ulc._foldCompact),
-		_isDarkModeTheme(ulc._isDarkModeTheme)
+		_isDarkModeTheme(ulc._isDarkModeTheme),
+		_isUnset(ulc._isUnset)
 	{
 		for (Style& st : _styles)
 		{
-			if (st._bgColor == static_cast<COLORREF>(-1))
+			if (st._bgColor == static_cast<COLORREF>(STYLE_NOT_USED))
 				st._bgColor = white;
-			if (st._fgColor == static_cast<COLORREF>(-1))
+			if (st._fgColor == static_cast<COLORREF>(STYLE_NOT_USED))
 				st._fgColor = black;
 		}
 
@@ -1057,6 +1081,7 @@ public:
 			this->_allowFoldOfComments = ulc._allowFoldOfComments;
 			this->_foldCompact = ulc._foldCompact;
 			this->_isDarkModeTheme = ulc._isDarkModeTheme;
+			this->_isUnset = ulc._isUnset;
 			for (Style & st : this->_styles)
 			{
 				if (st._bgColor == static_cast<COLORREF>(-1))
@@ -1073,6 +1098,8 @@ public:
 		}
 		return *this;
 	}
+
+	void startAtTheme();
 
 	const wchar_t* getName() const { return _name.c_str(); }
 	const wchar_t* getExtention() const { return _ext.c_str(); }
@@ -1093,6 +1120,7 @@ private:
 	bool _allowFoldOfComments = false;
 	bool _foldCompact = false;
 	bool _isDarkModeTheme = false;
+	bool _isUnset = true;
 
 	// nakama zone
 	friend class Notepad_plus;
@@ -1260,8 +1288,7 @@ public:
 	size_t size() const { return _themeList.size(); }
 
 
-	std::pair<std::wstring, std::wstring> & getElementFromIndex(size_t index)
-	{
+	std::pair<std::wstring, std::wstring> & getElementFromIndex(size_t index) {
 		assert(index < _themeList.size());
 		return _themeList[index];
 	}
@@ -1376,7 +1403,7 @@ private:
 	// XML Document with its path
 	struct XmlDocPath final
 	{
-		NppXml::Document _doc;
+		NppXml::Document _doc{};
 		std::wstring _path;
 	};
 
@@ -1401,8 +1428,15 @@ public:
 		return _nppGUI;
 	}
 
-	const char* getWordList(LangType langID, int typeIndex) const
-	{
+	[[nodiscard]] WORD getDlgFontSize() const noexcept {
+		return std::clamp<WORD>(_nppGUI._fontDlgSize, 8U, 24U);
+	}
+
+	[[nodiscard]] const std::wstring& getDlgFontName() const noexcept {
+		return _nppGUI._fontDlgName;
+	}
+
+	const char* getWordList(LangType langID, int typeIndex) const {
 		const Lang* pLang = getLangFromID(langID);
 		if (!pLang) return nullptr;
 
@@ -1410,8 +1444,7 @@ public:
 	}
 
 
-	Lang* getLangFromID(LangType langID) const
-	{
+	Lang* getLangFromID(LangType langID) const {
 		for (int i = 0 ; i < _nbLang ; ++i)
 		{
 			if ( _langList[i] && _langList[i]->_langID == langID )
@@ -1428,8 +1461,7 @@ public:
 
 	LangType getLangFromExt(const wchar_t *ext);
 
-	const wchar_t* getLangExtFromName(const wchar_t* langName) const
-	{
+	const wchar_t* getLangExtFromName(const wchar_t* langName) const {
 		for (int i = 0 ; i < _nbLang ; ++i)
 		{
 			if (_langList[i]->_langName == langName)
@@ -1438,8 +1470,7 @@ public:
 		return nullptr;
 	}
 
-	const wchar_t* getLangExtFromLangType(LangType langType) const
-	{
+	const wchar_t* getLangExtFromLangType(LangType langType) const {
 		for (int i = 0 ; i < _nbLang ; ++i)
 		{
 			if (_langList[i]->_langID == langType)
@@ -1472,16 +1503,14 @@ public:
 
 	int getRecentFileCustomLength() const { return _recentFileCustomLength; }
 
-	const ScintillaViewParams& getSVP() const {
-		return _svp;
-	}
+	const ScintillaViewParams& getSVP() const {	return _svp; }
 
 	bool writeRecentFileHistorySettings(int nbMaxFile = -1);
 	bool writeHistory(const wchar_t *fullpath);
 
 	bool writeProjectPanelsSettings();
 	bool writeColumnEditorSettings();
-	bool writeFileBrowserSettings(const std::vector<std::wstring>& rootPaths, const std::wstring& latestSelectedItemPath);
+	bool writeFileBrowserSettings(const std::vector<std::wstring>& rootPaths, const std::wstring& latestSelectedItemPath, const std::unordered_set<std::wstring>& expandedPaths = {});
 
 	static NppXml::Element getChildElementByAttribute(const NppXml::Element& element, const char* childName, const char* attributeName, const char* attributeVal);
 
@@ -1522,11 +1551,10 @@ public:
 	void writeNonDefaultUDL();
 	void writeNeed2SaveUDL();
 	void writeShortcuts();
-	void writeSession(const Session& session, const wchar_t* fileName = nullptr) const;
+	void writeSession(const Session& session, const wchar_t* fileName = nullptr);
 	bool writeFindHistory();
 
-	bool isExistingUserLangName(const wchar_t* newName) const
-	{
+	bool isExistingUserLangName(const wchar_t* newName) const {
 		if ((!newName) || (!newName[0]))
 			return true;
 
@@ -1557,12 +1585,11 @@ public:
 
 	// 0 <= percent < 256
 	// if (percent == 255) then opacq
-	static void SetTransparent(HWND hwnd, int percent);
+	static void setTransparent(HWND hwnd, int percent);
 
 	static void removeTransparent(HWND hwnd);
 
-	void setCmdlineParam(const CmdLineParamsDTO & cmdLineParams)
-	{
+	void setCmdlineParam(const CmdLineParamsDTO & cmdLineParams) {
 		_cmdLineParams = cmdLineParams;
 	}
 
@@ -1615,7 +1642,7 @@ public:
 		return _workSpaceFilePaths[i].c_str();
 	}
 
-	const std::vector<std::wstring>& getFileBrowserRoots() const { return _fileBrowserRoot; }
+	std::vector<FileBrowserRootsInfo>& getFileBrowserRoots() { return _fileBrowserRoots; }
 	const std::wstring& getFileBrowserSelectedItemPath() const { return _fileBrowserSelectedItemPath; }
 
 	void setWorkSpaceFilePath(int i, const wchar_t *wsFile);
@@ -1629,16 +1656,12 @@ public:
 	void setFunctionListExportBoolean(bool doIt) {
 		_doFunctionListExport = doIt;
 	}
-	bool doFunctionListExport() const {
-		return _doFunctionListExport;
-	}
+	bool doFunctionListExport() const {	return _doFunctionListExport; }
 
 	void setPrintAndExitBoolean(bool doIt) {
 		_doPrintAndExit = doIt;
 	}
-	bool doPrintAndExit() const {
-		return _doPrintAndExit;
-	}
+	bool doPrintAndExit() const { return _doPrintAndExit; }
 
 	bool loadSession(Session& session, const wchar_t* sessionFileName, const bool bSuppressErrorMsg = false);
 
@@ -1646,9 +1669,7 @@ public:
 		_loadedSessionFullFilePath = loadedSessionFilePath;
 	}
 
-	const std::wstring& getLoadedSessionFilePath() const {
-		return _loadedSessionFullFilePath;
-	}
+	const std::wstring& getLoadedSessionFilePath() const {	return _loadedSessionFullFilePath; }
 
 	int langTypeToCommandID(LangType lt) const;
 
@@ -1693,53 +1714,34 @@ public:
 	void safeWow64EnableWow64FsRedirection(BOOL Wow64FsEnableRedirection);
 #endif
 
-	LocalizationSwitcher & getLocalizationSwitcher() {
-		return _localizationSwitcher;
-	}
+	LocalizationSwitcher & getLocalizationSwitcher() { return _localizationSwitcher; }
 
-	ThemeSwitcher & getThemeSwitcher() {
-		return _themeSwitcher;
-	}
+	ThemeSwitcher & getThemeSwitcher() { return _themeSwitcher; }
 
-	bool importUDLFromFile(const std::wstring& sourceFile);
+	std::pair<unsigned char, unsigned char> importUDLFromFile(const std::wstring& sourceFile); // return the pair of (udlNumberBeforeImporting, udlNumberAfterImporting)
 	bool exportUDLToFile(size_t langIndex2export, const std::wstring& fileName2save);
-	NativeLangSpeaker* getNativeLangSpeaker() {
-		return _pNativeLangSpeaker;
-	}
-	void setNativeLangSpeaker(NativeLangSpeaker *nls) {
-		_pNativeLangSpeaker = nls;
-	}
 
-	bool isLocal() const {
-		return _isLocal;
-	}
+	NativeLangSpeaker* getNativeLangSpeaker() {	return _pNativeLangSpeaker; }
+	void setNativeLangSpeaker(NativeLangSpeaker *nls) {	_pNativeLangSpeaker = nls; }
 
-	bool isCloud() const {
-		return _isCloud;
-	}
+	bool isLocal() const { return _isLocal; }
+
+	bool isCloud() const { return _isCloud; }
 
 	void saveConfig_xml() const;
 
-	const std::wstring& getUserPath() const {
-		return _userPath;
-	}
+	const std::wstring& getUserPath() const { return _userPath; }
 
-	const std::wstring& getUserDefineLangFolderPath() const {
-		return _userDefineLangsFolderPath;
-	}
+	const std::wstring& getUserDefineLangFolderPath() const { return _userDefineLangsFolderPath; }
 
 	bool writeSettingsFilesOnCloudForThe1stTime(const std::wstring& cloudSettingsPath) const;
 	void setCloudChoice(const wchar_t* pathChoice) const;
 	void removeCloudChoice() const;
 	bool isCloudPathChanged() const;
 	static constexpr int archType() { return ARCH_TYPE; }
-	COLORREF getCurrentDefaultBgColor() const {
-		return _currentDefaultBgColor;
-	}
+	COLORREF getCurrentDefaultBgColor() const {	return _currentDefaultBgColor; }
 
-	COLORREF getCurrentDefaultFgColor() const {
-		return _currentDefaultFgColor;
-	}
+	COLORREF getCurrentDefaultFgColor() const { return _currentDefaultFgColor; }
 
 	void setCurrentDefaultBgColor(COLORREF c) {
 		_currentDefaultBgColor = c;
@@ -1757,9 +1759,7 @@ public:
 		_titleBarAdditional = titleAdd;
 	}
 
-	const std::wstring& getTitleBarAdd() const {
-		return _titleBarAdditional;
-	}
+	const std::wstring& getTitleBarAdd() const { return _titleBarAdditional; }
 
 	std::wstring static getSpecialFolderLocation(int folderKind);
 
@@ -1808,6 +1808,8 @@ private:
 	NppXml::Document _pXmlContextMenuDoc = nullptr; // contextMenu.xml
 	NppXml::Document _pXmlTabContextMenuDoc = nullptr; // tabContextMenu.xml
 
+	NppXml::Document _pXmlServerWhiteListDoc = nullptr; // serverWhiteList.xml
+
 	std::vector<XmlDocPath> _pXmlExternalLexerDoc; // External lexer plugins' XMLs
 
 	NppGUI _nppGUI;
@@ -1853,8 +1855,8 @@ private:
 
 	std::wstring _loadedSessionFullFilePath;
 
-	std::array<HLSColour, 5> individualTabHuesFor_Dark{ { HLSColour{37, 60, 60}, HLSColour{70, 60, 60}, HLSColour{144, 70, 60}, HLSColour{255, 60, 60}, HLSColour{195, 60, 60} } };
-	std::array<HLSColour, 5> individualTabHues{ { HLSColour{37, 210, 150}, HLSColour{70, 210, 150}, HLSColour{144, 210, 150}, HLSColour{255, 210, 150}, HLSColour{195, 210, 150}} };
+	std::array<HLSColour, TAB_COLORS_COUNT> individualTabHuesFor_Dark{ { HLSColour{37, 60, 60}, HLSColour{70, 60, 60}, HLSColour{144, 70, 60}, HLSColour{255, 60, 60}, HLSColour{195, 60, 60} } };
+	std::array<HLSColour, TAB_COLORS_COUNT> individualTabHues{ { HLSColour{37, 210, 150}, HLSColour{70, 210, 150}, HLSColour{144, 210, 150}, HLSColour{255, 210, 150}, HLSColour{195, 210, 150}} };
 
 	std::array<COLORREF, 4> findDlgStatusMessageColor{ red, blue, darkGreen, orange };
 
@@ -1864,6 +1866,9 @@ public:
 	bool isAdmin() const { return _isAdminMode; }
 	bool regexBackward4PowerUser() const { return _findHistory._regexBackward4PowerUser; }
 	bool isRegForOSAppRestartDisabled() const { return _isRegForOSAppRestartDisabled; }
+	const std::wstring& getShortcutsPath() const { return _shortcutsPath; }
+	void setMonitoringModeOn() { _isMonitoringMode = true; }
+	bool isMonitoringMode() const { return _isMonitoringMode; }
 
 private:
 	bool _isAnyShortcutModified = false;
@@ -1893,6 +1898,7 @@ private:
 	std::wstring _shortcutsPath;
 	std::wstring _contextMenuPath;
 	std::wstring _tabContextMenuPath;
+	std::wstring _serverWhiteListPath;
 	std::wstring _sessionPath;
 	std::wstring _nppPath;
 	std::wstring _userPath;
@@ -1904,7 +1910,7 @@ private:
 	std::wstring _currentDirectory;
 	std::wstring _workSpaceFilePaths[3];
 
-	std::vector<std::wstring> _fileBrowserRoot;
+	std::vector<FileBrowserRootsInfo> _fileBrowserRoots;
 	std::wstring _fileBrowserSelectedItemPath;
 
 	Accelerator* _pAccelerator = nullptr;
@@ -1912,6 +1918,8 @@ private:
 
 	FindDlgTabTitles _findDlgTabTitles;
 	bool _asNotepadStyle = false;
+
+	bool _isMonitoringMode = false;
 
 	winVer _winVersion = WV_UNKNOWN;
 	Platform _platForm = PF_UNKNOWN;
@@ -1940,6 +1948,18 @@ private:
 	bool _theWarningHasBeenGiven = false;
 
 	int _currentSystemCodepage = -1;
+
+public:
+	enum NetworkPathAlwaysAction { networkPathAlwaysAsk, networkPathAlwaysSkip, networkPathAlwaysLoad };
+private:
+	NetworkPathAlwaysAction _networkPathAlwaysAction = networkPathAlwaysAsk; // for security reason, this setting is not in the common config.xml but in serverWhiteList.xml
+public:
+	NetworkPathAlwaysAction networkPathAlwaysAction() const { return _networkPathAlwaysAction; }
+
+	bool makeDefaultServerWhiteList(bool bSave2File);
+	bool addServerToWhiteList(const char* netpath, bool bCaseSensitive = false);
+	bool setNetworkPathAlwaysActionInServerWhitelist(NetworkPathAlwaysAction mode);
+
 
 public:
 	const std::wstring& getWingupFullPath() const { return _wingupFullPath; }
@@ -1972,6 +1992,9 @@ public:
 	void setFindDlgStatusMsgIndexColor(COLORREF colour2Set, int colourIndex);
 	COLORREF getFindDlgStatusMsgColor(int colourIndex);
 
+	bool isServerAllowed(const char* path2check, bool bCaseSensitive = false);
+	static bool getServerName(const std::string& path2check, std::string& serverNameOutput);
+
 private:
 	unsigned long _sintillaModEventMask = SC_MOD_DELETETEXT | SC_MOD_INSERTTEXT | SC_PERFORMED_UNDO | SC_PERFORMED_REDO | SC_MOD_CHANGEINDICATOR;
 	enum class ConfXml { lang, styles };
@@ -1997,7 +2020,7 @@ private:
 	bool getUserCmdsFromXmlTree();
 	bool getPluginCmdsFromXmlTree();
 	bool getScintKeysFromXmlTree();
-	static bool getSessionFromXmlTree(const NppXml::Document& pSessionDoc, Session& session);
+	bool getSessionFromXmlTree(const NppXml::Document& pSessionDoc, Session& session, const std::wstring& sessionDocFileName = L"", bool detectNetworkPath = false);
 
 	void feedGUIParameters(const NppXml::Element& element);
 	void feedKeyWordsParameters(const NppXml::Element& element);
